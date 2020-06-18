@@ -35,13 +35,13 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.osgi:org.osgi.core:6.0.0 -> !!!groupId-not-found!!!
+# org.osgi:org.osgi.core:6.0.0 -> >=dev-java/osgi-core-6.0.0:6
 
 DEPEND="
 	>=virtual/jdk-1.7:*
 	${CDEPEND}
 	app-arch/unzip
-	>=app-maven/osgi-core-6.0.0:6
+	>=dev-java/osgi-core-6.0.0:6
 "
 
 RDEPEND="

@@ -8,7 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-binjar
 
 DESCRIPTION="JRuby is the effort to recreate the Ruby (https://www.ruby-lang.org) interpreter in Java."
 HOMEPAGE="https://github.com/jruby/jruby/jruby-stdlib"

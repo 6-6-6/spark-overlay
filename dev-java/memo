@@ -1,0 +1,28 @@
+# progress
+aspectjweaver
+oracle-javamail
+jboss series
+jnr series
+jansi & jline
+jna: .so needed
+netty series
+okio: why need app-maven
+reactive-stream: why app-maven
+osgi series
+why testng (6>4)
+
+# need maintain
+jaxb series
+svm
+truffle series
+
+# weird
+## module-info
+ehcache
+invokebinder
+istack-commons-tools
+joda-*
+txw2
+##
+hibernate
+tunnelvisionlabs-antlr: antlr:3.5 cannot emerge

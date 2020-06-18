@@ -21,10 +21,10 @@ MAVEN_ID="org.apache.commons:commons-crypto:1.0.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# net.java.dev.jna:jna:4.2.2 -> >=dev-java/jna-3.4.1:0
+# net.java.dev.jna:jna:4.2.2 -> >=dev-java/jna-4.2.2-r1:4
 
 CDEPEND="
-	>=dev-java/jna-3.4.1:0
+	dev-java/jna:5
 "
 
 
@@ -42,7 +42,7 @@ S="${WORKDIR}"
 
 JAVA_ENCODING="iso-8859-1"
 
-JAVA_GENTOO_CLASSPATH="jna"
+JAVA_GENTOO_CLASSPATH="jna-5"
 JAVA_RESOURCE_DIRS=(
 	"../../../../../../../../var/lib/java-ebuilder/poms/src/main/resources"
 	"../../../../../../../../var/lib/java-ebuilder/poms"

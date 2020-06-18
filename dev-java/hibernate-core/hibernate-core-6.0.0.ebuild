@@ -22,6 +22,7 @@ MAVEN_PROVIDE="org.hibernate:hibernate-entitymanager:6.0.0.Alpha5 org.hibernate:
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
+	java-virtuals/antlr:4
 "
 
 RDEPEND="
@@ -30,3 +31,4 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_GENTOO_CLASSPATH="antlr-4"

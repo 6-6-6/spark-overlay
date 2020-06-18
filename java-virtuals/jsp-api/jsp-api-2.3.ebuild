@@ -1,0 +1,22 @@
+# Copyright 1999-2017 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=6
+
+inherit java-virtuals-2
+
+DESCRIPTION="Virtual for servlet api"
+HOMEPAGE="https://jcp.org/en/jsr/detail?id=340"
+SRC_URI=""
+
+LICENSE="public-domain"
+SLOT="${PV}"
+KEYWORDS="amd64 ~arm64 ppc64 x86"
+
+RDEPEND="|| (
+		dev-java/tomcat-servlet-api:4.0
+	)"
+
+JAVA_VIRTUAL_PROVIDES="tomcat-servlet-api-4.0"
+
+MAVEN_PROVIDE="javax.servlet.jsp:jsp-api:2.3 javax.servlet.jsp:jsp-api:2.3 javax.servlet:jsp-api:2.3 org.apache.tomcat:tomcat-jsp-api:9.0.36"

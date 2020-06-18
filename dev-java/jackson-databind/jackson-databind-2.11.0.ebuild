@@ -14,7 +14,7 @@ DESCRIPTION="General data-binding functionality for Jackson: works on core strea
 HOMEPAGE="http://github.com/FasterXML/jackson"
 SRC_URI="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/${PN}/${PV}/${P}-sources.jar"
 LICENSE=""
-SLOT="0"
+SLOT="2"
 KEYWORDS="~amd64"
 MAVEN_ID="com.fasterxml.jackson.core:jackson-databind:2.11.0"
 
@@ -24,8 +24,8 @@ MAVEN_ID="com.fasterxml.jackson.core:jackson-databind:2.11.0"
 # com.fasterxml.jackson.core:jackson-core:2.11.0 -> >=dev-java/jackson-2.9.10:2
 
 CDEPEND="
-	>=dev-java/jackson-2.9.10:2
-	>=dev-java/jackson-annotations-2.9.10:2
+	>=dev-java/jackson-2.11.0:2
+	>=dev-java/jackson-annotations-2.11.0:2
 "
 
 
