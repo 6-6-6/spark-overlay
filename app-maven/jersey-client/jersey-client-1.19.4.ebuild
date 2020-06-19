@@ -30,13 +30,13 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.osgi:osgi_R4_core:1.0 -> >=app-maven/osgi-core-bin-1.0:4
+# org.osgi:osgi_R4_core:1.0 -> >=dev-java/osgi-core-4.0:4
 
 DEPEND="
 	>=virtual/jdk-1.6:*
 	${CDEPEND}
 	app-arch/unzip
-	>=app-maven/osgi-core-bin-1.0:4
+	>=dev-java/osgi-core-4.0:4
 "
 
 RDEPEND="
@@ -46,4 +46,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jersey-core"
-JAVA_GENTOO_CLASSPATH_EXTRA="osgi-core-bin-4"
+JAVA_CLASSPATH_EXTRA="osgi-core-4"

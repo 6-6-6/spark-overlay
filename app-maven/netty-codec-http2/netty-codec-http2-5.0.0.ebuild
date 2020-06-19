@@ -22,15 +22,16 @@ MAVEN_ID="io.netty:netty-codec-http2:5.0.0.Alpha2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Alpha2.pom
-# com.jcraft:jzlib:1.1.2 -> >=dev-java/jzlib-1.1.1:1.1
+# com.jcraft:jzlib:1.1.2 -> >=dev-java/jzlib-1.1.3:1.1.3
 # com.twitter:hpack:0.10.1 -> >=app-maven/hpack-1.0.2:0
-# io.netty:netty-codec-http:5.0.0.Alpha2 -> >=dev-java/netty-buffer-4.0.21:0
-# io.netty:netty-handler:5.0.0.Alpha2 -> >=dev-java/netty-buffer-4.0.21:0
+# io.netty:netty-codec-http:5.0.0.Alpha2 -> >=app-maven/netty-codec-http-5.0.0:0
+# io.netty:netty-handler:5.0.0.Alpha2 -> >=app-maven/netty-handler-5.0.0:0
 
 CDEPEND="
 	>=app-maven/hpack-1.0.2:0
-	>=dev-java/jzlib-1.1.1:1.1
-	>=dev-java/netty-buffer-4.0.21:0
+	>=app-maven/netty-codec-http-5.0.0:0
+	>=app-maven/netty-handler-5.0.0:0
+	>=dev-java/jzlib-1.1.3:1.1.3
 "
 
 
@@ -46,4 +47,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jzlib-1.1,hpack,netty-buffer,netty-buffer"
+JAVA_GENTOO_CLASSPATH="jzlib-1.1.3,hpack,netty-codec-http,netty-handler"

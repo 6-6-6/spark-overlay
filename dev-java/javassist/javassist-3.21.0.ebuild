@@ -16,7 +16,7 @@ SRC_URI="https://repo.maven.apache.org/maven2/org/${PN}/${PN}/${PV}-GA/${P}-GA-s
 LICENSE=""
 SLOT="3"
 KEYWORDS="~amd64"
-MAVEN_ID="org.javassist:javassist:3.21.0-GA"
+MAVEN_ID="org.javassist:javassist:3.23.0-GA"
 
 JAVA_NEEDS_TOOLS=1
 

@@ -20,12 +20,14 @@ MAVEN_ID="io.netty:netty-transport-native-unix-common:4.1.50.Final"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Final.pom
-# io.netty:netty-buffer:4.1.50.Final -> >=dev-java/netty-buffer-4.0.21:0
-# io.netty:netty-common:4.1.50.Final -> >=dev-java/netty-buffer-4.0.21:0
-# io.netty:netty-transport:4.1.50.Final -> >=dev-java/netty-buffer-4.0.21:0
+# io.netty:netty-buffer:4.1.50.Final -> >=app-maven/netty-buffer-5.0.0:0
+# io.netty:netty-common:4.1.50.Final -> >=app-maven/netty-common-5.0.0:0
+# io.netty:netty-transport:4.1.50.Final -> >=app-maven/netty-transport-5.0.0:0
 
 CDEPEND="
-	>=dev-java/netty-buffer-4.0.21:0
+	>=app-maven/netty-buffer-5.0.0:0
+	>=app-maven/netty-common-5.0.0:0
+	>=app-maven/netty-transport-5.0.0:0
 "
 
 
@@ -41,4 +43,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="netty-buffer,netty-buffer,netty-buffer"
+JAVA_GENTOO_CLASSPATH="netty-buffer,netty-common,netty-transport"

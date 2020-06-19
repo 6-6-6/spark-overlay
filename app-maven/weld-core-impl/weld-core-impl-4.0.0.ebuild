@@ -25,9 +25,9 @@ MAVEN_ID="org.jboss.weld:weld-core-impl:4.0.0.Alpha2"
 # jakarta.el:jakarta.el-api:4.0.0-RC1 -> >=app-maven/jakarta-el-api-4.0.0:0
 # jakarta.interceptor:jakarta.interceptor-api:2.0.0-RC2 -> >=app-maven/jakarta-interceptor-api-2.0.0:0
 # jakarta.persistence:jakarta.persistence-api:3.0.0-RC2 -> >=app-maven/jakarta-persistence-api-3.0.0:0
-# org.apache.bcel:bcel:6.2 -> >=dev-java/bcel-6.0_rc3:0
+# org.apache.bcel:bcel:6.2 -> >=dev-java/bcel-6.5.0:0
 # org.jboss.classfilewriter:jboss-classfilewriter:1.2.4.Final -> >=app-maven/jboss-classfilewriter-1.2.4:0
-# org.jboss.logging:jboss-logging:3.4.1.Final -> >=dev-java/jboss-logging-3.1.4:0
+# org.jboss.logging:jboss-logging:3.4.1.Final -> >=dev-java/jboss-logging-3.4.1:0
 # org.jboss.weld:weld-api:4.0.Alpha1 -> >=app-maven/weld-api-4.0:0
 # org.jboss.weld:weld-spi:4.0.Alpha1 -> >=app-maven/weld-spi-4.0:0
 
@@ -40,8 +40,8 @@ CDEPEND="
 	>=app-maven/spotbugs-annotations-4.0.3:0
 	>=app-maven/weld-api-4.0:0
 	>=app-maven/weld-spi-4.0:0
-	>=dev-java/bcel-6.0_rc3:0
-	>=dev-java/jboss-logging-3.1.4:0
+	>=dev-java/bcel-6.5.0:0
+	>=dev-java/jboss-logging-3.4.1:0
 "
 
 # Compile dependencies
@@ -62,4 +62,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="spotbugs-annotations,jakarta-annotation-api,jakarta-el-api,jakarta-interceptor-api,jakarta-persistence-api,bcel,jboss-classfilewriter,jboss-logging,weld-api,weld-spi"
-JAVA_GENTOO_CLASSPATH_EXTRA="jboss-logging-processor"
+JAVA_CLASSPATH_EXTRA="jboss-logging-processor"

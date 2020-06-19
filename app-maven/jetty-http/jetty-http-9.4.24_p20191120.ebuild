@@ -21,22 +21,22 @@ MAVEN_ID="org.eclipse.jetty:jetty-http:9.4.24.v20191120"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-9.4.24.v20191120.pom
 # org.eclipse.jetty:jetty-io:9.4.24.v20191120 -> >=app-maven/jetty-io-9.4.24_p20191120:0
-# org.eclipse.jetty:jetty-util:9.4.24.v20191120 -> >=app-maven/jetty-util-9.3.24_p20180605:0
+# org.eclipse.jetty:jetty-util:9.4.24.v20191120 -> >=app-maven/jetty-util-9.4.24_p20191120:0
 
 CDEPEND="
 	>=app-maven/jetty-io-9.4.24_p20191120:0
-	>=app-maven/jetty-util-9.3.24_p20180605:0
+	>=app-maven/jetty-util-9.4.24_p20191120:0
 "
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-9.4.24.v20191120.pom
-# javax.servlet:javax.servlet-api:3.1.0 -> >=java-virtuals/servlet-api-2.3:2.3
+# javax.servlet:javax.servlet-api:3.1.0 -> >=java-virtuals/servlet-api-3.1:3.1
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-	>=java-virtuals/servlet-api-2.3:2.3
+	>=java-virtuals/servlet-api-3.1:3.1
 "
 
 RDEPEND="
@@ -46,4 +46,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jetty-io,jetty-util"
-JAVA_GENTOO_CLASSPATH_EXTRA="servlet-api-2.3"
+JAVA_CLASSPATH_EXTRA="servlet-api-3.1"

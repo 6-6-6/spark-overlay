@@ -36,13 +36,13 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}-M1.pom
-# org.osgi:org.osgi.core:6.0.0 -> >=app-maven/org-osgi-core-6.0.0:0
+# org.osgi:org.osgi.core:6.0.0 -> >=dev-java/osgi-core-6.0.0:6
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-	>=app-maven/org-osgi-core-6.0.0:0
+	>=dev-java/osgi-core-6.0.0:6
 "
 
 RDEPEND="
@@ -52,4 +52,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jakarta-activation-api,jakarta-annotation-api,jakarta-ws-rs-api,osgi-resource-locator,jakarta-inject"
-JAVA_GENTOO_CLASSPATH_EXTRA="org-osgi-core"
+JAVA_CLASSPATH_EXTRA="osgi-core-6"

@@ -22,10 +22,10 @@ MAVEN_ID="io.netty:netty-resolver:5.0.0.Alpha2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Alpha2.pom
-# io.netty:netty-common:5.0.0.Alpha2 -> >=dev-java/netty-buffer-4.0.21:0
+# io.netty:netty-common:5.0.0.Alpha2 -> >=app-maven/netty-common-5.0.0:0
 
 CDEPEND="
-	>=dev-java/netty-buffer-4.0.21:0
+	>=app-maven/netty-common-5.0.0:0
 "
 
 
@@ -41,4 +41,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="netty-buffer"
+JAVA_GENTOO_CLASSPATH="netty-common"

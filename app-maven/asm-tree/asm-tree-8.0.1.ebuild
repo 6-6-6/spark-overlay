@@ -20,10 +20,10 @@ MAVEN_ID="org.ow2.asm:asm-tree:8.0.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.ow2.asm:asm:8.0.1 -> >=dev-java/asm-3.3.1:3
+# org.ow2.asm:asm:8.0.1 -> >=dev-java/asm-8.0.1:0
 
 CDEPEND="
-	>=dev-java/asm-3.3.1:3
+	>=dev-java/asm-8.0.1:0
 "
 
 
@@ -39,4 +39,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="asm-3"
+JAVA_GENTOO_CLASSPATH="asm"

@@ -22,12 +22,12 @@ MAVEN_ID="io.dropwizard.metrics:metrics-graphite:4.1.9"
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.rabbitmq:amqp-client:5.5.3 -> >=app-maven/amqp-client-5.9.0:0
 # io.dropwizard.metrics:metrics-core:4.1.9 -> >=app-maven/metrics-core-4.1.9:0
-# org.slf4j:slf4j-api:1.7.30 -> >=dev-java/slf4j-api-1.7.7:0
+# org.slf4j:slf4j-api:1.7.30 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
 
 CDEPEND="
 	>=app-maven/amqp-client-5.9.0:0
 	>=app-maven/metrics-core-4.1.9:0
-	>=dev-java/slf4j-api-1.7.7:0
+	>=dev-java/slf4j-api-2.0.0_alpha1:0
 "
 
 

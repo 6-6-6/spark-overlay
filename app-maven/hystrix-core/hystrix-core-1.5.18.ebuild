@@ -39,13 +39,13 @@ DEPEND="
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.slf4j:slf4j-api:1.7.0 -> >=dev-java/slf4j-api-1.7.7:0
+# org.slf4j:slf4j-api:1.7.0 -> >=dev-java/slf4j-ext-1.7.5:0
 RDEPEND="
 	>=virtual/jre-1.8:*
 ${CDEPEND}
-	>=dev-java/slf4j-api-1.7.7:0
+	>=dev-java/slf4j-ext-1.7.5:0
 "
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="archaius-core,rxjava,HdrHistogram,slf4j-api"
+JAVA_GENTOO_CLASSPATH="archaius-core,rxjava,HdrHistogram,slf4j-ext"

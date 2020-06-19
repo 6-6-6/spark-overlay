@@ -20,10 +20,10 @@ MAVEN_ID="net.minidev:accessors-smart:1.2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.ow2.asm:asm:5.0.4 -> >=dev-java/asm-3.3.1:3
+# org.ow2.asm:asm:5.0.4 -> >=dev-java/asm-5.1:4
 
 CDEPEND="
-	>=dev-java/asm-3.3.1:3
+	>=dev-java/asm-5.1:4
 "
 
 
@@ -39,4 +39,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="asm-3"
+JAVA_GENTOO_CLASSPATH="asm-4"

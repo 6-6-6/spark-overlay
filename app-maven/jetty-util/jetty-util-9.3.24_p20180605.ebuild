@@ -21,14 +21,14 @@ MAVEN_ID="org.eclipse.jetty:jetty-util:9.3.24.v20180605"
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-9.3.24.v20180605.pom
-# javax.servlet:javax.servlet-api:3.1.0 -> >=java-virtuals/servlet-api-2.3:2.3
-# org.slf4j:slf4j-api:1.6.6 -> >=dev-java/slf4j-simple-1.7.7:0
+# javax.servlet:javax.servlet-api:3.1.0 -> >=java-virtuals/servlet-api-3.1:3.1
+# org.slf4j:slf4j-api:1.6.6 -> >=dev-java/slf4j-ext-1.7.5:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	>=dev-java/slf4j-simple-1.7.7:0
-	>=java-virtuals/servlet-api-2.3:2.3
+	>=dev-java/slf4j-ext-1.7.5:0
+	>=java-virtuals/servlet-api-3.1:3.1
 "
 
 RDEPEND="
@@ -37,4 +37,4 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH_EXTRA="servlet-api-2.3,slf4j-simple"
+JAVA_CLASSPATH_EXTRA="servlet-api-3.1,slf4j-ext"

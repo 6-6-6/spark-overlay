@@ -20,14 +20,14 @@ MAVEN_ID="com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.fasterxml.jackson.core:jackson-core:2.11.0 -> >=dev-java/jackson-2.9.10:2
-# com.fasterxml.jackson.core:jackson-databind:2.11.0 -> >=dev-java/jackson-databind-2.11.0:0
-# org.yaml:snakeyaml:1.26 -> >=dev-java/snakeyaml-1.16:0
+# com.fasterxml.jackson.core:jackson-core:2.11.0 -> >=dev-java/jackson-2.11.0:2
+# com.fasterxml.jackson.core:jackson-databind:2.11.0 -> >=dev-java/jackson-databind-2.11.0:2
+# org.yaml:snakeyaml:1.26 -> >=dev-java/snakeyaml-1.26:0
 
 CDEPEND="
-	>=dev-java/jackson-2.9.10:2
-	>=dev-java/jackson-databind-2.11.0:0
-	>=dev-java/snakeyaml-1.16:0
+	>=dev-java/jackson-2.11.0:2
+	>=dev-java/jackson-databind-2.11.0:2
+	>=dev-java/snakeyaml-1.26:0
 "
 
 
@@ -43,4 +43,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-2,jackson-databind,snakeyaml"
+JAVA_GENTOO_CLASSPATH="jackson-2,jackson-databind-2,snakeyaml"

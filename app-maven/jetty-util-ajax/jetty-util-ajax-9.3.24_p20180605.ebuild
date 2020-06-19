@@ -28,13 +28,13 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-9.3.24.v20180605.pom
-# javax.servlet:javax.servlet-api:3.1.0 -> >=java-virtuals/servlet-api-2.3:2.3
+# javax.servlet:javax.servlet-api:3.1.0 -> >=java-virtuals/servlet-api-3.1:3.1
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-	>=java-virtuals/servlet-api-2.3:2.3
+	>=java-virtuals/servlet-api-3.1:3.1
 "
 
 RDEPEND="
@@ -44,4 +44,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jetty-util"
-JAVA_GENTOO_CLASSPATH_EXTRA="servlet-api-2.3"
+JAVA_CLASSPATH_EXTRA="servlet-api-3.1"

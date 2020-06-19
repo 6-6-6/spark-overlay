@@ -20,13 +20,13 @@ MAVEN_ID="org.apache.felix:org.osgi.compendium:1.4.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/org.osgi.compendium-${PV}.pom
-# org.apache.felix:javax.servlet:1.0.0 -> >=app-maven/javax-servlet-bin-1.0.0:0
-# org.apache.felix:org.osgi.core:1.4.0 -> >=app-maven/osgi-core-1.4.0:1
+# org.apache.felix:javax.servlet:1.0.0 -> >=app-maven/javax-servlet-1.0.0:0
+# org.apache.felix:org.osgi.core:1.4.0 -> >=dev-java/osgi-core-1.4.0:1
 # org.apache.felix:org.osgi.foundation:1.2.0 -> >=dev-java/osgi-foundation-1.2.0:0
 
 CDEPEND="
-	>=app-maven/javax-servlet-bin-1.0.0:0
-	>=app-maven/osgi-core-1.4.0:1
+	>=app-maven/javax-servlet-1.0.0:0
+	>=dev-java/osgi-core-1.4.0:1
 	>=dev-java/osgi-foundation-1.2.0:0
 "
 
@@ -43,7 +43,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="javax-servlet-bin,osgi-core-1,osgi-foundation"
+JAVA_GENTOO_CLASSPATH="javax-servlet,osgi-core-1,osgi-foundation"
 JAVA_RESOURCE_DIRS=(
 	"../../../../../../../../var/lib/java-ebuilder/poms/src/main/resources"
 	"../../../../../../../../var/lib/java-ebuilder/poms"

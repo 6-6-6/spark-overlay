@@ -25,7 +25,7 @@ MAVEN_ID="org.glassfish.hk2:hk2-locator:2.6.1"
 # org.glassfish.hk2:hk2-utils:2.6.1 -> >=app-maven/hk2-utils-2.6.1:0
 # org.glassfish.hk2.external:aopalliance-repackaged:2.6.1 -> >=app-maven/aopalliance-repackaged-2.6.1:0
 # org.glassfish.hk2.external:jakarta.inject:2.6.1 -> >=app-maven/jakarta-inject-2.6.1:0
-# org.javassist:javassist:3.22.0-CR2 -> >=dev-java/javassist-3.18.2:3
+# org.javassist:javassist:3.22.0-CR2 -> >=dev-java/javassist-3.21.0:3
 
 CDEPEND="
 	>=app-maven/aopalliance-repackaged-2.6.1:0
@@ -33,7 +33,7 @@ CDEPEND="
 	>=app-maven/hk2-utils-2.6.1:0
 	>=app-maven/jakarta-annotation-api-2.0.0:0
 	>=app-maven/jakarta-inject-2.6.1:0
-	>=dev-java/javassist-3.18.2:3
+	>=dev-java/javassist-3.21.0:3
 "
 
 

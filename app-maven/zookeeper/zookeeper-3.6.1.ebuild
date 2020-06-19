@@ -21,49 +21,50 @@ MAVEN_ID="org.apache.zookeeper:zookeeper:3.6.1"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # commons-lang:commons-lang:2.6 -> >=dev-java/commons-lang-2.6:2.1
-# io.netty:netty-handler:4.1.48.Final -> >=dev-java/netty-buffer-4.0.21:0
+# io.netty:netty-handler:4.1.48.Final -> >=app-maven/netty-handler-5.0.0:0
 # io.netty:netty-transport-native-epoll:4.1.48.Final -> >=app-maven/netty-transport-native-epoll-5.0.0:0
 # log4j:log4j:1.2.17 -> >=dev-java/log4j-1.2.17:0
 # org.apache.yetus:audience-annotations:0.5.0 -> >=app-maven/audience-annotations-0.12.0:0
 # org.apache.zookeeper:zookeeper-jute:3.6.1 -> >=app-maven/zookeeper-jute-3.6.1:0
-# org.slf4j:slf4j-api:1.7.25 -> >=dev-java/slf4j-api-1.7.7:0
-# org.slf4j:slf4j-log4j12:1.7.25 -> >=dev-java/slf4j-api-1.7.7:0
+# org.slf4j:slf4j-api:1.7.25 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
+# org.slf4j:slf4j-log4j12:1.7.25 -> !!!suitble-avenVersion-not-found!!!
 
 CDEPEND="
+	!!!suitble-avenVersion-not-found!!!
 	>=app-maven/audience-annotations-0.12.0:0
+	>=app-maven/netty-handler-5.0.0:0
 	>=app-maven/netty-transport-native-epoll-5.0.0:0
 	>=app-maven/zookeeper-jute-3.6.1:0
 	>=dev-java/commons-lang-2.6:2.1
 	>=dev-java/log4j-1.2.17:0
-	>=dev-java/netty-buffer-4.0.21:0
-	>=dev-java/slf4j-api-1.7.7:0
+	>=dev-java/slf4j-api-2.0.0_alpha1:0
 "
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.fasterxml.jackson.core:jackson-databind:2.10.3 -> >=dev-java/jackson-databind-2.11.0:0
+# com.fasterxml.jackson.core:jackson-databind:2.10.3 -> >=dev-java/jackson-databind-2.11.0:2
 # com.github.spotbugs:spotbugs-annotations:4.0.2 -> >=app-maven/spotbugs-annotations-4.0.3:0
-# com.googlecode.json-simple:json-simple:1.1.1 -> >=dev-java/json-simple-1.1:0
-# commons-cli:commons-cli:1.2 -> >=dev-java/commons-cli-1.4:1
+# com.googlecode.json-simple:json-simple:1.1.1 -> !!!suitble-avenVersion-not-found!!!
+# commons-cli:commons-cli:1.2 -> >=dev-java/commons-cli-1.3.1:1
 # io.dropwizard.metrics:metrics-core:3.2.5 -> >=app-maven/metrics-core-4.1.9:0
 # jline:jline:2.11 -> >=dev-java/jline-2.12.1:2
-# org.eclipse.jetty:jetty-server:9.4.24.v20191120 -> >=app-maven/jetty-server-9.3.24_p20180605:0
-# org.eclipse.jetty:jetty-servlet:9.4.24.v20191120 -> >=app-maven/jetty-servlet-9.3.24_p20180605:0
-# org.xerial.snappy:snappy-java:1.1.7 -> >=dev-java/snappy-1.0.3_rc3:1.0
+# org.eclipse.jetty:jetty-server:9.4.24.v20191120 -> >=app-maven/jetty-server-9.4.24_p20191120:0
+# org.eclipse.jetty:jetty-servlet:9.4.24.v20191120 -> >=app-maven/jetty-servlet-9.4.24_p20191120:0
+# org.xerial.snappy:snappy-java:1.1.7 -> >=dev-java/snappy-1.1.7.5:1.1
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-	>=app-maven/jetty-server-9.3.24_p20180605:0
-	>=app-maven/jetty-servlet-9.3.24_p20180605:0
+	!!!suitble-avenVersion-not-found!!!
+	>=app-maven/jetty-server-9.4.24_p20191120:0
+	>=app-maven/jetty-servlet-9.4.24_p20191120:0
 	>=app-maven/metrics-core-4.1.9:0
 	>=app-maven/spotbugs-annotations-4.0.3:0
-	>=dev-java/commons-cli-1.4:1
-	>=dev-java/jackson-databind-2.11.0:0
+	>=dev-java/commons-cli-1.3.1:1
+	>=dev-java/jackson-databind-2.11.0:2
 	>=dev-java/jline-2.12.1:2
-	>=dev-java/json-simple-1.1:0
-	>=dev-java/snappy-1.0.3_rc3:1.0
+	>=dev-java/snappy-1.1.7.5:1.1
 "
 
 RDEPEND="
@@ -72,5 +73,5 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="commons-lang-2.1,netty-buffer,netty-transport-native-epoll,log4j,audience-annotations,zookeeper-jute,slf4j-api,slf4j-api"
-JAVA_GENTOO_CLASSPATH_EXTRA="jackson-databind,spotbugs-annotations,json-simple,commons-cli-1,metrics-core,jline-2,jetty-server,jetty-servlet,snappy-1.0"
+JAVA_GENTOO_CLASSPATH="commons-lang-2.1,netty-handler,netty-transport-native-epoll,log4j,audience-annotations,zookeeper-jute,slf4j-api,!!!suitble-avenVersion-not-found!!!"
+JAVA_CLASSPATH_EXTRA="jackson-databind-2,spotbugs-annotations,!!!suitble-avenVersion-not-found!!!,commons-cli-1,metrics-core,jline-2,jetty-server,jetty-servlet,snappy-1.1"

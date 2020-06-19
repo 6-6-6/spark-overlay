@@ -20,7 +20,7 @@ MAVEN_ID="org.eclipse.jetty:jetty-server:9.4.24.v20191120"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-9.4.24.v20191120.pom
-# javax.servlet:javax.servlet-api:3.1.0 -> >=java-virtuals/servlet-api-2.3:2.3
+# javax.servlet:javax.servlet-api:3.1.0 -> >=java-virtuals/servlet-api-3.1:3.1
 # org.eclipse.jetty:jetty-http:9.4.24.v20191120 -> >=app-maven/jetty-http-9.4.24_p20191120:0
 # org.eclipse.jetty:jetty-io:9.4.24.v20191120 -> >=app-maven/jetty-io-9.4.24_p20191120:0
 # org.eclipse.jetty:jetty-jmx:9.4.24.v20191120 -> >=app-maven/jetty-jmx-9.4.24_p20191120:0
@@ -29,7 +29,7 @@ CDEPEND="
 	>=app-maven/jetty-http-9.4.24_p20191120:0
 	>=app-maven/jetty-io-9.4.24_p20191120:0
 	>=app-maven/jetty-jmx-9.4.24_p20191120:0
-	>=java-virtuals/servlet-api-2.3:2.3
+	>=java-virtuals/servlet-api-3.1:3.1
 "
 
 
@@ -45,4 +45,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="servlet-api-2.3,jetty-http,jetty-io,jetty-jmx"
+JAVA_GENTOO_CLASSPATH="servlet-api-3.1,jetty-http,jetty-io,jetty-jmx"

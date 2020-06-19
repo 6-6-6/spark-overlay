@@ -21,14 +21,13 @@ MAVEN_ID="org.apache.httpcomponents:httpasyncclient:4.1.4"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # commons-logging:commons-logging:1.2 -> >=dev-java/commons-logging-1.2:0
-# org.apache.httpcomponents:httpclient:4.5.6 -> >=dev-java/httpcomponents-client-4.5:4.5
-# org.apache.httpcomponents:httpcore:4.4.10 -> >=dev-java/httpcomponents-core-4.4.1:4.4
-# org.apache.httpcomponents:httpcore-nio:4.4.10 -> >=dev-java/httpcomponents-core-4.4.1:4.4
+# org.apache.httpcomponents:httpclient:4.5.6 -> !!!suitble-avenVersion-not-found!!!
+# org.apache.httpcomponents:httpcore:4.4.10 -> !!!suitble-avenVersion-not-found!!!
+# org.apache.httpcomponents:httpcore-nio:4.4.10 -> !!!suitble-avenVersion-not-found!!!
 
 CDEPEND="
+	!!!suitble-avenVersion-not-found!!!
 	>=dev-java/commons-logging-1.2:0
-	>=dev-java/httpcomponents-client-4.5:4.5
-	>=dev-java/httpcomponents-core-4.4.1:4.4
 "
 
 
@@ -44,4 +43,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="commons-logging,httpcomponents-client-4.5,httpcomponents-core-4.4,httpcomponents-core-4.4"
+JAVA_GENTOO_CLASSPATH="commons-logging,!!!suitble-avenVersion-not-found!!!,!!!suitble-avenVersion-not-found!!!,!!!suitble-avenVersion-not-found!!!"

@@ -21,12 +21,12 @@ MAVEN_ID="org.apache.logging.log4j:log4j-api:2.13.3"
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.osgi:org.osgi.core:4.3.1 -> >=app-maven/osgi-core-6.0.0:6
+# org.osgi:org.osgi.core:4.3.1 -> >=dev-java/osgi-core-6.0.0:6
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	>=app-maven/osgi-core-6.0.0:6
+	>=dev-java/osgi-core-6.0.0:6
 "
 
 RDEPEND="
@@ -35,4 +35,4 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH_EXTRA="osgi-core-6"
+JAVA_CLASSPATH_EXTRA="osgi-core-6"

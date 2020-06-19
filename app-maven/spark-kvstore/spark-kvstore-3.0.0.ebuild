@@ -24,9 +24,9 @@ MAVEN_ID="org.apache.spark:spark-kvstore_2.12:3.0.0-preview2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-preview2.pom
-# com.fasterxml.jackson.core:jackson-annotations:2.10.0 -> >=dev-java/jackson-annotations-2.9.10:2
-# com.fasterxml.jackson.core:jackson-core:2.10.0 -> >=dev-java/jackson-2.9.10:2
-# com.fasterxml.jackson.core:jackson-databind:2.10.0 -> >=dev-java/jackson-databind-2.11.0:0
+# com.fasterxml.jackson.core:jackson-annotations:2.10.0 -> >=dev-java/jackson-annotations-2.11.0:2
+# com.fasterxml.jackson.core:jackson-core:2.10.0 -> >=dev-java/jackson-2.11.0:2
+# com.fasterxml.jackson.core:jackson-databind:2.10.0 -> >=dev-java/jackson-databind-2.11.0:2
 # org.apache.spark:spark-tags_2.12:3.0.0-preview2 -> >=app-maven/spark-tags-3.0.0:2.12
 # org.fusesource.leveldbjni:leveldbjni-all:1.8 -> >=dev-java/leveldbjni-all-1.8:0
 # org.spark-project.spark:unused:1.0.0 -> >=app-maven/unused-1.0.0:0
@@ -34,21 +34,21 @@ MAVEN_ID="org.apache.spark:spark-kvstore_2.12:3.0.0-preview2"
 CDEPEND="
 	>=app-maven/spark-tags-3.0.0:2.12
 	>=app-maven/unused-1.0.0:0
-	>=dev-java/jackson-2.9.10:2
-	>=dev-java/jackson-annotations-2.9.10:2
-	>=dev-java/jackson-databind-2.11.0:0
+	>=dev-java/jackson-2.11.0:2
+	>=dev-java/jackson-annotations-2.11.0:2
+	>=dev-java/jackson-databind-2.11.0:2
 	>=dev-java/leveldbjni-all-1.8:0
 "
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-preview2.pom
-# com.google.guava:guava:14.0.1 -> >=dev-java/guava-20.0:20
+# com.google.guava:guava:14.0.1 -> >=dev-java/guava-20.0:${PV%.*}
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-	>=dev-java/guava-20.0:20
+	>=dev-java/guava-20.0:${PV%.*}
 "
 
 RDEPEND="
@@ -57,5 +57,5 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind,spark-tags-2.12,leveldbjni-all,unused"
-JAVA_GENTOO_CLASSPATH_EXTRA="guava-20"
+JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind-2,spark-tags-2.12,leveldbjni-all,unused"
+JAVA_CLASSPATH_EXTRA="guava-${PV%.*}"

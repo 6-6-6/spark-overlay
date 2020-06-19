@@ -20,10 +20,10 @@ MAVEN_ID="com.yammer.metrics:metrics-core:3.0.0-BETA1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}-BETA1.pom
-# org.slf4j:slf4j-api:1.7.5 -> >=dev-java/slf4j-api-1.7.7:0
+# org.slf4j:slf4j-api:1.7.5 -> >=dev-java/slf4j-ext-1.7.5:0
 
 CDEPEND="
-	>=dev-java/slf4j-api-1.7.7:0
+	>=dev-java/slf4j-ext-1.7.5:0
 "
 
 
@@ -39,4 +39,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="slf4j-api"
+JAVA_GENTOO_CLASSPATH="slf4j-ext"

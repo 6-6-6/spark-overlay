@@ -22,25 +22,26 @@ MAVEN_ID="io.projectreactor.netty:reactor-netty:0.9.7.RELEASE"
 # POM: /var/lib/java-ebuilder/poms/${P}.RELEASE.pom
 # io.micrometer:micrometer-core:1.3.0 -> >=app-maven/micrometer-core-1.5.1:0
 # io.netty:netty-codec-haproxy:4.1.49.Final -> >=app-maven/netty-codec-haproxy-5.0.0:0
-# io.netty:netty-codec-http:4.1.49.Final -> >=dev-java/netty-buffer-4.0.21:0
+# io.netty:netty-codec-http:4.1.49.Final -> >=app-maven/netty-codec-http-5.0.0:0
 # io.netty:netty-codec-http2:4.1.49.Final -> >=app-maven/netty-codec-http2-5.0.0:0
-# io.netty:netty-handler:4.1.49.Final -> >=dev-java/netty-buffer-4.0.21:0
+# io.netty:netty-handler:4.1.49.Final -> >=app-maven/netty-handler-5.0.0:0
 # io.netty:netty-handler-proxy:4.1.49.Final -> >=app-maven/netty-handler-proxy-5.0.0:0
 # io.netty:netty-transport-native-epoll:4.1.49.Final -> >=app-maven/netty-transport-native-epoll-5.0.0:0
 # io.netty:netty-transport-native-kqueue:4.1.49.Final -> >=app-maven/netty-transport-native-kqueue-4.1.50:0
 # io.projectreactor:reactor-core:3.3.5.RELEASE -> >=app-maven/reactor-core-3.3.6:0
-# org.slf4j:slf4j-api:1.7.30 -> >=dev-java/slf4j-api-1.7.7:0
+# org.slf4j:slf4j-api:1.7.30 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
 
 CDEPEND="
 	>=app-maven/micrometer-core-1.5.1:0
 	>=app-maven/netty-codec-haproxy-5.0.0:0
+	>=app-maven/netty-codec-http-5.0.0:0
 	>=app-maven/netty-codec-http2-5.0.0:0
+	>=app-maven/netty-handler-5.0.0:0
 	>=app-maven/netty-handler-proxy-5.0.0:0
 	>=app-maven/netty-transport-native-epoll-5.0.0:0
 	>=app-maven/netty-transport-native-kqueue-4.1.50:0
 	>=app-maven/reactor-core-3.3.6:0
-	>=dev-java/netty-buffer-4.0.21:0
-	>=dev-java/slf4j-api-1.7.7:0
+	>=dev-java/slf4j-api-2.0.0_alpha1:0
 "
 
 
@@ -56,4 +57,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="micrometer-core,netty-codec-haproxy,netty-buffer,netty-codec-http2,netty-buffer,netty-handler-proxy,netty-transport-native-epoll,netty-transport-native-kqueue,reactor-core,slf4j-api"
+JAVA_GENTOO_CLASSPATH="micrometer-core,netty-codec-haproxy,netty-codec-http,netty-codec-http2,netty-handler,netty-handler-proxy,netty-transport-native-epoll,netty-transport-native-kqueue,reactor-core,slf4j-api"

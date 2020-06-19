@@ -22,11 +22,11 @@ MAVEN_ID="jline:jline:3.0.0.M1"
 # POM: /var/lib/java-ebuilder/poms/${P}.M1.pom
 # com.googlecode.juniversalchardet:juniversalchardet:1.0.3 -> >=app-maven/juniversalchardet-1.0.3:0
 # net.java.dev.jna:jna:4.0.0 -> >=dev-java/jna-5.5.0:0
-# org.fusesource.jansi:jansi:1.12 -> !!!suitble-avenVersion-not-found!!!
+# org.fusesource.jansi:jansi:1.12 -> >=dev-java/jansi-1.12
 
 CDEPEND="
-	!!!suitble-avenVersion-not-found!!!
 	>=app-maven/juniversalchardet-1.0.3:0
+	>=dev-java/jansi-1.12
 	>=dev-java/jna-5.5.0:5
 "
 
@@ -43,4 +43,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="juniversalchardet,jna-5,!!!suitble-avenVersion-not-found!!!"
+JAVA_GENTOO_CLASSPATH="juniversalchardet,jna-5,jansi"

@@ -21,12 +21,12 @@ MAVEN_ID="com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.11.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.fasterxml.jackson.core:jackson-core:2.11.0 -> >=dev-java/jackson-2.9.10:2
-# com.fasterxml.jackson.core:jackson-databind:2.11.0 -> >=dev-java/jackson-databind-2.11.0:0
+# com.fasterxml.jackson.core:jackson-core:2.11.0 -> >=dev-java/jackson-2.11.0:2
+# com.fasterxml.jackson.core:jackson-databind:2.11.0 -> >=dev-java/jackson-databind-2.11.0:2
 
 CDEPEND="
-	>=dev-java/jackson-2.9.10:2
-	>=dev-java/jackson-databind-2.11.0:0
+	>=dev-java/jackson-2.11.0:2
+	>=dev-java/jackson-databind-2.11.0:2
 "
 
 
@@ -42,4 +42,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-2,jackson-databind"
+JAVA_GENTOO_CLASSPATH="jackson-2,jackson-databind-2"

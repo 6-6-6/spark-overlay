@@ -21,12 +21,12 @@ MAVEN_ID="com.sun.xml.fastinfoset:FastInfoset:2.0.0-M2"
 
 
 DEPEND="
-	>=virtual/jdk-1.8:*
+	>=virtual/jdk-9:*
 	app-arch/unzip
 "
 
 RDEPEND="
-	>=virtual/jre-1.8:*
+	>=virtual/jre-9:*
 "
 
 S="${WORKDIR}"

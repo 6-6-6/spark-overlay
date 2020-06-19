@@ -21,12 +21,12 @@ MAVEN_ID="org.jboss.marshalling:jboss-marshalling:2.0.9.Final"
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Final.pom
-# org.jboss.modules:jboss-modules:1.6.0.Final -> >=dev-java/jboss-modules-1.3.3:0
+# org.jboss.modules:jboss-modules:1.6.0.Final -> >=dev-java/jboss-modules-1.10.1:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	>=dev-java/jboss-modules-1.3.3:0
+	>=dev-java/jboss-modules-1.10.1:0
 "
 
 RDEPEND="
@@ -35,4 +35,4 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH_EXTRA="jboss-modules"
+JAVA_CLASSPATH_EXTRA="jboss-modules"

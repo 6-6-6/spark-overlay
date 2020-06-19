@@ -23,11 +23,11 @@ MAVEN_ID="io.netty:netty-metrics-yammer:4.0.0.Alpha8"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Alpha8.pom
 # com.yammer.metrics:metrics-core:2.1.4 -> >=app-maven/metrics-core-3.0.0:0
-# io.netty:netty-common:4.0.0.Alpha8 -> >=dev-java/netty-buffer-4.0.21:0
+# io.netty:netty-common:4.0.0.Alpha8 -> >=app-maven/netty-common-5.0.0:0
 
 CDEPEND="
 	>=app-maven/metrics-core-3.0.0:0
-	>=dev-java/netty-buffer-4.0.21:0
+	>=app-maven/netty-common-5.0.0:0
 "
 
 
@@ -43,4 +43,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="metrics-core,netty-buffer"
+JAVA_GENTOO_CLASSPATH="metrics-core,netty-common"

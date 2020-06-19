@@ -21,13 +21,13 @@ MAVEN_ID="org.apache.hadoop:hadoop-hdfs-client:3.2.1"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.fasterxml.jackson.core:jackson-annotations:2.9.8 -> >=dev-java/jackson-annotations-2.9.10:2
-# com.fasterxml.jackson.core:jackson-databind:2.9.8 -> >=dev-java/jackson-databind-2.11.0:0
+# com.fasterxml.jackson.core:jackson-databind:2.9.8 -> >=dev-java/jackson-databind-2.11.0:2
 # com.squareup.okhttp:okhttp:2.7.5 -> >=app-maven/okhttp-2.7.5:0
 
 CDEPEND="
 	>=app-maven/okhttp-2.7.5:0
 	>=dev-java/jackson-annotations-2.9.10:2
-	>=dev-java/jackson-databind-2.11.0:0
+	>=dev-java/jackson-databind-2.11.0:2
 "
 
 # Compile dependencies
@@ -49,5 +49,5 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-databind,okhttp"
-JAVA_GENTOO_CLASSPATH_EXTRA="hadoop-annotations,hadoop-common"
+JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-databind-2,okhttp"
+JAVA_CLASSPATH_EXTRA="hadoop-annotations,hadoop-common"

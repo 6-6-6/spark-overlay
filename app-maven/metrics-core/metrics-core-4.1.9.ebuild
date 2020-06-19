@@ -22,10 +22,10 @@ MAVEN_ID="io.dropwizard.metrics:metrics-core:4.1.9"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.slf4j:slf4j-api:1.7.30 -> >=dev-java/slf4j-api-1.7.7:0
+# org.slf4j:slf4j-api:1.7.30 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
 
 CDEPEND="
-	>=dev-java/slf4j-api-1.7.7:0
+	>=dev-java/slf4j-api-2.0.0_alpha1:0
 "
 
 

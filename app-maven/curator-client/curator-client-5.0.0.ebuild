@@ -20,14 +20,14 @@ MAVEN_ID="org.apache.curator:curator-client:5.0.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.google.guava:guava:27.0.1-jre -> >=dev-java/guava-20.0:20
+# com.google.guava:guava:27.0.1-jre -> >=dev-java/guava-29.0:0
 # org.apache.zookeeper:zookeeper:3.6.0 -> >=app-maven/zookeeper-3.6.1:0
-# org.slf4j:slf4j-api:1.7.25 -> >=dev-java/slf4j-api-1.7.7:0
+# org.slf4j:slf4j-api:1.7.25 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
 
 CDEPEND="
 	>=app-maven/zookeeper-3.6.1:0
-	>=dev-java/guava-20.0:20
-	>=dev-java/slf4j-api-1.7.7:0
+	>=dev-java/guava-29.0:0
+	>=dev-java/slf4j-api-2.0.0_alpha1:0
 "
 
 
@@ -43,7 +43,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="guava-20,zookeeper,slf4j-api"
+JAVA_GENTOO_CLASSPATH="guava,zookeeper,slf4j-api"
 JAVA_RESOURCE_DIRS=(
 	"../../../../../../../../var/lib/java-ebuilder/poms"
 )

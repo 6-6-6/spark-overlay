@@ -34,13 +34,13 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# javax.servlet:servlet-api:2.5 -> >=java-virtuals/servlet-api-2.3:2.3
+# javax.servlet:servlet-api:2.5 -> >=java-virtuals/servlet-api-2.5:2.5
 
 DEPEND="
 	>=virtual/jdk-1.6:*
 	${CDEPEND}
 	app-arch/unzip
-	>=java-virtuals/servlet-api-2.3:2.3
+	>=java-virtuals/servlet-api-2.5:2.5
 "
 
 RDEPEND="
@@ -50,4 +50,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="guice-4,guice-4,jersey-servlet,javax-inject"
-JAVA_GENTOO_CLASSPATH_EXTRA="servlet-api-2.3"
+JAVA_CLASSPATH_EXTRA="servlet-api-2.5"

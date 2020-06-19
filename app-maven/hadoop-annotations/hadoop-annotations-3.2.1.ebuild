@@ -21,12 +21,12 @@ MAVEN_ID="org.apache.hadoop:hadoop-annotations:3.2.1"
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# jdiff:jdiff:1.0.9 -> >=app-maven/jdiff-bin-1.0.9:0
+# jdiff:jdiff:1.0.9 -> >=app-maven/jdiff-1.0.9:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	>=app-maven/jdiff-bin-1.0.9:0
+	>=app-maven/jdiff-1.0.9:0
 "
 
 RDEPEND="
@@ -35,4 +35,4 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH_EXTRA="jdiff-bin"
+JAVA_CLASSPATH_EXTRA="jdiff"

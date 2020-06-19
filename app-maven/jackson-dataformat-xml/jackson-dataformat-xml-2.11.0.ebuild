@@ -23,20 +23,20 @@ MAVEN_ID="com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.11.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.fasterxml.jackson.core:jackson-annotations:2.11.0 -> >=dev-java/jackson-annotations-2.9.10:2
-# com.fasterxml.jackson.core:jackson-core:2.11.0 -> >=dev-java/jackson-2.9.10:2
-# com.fasterxml.jackson.core:jackson-databind:2.11.0 -> >=dev-java/jackson-databind-2.11.0:0
+# com.fasterxml.jackson.core:jackson-annotations:2.11.0 -> >=dev-java/jackson-annotations-2.11.0:2
+# com.fasterxml.jackson.core:jackson-core:2.11.0 -> >=dev-java/jackson-2.11.0:2
+# com.fasterxml.jackson.core:jackson-databind:2.11.0 -> >=dev-java/jackson-databind-2.11.0:2
 # com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.11.0 -> >=app-maven/jackson-module-jaxb-annotations-2.11.0:0
 # com.fasterxml.woodstox:woodstox-core:6.2.0 -> >=app-maven/woodstox-core-6.2.1:0
-# org.codehaus.woodstox:stax2-api:4.2 -> >=dev-java/stax2-api-4.0.0:0
+# org.codehaus.woodstox:stax2-api:4.2 -> >=dev-java/stax2-api-4.2.1:0
 
 CDEPEND="
 	>=app-maven/jackson-module-jaxb-annotations-2.11.0:0
 	>=app-maven/woodstox-core-6.2.1:0
-	>=dev-java/jackson-2.9.10:2
-	>=dev-java/jackson-annotations-2.9.10:2
-	>=dev-java/jackson-databind-2.11.0:0
-	>=dev-java/stax2-api-4.0.0:0
+	>=dev-java/jackson-2.11.0:2
+	>=dev-java/jackson-annotations-2.11.0:2
+	>=dev-java/jackson-databind-2.11.0:2
+	>=dev-java/stax2-api-4.2.1:0
 "
 
 
@@ -52,4 +52,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind,jackson-module-jaxb-annotations,woodstox-core,stax2-api"
+JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind-2,jackson-module-jaxb-annotations,woodstox-core,stax2-api"

@@ -20,12 +20,12 @@ MAVEN_ID="com.clearspring.analytics:stream:2.9.8"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# it.unimi.dsi:fastutil:8.1.1 -> >=dev-java/fastutil-7.0.10:0
-# org.slf4j:slf4j-api:1.7.10 -> >=dev-java/slf4j-api-1.7.7:0
+# it.unimi.dsi:fastutil:8.1.1 -> >=dev-java/fastutil-8.3.1:0
+# org.slf4j:slf4j-api:1.7.10 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
 
 CDEPEND="
-	>=dev-java/fastutil-7.0.10:0
-	>=dev-java/slf4j-api-1.7.7:0
+	>=dev-java/fastutil-8.3.1:0
+	>=dev-java/slf4j-api-2.0.0_alpha1:0
 "
 
 

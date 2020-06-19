@@ -20,12 +20,12 @@ MAVEN_ID="org.mongodb:mongodb-crypt:1.0.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# net.java.dev.jna:jna:4.5.2 -> >=dev-java/jna-3.4.1:0
+# net.java.dev.jna:jna:4.5.2 -> >=dev-java/jna-5.5.0:5
 # org.mongodb:bson:[3.10,5.0) -> >=app-maven/bson-4.1.0_beta1:3.10
 
 CDEPEND="
 	>=app-maven/bson-4.1.0_beta1:3.10
-	>=dev-java/jna-3.4.1:0
+	>=dev-java/jna-5.5.0:5
 "
 
 
@@ -46,4 +46,4 @@ ${CDEPEND}
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jna,bson-3.10,slf4j-api"
+JAVA_GENTOO_CLASSPATH="jna-5,bson-3.10,slf4j-api"

@@ -30,13 +30,13 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Final.pom
-# org.jboss.logging:jboss-logging:3.4.0.Final -> >=dev-java/jboss-logging-3.1.4:0
+# org.jboss.logging:jboss-logging:3.4.0.Final -> >=dev-java/jboss-logging-3.4.1:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-	>=dev-java/jboss-logging-3.1.4:0
+	>=dev-java/jboss-logging-3.4.1:0
 "
 
 RDEPEND="
@@ -46,4 +46,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jdeparser,jboss-logging-annotations"
-JAVA_GENTOO_CLASSPATH_EXTRA="jboss-logging"
+JAVA_CLASSPATH_EXTRA="jboss-logging"

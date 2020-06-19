@@ -22,13 +22,13 @@ MAVEN_ID="org.glassfish.hk2:osgi-resource-locator:2.5.0-b42"
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-2.5.0-b42.pom
 # org.osgi:org.osgi.compendium:4.2.0 -> >=app-maven/org-osgi-compendium-5.0.0:0
-# org.osgi:org.osgi.core:4.2.0 -> >=app-maven/osgi-core-6.0.0:6
+# org.osgi:org.osgi.core:4.2.0 -> >=dev-java/osgi-core-6.0.0:6
 
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip
 	>=app-maven/org-osgi-compendium-5.0.0:0
-	>=app-maven/osgi-core-6.0.0:6
+	>=dev-java/osgi-core-6.0.0:6
 "
 
 RDEPEND="
@@ -37,4 +37,4 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH_EXTRA="org-osgi-compendium,osgi-core-6"
+JAVA_CLASSPATH_EXTRA="org-osgi-compendium,osgi-core-6"

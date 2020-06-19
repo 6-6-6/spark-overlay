@@ -26,24 +26,24 @@ MAVEN_ID="org.jboss.netty:netty:3.2.10.Final"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Final.pom
-# com.google.protobuf:protobuf-java:2.4.1 -> >=app-maven/protobuf-java-3.12.2:0
+# com.google.protobuf:protobuf-java:2.4.1 -> >=dev-java/protobuf-java-3.11.4:0
 # commons-logging:commons-logging:1.1.1 -> >=dev-java/commons-logging-1.2:0
-# javax.servlet:servlet-api:2.5 -> >=java-virtuals/servlet-api-2.3:2.3
+# javax.servlet:servlet-api:2.5 -> >=java-virtuals/servlet-api-2.5:2.5
 # log4j:log4j:1.2.16 -> >=dev-java/log4j-1.2.17:0
 # org.apache.felix:org.osgi.compendium:1.4.0 -> >=app-maven/org-osgi-compendium-1.4.0:0
-# org.apache.felix:org.osgi.core:1.4.0 -> >=app-maven/osgi-core-1.4.0:1
+# org.apache.felix:org.osgi.core:1.4.0 -> >=dev-java/osgi-core-1.4.0:1
 # org.jboss.logging:jboss-logging-spi:2.1.2.GA -> >=app-maven/jboss-logging-spi-2.2.0:0
-# org.slf4j:slf4j-api:1.6.4 -> >=dev-java/slf4j-simple-1.7.7:0
+# org.slf4j:slf4j-api:1.6.4 -> >=dev-java/slf4j-ext-1.7.5:0
 
 CDEPEND="
 	>=app-maven/jboss-logging-spi-2.2.0:0
 	>=app-maven/org-osgi-compendium-1.4.0:0
-	>=app-maven/osgi-core-1.4.0:1
-	>=app-maven/protobuf-java-3.12.2:0
 	>=dev-java/commons-logging-1.2:0
 	>=dev-java/log4j-1.2.17:0
-	>=dev-java/slf4j-simple-1.7.7:0
-	>=java-virtuals/servlet-api-2.3:2.3
+	>=dev-java/osgi-core-1.4.0:1
+	>=dev-java/protobuf-java-3.11.4:0
+	>=dev-java/slf4j-ext-1.7.5:0
+	>=java-virtuals/servlet-api-2.5:2.5
 "
 
 
@@ -59,4 +59,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="protobuf-java,commons-logging,servlet-api-2.3,log4j,org-osgi-compendium,osgi-core-1,jboss-logging-spi,slf4j-simple"
+JAVA_GENTOO_CLASSPATH="protobuf-java,commons-logging,servlet-api-2.5,log4j,org-osgi-compendium,osgi-core-1,jboss-logging-spi,slf4j-ext"

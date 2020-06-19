@@ -21,21 +21,21 @@ MAVEN_ID="com.fasterxml.woodstox:woodstox-core:6.2.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.codehaus.woodstox:stax2-api:4.2.1 -> >=dev-java/stax2-api-4.0.0:0
+# org.codehaus.woodstox:stax2-api:4.2.1 -> >=dev-java/stax2-api-4.2.1:0
 
 CDEPEND="
-	>=dev-java/stax2-api-4.0.0:0
+	>=dev-java/stax2-api-4.2.1:0
 "
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.apache.felix:org.osgi.core:1.4.0 -> >=app-maven/osgi-core-1.4.0:1
+# org.apache.felix:org.osgi.core:1.4.0 -> >=dev-java/osgi-core-1.4.0:1
 
 DEPEND="
 	>=virtual/jdk-1.6:*
 	${CDEPEND}
 	app-arch/unzip
-	>=app-maven/osgi-core-1.4.0:1
+	>=dev-java/osgi-core-1.4.0:1
 "
 
 RDEPEND="
@@ -45,4 +45,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="stax2-api"
-JAVA_GENTOO_CLASSPATH_EXTRA="osgi-core-1"
+JAVA_CLASSPATH_EXTRA="osgi-core-1"

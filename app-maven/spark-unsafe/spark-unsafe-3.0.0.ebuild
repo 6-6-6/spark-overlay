@@ -38,15 +38,15 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-preview2.pom
-# com.google.guava:guava:14.0.1 -> >=dev-java/guava-20.0:20
-# org.slf4j:slf4j-api:1.7.16 -> >=dev-java/slf4j-api-1.7.7:0
+# com.google.guava:guava:14.0.1 -> >=dev-java/guava-20.0:${PV%.*}
+# org.slf4j:slf4j-api:1.7.16 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-	>=dev-java/guava-20.0:20
-	>=dev-java/slf4j-api-1.7.7:0
+	>=dev-java/guava-20.0:${PV%.*}
+	>=dev-java/slf4j-api-2.0.0_alpha1:0
 "
 
 RDEPEND="
@@ -56,4 +56,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jsr305,chill-2.12,spark-tags-2.12,unused"
-JAVA_GENTOO_CLASSPATH_EXTRA="guava-20,slf4j-api"
+JAVA_CLASSPATH_EXTRA="guava-${PV%.*},slf4j-api"

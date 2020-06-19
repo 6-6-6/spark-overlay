@@ -28,13 +28,13 @@ CDEPEND="
 
 
 DEPEND="
-	>=virtual/jdk-1.8:*
+	>=virtual/jdk-8:*
 	${CDEPEND}
 	app-arch/unzip
 "
 
 RDEPEND="
-	>=virtual/jre-1.8:*
+	>=virtual/jre-8:*
 ${CDEPEND}"
 
 S="${WORKDIR}"

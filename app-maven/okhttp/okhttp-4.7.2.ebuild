@@ -20,12 +20,12 @@ MAVEN_ID="com.squareup.okhttp3:okhttp:4.7.2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.squareup.okio:okio:2.6.0 -> >=dev-java/okio-1.11.0:0
+# com.squareup.okio:okio:2.6.0 -> >=dev-java/okio-2.7.0.2:0
 # org.jetbrains.kotlin:kotlin-stdlib:1.3.71 -> >=app-maven/kotlin-stdlib-1.3.72:0
 
 CDEPEND="
 	>=app-maven/kotlin-stdlib-1.3.72:0
-	>=dev-java/okio-1.11.0:0
+	>=dev-java/okio-2.7.0.2:0
 "
 
 

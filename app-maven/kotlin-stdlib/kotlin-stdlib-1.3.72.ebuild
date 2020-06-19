@@ -20,12 +20,12 @@ MAVEN_ID="org.jetbrains.kotlin:kotlin-stdlib:1.3.72"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.jetbrains:annotations:13.0 -> >=app-maven/annotations-19.0.0:0
+# org.jetbrains:annotations:13.0 -> >=dev-java/jetbrains-annotation-19.0.0:19
 # org.jetbrains.kotlin:kotlin-stdlib-common:1.3.72 -> >=app-maven/kotlin-stdlib-common-1.3.72:0
 
 CDEPEND="
-	>=app-maven/annotations-19.0.0:0
 	>=app-maven/kotlin-stdlib-common-1.3.72:0
+	>=dev-java/jetbrains-annotation-19.0.0:19
 "
 
 
@@ -41,4 +41,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="annotations,kotlin-stdlib-common"
+JAVA_GENTOO_CLASSPATH="jetbrains-annotation-19,kotlin-stdlib-common"

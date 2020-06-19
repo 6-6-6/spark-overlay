@@ -28,15 +28,15 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.fasterxml.jackson.core:jackson-core:2.10.0 -> >=dev-java/jackson-2.9.10:2
-# com.fasterxml.jackson.core:jackson-databind:2.10.0 -> >=dev-java/jackson-databind-2.11.0:0
+# com.fasterxml.jackson.core:jackson-core:2.10.0 -> >=dev-java/jackson-2.11.0:2
+# com.fasterxml.jackson.core:jackson-databind:2.10.0 -> >=dev-java/jackson-databind-2.11.0:2
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-	>=dev-java/jackson-2.9.10:2
-	>=dev-java/jackson-databind-2.11.0:0
+	>=dev-java/jackson-2.11.0:2
+	>=dev-java/jackson-databind-2.11.0:2
 "
 
 RDEPEND="
@@ -46,7 +46,7 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="curator-client"
-JAVA_GENTOO_CLASSPATH_EXTRA="jackson-2,jackson-databind"
+JAVA_CLASSPATH_EXTRA="jackson-2,jackson-databind-2"
 JAVA_RESOURCE_DIRS=(
 	"../../../../../../../../var/lib/java-ebuilder/poms"
 )

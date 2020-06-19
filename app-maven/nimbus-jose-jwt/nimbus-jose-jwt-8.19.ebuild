@@ -24,14 +24,14 @@ MAVEN_ID="com.nimbusds:nimbus-jose-jwt:8.19"
 # com.github.stephenc.jcip:jcip-annotations:1.0-1 -> >=dev-java/jcip-annotations-1.0.1:0
 # com.google.crypto.tink:tink:1.2.2 -> >=app-maven/tink-1.4.0_rc2:0
 # net.minidev:json-smart:[1.3.1,2.3] -> >=app-maven/json-smart-2.3:1.3
-# org.bouncycastle:bcpkix-jdk15on:[1.52,) -> >=dev-java/bcpkix-1.50:1.50
-# org.bouncycastle:bcprov-jdk15on:[1.52,) -> >=dev-java/bcprov-1.48:1.48
+# org.bouncycastle:bcpkix-jdk15on:[1.52,) -> >=dev-java/bcpkix-1.52:1.52
+# org.bouncycastle:bcprov-jdk15on:[1.52,) -> >=dev-java/bcprov-1.52:1.52
 
 CDEPEND="
 	>=app-maven/json-smart-2.3:1.3
 	>=app-maven/tink-1.4.0_rc2:0
-	>=dev-java/bcpkix-1.50:1.50
-	>=dev-java/bcprov-1.48:1.48
+	>=dev-java/bcpkix-1.52:1.52
+	>=dev-java/bcprov-1.52:1.52
 	>=dev-java/jcip-annotations-1.0.1:0
 "
 
@@ -48,4 +48,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jcip-annotations,tink,json-smart-1.3,bcpkix-1.50,bcprov-1.48"
+JAVA_GENTOO_CLASSPATH="jcip-annotations,tink,json-smart-1.3,bcpkix-1.52,bcprov-1.52"

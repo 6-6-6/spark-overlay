@@ -20,12 +20,12 @@ MAVEN_ID="com.github.ben-manes.caffeine:caffeine:2.8.4"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.google.errorprone:error_prone_annotations:2.3.4 -> >=dev-java/error-prone-annotations-2.0.14:0
+# com.google.errorprone:error_prone_annotations:2.3.4 -> >=dev-java/error-prone-annotations-2.4.0:prone_annotations
 # org.checkerframework:checker-qual:3.4.0 -> >=app-maven/checker-qual-3.4.1:0
 
 CDEPEND="
 	>=app-maven/checker-qual-3.4.1:0
-	>=dev-java/error-prone-annotations-2.0.14:0
+	>=dev-java/error-prone-annotations-2.4.0:prone_annotations
 "
 
 
@@ -41,4 +41,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="error-prone-annotations,checker-qual"
+JAVA_GENTOO_CLASSPATH="error-prone-annotations-prone_annotations,checker-qual"

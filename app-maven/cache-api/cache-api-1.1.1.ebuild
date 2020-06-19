@@ -21,12 +21,12 @@ MAVEN_ID="javax.cache:cache-api:1.1.1"
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# javax.enterprise:cdi-api:1.0-SP4 -> >=dev-java/cdi-api-1.2:0
+# javax.enterprise:cdi-api:1.0-SP4 -> >=dev-java/cdi-api-1.2:1.2
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	>=dev-java/cdi-api-1.2:0
+	>=dev-java/cdi-api-1.2:1.2
 "
 
 RDEPEND="
@@ -35,4 +35,4 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH_EXTRA="cdi-api"
+JAVA_CLASSPATH_EXTRA="cdi-api-1.2"

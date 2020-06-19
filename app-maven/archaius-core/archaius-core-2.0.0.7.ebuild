@@ -28,15 +28,15 @@ DEPEND="
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-2.0.0-rc.7.pom
 # org.apache.commons:commons-lang3:3.3.2 -> >=dev-java/commons-lang-3.10:3
-# org.slf4j:slf4j-api:1.6.3 -> >=dev-java/slf4j-simple-1.7.7:0
+# org.slf4j:slf4j-api:1.6.3 -> >=dev-java/slf4j-ext-1.7.5:0
 RDEPEND="
 	>=virtual/jre-1.8:*
 
 	>=dev-java/commons-lang-3.10:3
 
-	>=dev-java/slf4j-simple-1.7.7:0
+	>=dev-java/slf4j-ext-1.7.5:0
 "
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="commons-lang-3,slf4j-simple"
+JAVA_GENTOO_CLASSPATH="commons-lang-3,slf4j-ext"

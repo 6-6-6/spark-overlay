@@ -65,4 +65,4 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH_EXTRA="jakarta-annotation-api,jakarta-ejb-api,jakarta-el-api,jakarta-enterprise-cdi-api,jakarta-json-api,jakarta-persistence-api,jakarta-servlet-api,jakarta-servlet-jsp-api,jakarta-servlet-jsp-jstl-api,jakarta-transaction-api,jakarta-validation-api,jakarta-websocket-api,jakarta-xml-bind-api,jakarta-xml-ws-api,jakarta-faces"
+JAVA_CLASSPATH_EXTRA="jakarta-annotation-api,jakarta-ejb-api,jakarta-el-api,jakarta-enterprise-cdi-api,jakarta-json-api,jakarta-persistence-api,jakarta-servlet-api,jakarta-servlet-jsp-api,jakarta-servlet-jsp-jstl-api,jakarta-transaction-api,jakarta-validation-api,jakarta-websocket-api,jakarta-xml-bind-api,jakarta-xml-ws-api,jakarta-faces"

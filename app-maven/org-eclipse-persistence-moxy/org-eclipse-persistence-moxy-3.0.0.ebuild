@@ -64,4 +64,4 @@ ${CDEPEND}
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jakarta-validation-api,jakarta-ws-rs-api,jakarta-xml-bind-api,org-eclipse-persistence-asm,org-eclipse-persistence-core,jakarta-activation,jakarta-mail"
-JAVA_GENTOO_CLASSPATH_EXTRA="jaxb-xjc-3.0,jakarta-activation-api,jakarta-mail-api"
+JAVA_CLASSPATH_EXTRA="jaxb-xjc-3.0,jakarta-activation-api,jakarta-mail-api"

@@ -22,12 +22,12 @@ MAVEN_ID="org.apache.kafka:connect-api:2.5.0"
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # javax.ws.rs:javax.ws.rs-api:2.1.1 -> >=app-maven/javax-ws-rs-api-2.1.1:0
 # org.apache.kafka:kafka-clients:2.5.0 -> >=app-maven/kafka-clients-2.5.0:0
-# org.slf4j:slf4j-api:1.7.30 -> >=dev-java/slf4j-api-1.7.7:0
+# org.slf4j:slf4j-api:1.7.30 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
 
 CDEPEND="
 	>=app-maven/javax-ws-rs-api-2.1.1:0
 	>=app-maven/kafka-clients-2.5.0:0
-	>=dev-java/slf4j-api-1.7.7:0
+	>=dev-java/slf4j-api-2.0.0_alpha1:0
 "
 
 

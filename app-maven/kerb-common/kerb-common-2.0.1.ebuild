@@ -20,14 +20,14 @@ MAVEN_ID="org.apache.kerby:kerb-common:2.0.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# commons-io:commons-io:2.6 -> >=dev-java/commons-io-2.4:1
+# commons-io:commons-io:2.6 -> >=dev-java/commons-io-2.7:0
 # org.apache.kerby:kerb-crypto:2.0.1 -> >=app-maven/kerb-crypto-2.0.1:0
 # org.apache.kerby:kerby-config:2.0.1 -> >=app-maven/kerby-config-2.0.1:0
 
 CDEPEND="
 	>=app-maven/kerb-crypto-2.0.1:0
 	>=app-maven/kerby-config-2.0.1:0
-	>=dev-java/commons-io-2.4:1
+	>=dev-java/commons-io-2.7:0
 "
 
 
@@ -43,4 +43,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="commons-io-1,kerb-crypto,kerby-config"
+JAVA_GENTOO_CLASSPATH="commons-io,kerb-crypto,kerby-config"

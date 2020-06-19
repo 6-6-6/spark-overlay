@@ -20,16 +20,16 @@ MAVEN_ID="io.dropwizard.metrics:metrics-json:4.1.9"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.fasterxml.jackson.core:jackson-databind:2.9.10.4 -> >=dev-java/jackson-databind-2.11.0:0
+# com.fasterxml.jackson.core:jackson-databind:2.9.10.4 -> >=dev-java/jackson-databind-2.11.0:2
 # io.dropwizard.metrics:metrics-core:4.1.9 -> >=app-maven/metrics-core-4.1.9:0
 # io.dropwizard.metrics:metrics-healthchecks:4.1.9 -> >=app-maven/metrics-healthchecks-4.1.9:0
-# org.slf4j:slf4j-api:1.7.30 -> >=dev-java/slf4j-api-1.7.7:0
+# org.slf4j:slf4j-api:1.7.30 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
 
 CDEPEND="
 	>=app-maven/metrics-core-4.1.9:0
 	>=app-maven/metrics-healthchecks-4.1.9:0
-	>=dev-java/jackson-databind-2.11.0:0
-	>=dev-java/slf4j-api-1.7.7:0
+	>=dev-java/jackson-databind-2.11.0:2
+	>=dev-java/slf4j-api-2.0.0_alpha1:0
 "
 
 
@@ -45,4 +45,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-databind,metrics-core,metrics-healthchecks,slf4j-api"
+JAVA_GENTOO_CLASSPATH="jackson-databind-2,metrics-core,metrics-healthchecks,slf4j-api"

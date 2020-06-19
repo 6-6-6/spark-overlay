@@ -46,4 +46,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jackson-jaxrs-base,jackson-module-jaxb-annotations"
-JAVA_GENTOO_CLASSPATH_EXTRA="javax-ws-rs-api"
+JAVA_CLASSPATH_EXTRA="javax-ws-rs-api"

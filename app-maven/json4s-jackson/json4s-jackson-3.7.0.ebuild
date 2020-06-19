@@ -20,14 +20,14 @@ MAVEN_ID="org.json4s:json4s-jackson_2.12:3.7.0-M4"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-M4.pom
-# com.fasterxml.jackson.core:jackson-databind:2.11.0 -> >=dev-java/jackson-databind-2.11.0:0
+# com.fasterxml.jackson.core:jackson-databind:2.11.0 -> >=dev-java/jackson-databind-2.11.0:2
 # org.json4s:json4s-core_2.12:3.7.0-M4 -> >=app-maven/json4s-core-3.7.0:2.12
 # org.scala-lang:scala-library:2.12.11 -> >=app-maven/scala-library-2.13.2:0
 
 CDEPEND="
 	>=app-maven/json4s-core-3.7.0:2.12
 	>=app-maven/scala-library-2.13.2:0
-	>=dev-java/jackson-databind-2.11.0:0
+	>=dev-java/jackson-databind-2.11.0:2
 "
 
 
@@ -43,4 +43,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-databind,json4s-core-2.12,scala-library"
+JAVA_GENTOO_CLASSPATH="jackson-databind-2,json4s-core-2.12,scala-library"

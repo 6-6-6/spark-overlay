@@ -20,10 +20,10 @@ MAVEN_ID="org.eclipse.jetty:jetty-io:9.4.24.v20191120"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-9.4.24.v20191120.pom
-# org.eclipse.jetty:jetty-util:9.4.24.v20191120 -> >=app-maven/jetty-util-9.3.24_p20180605:0
+# org.eclipse.jetty:jetty-util:9.4.24.v20191120 -> >=app-maven/jetty-util-9.4.24_p20191120:0
 
 CDEPEND="
-	>=app-maven/jetty-util-9.3.24_p20180605:0
+	>=app-maven/jetty-util-9.4.24_p20191120:0
 "
 
 

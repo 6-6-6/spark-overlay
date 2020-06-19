@@ -21,8 +21,8 @@ MAVEN_ID="org.apache.hadoop:hadoop-yarn-api:3.2.1"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.fasterxml.jackson.core:jackson-annotations:2.9.8 -> >=dev-java/jackson-annotations-2.9.10:2
-# com.google.guava:guava:27.0-jre -> >=dev-java/guava-20.0:20
-# com.google.protobuf:protobuf-java:2.5.0 -> >=app-maven/protobuf-java-3.12.2:0
+# com.google.guava:guava:27.0-jre -> >=dev-java/guava-29.0:0
+# com.google.protobuf:protobuf-java:2.5.0 -> >=dev-java/protobuf-java-3.11.4:0
 # commons-logging:commons-logging:1.1.3 -> >=dev-java/commons-logging-1.2:0
 # javax.xml.bind:jaxb-api:2.2.11 -> >=app-maven/jaxb-api-2.4.0.180830.0359:0
 # org.apache.hadoop:hadoop-annotations:3.2.1 -> >=app-maven/hadoop-annotations-3.2.1:0
@@ -30,10 +30,10 @@ MAVEN_ID="org.apache.hadoop:hadoop-yarn-api:3.2.1"
 CDEPEND="
 	>=app-maven/hadoop-annotations-3.2.1:0
 	>=app-maven/jaxb-api-2.4.0.180830.0359:0
-	>=app-maven/protobuf-java-3.12.2:0
 	>=dev-java/commons-logging-1.2:0
-	>=dev-java/guava-20.0:20
+	>=dev-java/guava-29.0:0
 	>=dev-java/jackson-annotations-2.9.10:2
+	>=dev-java/protobuf-java-3.11.4:0
 "
 
 # Compile dependencies
@@ -53,5 +53,5 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-annotations-2,guava-20,protobuf-java,commons-logging,jaxb-api,hadoop-annotations"
-JAVA_GENTOO_CLASSPATH_EXTRA="hadoop-common"
+JAVA_GENTOO_CLASSPATH="jackson-annotations-2,guava,protobuf-java,commons-logging,jaxb-api,hadoop-annotations"
+JAVA_CLASSPATH_EXTRA="hadoop-common"

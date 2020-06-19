@@ -20,14 +20,14 @@ MAVEN_ID="org.eclipse.jetty:jetty-client:9.4.28.v20200408"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-9.4.28.v20200408.pom
-# org.eclipse.jetty:jetty-http:9.4.28.v20200408 -> >=app-maven/jetty-http-9.4.24_p20191120:0
-# org.eclipse.jetty:jetty-io:9.4.28.v20200408 -> >=app-maven/jetty-io-9.4.24_p20191120:0
-# org.eclipse.jetty:jetty-jmx:9.4.28.v20200408 -> >=app-maven/jetty-jmx-9.4.24_p20191120:0
+# org.eclipse.jetty:jetty-http:9.4.28.v20200408 -> >=app-maven/jetty-http-9.4.28_p20200408:0
+# org.eclipse.jetty:jetty-io:9.4.28.v20200408 -> >=app-maven/jetty-io-9.4.28_p20200408:0
+# org.eclipse.jetty:jetty-jmx:9.4.28.v20200408 -> >=app-maven/jetty-jmx-9.4.28_p20200408:0
 
 CDEPEND="
-	>=app-maven/jetty-http-9.4.24_p20191120:0
-	>=app-maven/jetty-io-9.4.24_p20191120:0
-	>=app-maven/jetty-jmx-9.4.24_p20191120:0
+	>=app-maven/jetty-http-9.4.28_p20200408:0
+	>=app-maven/jetty-io-9.4.28_p20200408:0
+	>=app-maven/jetty-jmx-9.4.28_p20200408:0
 "
 
 

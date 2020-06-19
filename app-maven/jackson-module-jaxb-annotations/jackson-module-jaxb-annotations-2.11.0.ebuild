@@ -21,18 +21,18 @@ MAVEN_ID="com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.11.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.fasterxml.jackson.core:jackson-annotations:2.11.0 -> >=dev-java/jackson-annotations-2.9.10:2
-# com.fasterxml.jackson.core:jackson-core:2.11.0 -> >=dev-java/jackson-2.9.10:2
-# com.fasterxml.jackson.core:jackson-databind:2.11.0 -> >=dev-java/jackson-databind-2.11.0:0
+# com.fasterxml.jackson.core:jackson-annotations:2.11.0 -> >=dev-java/jackson-annotations-2.11.0:2
+# com.fasterxml.jackson.core:jackson-core:2.11.0 -> >=dev-java/jackson-2.11.0:2
+# com.fasterxml.jackson.core:jackson-databind:2.11.0 -> >=dev-java/jackson-databind-2.11.0:2
 # jakarta.activation:jakarta.activation-api:1.2.1 -> >=app-maven/jakarta-activation-api-2.0.0:0
 # jakarta.xml.bind:jakarta.xml.bind-api:2.3.2 -> >=app-maven/jakarta-xml-bind-api-3.0.0:0
 
 CDEPEND="
 	>=app-maven/jakarta-activation-api-2.0.0:0
 	>=app-maven/jakarta-xml-bind-api-3.0.0:0
-	>=dev-java/jackson-2.9.10:2
-	>=dev-java/jackson-annotations-2.9.10:2
-	>=dev-java/jackson-databind-2.11.0:0
+	>=dev-java/jackson-2.11.0:2
+	>=dev-java/jackson-annotations-2.11.0:2
+	>=dev-java/jackson-databind-2.11.0:2
 "
 
 
@@ -48,4 +48,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind,jakarta-activation-api,jakarta-xml-bind-api"
+JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind-2,jakarta-activation-api,jakarta-xml-bind-api"

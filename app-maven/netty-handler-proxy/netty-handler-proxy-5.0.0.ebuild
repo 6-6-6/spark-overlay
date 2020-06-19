@@ -22,12 +22,14 @@ MAVEN_ID="io.netty:netty-handler-proxy:5.0.0.Alpha2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Alpha2.pom
-# io.netty:netty-codec-http:5.0.0.Alpha2 -> >=dev-java/netty-buffer-4.0.21:0
-# io.netty:netty-codec-socks:5.0.0.Alpha2 -> >=dev-java/netty-buffer-4.0.21:0
-# io.netty:netty-transport:5.0.0.Alpha2 -> >=dev-java/netty-buffer-4.0.21:0
+# io.netty:netty-codec-http:5.0.0.Alpha2 -> >=app-maven/netty-codec-http-5.0.0:0
+# io.netty:netty-codec-socks:5.0.0.Alpha2 -> >=app-maven/netty-codec-socks-5.0.0:0
+# io.netty:netty-transport:5.0.0.Alpha2 -> >=app-maven/netty-transport-5.0.0:0
 
 CDEPEND="
-	>=dev-java/netty-buffer-4.0.21:0
+	>=app-maven/netty-codec-http-5.0.0:0
+	>=app-maven/netty-codec-socks-5.0.0:0
+	>=app-maven/netty-transport-5.0.0:0
 "
 
 
@@ -43,4 +45,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="netty-buffer,netty-buffer,netty-buffer"
+JAVA_GENTOO_CLASSPATH="netty-codec-http,netty-codec-socks,netty-transport"

@@ -20,12 +20,12 @@ MAVEN_ID="com.esotericsoftware:kryo-shaded:4.0.2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.esotericsoftware:minlog:1.3.0 -> >=dev-java/minlog-1.2:0
-# org.objenesis:objenesis:2.5.1 -> >=dev-java/objenesis-1.3:0
+# com.esotericsoftware:minlog:1.3.0 -> >=dev-java/minlog-1.3.1:0
+# org.objenesis:objenesis:2.5.1 -> >=dev-java/objenesis-3.1:0
 
 CDEPEND="
-	>=dev-java/minlog-1.2:0
-	>=dev-java/objenesis-1.3:0
+	>=dev-java/minlog-1.3.1:0
+	>=dev-java/objenesis-3.1:0
 "
 
 

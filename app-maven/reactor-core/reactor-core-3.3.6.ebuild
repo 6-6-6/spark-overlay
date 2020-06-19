@@ -20,10 +20,10 @@ MAVEN_ID="io.projectreactor:reactor-core:3.3.6.RELEASE"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.RELEASE.pom
-# org.reactivestreams:reactive-streams:1.0.3 -> >=app-maven/reactive-streams-1.0.3:0
+# org.reactivestreams:reactive-streams:1.0.3 -> >=dev-java/reactive-streams-1.0.3:0
 
 CDEPEND="
-	>=app-maven/reactive-streams-1.0.3:0
+	>=dev-java/reactive-streams-1.0.3:0
 "
 
 

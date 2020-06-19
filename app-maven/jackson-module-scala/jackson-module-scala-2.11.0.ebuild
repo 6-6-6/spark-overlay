@@ -20,18 +20,18 @@ MAVEN_ID="com.fasterxml.jackson.module:jackson-module-scala_2.12:2.11.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}.pom
-# com.fasterxml.jackson.core:jackson-annotations:2.11.0 -> >=dev-java/jackson-annotations-2.9.10:2
-# com.fasterxml.jackson.core:jackson-core:2.11.0 -> >=dev-java/jackson-2.9.10:2
-# com.fasterxml.jackson.core:jackson-databind:2.11.0 -> >=dev-java/jackson-databind-2.11.0:0
+# com.fasterxml.jackson.core:jackson-annotations:2.11.0 -> >=dev-java/jackson-annotations-2.11.0:2
+# com.fasterxml.jackson.core:jackson-core:2.11.0 -> >=dev-java/jackson-2.11.0:2
+# com.fasterxml.jackson.core:jackson-databind:2.11.0 -> >=dev-java/jackson-databind-2.11.0:2
 # com.fasterxml.jackson.module:jackson-module-paranamer:2.11.0 -> >=app-maven/jackson-module-paranamer-2.11.0:0
 # org.scala-lang:scala-library:2.12.11 -> >=app-maven/scala-library-2.13.2:0
 
 CDEPEND="
 	>=app-maven/jackson-module-paranamer-2.11.0:0
 	>=app-maven/scala-library-2.13.2:0
-	>=dev-java/jackson-2.9.10:2
-	>=dev-java/jackson-annotations-2.9.10:2
-	>=dev-java/jackson-databind-2.11.0:0
+	>=dev-java/jackson-2.11.0:2
+	>=dev-java/jackson-annotations-2.11.0:2
+	>=dev-java/jackson-databind-2.11.0:2
 "
 
 
@@ -47,4 +47,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind,jackson-module-paranamer,scala-library"
+JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind-2,jackson-module-paranamer,scala-library"

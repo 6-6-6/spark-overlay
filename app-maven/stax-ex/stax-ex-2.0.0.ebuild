@@ -37,4 +37,4 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH_EXTRA="jakarta-activation-api,jakarta-xml-bind-api"
+JAVA_CLASSPATH_EXTRA="jakarta-activation-api,jakarta-xml-bind-api"

@@ -50,4 +50,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="spotbugs-annotations,jakarta-enterprise-cdi-api,jakarta-servlet-api,weld-core-impl"
-JAVA_GENTOO_CLASSPATH_EXTRA="jboss-logging-processor"
+JAVA_CLASSPATH_EXTRA="jboss-logging-processor"

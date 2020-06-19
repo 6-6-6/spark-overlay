@@ -21,11 +21,11 @@ MAVEN_ID="org.apache.velocity:velocity-engine-core:2.2"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # org.apache.commons:commons-lang3:3.9 -> >=dev-java/commons-lang-3.10:3
-# org.slf4j:slf4j-api:1.7.30 -> >=dev-java/slf4j-api-1.7.7:0
+# org.slf4j:slf4j-api:1.7.30 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
 
 CDEPEND="
 	>=dev-java/commons-lang-3.10:3
-	>=dev-java/slf4j-api-1.7.7:0
+	>=dev-java/slf4j-api-2.0.0_alpha1:0
 "
 
 

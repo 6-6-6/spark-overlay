@@ -39,4 +39,4 @@ S="${WORKDIR}"
 
 JAVA_ENCODING="utf-8"
 
-JAVA_GENTOO_CLASSPATH_EXTRA="jruby-core,jruby-stdlib-bin"
+JAVA_CLASSPATH_EXTRA="jruby-core,jruby-stdlib-bin"

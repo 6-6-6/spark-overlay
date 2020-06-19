@@ -21,7 +21,7 @@ MAVEN_ID="org.eclipse.persistence:org.eclipse.persistence.asm:3.0.0-M1"
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/org.eclipse.persistence.asm-${PV}-M1.pom
-# org.ow2.asm:asm:7.3.1 -> >=dev-java/asm-3.3.1:3
+# org.ow2.asm:asm:7.3.1 -> >=dev-java/asm-8.0.1:0
 # org.ow2.asm:asm-commons:7.3.1 -> >=app-maven/asm-commons-8.0.1:0
 # org.ow2.asm:asm-tree:7.3.1 -> >=app-maven/asm-tree-8.0.1:0
 
@@ -30,7 +30,7 @@ DEPEND="
 	app-arch/unzip
 	>=app-maven/asm-commons-8.0.1:0
 	>=app-maven/asm-tree-8.0.1:0
-	>=dev-java/asm-3.3.1:3
+	>=dev-java/asm-8.0.1:0
 "
 
 RDEPEND="
@@ -39,4 +39,4 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH_EXTRA="asm-3,asm-commons,asm-tree"
+JAVA_CLASSPATH_EXTRA="asm,asm-commons,asm-tree"

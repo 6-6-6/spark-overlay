@@ -20,18 +20,18 @@ MAVEN_ID="org.apache.httpcomponents.client5:httpclient5:5.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# commons-codec:commons-codec:1.13 -> >=dev-java/commons-codec-1.7:0
+# commons-codec:commons-codec:1.13 -> >=dev-java/commons-codec-1.14:0
 # org.apache.httpcomponents.core5:httpcore5:5.0 -> >=app-maven/httpcore5-5.0:0
 # org.apache.httpcomponents.core5:httpcore5-h2:5.0 -> >=app-maven/httpcore5-h2-5.0:0
 # org.conscrypt:conscrypt-openjdk-uber:2.2.1 -> >=app-maven/conscrypt-openjdk-uber-2.4.0:0
-# org.slf4j:slf4j-api:1.7.25 -> >=dev-java/slf4j-api-1.7.7:0
+# org.slf4j:slf4j-api:1.7.25 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
 
 CDEPEND="
 	>=app-maven/conscrypt-openjdk-uber-2.4.0:0
 	>=app-maven/httpcore5-5.0:0
 	>=app-maven/httpcore5-h2-5.0:0
-	>=dev-java/commons-codec-1.7:0
-	>=dev-java/slf4j-api-1.7.7:0
+	>=dev-java/commons-codec-1.14:0
+	>=dev-java/slf4j-api-2.0.0_alpha1:0
 "
 
 

@@ -20,22 +20,24 @@ MAVEN_ID="org.mongodb:mongo-java-driver:3.12.5"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.github.jnr:jnr-unixsocket:0.18 -> >=dev-java/jnr-unixsocket-0.6:0
+# com.github.jnr:jnr-unixsocket:0.18 -> >=dev-java/jnr-unixsocket-0.32:0
 # com.github.luben:zstd-jni:1.3.8-3 -> >=app-maven/zstd-jni-1.4.5.4:0
-# io.netty:netty-buffer:4.1.17.Final -> >=dev-java/netty-buffer-4.0.21:0
-# io.netty:netty-handler:4.1.17.Final -> >=dev-java/netty-buffer-4.0.21:0
-# io.netty:netty-transport:4.1.17.Final -> >=dev-java/netty-buffer-4.0.21:0
+# io.netty:netty-buffer:4.1.17.Final -> >=app-maven/netty-buffer-5.0.0:0
+# io.netty:netty-handler:4.1.17.Final -> >=app-maven/netty-handler-5.0.0:0
+# io.netty:netty-transport:4.1.17.Final -> >=app-maven/netty-transport-5.0.0:0
 # org.mongodb:mongodb-crypt:1.0.1 -> >=app-maven/mongodb-crypt-1.0.1:0
 # org.slf4j:slf4j-api:1.7.6 -> >=dev-java/slf4j-api-1.7.7:0
-# org.xerial.snappy:snappy-java:1.1.4 -> >=dev-java/snappy-1.0.3_rc3:1.0
+# org.xerial.snappy:snappy-java:1.1.4 -> >=dev-java/snappy-1.1.7.5:1.1
 
 CDEPEND="
 	>=app-maven/mongodb-crypt-1.0.1:0
+	>=app-maven/netty-buffer-5.0.0:0
+	>=app-maven/netty-handler-5.0.0:0
+	>=app-maven/netty-transport-5.0.0:0
 	>=app-maven/zstd-jni-1.4.5.4:0
-	>=dev-java/jnr-unixsocket-0.6:0
-	>=dev-java/netty-buffer-4.0.21:0
+	>=dev-java/jnr-unixsocket-0.32:0
 	>=dev-java/slf4j-api-1.7.7:0
-	>=dev-java/snappy-1.0.3_rc3:1.0
+	>=dev-java/snappy-1.1.7.5:1.1
 "
 
 
@@ -51,4 +53,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jnr-unixsocket,zstd-jni,netty-buffer,netty-buffer,netty-buffer,mongodb-crypt,slf4j-api,snappy-1.0"
+JAVA_GENTOO_CLASSPATH="jnr-unixsocket,zstd-jni,netty-buffer,netty-handler,netty-transport,mongodb-crypt,slf4j-api,snappy-1.1"

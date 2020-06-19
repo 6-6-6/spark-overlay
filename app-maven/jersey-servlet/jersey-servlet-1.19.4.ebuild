@@ -32,23 +32,23 @@ CDEPEND="
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # ant:ant:1.6.5 -> >=dev-java/ant-core-1.10.7:0
 # javax.persistence:persistence-api:1.0 -> >=app-maven/persistence-api-1.0.2:0
-# javax.servlet:javax.servlet-api:3.0.1 -> >=java-virtuals/servlet-api-2.3:2.3
-# javax.servlet:jsp-api:2.0 -> >=app-maven/jsp-api-bin-2.0:0
+# javax.servlet:javax.servlet-api:3.0.1 -> >=java-virtuals/servlet-api-3.1:3.1
+# javax.servlet:jsp-api:2.0 -> >=java-virtuals/jsp-api-2.3:2.3
 # org.glassfish:javax.ejb:3.1 -> >=java-virtuals/ejb-api-0:0
 # org.jboss.weld:weld-osgi-bundle:1.1.32.Final -> >=app-maven/weld-osgi-bundle-4.0.0:0
-# org.osgi:osgi_R4_core:1.0 -> >=app-maven/osgi-core-bin-1.0:4
+# org.osgi:osgi_R4_core:1.0 -> >=dev-java/osgi-core-4.0:4
 
 DEPEND="
 	>=virtual/jdk-1.6:*
 	${CDEPEND}
 	app-arch/unzip
-	>=app-maven/jsp-api-bin-2.0:0
-	>=app-maven/osgi-core-bin-1.0:4
 	>=app-maven/persistence-api-1.0.2:0
 	>=app-maven/weld-osgi-bundle-4.0.0:0
 	>=dev-java/ant-core-1.10.7:0
+	>=dev-java/osgi-core-4.0:4
 	>=java-virtuals/ejb-api-0:0
-	>=java-virtuals/servlet-api-2.3:2.3
+	>=java-virtuals/jsp-api-2.3:2.3
+	>=java-virtuals/servlet-api-3.1:3.1
 "
 
 RDEPEND="
@@ -58,4 +58,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jersey-server"
-JAVA_GENTOO_CLASSPATH_EXTRA="ant-core,persistence-api,servlet-api-2.3,jsp-api-bin,ejb-api,weld-osgi-bundle,osgi-core-bin-4"
+JAVA_CLASSPATH_EXTRA="ant-core,persistence-api,servlet-api-3.1,jsp-api-2.3,ejb-api,weld-osgi-bundle,osgi-core-4"

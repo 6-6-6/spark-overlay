@@ -24,12 +24,12 @@ MAVEN_ID="io.netty:netty-resolver-dns:5.0.0.Alpha2"
 # POM: /var/lib/java-ebuilder/poms/${P}.Alpha2.pom
 # io.netty:netty-codec-dns:5.0.0.Alpha2 -> >=app-maven/netty-codec-dns-5.0.0:0
 # io.netty:netty-resolver:5.0.0.Alpha2 -> >=app-maven/netty-resolver-5.0.0:0
-# io.netty:netty-transport:5.0.0.Alpha2 -> >=dev-java/netty-buffer-4.0.21:0
+# io.netty:netty-transport:5.0.0.Alpha2 -> >=app-maven/netty-transport-5.0.0:0
 
 CDEPEND="
 	>=app-maven/netty-codec-dns-5.0.0:0
 	>=app-maven/netty-resolver-5.0.0:0
-	>=dev-java/netty-buffer-4.0.21:0
+	>=app-maven/netty-transport-5.0.0:0
 "
 
 
@@ -45,4 +45,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="netty-codec-dns,netty-resolver,netty-buffer"
+JAVA_GENTOO_CLASSPATH="netty-codec-dns,netty-resolver,netty-transport"

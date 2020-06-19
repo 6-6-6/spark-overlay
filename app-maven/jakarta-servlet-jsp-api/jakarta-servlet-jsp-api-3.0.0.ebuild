@@ -37,4 +37,4 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH_EXTRA="jakarta-el-api,jakarta-servlet-api"
+JAVA_CLASSPATH_EXTRA="jakarta-el-api,jakarta-servlet-api"

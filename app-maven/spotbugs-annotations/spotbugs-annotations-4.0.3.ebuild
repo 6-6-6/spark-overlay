@@ -20,10 +20,10 @@ MAVEN_ID="com.github.spotbugs:spotbugs-annotations:4.0.3"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.google.code.findbugs:jsr305:3.0.2 -> >=dev-java/jsr305-3.0.1:0
+# com.google.code.findbugs:jsr305:3.0.2 -> >=dev-java/jsr305-3.0.2:0
 
 CDEPEND="
-	>=dev-java/jsr305-3.0.1:0
+	>=dev-java/jsr305-3.0.2:0
 "
 
 

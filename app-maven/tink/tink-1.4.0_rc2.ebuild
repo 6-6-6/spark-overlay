@@ -20,12 +20,12 @@ MAVEN_ID="com.google.crypto.tink:tink:1.4.0-rc2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-1.4.0-rc2.pom
-# com.google.protobuf:protobuf-java:3.11.1 -> >=app-maven/protobuf-java-3.12.2:0
-# org.json:json:20180813 -> >=dev-java/json-20150729:0
+# com.google.protobuf:protobuf-java:3.11.1 -> >=dev-java/protobuf-java-3.11.4:0
+# org.json:json:20180813 -> >=dev-java/json-20200518:0
 
 CDEPEND="
-	>=app-maven/protobuf-java-3.12.2:0
-	>=dev-java/json-20150729:0
+	>=dev-java/json-20200518:0
+	>=dev-java/protobuf-java-3.11.4:0
 "
 
 

@@ -50,4 +50,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jakarta-el-api,jakarta-inject-api,jakarta-interceptor-api"
-JAVA_GENTOO_CLASSPATH_EXTRA="jakarta-ejb-api,jakarta-transaction-api"
+JAVA_CLASSPATH_EXTRA="jakarta-ejb-api,jakarta-transaction-api"

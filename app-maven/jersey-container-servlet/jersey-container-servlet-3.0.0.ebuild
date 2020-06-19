@@ -50,4 +50,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jakarta-ws-rs-api,jersey-container-servlet-core,jersey-common,jersey-server"
-JAVA_GENTOO_CLASSPATH_EXTRA="jakarta-servlet-api"
+JAVA_CLASSPATH_EXTRA="jakarta-servlet-api"

@@ -48,4 +48,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="osgi-resource-locator,jakarta-inject,jersey-common"
-JAVA_GENTOO_CLASSPATH_EXTRA="jakarta-xml-bind-api"
+JAVA_CLASSPATH_EXTRA="jakarta-xml-bind-api"

@@ -31,18 +31,18 @@ CDEPEND="
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # javax.annotation:jsr250-api:1.0 -> >=dev-java/jsr250-1.2:0
-# javax.mail:mail:1.4 -> >=dev-java/oracle-javamail-1.5.6:0
+# javax.mail:mail:1.4 -> >=dev-java/oracle-javamail-1.5.2:0
 # javax.xml.bind:jaxb-api:2.1 -> >=app-maven/jaxb-api-2.4.0.180830.0359:0
-# org.osgi:osgi_R4_core:1.0 -> >=app-maven/osgi-core-bin-1.0:4
+# org.osgi:osgi_R4_core:1.0 -> >=dev-java/osgi-core-4.0:4
 
 DEPEND="
 	>=virtual/jdk-1.6:*
 	${CDEPEND}
 	app-arch/unzip
 	>=app-maven/jaxb-api-2.4.0.180830.0359:0
-	>=app-maven/osgi-core-bin-1.0:4
 	>=dev-java/jsr250-1.2:0
-	>=dev-java/oracle-javamail-1.5.6:0
+	>=dev-java/oracle-javamail-1.5.2:0
+	>=dev-java/osgi-core-4.0:4
 "
 
 RDEPEND="
@@ -52,4 +52,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jersey-core"
-JAVA_GENTOO_CLASSPATH_EXTRA="jsr250,oracle-javamail,jaxb-api,osgi-core-bin-4"
+JAVA_CLASSPATH_EXTRA="jsr250,oracle-javamail,jaxb-api,osgi-core-4"

@@ -21,12 +21,12 @@ MAVEN_ID="jakarta.websocket:jakarta.websocket-client-api:2.0.0-RC1"
 
 
 DEPEND="
-	>=virtual/jdk-1.8:*
+	>=virtual/jdk-8:*
 	app-arch/unzip
 "
 
 RDEPEND="
-	>=virtual/jre-1.8:*
+	>=virtual/jre-8:*
 "
 
 S="${WORKDIR}"

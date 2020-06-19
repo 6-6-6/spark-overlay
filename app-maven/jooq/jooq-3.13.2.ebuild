@@ -22,24 +22,24 @@ MAVEN_ID="org.jooq:jooq:3.13.2"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # javax.xml.bind:jaxb-api:2.3.1 -> >=app-maven/jaxb-api-2.4.0.180830.0359:0
-# org.reactivestreams:reactive-streams:1.0.2 -> >=app-maven/reactive-streams-1.0.3:0
+# org.reactivestreams:reactive-streams:1.0.2 -> >=dev-java/reactive-streams-1.0.3:0
 
 CDEPEND="
 	>=app-maven/jaxb-api-2.4.0.180830.0359:0
-	>=app-maven/reactive-streams-1.0.3:0
+	>=dev-java/reactive-streams-1.0.3:0
 "
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # javax.persistence:javax.persistence-api:2.2 -> >=app-maven/javax-persistence-api-2.2:0
-# org.slf4j:slf4j-api:1.8.0-beta4 -> >=dev-java/slf4j-api-1.7.7:0
+# org.slf4j:slf4j-api:1.8.0-beta4 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
 	>=app-maven/javax-persistence-api-2.2:0
-	>=dev-java/slf4j-api-1.7.7:0
+	>=dev-java/slf4j-api-2.0.0_alpha1:0
 "
 
 RDEPEND="
@@ -49,4 +49,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jaxb-api,reactive-streams"
-JAVA_GENTOO_CLASSPATH_EXTRA="javax-persistence-api,slf4j-api"
+JAVA_CLASSPATH_EXTRA="javax-persistence-api,slf4j-api"

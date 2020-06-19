@@ -21,35 +21,35 @@ MAVEN_ID="ch.qos.logback:logback-core:1.3.0-alpha5"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-1.3.0-alpha5.pom
 # edu.washington.cs.types.checker:checker-framework:1.7.0 -> >=app-maven/checker-framework-1.7.5:0
-# javax.mail:javax.mail-api:1.6.2 -> >=dev-java/oracle-javamail-1.5.2:0
-# javax.servlet:javax.servlet-api:3.1.0 -> >=java-virtuals/servlet-api-2.3:2.3
-# org.codehaus.janino:janino:3.0.6 -> >=dev-java/janino-2.7.0:0
-# org.fusesource.jansi:jansi:1.17 -> >=dev-java/jansi-1.5:0
+# javax.mail:javax.mail-api:1.6.2 -> >=dev-java/oracle-javamail-1.6.2:0
+# javax.servlet:javax.servlet-api:3.1.0 -> >=java-virtuals/servlet-api-3.1:3.1
+# org.codehaus.janino:janino:3.0.6 -> >=dev-java/janino-3.1.2:0
+# org.fusesource.jansi:jansi:1.17 -> >=dev-java/jansi-1.18:0
 
 CDEPEND="
 	>=app-maven/checker-framework-1.7.5:0
-	>=dev-java/janino-2.7.0:0
-	>=dev-java/jansi-1.5:0
-	>=dev-java/oracle-javamail-1.5.2:0
-	>=java-virtuals/servlet-api-2.3:2.3
+	>=dev-java/janino-3.1.2:0
+	>=dev-java/jansi-1.18:0
+	>=dev-java/oracle-javamail-1.6.2:0
+	>=java-virtuals/servlet-api-3.1:3.1
 "
 
 
 DEPEND="
-	>=virtual/jdk-1.8:*
+	>=virtual/jdk-8:*
 	${CDEPEND}
 	app-arch/unzip
 "
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-1.3.0-alpha5.pom
-# com.sun.mail:javax.mail:1.6.2 -> >=dev-java/oracle-javamail-1.5.2:0
+# com.sun.mail:javax.mail:1.6.2 -> >=dev-java/oracle-javamail-1.6.2:0
 RDEPEND="
-	>=virtual/jre-1.8:*
+	>=virtual/jre-8:*
 ${CDEPEND}
-	>=dev-java/oracle-javamail-1.5.2:0
+	>=dev-java/oracle-javamail-1.6.2:0
 "
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="checker-framework,oracle-javamail,servlet-api-2.3,janino,jansi,oracle-javamail"
+JAVA_GENTOO_CLASSPATH="checker-framework,oracle-javamail,servlet-api-3.1,janino,jansi,oracle-javamail"

@@ -20,8 +20,8 @@ MAVEN_ID="org.apache.hadoop:hadoop-yarn-client:3.2.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.google.guava:guava:27.0-jre -> >=dev-java/guava-20.0:20
-# commons-cli:commons-cli:1.2 -> >=dev-java/commons-cli-1.4:1
+# com.google.guava:guava:27.0-jre -> >=dev-java/guava-29.0:0
+# commons-cli:commons-cli:1.2 -> >=dev-java/commons-cli-1.3.1:1
 # commons-logging:commons-logging:1.1.3 -> >=dev-java/commons-logging-1.2:0
 # log4j:log4j:1.2.17 -> >=dev-java/log4j-1.2.17:0
 # org.apache.hadoop:hadoop-annotations:3.2.1 -> >=app-maven/hadoop-annotations-3.2.1:0
@@ -32,9 +32,9 @@ CDEPEND="
 	>=app-maven/hadoop-annotations-3.2.1:0
 	>=app-maven/hadoop-yarn-api-3.2.1:0
 	>=app-maven/hadoop-yarn-common-3.2.1:0
-	>=dev-java/commons-cli-1.4:1
+	>=dev-java/commons-cli-1.3.1:1
 	>=dev-java/commons-logging-1.2:0
-	>=dev-java/guava-20.0:20
+	>=dev-java/guava-29.0:0
 	>=dev-java/log4j-1.2.17:0
 "
 
@@ -55,5 +55,5 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="guava-20,commons-cli-1,commons-logging,log4j,hadoop-annotations,hadoop-yarn-api,hadoop-yarn-common"
-JAVA_GENTOO_CLASSPATH_EXTRA="hadoop-common"
+JAVA_GENTOO_CLASSPATH="guava,commons-cli-1,commons-logging,log4j,hadoop-annotations,hadoop-yarn-api,hadoop-yarn-common"
+JAVA_CLASSPATH_EXTRA="hadoop-common"

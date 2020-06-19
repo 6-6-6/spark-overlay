@@ -5,11 +5,9 @@ jboss series
 jnr series
 jansi & jline
 jna: .so needed
-netty series
 okio: why need app-maven
 reactive-stream: why app-maven
 osgi series
-why testng (6>4)
 
 # need maintain
 jaxb series

@@ -22,32 +22,38 @@ MAVEN_ID="io.netty:netty-example:5.0.0.Alpha2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Alpha2.pom
-# com.google.protobuf:protobuf-java:2.5.0 -> >=app-maven/protobuf-java-3.12.2:0
+# com.google.protobuf:protobuf-java:2.5.0 -> >=dev-java/protobuf-java-3.11.4:0
 # com.yammer.metrics:metrics-core:2.2.0 -> >=app-maven/metrics-core-3.0.0:0
-# io.netty:netty-codec-http:5.0.0.Alpha2 -> >=dev-java/netty-buffer-4.0.21:0
+# io.netty:netty-codec-http:5.0.0.Alpha2 -> >=app-maven/netty-codec-http-5.0.0:0
 # io.netty:netty-codec-http2:5.0.0.Alpha2 -> >=app-maven/netty-codec-http2-5.0.0:0
 # io.netty:netty-codec-memcache:5.0.0.Alpha2 -> >=app-maven/netty-codec-memcache-5.0.0:0
-# io.netty:netty-codec-socks:5.0.0.Alpha2 -> >=dev-java/netty-buffer-4.0.21:0
+# io.netty:netty-codec-socks:5.0.0.Alpha2 -> >=app-maven/netty-codec-socks-5.0.0:0
 # io.netty:netty-codec-stomp:5.0.0.Alpha2 -> >=app-maven/netty-codec-stomp-5.0.0:0
-# io.netty:netty-handler:5.0.0.Alpha2 -> >=dev-java/netty-buffer-4.0.21:0
+# io.netty:netty-handler:5.0.0.Alpha2 -> >=app-maven/netty-handler-5.0.0:0
 # io.netty:netty-handler-proxy:5.0.0.Alpha2 -> >=app-maven/netty-handler-proxy-5.0.0:0
 # io.netty:netty-tcnative:1.1.32.Fork1 -> >=app-maven/netty-tcnative-2.0.30:0
-# io.netty:netty-transport:5.0.0.Alpha2 -> >=dev-java/netty-buffer-4.0.21:0
-# io.netty:netty-transport-rxtx:5.0.0.Alpha2 -> >=dev-java/netty-buffer-4.0.21:0
-# io.netty:netty-transport-sctp:5.0.0.Alpha2 -> >=dev-java/netty-buffer-4.0.21:0
-# io.netty:netty-transport-udt:5.0.0.Alpha2 -> >=dev-java/netty-buffer-4.0.21:0
-# org.eclipse.jetty.npn:npn-api:1.1.1.v20141010 -> >=dev-java/jetty-npn-api-1.1.1:0
+# io.netty:netty-transport:5.0.0.Alpha2 -> >=app-maven/netty-transport-5.0.0:0
+# io.netty:netty-transport-rxtx:5.0.0.Alpha2 -> >=app-maven/netty-transport-rxtx-5.0.0:0
+# io.netty:netty-transport-sctp:5.0.0.Alpha2 -> >=app-maven/netty-transport-sctp-5.0.0:0
+# io.netty:netty-transport-udt:5.0.0.Alpha2 -> >=app-maven/netty-transport-udt-5.0.0:0
+# org.eclipse.jetty.npn:npn-api:1.1.1.v20141010 -> >=dev-java/jetty-npn-api-8.1.2_p20120308:0
 
 CDEPEND="
 	>=app-maven/metrics-core-3.0.0:0
+	>=app-maven/netty-codec-http-5.0.0:0
 	>=app-maven/netty-codec-http2-5.0.0:0
 	>=app-maven/netty-codec-memcache-5.0.0:0
+	>=app-maven/netty-codec-socks-5.0.0:0
 	>=app-maven/netty-codec-stomp-5.0.0:0
+	>=app-maven/netty-handler-5.0.0:0
 	>=app-maven/netty-handler-proxy-5.0.0:0
 	>=app-maven/netty-tcnative-2.0.30:0
-	>=app-maven/protobuf-java-3.12.2:0
-	>=dev-java/jetty-npn-api-1.1.1:0
-	>=dev-java/netty-buffer-4.0.21:0
+	>=app-maven/netty-transport-5.0.0:0
+	>=app-maven/netty-transport-rxtx-5.0.0:0
+	>=app-maven/netty-transport-sctp-5.0.0:0
+	>=app-maven/netty-transport-udt-5.0.0:0
+	>=dev-java/jetty-npn-api-8.1.2_p20120308:0
+	>=dev-java/protobuf-java-3.11.4:0
 "
 
 
@@ -60,18 +66,18 @@ DEPEND="
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Alpha2.pom
 # ch.qos.logback:logback-classic:1.0.13 -> >=app-maven/logback-classic-1.3.0_alpha5:0
-# com.jcraft:jzlib:1.1.2 -> >=dev-java/jzlib-1.1.1:1.1
-# org.javassist:javassist:3.19.0-GA -> >=dev-java/javassist-3.18.2:3
+# com.jcraft:jzlib:1.1.2 -> >=dev-java/jzlib-1.1.3:1.1.3
+# org.javassist:javassist:3.19.0-GA -> >=dev-java/javassist-3.21.0:3
 RDEPEND="
 	>=virtual/jre-1.6:*
 ${CDEPEND}
 	>=app-maven/logback-classic-1.3.0_alpha5:0
 
-	>=dev-java/javassist-3.18.2:3
+	>=dev-java/javassist-3.21.0:3
 
-	>=dev-java/jzlib-1.1.1:1.1
+	>=dev-java/jzlib-1.1.3:1.1.3
 "
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="protobuf-java,metrics-core,netty-buffer,netty-codec-http2,netty-codec-memcache,netty-buffer,netty-codec-stomp,netty-buffer,netty-handler-proxy,netty-tcnative,netty-buffer,netty-buffer,netty-buffer,netty-buffer,jetty-npn-api,logback-classic,jzlib-1.1,javassist-3"
+JAVA_GENTOO_CLASSPATH="protobuf-java,metrics-core,netty-codec-http,netty-codec-http2,netty-codec-memcache,netty-codec-socks,netty-codec-stomp,netty-handler,netty-handler-proxy,netty-tcnative,netty-transport,netty-transport-rxtx,netty-transport-sctp,netty-transport-udt,jetty-npn-api,logback-classic,jzlib-1.1.3,javassist-3"

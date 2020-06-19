@@ -23,13 +23,13 @@ MAVEN_ID="org.apache.kafka:kafka-streams:2.5.0"
 # org.apache.kafka:connect-json:2.5.0 -> >=app-maven/connect-json-2.5.0:0
 # org.apache.kafka:kafka-clients:2.5.0 -> >=app-maven/kafka-clients-2.5.0:0
 # org.rocksdb:rocksdbjni:5.18.3 -> >=app-maven/rocksdbjni-6.8.1:0
-# org.slf4j:slf4j-api:1.7.30 -> >=dev-java/slf4j-api-1.7.7:0
+# org.slf4j:slf4j-api:1.7.30 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
 
 CDEPEND="
 	>=app-maven/connect-json-2.5.0:0
 	>=app-maven/kafka-clients-2.5.0:0
 	>=app-maven/rocksdbjni-6.8.1:0
-	>=dev-java/slf4j-api-1.7.7:0
+	>=dev-java/slf4j-api-2.0.0_alpha1:0
 "
 
 
