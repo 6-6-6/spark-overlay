@@ -23,7 +23,7 @@ MAVEN_ID="io.netty:netty-example:5.0.0.Alpha2"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Alpha2.pom
 # com.google.protobuf:protobuf-java:2.5.0 -> >=dev-java/protobuf-java-3.11.4:0
-# com.yammer.metrics:metrics-core:2.2.0 -> >=app-maven/metrics-core-3.0.0:0
+# com.yammer.metrics:metrics-core:2.2.0 -> >=app-maven/metrics-core-2.2.0:0
 # io.netty:netty-codec-http:5.0.0.Alpha2 -> >=app-maven/netty-codec-http-5.0.0:0
 # io.netty:netty-codec-http2:5.0.0.Alpha2 -> >=app-maven/netty-codec-http2-5.0.0:0
 # io.netty:netty-codec-memcache:5.0.0.Alpha2 -> >=app-maven/netty-codec-memcache-5.0.0:0
@@ -31,7 +31,7 @@ MAVEN_ID="io.netty:netty-example:5.0.0.Alpha2"
 # io.netty:netty-codec-stomp:5.0.0.Alpha2 -> >=app-maven/netty-codec-stomp-5.0.0:0
 # io.netty:netty-handler:5.0.0.Alpha2 -> >=app-maven/netty-handler-5.0.0:0
 # io.netty:netty-handler-proxy:5.0.0.Alpha2 -> >=app-maven/netty-handler-proxy-5.0.0:0
-# io.netty:netty-tcnative:1.1.32.Fork1 -> >=app-maven/netty-tcnative-2.0.30:0
+# io.netty:netty-tcnative:1.1.32.Fork1 -> >=app-maven/netty-tcnative-1.1.32:0
 # io.netty:netty-transport:5.0.0.Alpha2 -> >=app-maven/netty-transport-5.0.0:0
 # io.netty:netty-transport-rxtx:5.0.0.Alpha2 -> >=app-maven/netty-transport-rxtx-5.0.0:0
 # io.netty:netty-transport-sctp:5.0.0.Alpha2 -> >=app-maven/netty-transport-sctp-5.0.0:0
@@ -39,7 +39,7 @@ MAVEN_ID="io.netty:netty-example:5.0.0.Alpha2"
 # org.eclipse.jetty.npn:npn-api:1.1.1.v20141010 -> >=dev-java/jetty-npn-api-8.1.2_p20120308:0
 
 CDEPEND="
-	>=app-maven/metrics-core-3.0.0:0
+	>=app-maven/metrics-core-2.2.0:0
 	>=app-maven/netty-codec-http-5.0.0:0
 	>=app-maven/netty-codec-http2-5.0.0:0
 	>=app-maven/netty-codec-memcache-5.0.0:0
@@ -47,7 +47,7 @@ CDEPEND="
 	>=app-maven/netty-codec-stomp-5.0.0:0
 	>=app-maven/netty-handler-5.0.0:0
 	>=app-maven/netty-handler-proxy-5.0.0:0
-	>=app-maven/netty-tcnative-2.0.30:0
+	>=app-maven/netty-tcnative-1.1.32:0
 	>=app-maven/netty-transport-5.0.0:0
 	>=app-maven/netty-transport-rxtx-5.0.0:0
 	>=app-maven/netty-transport-sctp-5.0.0:0
@@ -65,13 +65,13 @@ DEPEND="
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Alpha2.pom
-# ch.qos.logback:logback-classic:1.0.13 -> >=app-maven/logback-classic-1.3.0_alpha5:0
+# ch.qos.logback:logback-classic:1.0.13 -> >=app-maven/logback-classic-1.0.13:0
 # com.jcraft:jzlib:1.1.2 -> >=dev-java/jzlib-1.1.3:1.1.3
 # org.javassist:javassist:3.19.0-GA -> >=dev-java/javassist-3.21.0:3
 RDEPEND="
 	>=virtual/jre-1.6:*
 ${CDEPEND}
-	>=app-maven/logback-classic-1.3.0_alpha5:0
+	>=app-maven/logback-classic-1.0.13:0
 
 	>=dev-java/javassist-3.21.0:3
 

@@ -19,15 +19,22 @@ KEYWORDS="~amd64"
 MAVEN_ID="org.osgi:org.osgi.framework:1.9.0"
 
 
+CDEPEND="
+	dev-java/osgi-core:6
+	dev-java/osgi-annotation:6
+"
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
+	${CDEPEND}
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
+	${CDEPEND}
 "
 
 S="${WORKDIR}"
 
+JAVA_GENTOO_CLASSPATH="osgi-core-6,osgi-annotation-6"

@@ -23,12 +23,14 @@ MAVEN_ID="com.oracle.substratevm:svm:19.2.1"
 # com.oracle.substratevm:objectfile:19.2.1 -> !!!artifactId-not-found!!!
 # com.oracle.substratevm:pointsto:19.2.1 -> !!!artifactId-not-found!!!
 # org.graalvm.compiler:compiler:19.2.1 -> !!!groupId-not-found!!!
-# org.graalvm.sdk:graal-sdk:19.2.1 -> !!!groupId-not-found!!!
+# org.graalvm.sdk:graal-sdk:19.2.1 -> >=dev-java/graalvm-compiler-19.2.1
 # org.graalvm.truffle:truffle-nfi:19.2.1 -> dev-java/truffle-nfi:19
 
 CDEPEND="
-	!!!artifactId-not-found!!!
-	!!!groupId-not-found!!!
+	>=app-maven/objectfile-19.2.1
+	>=app-maven/pointsto-19.2.1
+	>=app-maven/graal-sdk-19.2.1
+	>=dev-java/graalvm-compiler-19.2.1
 	dev-libs/libsvm
 	dev-java/truffle-nfi
 "
@@ -46,4 +48,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="truffle-nfi,!!!artifactId-not-found!!!,!!!artifactId-not-found!!!,!!!artifactId-not-found!!!,!!!artifactId-not-found!!!,!!!groupId-not-found!!!,!!!groupId-not-found!!!,!!!groupId-not-found!!!"
+JAVA_GENTOO_CLASSPATH="truffle-nfi,objectfile,pointsto,graal-sdk,graalvm-compiler"

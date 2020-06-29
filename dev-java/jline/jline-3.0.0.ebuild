@@ -20,7 +20,7 @@ MAVEN_ID="jline:jline:3.0.0.M1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.M1.pom
-# com.googlecode.juniversalchardet:juniversalchardet:1.0.3 -> >=app-maven/juniversalchardet-1.0.3:0
+# com.googlecode.juniversalchardet:juniversalchardet:1.0.3 -> !!!groupId-not-found!!!
 # net.java.dev.jna:jna:4.0.0 -> >=dev-java/jna-5.5.0:0
 # org.fusesource.jansi:jansi:1.12 -> >=dev-java/jansi-1.12
 

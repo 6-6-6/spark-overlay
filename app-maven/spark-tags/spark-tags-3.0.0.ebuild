@@ -24,11 +24,11 @@ MAVEN_ID="org.apache.spark:spark-tags_2.12:3.0.0-preview2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-preview2.pom
-# org.scala-lang:scala-library:2.12.10 -> >=app-maven/scala-library-2.13.2:0
+# org.scala-lang:scala-library:2.12.10 -> >=app-maven/scala-library-2.12.10:0
 # org.spark-project.spark:unused:1.0.0 -> >=app-maven/unused-1.0.0:0
 
 CDEPEND="
-	>=app-maven/scala-library-2.13.2:0
+	>=app-maven/scala-library-2.12.10:0
 	>=app-maven/unused-1.0.0:0
 "
 

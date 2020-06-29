@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile install preinst prepare setup
+DEPEND=>=virtual/jdk-1.8:* app-arch/unzip >=dev-java/java-config-2.2.0-r3 source? ( app-arch/zip )
+DESCRIPTION=Command line parser library for Java
+EAPI=7
+HOMEPAGE=https://jcommander.org
+IUSE=elibc_FreeBSD doc source elibc_FreeBSD
+KEYWORDS=~amd64
+RDEPEND=>=virtual/jre-1.8:* >=dev-java/java-config-2.2.0-r3 source? ( app-arch/zip )
+SLOT=0
+SRC_URI=https://repo.maven.apache.org/maven2/com/beust/jcommander/1.78/jcommander-1.78-sources.jar
+_eclasses_=java-pkg-2	c4e6af2574fd1dc79b43a6e27af4b5fb	java-pkg-simple	66be2f17607cc67656ea1d61e802fd9a	java-utils-2	16d46032afaca1d6d0621f82084880cb
+_md5_=d8fc039722bf454a0ab9587e941b1a7b

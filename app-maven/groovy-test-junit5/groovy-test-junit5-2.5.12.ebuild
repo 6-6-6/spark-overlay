@@ -21,11 +21,11 @@ MAVEN_ID="org.codehaus.groovy:groovy-test-junit5:2.5.12"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # org.codehaus.groovy:groovy:2.5.12 -> >=app-maven/groovy-2.5.12:0
-# org.junit.platform:junit-platform-launcher:1.4.0 -> >=app-maven/junit-platform-launcher-1.7.0:0
+# org.junit.platform:junit-platform-launcher:1.4.0 -> >=app-maven/junit-platform-launcher-1.4.0:0
 
 CDEPEND="
 	>=app-maven/groovy-2.5.12:0
-	>=app-maven/junit-platform-launcher-1.7.0:0
+	>=app-maven/junit-platform-launcher-1.4.0:0
 "
 
 
@@ -37,11 +37,11 @@ DEPEND="
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.junit.jupiter:junit-jupiter-engine:5.4.0 -> >=app-maven/junit-jupiter-engine-5.7.0:0
+# org.junit.jupiter:junit-jupiter-engine:5.4.0 -> >=app-maven/junit-jupiter-engine-5.4.0:0
 RDEPEND="
 	>=virtual/jre-1.8:*
 ${CDEPEND}
-	>=app-maven/junit-jupiter-engine-5.7.0:0
+	>=app-maven/junit-jupiter-engine-5.4.0:0
 "
 
 S="${WORKDIR}"

@@ -10,8 +10,7 @@ JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-pkg-simple
 
-DESCRIPTION="Apache Commons Crypto is a cryptographic library optimized with AES-NI (Advanced Encryption
-Standard New Instructions)."
+DESCRIPTION="Apache Commons Crypto is a cryptographic library optimized with AES-NI (Advanced Encryption Standard New Instructions)."
 HOMEPAGE="http://commons.apache.org/proper/commons-crypto/"
 SRC_URI="https://repo.maven.apache.org/maven2/org/apache/commons/${PN}/${PV}/${P}-sources.jar"
 LICENSE=""
@@ -21,10 +20,10 @@ MAVEN_ID="org.apache.commons:commons-crypto:1.0.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# net.java.dev.jna:jna:4.2.2 -> >=dev-java/jna-4.2.2-r1:4
+# net.java.dev.jna:jna:4.2.2 -> >=dev-java/jna-5.5.0:5
 
 CDEPEND="
-	dev-java/jna:5
+	>=dev-java/jna-5.5.0:5
 "
 
 

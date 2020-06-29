@@ -41,11 +41,11 @@ DEPEND="
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # org.apache.ant:ant-antlr:1.9.15 -> >=dev-java/ant-antlr-1.10.7:0
 # org.apache.ant:ant-junit:1.9.15 -> >=dev-java/ant-junit-1.10.7:0
-# org.apache.ant:ant-launcher:1.9.15 -> >=app-maven/ant-launcher-1.10.8:0
+# org.apache.ant:ant-launcher:1.9.15 -> >=app-maven/ant-launcher-1.9.15:0
 RDEPEND="
 	>=virtual/jre-1.8:*
 ${CDEPEND}
-	>=app-maven/ant-launcher-1.10.8:0
+	>=app-maven/ant-launcher-1.9.15:0
 
 	>=dev-java/ant-antlr-1.10.7:0
 

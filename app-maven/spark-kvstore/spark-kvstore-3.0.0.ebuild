@@ -42,13 +42,13 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-preview2.pom
-# com.google.guava:guava:14.0.1 -> >=dev-java/guava-20.0:${PV%.*}
+# com.google.guava:guava:14.0.1 -> >=dev-java/guava-20.0:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-	>=dev-java/guava-20.0:${PV%.*}
+	>=dev-java/guava-20.0:0
 "
 
 RDEPEND="

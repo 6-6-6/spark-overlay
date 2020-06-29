@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile install preinst prepare setup
+DEPEND=>=virtual/jdk-1.8:* >=app-maven/juniversalchardet-1.0.3:0 >=dev-java/jansi-1.12 >=dev-java/jna-5.5.0:5 app-arch/unzip >=dev-java/java-config-2.2.0-r3 source? ( app-arch/zip )
+DESCRIPTION=Sonatype helps open source projects to set up Maven repositories on https://oss.sonatype.org/
+EAPI=7
+HOMEPAGE=http://nexus.sonatype.org/oss-repository-hosting.html/jline
+IUSE=elibc_FreeBSD doc source elibc_FreeBSD
+KEYWORDS=~amd64
+RDEPEND=>=virtual/jre-1.8:* >=app-maven/juniversalchardet-1.0.3:0 >=dev-java/jansi-1.12 >=dev-java/jna-5.5.0:5 >=dev-java/java-config-2.2.0-r3 source? ( app-arch/zip )
+SLOT=0
+SRC_URI=https://repo.maven.apache.org/maven2/jline/jline/3.0.0.M1/jline-3.0.0.M1-sources.jar
+_eclasses_=java-pkg-2	c4e6af2574fd1dc79b43a6e27af4b5fb	java-pkg-simple	66be2f17607cc67656ea1d61e802fd9a	java-utils-2	16d46032afaca1d6d0621f82084880cb
+_md5_=52e506d406793ce2d5a9ce302c914c6b

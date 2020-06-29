@@ -21,10 +21,10 @@ MAVEN_ID="org.fusesource.leveldbjni:leveldbjni:1.8"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # org.fusesource.hawtjni:hawtjni-runtime:1.9 -> >=dev-java/hawtjni-runtime-1.10:0
-# org.iq80.leveldb:leveldb-api:0.6 -> >=app-maven/leveldb-api-0.12:0
+# org.iq80.leveldb:leveldb-api:0.6 -> >=app-maven/leveldb-api-0.6:0
 
 CDEPEND="
-	>=app-maven/leveldb-api-0.12:0
+	>=app-maven/leveldb-api-0.6:0
 	>=dev-java/hawtjni-runtime-1.10:0
 "
 

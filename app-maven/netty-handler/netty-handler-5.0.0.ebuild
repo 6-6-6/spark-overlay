@@ -24,7 +24,7 @@ MAVEN_ID="io.netty:netty-handler:5.0.0.Alpha2"
 # POM: /var/lib/java-ebuilder/poms/${P}.Alpha2.pom
 # io.netty:netty-buffer:5.0.0.Alpha2 -> >=app-maven/netty-buffer-5.0.0:0
 # io.netty:netty-codec:5.0.0.Alpha2 -> >=app-maven/netty-codec-5.0.0:0
-# io.netty:netty-tcnative:1.1.32.Fork1 -> >=app-maven/netty-tcnative-2.0.30:0
+# io.netty:netty-tcnative:1.1.32.Fork1 -> >=app-maven/netty-tcnative-1.1.32:0
 # io.netty:netty-transport:5.0.0.Alpha2 -> >=app-maven/netty-transport-5.0.0:0
 # org.bouncycastle:bcpkix-jdk15on:1.50 -> >=dev-java/bcpkix-1.50:1.50
 # org.eclipse.jetty.alpn:alpn-api:1.1.0.v20141014 -> >=dev-java/jetty-alpn-api-1.1.3_p20160715:0
@@ -33,7 +33,7 @@ MAVEN_ID="io.netty:netty-handler:5.0.0.Alpha2"
 CDEPEND="
 	>=app-maven/netty-buffer-5.0.0:0
 	>=app-maven/netty-codec-5.0.0:0
-	>=app-maven/netty-tcnative-2.0.30:0
+	>=app-maven/netty-tcnative-1.1.32:0
 	>=app-maven/netty-transport-5.0.0:0
 	>=dev-java/bcpkix-1.50:1.50
 	>=dev-java/jetty-alpn-api-1.1.3_p20160715:0
@@ -42,15 +42,15 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Alpha2.pom
-# org.mortbay.jetty.alpn:alpn-boot:8.1.2.v20141202 -> >=app-maven/alpn-boot-8.1.13_p20181017:0
-# org.mortbay.jetty.npn:npn-boot:1.1.9.v20141016 -> >=app-maven/npn-boot-8.1.2_p20120308:0
+# org.mortbay.jetty.alpn:alpn-boot:8.1.2.v20141202 -> >=app-maven/alpn-boot-8.1.2_p20141202:0
+# org.mortbay.jetty.npn:npn-boot:1.1.9.v20141016 -> >=app-maven/npn-boot-1.1.9_p20141016:0
 
 DEPEND="
 	>=virtual/jdk-1.6:*
 	${CDEPEND}
 	app-arch/unzip
-	>=app-maven/alpn-boot-8.1.13_p20181017:0
-	>=app-maven/npn-boot-8.1.2_p20120308:0
+	>=app-maven/alpn-boot-8.1.2_p20141202:0
+	>=app-maven/npn-boot-1.1.9_p20141016:0
 "
 
 RDEPEND="

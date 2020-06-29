@@ -20,7 +20,7 @@ MAVEN_ID="org.codehaus.groovy:groovy:2.5.12"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.thoughtworks.xstream:xstream:1.4.10 -> >=app-maven/xstream-1.4.12:0
+# com.thoughtworks.xstream:xstream:1.4.10 -> >=app-maven/xstream-1.4.10:0
 # info.picocli:picocli:4.3.2 -> >=app-maven/picocli-4.3.2:0
 # org.apache.ant:ant:1.9.15 -> >=dev-java/ant-core-1.10.7:0
 # org.apache.ivy:ivy:2.4.0 -> >=dev-java/ant-ivy-2.5.0:0
@@ -28,7 +28,7 @@ MAVEN_ID="org.codehaus.groovy:groovy:2.5.12"
 
 CDEPEND="
 	>=app-maven/picocli-4.3.2:0
-	>=app-maven/xstream-1.4.12:0
+	>=app-maven/xstream-1.4.10:0
 	>=dev-java/ant-core-1.10.7:0
 	>=dev-java/ant-ivy-2.5.0:0
 	>=dev-java/jansi-1.18:0
@@ -47,9 +47,10 @@ DEPEND="
 RDEPEND="
 	>=virtual/jre-1.8:*
 ${CDEPEND}
-	>=app-maven/gpars-1.2.1:0
 "
+#	>=app-maven/gpars-1.2.1:0
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="xstream,picocli,ant-core,ant-ivy,jansi,gpars"
+JAVA_GENTOO_CLASSPATH="xstream,picocli,ant-core,ant-ivy,jansi"
+#,gpars"

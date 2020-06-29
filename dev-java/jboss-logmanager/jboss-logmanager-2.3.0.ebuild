@@ -20,14 +20,14 @@ MAVEN_ID="org.jboss.logmanager:jboss-logmanager:2.3.0.Alpha1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Alpha1.pom
-# jakarta.json:jakarta.json-api:2.0.0-RC2 -> >=app-maven/jakarta-json-api-2.0.0:0
-# org.glassfish:jakarta.json:2.0.0-RC2 -> >=app-maven/jakarta-json-2.0.0:0
-# org.wildfly.common:wildfly-common:1.5.1.Final -> >=app-maven/wildfly-common-1.5.4.:0
+# jakarta.json:jakarta.json-api:2.0.0-RC2 -> !!!artifactId-not-found!!!
+# org.glassfish:jakarta.json:2.0.0-RC2 -> !!!artifactId-not-found!!!
+# org.wildfly.common:wildfly-common:1.5.1.Final -> !!!artifactId-not-found!!!
 
 CDEPEND="
 	>=app-maven/jakarta-json-2.0.0:0
 	>=app-maven/jakarta-json-api-2.0.0:0
-	>=app-maven/wildfly-common-1.5.4.:0
+	>=app-maven/wildfly-common-1.5.1:0
 "
 
 # Compile dependencies

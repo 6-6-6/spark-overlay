@@ -17,6 +17,7 @@ LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.ow2.asm:asm:8.0.1"
+MAVEN_PROVIDE="asm:asm:8.0.1"
 
 
 

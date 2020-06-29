@@ -25,12 +25,12 @@ MAVEN_ID="org.apache.spark:spark-unsafe_2.12:3.0.0-preview2"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-preview2.pom
 # com.google.code.findbugs:jsr305:3.0.0 -> >=dev-java/jsr305-3.0.1:0
-# com.twitter:chill_2.12:0.9.3 -> >=app-maven/chill-0.9.5:2.12
+# com.twitter:chill_2.12:0.9.3 -> >=app-maven/chill-0.9.3:2.12
 # org.apache.spark:spark-tags_2.12:3.0.0-preview2 -> >=app-maven/spark-tags-3.0.0:2.12
 # org.spark-project.spark:unused:1.0.0 -> >=app-maven/unused-1.0.0:0
 
 CDEPEND="
-	>=app-maven/chill-0.9.5:2.12
+	>=app-maven/chill-0.9.3:2.12
 	>=app-maven/spark-tags-3.0.0:2.12
 	>=app-maven/unused-1.0.0:0
 	>=dev-java/jsr305-3.0.1:0
@@ -38,14 +38,14 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-preview2.pom
-# com.google.guava:guava:14.0.1 -> >=dev-java/guava-20.0:${PV%.*}
+# com.google.guava:guava:14.0.1 -> >=dev-java/guava-20.0:0
 # org.slf4j:slf4j-api:1.7.16 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-	>=dev-java/guava-20.0:${PV%.*}
+	>=dev-java/guava-20.0:0
 	>=dev-java/slf4j-api-2.0.0_alpha1:0
 "
 

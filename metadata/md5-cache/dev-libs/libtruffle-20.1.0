@@ -1,0 +1,7 @@
+DEFINED_PHASES=-
+DESCRIPTION=The leveldbjni native libraries.
+EAPI=7
+IUSE=kernel_Linux kernel_Darwin kernel_Winnt
+KEYWORDS=~amd64 ~x86
+SLOT=1.8
+_md5_=469287107179927c63fe07d30bd785f1

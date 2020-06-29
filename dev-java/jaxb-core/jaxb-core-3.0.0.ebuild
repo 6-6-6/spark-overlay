@@ -14,7 +14,7 @@ DESCRIPTION="Old JAXB Core module. Contains sources required by XJC, JXC and Run
 HOMEPAGE="https://eclipse-ee4j.github.io/jaxb-ri/jaxb-bundles/jaxb-core"
 SRC_URI="https://repo.maven.apache.org/maven2/com/sun/xml/bind/${PN}/${PV}-M4/${P}-M4-sources.jar"
 LICENSE=""
-SLOT="3.0"
+SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.sun.xml.bind:jaxb-core:3.0.0-M4"
 MAVEN_PROVIDE="org.glassfish.jaxb:jaxb-core:3.0.0-M4"
@@ -31,7 +31,7 @@ CDEPEND="
 # POM: /var/lib/java-ebuilder/poms/${P}-M4.pom
 # com.sun.istack:istack-commons-runtime:4.0.0-M3 -> >=dev-java/istack-commons-runtime-4.0.0
 # jakarta.activation:jakarta.activation-api:2.0.0-RC3 -> !!!groupId-not-found!!!
-# org.glassfish.jaxb:txw2:3.0.0-M4 -> dev-java/txw2:${SLOT}
+# org.glassfish.jaxb:txw2:3.0.0-M4 -> >=dev-java/txw2-3.0.0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
@@ -39,7 +39,7 @@ DEPEND="
 	app-arch/unzip
 	>=dev-java/istack-commons-runtime-4.0.0
 	>=app-maven/jakarta-activation-api-2.0.0:0
-	dev-java/txw2:${SLOT}
+	>=dev-java/txw2-3.0.0
 "
 
 # Runtime dependencies
@@ -54,4 +54,4 @@ ${CDEPEND}
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jakarta-xml-bind-api,jakarta-activation"
-JAVA_GENTOO_CLASSPATH_EXTRA="jakarta-activation-api,istack-commons-runtime,txw2-3.0"
+JAVA_GENTOO_CLASSPATH_EXTRA="jakarta-activation-api,istack-commons-runtime,txw2"

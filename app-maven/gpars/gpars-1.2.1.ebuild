@@ -23,16 +23,16 @@ MAVEN_ID="org.codehaus.gpars:gpars:1.2.1"
 # org.codehaus.groovy:groovy-all:2.1.9 -> >=dev-java/groovy-all-2.5.12:0
 # org.codehaus.jcsp:jcsp:1.1-rc5 -> >=app-maven/jcsp-1.1_rc5:0
 # org.codehaus.jsr166-mirror:jsr166y:1.7.0 -> >=app-maven/jsr166y-1.7.0:0
-# org.jboss.netty:netty:3.2.9.Final -> >=app-maven/netty-3.2.10:0
+# org.jboss.netty:netty:3.2.9.Final -> >=app-maven/netty-3.2.9:0
 # org.multiverse:multiverse-core:0.7.0 -> >=app-maven/multiverse-core-0.7.0:0
 
 CDEPEND="
 	>=app-maven/jcsp-1.1_rc5:0
 	>=app-maven/jsr166y-1.7.0:0
 	>=app-maven/multiverse-core-0.7.0:0
-	>=app-maven/netty-3.2.10:0
-	>=dev-java/groovy-all-2.5.12:0
 "
+#	>=app-maven/netty-3.2.9:0
+#	>=dev-java/groovy-all-2.5.12:0
 
 
 DEPEND="
@@ -47,4 +47,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="groovy-all,jcsp,jsr166y,netty,multiverse-core"
+JAVA_GENTOO_CLASSPATH="jcsp,jsr166y,multiverse-core"

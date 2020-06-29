@@ -20,7 +20,7 @@ MAVEN_ID="org.codehaus.janino:janino:3.1.2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.codehaus.janino:commons-compiler:3.1.2 -> >=app-maven/commons-compiler-3.1.2:0
+# org.codehaus.janino:commons-compiler:3.1.2 -> !!!groupId-not-found!!!
 
 CDEPEND="
 	>=app-maven/commons-compiler-3.1.2:0

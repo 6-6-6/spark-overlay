@@ -20,10 +20,10 @@ MAVEN_ID="com.oracle.substratevm:pointsto:19.2.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.graalvm.compiler:compiler:19.2.1 -> >=app-maven/compiler-20.1.0:0
+# org.graalvm.compiler:compiler:19.2.1 -> >=dev-java/compiler-19.2.1:0
 
 CDEPEND="
-	>=app-maven/compiler-20.1.0:0
+	>=dev-java/compiler-19.2.1:0
 "
 
 

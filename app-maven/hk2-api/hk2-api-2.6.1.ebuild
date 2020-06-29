@@ -21,7 +21,7 @@ MAVEN_ID="org.glassfish.hk2:hk2-api:2.6.1"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # org.glassfish.hk2:hk2-utils:2.6.1 -> >=app-maven/hk2-utils-2.6.1:0
-# org.glassfish.hk2:osgi-resource-locator:1.0.3 -> >=app-maven/osgi-resource-locator-2.5.0_beta42:0
+# org.glassfish.hk2:osgi-resource-locator:1.0.3 -> >=app-maven/osgi-resource-locator-1.0.3:0
 # org.glassfish.hk2.external:aopalliance-repackaged:2.6.1 -> >=app-maven/aopalliance-repackaged-2.6.1:0
 # org.glassfish.hk2.external:jakarta.inject:2.6.1 -> >=app-maven/jakarta-inject-2.6.1:0
 
@@ -29,7 +29,7 @@ CDEPEND="
 	>=app-maven/aopalliance-repackaged-2.6.1:0
 	>=app-maven/hk2-utils-2.6.1:0
 	>=app-maven/jakarta-inject-2.6.1:0
-	>=app-maven/osgi-resource-locator-2.5.0_beta42:0
+	>=app-maven/osgi-resource-locator-1.0.3:0
 "
 
 

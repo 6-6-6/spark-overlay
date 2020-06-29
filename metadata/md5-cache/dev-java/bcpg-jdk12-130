@@ -1,0 +1,10 @@
+DEFINED_PHASES=compile install preinst prepare setup unpack
+DEPEND=>=virtual/jdk-1.8:* >=dev-java/bcprov-jdk12-130:0 app-arch/unzip >=dev-java/java-config-2.2.0-r3 source? ( app-arch/zip )
+EAPI=7
+IUSE=elibc_FreeBSD doc source elibc_FreeBSD
+KEYWORDS=~amd64
+RDEPEND=>=virtual/jre-1.8:* >=dev-java/bcprov-jdk12-130:0 >=dev-java/java-config-2.2.0-r3 source? ( app-arch/zip )
+SLOT=0
+SRC_URI=https://repo.maven.apache.org/maven2/org/bouncycastle/bcpg-jdk12/130/bcpg-jdk12-130.jar
+_eclasses_=java-pkg-2	c4e6af2574fd1dc79b43a6e27af4b5fb	java-pkg-binjar	d80b1f58c6d581d536bcf7fa11c22fa7	java-pkg-simple	66be2f17607cc67656ea1d61e802fd9a	java-utils-2	16d46032afaca1d6d0621f82084880cb
+_md5_=a6ff8aeb8879572fb194993115d26583

@@ -22,7 +22,7 @@ MAVEN_ID="org.jboss.logging:jboss-logging:3.4.1.Final"
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Final.pom
 # log4j:log4j:1.2.16 -> >=dev-java/log4j-1.2.17:0
-# org.apache.logging.log4j:log4j-api:2.11.2 -> >=app-maven/log4j-api-2.13.3:0
+# org.apache.logging.log4j:log4j-api:2.13.3 -> !!!groupId-not-found!!!
 # org.jboss.logmanager:jboss-logmanager:2.1.9.Final -> >=dev-java/jboss-logmanager-2.3.0:0
 # org.slf4j:slf4j-api:1.7.25 -> >=dev-java/slf4j-api-1.7.7:0
 

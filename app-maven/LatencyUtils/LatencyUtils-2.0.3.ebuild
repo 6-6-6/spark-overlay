@@ -20,10 +20,10 @@ MAVEN_ID="org.latencyutils:LatencyUtils:2.0.3"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.hdrhistogram:HdrHistogram:2.1.8 -> >=app-maven/HdrHistogram-2.1.12:0
+# org.hdrhistogram:HdrHistogram:2.1.8 -> >=app-maven/HdrHistogram-2.1.9:0
 
 CDEPEND="
-	>=app-maven/HdrHistogram-2.1.12:0
+	>=app-maven/HdrHistogram-2.1.9:0
 "
 
 

@@ -17,6 +17,7 @@ LICENSE=""
 SLOT="3"
 KEYWORDS="~amd64"
 MAVEN_ID="com.google.code.findbugs:annotations:3.0.1u2"
+MAVEN_PROVIDE="findbugs:annotations:1.0.0 net.sourceforge.findbugs:annotations:1.3.2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/annotations-3.0.1u2.pom

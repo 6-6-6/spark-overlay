@@ -10,17 +10,10 @@ reactive-stream: why app-maven
 osgi series
 
 # need maintain
-jaxb series
 svm
 truffle series
 
 # weird
-## module-info
-ehcache
-invokebinder
-istack-commons-tools
-joda-*
-txw2
 ##
 hibernate
 tunnelvisionlabs-antlr: antlr:3.5 cannot emerge

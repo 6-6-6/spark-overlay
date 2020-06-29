@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile install preinst prepare setup
+DEPEND=>=virtual/jdk-1.7:* >=dev-java/jackson-2.11.0:2 >=dev-java/jackson-annotations-2.11.0:2 app-arch/unzip >=dev-java/java-config-2.2.0-r3 source? ( app-arch/zip )
+DESCRIPTION=General data-binding functionality for Jackson: works on core streaming API
+EAPI=7
+HOMEPAGE=http://github.com/FasterXML/jackson
+IUSE=elibc_FreeBSD doc source elibc_FreeBSD
+KEYWORDS=~amd64
+RDEPEND=>=virtual/jre-1.7:* >=dev-java/jackson-2.11.0:2 >=dev-java/jackson-annotations-2.11.0:2 >=dev-java/java-config-2.2.0-r3 source? ( app-arch/zip )
+SLOT=2
+SRC_URI=https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.11.0/jackson-databind-2.11.0-sources.jar
+_eclasses_=java-pkg-2	c4e6af2574fd1dc79b43a6e27af4b5fb	java-pkg-simple	66be2f17607cc67656ea1d61e802fd9a	java-utils-2	16d46032afaca1d6d0621f82084880cb
+_md5_=157e2a416095449f5888e7c247e63d2c

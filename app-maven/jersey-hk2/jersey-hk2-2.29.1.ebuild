@@ -21,11 +21,11 @@ MAVEN_ID="org.glassfish.jersey.inject:jersey-hk2:2.29.1"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # org.glassfish.hk2:hk2-locator:2.6.1 -> >=app-maven/hk2-locator-2.6.1:0
-# org.glassfish.jersey.core:jersey-common:2.29.1 -> >=app-maven/jersey-common-3.0.0:0
+# org.glassfish.jersey.core:jersey-common:2.29.1 -> >=app-maven/jersey-common-2.29.1:0
 
 CDEPEND="
 	>=app-maven/hk2-locator-2.6.1:0
-	>=app-maven/jersey-common-3.0.0:0
+	>=app-maven/jersey-common-2.29.1:0
 "
 
 
