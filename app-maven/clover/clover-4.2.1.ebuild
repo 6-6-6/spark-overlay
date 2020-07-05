@@ -16,7 +16,7 @@ DESCRIPTION="Clover is an award winning code coverage and testing tool for Java 
 
         Note: before Clover 4.0 this artifact was named com.cenqua.clover:clover."
 HOMEPAGE="http://openclover.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/open${PN}/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/open${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -35,3 +35,9 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

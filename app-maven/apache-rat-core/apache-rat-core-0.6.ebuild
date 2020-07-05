@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple
 DESCRIPTION="The core functionality of RAT, shared by the Ant tasks,
     and the Maven plugin."
 HOMEPAGE="http://incubator.apache.org/rat/apache-rat-core"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/rat/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/rat/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -45,3 +45,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="commons-cli-1,commons-collections,commons-lang-2.1"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="JetS3t is a free, open-source Java toolkit and application suite for Amazon Simple Storage Service (Amazon S3), Amazon CloudFront content delivery network, and Google Storage for Developers."
 HOMEPAGE="http://www.jets3t.org"
-SRC_URI="https://repo.maven.apache.org/maven2/net/java/dev/${PN}/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/net/java/dev/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -48,3 +48,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="java-xmlbuilder,commons-codec,commons-logging,httpcomponents-client-4.5,httpcomponents-core-4.4"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

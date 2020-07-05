@@ -40,3 +40,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jaffl"
+JAVA_SRC_DIR="src/main/java"

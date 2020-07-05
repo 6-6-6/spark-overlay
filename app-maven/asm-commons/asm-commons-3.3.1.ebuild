@@ -40,3 +40,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="asm-tree"
+JAVA_SRC_DIR="src/main/java"

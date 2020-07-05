@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="JSR 354 provides an API for representing, transporting, and performing comprehensive calculations with Money and Currency."
 HOMEPAGE="http://java.net/projects/javamoney"
-SRC_URI="https://repo.maven.apache.org/maven2/javax/money/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/javax/money/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -31,3 +31,9 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

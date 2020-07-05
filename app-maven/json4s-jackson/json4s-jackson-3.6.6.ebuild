@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="json4s-jackson"
 HOMEPAGE="https://github.com/json4s/json4s"
-SRC_URI="https://repo.maven.apache.org/maven2/org/json4s/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/json4s/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="2.12"
 KEYWORDS="~amd64"
@@ -20,14 +20,14 @@ MAVEN_ID="org.json4s:json4s-jackson_2.12:3.6.6"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}.pom
-# com.fasterxml.jackson.core:jackson-databind:2.9.8 -> >=dev-java/jackson-databind-2.11.0:2
+# com.fasterxml.jackson.core:jackson-databind:2.9.8 -> >=app-maven/jackson-databind-2.10.0:0
 # org.json4s:json4s-core_2.12:3.6.6 -> >=app-maven/json4s-core-3.6.6:2.12
 # org.scala-lang:scala-library:2.12.8 -> >=app-maven/scala-library-2.12.10:0
 
 CDEPEND="
+	>=app-maven/jackson-databind-2.10.0:0
 	>=app-maven/json4s-core-3.6.6:2.12
 	>=app-maven/scala-library-2.12.10:0
-	>=dev-java/jackson-databind-2.11.0:2
 "
 
 
@@ -43,4 +43,10 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-databind-2,json4s-core-2.12,scala-library"
+JAVA_GENTOO_CLASSPATH="jackson-databind,json4s-core-2.12,scala-library"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

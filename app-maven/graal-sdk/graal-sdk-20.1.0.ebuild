@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple
 DESCRIPTION="GraalVM is an ecosystem for compiling and running applications written in multiple languages.
 GraalVM removes the isolation between programming languages and enables interoperability in a shared runtime."
 HOMEPAGE="https://github.com/oracle/graal"
-SRC_URI="https://repo.maven.apache.org/maven2/org/graalvm/sdk/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/graalvm/sdk/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -32,3 +32,9 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

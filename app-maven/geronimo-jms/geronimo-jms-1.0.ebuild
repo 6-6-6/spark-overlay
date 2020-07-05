@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-binjar
 
 DESCRIPTION=""
 HOMEPAGE=""
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/geronimo/specs/${PN}_1.1_spec/${PV}/${PN}_1.1_spec-${PV}.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/geronimo/specs/${PN}_1.1_spec/${PV}/${PN}_1.1_spec-${PV}.jar -> ${P}.jar"
 LICENSE=""
 SLOT="1.1_spec"
 KEYWORDS="~amd64"
@@ -31,3 +31,4 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"

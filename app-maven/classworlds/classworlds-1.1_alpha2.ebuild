@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-binjar
 
 DESCRIPTION=""
 HOMEPAGE="http://classworlds.codehaus.org/"
-SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/1.1-alpha-2/${PN}-1.1-alpha-2.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/1.1-alpha-2/${PN}-1.1-alpha-2.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -31,3 +31,4 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"

@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Internationalization of errors and other messages"
 HOMEPAGE="http://directory.apache.org/api-parent/api-i18n/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/directory/api/${PN}/${PV}-M20/${P}-M20-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/directory/api/${PN}/${PV}-M20/${P}-M20-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -20,10 +20,10 @@ MAVEN_ID="org.apache.directory.api:api-i18n:1.0.0-M20"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}-M20.pom
-# org.slf4j:slf4j-api:1.7.5 -> >=dev-java/slf4j-ext-1.7.5:0
+# org.slf4j:slf4j-api:1.7.5 -> >=dev-java/slf4j-api-1.7.7:0
 
 CDEPEND="
-	>=dev-java/slf4j-ext-1.7.5:0
+	>=dev-java/slf4j-api-1.7.7:0
 "
 
 # Compile dependencies
@@ -43,5 +43,11 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="slf4j-ext"
+JAVA_GENTOO_CLASSPATH="slf4j-api"
 JAVA_CLASSPATH_EXTRA="findbugs-annotation-3"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple
 DESCRIPTION="Projects that provide additional functionality to jersey, like integration
         with other projects/frameworks."
 HOMEPAGE="https://jersey.java.net/jersey-contribs/jersey-guice/"
-SRC_URI="https://repo.maven.apache.org/maven2/com/sun/jersey/contribs/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/com/sun/jersey/contribs/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -34,13 +34,13 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# javax.servlet:servlet-api:2.5 -> >=java-virtuals/servlet-api-2.5:2.5
+# javax.servlet:servlet-api:2.5 -> >=java-virtuals/servlet-api-4.0:4.0
 
 DEPEND="
 	>=virtual/jdk-1.6:*
 	${CDEPEND}
 	app-arch/unzip
-	>=java-virtuals/servlet-api-2.5:2.5
+	>=java-virtuals/servlet-api-4.0:4.0
 "
 
 RDEPEND="
@@ -50,4 +50,10 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="guice-4,guice-4,jersey-server,javax-inject"
-JAVA_CLASSPATH_EXTRA="servlet-api-2.5"
+JAVA_CLASSPATH_EXTRA="servlet-api-4.0"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

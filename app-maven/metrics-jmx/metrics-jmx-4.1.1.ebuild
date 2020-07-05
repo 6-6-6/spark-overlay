@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="A set of classes which allow you to report metrics via JMX."
 HOMEPAGE="http://metrics.dropwizard.io/metrics-jmx"
-SRC_URI="https://repo.maven.apache.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -21,11 +21,11 @@ MAVEN_ID="io.dropwizard.metrics:metrics-jmx:4.1.1"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # io.dropwizard.metrics:metrics-core:4.1.1 -> >=app-maven/metrics-core-4.1.1:0
-# org.slf4j:slf4j-api:1.7.28 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
+# org.slf4j:slf4j-api:1.7.28 -> >=dev-java/slf4j-api-1.7.28:0
 
 CDEPEND="
 	>=app-maven/metrics-core-4.1.1:0
-	>=dev-java/slf4j-api-2.0.0_alpha1:0
+	>=dev-java/slf4j-api-1.7.28:0
 "
 
 
@@ -42,3 +42,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="metrics-core,slf4j-api"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

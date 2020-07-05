@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Yammer's Metrics library."
 HOMEPAGE="http://metrics.codahale.com/metrics-core/"
-SRC_URI="https://repo.maven.apache.org/maven2/com/yammer/metrics/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/com/yammer/metrics/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -20,10 +20,10 @@ MAVEN_ID="com.yammer.metrics:metrics-core:2.2.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.slf4j:slf4j-api:1.7.2 -> >=dev-java/slf4j-ext-1.7.5:0
+# org.slf4j:slf4j-api:1.7.2 -> >=dev-java/slf4j-api-1.7.7:0
 
 CDEPEND="
-	>=dev-java/slf4j-ext-1.7.5:0
+	>=dev-java/slf4j-api-1.7.7:0
 "
 
 
@@ -39,4 +39,10 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="slf4j-ext"
+JAVA_GENTOO_CLASSPATH="slf4j-api"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

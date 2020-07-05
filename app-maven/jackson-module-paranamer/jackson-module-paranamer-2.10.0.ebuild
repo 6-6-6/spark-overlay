@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple
 DESCRIPTION="AnnotationIntrospectors that use Paranamer (http://paranamer.codehaus.org)
 to introspect names of constructor (and factory method) parameters."
 HOMEPAGE="https://github.com/FasterXML/jackson-modules-base"
-SRC_URI="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/module/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/module/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -21,12 +21,12 @@ MAVEN_ID="com.fasterxml.jackson.module:jackson-module-paranamer:2.10.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.fasterxml.jackson.core:jackson-databind:2.10.0 -> >=dev-java/jackson-databind-2.11.0:2
+# com.fasterxml.jackson.core:jackson-databind:2.10.0 -> >=app-maven/jackson-databind-2.10.0:0
 # com.thoughtworks.paranamer:paranamer:2.8 -> >=app-maven/paranamer-2.8:0
 
 CDEPEND="
+	>=app-maven/jackson-databind-2.10.0:0
 	>=app-maven/paranamer-2.8:0
-	>=dev-java/jackson-databind-2.11.0:2
 "
 
 
@@ -42,4 +42,10 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-databind-2,paranamer"
+JAVA_GENTOO_CLASSPATH="jackson-databind,paranamer"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

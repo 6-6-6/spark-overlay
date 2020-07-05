@@ -17,7 +17,7 @@ DESCRIPTION="HdrHistogram supports the recording and analyzing sampled data valu
         quantization behavior across the value range and the subsequent value
         resolution at any given level."
 HOMEPAGE="http://hdrhistogram.github.io/HdrHistogram/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/hdrhistogram/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/hdrhistogram/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -36,3 +36,9 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

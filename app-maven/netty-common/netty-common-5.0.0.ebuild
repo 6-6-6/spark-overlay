@@ -14,7 +14,7 @@ DESCRIPTION="Netty is an asynchronous event-driven network application framework
     rapid development of maintainable high performance protocol servers and
     clients."
 HOMEPAGE="http://netty.io/netty-common/"
-SRC_URI="https://repo.maven.apache.org/maven2/io/netty/${PN}/${PV}.Alpha2/${P}.Alpha2-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/io/netty/${PN}/${PV}.Alpha2/${P}.Alpha2-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -25,13 +25,13 @@ MAVEN_ID="io.netty:netty-common:5.0.0.Alpha2"
 # commons-logging:commons-logging:1.1.3 -> >=dev-java/commons-logging-1.2:0
 # log4j:log4j:1.2.17 -> >=dev-java/log4j-1.2.17:0
 # org.javassist:javassist:3.19.0-GA -> >=dev-java/javassist-3.21.0:3
-# org.slf4j:slf4j-api:1.7.5 -> >=dev-java/slf4j-ext-1.7.5:0
+# org.slf4j:slf4j-api:1.7.5 -> >=dev-java/slf4j-api-1.7.7:0
 
 CDEPEND="
 	>=dev-java/commons-logging-1.2:0
 	>=dev-java/javassist-3.21.0:3
 	>=dev-java/log4j-1.2.17:0
-	>=dev-java/slf4j-ext-1.7.5:0
+	>=dev-java/slf4j-api-1.7.7:0
 "
 
 
@@ -47,4 +47,10 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="commons-logging,log4j,javassist-3,slf4j-ext"
+JAVA_GENTOO_CLASSPATH="commons-logging,log4j,javassist-3,slf4j-api"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

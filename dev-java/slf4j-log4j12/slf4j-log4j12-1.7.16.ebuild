@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="SLF4J LOG4J-12 Binding"
 HOMEPAGE="http://www.slf4j.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/slf4j/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/slf4j/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -21,11 +21,11 @@ MAVEN_ID="org.slf4j:slf4j-log4j12:1.7.16"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # log4j:log4j:1.2.17 -> >=dev-java/log4j-1.2.17:0
-# org.slf4j:slf4j-api:1.7.16 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
+# org.slf4j:slf4j-api:1.7.16 -> >=dev-java/slf4j-api-1.7.16:0
 
 CDEPEND="
 	>=dev-java/log4j-1.2.17:0
-	>=dev-java/slf4j-api-2.0.0_alpha1:0
+	>=dev-java/slf4j-api-1.7.16:0
 "
 
 
@@ -42,3 +42,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="log4j,slf4j-api"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

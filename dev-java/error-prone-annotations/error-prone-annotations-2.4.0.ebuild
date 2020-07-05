@@ -15,7 +15,7 @@ DESCRIPTION="Sonatype helps open source projects to set up Maven repositories on
 HOMEPAGE="http://nexus.sonatype.org/oss-repository-hosting.html/error_prone_parent/error_prone_annotations"
 SRC_URI="https://repo.maven.apache.org/maven2/com/google/${MY_PN}prone/${MY_PN}_prone_annotations/${PV}/${MY_PN}_prone_annotations-${PV}-sources.jar"
 LICENSE=""
-SLOT="prone_annotations"
+SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.google.errorprone:error_prone_annotations:2.4.0"
 

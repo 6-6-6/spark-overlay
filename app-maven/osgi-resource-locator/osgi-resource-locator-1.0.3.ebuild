@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Used by various API providers that rely on META-INF/services mechanism to locate providers."
 HOMEPAGE="https://projects.eclipse.org/projects/ee4j/osgi-resource-locator"
-SRC_URI="https://repo.maven.apache.org/maven2/org/glassfish/hk2/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/glassfish/hk2/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -38,3 +38,9 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_CLASSPATH_EXTRA="osgi-cmpn,osgi-core-7"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

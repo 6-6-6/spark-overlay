@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="The Java EJB 3.1 API classes"
 HOMEPAGE="http://jboss-ejb-api_3.1_spec/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/jboss/spec/javax/ejb/${PN}_3.1_spec/${PV}.CR2/${PN}_3.1_spec-${PV}.CR2-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/jboss/spec/javax/ejb/${PN}_3.1_spec/${PV}.CR2/${PN}_3.1_spec-${PV}.CR2-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="3.1_spec"
 KEYWORDS="~amd64"
@@ -42,3 +42,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jaxrpc-api,jboss-transaction-api-1.1_spec"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

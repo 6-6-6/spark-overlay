@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="dependency-check-ant is an Ant Task that uses dependency-check-core to detect publicly disclosed vulnerabilities associated with the project's dependencies. The task will generate a report listing the dependency, any identified Common Platform Enumeration (CPE) identifiers, and the associated Common Vulnerability and Exposure (CVE) entries."
 HOMEPAGE="https://github.com/jeremylong/DependencyCheck.git/dependency-check-ant"
-SRC_URI="https://repo.maven.apache.org/maven2/org/owasp/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/owasp/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -49,3 +49,9 @@ S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="dependency-check-core,dependency-check-utils"
 JAVA_CLASSPATH_EXTRA="findbugs-annotation-3,ant-core"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

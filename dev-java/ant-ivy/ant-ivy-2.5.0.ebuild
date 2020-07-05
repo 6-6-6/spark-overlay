@@ -28,15 +28,15 @@ MAVEN_ID="org.apache.ivy:ivy:2.5.0"
 # org.apache.ant:ant:1.9.14 -> >=dev-java/ant-core-1.10.7:0
 # org.apache.commons:commons-vfs2:2.2 -> >=dev-java/commons-vfs-2.2:2
 # org.apache.httpcomponents:httpclient:4.5.9 -> >=dev-java/httpcomponents-client-4.5:4.5
-# oro:oro:2.0.8 -> !!!groupId-not-found!!!
+# oro:oro:2.0.8 -> >=dev-java/jakarta-oro-2.0.8:2.0
 
 CDEPEND="
-	>=app-maven/oro-2.0.8:0
+	>=dev-java/jakarta-oroi-2.0.8-:2.0
 	>=dev-java/ant-core-1.10.7:0
+	>=dev-java/commons-vfs-2.2:2
 	>=dev-java/httpcomponents-client-4.5:4.5
 	>=dev-java/jsch-0.1.52:0
 "
-#	>=dev-java/commons-vfs-2.2:2
 
 
 DEPEND="
@@ -51,4 +51,4 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jsch,ant-core,httpcomponents-client-4.5,oro"
+JAVA_GENTOO_CLASSPATH="jsch,ant-core,commons-vfs-2,httpcomponents-client-4.5,jakarta-oro-2.0"

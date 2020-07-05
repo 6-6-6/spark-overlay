@@ -25,11 +25,11 @@ MAVEN_ID="tomcat:jasper-runtime:5.5.23"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # commons-el:commons-el:1.0 -> >=dev-java/commons-el-1.0:0
-# javax.servlet:servlet-api:2.4 -> >=java-virtuals/servlet-api-2.4:2.4
+# javax.servlet:servlet-api:2.4 -> >=java-virtuals/servlet-api-4.0:4.0
 
 CDEPEND="
 	>=dev-java/commons-el-1.0:0
-	>=java-virtuals/servlet-api-2.4:2.4
+	>=java-virtuals/servlet-api-4.0:4.0
 "
 
 
@@ -45,4 +45,5 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="commons-el,servlet-api-2.4"
+JAVA_GENTOO_CLASSPATH="commons-el,servlet-api-4.0"
+JAVA_SRC_DIR="src/main/java"

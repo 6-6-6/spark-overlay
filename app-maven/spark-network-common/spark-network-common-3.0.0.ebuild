@@ -16,7 +16,7 @@ DESCRIPTION="The Apache Software Foundation provides support for the Apache comm
     We consider ourselves not simply a group of projects sharing a server, but rather a community of developers
     and users."
 HOMEPAGE="http://spark.apache.org/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="2.12"
 KEYWORDS="~amd64"
@@ -25,7 +25,7 @@ MAVEN_ID="org.apache.spark:spark-network-common_2.12:3.0.0-preview2"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-preview2.pom
 # com.fasterxml.jackson.core:jackson-annotations:2.10.0 -> >=dev-java/jackson-annotations-2.11.0:2
-# com.fasterxml.jackson.core:jackson-databind:2.10.0 -> >=dev-java/jackson-databind-2.11.0:2
+# com.fasterxml.jackson.core:jackson-databind:2.10.0 -> >=app-maven/jackson-databind-2.10.0:0
 # com.google.code.findbugs:jsr305:3.0.0 -> >=dev-java/jsr305-3.0.1:0
 # io.dropwizard.metrics:metrics-core:4.1.1 -> >=app-maven/metrics-core-4.1.1:0
 # io.netty:netty-all:4.1.42.Final -> >=dev-java/netty-all-5.0.0:0
@@ -36,13 +36,13 @@ MAVEN_ID="org.apache.spark:spark-network-common_2.12:3.0.0-preview2"
 # org.spark-project.spark:unused:1.0.0 -> >=app-maven/unused-1.0.0:0
 
 CDEPEND="
+	>=app-maven/jackson-databind-2.10.0:0
 	>=app-maven/metrics-core-4.1.1:0
 	>=app-maven/scala-library-2.12.10:0
 	>=app-maven/unused-1.0.0:0
 	>=dev-java/commons-crypto-1.0.0:0
 	>=dev-java/commons-lang-3.10:3
 	>=dev-java/jackson-annotations-2.11.0:2
-	>=dev-java/jackson-databind-2.11.0:2
 	>=dev-java/jsr305-3.0.1:0
 	>=dev-java/leveldbjni-all-1.8:0
 	>=dev-java/netty-all-5.0.0:0
@@ -50,13 +50,13 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-preview2.pom
-# org.slf4j:slf4j-api:1.7.16 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
+# org.slf4j:slf4j-api:1.7.16 -> >=dev-java/slf4j-api-1.7.16:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-	>=dev-java/slf4j-api-2.0.0_alpha1:0
+	>=dev-java/slf4j-api-1.7.16:0
 "
 
 RDEPEND="
@@ -65,5 +65,11 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-databind-2,jsr305,metrics-core,netty-all,commons-crypto,commons-lang-3,leveldbjni-all,scala-library,unused"
+JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-databind,jsr305,metrics-core,netty-all,commons-crypto,commons-lang-3,leveldbjni-all,scala-library,unused"
 JAVA_CLASSPATH_EXTRA="slf4j-api"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Application monitoring instrumentation facade"
 HOMEPAGE="https://github.com/micrometer-metrics/micrometer"
-SRC_URI="https://repo.maven.apache.org/maven2/io/micrometer/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/io/micrometer/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -35,7 +35,7 @@ MAVEN_ID="io.micrometer:micrometer-core:1.0.2"
 # org.aspectj:aspectjweaver:1.8.13 -> >=dev-java/aspectj-1.9.5:0
 # org.eclipse.jetty:jetty-server:9.4.8.v20171121 -> >=app-maven/jetty-server-9.4.8_p20171121:0
 # org.hdrhistogram:HdrHistogram:2.1.10 -> >=app-maven/HdrHistogram-2.1.10:0
-# org.hibernate:hibernate-entitymanager:5.2.13.Final -> >=dev-java/hibernate-core-6.0.0:0
+# org.hibernate:hibernate-entitymanager:5.2.13.Final -> >=app-maven/hibernate-entitymanager-5.2.13:0
 # org.latencyutils:LatencyUtils:2.0.3 -> >=app-maven/LatencyUtils-2.0.3:0
 
 CDEPEND="
@@ -44,6 +44,7 @@ CDEPEND="
 	>=app-maven/cache-api-1.0.0:0
 	>=app-maven/caffeine-2.6.1:0
 	>=app-maven/hazelcast-3.8.9:0
+	>=app-maven/hibernate-entitymanager-5.2.13:0
 	>=app-maven/hystrix-core-1.5.12:0
 	>=app-maven/jetty-server-9.4.8_p20171121:0
 	>=app-maven/logback-classic-1.2.3:0
@@ -54,7 +55,6 @@ CDEPEND="
 	>=dev-java/aspectj-1.9.5:0
 	>=dev-java/ehcache-2.10.4:0
 	>=dev-java/guava-29.0:0
-	>=dev-java/hibernate-core-6.0.0:0
 	>=dev-java/jsr305-3.0.2:0
 "
 
@@ -71,4 +71,10 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="logback-classic,caffeine,jsr305,guava,hazelcast,hystrix-core,okhttp,metrics-core,reactor-core,cache-api,ehcache,tomcat-embed-core,aspectj,jetty-server,HdrHistogram,hibernate-core,LatencyUtils"
+JAVA_GENTOO_CLASSPATH="logback-classic,caffeine,jsr305,guava,hazelcast,hystrix-core,okhttp,metrics-core,reactor-core,cache-api,ehcache,tomcat-embed-core,aspectj,jetty-server,HdrHistogram,hibernate-entitymanager,LatencyUtils"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

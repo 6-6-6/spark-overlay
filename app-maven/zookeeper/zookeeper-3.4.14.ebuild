@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION=""
 HOMEPAGE=""
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/${PN}/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -33,7 +33,7 @@ MAVEN_ID="org.apache.zookeeper:zookeeper:3.4.14"
 # org.apache.yetus:audience-annotations:0.5.0 -> >=app-maven/audience-annotations-0.5.0:0
 # org.openclover:clover:4.2.1 -> >=app-maven/clover-4.2.1:0
 # org.owasp:dependency-check-ant:4.0.2 -> >=app-maven/dependency-check-ant-4.0.2:0
-# org.slf4j:slf4j-api:1.7.25 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
+# org.slf4j:slf4j-api:1.7.25 -> >=dev-java/slf4j-api-1.7.28:0
 # org.slf4j:slf4j-log4j12:1.7.25 -> >=dev-java/slf4j-log4j12-1.7.25:0
 # org.vafer:jdeb:0.8 -> >=app-maven/jdeb-0.8:0
 # xerces:xerces:1.4.4 -> >=dev-java/xerces-2.12.0:2
@@ -53,7 +53,7 @@ CDEPEND="
 	>=dev-java/commons-lang-2.6:2.1
 	>=dev-java/jline-2.12.1:2
 	>=dev-java/log4j-1.2.17:0
-	>=dev-java/slf4j-api-2.0.0_alpha1:0
+	>=dev-java/slf4j-api-1.7.28:0
 	>=dev-java/slf4j-log4j12-1.7.25:0
 	>=dev-java/xerces-2.12.0:2
 "
@@ -72,3 +72,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="spotbugs-annotations,commons-collections,commons-lang-2.1,netty,jdiff,jline-2,log4j,maven-ant-tasks,wagon-http,apache-rat-tasks,audience-annotations,clover,dependency-check-ant,slf4j-api,slf4j-log4j12,jdeb,xerces-2"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

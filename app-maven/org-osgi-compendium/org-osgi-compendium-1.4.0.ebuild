@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="OSGi Service Platform Release 4 Compendium Interfaces and Classes."
 HOMEPAGE="http://felix.apache.org/org.osgi.compendium/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.compendium/${PV}/org.osgi.compendium-${PV}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.compendium/${PV}/org.osgi.compendium-${PV}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -44,7 +44,13 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="javax-servlet,osgi-core-1,osgi-foundation"
+JAVA_SRC_DIR="src/main/java"
 JAVA_RESOURCE_DIRS=(
-	"../../../../../../../../var/lib/java-ebuilder/poms/src/main/resources"
-	"../../../../../../../../var/lib/java-ebuilder/poms"
+	"src/main/resources"
+	""
 )
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

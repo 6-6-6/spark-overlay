@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple
 DESCRIPTION="Tools to assist in the reading of configuration/preferences files in
         various formats"
 HOMEPAGE="http://commons.apache.org/configuration/"
-SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -49,7 +49,7 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# javax.servlet:servlet-api:2.4 -> >=java-virtuals/servlet-api-2.4:2.4
+# javax.servlet:servlet-api:2.4 -> >=java-virtuals/servlet-api-4.0:4.0
 # xml-apis:xml-apis:1.0.b2 -> >=app-maven/xml-apis-1.0:0
 
 DEPEND="
@@ -57,7 +57,7 @@ DEPEND="
 	${CDEPEND}
 	app-arch/unzip
 	>=app-maven/xml-apis-1.0:0
-	>=java-virtuals/servlet-api-2.4:2.4
+	>=java-virtuals/servlet-api-4.0:4.0
 "
 
 RDEPEND="
@@ -69,8 +69,14 @@ S="${WORKDIR}"
 JAVA_ENCODING="iso-8859-1"
 
 JAVA_GENTOO_CLASSPATH="commons-beanutils-1.7,commons-codec,commons-collections,commons-digester,commons-jxpath,commons-lang-2.1,commons-logging,log4j,commons-jexl-2,commons-vfs-2,xml-resolver"
-JAVA_CLASSPATH_EXTRA="servlet-api-2.4,xml-apis"
+JAVA_CLASSPATH_EXTRA="servlet-api-4.0,xml-apis"
+JAVA_SRC_DIR="src/main/java"
 JAVA_RESOURCE_DIRS=(
-	"../../../../../../../../var/lib/java-ebuilder/poms/src/main/resources"
-	"../../../../../../../../var/lib/java-ebuilder/poms"
+	"src/main/resources"
+	""
 )
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

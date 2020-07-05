@@ -14,7 +14,7 @@ DESCRIPTION="Netty is an asynchronous event-driven network application framework
     rapid development of maintainable high performance protocol servers and
     clients."
 HOMEPAGE="http://netty.io/netty-example/"
-SRC_URI="https://repo.maven.apache.org/maven2/io/netty/${PN}/${PV}.Alpha2/${P}.Alpha2-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/io/netty/${PN}/${PV}.Alpha2/${P}.Alpha2-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -81,3 +81,9 @@ ${CDEPEND}
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="protobuf-java,metrics-core,netty-codec-http,netty-codec-http2,netty-codec-memcache,netty-codec-socks,netty-codec-stomp,netty-handler,netty-handler-proxy,netty-tcnative,netty-transport,netty-transport-rxtx,netty-transport-sctp,netty-transport-udt,jetty-npn-api,logback-classic,jzlib-1.1.3,javassist-3"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

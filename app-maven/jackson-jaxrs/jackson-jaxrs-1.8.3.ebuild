@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple
 DESCRIPTION="Jax-RS provider for JSON content type, based on 
 Jackson JSON processor's data binding functionality."
 HOMEPAGE="http://jackson.codehaus.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/codehaus/jackson/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/codehaus/jackson/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -21,12 +21,12 @@ MAVEN_ID="org.codehaus.jackson:jackson-jaxrs:1.8.3"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.codehaus.jackson:jackson-core-asl:1.8.3 -> >=app-maven/jackson-core-asl-1.8.3:0
-# org.codehaus.jackson:jackson-mapper-asl:1.8.3 -> >=app-maven/jackson-mapper-asl-1.8.3:0
+# org.codehaus.jackson:jackson-core-asl:1.8.3 -> >=app-maven/jackson-core-asl-1.9.13:0
+# org.codehaus.jackson:jackson-mapper-asl:1.8.3 -> >=app-maven/jackson-mapper-asl-1.9.13:0
 
 CDEPEND="
-	>=app-maven/jackson-core-asl-1.8.3:0
-	>=app-maven/jackson-mapper-asl-1.8.3:0
+	>=app-maven/jackson-core-asl-1.9.13:0
+	>=app-maven/jackson-mapper-asl-1.9.13:0
 "
 
 
@@ -43,3 +43,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jackson-core-asl,jackson-mapper-asl"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

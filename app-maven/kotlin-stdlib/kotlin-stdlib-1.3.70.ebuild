@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Kotlin Standard Library for JVM"
 HOMEPAGE="https://kotlinlang.org/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -20,12 +20,12 @@ MAVEN_ID="org.jetbrains.kotlin:kotlin-stdlib:1.3.70"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.jetbrains:annotations:13.0 -> >=dev-java/jetbrains-annotation-19.0.0:19
+# org.jetbrains:annotations:13.0 -> >=dev-java/jetbrains-annotations-13.0:0
 # org.jetbrains.kotlin:kotlin-stdlib-common:1.3.70 -> >=app-maven/kotlin-stdlib-common-1.3.70:0
 
 CDEPEND="
 	>=app-maven/kotlin-stdlib-common-1.3.70:0
-	>=dev-java/jetbrains-annotation-19.0.0:19
+	>=dev-java/jetbrains-annotations-13.0:0
 "
 
 
@@ -41,4 +41,10 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jetbrains-annotation-19,kotlin-stdlib-common"
+JAVA_GENTOO_CLASSPATH="jetbrains-annotations,kotlin-stdlib-common"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

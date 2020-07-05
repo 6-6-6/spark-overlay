@@ -14,7 +14,7 @@ DESCRIPTION="Metrics is a Java library which gives you unparalleled insight into
         production. Metrics provides a powerful toolkit of ways to measure the behavior of critical
         components in your production environment."
 HOMEPAGE="http://metrics.dropwizard.io/metrics-core"
-SRC_URI="https://repo.maven.apache.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -22,10 +22,10 @@ MAVEN_ID="io.dropwizard.metrics:metrics-core:4.1.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.slf4j:slf4j-api:1.7.28 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
+# org.slf4j:slf4j-api:1.7.28 -> >=dev-java/slf4j-api-1.7.28:0
 
 CDEPEND="
-	>=dev-java/slf4j-api-2.0.0_alpha1:0
+	>=dev-java/slf4j-api-1.7.28:0
 "
 
 
@@ -42,3 +42,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="slf4j-api"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

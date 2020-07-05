@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Avro core components"
 HOMEPAGE="http://avro.apache.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/${PN}/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -49,13 +49,19 @@ DEPEND="
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.slf4j:slf4j-simple:1.7.7 -> >=dev-java/slf4j-api-1.7.7:0
+# org.slf4j:slf4j-simple:1.7.7 -> >=dev-java/slf4j-simple-1.7.7:0
 RDEPEND="
 	>=virtual/jre-1.6:*
 ${CDEPEND}
-	>=dev-java/slf4j-api-1.7.7:0
+	>=dev-java/slf4j-simple-1.7.7:0
 "
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="paranamer,joda-time,commons-compress,jackson-core-asl,jackson-mapper-asl,slf4j-api,xz-java,snappy-1.1,slf4j-api"
+JAVA_GENTOO_CLASSPATH="paranamer,joda-time,commons-compress,jackson-core-asl,jackson-mapper-asl,slf4j-api,xz-java,snappy-1.1,slf4j-simple"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

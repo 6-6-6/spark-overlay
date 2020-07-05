@@ -16,7 +16,7 @@ DESCRIPTION="The Apache Software Foundation provides support for the Apache comm
     We consider ourselves not simply a group of projects sharing a server, but rather a community of developers
     and users."
 HOMEPAGE="http://spark.apache.org/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="2.12"
 KEYWORDS="~amd64"
@@ -36,15 +36,15 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-preview2.pom
-# com.google.guava:guava:14.0.1 -> >=dev-java/guava-20.0:0
-# org.slf4j:slf4j-api:1.7.16 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
+# com.google.guava:guava:14.0.1 -> >=dev-java/guava-29.0:0
+# org.slf4j:slf4j-api:1.7.16 -> >=dev-java/slf4j-api-1.7.16:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-	>=dev-java/guava-20.0:0
-	>=dev-java/slf4j-api-2.0.0_alpha1:0
+	>=dev-java/guava-29.0:0
+	>=dev-java/slf4j-api-1.7.16:0
 "
 
 RDEPEND="
@@ -54,4 +54,10 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="metrics-core,spark-network-common-2.12,unused"
-JAVA_CLASSPATH_EXTRA="guava-${PV%.*},slf4j-api"
+JAVA_CLASSPATH_EXTRA="guava,slf4j-api"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

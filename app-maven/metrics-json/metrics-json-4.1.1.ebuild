@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="A set of Jackson modules which provide serializers for most Metrics classes."
 HOMEPAGE="http://metrics.dropwizard.io/metrics-json"
-SRC_URI="https://repo.maven.apache.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -20,16 +20,16 @@ MAVEN_ID="io.dropwizard.metrics:metrics-json:4.1.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.fasterxml.jackson.core:jackson-databind:2.9.9.3 -> >=dev-java/jackson-databind-2.11.0:2
+# com.fasterxml.jackson.core:jackson-databind:2.9.9.3 -> >=app-maven/jackson-databind-2.10.0:0
 # io.dropwizard.metrics:metrics-core:4.1.1 -> >=app-maven/metrics-core-4.1.1:0
 # io.dropwizard.metrics:metrics-healthchecks:4.1.1 -> >=app-maven/metrics-healthchecks-4.1.1:0
-# org.slf4j:slf4j-api:1.7.28 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
+# org.slf4j:slf4j-api:1.7.28 -> >=dev-java/slf4j-api-1.7.28:0
 
 CDEPEND="
+	>=app-maven/jackson-databind-2.10.0:0
 	>=app-maven/metrics-core-4.1.1:0
 	>=app-maven/metrics-healthchecks-4.1.1:0
-	>=dev-java/jackson-databind-2.11.0:2
-	>=dev-java/slf4j-api-2.0.0_alpha1:0
+	>=dev-java/slf4j-api-1.7.28:0
 "
 
 
@@ -45,4 +45,10 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-databind-2,metrics-core,metrics-healthchecks,slf4j-api"
+JAVA_GENTOO_CLASSPATH="jackson-databind,metrics-core,metrics-healthchecks,slf4j-api"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

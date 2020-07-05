@@ -20,18 +20,18 @@ MAVEN_ID="org.apache.hadoop:hadoop-client:2.5.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.apache.hadoop:hadoop-annotations:2.5.1 -> >=app-maven/hadoop-annotations-2.6.0:0
-# org.apache.hadoop:hadoop-common:2.5.1 -> >=app-maven/hadoop-common-2.6.0:0
-# org.apache.hadoop:hadoop-hdfs:2.5.1 -> >=app-maven/hadoop-hdfs-2.6.0:0
+# org.apache.hadoop:hadoop-annotations:2.5.1 -> >=app-maven/hadoop-annotations-2.5.1:0
+# org.apache.hadoop:hadoop-common:2.5.1 -> >=app-maven/hadoop-common-2.5.1:0
+# org.apache.hadoop:hadoop-hdfs:2.5.1 -> >=app-maven/hadoop-hdfs-2.5.1:0
 # org.apache.hadoop:hadoop-mapreduce-client-app:2.5.1 -> >=app-maven/hadoop-mapreduce-client-app-2.5.1:0
 # org.apache.hadoop:hadoop-mapreduce-client-core:2.5.1 -> >=app-maven/hadoop-mapreduce-client-core-2.5.1:0
 # org.apache.hadoop:hadoop-mapreduce-client-jobclient:2.5.1 -> >=app-maven/hadoop-mapreduce-client-jobclient-2.5.1:0
 # org.apache.hadoop:hadoop-yarn-api:2.5.1 -> >=app-maven/hadoop-yarn-api-2.5.1:0
 
 CDEPEND="
-	>=app-maven/hadoop-annotations-2.6.0:0
-	>=app-maven/hadoop-common-2.6.0:0
-	>=app-maven/hadoop-hdfs-2.6.0:0
+	>=app-maven/hadoop-annotations-2.5.1:0
+	>=app-maven/hadoop-common-2.5.1:0
+	>=app-maven/hadoop-hdfs-2.5.1:0
 	>=app-maven/hadoop-mapreduce-client-app-2.5.1:0
 	>=app-maven/hadoop-mapreduce-client-core-2.5.1:0
 	>=app-maven/hadoop-mapreduce-client-jobclient-2.5.1:0
@@ -52,3 +52,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="hadoop-annotations,hadoop-common,hadoop-hdfs,hadoop-mapreduce-client-app,hadoop-mapreduce-client-core,hadoop-mapreduce-client-jobclient,hadoop-yarn-api"
+JAVA_SRC_DIR="src/main/java"

@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="logback-core module"
 HOMEPAGE="http://logback.qos.ch"
-SRC_URI="https://repo.maven.apache.org/maven2/ch/qos/logback/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/ch/qos/logback/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -21,7 +21,7 @@ MAVEN_ID="ch.qos.logback:logback-core:1.0.13"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # javax.mail:mail:1.4 -> >=dev-java/oracle-javamail-1.5.2:0
-# javax.servlet:servlet-api:2.5 -> >=java-virtuals/servlet-api-2.5:2.5
+# javax.servlet:servlet-api:2.5 -> >=java-virtuals/servlet-api-4.0:4.0
 # org.apache.geronimo.specs:geronimo-jms_1.1_spec:1.0 -> >=app-maven/geronimo-jms-1.0:1.1_spec
 # org.codehaus.janino:janino:2.6.1 -> >=dev-java/janino-2.7.0:0
 # org.fusesource.jansi:jansi:1.9 -> >=dev-java/jansi-1.11:1.11
@@ -31,7 +31,7 @@ CDEPEND="
 	>=dev-java/janino-2.7.0:0
 	>=dev-java/jansi-1.11:1.11
 	>=dev-java/oracle-javamail-1.5.2:0
-	>=java-virtuals/servlet-api-2.5:2.5
+	>=java-virtuals/servlet-api-4.0:4.0
 "
 
 
@@ -47,4 +47,10 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="oracle-javamail,servlet-api-2.5,geronimo-jms-1.1_spec,janino,jansi-1.11"
+JAVA_GENTOO_CLASSPATH="oracle-javamail,servlet-api-4.0,geronimo-jms-1.1_spec,janino,jansi-1.11"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

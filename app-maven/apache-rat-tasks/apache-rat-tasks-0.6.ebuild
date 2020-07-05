@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Ant tasks for running RAT"
 HOMEPAGE="http://incubator.apache.org/rat/apache-rat-tasks"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/rat/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/rat/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -45,3 +45,9 @@ S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="apache-rat-core"
 JAVA_CLASSPATH_EXTRA="ant-core"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

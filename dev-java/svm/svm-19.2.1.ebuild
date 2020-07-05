@@ -22,8 +22,8 @@ MAVEN_ID="com.oracle.substratevm:svm:19.2.1"
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.oracle.substratevm:objectfile:19.2.1 -> !!!artifactId-not-found!!!
 # com.oracle.substratevm:pointsto:19.2.1 -> !!!artifactId-not-found!!!
-# org.graalvm.compiler:compiler:19.2.1 -> !!!groupId-not-found!!!
-# org.graalvm.sdk:graal-sdk:19.2.1 -> >=dev-java/graalvm-compiler-19.2.1
+# org.graalvm.sdk:graal-sdk:19.2.1 -> !!!artifactId-not-found!!!
+# org.graalvm.compiler:compiler:19.2.1 -> >=dev-java/graalvm-compiler-19.2.1
 # org.graalvm.truffle:truffle-nfi:19.2.1 -> dev-java/truffle-nfi:19
 
 CDEPEND="

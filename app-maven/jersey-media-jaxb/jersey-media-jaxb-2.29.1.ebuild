@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="JAX-RS features based upon JAX-B."
 HOMEPAGE="https://projects.eclipse.org/projects/ee4j.jersey/project/jersey-media-jaxb"
-SRC_URI="https://repo.maven.apache.org/maven2/org/glassfish/jersey/media/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/glassfish/jersey/media/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -32,13 +32,13 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# jakarta.xml.bind:jakarta.xml.bind-api:2.3.2 -> >=app-maven/jakarta-xml-bind-api-3.0.0:0
+# jakarta.xml.bind:jakarta.xml.bind-api:2.3.2 -> >=app-maven/jakarta-xml-bind-api-2.3.2:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-	>=app-maven/jakarta-xml-bind-api-3.0.0:0
+	>=app-maven/jakarta-xml-bind-api-2.3.2:0
 "
 
 RDEPEND="
@@ -49,3 +49,9 @@ S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="osgi-resource-locator,jakarta-inject,jersey-common"
 JAVA_CLASSPATH_EXTRA="jakarta-xml-bind-api"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

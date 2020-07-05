@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Default provider for JSR 353:Java API for Processing JSON"
 HOMEPAGE="http://jsonp.java.net"
-SRC_URI="https://repo.maven.apache.org/maven2/org/glassfish/javax.json/${PV}/javax.json-${PV}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/glassfish/javax.json/${PV}/javax.json-${PV}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -40,3 +40,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="javax-json-api"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

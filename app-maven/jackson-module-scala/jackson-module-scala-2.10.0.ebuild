@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="jackson-module-scala"
 HOMEPAGE="http://wiki.fasterxml.com/JacksonModuleScala"
-SRC_URI="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/module/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/module/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="2.12"
 KEYWORDS="~amd64"
@@ -22,16 +22,16 @@ MAVEN_ID="com.fasterxml.jackson.module:jackson-module-scala_2.12:2.10.0"
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}.pom
 # com.fasterxml.jackson.core:jackson-annotations:2.10.0 -> >=dev-java/jackson-annotations-2.11.0:2
 # com.fasterxml.jackson.core:jackson-core:2.10.0 -> >=dev-java/jackson-2.11.0:2
-# com.fasterxml.jackson.core:jackson-databind:2.10.0 -> >=dev-java/jackson-databind-2.11.0:2
+# com.fasterxml.jackson.core:jackson-databind:2.10.0 -> >=app-maven/jackson-databind-2.10.0:0
 # com.fasterxml.jackson.module:jackson-module-paranamer:2.10.0 -> >=app-maven/jackson-module-paranamer-2.10.0:0
 # org.scala-lang:scala-library:2.12.10 -> >=app-maven/scala-library-2.12.10:0
 
 CDEPEND="
+	>=app-maven/jackson-databind-2.10.0:0
 	>=app-maven/jackson-module-paranamer-2.10.0:0
 	>=app-maven/scala-library-2.12.10:0
 	>=dev-java/jackson-2.11.0:2
 	>=dev-java/jackson-annotations-2.11.0:2
-	>=dev-java/jackson-databind-2.11.0:2
 "
 
 
@@ -47,4 +47,10 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind-2,jackson-module-paranamer,scala-library"
+JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind,jackson-module-paranamer,scala-library"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="JBoss Marshalling API"
 HOMEPAGE="http://www.jboss.org/jboss-marshalling-parent/jboss-marshalling"
-SRC_URI="https://repo.maven.apache.org/maven2/org/jboss/marshalling/${PN}/${PV}.GA/${P}.GA-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/jboss/marshalling/${PN}/${PV}.GA/${P}.GA-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -36,3 +36,9 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_CLASSPATH_EXTRA="jboss-modules"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

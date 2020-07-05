@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="HK2 Implementation Utilities"
 HOMEPAGE="https://github.com/eclipse-ee4j/glassfish-hk2/hk2-utils"
-SRC_URI="https://repo.maven.apache.org/maven2/org/glassfish/hk2/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/glassfish/hk2/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -20,19 +20,19 @@ MAVEN_ID="org.glassfish.hk2:hk2-utils:2.6.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.fasterxml:classmate:1.3.3 -> >=dev-java/classmate-1.5.1:0
-# jakarta.annotation:jakarta.annotation-api:1.3.4 -> >=app-maven/jakarta-annotation-api-2.0.0:0
+# com.fasterxml:classmate:1.3.3 -> >=dev-java/classmate-1.3.3:0
+# jakarta.annotation:jakarta.annotation-api:1.3.4 -> >=app-maven/jakarta-annotation-api-1.3.5:0
 # javax.validation:validation-api:2.0.1.Final -> >=dev-java/validation-api-2.0.1:0
 # org.glassfish.hk2.external:jakarta.inject:2.6.1 -> >=app-maven/jakarta-inject-2.6.1:0
 # org.hibernate.validator:hibernate-validator:6.0.10.Final -> >=app-maven/hibernate-validator-6.0.10:0
-# org.jboss.logging:jboss-logging:3.3.1.Final -> >=dev-java/jboss-logging-3.4.1:0
+# org.jboss.logging:jboss-logging:3.3.1.Final -> >=dev-java/jboss-logging-3.3.1:0
 
 CDEPEND="
 	>=app-maven/hibernate-validator-6.0.10:0
-	>=app-maven/jakarta-annotation-api-2.0.0:0
+	>=app-maven/jakarta-annotation-api-1.3.5:0
 	>=app-maven/jakarta-inject-2.6.1:0
-	>=dev-java/classmate-1.5.1:0
-	>=dev-java/jboss-logging-3.4.1:0
+	>=dev-java/classmate-1.3.3:0
+	>=dev-java/jboss-logging-3.3.1:0
 	>=dev-java/validation-api-2.0.1:0
 "
 
@@ -50,3 +50,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="classmate,jakarta-annotation-api,validation-api,jakarta-inject,hibernate-validator,jboss-logging"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

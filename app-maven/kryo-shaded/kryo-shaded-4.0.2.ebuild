@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Fast, efficient Java serialization. This contains the shaded reflectasm jar to prevent conflicts with other versions of asm."
 HOMEPAGE="https://github.com/EsotericSoftware/kryo/kryo-shaded"
-SRC_URI="https://repo.maven.apache.org/maven2/com/esotericsoftware/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/com/esotericsoftware/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -20,12 +20,12 @@ MAVEN_ID="com.esotericsoftware:kryo-shaded:4.0.2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.esotericsoftware:minlog:1.3.0 -> >=dev-java/minlog-1.3.1:0
-# org.objenesis:objenesis:2.5.1 -> >=dev-java/objenesis-3.1:0
+# com.esotericsoftware:minlog:1.3.0 -> >=dev-java/minlog-1.3.0:0
+# org.objenesis:objenesis:2.5.1 -> >=dev-java/objenesis-2.5.1:0
 
 CDEPEND="
-	>=dev-java/minlog-1.3.1:0
-	>=dev-java/objenesis-3.1:0
+	>=dev-java/minlog-1.3.0:0
+	>=dev-java/objenesis-2.5.1:0
 "
 
 
@@ -42,3 +42,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="minlog,objenesis"
+JAVA_SRC_DIR="src"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

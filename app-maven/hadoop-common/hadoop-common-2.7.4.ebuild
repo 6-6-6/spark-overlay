@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Apache Hadoop Common"
 HOMEPAGE=""
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -22,7 +22,7 @@ MAVEN_ID="org.apache.hadoop:hadoop-common:2.7.4"
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.google.code.findbugs:jsr305:3.0.0 -> >=dev-java/jsr305-3.0.1:0
 # com.google.code.gson:gson:2.2.4 -> >=dev-java/gson-2.3.1:2.2.2
-# com.google.guava:guava:11.0.2 -> >=dev-java/guava-20.0:0
+# com.google.guava:guava:11.0.2 -> >=dev-java/guava-29.0:0
 # com.google.protobuf:protobuf-java:2.5.0 -> >=dev-java/protobuf-java-3.11.4:0
 # com.jcraft:jsch:0.1.54 -> >=dev-java/jsch-0.1.54:0
 # com.sun.jersey:jersey-core:1.9 -> >=app-maven/jersey-core-1.9:0
@@ -37,10 +37,10 @@ MAVEN_ID="org.apache.hadoop:hadoop-common:2.7.4"
 # commons-lang:commons-lang:2.6 -> >=dev-java/commons-lang-2.6:2.1
 # commons-logging:commons-logging:1.1.3 -> >=dev-java/commons-logging-1.2:0
 # commons-net:commons-net:3.1 -> >=dev-java/commons-net-3.2:0
-# javax.servlet:servlet-api:2.5 -> >=java-virtuals/servlet-api-2.5:2.5
+# javax.servlet:servlet-api:2.5 -> >=java-virtuals/servlet-api-4.0:4.0
 # log4j:log4j:1.2.17 -> >=dev-java/log4j-1.2.17:0
 # net.java.dev.jets3t:jets3t:0.9.0 -> >=app-maven/jets3t-0.9.0:0
-# org.apache.avro:avro:1.7.4 -> >=app-maven/avro-1.7.4:0
+# org.apache.avro:avro:1.7.4 -> >=app-maven/avro-1.8.2:0
 # org.apache.commons:commons-compress:1.4.1 -> >=dev-java/commons-compress-1.10:0
 # org.apache.commons:commons-math3:3.1.1 -> >=dev-java/commons-math-3.2:3
 # org.apache.curator:curator-client:2.7.1 -> >=app-maven/curator-client-2.7.1:0
@@ -54,11 +54,11 @@ MAVEN_ID="org.apache.hadoop:hadoop-common:2.7.4"
 # org.mortbay.jetty:jetty:6.1.26 -> >=app-maven/jetty-6.1.26:0
 # org.mortbay.jetty:jetty-sslengine:6.1.26 -> >=app-maven/jetty-sslengine-6.1.26:0
 # org.mortbay.jetty:jetty-util:6.1.26 -> >=app-maven/jetty-util-6.1.26:0
-# org.slf4j:slf4j-api:1.7.10 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
+# org.slf4j:slf4j-api:1.7.10 -> >=dev-java/slf4j-api-1.7.10:0
 # xmlenc:xmlenc:0.52 -> >=app-maven/xmlenc-0.52:0
 
 CDEPEND="
-	>=app-maven/avro-1.7.4:0
+	>=app-maven/avro-1.8.2:0
 	>=app-maven/curator-client-2.7.1:0
 	>=app-maven/curator-recipes-2.7.1:0
 	>=app-maven/hadoop-annotations-2.7.4:0
@@ -87,13 +87,13 @@ CDEPEND="
 	>=dev-java/commons-math-3.2:3
 	>=dev-java/commons-net-3.2:0
 	>=dev-java/gson-2.3.1:2.2.2
-	>=dev-java/guava-20.0:0
+	>=dev-java/guava-29.0:0
 	>=dev-java/jsch-0.1.54:0
 	>=dev-java/jsr305-3.0.1:0
 	>=dev-java/log4j-1.2.17:0
 	>=dev-java/protobuf-java-3.11.4:0
-	>=dev-java/slf4j-api-2.0.0_alpha1:0
-	>=java-virtuals/servlet-api-2.5:2.5
+	>=dev-java/slf4j-api-1.7.10:0
+	>=java-virtuals/servlet-api-4.0:4.0
 "
 
 # Compile dependencies
@@ -121,5 +121,11 @@ ${CDEPEND}
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jsr305,gson-2.2.2,guava-${PV%.*},protobuf-java,jsch,jersey-core,jersey-json,jersey-server,commons-cli-1,commons-codec,commons-collections,commons-configuration,commons-httpclient-3,commons-io-1,commons-lang-2.1,commons-logging,commons-net,servlet-api-2.5,log4j,jets3t,avro,commons-compress,commons-math-3,curator-client,curator-recipes,hadoop-annotations,hadoop-auth,htrace-core,zookeeper,jackson-core-asl,jackson-mapper-asl,jetty,jetty-sslengine,jetty-util,slf4j-api,xmlenc,jsp-api-2.3,slf4j-log4j12"
+JAVA_GENTOO_CLASSPATH="jsr305,gson-2.2.2,guava,protobuf-java,jsch,jersey-core,jersey-json,jersey-server,commons-cli-1,commons-codec,commons-collections,commons-configuration,commons-httpclient-3,commons-io-1,commons-lang-2.1,commons-logging,commons-net,servlet-api-4.0,log4j,jets3t,avro,commons-compress,commons-math-3,curator-client,curator-recipes,hadoop-annotations,hadoop-auth,htrace-core,zookeeper,jackson-core-asl,jackson-mapper-asl,jetty,jetty-sslengine,jetty-util,slf4j-api,xmlenc,jsp-api-2.3,slf4j-log4j12"
 JAVA_CLASSPATH_EXTRA="ant-core"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

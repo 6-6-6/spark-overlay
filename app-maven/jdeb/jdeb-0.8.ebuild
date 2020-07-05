@@ -15,7 +15,7 @@ DESCRIPTION="This library provides an Ant task and a Maven plugin to create Debi
       require additional native tools installed. The API underneath is well abstracted can easily be adopted for other
       areas as well."
 HOMEPAGE="http://vafer.org/projects/jdeb"
-SRC_URI="https://repo.maven.apache.org/maven2/org/vafer/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/vafer/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -28,7 +28,7 @@ MAVEN_ID="org.vafer:jdeb:0.8"
 # org.apache.maven:maven-artifact:2.1.0 -> >=app-maven/maven-artifact-2.2.1:0
 # org.apache.maven:maven-plugin-api:2.1.0 -> >=app-maven/maven-plugin-api-2.1.0:0
 # org.apache.maven:maven-project:2.1.0 -> >=app-maven/maven-project-2.2.1:0
-# org.bouncycastle:bcpg-jdk12:130 -> >=dev-java/bcpg-jdk12-130:0
+# org.bouncycastle:bcpg-jdk12:130 -> >=dev-java/bcpg-1.52:1.52
 # org.codehaus.plexus:plexus-utils:1.4.1 -> >=app-maven/plexus-utils-1.5.15:0
 
 CDEPEND="
@@ -37,7 +37,7 @@ CDEPEND="
 	>=app-maven/maven-project-2.2.1:0
 	>=app-maven/plexus-utils-1.5.15:0
 	>=dev-java/ant-core-1.10.7:0
-	>=dev-java/bcpg-jdk12-130:0
+	>=dev-java/bcpg-1.52:1.52
 	>=dev-java/commons-compress-1.10:0
 "
 
@@ -54,4 +54,10 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="ant-core,commons-compress,maven-artifact,maven-plugin-api,maven-project,bcpg-jdk12,plexus-utils"
+JAVA_GENTOO_CLASSPATH="ant-core,commons-compress,maven-artifact,maven-plugin-api,maven-project,bcpg-1.52,plexus-utils"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

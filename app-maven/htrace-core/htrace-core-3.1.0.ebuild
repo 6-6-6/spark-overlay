@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="A tracing framework for use with distributed systems written in java"
 HOMEPAGE="http://incubator.apache.org/projects/htrace.html"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/htrace/${PN}/${PV}-incubating/${P}-incubating-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/htrace/${PN}/${PV}-incubating/${P}-incubating-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -31,3 +31,9 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

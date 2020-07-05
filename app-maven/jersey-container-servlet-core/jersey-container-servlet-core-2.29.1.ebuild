@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Jersey core Servlet 2.x implementation"
 HOMEPAGE="https://projects.eclipse.org/projects/ee4j.jersey/project/jersey-container-servlet-core"
-SRC_URI="https://repo.maven.apache.org/maven2/org/glassfish/jersey/containers/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/glassfish/jersey/containers/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -53,3 +53,9 @@ S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jakarta-ws-rs-api,jakarta-inject,jersey-common,jersey-server"
 JAVA_CLASSPATH_EXTRA="jakarta-persistence-api,jakarta-servlet-api"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

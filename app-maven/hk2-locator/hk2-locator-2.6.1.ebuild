@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="ServiceLocator Default Implementation"
 HOMEPAGE="https://github.com/eclipse-ee4j/glassfish-hk2/hk2-locator"
-SRC_URI="https://repo.maven.apache.org/maven2/org/glassfish/hk2/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/glassfish/hk2/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -20,7 +20,7 @@ MAVEN_ID="org.glassfish.hk2:hk2-locator:2.6.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# jakarta.annotation:jakarta.annotation-api:1.3.4 -> >=app-maven/jakarta-annotation-api-2.0.0:0
+# jakarta.annotation:jakarta.annotation-api:1.3.4 -> >=app-maven/jakarta-annotation-api-1.3.5:0
 # org.glassfish.hk2:hk2-api:2.6.1 -> >=app-maven/hk2-api-2.6.1:0
 # org.glassfish.hk2:hk2-utils:2.6.1 -> >=app-maven/hk2-utils-2.6.1:0
 # org.glassfish.hk2.external:aopalliance-repackaged:2.6.1 -> >=app-maven/aopalliance-repackaged-2.6.1:0
@@ -31,7 +31,7 @@ CDEPEND="
 	>=app-maven/aopalliance-repackaged-2.6.1:0
 	>=app-maven/hk2-api-2.6.1:0
 	>=app-maven/hk2-utils-2.6.1:0
-	>=app-maven/jakarta-annotation-api-2.0.0:0
+	>=app-maven/jakarta-annotation-api-1.3.5:0
 	>=app-maven/jakarta-inject-2.6.1:0
 	>=dev-java/javassist-3.21.0:3
 "
@@ -50,3 +50,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jakarta-annotation-api,hk2-api,hk2-utils,aopalliance-repackaged,jakarta-inject,javassist-3"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

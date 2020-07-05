@@ -20,10 +20,10 @@ MAVEN_ID="asm:asm-tree:3.3.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# asm:asm:3.3.1 -> >=dev-java/asm-8.0.1:0
+# asm:asm:3.3.1 -> >=dev-java/asm-3.3.1:0
 
 CDEPEND="
-	>=dev-java/asm-8.0.1:0
+	>=dev-java/asm-3.3.1:0
 "
 
 
@@ -40,3 +40,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="asm"
+JAVA_SRC_DIR="src/main/java"

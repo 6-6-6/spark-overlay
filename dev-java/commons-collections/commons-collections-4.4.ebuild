@@ -34,6 +34,6 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_RESOURCE_DIRS=(
-	"../../../../../../../../var/lib/java-ebuilder/poms/src/main/resources"
-	"../../../../../../../../var/lib/java-ebuilder/poms"
+	"src/main/resources"
+	"."
 )

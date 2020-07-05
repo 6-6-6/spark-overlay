@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Maven is a project development management and comprehension tool. Based on the concept of a project object model: builds, dependency management, documentation creation, site publication, and distribution publication are all controlled from the declarative file. Maven can be extended by plugins to utilise a number of other development tools for reporting or the build process."
 HOMEPAGE="http://maven.apache.org/maven-artifact-manager"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/maven/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/maven/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -20,7 +20,7 @@ MAVEN_ID="org.apache.maven:maven-artifact-manager:2.2.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# backport-util-concurrent:backport-util-concurrent:3.1 -> >=app-maven/backport-util-concurrent-3.1:0
+# backport-util-concurrent:backport-util-concurrent:3.1 -> >=dev-java/backport-util-concurrent-3.1:0
 # org.apache.maven:maven-artifact:2.2.1 -> >=app-maven/maven-artifact-2.2.1:0
 # org.apache.maven:maven-repository-metadata:2.2.1 -> >=app-maven/maven-repository-metadata-2.2.1:0
 # org.apache.maven.wagon:wagon-provider-api:1.0-beta-6 -> >=app-maven/wagon-provider-api-1.0_beta6:0
@@ -28,12 +28,12 @@ MAVEN_ID="org.apache.maven:maven-artifact-manager:2.2.1"
 # org.codehaus.plexus:plexus-utils:1.5.15 -> >=app-maven/plexus-utils-1.5.15:0
 
 CDEPEND="
-	>=app-maven/backport-util-concurrent-3.1:0
 	>=app-maven/maven-artifact-2.2.1:0
 	>=app-maven/maven-repository-metadata-2.2.1:0
 	>=app-maven/plexus-container-default-1.0.9.1:0
 	>=app-maven/plexus-utils-1.5.15:0
 	>=app-maven/wagon-provider-api-1.0_beta6:0
+	>=dev-java/backport-util-concurrent-3.1:0
 "
 
 
@@ -50,3 +50,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="backport-util-concurrent,maven-artifact,maven-repository-metadata,wagon-provider-api,plexus-container-default,plexus-utils"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

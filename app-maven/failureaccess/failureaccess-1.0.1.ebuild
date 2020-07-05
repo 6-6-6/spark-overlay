@@ -18,7 +18,7 @@ DESCRIPTION="Contains
     Guava (just as they can use ListenableFuture by depending on the
     listenablefuture artifact)."
 HOMEPAGE="https://github.com/google/guava/failureaccess"
-SRC_URI="https://repo.maven.apache.org/maven2/com/google/guava/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/com/google/guava/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -37,3 +37,9 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

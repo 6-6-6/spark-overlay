@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple
 DESCRIPTION="Woodstox is a high-performance XML processor that
 implements Stax (JSR-173) and SAX2 APIs"
 HOMEPAGE="http://woodstox.codehaus.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/codehaus/woodstox/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/codehaus/woodstox/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -21,12 +21,12 @@ MAVEN_ID="org.codehaus.woodstox:woodstox-core-asl:4.3.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# javax.xml.stream:stax-api:1.0-2 -> >=app-maven/stax-api-1.0.2:0
+# javax.xml.stream:stax-api:1.0-2 -> >=java-virtuals/stax-api-1:0
 # org.codehaus.woodstox:stax2-api:3.1.4 -> >=dev-java/stax2-api-4.0.0:0
 
 CDEPEND="
-	>=app-maven/stax-api-1.0.2:0
 	>=dev-java/stax2-api-4.0.0:0
+	>=java-virtuals/stax-api-1:0
 "
 
 
@@ -43,3 +43,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="stax-api,stax2-api"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

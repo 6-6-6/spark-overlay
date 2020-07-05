@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Avro inter-process communication components"
 HOMEPAGE="http://avro.apache.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/avro/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/avro/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -20,7 +20,7 @@ MAVEN_ID="org.apache.avro:avro-ipc:1.8.2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# io.netty:netty:3.5.13.Final -> >=app-maven/netty-3.7.0:0
+# io.netty:netty:3.5.13.Final -> >=app-maven/netty-3.5.13:0
 # org.apache.avro:avro:1.8.2 -> >=app-maven/avro-1.8.2:0
 # org.apache.velocity:velocity:1.7 -> >=dev-java/velocity-1.7:0
 # org.codehaus.jackson:jackson-core-asl:1.9.13 -> >=app-maven/jackson-core-asl-1.9.13:0
@@ -36,7 +36,7 @@ CDEPEND="
 	>=app-maven/jackson-mapper-asl-1.9.13:0
 	>=app-maven/jetty-6.1.26:0
 	>=app-maven/jetty-util-6.1.26:0
-	>=app-maven/netty-3.7.0:0
+	>=app-maven/netty-3.5.13:0
 	>=app-maven/servlet-api-2.5.20081211:0
 	>=dev-java/slf4j-api-1.7.7:0
 	>=dev-java/velocity-1.7:0
@@ -51,13 +51,19 @@ DEPEND="
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.slf4j:slf4j-simple:1.7.7 -> >=dev-java/slf4j-api-1.7.7:0
+# org.slf4j:slf4j-simple:1.7.7 -> >=dev-java/slf4j-simple-1.7.7:0
 RDEPEND="
 	>=virtual/jre-1.6:*
 ${CDEPEND}
-	>=dev-java/slf4j-api-1.7.7:0
+	>=dev-java/slf4j-simple-1.7.7:0
 "
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="netty,avro,velocity,jackson-core-asl,jackson-mapper-asl,jetty,jetty-util,servlet-api,slf4j-api,slf4j-api"
+JAVA_GENTOO_CLASSPATH="netty,avro,velocity,jackson-core-asl,jackson-mapper-asl,jetty,jetty-util,servlet-api,slf4j-api,slf4j-simple"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

@@ -15,7 +15,7 @@ DESCRIPTION="Checker Qual is the set of annotations (qualifiers) and supporting 
         see artifact:
         org.checkerframework:checker"
 HOMEPAGE="https://checkerframework.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/checkerframework/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/checkerframework/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -34,3 +34,9 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

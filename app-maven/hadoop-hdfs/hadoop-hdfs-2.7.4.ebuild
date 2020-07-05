@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Apache Hadoop HDFS"
 HOMEPAGE=""
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -20,7 +20,7 @@ MAVEN_ID="org.apache.hadoop:hadoop-hdfs:2.7.4"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.google.guava:guava:11.0.2 -> >=dev-java/guava-20.0:0
+# com.google.guava:guava:11.0.2 -> >=dev-java/guava-29.0:0
 # com.google.protobuf:protobuf-java:2.5.0 -> >=dev-java/protobuf-java-3.11.4:0
 # com.sun.jersey:jersey-core:1.9 -> >=app-maven/jersey-core-1.9:0
 # com.sun.jersey:jersey-server:1.9 -> >=app-maven/jersey-server-1.9:0
@@ -32,7 +32,7 @@ MAVEN_ID="org.apache.hadoop:hadoop-hdfs:2.7.4"
 # commons-logging:commons-logging:1.1.3 -> >=dev-java/commons-logging-1.2:0
 # io.netty:netty:3.6.2.Final -> >=app-maven/netty-3.7.0:0
 # io.netty:netty-all:4.0.23.Final -> >=dev-java/netty-all-5.0.0:0
-# javax.servlet:servlet-api:2.5 -> >=java-virtuals/servlet-api-2.5:2.5
+# javax.servlet:servlet-api:2.5 -> >=java-virtuals/servlet-api-4.0:4.0
 # log4j:log4j:1.2.17 -> >=dev-java/log4j-1.2.17:0
 # org.apache.htrace:htrace-core:3.1.0-incubating -> >=app-maven/htrace-core-3.1.0:0
 # org.codehaus.jackson:jackson-core-asl:1.9.13 -> >=app-maven/jackson-core-asl-1.9.13:0
@@ -59,13 +59,13 @@ CDEPEND="
 	>=dev-java/commons-io-2.4:1
 	>=dev-java/commons-lang-2.6:2.1
 	>=dev-java/commons-logging-1.2:0
-	>=dev-java/guava-20.0:0
+	>=dev-java/guava-29.0:0
 	>=dev-java/leveldbjni-all-1.8:0
 	>=dev-java/log4j-1.2.17:0
 	>=dev-java/netty-all-5.0.0:0
 	>=dev-java/protobuf-java-3.11.4:0
 	>=dev-java/xerces-2.12.0:2
-	>=java-virtuals/servlet-api-2.5:2.5
+	>=java-virtuals/servlet-api-4.0:4.0
 "
 
 # Compile dependencies
@@ -91,5 +91,11 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="guava-${PV%.*},protobuf-java,jersey-core,jersey-server,commons-cli-1,commons-codec,commons-daemon,commons-io-1,commons-lang-2.1,commons-logging,netty,netty-all,servlet-api-2.5,log4j,htrace-core,jackson-core-asl,jackson-mapper-asl,leveldbjni-all,jetty,jetty-util,xerces-2,xmlenc"
+JAVA_GENTOO_CLASSPATH="guava,protobuf-java,jersey-core,jersey-server,commons-cli-1,commons-codec,commons-daemon,commons-io-1,commons-lang-2.1,commons-logging,netty,netty-all,servlet-api-4.0,log4j,htrace-core,jackson-core-asl,jackson-mapper-asl,leveldbjni-all,jetty,jetty-util,xerces-2,xmlenc"
 JAVA_CLASSPATH_EXTRA="hadoop-annotations,hadoop-auth,hadoop-common,slf4j-log4j12"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

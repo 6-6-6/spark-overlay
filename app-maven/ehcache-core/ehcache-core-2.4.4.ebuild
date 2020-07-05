@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple
 DESCRIPTION="This is the ehcache core module. Pair it with other modules for added
         functionality."
 HOMEPAGE="http://ehcache.org"
-SRC_URI="https://repo.maven.apache.org/maven2/net/sf/ehcache/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/net/sf/ehcache/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -21,27 +21,27 @@ MAVEN_ID="net.sf.ehcache:ehcache-core:2.4.4"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.slf4j:slf4j-api:1.6.1 -> >=dev-java/slf4j-ext-1.7.5:0
+# org.slf4j:slf4j-api:1.6.1 -> >=dev-java/slf4j-api-1.7.7:0
 
 CDEPEND="
-	>=dev-java/slf4j-ext-1.7.5:0
+	>=dev-java/slf4j-api-1.7.7:0
 "
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# javax.servlet:servlet-api:2.4 -> >=java-virtuals/servlet-api-2.4:2.4
+# javax.servlet:servlet-api:2.4 -> >=java-virtuals/servlet-api-4.0:4.0
 # javax.transaction:jta:1.1 -> >=app-maven/jta-1.1:0
-# org.hibernate:hibernate-core:3.5.1-Final -> >=dev-java/hibernate-core-6.0.0:0
-# org.slf4j:slf4j-jdk14:1.6.1 -> >=dev-java/slf4j-ext-1.7.5:0
+# org.hibernate:hibernate-core:3.5.1-Final -> >=app-maven/hibernate-core-5.2.13:0
+# org.slf4j:slf4j-jdk14:1.6.1 -> >=app-maven/slf4j-jdk14-1.6.1:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
+	>=app-maven/hibernate-core-5.2.13:0
 	>=app-maven/jta-1.1:0
-	>=dev-java/hibernate-core-6.0.0:0
-	>=dev-java/slf4j-ext-1.7.5:0
-	>=java-virtuals/servlet-api-2.4:2.4
+	>=app-maven/slf4j-jdk14-1.6.1:0
+	>=java-virtuals/servlet-api-4.0:4.0
 "
 
 RDEPEND="
@@ -50,5 +50,11 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="slf4j-ext"
-JAVA_CLASSPATH_EXTRA="servlet-api-2.4,jta,hibernate-core,slf4j-ext"
+JAVA_GENTOO_CLASSPATH="slf4j-api"
+JAVA_CLASSPATH_EXTRA="servlet-api-4.0,jta,hibernate-core,slf4j-jdk14"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

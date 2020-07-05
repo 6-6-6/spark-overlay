@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Sonatype helps open source projects to set up Maven repositories on https://oss.sonatype.org/"
 HOMEPAGE="https://github.com/jsr107/jsr107spec"
-SRC_URI="https://repo.maven.apache.org/maven2/javax/cache/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/javax/cache/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -36,3 +36,9 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_CLASSPATH_EXTRA="cdi-api-1.2"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

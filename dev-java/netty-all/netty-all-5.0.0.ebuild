@@ -54,12 +54,13 @@ CDEPEND="
 	>=dev-java/log4j-1.2.17:0
 	>=dev-java/slf4j-api-1.7.7:0
 
-	>=app-maven/netty-buffer-5.0.0:0
-	>=app-maven/netty-codec-5.0.0:0
-	>=app-maven/netty-codec-http-5.0.0:0
-	>=app-maven/netty-common-5.0.0:0
-	>=app-maven/netty-handler-5.0.0:0
-	>=app-maven/netty-transport-5.0.0:0
+	>=dev-java/netty-buffer-5.0.0:0
+	>=dev-java/netty-codec-5.0.0:0
+	>=dev-java/netty-codec-http-5.0.0:0
+	>=dev-java/netty-common-5.0.0:0
+	>=dev-java/netty-handler-5.0.0:0
+	>=dev-java/netty-transport-5.0.0:0
+
 	>=app-maven/netty-codec-dns-5.0.0:0
 	>=app-maven/netty-codec-haproxy-5.0.0:0
 	>=app-maven/netty-codec-http2-5.0.0:0

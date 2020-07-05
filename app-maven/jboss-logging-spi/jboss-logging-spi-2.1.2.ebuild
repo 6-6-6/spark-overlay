@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="The JBoss Logging Framework Programming Interface"
 HOMEPAGE="http://www.jboss.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/jboss/logging/${PN}/${PV}.GA/${P}.GA-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/jboss/logging/${PN}/${PV}.GA/${P}.GA-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -31,3 +31,9 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

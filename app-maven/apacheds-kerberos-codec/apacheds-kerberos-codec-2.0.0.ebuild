@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="The Kerberos protocol encoder/decoder module"
 HOMEPAGE="http://directory.apache.org/apacheds/1.5/apacheds-kerberos-codec"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/directory/server/${PN}/${PV}-M15/${P}-M15-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/directory/server/${PN}/${PV}-M15/${P}-M15-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -27,7 +27,7 @@ MAVEN_ID="org.apache.directory.server:apacheds-kerberos-codec:2.0.0-M15"
 # org.apache.directory.api:api-ldap-model:1.0.0-M20 -> >=app-maven/api-ldap-model-1.0.0:0
 # org.apache.directory.api:api-util:1.0.0-M20 -> >=app-maven/api-util-1.0.0:0
 # org.apache.directory.server:apacheds-i18n:2.0.0-M15 -> >=app-maven/apacheds-i18n-2.0.0:0
-# org.slf4j:slf4j-api:1.7.5 -> >=dev-java/slf4j-ext-1.7.5:0
+# org.slf4j:slf4j-api:1.7.5 -> >=dev-java/slf4j-api-1.7.7:0
 
 CDEPEND="
 	>=app-maven/apacheds-i18n-2.0.0:0
@@ -37,7 +37,7 @@ CDEPEND="
 	>=app-maven/api-ldap-model-1.0.0:0
 	>=app-maven/api-util-1.0.0:0
 	>=app-maven/ehcache-core-2.4.4:0
-	>=dev-java/slf4j-ext-1.7.5:0
+	>=dev-java/slf4j-api-1.7.7:0
 "
 
 # Compile dependencies
@@ -57,5 +57,11 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="ehcache-core,api-asn1-api,api-asn1-ber,api-i18n,api-ldap-model,api-util,apacheds-i18n,slf4j-ext"
+JAVA_GENTOO_CLASSPATH="ehcache-core,api-asn1-api,api-asn1-ber,api-i18n,api-ldap-model,api-util,apacheds-i18n,slf4j-api"
 JAVA_CLASSPATH_EXTRA="findbugs-annotation-3"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

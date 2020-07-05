@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Java.net - The Source for Java Technology Collaboration"
 HOMEPAGE="http://uel.java.net"
-SRC_URI="https://repo.maven.apache.org/maven2/org/glassfish/javax.el/3.0.1-b09/javax.el-3.0.1-b09-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/glassfish/javax.el/3.0.1-b09/javax.el-3.0.1-b09-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -31,3 +31,9 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

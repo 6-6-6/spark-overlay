@@ -14,7 +14,7 @@ DESCRIPTION="Ehcache is an open source, standards-based cache used to boost perf
   offload the database and simplify scalability. Ehcache is robust, proven and full-featured and
   this has made it the most widely-used Java-based cache."
 HOMEPAGE="http://ehcache.org"
-SRC_URI="https://repo.maven.apache.org/maven2/net/sf/${PN}/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/net/sf/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -42,3 +42,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="slf4j-api"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

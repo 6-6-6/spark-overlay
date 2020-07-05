@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Non-Blocking Reactive Foundation for the JVM"
 HOMEPAGE="https://github.com/reactor/reactor-core"
-SRC_URI="https://repo.maven.apache.org/maven2/io/projectreactor/${PN}/${PV}.RELEASE/${P}.RELEASE-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/io/projectreactor/${PN}/${PV}.RELEASE/${P}.RELEASE-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -23,13 +23,13 @@ MAVEN_ID="io.projectreactor:reactor-core:3.1.4.RELEASE"
 # com.google.code.findbugs:jsr305:3.0.2 -> >=dev-java/jsr305-3.0.2:0
 # org.jetbrains.kotlin:kotlin-stdlib:1.1.61 -> >=app-maven/kotlin-stdlib-1.3.70:0
 # org.reactivestreams:reactive-streams:1.0.2 -> >=app-maven/reactive-streams-1.0.2:0
-# org.slf4j:slf4j-api:1.7.12 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
+# org.slf4j:slf4j-api:1.7.12 -> >=dev-java/slf4j-api-1.7.16:0
 
 CDEPEND="
 	>=app-maven/kotlin-stdlib-1.3.70:0
 	>=app-maven/reactive-streams-1.0.2:0
 	>=dev-java/jsr305-3.0.2:0
-	>=dev-java/slf4j-api-2.0.0_alpha1:0
+	>=dev-java/slf4j-api-1.7.16:0
 "
 
 
@@ -46,3 +46,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jsr305,kotlin-stdlib,reactive-streams,slf4j-api"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

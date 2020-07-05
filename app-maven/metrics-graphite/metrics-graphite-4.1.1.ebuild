@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="A reporter for Metrics which announces measurements to a Graphite server."
 HOMEPAGE="http://metrics.dropwizard.io/metrics-graphite"
-SRC_URI="https://repo.maven.apache.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -22,12 +22,12 @@ MAVEN_ID="io.dropwizard.metrics:metrics-graphite:4.1.1"
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.rabbitmq:amqp-client:5.5.3 -> >=app-maven/amqp-client-5.5.3:0
 # io.dropwizard.metrics:metrics-core:4.1.1 -> >=app-maven/metrics-core-4.1.1:0
-# org.slf4j:slf4j-api:1.7.28 -> >=dev-java/slf4j-api-2.0.0_alpha1:0
+# org.slf4j:slf4j-api:1.7.28 -> >=dev-java/slf4j-api-1.7.28:0
 
 CDEPEND="
 	>=app-maven/amqp-client-5.5.3:0
 	>=app-maven/metrics-core-4.1.1:0
-	>=dev-java/slf4j-api-2.0.0_alpha1:0
+	>=dev-java/slf4j-api-1.7.28:0
 "
 
 
@@ -44,3 +44,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="amqp-client,metrics-core,slf4j-api"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

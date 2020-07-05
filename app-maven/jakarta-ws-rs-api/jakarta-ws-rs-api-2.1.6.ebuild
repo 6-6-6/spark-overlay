@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Jakarta RESTful Web Services API"
 HOMEPAGE="https://github.com/eclipse-ee4j/jaxrs-api"
-SRC_URI="https://repo.maven.apache.org/maven2/jakarta/ws/rs/jakarta.ws.rs-api/${PV}/jakarta.ws.rs-api-${PV}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/jakarta/ws/rs/jakarta.ws.rs-api/${PV}/jakarta.ws.rs-api-${PV}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -31,3 +31,9 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

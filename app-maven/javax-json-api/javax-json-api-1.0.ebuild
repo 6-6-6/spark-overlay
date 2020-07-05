@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="API module of JSR 353:Java API for Processing JSON"
 HOMEPAGE="http://json-processing-spec.java.net"
-SRC_URI="https://repo.maven.apache.org/maven2/javax/json/javax.json-api/${PV}/javax.json-api-${PV}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/javax/json/javax.json-api/${PV}/javax.json-api-${PV}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -31,3 +31,9 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

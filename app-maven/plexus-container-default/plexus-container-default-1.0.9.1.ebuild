@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION=""
 HOMEPAGE=""
-SRC_URI="https://repo.maven.apache.org/maven2/org/codehaus/plexus/${PN}/1.0-alpha-9-stable-1/${PN}-1.0-alpha-9-stable-1-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/codehaus/plexus/${PN}/1.0-alpha-9-stable-1/${PN}-1.0-alpha-9-stable-1-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -44,5 +44,11 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="classworlds,junit-4,plexus-utils"
+JAVA_SRC_DIR="src/main/java"
 
 JAVA_TESTING_FRAMEWORK="junit"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

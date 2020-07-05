@@ -20,7 +20,7 @@ MAVEN_ID="org.jruby.extras:jaffl:0.5.11"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# asm:asm:3.2 -> >=dev-java/asm-8.0.1:0
+# asm:asm:3.2 -> >=dev-java/asm-3.3.1:0
 # asm:asm-commons:3.2 -> >=app-maven/asm-commons-3.3.1:0
 # org.jruby.extras:jffi:1.0.6 -> >=app-maven/jffi-1.0.6:0
 # org.jruby.extras:jnr-x86asm:1.0.0 -> >=app-maven/jnr-x86asm-1.0.0:0
@@ -29,7 +29,7 @@ CDEPEND="
 	>=app-maven/asm-commons-3.3.1:0
 	>=app-maven/jffi-1.0.6:0
 	>=app-maven/jnr-x86asm-1.0.0:0
-	>=dev-java/asm-8.0.1:0
+	>=dev-java/asm-3.3.1:0
 "
 
 
@@ -51,3 +51,4 @@ ${CDEPEND}
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="asm,asm-commons,jffi,jnr-x86asm,jffi"
+JAVA_SRC_DIR="src/main/java"

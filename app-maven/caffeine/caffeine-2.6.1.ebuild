@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="A high performance caching library for Java 8+"
 HOMEPAGE="https://github.com/ben-manes/caffeine"
-SRC_URI="https://repo.maven.apache.org/maven2/com/github/ben-manes/${PN}/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/com/github/ben-manes/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -22,12 +22,12 @@ MAVEN_ID="com.github.ben-manes.caffeine:caffeine:2.6.1"
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.google.code.findbugs:jsr305:3.0.2 -> >=dev-java/jsr305-3.0.2:0
-# com.google.errorprone:error_prone_annotations:2.1.3 -> >=dev-java/error-prone-annotations-2.4.0:prone_annotations
+# com.google.errorprone:error_prone_annotations:2.1.3 -> >=dev-java/error-prone-annotations-2.4.0:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	>=dev-java/error-prone-annotations-2.4.0:prone_annotations
+	>=dev-java/error-prone-annotations-2.4.0:0
 	>=dev-java/jsr305-3.0.2:0
 "
 
@@ -37,4 +37,10 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_CLASSPATH_EXTRA="jsr305,error-prone-annotations-prone_annotations"
+JAVA_CLASSPATH_EXTRA="jsr305,error-prone-annotations"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-binjar
 
 DESCRIPTION="Servlet 2.1 API"
 HOMEPAGE="http://felix.apache.org/javax.servlet/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/felix/javax.servlet/${PV}/javax.servlet-${PV}.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/felix/javax.servlet/${PV}/javax.servlet-${PV}.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -31,3 +31,4 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"

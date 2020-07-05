@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple
 DESCRIPTION="The Apache Commons IO library contains utility classes, stream implementations, file filters,
 file comparators, endian transformation classes, and much more."
 HOMEPAGE="http://commons.apache.org/proper/commons-io/"
-SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -34,7 +34,8 @@ S="${WORKDIR}"
 
 JAVA_ENCODING="iso-8859-1"
 
+JAVA_SRC_DIR="src/main/java"
 JAVA_RESOURCE_DIRS=(
-	"../../../../../../../../var/lib/java-ebuilder/poms/src/main/resources"
-	"../../../../../../../../var/lib/java-ebuilder/poms"
+	"src/main/resources"
+	""
 )

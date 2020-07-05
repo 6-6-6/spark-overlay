@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="SubstrateVM static analysis to find ahead-of-time the code"
 HOMEPAGE="https://github.com/oracle/graal/tree/master/substratevm"
-SRC_URI="https://repo.maven.apache.org/maven2/com/oracle/substratevm/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/com/oracle/substratevm/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -20,10 +20,10 @@ MAVEN_ID="com.oracle.substratevm:pointsto:19.2.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.graalvm.compiler:compiler:19.2.1 -> >=dev-java/compiler-19.2.1:0
+# org.graalvm.compiler:compiler:19.2.1 -> >=dev-java/graalvm-compiler-19.2.1:0
 
 CDEPEND="
-	>=dev-java/compiler-19.2.1:0
+	>=dev-java/graalvm-compiler-19.2.1:0
 "
 
 
@@ -39,4 +39,10 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="compiler"
+JAVA_GENTOO_CLASSPATH="graalvm-compiler"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

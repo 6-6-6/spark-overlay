@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="A pure Java(TM) implementation of the Application Layer Protocol Negotiation TLS Extension"
 HOMEPAGE="http://www.eclipse.org/jetty/alpn-project/alpn-boot"
-SRC_URI="https://repo.maven.apache.org/maven2/org/mortbay/jetty/alpn/${PN}/8.1.2.v20141202/${PN}-8.1.2.v20141202-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/mortbay/jetty/alpn/${PN}/8.1.2.v20141202/${PN}-8.1.2.v20141202-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -31,3 +31,9 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="JSR-000914: Java(TM) Message Service (JMS) 1.1 API"
 HOMEPAGE="http://www.jboss.org/jboss-jms-api_1.1_spec"
-SRC_URI="https://repo.maven.apache.org/maven2/org/jboss/spec/javax/jms/${PN}_1.1_spec/${PV}.Final/${PN}_1.1_spec-${PV}.Final-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/jboss/spec/javax/jms/${PN}_1.1_spec/${PV}.Final/${PN}_1.1_spec-${PV}.Final-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="1.1_spec"
 KEYWORDS="~amd64"
@@ -31,3 +31,9 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

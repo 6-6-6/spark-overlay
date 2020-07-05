@@ -55,6 +55,6 @@ JAVA_ENCODING="iso-8859-1"
 JAVA_GENTOO_CLASSPATH="zstd-jni,dec,xz-java"
 JAVA_GENTOO_CLASSPATH_EXTRA="osgi-core-6"
 JAVA_RESOURCE_DIRS=(
-	"../../../../../../../../var/lib/java-ebuilder/poms/src/main/resources"
-	"../../../../../../../../var/lib/java-ebuilder/poms"
+	"src/main/resources"
+	"."
 )

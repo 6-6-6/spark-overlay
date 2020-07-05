@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple
 DESCRIPTION="Shared Library for the wagon-http, and wagon-http-lightweight wagon
     providers."
 HOMEPAGE="http://maven.apache.org/wagon/wagon-providers/wagon-http-shared"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/maven/wagon/${PN}/1.0-beta-6/${PN}-1.0-beta-6-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/maven/wagon/${PN}/1.0-beta-6/${PN}-1.0-beta-6-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -22,15 +22,15 @@ MAVEN_ID="org.apache.maven.wagon:wagon-http-shared:1.0-beta-6"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-1.0-beta-6.pom
 # commons-httpclient:commons-httpclient:3.1 -> >=dev-java/commons-httpclient-3.1:3
-# nekohtml:nekohtml:1.9.6.2 -> >=app-maven/nekohtml-1.9.6.2:0
+# nekohtml:nekohtml:1.9.6.2 -> >=dev-java/nekohtml-1.9.18:0
 # nekohtml:xercesMinimal:1.9.6.2 -> >=app-maven/xercesMinimal-1.9.6.2:0
 # org.apache.maven.wagon:wagon-provider-api:1.0-beta-6 -> >=app-maven/wagon-provider-api-1.0_beta6:0
 
 CDEPEND="
-	>=app-maven/nekohtml-1.9.6.2:0
 	>=app-maven/wagon-provider-api-1.0_beta6:0
 	>=app-maven/xercesMinimal-1.9.6.2:0
 	>=dev-java/commons-httpclient-3.1:3
+	>=dev-java/nekohtml-1.9.18:0
 "
 
 
@@ -47,3 +47,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="commons-httpclient-3,nekohtml,xercesMinimal,wagon-provider-api"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

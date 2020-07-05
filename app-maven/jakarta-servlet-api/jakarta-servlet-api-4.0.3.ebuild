@@ -14,7 +14,7 @@ DESCRIPTION="Eclipse Enterprise for Java (EE4J) is an open source initiative to 
         implementations of those APIs, and technology compatibility kits for Java runtimes
         that enable development, deployment, and management of server-side and cloud-native applications."
 HOMEPAGE="https://projects.eclipse.org/projects/ee4j.servlet"
-SRC_URI="https://repo.maven.apache.org/maven2/jakarta/servlet/jakarta.servlet-api/${PV}/jakarta.servlet-api-${PV}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/jakarta/servlet/jakarta.servlet-api/${PV}/jakarta.servlet-api-${PV}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -33,3 +33,9 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

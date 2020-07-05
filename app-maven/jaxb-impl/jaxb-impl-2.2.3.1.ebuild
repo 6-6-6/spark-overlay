@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="JAXB (JSR 222) reference implementation"
 HOMEPAGE="http://jaxb.java.net/"
-SRC_URI="https://repo.maven.apache.org/maven2/com/sun/xml/bind/${PN}/2.2.3-1/${PN}-2.2.3-1-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/com/sun/xml/bind/${PN}/2.2.3-1/${PN}-2.2.3-1-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -40,3 +40,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jaxb-api"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

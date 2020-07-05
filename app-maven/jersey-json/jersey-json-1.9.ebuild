@@ -14,7 +14,7 @@ DESCRIPTION="Jersey is the open source (under dual CDDL+GPL license) JAX-RS (JSR
         production quality Reference Implementation for building
         RESTful Web services."
 HOMEPAGE="https://jersey.java.net/jersey-json/"
-SRC_URI="https://repo.maven.apache.org/maven2/com/sun/jersey/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/com/sun/jersey/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -24,16 +24,16 @@ MAVEN_ID="com.sun.jersey:jersey-json:1.9"
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.sun.jersey:jersey-core:1.9 -> >=app-maven/jersey-core-1.9:0
 # com.sun.xml.bind:jaxb-impl:2.2.3-1 -> >=app-maven/jaxb-impl-2.2.3.1:0
-# org.codehaus.jackson:jackson-core-asl:1.8.3 -> >=app-maven/jackson-core-asl-1.8.3:0
+# org.codehaus.jackson:jackson-core-asl:1.8.3 -> >=app-maven/jackson-core-asl-1.9.13:0
 # org.codehaus.jackson:jackson-jaxrs:1.8.3 -> >=app-maven/jackson-jaxrs-1.8.3:0
-# org.codehaus.jackson:jackson-mapper-asl:1.8.3 -> >=app-maven/jackson-mapper-asl-1.8.3:0
+# org.codehaus.jackson:jackson-mapper-asl:1.8.3 -> >=app-maven/jackson-mapper-asl-1.9.13:0
 # org.codehaus.jackson:jackson-xc:1.8.3 -> >=app-maven/jackson-xc-1.8.3:0
 # org.codehaus.jettison:jettison:1.1 -> >=dev-java/jettison-1.3.7:0
 
 CDEPEND="
-	>=app-maven/jackson-core-asl-1.8.3:0
+	>=app-maven/jackson-core-asl-1.9.13:0
 	>=app-maven/jackson-jaxrs-1.8.3:0
-	>=app-maven/jackson-mapper-asl-1.8.3:0
+	>=app-maven/jackson-mapper-asl-1.9.13:0
 	>=app-maven/jackson-xc-1.8.3:0
 	>=app-maven/jaxb-impl-2.2.3.1:0
 	>=app-maven/jersey-core-1.9:0
@@ -54,3 +54,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jersey-core,jaxb-impl,jackson-core-asl,jackson-jaxrs,jackson-mapper-asl,jackson-xc,jettison"
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

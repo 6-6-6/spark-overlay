@@ -19,7 +19,7 @@ DESCRIPTION="xml-commons provides an Apache-hosted set of DOM, SAX, and
     that's the W3C; for SAX it's David Megginson and sax.sourceforge.net; for 
     JAXP it's Sun."
 HOMEPAGE="http://xml.apache.org/commons/#external"
-SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}.b2/${P}.b2-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}.b2/${P}.b2-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -38,3 +38,9 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

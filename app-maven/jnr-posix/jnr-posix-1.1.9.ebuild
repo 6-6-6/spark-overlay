@@ -21,14 +21,14 @@ MAVEN_ID="org.jruby.ext.posix:jnr-posix:1.1.9"
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.jruby.extras:constantine:0.7 -> >=app-maven/constantine-0.7:0
+# org.jruby.extras:constantine:0.7 -> >=dev-java/constantine-0.7:0
 # org.jruby.extras:jaffl:0.5.11 -> >=app-maven/jaffl-0.5.11:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	>=app-maven/constantine-0.7:0
 	>=app-maven/jaffl-0.5.11:0
+	>=dev-java/constantine-0.7:0
 "
 
 RDEPEND="
@@ -38,3 +38,4 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_CLASSPATH_EXTRA="constantine,jaffl"
+JAVA_SRC_DIR="src/main/java"

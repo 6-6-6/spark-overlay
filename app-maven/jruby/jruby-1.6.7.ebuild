@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="A 1.8.7 compatible Ruby interpreter written in 100% pure Java"
 HOMEPAGE="http://www.jruby.org/jruby-common/jruby/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/${PN}/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -21,7 +21,7 @@ MAVEN_ID="org.jruby:jruby:1.6.7"
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# asm:asm:3.3.1 -> >=dev-java/asm-8.0.1:0
+# asm:asm:3.3.1 -> >=dev-java/asm-3.3.1:0
 # asm:asm-analysis:3.3.1 -> >=app-maven/asm-analysis-3.3.1:0
 # asm:asm-commons:3.3.1 -> >=app-maven/asm-commons-3.3.1:0
 # asm:asm-tree:3.3.1 -> >=app-maven/asm-tree-3.3.1:0
@@ -32,7 +32,7 @@ MAVEN_ID="org.jruby:jruby:1.6.7"
 # org.apache.ant:ant:1.7.0 -> >=dev-java/ant-core-1.10.7:0
 # org.jruby.ext.posix:jnr-posix:1.1.9 -> >=app-maven/jnr-posix-1.1.9:0
 # org.jruby.extras:bytelist:1.0.10 -> >=dev-java/bytelist-1.0.10:0
-# org.jruby.extras:constantine:0.6 -> >=app-maven/constantine-0.6:0
+# org.jruby.extras:constantine:0.6 -> >=dev-java/constantine-0.7:0
 # org.jruby.extras:jaffl:0.5.11 -> >=app-maven/jaffl-0.5.11:0
 # org.jruby.extras:jffi:1.0.8 -> >=app-maven/jffi-1.0.8:0
 # org.jruby.extras:jnr-netdb:1.0.3 -> >=app-maven/jnr-netdb-1.0.3:0
@@ -47,15 +47,15 @@ DEPEND="
 	>=app-maven/asm-commons-3.3.1:0
 	>=app-maven/asm-tree-3.3.1:0
 	>=app-maven/asm-util-3.3.1:0
-	>=app-maven/constantine-0.6:0
 	>=app-maven/jaffl-0.5.11:0
 	>=app-maven/jffi-1.0.8:0
 	>=app-maven/jnr-netdb-1.0.3:0
 	>=app-maven/jnr-posix-1.1.9:0
 	>=dev-java/ant-core-1.10.7:0
-	>=dev-java/asm-8.0.1:0
+	>=dev-java/asm-3.3.1:0
 	>=dev-java/bsf-2.4.0:2.3
 	>=dev-java/bytelist-1.0.10:0
+	>=dev-java/constantine-0.7:0
 	>=dev-java/jcodings-1.0.11:1
 	>=dev-java/jline-2.12.1:2
 	>=dev-java/joda-time-2.7:0
@@ -70,3 +70,9 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_CLASSPATH_EXTRA="asm,asm-analysis,asm-commons,asm-tree,asm-util,bsf-2.3,jline-2,joda-time,ant-core,jnr-posix,bytelist,constantine,jaffl,jffi,jnr-netdb,jcodings-1,joni-2.1,snakeyaml"
+JAVA_SRC_DIR="../../src"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

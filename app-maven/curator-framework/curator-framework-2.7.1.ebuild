@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="High-level API that greatly simplifies using ZooKeeper."
 HOMEPAGE="http://curator.apache.org/curator-framework"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/curator/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/curator/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -20,14 +20,14 @@ MAVEN_ID="org.apache.curator:curator-framework:2.7.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.google.guava:guava:16.0.1 -> >=dev-java/guava-20.0:0
+# com.google.guava:guava:16.0.1 -> >=dev-java/guava-29.0:0
 # org.apache.curator:curator-client:2.7.1 -> >=app-maven/curator-client-2.7.1:0
 # org.apache.zookeeper:zookeeper:3.4.6 -> >=app-maven/zookeeper-3.4.6:0
 
 CDEPEND="
 	>=app-maven/curator-client-2.7.1:0
 	>=app-maven/zookeeper-3.4.6:0
-	>=dev-java/guava-20.0:0
+	>=dev-java/guava-29.0:0
 "
 
 
@@ -43,7 +43,13 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="guava-${PV%.*},curator-client,zookeeper"
+JAVA_GENTOO_CLASSPATH="guava,curator-client,zookeeper"
+JAVA_SRC_DIR="src/main/java"
 JAVA_RESOURCE_DIRS=(
-	"../../../../../../../../var/lib/java-ebuilder/poms"
+	""
 )
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+}

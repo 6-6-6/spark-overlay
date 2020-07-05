@@ -46,3 +46,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="ant-core,jsp-api-2.3"
+JAVA_SRC_DIR="src/main/java"
