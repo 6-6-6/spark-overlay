@@ -22,4 +22,4 @@ RDEPEND="|| (
 JAVA_VIRTUAL_PROVIDES="jsr67"
 JAVA_VIRTUAL_VM=">=virtual/jre-1.6"
 
-MAVEN_PROVIDE="javax.xml.soap:saaj-api:1.3"
+MAVEN_PROVIDES="javax.xml.soap:saaj-api:1.3 jakarta.xml.soap:jakarta.xml.soap-api:1.4.2"

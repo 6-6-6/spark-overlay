@@ -1,54 +1,109 @@
-# Copyright 1999-2020 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-# Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/ivy-2.5.0.pom --download-uri https://repo.maven.apache.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0-sources.jar --slot 0 --keywords "~amd64" --ebuild ivy-2.5.0.ebuild
+EAPI="5"
 
-EAPI=7
-
-JAVA_PKG_IUSE="doc source"
-
-inherit java-pkg-2 java-pkg-simple
-
-DESCRIPTION="The Apache Software Foundation provides support for the Apache community of open-source software projects.
-    The Apache projects are characterized by a collaborative, consensus based development process, an open and
-    pragmatic software license, and a desire to create high quality software that leads the way in its field.
-    We consider ourselves not simply a group of projects sharing a server, but rather a community of developers
-    and users."
-HOMEPAGE="http://ant.apache.org/ivy/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/ivy/ivy/${PV}/ivy-${PV}-sources.jar"
-LICENSE=""
-SLOT="0"
-KEYWORDS="~amd64"
+JAVA_PKG_IUSE="doc examples source test"
 MAVEN_ID="org.apache.ivy:ivy:2.5.0"
 
-# Common dependencies
-# POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.jcraft:jsch:0.1.55 -> >=dev-java/jsch-0.1.52:0
-# org.apache.ant:ant:1.9.14 -> >=dev-java/ant-core-1.10.7:0
-# org.apache.commons:commons-vfs2:2.2 -> >=dev-java/commons-vfs-2.2:2
-# org.apache.httpcomponents:httpclient:4.5.9 -> >=dev-java/httpcomponents-client-4.5:4.5
-# oro:oro:2.0.8 -> >=dev-java/jakarta-oro-2.0.8:2.0
+# Register this as a split-ant task.
+WANT_SPLIT_ANT="true"
 
-CDEPEND="
-	>=dev-java/jakarta-oroi-2.0.8-:2.0
-	>=dev-java/ant-core-1.10.7:0
-	>=dev-java/commons-vfs-2.2:2
-	>=dev-java/httpcomponents-client-4.5:4.5
-	>=dev-java/jsch-0.1.52:0
+# Don't rewrite examples, that's bad.
+JAVA_PKG_BSFIX_ALL="no"
+
+inherit java-pkg-2 java-ant-2 eutils
+
+MY_PN="apache-ivy"
+MY_P="${MY_PN}-${PV}"
+
+DESCRIPTION="Ivy is a free java based dependency manager"
+HOMEPAGE="https://ant.apache.org/ivy/"
+SRC_URI="mirror://apache/ant/ivy/${PV}/${MY_P}-src.tar.gz"
+
+LICENSE="Apache-2.0"
+SLOT="2"
+KEYWORDS="amd64 ppc64 x86 ~amd64-linux ~x86-linux ~x86-macos"
+
+# We cannot build tests yet as there is no org.apache.tools.ant.BuildFileTest packaged anywhere yet.
+RESTRICT="test"
+
+# SLOT to use for all bc dependencies.
+BC_SLOT="1.50"
+
+# There may be additional optional dependencies (commons-logging, commons-lang...)
+CDEPEND="dev-java/jsch:0
+	dev-java/bcpg:${BC_SLOT}
+	dev-java/ant-core:0
+	dev-java/bcpkix:${BC_SLOT}
+	dev-java/bcprov:${BC_SLOT}
+	dev-java/commons-vfs:2
+	dev-java/jakarta-oro:2.0
+	dev-java/httpcomponents-client:4.5
+	dev-java/httpcomponents-core:4.4
+	dev-java/jsch-agent-proxy"
+
+DEPEND=">=virtual/jdk-1.8
+	test? (
+		dev-java/ant-junit:0
+	)
+	${CDEPEND}"
+
+RDEPEND=">=virtual/jre-1.8
+	${CDEPEND}"
+
+S="${WORKDIR}/${MY_P}"
+
+java_prepare() {
+	# This stuff needs removing.
+	local CLEANUP=(
+		doc/reports
+		test/triggers
+		doc/configuration
+		test/repositories
+		test/java/org/apache/ivy/core/settings/custom-resolver.jar
+		src/example/chained-resolvers/settings/repository/test-1.0.jar
+	)
+
+	rm -rf "${CLEANUP[@]}" || die
+
+	java-ant_rewrite-classpath
+	mkdir lib || die
+}
+
+JAVA_ANT_REWRITE_CLASSPATH="true"
+
+EANT_GENTOO_CLASSPATH="
+	jsch
+	bcpkix-${BC_SLOT}
+	ant-core
+	bcpg-${BC_SLOT}
+	commons-vfs-2
+	bcprov-${BC_SLOT}
+	jakarta-oro-2.0
+	httpcomponents-client-4.5
+	httpcomponents-core-4.4
+	jsch-agent-proxy
 "
 
+EANT_BUILD_TARGET="/offline jar"
 
-DEPEND="
-	>=virtual/jdk-1.8:*
-	${CDEPEND}
-	app-arch/unzip
-"
+EANT_EXTRA_ARGS="-Dbuild.version=${PV} -Dbundle.version=${PV}"
 
-RDEPEND="
-	>=virtual/jre-1.8:*
-${CDEPEND}"
+src_test() {
+	java-pkg_jar-from --into lib junit
+	ANT_TASKS="ant-junit" eant "/offline test"
+}
 
-S="${WORKDIR}"
+src_install() {
+	java-pkg_dojar build/artifact/jars/ivy.jar
+	java-pkg_register-ant-task
 
-JAVA_GENTOO_CLASSPATH="jsch,ant-core,commons-vfs-2,httpcomponents-client-4.5,jakarta-oro-2.0"
+	if use doc; then
+		java-pkg_dojavadoc build/doc/reports/api
+		java-pkg_dohtml -r doc
+	fi
+
+	use examples && java-pkg_doexamples src/example
+	use source && java-pkg_dosrc src/java/*
+}

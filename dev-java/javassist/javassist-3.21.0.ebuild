@@ -17,7 +17,7 @@ LICENSE=""
 SLOT="3"
 KEYWORDS="~amd64"
 MAVEN_ID="org.javassist:javassist:3.23.0-GA"
-MAVEN_PROVIDE="javassist:javassist:3.23.0-GA"
+MAVEN_PROVIDES="javassist:javassist:3.23.0-GA"
 
 
 JAVA_NEEDS_TOOLS=1

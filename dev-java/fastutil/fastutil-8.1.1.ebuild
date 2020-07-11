@@ -23,11 +23,14 @@ MAVEN_ID="it.unimi.dsi:fastutil:8.1.1"
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
+	dev-java/junit:4
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
 "
+
+JAVA_GENTOO_CLASSPATH="junit-4"
 
 S="${WORKDIR}"
 
@@ -35,5 +38,5 @@ JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
 }

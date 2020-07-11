@@ -2,17 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/caffeine-2.6.1.pom --download-uri https://repo.maven.apache.org/maven2/com/github/ben-manes/caffeine/caffeine/2.6.1/caffeine-2.6.1-sources.jar --slot 0 --keywords "~amd64" --ebuild caffeine-2.6.1.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/caffeine-2.6.1.pom --download-uri https://repo1.maven.org/maven2/com/github/ben-manes/caffeine/caffeine/2.6.1/caffeine-2.6.1-sources.jar --slot 0 --keywords "~amd64" --ebuild caffeine-2.6.1.ebuild
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary"
 
 inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="A high performance caching library for Java 8+"
 HOMEPAGE="https://github.com/ben-manes/caffeine"
-SRC_URI="https://repo.maven.apache.org/maven2/com/github/ben-manes/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/com/github/ben-manes/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar
+	https://repo1.maven.org/maven2/com/github/ben-manes/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -27,8 +28,10 @@ MAVEN_ID="com.github.ben-manes.caffeine:caffeine:2.6.1"
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	>=dev-java/error-prone-annotations-2.4.0:0
+	!binary? (
+	>=dev-java/error-prone-annotations-2.1.3:0
 	>=dev-java/jsr305-3.0.2:0
+	)
 "
 
 RDEPEND="
@@ -42,5 +45,6 @@ JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
 }

@@ -2,17 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/jersey-media-jaxb-2.29.1.pom --download-uri https://repo.maven.apache.org/maven2/org/glassfish/jersey/media/jersey-media-jaxb/2.29.1/jersey-media-jaxb-2.29.1-sources.jar --slot 0 --keywords "~amd64" --ebuild jersey-media-jaxb-2.29.1.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/jersey-media-jaxb-2.29.1.pom --download-uri https://repo1.maven.org/maven2/org/glassfish/jersey/media/jersey-media-jaxb/2.29.1/jersey-media-jaxb-2.29.1-sources.jar --slot 0 --keywords "~amd64" --ebuild jersey-media-jaxb-2.29.1.ebuild
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary"
 
 inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="JAX-RS features based upon JAX-B."
 HOMEPAGE="https://projects.eclipse.org/projects/ee4j.jersey/project/jersey-media-jaxb"
-SRC_URI="https://repo.maven.apache.org/maven2/org/glassfish/jersey/media/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/glassfish/jersey/media/${PN}/${PV}/${P}-sources.jar -> ${P}.jar
+	https://repo1.maven.org/maven2/org/glassfish/jersey/media/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -32,13 +33,15 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# jakarta.xml.bind:jakarta.xml.bind-api:2.3.2 -> >=app-maven/jakarta-xml-bind-api-2.3.2:0
+# jakarta.xml.bind:jakarta.xml.bind-api:2.3.2 -> >=app-maven/jakarta-xml-bind-api-3.0.0:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	${CDEPEND}
 	app-arch/unzip
-	>=app-maven/jakarta-xml-bind-api-2.3.2:0
+	!binary? (
+	${CDEPEND}
+	>=app-maven/jakarta-xml-bind-api-3.0.0:0
+	)
 "
 
 RDEPEND="
@@ -53,5 +56,6 @@ JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
 }

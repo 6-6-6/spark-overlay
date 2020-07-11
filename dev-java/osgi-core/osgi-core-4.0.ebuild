@@ -14,7 +14,7 @@ inherit java-pkg-2 java-pkg-binjar
 MY_PV="1.0"
 DESCRIPTION="OSGi R4 core"
 HOMEPAGE="http://www.osgi.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/osgi/osgi_R4_core/${MY_PV}/osgi_R4_core-${MY_PV}.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/osgi/osgi_R4_core/${MY_PV}/osgi_R4_core-${MY_PV}.jar -> ${P}.jar"
 LICENSE=""
 SLOT="4"
 KEYWORDS="~amd64"

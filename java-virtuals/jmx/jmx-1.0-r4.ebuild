@@ -26,4 +26,4 @@ RDEPEND="
 JAVA_VIRTUAL_PROVIDES="sun-jmx"
 JAVA_VIRTUAL_VM="=virtual/jre-1.8 =virtual/jre-1.7 =virtual/jre-1.6 =virtual/jre-1.5"
 
-MAVEN_PROVIDE="G:A:0"
+MAVEN_PROVIDES="G:A:0"

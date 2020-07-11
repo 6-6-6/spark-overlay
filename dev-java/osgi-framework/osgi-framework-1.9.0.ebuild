@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="OSGi Companion Code for org.osgi.framework Version 1.9.0"
 HOMEPAGE="http://www.osgi.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/osgi/org.osgi.framework/${PV}/org.osgi.framework-${PV}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/osgi/org.osgi.framework/${PV}/org.osgi.framework-${PV}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="6"
 KEYWORDS="~amd64"
@@ -38,3 +38,10 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="osgi-core-6,osgi-annotation-6"
+
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+}

@@ -17,4 +17,4 @@ RDEPEND="dev-java/glassfish-ejb-api:0"
 
 JAVA_VIRTUAL_PROVIDES="glassfish-ejb-api"
 
-MAVEN_PROVIDE="org.glassfish:javax.ejb:3.2 javax.ejb:javax.ejb-api:3.2"
+MAVEN_PROVIDES="org.glassfish:javax.ejb:3.2 javax.ejb:javax.ejb-api:3.2 jakarta.ejb:jakarta.ejb-api:3.2"

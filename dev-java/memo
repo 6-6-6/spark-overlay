@@ -1,0 +1,64 @@
+- [] 0000-netty-tcnative
+- [] barchart-udt
+- [] commons-vfs
+- [] fastinfoset
+- [] graalvm-compiler
+- [] janino
+- [] jaxb-*
+- [] leveldbjni-all
+- [] netty-all
+- [] svm
+- [x] ant-ivy
+- [x] asm
+- [x] aspectj RAW
+- [x] barebonesbrowserlaunch NEO
+- [x] bytelist RAW
+- [x] classmate RAW
+- [x] commons-collections
+- [x] commons-compress
+- [x] commons-configuration
+- [x] commons-crypto
+- [x] commons-io
+- [x] commons-lang RAW
+- [x] disruptor
+- [x] error-prone-annotations RAW
+- [x] fastutil
+- [x] findbugs-annotation
+- [x] gson
+- [x] guava
+- [x] headius-options
+- [x] icu4j
+- [x] j2objc-annotations RAW
+- [x] jackson-annotations RAW
+- [x] jackson RAW
+- [x] jakarta-ws-rs-api
+- [x] javassist
+- [x] jboss-logging
+- [x] jboss-logmanager RAW
+- [x] jboss-marshalling RAW
+- [x] jcodings
+- [x] jetbrains-annotations
+- [x] jetty-alpn-api
+- [x] jetty-npn-api
+- [x] jnr-constants
+- [x] jnr-enxio
+- [x] jnr-ffi
+- [x] jnr-posix
+- [x] jnr-unixsocket
+- [x] joda-time
+- [x] joni
+- [x] jsch-agent-proxy
+- [x] jsoup
+- [x] jts-core
+- [x] minlog
+- [x] objenesis
+- [x] okhttp BIN
+- [x] okio BIN
+- [x] osgi-annotation
+- [x] osgi-core
+- [x] osgi-framework
+- [x] slf4j-api
+- [x] slf4j-log4j12
+- [x] snappy
+- [x] truffle-api
+- [x] validation-api

@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="OSGi Service Platform Release 4 Core Interfaces and Classes."
 HOMEPAGE="http://felix.apache.org/org.osgi.core/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.core/${PV}/org.osgi.core-${PV}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.core/${PV}/org.osgi.core-${PV}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="1"
 KEYWORDS="~amd64"
@@ -32,6 +32,13 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_RESOURCE_DIRS=(
-	"../../../../../../../../var/lib/java-ebuilder/poms/src/main/resources"
-	"../../../../../../../../var/lib/java-ebuilder/poms"
+	"src/main/resources"
+	""
 )
+
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+}

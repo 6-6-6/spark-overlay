@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/commons-collections-3.2.2.pom --download-uri https://repo.maven.apache.org/maven2/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2-sources.jar --slot 0 --keywords "~amd64" --ebuild commons-collections-3.2.2.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/commons-collections-3.2.2.pom --download-uri https://repo1.maven.org/maven2/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2-sources.jar --slot 3 --keywords "~amd64" --ebuild commons-collections-3.2.2.ebuild
 
 EAPI=7
 
@@ -12,13 +12,13 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Types that extend and augment the Java Collections Framework."
 HOMEPAGE="http://commons.apache.org/collections/"
-SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
+SRC_URI="mirror://apache/${PN/-//}/source/${P}-src.tar.gz"
 LICENSE=""
-SLOT="0"
+SLOT="3"
 KEYWORDS="~amd64"
 MAVEN_ID="commons-collections:commons-collections:3.2.2"
 
-
+PATCHES=( "${FILESDIR}/${P}-Java-8.patch" )
 
 DEPEND="
 	>=virtual/jdk-1.3:*
@@ -29,17 +29,16 @@ RDEPEND="
 	>=virtual/jre-1.3:*
 "
 
-S="${WORKDIR}"
+S="${WORKDIR}/${P}-src"
 
 JAVA_ENCODING="iso-8859-1"
 
-JAVA_SRC_DIR="src/main/java"
+JAVA_SRC_DIR="src/java"
 JAVA_RESOURCE_DIRS=(
 	"src/main/resources"
 	""
 )
 
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+src_prepare() {
+	default
 }

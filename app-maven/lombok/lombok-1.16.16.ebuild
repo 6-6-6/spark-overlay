@@ -2,17 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/lombok-1.16.16.pom --download-uri https://repo.maven.apache.org/maven2/org/projectlombok/lombok/1.16.16/lombok-1.16.16-sources.jar --slot 0 --keywords "~amd64" --ebuild lombok-1.16.16.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/lombok-1.16.16.pom --download-uri https://repo1.maven.org/maven2/org/projectlombok/lombok/1.16.16/lombok-1.16.16-sources.jar --slot 0 --keywords "~amd64" --ebuild lombok-1.16.16.ebuild
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary"
 
 inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Spice up your java: Automatic Resource Management, automatic generation of getters, setters, equals, hashCode and toString, and more!"
 HOMEPAGE="https://projectlombok.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/project${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/project${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar
+	https://repo1.maven.org/maven2/org/project${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -35,5 +36,6 @@ JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
 }

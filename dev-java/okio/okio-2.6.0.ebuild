@@ -8,11 +8,11 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-binjar
 
 DESCRIPTION="A modern I/O API for Java"
 HOMEPAGE="https://github.com/square/okio/"
-SRC_URI="https://repo.maven.apache.org/maven2/com/squareup/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/com/squareup/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -20,12 +20,11 @@ MAVEN_ID="com.squareup.okio:okio:2.6.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.jetbrains.kotlin:kotlin-stdlib:1.3.70 -> >=app-maven/kotlin-stdlib-1.3.70:0
-# org.jetbrains.kotlin:kotlin-stdlib-common:1.3.70 -> >=app-maven/kotlin-stdlib-common-1.3.70:0
+# org.jetbrains.kotlin:kotlin-stdlib:1.3.70 -> workaround
+# org.jetbrains.kotlin:kotlin-stdlib-common:1.3.70 -> workaround
 
 CDEPEND="
-	>=app-maven/kotlin-stdlib-1.3.70:0
-	>=app-maven/kotlin-stdlib-common-1.3.70:0
+	dev-java/kotlin-common-bin
 "
 
 
@@ -41,10 +40,6 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="kotlin-stdlib,kotlin-stdlib-common"
+JAVA_GENTOO_CLASSPATH="kotlin-common-bin"
 JAVA_SRC_DIR="src/main/java"
 
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
-}

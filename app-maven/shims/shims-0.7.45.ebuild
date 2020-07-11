@@ -2,18 +2,19 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/shims-0.7.45.pom --download-uri https://repo.maven.apache.org/maven2/org/roaringbitmap/shims/0.7.45/shims-0.7.45-sources.jar --slot 0 --keywords "~amd64" --ebuild shims-0.7.45.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/shims-0.7.45.pom --download-uri https://repo1.maven.org/maven2/org/roaringbitmap/shims/0.7.45/shims-0.7.45-sources.jar --slot 0 --keywords "~amd64" --ebuild shims-0.7.45.ebuild
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary"
 
 inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Roaring bitmaps are compressed bitmaps (also called bitsets) which tend to outperform
      conventional compressed bitmaps such as WAH or Concise."
 HOMEPAGE="https://github.com/RoaringBitmap/RoaringBitmap/shims"
-SRC_URI="https://repo.maven.apache.org/maven2/org/roaringbitmap/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/roaringbitmap/${PN}/${PV}/${P}-sources.jar -> ${P}.jar
+	https://repo1.maven.org/maven2/org/roaringbitmap/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -36,5 +37,6 @@ JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
 }

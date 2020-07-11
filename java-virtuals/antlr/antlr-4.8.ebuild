@@ -20,4 +20,4 @@ RDEPEND="|| (
 
 JAVA_VIRTUAL_PROVIDES="antlr-4,tunnelvisionlabs-antlr-4"
 
-MAVEN_PROVIDE="com.tunnelvisionlabs:antlr4:4.7.4 com.tunnelvisionlabs:antlr4-runtime:4.7.4 com.tunnelvisionlabs:antlr4-annotations:4.7.4 org.antlr:antlr4:4.7.4 org.antlr:antlr4-runtime:4.7.4"
+MAVEN_PROVIDES="com.tunnelvisionlabs:antlr4:4.7.4 com.tunnelvisionlabs:antlr4-runtime:4.7.4 com.tunnelvisionlabs:antlr4-annotations:4.7.4 org.antlr:antlr4:4.7.4 org.antlr:antlr4-runtime:4.7.4"

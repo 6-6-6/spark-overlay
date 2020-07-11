@@ -20,7 +20,7 @@ MAVEN_ID="org.codehaus.janino:janino:3.0.6"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.codehaus.janino:commons-compiler:3.0.6 -> >=app-maven/commons-compiler-3.0.6:0
+# org.codehaus.janino:commons-compiler:3.0.6 -> !!!groupId-not-found!!!
 
 CDEPEND="
 	>=app-maven/commons-compiler-3.0.6:0
@@ -49,5 +49,5 @@ JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
 }

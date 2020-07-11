@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="OSGi Annotation Release 6, Annotations for use in compiling bundles."
 HOMEPAGE="http://www.osgi.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/osgi/org.osgi.annotation/${PV}/org.osgi.annotation-${PV}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/osgi/org.osgi.annotation/${PV}/org.osgi.annotation-${PV}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="6"
 KEYWORDS="~amd64"
@@ -31,3 +31,9 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+}

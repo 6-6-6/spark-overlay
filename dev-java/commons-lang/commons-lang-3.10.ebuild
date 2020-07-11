@@ -1,43 +1,45 @@
-# Copyright 1999-2020 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-# Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/commons-lang3-3.10.pom --download-uri https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.10/commons-lang3-3.10-sources.jar --slot 0 --keywords "~amd64" --ebuild commons-lang3-3.10.ebuild
+EAPI=6
 
-EAPI=7
-
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source test"
 
 inherit java-pkg-2 java-pkg-simple
 
-MY_PN=${PN}3
+MY_P="${PN}3-${PV}"
 
-DESCRIPTION="Apache Commons Lang, a package of Java utility classes for the
-  classes that are in java.lang's hierarchy, or are considered to be so
-  standard as to justify existence in java.lang."
-HOMEPAGE="https://commons.apache.org/proper/commons-lang/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/commons/${MY_PN}/${PV}/${MY_PN}-${PV}-sources.jar"
-LICENSE=""
-SLOT="3"
-KEYWORDS="~amd64"
+DESCRIPTION="Commons components to manipulate core java classes"
+HOMEPAGE="http://commons.apache.org/lang"
+SRC_URI="mirror://apache/commons/lang/source/${MY_P}-src.tar.gz -> ${P}.tar.gz"
+LICENSE="Apache-2.0"
+SLOT="3.10"
+KEYWORDS="amd64 ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
+
 MAVEN_ID="org.apache.commons:commons-lang3:3.10"
 
-
+CDEPEND=""
 
 DEPEND="
-	>=virtual/jdk-1.8:*
-	app-arch/unzip
-"
+	${CDEPEND}
+	>=virtual/jdk-1.8"
 
 RDEPEND="
-	>=virtual/jre-1.8:*
-"
+	${CDEPEND}
+	>=virtual/jre-1.8"
 
-S="${WORKDIR}"
+S="${WORKDIR}/${MY_P}-src"
 
-JAVA_ENCODING="ISO-8859-1"
+JAVA_ANT_ENCODING="ISO-8859-1"
 
-JAVA_RESOURCE_DIRS=(
-	"../../../../../../../../var/lib/java-ebuilder/poms/src/main/resources"
-	"../../../../../../../../var/lib/java-ebuilder/poms"
-)
+DOCS=( CONTRIBUTING.md NOTICE.txt RELEASE-NOTES.txt LICENSE.txt README.md )
+
+src_prepare() {
+	default
+	rm -rv src/test || die
+}
+
+src_install() {
+	einstalldocs
+	java-pkg-simple_src_install
+}

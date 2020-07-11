@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/xercesMinimal-1.9.6.2.pom --download-uri https://repo.maven.apache.org/maven2/nekohtml/xercesMinimal/1.9.6.2/xercesMinimal-1.9.6.2.jar --slot 0 --keywords "~amd64" --ebuild xercesMinimal-1.9.6.2.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/xercesMinimal-1.9.6.2.pom --download-uri https://repo1.maven.org/maven2/nekohtml/xercesMinimal/1.9.6.2/xercesMinimal-1.9.6.2.jar --slot 0 --keywords "~amd64" --ebuild xercesMinimal-1.9.6.2.ebuild
 
 EAPI=7
 
@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-binjar
 
 DESCRIPTION=""
 HOMEPAGE=""
-SRC_URI="https://repo.maven.apache.org/maven2/nekohtml/${PN}/${PV}/${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/nekohtml/${PN}/${PV}/${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"

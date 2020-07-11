@@ -14,7 +14,7 @@ MY_PN=${PN}4
 
 DESCRIPTION="The Apache Commons Collections package contains types that extend and augment the Java Collections Framework."
 HOMEPAGE="https://commons.apache.org/proper/commons-collections/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/commons/${MY_PN}/${PV}/${MY_PN}-${PV}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/commons/${MY_PN}/${PV}/${MY_PN}-${PV}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="4"
 KEYWORDS="~amd64"
@@ -37,3 +37,9 @@ JAVA_RESOURCE_DIRS=(
 	"src/main/resources"
 	"."
 )
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip -o ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+}

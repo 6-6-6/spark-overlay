@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/hadoop-client-2.5.1.pom --download-uri https://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-client/2.5.1/hadoop-client-2.5.1.jar --slot 0 --keywords "~amd64" --ebuild hadoop-client-2.5.1.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/hadoop-client-2.5.1.pom --download-uri https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-client/2.5.1/hadoop-client-2.5.1.jar --slot 0 --keywords "~amd64" --ebuild hadoop-client-2.5.1.ebuild
 
 EAPI=7
 
@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-binjar
 
 DESCRIPTION="Apache Hadoop Client"
 HOMEPAGE=""
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -41,8 +41,8 @@ CDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.6:*
-	${CDEPEND}
 	app-arch/unzip
+	${CDEPEND}
 "
 
 RDEPEND="

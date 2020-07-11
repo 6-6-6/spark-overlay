@@ -2,17 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/hadoop-common-2.5.1.pom --download-uri https://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-common/2.5.1/hadoop-common-2.5.1-sources.jar --slot 0 --keywords "~amd64" --ebuild hadoop-common-2.5.1.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/hadoop-common-2.5.1.pom --download-uri https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-common/2.5.1/hadoop-common-2.5.1-sources.jar --slot 0 --keywords "~amd64" --ebuild hadoop-common-2.5.1.ebuild
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary"
 
 inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Apache Hadoop Common"
 HOMEPAGE=""
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}-sources.jar -> ${P}.jar
+	https://repo1.maven.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -47,8 +48,8 @@ MAVEN_ID="org.apache.hadoop:hadoop-common:2.5.1"
 # org.apache.zookeeper:zookeeper:3.4.6 -> >=app-maven/zookeeper-3.4.6:0
 # org.codehaus.jackson:jackson-core-asl:1.9.13 -> >=app-maven/jackson-core-asl-1.9.13:0
 # org.codehaus.jackson:jackson-mapper-asl:1.9.13 -> >=app-maven/jackson-mapper-asl-1.9.13:0
-# org.mortbay.jetty:jetty:6.1.26 -> >=app-maven/jetty-6.1.26:0
-# org.mortbay.jetty:jetty-util:6.1.26 -> >=app-maven/jetty-util-6.1.26:0
+# org.mortbay.jetty:jetty:6.1.26 -> >=app-maven/jetty-6.1.26:6
+# org.mortbay.jetty:jetty-util:6.1.26 -> >=app-maven/jetty-util-6.1.26:6
 # org.slf4j:slf4j-api:1.7.5 -> >=dev-java/slf4j-api-1.7.7:0
 # xmlenc:xmlenc:0.52 -> >=app-maven/xmlenc-0.52:0
 
@@ -62,8 +63,8 @@ CDEPEND="
 	>=app-maven/jersey-json-1.9:0
 	>=app-maven/jersey-server-1.9:0
 	>=app-maven/jets3t-0.9.0:0
-	>=app-maven/jetty-6.1.26:0
-	>=app-maven/jetty-util-6.1.26:0
+	>=app-maven/jetty-6.1.26:6
+	>=app-maven/jetty-util-6.1.26:6
 	>=app-maven/xmlenc-0.52:0
 	>=app-maven/zookeeper-3.4.6:0
 	>=dev-java/commons-cli-1.3.1:1
@@ -92,9 +93,11 @@ CDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.6:*
-	${CDEPEND}
 	app-arch/unzip
+	!binary? (
+	${CDEPEND}
 	>=dev-java/ant-core-1.10.7:0
+	)
 "
 
 # Runtime dependencies
@@ -120,11 +123,12 @@ ${CDEPEND}
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jsr305,guava,protobuf-java,jsch,jersey-core,jersey-json,jersey-server,commons-cli-1,commons-codec,commons-collections,commons-configuration,commons-httpclient-3,commons-io-1,commons-lang-2.1,commons-logging,commons-net,servlet-api-4.0,log4j,jets3t,avro,commons-compress,commons-math-3,hadoop-annotations,hadoop-auth,zookeeper,jackson-core-asl,jackson-mapper-asl,jetty,jetty-util,slf4j-api,xmlenc,commons-el,jsp-api-2.3,slf4j-log4j12,jasper-compiler,jasper-runtime"
+JAVA_GENTOO_CLASSPATH="jsr305,guava,protobuf-java,jsch,jersey-core,jersey-json,jersey-server,commons-cli-1,commons-codec,commons-collections,commons-configuration,commons-httpclient-3,commons-io-1,commons-lang-2.1,commons-logging,commons-net,servlet-api-4.0,log4j,jets3t,avro,commons-compress,commons-math-3,hadoop-annotations,hadoop-auth,zookeeper,jackson-core-asl,jackson-mapper-asl,jetty-6,jetty-util-6,slf4j-api,xmlenc,commons-el,jsp-api-2.3,slf4j-log4j12,jasper-compiler,jasper-runtime"
 JAVA_CLASSPATH_EXTRA="ant-core"
 JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
 }

@@ -11,13 +11,13 @@ HOMEPAGE="http://eclipse.org/aspectj/"
 SRC_URI="http://www.eclipse.org/downloads/download.php?file=/tools/${PN}/${P}-src.jar&r=1 -> ${P}-src.jar"
 
 MAVEN_ID="org.aspectj:aspectjweaver:1.9.5"
-#MAVEN_PROVIDE="org.aspectj:aspectjweaver:1.9.5 org.aspectj:aspectjtools:1.9.5 org.aspectj:aspectjrt:1.9.5"
+#MAVEN_PROVIDES="org.aspectj:aspectjweaver:1.9.5 org.aspectj:aspectjtools:1.9.5 org.aspectj:aspectjrt:1.9.5"
 
 LICENSE="EPL-1.0"
 SLOT="0"
 KEYWORDS="amd64 x86"
 
-CDEPEND="dev-java/asm
+CDEPEND=">=dev-java/asm-7.0.0:4
 	dev-java/commons-logging:0"
 DEPEND="${CDEPEND}
 	app-arch/zip
@@ -28,7 +28,7 @@ RDEPEND="${CDEPEND}
 S=${WORKDIR}
 
 JAVA_SRC_DIR="${S}/src"
-JAVA_GENTOO_CLASSPATH="commons-logging,asm"
+JAVA_GENTOO_CLASSPATH="commons-logging,asm-4"
 JAVA_ENCODING="iso8859-1"
 
 src_unpack() {

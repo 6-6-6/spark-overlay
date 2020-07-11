@@ -15,7 +15,7 @@ compression and archive formats.  These include: bzip2, gzip, pack200,
 lzma, xz, Snappy, traditional Unix Compress, DEFLATE, DEFLATE64, LZ4,
 Brotli, Zstandard and ar, cpio, jar, tar, zip, dump, 7z, arj."
 HOMEPAGE="https://commons.apache.org/proper/commons-compress/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/commons/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/commons/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -51,6 +51,7 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_ENCODING="iso-8859-1"
+JAVA_SRC_DIR="src/main/java"
 
 JAVA_GENTOO_CLASSPATH="zstd-jni,dec,xz-java"
 JAVA_GENTOO_CLASSPATH_EXTRA="osgi-core-6"
@@ -58,3 +59,8 @@ JAVA_RESOURCE_DIRS=(
 	"src/main/resources"
 	"."
 )
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+}

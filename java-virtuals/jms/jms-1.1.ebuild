@@ -23,4 +23,4 @@ RDEPEND="|| (
 
 JAVA_VIRTUAL_PROVIDES="glassfish-jms-api sun-jms"
 
-MAVEN_PROVIDE="javax.jms:jms-api:1.1 org.jboss.javaee:jboss-jms-api:1.1"
+MAVEN_PROVIDES="javax.jms:jms-api:1.1 org.jboss.javaee:jboss-jms-api:1.1"

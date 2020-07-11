@@ -1,8 +1,5 @@
-# Copyright 1999-2020 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-
-# Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/jackson-core-2.11.0.pom --download-uri https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.11.0/jackson-core-2.11.0-sources.jar --slot 0 --keywords "~amd64" --ebuild jackson-core-2.11.0.ebuild
 
 EAPI=7
 
@@ -10,24 +7,55 @@ JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-pkg-simple
 
-DESCRIPTION="Core Jackson processing abstractions (aka Streaming API), implementation for JSON"
+DESCRIPTION="High-performance JSON processor"
 HOMEPAGE="https://github.com/FasterXML/jackson-core"
-SRC_URI="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/${PN}-core/${PV}/${PN}-core-${PV}-sources.jar"
-LICENSE=""
+SRC_URI="https://github.com/FasterXML/${PN}-core/archive/${PN}-core-${PV}.tar.gz"
+LICENSE="Apache-2.0"
 SLOT="2"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
+IUSE="test"
+RESTRICT="!test? ( test )"
+
 MAVEN_ID="com.fasterxml.jackson.core:jackson-core:2.11.0"
 
+RDEPEND=">=virtual/jre-1.7"
+DEPEND=">=virtual/jdk-1.7
+	test? ( dev-java/junit:4 )"
 
+S="${WORKDIR}/${PN}-core-${PN}-core-${PV}"
+JAVA_SRC_DIR="src/main/java"
 
-DEPEND="
-	>=virtual/jdk-1.6:*
-	app-arch/unzip
-"
+src_prepare() {
+	default
 
-RDEPEND="
-	>=virtual/jre-1.6:*
-"
+	sed -e 's:@package@:com.fasterxml.jackson.core.json:g' \
+		-e "s:@projectversion@:${PV}:g" \
+		-e 's:@projectgroupid@:com.fasterxml.jackson.core:g' \
+		-e 's:@projectartifactid@:jackson-core:g' \
+		"${JAVA_SRC_DIR}/com/fasterxml/jackson/core/json/PackageVersion.java.in" \
+		> "${JAVA_SRC_DIR}/com/fasterxml/jackson/core/json/PackageVersion.java" || die
 
-S="${WORKDIR}"
+	java-pkg-2_src_prepare
+}
 
+src_compile() {
+	java-pkg-simple_src_compile
+	java-pkg_addres ${PN}.jar src/main/resources
+}
+
+src_install() {
+	java-pkg-simple_src_install
+	dodoc README.md release-notes/{CREDITS,VERSION}-2.x
+}
+
+src_test() {
+	cd src/test/java || die
+
+	local CP=".:../resources:${S}/${PN}.jar:$(java-pkg_getjars junit-4)"
+	local TESTS=$(find * -name "Test*.java")
+	TESTS="${TESTS//.java}"
+	TESTS="${TESTS//\//.}"
+
+	ejavac -cp "${CP}" -d . $(find * -name "*.java")
+	ejunit4 -classpath "${CP}" ${TESTS}
+}

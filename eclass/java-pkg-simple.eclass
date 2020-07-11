@@ -16,7 +16,7 @@
 # ebuild by putting corresponding files into the target directory
 # before calling the src_compile function of this eclass.
 
-inherit java-utils-2
+inherit java-utils-2 eutils
 
 if ! has java-pkg-2 ${INHERITED}; then
 	eerror "java-pkg-simple eclass can only be inherited AFTER java-pkg-2"
@@ -116,6 +116,9 @@ java-pkg-simple_src_compile() {
 		classpath="${classpath}:$(java-pkg_getjars ${deep_jars} ${dependency})" \
 			|| die "getjars failed for ${dependency}"
 	done
+
+	use_if_iuse binary && return 0
+
 	for dependency in ${JAVA_CLASSPATH_EXTRA}; do
 		classpath="${classpath}:$(java-pkg_getjars ${buildonly_jars} ${deep_jars} ${dependency})" \
 			|| die "getjars failed for ${dependency}"
@@ -124,6 +127,13 @@ java-pkg-simple_src_compile() {
 	classpath=${classpath%:}
 	classpath=${classpath#:}
 	debug-print "CLASSPATH=${classpath}"
+
+	if [[ $(cat ${sources}) == "" ]]; then
+		elog no java file find in sources, try copying the binary jar
+		#cp "${DISTDIR}"/${P}-bin.jar "${S}"/${PN}.jar || die "cp failed"
+		#return 0
+	fi
+
 	ejavac -d ${classes} -encoding ${JAVA_ENCODING} \
 		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS} \
 		@${sources}

@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="snappy-java: A fast compression/decompression library"
 HOMEPAGE="https://github.com/xerial/snappy-java"
-SRC_URI="https://repo.maven.apache.org/maven2/org/xerial/snappy/${PN}-java/${PV}/${PN}-java-${PV}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/xerial/snappy/${PN}-java/${PV}/${PN}-java-${PV}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="1.1"
 KEYWORDS="~amd64"
@@ -36,3 +36,10 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_CLASSPATH_EXTRA="osgi-core-6"
+
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+}

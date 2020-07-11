@@ -12,11 +12,12 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="OSGi Core Release 6, Interfaces and Classes for use in compiling bundles."
 HOMEPAGE="http://www.osgi.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/osgi/org.osgi.core/${PV}/org.osgi.core-${PV}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/osgi/org.osgi.core/${PV}/org.osgi.core-${PV}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="6"
 KEYWORDS="~amd64"
 MAVEN_ID="org.osgi:org.osgi.core:6.0.0"
+MAVEN_PROVIDES="org.osgi:osgi.core:6.0.0"
 
 
 # Common dependencies
@@ -36,3 +37,10 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="osgi-annotation-6"
+
+JAVA_SRC_DIR="src/main/java"
+
+src_unpack() {
+	mkdir -p ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+}

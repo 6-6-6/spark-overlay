@@ -19,4 +19,4 @@ RDEPEND="|| (
 
 JAVA_VIRTUAL_PROVIDES="tomcat-servlet-api-${SLOT}"
 
-MAVEN_PROVIDE="javax.servlet:javax.servlet-api:4.0.1 javax.servlet:servlet-api:4.0.1 org.glassfish:javax.servlet:10.0-b28 org.apache.tomcat:tomcat-servlet-api:9.0.36"
+MAVEN_PROVIDES="javax.servlet:javax.servlet-api:4.0.1 javax.servlet:servlet-api:4.0.1 org.glassfish:javax.servlet:10.0-b28 org.apache.tomcat:tomcat-servlet-api:9.0.36"

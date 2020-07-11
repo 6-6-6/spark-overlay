@@ -2,17 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/ant-launcher-1.8.4.pom --download-uri https://repo.maven.apache.org/maven2/org/apache/ant/ant-launcher/1.8.4/ant-launcher-1.8.4-sources.jar --slot 0 --keywords "~amd64" --ebuild ant-launcher-1.8.4.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/ant-launcher-1.8.4.pom --download-uri https://repo1.maven.org/maven2/org/apache/ant/ant-launcher/1.8.4/ant-launcher-1.8.4-sources.jar --slot 0 --keywords "~amd64" --ebuild ant-launcher-1.8.4.ebuild
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary"
 
 inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="master POM"
 HOMEPAGE="http://ant.apache.org/ant-launcher/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/ant/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/apache/ant/${PN}/${PV}/${P}-sources.jar -> ${P}.jar
+	https://repo1.maven.org/maven2/org/apache/ant/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -35,5 +36,6 @@ JAVA_SRC_DIR="../../../src/main"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
 }

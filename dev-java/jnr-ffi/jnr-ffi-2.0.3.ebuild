@@ -23,16 +23,8 @@ MAVEN_ID="com.github.jnr:jnr-ffi:2.0.3"
 # com.github.jnr:jffi:1.2.9 -> >=dev-java/jffi-1.2.9:1.2
 # com.github.jnr:jnr-x86asm:1.0.2 -> >=dev-java/jnr-x86asm-1.0.2:1.0
 # org.ow2.asm:asm:5.0.3 -> >=dev-java/asm-5.0.3:4
-# org.ow2.asm:asm-analysis:5.0.3 -> >=app-maven/asm-analysis-5.0.3:0
-# org.ow2.asm:asm-commons:5.0.3 -> >=app-maven/asm-commons-5.0.3:0
-# org.ow2.asm:asm-tree:5.0.3 -> >=app-maven/asm-tree-5.0.3:0
-# org.ow2.asm:asm-util:5.0.3 -> >=app-maven/asm-util-5.0.3:0
 
 CDEPEND="
-	>=app-maven/asm-analysis-5.0.3:0
-	>=app-maven/asm-commons-5.0.3:0
-	>=app-maven/asm-tree-5.0.3:0
-	>=app-maven/asm-util-5.0.3:0
 	>=dev-java/asm-5.0.3:4
 	>=dev-java/jffi-1.2.9:1.2
 	>=dev-java/jnr-x86asm-1.0.2:1.0
@@ -56,10 +48,10 @@ ${CDEPEND}
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jffi-1.2,jnr-x86asm-1.0,asm-4,asm-analysis,asm-commons,asm-tree,asm-util,jffi-1.2"
+JAVA_GENTOO_CLASSPATH="jffi-1.2,jnr-x86asm-1.0,asm-4,jffi-1.2"
 JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
 }

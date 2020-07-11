@@ -2,11 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/netty-example-5.0.0.Alpha2.pom --download-uri https://repo.maven.apache.org/maven2/io/netty/netty-example/5.0.0.Alpha2/netty-example-5.0.0.Alpha2-sources.jar --slot 0 --keywords "~amd64" --ebuild netty-example-5.0.0.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/netty-example-5.0.0.Alpha2.pom --download-uri https://repo1.maven.org/maven2/io/netty/netty-example/5.0.0.Alpha2/netty-example-5.0.0.Alpha2-sources.jar --slot 0 --keywords "~amd64" --ebuild netty-example-5.0.0.ebuild
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -14,7 +14,8 @@ DESCRIPTION="Netty is an asynchronous event-driven network application framework
     rapid development of maintainable high performance protocol servers and
     clients."
 HOMEPAGE="http://netty.io/netty-example/"
-SRC_URI="https://repo.maven.apache.org/maven2/io/netty/${PN}/${PV}.Alpha2/${P}.Alpha2-sources.jar -> ${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Alpha2/${P}.Alpha2-sources.jar -> ${P}.jar
+	https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Alpha2/${P}.Alpha2.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -24,15 +25,15 @@ MAVEN_ID="io.netty:netty-example:5.0.0.Alpha2"
 # POM: /var/lib/java-ebuilder/poms/${P}.Alpha2.pom
 # com.google.protobuf:protobuf-java:2.5.0 -> >=dev-java/protobuf-java-3.11.4:0
 # com.yammer.metrics:metrics-core:2.2.0 -> >=app-maven/metrics-core-2.2.0:0
-# io.netty:netty-codec-http:5.0.0.Alpha2 -> >=app-maven/netty-codec-http-5.0.0:0
+# io.netty:netty-codec-http:5.0.0.Alpha2 -> >=dev-java/netty-codec-http-5.0.0:0
 # io.netty:netty-codec-http2:5.0.0.Alpha2 -> >=app-maven/netty-codec-http2-5.0.0:0
 # io.netty:netty-codec-memcache:5.0.0.Alpha2 -> >=app-maven/netty-codec-memcache-5.0.0:0
 # io.netty:netty-codec-socks:5.0.0.Alpha2 -> >=app-maven/netty-codec-socks-5.0.0:0
 # io.netty:netty-codec-stomp:5.0.0.Alpha2 -> >=app-maven/netty-codec-stomp-5.0.0:0
-# io.netty:netty-handler:5.0.0.Alpha2 -> >=app-maven/netty-handler-5.0.0:0
+# io.netty:netty-handler:5.0.0.Alpha2 -> >=dev-java/netty-handler-5.0.0:0
 # io.netty:netty-handler-proxy:5.0.0.Alpha2 -> >=app-maven/netty-handler-proxy-5.0.0:0
-# io.netty:netty-tcnative:1.1.32.Fork1 -> >=app-maven/netty-tcnative-1.1.32:0
-# io.netty:netty-transport:5.0.0.Alpha2 -> >=app-maven/netty-transport-5.0.0:0
+# io.netty:netty-tcnative:1.1.32.Fork1 -> >=dev-java/netty-tcnative-1.1.33.15:0
+# io.netty:netty-transport:5.0.0.Alpha2 -> >=dev-java/netty-transport-5.0.0:0
 # io.netty:netty-transport-rxtx:5.0.0.Alpha2 -> >=app-maven/netty-transport-rxtx-5.0.0:0
 # io.netty:netty-transport-sctp:5.0.0.Alpha2 -> >=app-maven/netty-transport-sctp-5.0.0:0
 # io.netty:netty-transport-udt:5.0.0.Alpha2 -> >=app-maven/netty-transport-udt-5.0.0:0
@@ -40,27 +41,30 @@ MAVEN_ID="io.netty:netty-example:5.0.0.Alpha2"
 
 CDEPEND="
 	>=app-maven/metrics-core-2.2.0:0
-	>=app-maven/netty-codec-http-5.0.0:0
 	>=app-maven/netty-codec-http2-5.0.0:0
 	>=app-maven/netty-codec-memcache-5.0.0:0
 	>=app-maven/netty-codec-socks-5.0.0:0
 	>=app-maven/netty-codec-stomp-5.0.0:0
-	>=app-maven/netty-handler-5.0.0:0
 	>=app-maven/netty-handler-proxy-5.0.0:0
-	>=app-maven/netty-tcnative-1.1.32:0
-	>=app-maven/netty-transport-5.0.0:0
 	>=app-maven/netty-transport-rxtx-5.0.0:0
 	>=app-maven/netty-transport-sctp-5.0.0:0
 	>=app-maven/netty-transport-udt-5.0.0:0
-	>=dev-java/jetty-npn-api-8.1.2_p20120308:0
+	>=dev-java/netty-codec-http-5.0.0:0
+	>=dev-java/netty-handler-5.0.0:0
+	>=dev-java/netty-tcnative-1.1.33.15:0
+	>=dev-java/netty-transport-5.0.0:0
 	>=dev-java/protobuf-java-3.11.4:0
+
+	>=dev-java/jetty-npn-api-1.1.1_p20120308:0
 "
 
 
 DEPEND="
 	>=virtual/jdk-1.6:*
-	${CDEPEND}
 	app-arch/unzip
+	!binary? (
+	${CDEPEND}
+	)
 "
 
 # Runtime dependencies
@@ -85,5 +89,6 @@ JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
 }

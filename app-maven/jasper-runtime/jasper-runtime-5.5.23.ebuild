@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/jasper-runtime-5.5.23.pom --download-uri https://repo.maven.apache.org/maven2/tomcat/jasper-runtime/5.5.23/jasper-runtime-5.5.23.jar --slot 0 --keywords "~amd64" --ebuild jasper-runtime-5.5.23.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/jasper-runtime-5.5.23.pom --download-uri https://repo1.maven.org/maven2/tomcat/jasper-runtime/5.5.23/jasper-runtime-5.5.23.jar --slot 0 --keywords "~amd64" --ebuild jasper-runtime-5.5.23.ebuild
 
 EAPI=7
 
@@ -16,7 +16,7 @@ DESCRIPTION="The Apache Software Foundation provides support for the Apache comm
     We consider ourselves not simply a group of projects sharing a server, but rather a community of developers
     and users."
 HOMEPAGE="http://tomcat.apache.org/jasper-runtime"
-SRC_URI="https://repo.maven.apache.org/maven2/tomcat/${PN}/${PV}/${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/tomcat/${PN}/${PV}/${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -35,8 +35,8 @@ CDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	${CDEPEND}
 	app-arch/unzip
+	${CDEPEND}
 "
 
 RDEPEND="

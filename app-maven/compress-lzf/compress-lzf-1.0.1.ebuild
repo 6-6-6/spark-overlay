@@ -2,11 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/compress-lzf-1.0.1.pom --download-uri https://repo.maven.apache.org/maven2/com/ning/compress-lzf/1.0.1/compress-lzf-1.0.1-sources.jar --slot 0 --keywords "~amd64" --ebuild compress-lzf-1.0.1.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/compress-lzf-1.0.1.pom --download-uri https://repo1.maven.org/maven2/com/ning/compress-lzf/1.0.1/compress-lzf-1.0.1-sources.jar --slot 0 --keywords "~amd64" --ebuild compress-lzf-1.0.1.ebuild
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -14,7 +14,8 @@ DESCRIPTION="Compression codec for LZF encoding for particularly encoding/decodi
 Compressor is basic Lempel-Ziv codec, without Huffman (deflate/gzip) or statistical post-encoding.
 See \"http://oldhome.schmorp.de/marc/liblzf.html\" for more on original LZF package."
 HOMEPAGE="http://github.com/ning/compress"
-SRC_URI="https://repo.maven.apache.org/maven2/com/ning/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/com/ning/${PN}/${PV}/${P}-sources.jar -> ${P}.jar
+	https://repo1.maven.org/maven2/com/ning/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -37,5 +38,6 @@ JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
 }

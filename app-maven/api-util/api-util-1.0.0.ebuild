@@ -2,17 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/api-util-1.0.0-M20.pom --download-uri https://repo.maven.apache.org/maven2/org/apache/directory/api/api-util/1.0.0-M20/api-util-1.0.0-M20-sources.jar --slot 0 --keywords "~amd64" --ebuild api-util-1.0.0.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/api-util-1.0.0-M20.pom --download-uri https://repo1.maven.org/maven2/org/apache/directory/api/api-util/1.0.0-M20/api-util-1.0.0-M20-sources.jar --slot 0 --keywords "~amd64" --ebuild api-util-1.0.0.ebuild
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary"
 
 inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Utilities shared across this top level project"
 HOMEPAGE="http://directory.apache.org/api-parent/api-util/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/directory/api/${PN}/${PV}-M20/${P}-M20-sources.jar -> ${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/apache/directory/api/${PN}/${PV}-M20/${P}-M20-sources.jar -> ${P}.jar
+	https://repo1.maven.org/maven2/org/apache/directory/api/${PN}/${PV}-M20/${P}-M20.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -30,13 +31,15 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}-M20.pom
-# findbugs:annotations:1.0.0 -> >=dev-java/findbugs-annotation-3.0.12:3
+# findbugs:annotations:1.0.0 -> >=dev-java/findbugs-annotations-3.0.12:3
 
 DEPEND="
 	>=virtual/jdk-1.6:*
-	${CDEPEND}
 	app-arch/unzip
-	>=dev-java/findbugs-annotation-3.0.12:3
+	!binary? (
+	${CDEPEND}
+	>=dev-java/findbugs-annotations-3.0.12:3
+	)
 "
 
 RDEPEND="
@@ -46,10 +49,11 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="api-i18n,slf4j-api"
-JAVA_CLASSPATH_EXTRA="findbugs-annotation-3"
+JAVA_CLASSPATH_EXTRA="findbugs-annotations-3"
 JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
 }

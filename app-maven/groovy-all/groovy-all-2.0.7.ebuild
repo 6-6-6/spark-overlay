@@ -2,17 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/groovy-all-2.0.7.pom --download-uri https://repo.maven.apache.org/maven2/org/codehaus/groovy/groovy-all/2.0.7/groovy-all-2.0.7-sources.jar --slot 0 --keywords "~amd64" --ebuild groovy-all-2.0.7.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/groovy-all-2.0.7.pom --download-uri https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-all/2.0.7/groovy-all-2.0.7-sources.jar --slot 0 --keywords "~amd64" --ebuild groovy-all-2.0.7.ebuild
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary"
 
 inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Groovy: A powerful, dynamic language for the JVM"
 HOMEPAGE="http://groovy.codehaus.org/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/codehaus/groovy/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/codehaus/groovy/${PN}/${PV}/${P}-sources.jar -> ${P}.jar
+	https://repo1.maven.org/maven2/org/codehaus/groovy/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -49,10 +50,12 @@ CDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	${CDEPEND}
 	app-arch/unzip
+	!binary? (
+	${CDEPEND}
 	>=java-virtuals/jsp-api-2.3:2.3
 	>=java-virtuals/servlet-api-4.0:4.0
+	)
 "
 
 # Runtime dependencies
@@ -86,5 +89,6 @@ JAVA_TESTING_FRAMEWORK="junit"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
 }

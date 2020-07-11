@@ -23,4 +23,4 @@ RDEPEND="|| (
 
 JAVA_VIRTUAL_PROVIDES="glassfish-transaction-api jta"
 
-MAVEN_PROVIDE="javax.transaction:javax.transaction-api:1.3.1 jakarta.transaction:jakarta.transaction-api:1.3.1 jakarta.transaction:jakarta.transaction-api:2.0.0-RC1"
+MAVEN_PROVIDES="javax.transaction:javax.transaction-api:1.3.1 jakarta.transaction:jakarta.transaction-api:1.3.1"

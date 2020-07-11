@@ -19,4 +19,4 @@ RDEPEND="|| (
 
 JAVA_VIRTUAL_PROVIDES="tomcat-servlet-api-4.0"
 
-MAVEN_PROVIDE="javax.servlet.jsp:jsp-api:2.3 javax.servlet.jsp:jsp-api:2.3 javax.servlet:jsp-api:2.3 org.apache.tomcat:tomcat-jsp-api:9.0.36"
+MAVEN_PROVIDES="javax.servlet.jsp:jsp-api:2.3 javax.servlet.jsp:jsp-api:2.3 javax.servlet:jsp-api:2.3 org.apache.tomcat:tomcat-jsp-api:9.0.36"

@@ -23,4 +23,4 @@ RDEPEND="
 JAVA_VIRTUAL_PROVIDES="jsr223"
 JAVA_VIRTUAL_VM=">=virtual/jre-1.6"
 
-MAVEN_PROVIDE="org.livetribe:livetribe-jsr223:2.0.7"
+MAVEN_PROVIDES="org.livetribe:livetribe-jsr223:2.0.7"

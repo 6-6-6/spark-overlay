@@ -17,4 +17,4 @@ RDEPEND="dev-java/glassfish-interceptor-api:0"
 
 JAVA_VIRTUAL_PROVIDES="glassfish-interceptor-api"
 
-MAVEN_PROVIDE="javax.interceptor:javax.interceptor-api:3.2"
+MAVEN_PROVIDES="javax.interceptor:javax.interceptor-api:3.2"

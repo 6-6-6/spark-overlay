@@ -2,17 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/hadoop-hdfs-2.7.4.pom --download-uri https://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-hdfs/2.7.4/hadoop-hdfs-2.7.4-sources.jar --slot 0 --keywords "~amd64" --ebuild hadoop-hdfs-2.7.4.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/hadoop-hdfs-2.7.4.pom --download-uri https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-hdfs/2.7.4/hadoop-hdfs-2.7.4-sources.jar --slot 0 --keywords "~amd64" --ebuild hadoop-hdfs-2.7.4.ebuild
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary"
 
 inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Apache Hadoop HDFS"
 HOMEPAGE=""
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}-sources.jar -> ${P}.jar
+	https://repo1.maven.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -38,8 +39,8 @@ MAVEN_ID="org.apache.hadoop:hadoop-hdfs:2.7.4"
 # org.codehaus.jackson:jackson-core-asl:1.9.13 -> >=app-maven/jackson-core-asl-1.9.13:0
 # org.codehaus.jackson:jackson-mapper-asl:1.9.13 -> >=app-maven/jackson-mapper-asl-1.9.13:0
 # org.fusesource.leveldbjni:leveldbjni-all:1.8 -> >=dev-java/leveldbjni-all-1.8:0
-# org.mortbay.jetty:jetty:6.1.26 -> >=app-maven/jetty-6.1.26:0
-# org.mortbay.jetty:jetty-util:6.1.26 -> >=app-maven/jetty-util-6.1.26:0
+# org.mortbay.jetty:jetty:6.1.26 -> >=app-maven/jetty-6.1.26:6
+# org.mortbay.jetty:jetty-util:6.1.26 -> >=app-maven/jetty-util-6.1.26:6
 # xerces:xercesImpl:2.9.1 -> >=dev-java/xerces-2.12.0:2
 # xmlenc:xmlenc:0.52 -> >=app-maven/xmlenc-0.52:0
 
@@ -49,8 +50,8 @@ CDEPEND="
 	>=app-maven/jackson-mapper-asl-1.9.13:0
 	>=app-maven/jersey-core-1.9:0
 	>=app-maven/jersey-server-1.9:0
-	>=app-maven/jetty-6.1.26:0
-	>=app-maven/jetty-util-6.1.26:0
+	>=app-maven/jetty-6.1.26:6
+	>=app-maven/jetty-util-6.1.26:6
 	>=app-maven/netty-3.7.0:0
 	>=app-maven/xmlenc-0.52:0
 	>=dev-java/commons-cli-1.3.1:1
@@ -65,7 +66,7 @@ CDEPEND="
 	>=dev-java/netty-all-5.0.0:0
 	>=dev-java/protobuf-java-3.11.4:0
 	>=dev-java/xerces-2.12.0:2
-	>=java-virtuals/servlet-api-4.0:4.0
+	java-virtuals/servlet-api:4.0
 "
 
 # Compile dependencies
@@ -73,16 +74,18 @@ CDEPEND="
 # org.apache.hadoop:hadoop-annotations:2.7.4 -> >=app-maven/hadoop-annotations-2.7.4:0
 # org.apache.hadoop:hadoop-auth:2.7.4 -> >=app-maven/hadoop-auth-2.7.4:0
 # org.apache.hadoop:hadoop-common:2.7.4 -> >=app-maven/hadoop-common-2.7.4:0
-# org.slf4j:slf4j-log4j12:1.7.10 -> >=dev-java/slf4j-log4j12-1.7.10:0
+# org.slf4j:slf4j-log4j12:1.7.10 -> >=dev-java/slf4j-log4j12-1.7.28:0
 
 DEPEND="
 	>=virtual/jdk-1.7:*
-	${CDEPEND}
 	app-arch/unzip
+	!binary? (
+	${CDEPEND}
 	>=app-maven/hadoop-annotations-2.7.4:0
 	>=app-maven/hadoop-auth-2.7.4:0
 	>=app-maven/hadoop-common-2.7.4:0
-	>=dev-java/slf4j-log4j12-1.7.10:0
+	>=dev-java/slf4j-log4j12-1.7.28:0
+	)
 "
 
 RDEPEND="
@@ -91,11 +94,12 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="guava,protobuf-java,jersey-core,jersey-server,commons-cli-1,commons-codec,commons-daemon,commons-io-1,commons-lang-2.1,commons-logging,netty,netty-all,servlet-api-4.0,log4j,htrace-core,jackson-core-asl,jackson-mapper-asl,leveldbjni-all,jetty,jetty-util,xerces-2,xmlenc"
+JAVA_GENTOO_CLASSPATH="guava,protobuf-java,jersey-core,jersey-server,commons-cli-1,commons-codec,commons-daemon,commons-io-1,commons-lang-2.1,commons-logging,netty,netty-all,servlet-api-4.0,log4j,htrace-core,jackson-core-asl,jackson-mapper-asl,leveldbjni-all,jetty-6,jetty-util-6,xerces-2,xmlenc"
 JAVA_CLASSPATH_EXTRA="hadoop-annotations,hadoop-auth,hadoop-common,slf4j-log4j12"
 JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
 }

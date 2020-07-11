@@ -10,12 +10,11 @@ JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-pkg-simple
 
-DESCRIPTION="Java port of Oniguruma: http://www.geocities.jp/kosako3/oniguruma
-    that uses byte arrays directly instead of java Strings and chars"
+DESCRIPTION="Java port of Oniguruma: http://www.geocities.jp/kosako3/oniguruma that uses byte arrays directly instead of java Strings and chars"
 HOMEPAGE="http://nexus.sonatype.org/oss-repository-hosting.html/joni"
 SRC_URI="https://repo.maven.apache.org/maven2/org/jruby/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
-SLOT="0"
+SLOT="2.1"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jruby.joni:joni:2.1.3"
 
@@ -50,5 +49,5 @@ JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
 }

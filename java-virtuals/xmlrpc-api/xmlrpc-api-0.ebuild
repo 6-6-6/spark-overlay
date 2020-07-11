@@ -17,4 +17,4 @@ RDEPEND="dev-java/glassfish-xmlrpc-api:0"
 
 JAVA_VIRTUAL_PROVIDES="glassfish-xmlrpc-api"
 
-MAVEN_PROVIDE="javax.xml.rpc:javax.xml.rpc-api:1.1.1"
+MAVEN_PROVIDES="javax.xml.rpc:javax.xml.rpc-api:1.1.1 jakarta.xml.rpc:jakarta.xml.rpc-api:1.1.4"

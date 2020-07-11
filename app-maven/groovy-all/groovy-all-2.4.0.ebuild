@@ -2,17 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/groovy-all-2.4.0.pom --download-uri https://repo.maven.apache.org/maven2/org/codehaus/groovy/groovy-all/2.4.0/groovy-all-2.4.0-sources.jar --slot 0 --keywords "~amd64" --ebuild groovy-all-2.4.0.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/groovy-all-2.4.0.pom --download-uri https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-all/2.4.0/groovy-all-2.4.0-sources.jar --slot 0 --keywords "~amd64" --ebuild groovy-all-2.4.0.ebuild
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary"
 
 inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Groovy: A powerful, dynamic language for the JVM"
 HOMEPAGE="http://groovy.codehaus.org/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/codehaus/groovy/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/codehaus/groovy/${PN}/${PV}/${P}-sources.jar -> ${P}.jar
+	https://repo1.maven.org/maven2/org/codehaus/groovy/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -28,13 +29,13 @@ MAVEN_ID="org.codehaus.groovy:groovy-all:2.4.0"
 # jline:jline:2.12 -> >=dev-java/jline-2.12.1:2
 # junit:junit:4.12 -> >=dev-java/junit-4.12:4
 # org.apache.ant:ant:1.9.4 -> >=dev-java/ant-core-1.10.7:0
-# org.apache.ivy:ivy:2.4.0 -> >=dev-java/ant-ivy-2.5.0:0
+# org.apache.ivy:ivy:2.4.0 -> >=dev-java/ant-ivy-2.4.0:2
 # org.fusesource.jansi:jansi:1.11 -> >=dev-java/jansi-1.11:1.11
 
 CDEPEND="
 	>=app-maven/xstream-1.4.7:0
 	>=dev-java/ant-core-1.10.7:0
-	>=dev-java/ant-ivy-2.5.0:0
+	>=dev-java/ant-ivy-2.4.0:2
 	>=dev-java/bsf-2.4.0:2.3
 	>=dev-java/commons-logging-1.2:0
 	>=dev-java/jansi-1.11:1.11
@@ -51,10 +52,12 @@ CDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	${CDEPEND}
 	app-arch/unzip
+	!binary? (
+	${CDEPEND}
 	>=java-virtuals/jsp-api-2.3:2.3
 	>=java-virtuals/servlet-api-4.0:4.0
+	)
 "
 
 # Runtime dependencies
@@ -80,7 +83,7 @@ ${CDEPEND}
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="bsf-2.3,jcommander,qdox-1.12,xstream,commons-logging,jline-2,junit-4,ant-core,ant-ivy,jansi-1.11,ant-antlr,ant-junit,ant-launcher,gpars,testng"
+JAVA_GENTOO_CLASSPATH="bsf-2.3,jcommander,qdox-1.12,xstream,commons-logging,jline-2,junit-4,ant-core,ant-ivy-2,jansi-1.11,ant-antlr,ant-junit,ant-launcher,gpars,testng"
 JAVA_CLASSPATH_EXTRA="jsp-api-2.3,servlet-api-4.0"
 JAVA_SRC_DIR="src/main/java"
 
@@ -88,5 +91,6 @@ JAVA_TESTING_FRAMEWORK="junit"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
 }

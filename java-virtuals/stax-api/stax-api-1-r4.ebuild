@@ -23,4 +23,4 @@ RDEPEND="|| (
 JAVA_VIRTUAL_PROVIDES="jsr173"
 JAVA_VIRTUAL_VM=">=virtual/jre-1.6"
 
-MAVEN_PROVIDE="stax:stax-api:1.4 stax:stax:1.4 javax.xml.stream:stax-api:1.4"
+MAVEN_PROVIDES="stax:stax-api:1.4 javax.xml.stream:stax-api:1.4"

@@ -2,17 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/amqp-client-5.5.3.pom --download-uri https://repo.maven.apache.org/maven2/com/rabbitmq/amqp-client/5.5.3/amqp-client-5.5.3-sources.jar --slot 0 --keywords "~amd64" --ebuild amqp-client-5.5.3.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/amqp-client-5.5.3.pom --download-uri https://repo1.maven.org/maven2/com/rabbitmq/amqp-client/5.5.3/amqp-client-5.5.3-sources.jar --slot 0 --keywords "~amd64" --ebuild amqp-client-5.5.3.ebuild
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary"
 
 inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="The RabbitMQ Java client library allows Java applications to interface with RabbitMQ."
 HOMEPAGE="http://www.rabbitmq.com"
-SRC_URI="https://repo.maven.apache.org/maven2/com/rabbitmq/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/com/rabbitmq/${PN}/${PV}/${P}-sources.jar -> ${P}.jar
+	https://repo1.maven.org/maven2/com/rabbitmq/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -35,8 +36,10 @@ CDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	${CDEPEND}
 	app-arch/unzip
+	!binary? (
+	${CDEPEND}
+	)
 "
 
 RDEPEND="
@@ -50,5 +53,6 @@ JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
 }

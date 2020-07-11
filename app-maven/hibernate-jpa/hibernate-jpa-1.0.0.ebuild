@@ -2,17 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/hibernate-jpa-2.1-api-1.0.0.Final.pom --download-uri https://repo.maven.apache.org/maven2/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar --slot 2.1-api --keywords "~amd64" --ebuild hibernate-jpa-1.0.0.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/hibernate-jpa-2.1-api-1.0.0.Final.pom --download-uri https://repo1.maven.org/maven2/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar --slot 2.1-api --keywords "~amd64" --ebuild hibernate-jpa-1.0.0.ebuild
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary"
 
 inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Clean-room definition of JPA APIs intended for use in developing Hibernate JPA implementation.  See README.md for details"
 HOMEPAGE="http://hibernate.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/hibernate/javax/persistence/${PN}-2.1-api/${PV}.Final/${PN}-2.1-api-${PV}.Final-sources.jar -> ${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/hibernate/javax/persistence/${PN}-2.1-api/${PV}.Final/${PN}-2.1-api-${PV}.Final-sources.jar -> ${P}.jar
+	https://repo1.maven.org/maven2/org/hibernate/javax/persistence/${PN}-2.1-api/${PV}.Final/${PN}-2.1-api-${PV}.Final.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="2.1-api"
 KEYWORDS="~amd64"
@@ -35,5 +36,6 @@ JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR}
+	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
 }

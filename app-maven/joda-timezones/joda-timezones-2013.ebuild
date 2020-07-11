@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/joda-timezones-2013d.pom --download-uri https://repo.maven.apache.org/maven2/org/jruby/joda-timezones/2013d/joda-timezones-2013d.jar --slot 0 --keywords "~amd64" --ebuild joda-timezones-2013.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/joda-timezones-2013d.pom --download-uri https://repo1.maven.org/maven2/org/jruby/joda-timezones/2013d/joda-timezones-2013d.jar --slot 0 --keywords "~amd64" --ebuild joda-timezones-2013.ebuild
 
 EAPI=7
 
@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-binjar
 
 DESCRIPTION="Sonatype helps open source projects to set up Maven repositories on https://oss.sonatype.org/"
 HOMEPAGE="http://nexus.sonatype.org/oss-repository-hosting.html/joda-timezones"
-SRC_URI="https://repo.maven.apache.org/maven2/org/jruby/${PN}/${PV}d/${P}d.jar -> ${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/jruby/${PN}/${PV}d/${P}d.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -29,8 +29,8 @@ CDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	${CDEPEND}
 	app-arch/unzip
+	${CDEPEND}
 "
 
 RDEPEND="
