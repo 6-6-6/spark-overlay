@@ -151,14 +151,15 @@ RDEPEND="dev-util/japi-compliance-checker:0"
 # @ECLASS-VARIABLE: JAVA_TEST_SRC_DIR
 # @DEFAULT_UNSET
 # Directories relative to ${S} which contain the sources of the
-# test. It is almosst the equivalent of ${JAVA_SRC_DIR} for src_test.
+# test. It is almost the equivalent of ${JAVA_SRC_DIR} for src_test.
 
 # @DESCRIPTION:
 # @ECLASS-VARIABLE: JAVA_TEST_RESOURCE_DIRS
 # @DEFAULT_UNSET
-# It is almosst the equivalent of ${JAVA_RESOURCE_DIRS} for src_test.
+# It is almost the equivalent of ${JAVA_RESOURCE_DIRS} for src_test.
 
 # @FUNCTION: java-pkg-simple_get-jars
+# @DESCRIPTION:
 # generate ${classpath} from ${JAVA_GENTOO_CLASSPATH_EXTRA},
 # ${JAVA_NEEDS_TOOLS}, ${JAVA_CLASSPATH_EXTRA} and
 # ${JAVA_GENTOO_CLASSPATH}. We may use it inside src_compile
@@ -169,7 +170,7 @@ java-pkg-simple_get-jars() {
 	local buildonly_jars="--build-only"
 
 	# the extra classes that are not installed by portage
-	classpath+="${JAVA_GENTOO_CLASSPATH_EXTRA}"
+	classpath+=":${JAVA_GENTOO_CLASSPATH_EXTRA}"
 
 	# whether we need tools.jar
 	[[ ${JAVA_NEEDS_TOOLS} ]] && classpath+=":$(java-config --tools)"
@@ -207,8 +208,10 @@ java-pkg-simple_get-jars() {
 # @DESCRIPTION:
 # Compile source files in ${JAVA_TEST_SRC_DIR}, and launch
 # test using ejunit4.
+# NOTICE: If you want to launch a junit-based test, please
+# specify a suitable package in ${JAVA_GENTOO_TEST_CLASSPATH}.
 java-pkg-simple_junit-test() {
-	local tests_to_run classpath
+	local tests_to_run
 
 	tests_to_run=$(find "${JAVA_TEST_SRC_DIR}" \-type f\
 		-name "*Test.java" ! -name "Abstract*")
@@ -216,17 +219,6 @@ java-pkg-simple_junit-test() {
 	tests_to_run=${tests_to_run//.java}
 	tests_to_run=${tests_to_run//\//.}
 
-	# get classpath
-	classpath="${JAVA_TEST_SRC_DIR}:${JAVA_JAR_FILENAME}"
-	classpath+=":$(java-pkg_getjars --with-dependencies --build-only junit-4)"
-	java-pkg-simple_get-jars
-	java-pkg-simple_prepend-resources ${JAVA_TEST_RESOURCE_DIRS}
-
-	# compile
-	find ${JAVA_TEST_SRC_DIR:-*} -name \*.java > ${test_sources}
-	ejavac -d ${JAVA_TEST_SRC_DIR} -encoding ${JAVA_ENCODING} \
-		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS} \
-		@${test_sources}
 	ejunit4 -classpath ${classpath} ${tests_to_run}
 
 }
@@ -234,7 +226,7 @@ java-pkg-simple_junit-test() {
 # @FUNCTION: java-pkg-simple_prepend-resources
 # @DESCRIPTION:
 # Accept ${JAVA_RESOURCE_DIRS} or ${JAVA_TEST_RESOURCE_DIRS}
-# and prepend the directories in ${1] to ${classpath}.
+# and prepend the directories in ${1} to ${classpath}.
 java-pkg-simple_prepend-resources() {
 
 	# add resources directory to classpath
@@ -265,7 +257,7 @@ java-pkg-simple_src_compile() {
 	java-pkg_gen-cp JAVA_GENTOO_CLASSPATH
 
 	# gather sources
-	find "${S}"/${JAVA_SRC_DIR:-*} -name \*.java > ${sources}
+	find ${JAVA_SRC_DIR:-*} -name \*.java > ${sources}
 
 	mkdir -p ${classes} || die "Could not create target directory"
 
@@ -306,8 +298,8 @@ java-pkg-simple_src_compile() {
 
 	# prepend resources
 	for resource in ${JAVA_RESOURCE_DIRS}; do
-		jar uf ${JAVA_JAR_FILENAME} -C ${resource} . || \
-			die "Failed to add resources"
+		jar uf ${JAVA_JAR_FILENAME} -C ${resource} .\
+			|| die "Failed to add resources"
 	done
 }
 
@@ -362,7 +354,7 @@ java-pkg-simple_src_install() {
 # with upstream distributed file ${JAVA_BINJAR_FILENAME} if they both exist.
 # Then it will perform test with framework defined by ${JAVA_TESTING_FRAMEWORK}.
 java-pkg-simple_src_test() {
-	local test_sources=test_sources.lst
+	local test_sources=test_sources.lst classpath
 
 	debug-print-function ${FUNCNAME} $*
 
@@ -370,11 +362,23 @@ java-pkg-simple_src_test() {
 	if [[ "${JAVA_BINJAR_FILENAME}" ]] && [[ -f "${JAVA_JAR_FILENAME}" ]]; then
 		japi-compliance-checker --lib=${PN} \
 			${DISTDIR}/${JAVA_BINJAR_FILENAME} \
-			${S}/${JAVA_JAR_FILENAME} && \
-			ewarn "Natively compiled Jar ${JAVA_JAR_FILENAME}" \
+			${S}/${JAVA_JAR_FILENAME} \
+			|| ewarn "Natively compiled Jar ${JAVA_JAR_FILENAME}" \
 			"is not compliant with binary Jar ${JAVA_BINJAR_FILENAME}."
 	fi
 
+	# get classpath
+	classpath="${JAVA_TEST_SRC_DIR}:${JAVA_JAR_FILENAME}"
+	java-pkg-simple_get-jars
+	java-pkg-simple_prepend-resources ${JAVA_TEST_RESOURCE_DIRS}
+
+	# compile
+	find ${JAVA_TEST_SRC_DIR:-*} -name \*.java > ${test_sources}
+	ejavac -d ${JAVA_TEST_SRC_DIR} -encoding ${JAVA_ENCODING} \
+		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS} \
+		@${test_sources}
+
+	# launch test
 	if [[ ${JAVA_TESTING_FRAMEWORK} == "junit" ]]; then
 		java-pkg-simple_junit-test
 	fi
