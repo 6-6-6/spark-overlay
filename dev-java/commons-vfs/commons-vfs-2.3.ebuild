@@ -15,10 +15,10 @@ LICENSE="Apache-2.0"
 SLOT="2"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 
+#	app-maven/hadoop-hdfs-client:0
 CDEPEND="
 	app-maven/hadoop-common:0
 	app-maven/hadoop-hdfs:0
-	app-maven/hadoop-hdfs-client:0
 
 	dev-java/ant-core:0
 	dev-java/commons-collections:4
@@ -52,7 +52,6 @@ java_prepare() {
 EANT_GENTOO_CLASSPATH="
 	hadoop-common
 	hadoop-hdfs
-	hadoop-hdfs-client
 	ant-core
 	commons-collections-4
 	commons-compress

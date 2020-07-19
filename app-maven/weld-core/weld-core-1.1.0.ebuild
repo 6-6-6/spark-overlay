@@ -6,7 +6,7 @@
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source binary"
+JAVA_PKG_IUSE="doc source binary test"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -85,8 +85,13 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="cal10n,guava,jsr250,el-api-3.0,cdi-api-1.2,jsf-api,persistence-api,servlet-api-4.0,jsp-api-2.3,jta,validation-api-1.0,findbugs-annotations-3,javassist-3,jboss-interceptor-core,jboss-interceptor-spi,jboss-ejb-api-3.1_spec,jboss-interceptors-api-1.1_spec,weld-api,weld-spi,slf4j-api,slf4j-ext"
 JAVA_SRC_DIR="src/main/java"
 
+JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_RESOURCE_DIRS=(
+	${JAVA_SRC_DIR}
+)
+
+
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
 	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
 }

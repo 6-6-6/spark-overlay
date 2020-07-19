@@ -1,0 +1,23 @@
+#!/usr/bin/python
+# -*- coding:utf-8 -*-
+
+import sys
+import argparse
+import MavenVersion
+
+parser = argparse.ArgumentParser(
+    description='Compare Maven Version with dependency')
+parser.add_argument('--dep', dest='dep', action='store',
+                    required=True, help='the dependency required')
+parser.add_argument('--maven-version', dest='mv', action='store',
+                    required=True, help='the maven version to be compared')
+
+if __name__=="__main__":
+    args = parser.parse_args()
+
+    dep = MavenVersion.MavenVersion(args.dep)
+    mv = MavenVersion.MavenSingleVersion(args.mv)
+
+    if dep.max.version[0] != 99999999:
+        print(f"SLOT={dep.min.version[0]}.{dep.min.version[1]}")
+    sys.exit(not dep.match(mv))

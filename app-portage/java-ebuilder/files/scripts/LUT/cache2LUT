@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+# -*- coding:utf-8 -*-
+
+import csv
+import argparse
+
+from LUTlib import *
+
+parser = argparse.ArgumentParser(
+    description='Lookup [groupId][artifactId] related to [category][pkg name] and fill a new cache')
+parser.add_argument('--src-cache', dest='src', action='store',
+                    required=True, help='source cache file, with no (groupId, artifactId)')
+parser.add_argument('--LUT', dest='lut', action='store',
+                    required=True, help='the lookup table mapping Gentoo pkgs and Maven pkgs')
+
+if __name__ == '__main__':
+    args = parser.parse_args()
+
+    LUT = import_LUT(args.lut)
+
+    old_cache = csv.reader(
+            open(args.src, 'r'),
+            delimiter = ':')
+
+    
+    for line in old_cache:
+        if len(line) == 1:
+            continue
+        elif line[0].startswith('#'):
+            continue
+        groupId, artifactId = line[9], line[10]
+        if groupId != '' and artifactId != '':
+            insert_pkg(LUT, line[0], line[1], line[3], groupId, artifactId)
+
+    export_LUT(LUT, args.lut)
+

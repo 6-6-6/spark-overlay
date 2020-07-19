@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+# -*- coding:utf-8 -*-
+
+import csv
+import argparse
+
+from LUTlib import *
+
+parser = argparse.ArgumentParser(
+    description='Lookup [groupId][artifactId] related to [category][pkg name] and fill a new cache')
+parser.add_argument('--src-cache', dest='src', action='store',
+                    required=True, help='source cache file, with no (groupId, artifactId)')
+parser.add_argument('--dst-cache', dest='dst', action='store',
+                    required=True, help='the cache have (groupId, artifactId)')
+parser.add_argument('--LUT', dest='lut', action='store',
+                    required=True, help='the lookup table mapping Gentoo pkgs and Maven pkgs')
+
+if __name__ == '__main__':
+    args = parser.parse_args()
+
+    LUT = import_LUT(args.lut)
+    old_cache = csv.reader(
+            open(args.src, 'r'),
+            delimiter = ':')
+    new_cache = csv.writer(
+            open(args.dst, 'w'),
+            delimiter =':',
+            lineterminator='\n')
+    
+    for line in old_cache:
+        if len(line) == 1:
+            continue
+        elif line[0].startswith('#'):
+            continue
+        for equiv_id in lookup(LUT, line[0], line[1], line[3]):
+            line[5:7] = equiv_id
+            line[7] = line[2]
+            new_cache.writerow(line)
+
+
