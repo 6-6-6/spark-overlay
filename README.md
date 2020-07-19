@@ -14,20 +14,22 @@
 5. json4s-jackson
 
 ### ruby
-6. jruby: ruby source files exist
-7. jruby-complete
+1. jruby: ruby source files exist
+2. jruby-complete
 
 ### lombok
-8. lombok
+1. lombok
 
 ### java-simple
-- [] need more error message
-- [] src\_test()
+
+- [ ] need more error message
+- [ ] src\_test()
 
 ## java-ebuilder
-- [] deal with java-virtuals/\* packages
-- [] test scope dependencies
-- [] detect the need of tools.jar to support JAVA\_NEED\_TOOLS
+
+- [ ] deal with java-virtuals/\* packages
+- [ ] test scope dependencies
+- [ ] detect the need of tools.jar to support JAVA\_NEED\_TOOLS
 
 ## notes for dev-java
 
