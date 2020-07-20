@@ -103,7 +103,7 @@ RDEPEND="dev-util/japi-compliance-checker:0"
 # MANIFEST.MF and create a launcher.
 #
 # @CODE
-# JAVA_MAIN_CLASS="org.gentoo.java.ebuilder.Main"
+#	JAVA_MAIN_CLASS="org.gentoo.java.ebuilder.Main"
 # @CODE
 
 # @ECLASS-VARIABLE: JAVADOC_ARGS
@@ -256,6 +256,11 @@ java-pkg-simple_src_compile() {
 	# auto generate classpath
 	java-pkg_gen-cp JAVA_GENTOO_CLASSPATH
 
+	# do not compile if we decide to install binary jar
+	if has binary ${JAVA_PKG_IUSE} && use binary; then
+		return 0
+	fi
+
 	# gather sources
 	find ${JAVA_SRC_DIR:-*} -name \*.java > ${sources}
 
@@ -265,11 +270,6 @@ java-pkg-simple_src_compile() {
 	local classpath=""
 	java-pkg-simple_get-jars
 	java-pkg-simple_prepend-resources ${JAVA_RESOURCE_DIRS}
-
-	# do not compile if we decide to install binary jar
-	if has binary ${JAVA_PKG_IUSE} && use binary; then
-		return 0
-	fi
 
 	ejavac -d ${classes} -encoding ${JAVA_ENCODING} \
 		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS} \
