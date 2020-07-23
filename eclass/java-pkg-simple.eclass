@@ -367,6 +367,12 @@ java-pkg-simple_src_test() {
 			"is not compliant with binary Jar ${JAVA_BINJAR_FILENAME}."
 	fi
 
+	if ! has test ${JAVA_PKG_IUSE}; then
+		return
+	elif ! use test; then
+		return
+	fi
+
 	# get classpath
 	classpath="${JAVA_TEST_SRC_DIR}:${JAVA_JAR_FILENAME}"
 	java-pkg-simple_get-jars
