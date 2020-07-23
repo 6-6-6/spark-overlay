@@ -29,7 +29,7 @@ MAVEN_ID="org.apache.spark:spark-kvstore_2.12:3.0.0-preview2"
 # com.fasterxml.jackson.core:jackson-core:2.10.0 -> >=dev-java/jackson-2.11.0:2
 # com.fasterxml.jackson.core:jackson-databind:2.10.0 -> >=app-maven/jackson-databind-2.10.0:0
 # org.apache.spark:spark-tags_2.12:3.0.0-preview2 -> >=app-maven/spark-tags-3.0.0:2.12
-# org.fusesource.leveldbjni:leveldbjni-all:1.8 -> >=dev-java/leveldbjni-all-1.8:0
+# org.fusesource.leveldbjni:leveldbjni:1.8 -> >=dev-java/leveldbjni-1.8:0
 # org.spark-project.spark:unused:1.0.0 -> >=app-maven/unused-1.0.0:0
 
 CDEPEND="
@@ -38,7 +38,7 @@ CDEPEND="
 	>=app-maven/unused-1.0.0:0
 	>=dev-java/jackson-2.11.0:2
 	>=dev-java/jackson-annotations-2.11.0:2
-	>=dev-java/leveldbjni-all-1.8:0
+	>=dev-java/leveldbjni-1.8:0
 "
 
 # Compile dependencies
@@ -60,7 +60,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind,spark-tags-2.12,leveldbjni-all,unused"
+JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind,spark-tags-2.12,leveldbjni,unused"
 JAVA_CLASSPATH_EXTRA="guava"
 JAVA_SRC_DIR="src/main/java"
 

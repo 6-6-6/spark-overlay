@@ -28,7 +28,7 @@ MAVEN_ID="org.apache.hadoop:hadoop-yarn-server-common:2.5.1"
 # org.apache.hadoop:hadoop-yarn-api:2.5.1 -> >=app-maven/hadoop-yarn-api-2.5.1:0
 # org.apache.hadoop:hadoop-yarn-common:2.5.1 -> >=app-maven/hadoop-yarn-common-2.5.1:0
 # org.apache.zookeeper:zookeeper:3.4.6 -> >=app-maven/zookeeper-3.4.6:0
-# org.fusesource.leveldbjni:leveldbjni-all:1.8 -> >=dev-java/leveldbjni-all-1.8:0
+# org.fusesource.leveldbjni:leveldbjni:1.8 -> >=dev-java/leveldbjni-1.8:0
 
 CDEPEND="
 	>=app-maven/hadoop-annotations-2.5.1:0
@@ -37,7 +37,7 @@ CDEPEND="
 	>=app-maven/zookeeper-3.4.6:0
 	>=dev-java/commons-logging-1.2:0
 	>=dev-java/guava-29.0:0
-	>=dev-java/leveldbjni-all-1.8:0
+	>=dev-java/leveldbjni-1.8:0
 	>=dev-java/protobuf-java-3.11.4:0
 "
 
@@ -60,7 +60,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="guava,protobuf-java,commons-logging,hadoop-annotations,hadoop-yarn-api,hadoop-yarn-common,zookeeper,leveldbjni-all"
+JAVA_GENTOO_CLASSPATH="guava,protobuf-java,commons-logging,hadoop-annotations,hadoop-yarn-api,hadoop-yarn-common,zookeeper,leveldbjni"
 JAVA_CLASSPATH_EXTRA="hadoop-common"
 JAVA_SRC_DIR="src/main/java"
 

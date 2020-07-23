@@ -32,7 +32,7 @@ MAVEN_ID="org.apache.spark:spark-network-common_2.12:3.0.0-preview2"
 # io.netty:netty-all:4.1.42.Final -> >=dev-java/netty-all-5.0.0:0
 # org.apache.commons:commons-crypto:1.0.0 -> >=dev-java/commons-crypto-1.0.0:0
 # org.apache.commons:commons-lang3:3.9 -> >=dev-java/commons-lang-3.10:3.10
-# org.fusesource.leveldbjni:leveldbjni-all:1.8 -> >=dev-java/leveldbjni-all-1.8:0
+# org.fusesource.leveldbjni:leveldbjni:1.8 -> >=dev-java/leveldbjni-1.8:0
 # org.scala-lang:scala-library:2.12.10 -> >=dev-java/scala-common-bin-2.12.4:2.12
 # org.spark-project.spark:unused:1.0.0 -> >=app-maven/unused-1.0.0:0
 
@@ -44,7 +44,7 @@ CDEPEND="
 	>=dev-java/commons-lang-3.10:3.10
 	>=dev-java/jackson-annotations-2.11.0:2
 	>=dev-java/jsr305-3.0.1:0
-	>=dev-java/leveldbjni-all-1.8:0
+	>=dev-java/leveldbjni-1.8:0
 	>=dev-java/netty-all-5.0.0:0
 	>=dev-java/scala-common-bin-2.12.4:2.12
 "
@@ -68,7 +68,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-databind,jsr305,metrics-core,netty-all,commons-crypto,commons-lang-3.10,leveldbjni-all,scala-common-bin-2.12,unused"
+JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-databind,jsr305,metrics-core,netty-all,commons-crypto,commons-lang-3.10,leveldbjni,scala-common-bin-2.12,unused"
 JAVA_CLASSPATH_EXTRA="slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 

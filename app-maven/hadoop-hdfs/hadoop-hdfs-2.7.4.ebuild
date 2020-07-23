@@ -38,7 +38,7 @@ MAVEN_ID="org.apache.hadoop:hadoop-hdfs:2.7.4"
 # org.apache.htrace:htrace-core:3.1.0-incubating -> >=app-maven/htrace-core-3.1.0:0
 # org.codehaus.jackson:jackson-core-asl:1.9.13 -> >=app-maven/jackson-core-asl-1.9.13:0
 # org.codehaus.jackson:jackson-mapper-asl:1.9.13 -> >=app-maven/jackson-mapper-asl-1.9.13:0
-# org.fusesource.leveldbjni:leveldbjni-all:1.8 -> >=dev-java/leveldbjni-all-1.8:0
+# org.fusesource.leveldbjni:leveldbjni:1.8 -> >=dev-java/leveldbjni-1.8:0
 # org.mortbay.jetty:jetty:6.1.26 -> >=app-maven/jetty-6.1.26:6
 # org.mortbay.jetty:jetty-util:6.1.26 -> >=app-maven/jetty-util-6.1.26:6
 # xerces:xercesImpl:2.9.1 -> >=dev-java/xerces-2.12.0:2
@@ -61,7 +61,7 @@ CDEPEND="
 	>=dev-java/commons-lang-2.6:2.1
 	>=dev-java/commons-logging-1.2:0
 	>=dev-java/guava-29.0:0
-	>=dev-java/leveldbjni-all-1.8:0
+	>=dev-java/leveldbjni-1.8:0
 	>=dev-java/log4j-1.2.17:0
 	>=dev-java/netty-all-5.0.0:0
 	>=dev-java/protobuf-java-3.11.4:0
@@ -94,7 +94,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="guava,protobuf-java,jersey-core,jersey-server,commons-cli-1,commons-codec,commons-daemon,commons-io-1,commons-lang-2.1,commons-logging,netty,netty-all,servlet-api-4.0,log4j,htrace-core,jackson-core-asl,jackson-mapper-asl,leveldbjni-all,jetty-6,jetty-util-6,xerces-2,xmlenc"
+JAVA_GENTOO_CLASSPATH="guava,protobuf-java,jersey-core,jersey-server,commons-cli-1,commons-codec,commons-daemon,commons-io-1,commons-lang-2.1,commons-logging,netty,netty-all,servlet-api-4.0,log4j,htrace-core,jackson-core-asl,jackson-mapper-asl,leveldbjni,jetty-6,jetty-util-6,xerces-2,xmlenc"
 JAVA_CLASSPATH_EXTRA="hadoop-annotations,hadoop-auth,hadoop-common,slf4j-log4j12"
 JAVA_SRC_DIR="src/main/java"
 

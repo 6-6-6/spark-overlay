@@ -39,7 +39,7 @@ MAVEN_ID="org.apache.hadoop:hadoop-yarn-server-nodemanager:2.7.4"
 # org.apache.hadoop:hadoop-yarn-common:2.7.4 -> >=app-maven/hadoop-yarn-common-2.7.4:0
 # org.apache.hadoop:hadoop-yarn-server-common:2.7.4 -> >=app-maven/hadoop-yarn-server-common-2.7.4:0
 # org.codehaus.jettison:jettison:1.1 -> >=dev-java/jettison-1.3.7:0
-# org.fusesource.leveldbjni:leveldbjni-all:1.8 -> >=dev-java/leveldbjni-all-1.8:0
+# org.fusesource.leveldbjni:leveldbjni:1.8 -> >=dev-java/leveldbjni-1.8:0
 # org.mortbay.jetty:jetty-util:6.1.26 -> >=app-maven/jetty-util-6.1.26:6
 # org.slf4j:slf4j-api:1.7.10 -> >=dev-java/slf4j-api-1.7.28:0
 
@@ -60,7 +60,7 @@ CDEPEND="
 	>=dev-java/guava-29.0:0
 	>=dev-java/guice-4.1:4
 	>=dev-java/jettison-1.3.7:0
-	>=dev-java/leveldbjni-all-1.8:0
+	>=dev-java/leveldbjni-1.8:0
 	>=dev-java/protobuf-java-3.11.4:0
 	>=dev-java/slf4j-api-1.7.28:0
 	java-virtuals/servlet-api:4.0
@@ -85,7 +85,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="guava,guice-4,guice-4,protobuf-java,jersey-client,jersey-core,jersey-json,jersey-guice,commons-codec,commons-lang-2.1,commons-logging,servlet-api-4.0,jaxb-api,hadoop-annotations,hadoop-yarn-api,hadoop-yarn-common,hadoop-yarn-server-common,jettison,leveldbjni-all,jetty-util-6,slf4j-api"
+JAVA_GENTOO_CLASSPATH="guava,guice-4,guice-4,protobuf-java,jersey-client,jersey-core,jersey-json,jersey-guice,commons-codec,commons-lang-2.1,commons-logging,servlet-api-4.0,jaxb-api,hadoop-annotations,hadoop-yarn-api,hadoop-yarn-common,hadoop-yarn-server-common,jettison,leveldbjni,jetty-util-6,slf4j-api"
 JAVA_CLASSPATH_EXTRA="hadoop-common"
 JAVA_SRC_DIR="src/main/java"
 
