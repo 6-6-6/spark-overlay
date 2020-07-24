@@ -27,7 +27,7 @@ EXPORT_FUNCTIONS src_compile src_install src_test
 # We are only interested in finding all java source files, wherever they may be.
 S="${WORKDIR}"
 
-RDEPEND="dev-util/japi-compliance-checker:0"
+DEPEND="test? ( dev-util/japi-compliance-checker:0 )"
 
 # @ECLASS-VARIABLE: JAVA_GENTOO_CLASSPATH
 # @DEFAULT_UNSET
@@ -79,7 +79,7 @@ RDEPEND="dev-util/japi-compliance-checker:0"
 # @DESCRIPTION:
 # Directories relative to ${S} which contain the resources of
 # the application. If you do not set the variable, there will
-# be no resources added to the compiled jar file. 
+# be no resources added to the compiled jar file.
 #
 # @CODE
 #	JAVA_RESOURCE_DIRS=("src/java/resources/")
@@ -98,9 +98,9 @@ RDEPEND="dev-util/japi-compliance-checker:0"
 # @ECLASS-VARIABLE: JAVA_MAIN_CLASS
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# If the java hava a main class, you are going to
-# set the variable so that we can generate a proper
-# MANIFEST.MF and create a launcher.
+# If the java has a main class, you are going to set the
+# variable so that we can generate a proper MANIFEST.MF
+# and create a launcher.
 #
 # @CODE
 #	JAVA_MAIN_CLASS="org.gentoo.java.ebuilder.Main"
@@ -119,23 +119,20 @@ RDEPEND="dev-util/japi-compliance-checker:0"
 # @ECLASS-VARIABLE: JAVA_BINJAR_FILENAME
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# The name of the binary jar file to be compared
-# during src_test and to be installed if binary 
-# USE FLAG is set.
+# The name of the binary jar file to be compared during src_test
+# and to be installed if USE FLAG 'binary' is set.
 
 # @ECLASS-VARIABLE: JAVA_LAUNCHER_FILENAME
 # @DESCRIPTION:
-# If ${JAVA_MAIN_CLASS} is set, we will create a
-# launcher to execute the jar, and 
-# ${JAVA_LAUNCHER_FILENAME} will be the name of
-# the script.
+# If ${JAVA_MAIN_CLASS} is set, we will create a launcher to
+# execute the jar, and ${JAVA_LAUNCHER_FILENAME} will be the
+# name of the script.
 : ${JAVA_LAUNCHER_FILENAME:=${PN}-${SLOT}}
 
 # @ECLASS-VARIABLE: JAVA_TESTING_FRAMEWORK
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# The test framework that we will launch during
-# src_test.
+# The test framework that we will launch during src_test.
 # Currently, the only option is "junit".
 #
 # @CODE
@@ -145,18 +142,18 @@ RDEPEND="dev-util/japi-compliance-checker:0"
 # @ECLASS-VARIABLE: JAVA_GENTOO_TEST_CLASSPATH
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# The extra classpath we need while compiling and
-# running the source code for testing.
+# The extra classpath we need while compiling and running the
+# source code for testing.
 
 # @ECLASS-VARIABLE: JAVA_TEST_SRC_DIR
 # @DEFAULT_UNSET
 # Directories relative to ${S} which contain the sources of the
-# test. It is almost the equivalent of ${JAVA_SRC_DIR} for src_test.
+# test. It is almost equivalent to ${JAVA_SRC_DIR} in src_test.
 
 # @DESCRIPTION:
 # @ECLASS-VARIABLE: JAVA_TEST_RESOURCE_DIRS
 # @DEFAULT_UNSET
-# It is almost the equivalent of ${JAVA_RESOURCE_DIRS} for src_test.
+# It is almost equivalent to ${JAVA_RESOURCE_DIRS} in src_test.
 
 # @FUNCTION: java-pkg-simple_get-jars
 # @DESCRIPTION:
@@ -213,7 +210,7 @@ java-pkg-simple_get-jars() {
 java-pkg-simple_junit-test() {
 	local tests_to_run
 
-	tests_to_run=$(find "${JAVA_TEST_SRC_DIR}" \-type f\
+	tests_to_run=$(find "${JAVA_TEST_SRC_DIR:-*}" \-type f\
 		-name "*Test.java" ! -name "Abstract*")
 	tests_to_run=${tests_to_run//"${JAVA_TEST_SRC_DIR}"\/}
 	tests_to_run=${tests_to_run//.java}
@@ -247,7 +244,7 @@ java-pkg-simple_prepend-resources() {
 # src_compile for simple bare source java packages. Finds all *.java
 # sources in ${JAVA_SRC_DIR}, compiles them with the classpath
 # calculated from ${JAVA_GENTOO_CLASSPATH}, and packages the resulting
-# classes to a single ${JAVA_JAR_FILENAME}. If the file 
+# classes to a single ${JAVA_JAR_FILENAME}. If the file
 # target/META-INF/MANIFEST.MF exists, it is used as the manifest of the
 # created jar.
 java-pkg-simple_src_compile() {
@@ -298,14 +295,14 @@ java-pkg-simple_src_compile() {
 
 	# prepend resources
 	for resource in ${JAVA_RESOURCE_DIRS}; do
-		jar uf ${JAVA_JAR_FILENAME} -C ${resource} .\
+		jar uf ${JAVA_JAR_FILENAME} -C ${resource:-*} .\
 			|| die "Failed to add resources"
 	done
 }
 
 # @FUNCTION: java-pkg-simple_src_install
 # @DESCRIPTION:
-# src_install for simple single jar java packages. Simply installs 
+# src_install for simple single jar java packages. Simply installs
 # ${JAVA_JAR_FILENAME} or ${JAVA_BINJAR_FILENAME} if "binary" is set.
 # It will also install a launcher if ${JAVA_MAIN_CLASS} is set.
 java-pkg-simple_src_install() {
@@ -313,7 +310,7 @@ java-pkg-simple_src_install() {
 
 	# install the jar file that we need
 	if has binary ${JAVA_PKG_IUSE} && use binary; then
-		java-pkg_dojar ${DISTDIR}/${JAVA_BINJAR_FILENAME}
+		java-pkg_dojar "${DISTDIR}"/${JAVA_BINJAR_FILENAME}
 	else
 		# main jar
 		java-pkg_dojar ${JAVA_JAR_FILENAME}
