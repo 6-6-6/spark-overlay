@@ -166,6 +166,8 @@ java-pkg-simple_get-jars() {
 	local deep_jars="--with-dependencies"
 	local buildonly_jars="--build-only"
 
+	debug-print-function ${FUNCNAME} $*
+
 	# the extra classes that are not installed by portage
 	classpath+=":${JAVA_GENTOO_CLASSPATH_EXTRA}"
 
@@ -210,10 +212,12 @@ java-pkg-simple_get-jars() {
 java-pkg-simple_junit-test() {
 	local tests_to_run
 
-	tests_to_run=$(find "${JAVA_TEST_SRC_DIR:-.}" \-type f\
-		-name "*Test.java" ! -name "Abstract*")
-	tests_to_run=${tests_to_run//"${JAVA_TEST_SRC_DIR}"\/}
-	tests_to_run=${tests_to_run//.java}
+	debug-print-function ${FUNCNAME} $*
+
+	tests_to_run=$(find "${classes}" \-type f\
+		-name "*Test.class" ! -name "Abstract*" ! -name "*\$*")
+	tests_to_run=${tests_to_run//"${classes}"\/}
+	tests_to_run=${tests_to_run//.class}
 	tests_to_run=${tests_to_run//\//.}
 
 	ejunit4 -classpath ${classpath} ${tests_to_run}
@@ -226,6 +230,8 @@ java-pkg-simple_junit-test() {
 # and prepend the directories in the array to ${classpath}.
 java-pkg-simple_prepend-resources() {
 	local resources=("${@}")
+
+	debug-print-function ${FUNCNAME} $*
 
 	# add resources directory to classpath
 	for resource in "${resources[@]}"; do
@@ -352,15 +358,13 @@ java-pkg-simple_src_install() {
 # with upstream distributed file ${JAVA_BINJAR_FILENAME} if they both exist.
 # Then it will perform test with framework defined by ${JAVA_TESTING_FRAMEWORK}.
 java-pkg-simple_src_test() {
-	local test_sources=test_sources.lst classpath
-
-	debug-print-function ${FUNCNAME} $*
+	local test_sources=test_sources.lst classes=target/testclasses classpath
 
 	# check whether the compiled jar is compliant with binary jar
 	if [[ "${JAVA_BINJAR_FILENAME}" ]] && [[ -f "${JAVA_JAR_FILENAME}" ]]; then
 		japi-compliance-checker --lib=${PN} \
-			${DISTDIR}/${JAVA_BINJAR_FILENAME} \
-			${S}/${JAVA_JAR_FILENAME} \
+			"${DISTDIR}"/${JAVA_BINJAR_FILENAME} \
+			"${S}"/${JAVA_JAR_FILENAME} \
 			|| ewarn "Natively compiled Jar ${JAVA_JAR_FILENAME}" \
 			"is not compliant with binary Jar ${JAVA_BINJAR_FILENAME}."
 	fi
@@ -371,14 +375,17 @@ java-pkg-simple_src_test() {
 		return
 	fi
 
+	# create the directory containing test classes
+	mkdir -p ${classes} || die "Could not create target directory for testing"
+
 	# get classpath
-	classpath="${JAVA_TEST_SRC_DIR}:${JAVA_JAR_FILENAME}"
+	classpath="${classes}:${JAVA_JAR_FILENAME}"
 	java-pkg-simple_get-jars
 	java-pkg-simple_prepend-resources "${JAVA_TEST_RESOURCE_DIRS[@]}"
 
 	# compile
-	find ${JAVA_TEST_SRC_DIR:-.} -name \*.java > ${test_sources}
-	ejavac -d ${JAVA_TEST_SRC_DIR:-.} -encoding ${JAVA_ENCODING} \
+	find ${JAVA_TEST_SRC_DIR:-*} -name \*.java > ${test_sources}
+	ejavac -d ${classes} -encoding ${JAVA_ENCODING} \
 		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS} \
 		@${test_sources}
 
