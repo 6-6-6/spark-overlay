@@ -1,7 +1,16 @@
 
 # emerge spark-core
 
-## ECLASSES
+## extra ECLASSES
+### java-simple
+
+- [x] need more error message
+- [x] src\_test()
+- [ ] pkgdiff
+- [x] JAVA_SRC_DIR=("dir1" "dir2")
+- [x] JAVA_TEST_SRC_DIR=("dir1" "dir2")
+- [ ] weld-core(cal10n resource bundle)
+
 ### kotlin
 1. okio
 2. okhttp
@@ -19,11 +28,6 @@
 
 ### lombok
 1. lombok
-
-### java-simple
-
-- [ ] need more error message
-- [ ] src\_test()
 
 ## java-ebuilder
 
