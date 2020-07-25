@@ -210,7 +210,7 @@ java-pkg-simple_get-jars() {
 java-pkg-simple_junit-test() {
 	local tests_to_run
 
-	tests_to_run=$(find "${JAVA_TEST_SRC_DIR:-*}" \-type f\
+	tests_to_run=$(find "${JAVA_TEST_SRC_DIR:-.}" \-type f\
 		-name "*Test.java" ! -name "Abstract*")
 	tests_to_run=${tests_to_run//"${JAVA_TEST_SRC_DIR}"\/}
 	tests_to_run=${tests_to_run//.java}
@@ -222,13 +222,14 @@ java-pkg-simple_junit-test() {
 
 # @FUNCTION: java-pkg-simple_prepend-resources
 # @DESCRIPTION:
-# Accept ${JAVA_RESOURCE_DIRS} or ${JAVA_TEST_RESOURCE_DIRS}
-# and prepend the directories in ${1} to ${classpath}.
+# Accept "${JAVA_RESOURCE_DIRS[@]}" or "${JAVA_TEST_RESOURCE_DIRS[@]}"
+# and prepend the directories in the array to ${classpath}.
 java-pkg-simple_prepend-resources() {
+	local resources=("${@}")
 
 	# add resources directory to classpath
-	for resources in ${1}; do
-		classpath+=":${resources}"
+	for resource in "${resources[@]}"; do
+		classpath+=":${resource}"
 	done
 
 	# purify classpath
@@ -266,7 +267,7 @@ java-pkg-simple_src_compile() {
 	# compile
 	local classpath=""
 	java-pkg-simple_get-jars
-	java-pkg-simple_prepend-resources ${JAVA_RESOURCE_DIRS}
+	java-pkg-simple_prepend-resources "${JAVA_RESOURCE_DIRS[@]}"
 
 	ejavac -d ${classes} -encoding ${JAVA_ENCODING} \
 		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS} \
@@ -294,9 +295,9 @@ java-pkg-simple_src_compile() {
 	jar ${jar_args} -C ${classes} . || die "jar failed"
 
 	# prepend resources
-	for resource in ${JAVA_RESOURCE_DIRS}; do
-		jar uf ${JAVA_JAR_FILENAME} -C ${resource:-*} .\
-			|| die "Failed to add resources"
+	for resource in "${JAVA_RESOURCE_DIRS[@]}"; do
+		jar uf ${JAVA_JAR_FILENAME} -C "${resource:-.}" .\
+			|| die "Failed to add resources to ${JAVA_JAR_FILENAME}"
 	done
 }
 
@@ -318,7 +319,7 @@ java-pkg-simple_src_install() {
 
 	# install a wrapper if ${JAVA_MAIN_CLASS} is defined
 	if [[ ${JAVA_MAIN_CLASS} ]]; then
-		java-pkg_dolauncher ${JAVA_LAUNCHER_FILENAME} --main ${JAVA_MAIN_CLASS}
+		java-pkg_dolauncher "${JAVA_LAUNCHER_FILENAME}" --main ${JAVA_MAIN_CLASS}
 	fi
 
 	# javadoc
@@ -373,11 +374,11 @@ java-pkg-simple_src_test() {
 	# get classpath
 	classpath="${JAVA_TEST_SRC_DIR}:${JAVA_JAR_FILENAME}"
 	java-pkg-simple_get-jars
-	java-pkg-simple_prepend-resources ${JAVA_TEST_RESOURCE_DIRS}
+	java-pkg-simple_prepend-resources "${JAVA_TEST_RESOURCE_DIRS[@]}"
 
 	# compile
-	find ${JAVA_TEST_SRC_DIR:-*} -name \*.java > ${test_sources}
-	ejavac -d ${JAVA_TEST_SRC_DIR} -encoding ${JAVA_ENCODING} \
+	find ${JAVA_TEST_SRC_DIR:-.} -name \*.java > ${test_sources}
+	ejavac -d ${JAVA_TEST_SRC_DIR:-.} -encoding ${JAVA_ENCODING} \
 		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS} \
 		@${test_sources}
 
