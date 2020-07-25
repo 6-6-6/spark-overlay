@@ -167,11 +167,11 @@ S="${WORKDIR}"
 # Note that you need to define a "classpath" variable before
 # calling this function.
 java-pkg-simple_getclasspath() {
+	debug-print-function ${FUNCNAME} $*
+
 	local denpendency
 	local deep_jars="--with-dependencies"
 	local buildonly_jars="--build-only"
-
-	debug-print-function ${FUNCNAME} $*
 
 	# the extra classes that are not installed by portage
 	classpath+=":${JAVA_GENTOO_CLASSPATH_EXTRA}"
@@ -182,17 +182,19 @@ java-pkg-simple_getclasspath() {
 	# the extra classes that are installed by portage
 	for dependency in ${JAVA_CLASSPATH_EXTRA}; do
 		classpath="${classpath}:$(java-pkg_getjars ${buildonly_jars}\
-			${deep_jars} ${dependency})" \
+			${deep_jars} ${dependency})"\
 			|| die "getjars failed for ${dependency}"
 	done
 
 	# add test dependencies, build-only flag is enabled
 	#   so it will not cause problems
-	for dependency in ${JAVA_GENTOO_TEST_CLASSPATH}; do
-		classpath="${classpath}:$(java-pkg_getjars ${buildonly_jars}\
-			${deep_jars} ${dependency})" \
-			|| die "getjars failed for ${dependency}"
-	done
+	if has test ${JAVA_PKG_IUSE} && use test; then
+		for dependency in ${JAVA_GENTOO_TEST_CLASSPATH}; do
+			classpath="${classpath}:$(java-pkg_getjars ${buildonly_jars}\
+				${deep_jars} ${dependency})" \
+				|| die "getjars failed for ${dependency}"
+		done
+	fi
 
 	# add the RUNTIME dependencies
 	for dependency in ${JAVA_GENTOO_CLASSPATH}; do
@@ -212,9 +214,9 @@ java-pkg-simple_getclasspath() {
 # @DESCRIPTION:
 # Launch test using ejunit4.
 java-pkg-simple_junit-test() {
-	local tests_to_run
-
 	debug-print-function ${FUNCNAME} $*
+
+	local tests_to_run
 
 	tests_to_run=$(find "${classes}" \-type f\
 		-name "*Test.class" ! -name "Abstract*" ! -name "*\$*")
@@ -235,9 +237,9 @@ java-pkg-simple_junit-test() {
 # Note that you need to define a "classpath" variable before calling
 # this function.
 java-pkg-simple_prepend-resources() {
-	local resources=("${@}")
-
 	debug-print-function ${FUNCNAME} $*
+
+	local resources=("${@}")
 
 	# add resources directory to classpath
 	for resource in "${resources[@]}"; do
