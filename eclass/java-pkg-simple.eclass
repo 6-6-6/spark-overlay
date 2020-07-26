@@ -27,6 +27,17 @@ EXPORT_FUNCTIONS src_compile src_install src_test
 # We are only interested in finding all java source files, wherever they may be.
 S="${WORKDIR}"
 
+# If it is possible, we will use pkgdiff to make sure our jar file is compatible
+# with the binary jars distributed by upstream.
+#
+# We are filtering out those *-macos and *-solaris machines, because
+# the KEYWORD of sys-devel/binutils does not include those hosts.
+if [[ ! ${ARCH} =~ ^.*-(macos|solaris)$ ]]; then
+	if has test ${JAVA_PKG_IUSE}; then
+		DEPEND="test? ( dev-util/pkgdiff:0 )"
+	fi
+fi
+
 # @ECLASS-VARIABLE: JAVA_GENTOO_CLASSPATH
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -69,7 +80,9 @@ S="${WORKDIR}"
 # actually the roots of the corresponding source trees.
 #
 # @CODE
-#	JAVA_SRC_DIR=( "src/java/org/gentoo" "src/java/com" )
+#	JAVA_SRC_DIR=( "impl/src/main/java/"
+#		"arquillian/weld-ee-container/src/main/java/"
+#	)
 # @CODE
 : ${JAVA_SRC_DIR:=.}
 
@@ -186,8 +199,7 @@ java-pkg-simple_getclasspath() {
 			|| die "getjars failed for ${dependency}"
 	done
 
-	# add test dependencies, build-only flag is enabled
-	#   so it will not cause problems
+	# add test dependencies if USE FLAG 'test' is set
 	if has test ${JAVA_PKG_IUSE} && use test; then
 		for dependency in ${JAVA_GENTOO_TEST_CLASSPATH}; do
 			classpath="${classpath}:$(java-pkg_getjars ${buildonly_jars}\
@@ -263,7 +275,7 @@ java-pkg-simple_prepend-resources() {
 # target/META-INF/MANIFEST.MF exists, it is used as the manifest of the
 # created jar.
 #
-# If 'binary' USE FLAG exists and is set, it will just copy
+# If USE FLAG 'binary' exists and is set, it will just copy
 # ${JAVA_BINJAR_FILENAME} to ${S} and skip src_compile.
 java-pkg-simple_src_compile() {
 	local sources=sources.lst classes=target/classes apidoc=target/api
@@ -370,15 +382,30 @@ java-pkg-simple_src_install() {
 # It will perform test with framework defined by ${JAVA_TESTING_FRAMEWORK}.
 java-pkg-simple_src_test() {
 	local test_sources=test_sources.lst classes=target/testclasses classpath
+	local report=${PN}-pkgdiff.html
 
-	# final check
+	# do not continue if the USE FLAG 'test' is explicitly unset.
 	if ! has test ${JAVA_PKG_IUSE}; then
 		return
 	elif ! use test; then
 		return
 	fi
 
-	# create the directory containing test classes
+	# no macos and solaris because they do not have sys-devel/binutils
+	if [[ ! ${ARCH} =~ ^.*-(macos|solaris)$ ]]; then
+		if [[ -f "${DISTDIR}/${JAVA_BINJAR_FILENAME}" ]]; then
+			# pkgdiff cannot deal with symlinks, so this is a workaround
+			cp "${DISTDIR}/${JAVA_BINJAR_FILENAME}" ./ \
+				|| die "Cannot copy binjar file to ${S}."
+
+			# ignore META-INF since it does not matter
+			pkgdiff ${JAVA_BINJAR_FILENAME} ${JAVA_JAR_FILENAME}\
+				-name ${PN} -skip-pattern META-INF -report-path ${report}\
+				|| die "pkgdiff returns $?, check the report in ${S}/${report}"
+		fi
+	fi
+
+	# create the target directory
 	mkdir -p ${classes} || die "Could not create target directory for testing"
 
 	# get classpath
