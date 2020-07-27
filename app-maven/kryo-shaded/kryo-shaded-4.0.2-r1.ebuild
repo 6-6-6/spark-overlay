@@ -27,6 +27,7 @@ MAVEN_ID="com.esotericsoftware:kryo-shaded:4.0.2"
 CDEPEND="
 	>=dev-java/minlog-1.3.1:0
 	>=dev-java/objenesis-2.5.1:0
+	dev-java/reflectasm:0
 "
 
 
@@ -44,7 +45,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="minlog,objenesis"
+JAVA_GENTOO_CLASSPATH="minlog,objenesis,reflectasm"
 JAVA_SRC_DIR="src"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

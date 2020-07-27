@@ -22,7 +22,7 @@ MAVEN_ID="org.apache.hadoop:hadoop-yarn-client:2.5.1"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.google.guava:guava:11.0.2 -> >=dev-java/guava-29.0:0
-# com.sun.jersey:jersey-client:1.9 -> >=app-maven/jersey-client-1.9:0
+# com.sun.jersey:jersey-client:1.9 -> >=app-maven/jersey-client-1.9:1
 # commons-cli:commons-cli:1.2 -> >=dev-java/commons-cli-1.3.1:1
 # commons-lang:commons-lang:2.6 -> >=dev-java/commons-lang-2.6:2.1
 # commons-logging:commons-logging:1.1.3 -> >=dev-java/commons-logging-1.2:0
@@ -36,7 +36,7 @@ CDEPEND="
 	>=app-maven/hadoop-annotations-2.5.1:0
 	>=app-maven/hadoop-yarn-api-2.5.1:0
 	>=app-maven/hadoop-yarn-common-2.5.1:0
-	>=app-maven/jersey-client-1.9:0
+	>=app-maven/jersey-client-1.9:1
 	>=app-maven/jetty-util-6.1.26:6
 	>=dev-java/commons-cli-1.3.1:1
 	>=dev-java/commons-lang-2.6:2.1
@@ -64,7 +64,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="guava,jersey-client,commons-cli-1,commons-lang-2.1,commons-logging,log4j,hadoop-annotations,hadoop-yarn-api,hadoop-yarn-common,jetty-util-6"
+JAVA_GENTOO_CLASSPATH="guava,jersey-client-1,commons-cli-1,commons-lang-2.1,commons-logging,log4j,hadoop-annotations,hadoop-yarn-api,hadoop-yarn-common,jetty-util-6"
 JAVA_CLASSPATH_EXTRA="hadoop-common"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

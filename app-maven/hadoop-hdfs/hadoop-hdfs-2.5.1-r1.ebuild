@@ -23,8 +23,8 @@ MAVEN_ID="org.apache.hadoop:hadoop-hdfs:2.5.1"
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.google.guava:guava:11.0.2 -> >=dev-java/guava-29.0:0
 # com.google.protobuf:protobuf-java:2.5.0 -> >=dev-java/protobuf-java-3.11.4:0
-# com.sun.jersey:jersey-core:1.9 -> >=app-maven/jersey-core-1.9:0
-# com.sun.jersey:jersey-server:1.9 -> >=app-maven/jersey-server-1.9:0
+# com.sun.jersey:jersey-core:1.9 -> >=app-maven/jersey-core-1.9:1
+# com.sun.jersey:jersey-server:1.9 -> >=app-maven/jersey-server-1.9:1
 # commons-cli:commons-cli:1.2 -> >=dev-java/commons-cli-1.3.1:1
 # commons-codec:commons-codec:1.4 -> >=dev-java/commons-codec-1.7:0
 # commons-daemon:commons-daemon:1.0.13 -> >=dev-java/commons-daemon-1.0.15:0
@@ -46,8 +46,8 @@ CDEPEND="
 	>=app-maven/jackson-core-asl-1.9.13:0
 	>=app-maven/jackson-mapper-asl-1.9.13:0
 	>=app-maven/jasper-runtime-5.5.23:0
-	>=app-maven/jersey-core-1.9:0
-	>=app-maven/jersey-server-1.9:0
+	>=app-maven/jersey-core-1.9:1
+	>=app-maven/jersey-server-1.9:1
 	>=app-maven/jetty-6.1.26:6
 	>=app-maven/jetty-util-6.1.26:6
 	>=app-maven/netty-3.7.0:0
@@ -90,7 +90,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="guava,protobuf-java,jersey-core,jersey-server,commons-cli-1,commons-codec,commons-daemon,commons-io-1,commons-lang-2.1,commons-logging,netty,servlet-4.0,jsp-2.3,log4j,jackson-core-asl,jackson-mapper-asl,jetty-6,jetty-util-6,jasper-runtime,xmlenc"
+JAVA_GENTOO_CLASSPATH="guava,protobuf-java,jersey-core-1,jersey-server-1,commons-cli-1,commons-codec,commons-daemon,commons-io-1,commons-lang-2.1,commons-logging,netty,servlet-4.0,jsp-2.3,log4j,jackson-core-asl,jackson-mapper-asl,jetty-6,jetty-util-6,jasper-runtime,xmlenc"
 JAVA_CLASSPATH_EXTRA="hadoop-annotations,hadoop-auth,hadoop-common,slf4j-log4j12"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

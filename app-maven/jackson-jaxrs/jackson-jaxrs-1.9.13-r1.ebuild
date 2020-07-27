@@ -28,6 +28,9 @@ MAVEN_ID="org.codehaus.jackson:jackson-jaxrs:1.9.13"
 CDEPEND="
 	>=app-maven/jackson-core-asl-1.9.13:0
 	>=app-maven/jackson-mapper-asl-1.9.13:0
+
+	java-virtuals/ws-rs-api:0
+	>=app-maven/jackson-xc-${PV}
 "
 
 
@@ -45,7 +48,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-core-asl,jackson-mapper-asl"
+JAVA_GENTOO_CLASSPATH="jackson-core-asl,jackson-mapper-asl,ws-rs-api,jackson-xc"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

@@ -29,7 +29,7 @@ MAVEN_ID="org.apache.hadoop:hadoop-mapreduce-client-shuffle:2.5.1"
 # org.apache.hadoop:hadoop-mapreduce-client-common:2.5.1 -> >=app-maven/hadoop-mapreduce-client-common-2.5.1:0
 # org.apache.hadoop:hadoop-yarn-server-common:2.5.1 -> >=app-maven/hadoop-yarn-server-common-2.5.1:0
 # org.apache.hadoop:hadoop-yarn-server-nodemanager:2.5.1 -> >=app-maven/hadoop-yarn-server-nodemanager-2.5.1:0
-# org.fusesource.leveldbjni:leveldbjni-all:1.8 -> >=dev-java/leveldbjni-all-1.8:0
+# org.fusesource.leveldbjni:leveldbjni-all:1.8 -> >=dev-java/leveldbjni-1.8:0
 # org.slf4j:slf4j-api:1.7.5 -> >=dev-java/slf4j-api-1.7.7:0
 # org.slf4j:slf4j-log4j12:1.7.5 -> >=dev-java/slf4j-log4j12-1.7.7:0
 
@@ -41,7 +41,7 @@ CDEPEND="
 	>=app-maven/hadoop-yarn-server-nodemanager-2.5.1:0
 	>=app-maven/netty-3.7.0:0
 	>=dev-java/guice-4.1:4
-	>=dev-java/leveldbjni-all-1.8:0
+	>=dev-java/leveldbjni-1.8:0
 	>=dev-java/protobuf-java-3.11.4:0
 	>=dev-java/slf4j-api-1.7.7:0
 	>=dev-java/slf4j-log4j12-1.7.7:0
@@ -78,7 +78,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="guice-4,protobuf-java,netty,avro,hadoop-annotations,hadoop-mapreduce-client-common,hadoop-yarn-server-common,hadoop-yarn-server-nodemanager,leveldbjni-all,slf4j-api,slf4j-log4j12"
+JAVA_GENTOO_CLASSPATH="guice-4,protobuf-java,netty,avro,hadoop-annotations,hadoop-mapreduce-client-common,hadoop-yarn-server-common,hadoop-yarn-server-nodemanager,leveldbjni,slf4j-api,slf4j-log4j12"
 JAVA_CLASSPATH_EXTRA="guava,commons-cli-1,commons-codec,commons-collections,commons-lang-2.1,commons-logging,hadoop-common"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

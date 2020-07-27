@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/netty-3.2.7.Final.pom --download-uri https://repo1.maven.org/maven2/org/jboss/netty/netty/3.2.7.Final/netty-3.2.7.Final-sources.jar --slot 0 --keywords "~amd64" --ebuild netty-3.2.7-r1.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/netty-3.2.7.Final.pom --download-uri https://repo1.maven.org/maven2/org/jboss/netty/netty/3.2.7.Final/netty-3.2.7.Final-sources.jar --slot 3.2 --keywords "~amd64" --ebuild netty-3.2.7-r1.ebuild
 
 EAPI=7
 
@@ -21,7 +21,7 @@ HOMEPAGE="http://www.jboss.org/netty/"
 SRC_URI="https://repo1.maven.org/maven2/org/jboss/${PN}/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/jboss/${PN}/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar"
 LICENSE=""
-SLOT="0"
+SLOT="3.2"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jboss.netty:netty:3.2.7.Final"
 

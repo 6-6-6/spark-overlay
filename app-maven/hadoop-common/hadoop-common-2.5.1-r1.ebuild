@@ -25,9 +25,9 @@ MAVEN_ID="org.apache.hadoop:hadoop-common:2.5.1"
 # com.google.guava:guava:11.0.2 -> >=dev-java/guava-29.0:0
 # com.google.protobuf:protobuf-java:2.5.0 -> >=dev-java/protobuf-java-3.11.4:0
 # com.jcraft:jsch:0.1.42 -> >=dev-java/jsch-0.1.52:0
-# com.sun.jersey:jersey-core:1.9 -> >=app-maven/jersey-core-1.9:0
-# com.sun.jersey:jersey-json:1.9 -> >=app-maven/jersey-json-1.9:0
-# com.sun.jersey:jersey-server:1.9 -> >=app-maven/jersey-server-1.9:0
+# com.sun.jersey:jersey-core:1.9 -> >=app-maven/jersey-core-1.9:1
+# com.sun.jersey:jersey-json:1.9 -> >=app-maven/jersey-json-1.9:1
+# com.sun.jersey:jersey-server:1.9 -> >=app-maven/jersey-server-1.9:1
 # commons-cli:commons-cli:1.2 -> >=dev-java/commons-cli-1.3.1:1
 # commons-codec:commons-codec:1.4 -> >=dev-java/commons-codec-1.7:0
 # commons-collections:commons-collections:3.2.1 -> >=dev-java/commons-collections-3.2.1:0
@@ -59,9 +59,9 @@ CDEPEND="
 	>=app-maven/hadoop-auth-2.5.1:0
 	>=app-maven/jackson-core-asl-1.9.13:0
 	>=app-maven/jackson-mapper-asl-1.9.13:0
-	>=app-maven/jersey-core-1.9:0
-	>=app-maven/jersey-json-1.9:0
-	>=app-maven/jersey-server-1.9:0
+	>=app-maven/jersey-core-1.9:1
+	>=app-maven/jersey-json-1.9:1
+	>=app-maven/jersey-server-1.9:1
 	>=app-maven/jets3t-0.9.0:0
 	>=app-maven/jetty-6.1.26:6
 	>=app-maven/jetty-util-6.1.26:6
@@ -123,7 +123,7 @@ ${CDEPEND}
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jsr305,guava,protobuf-java,jsch,jersey-core,jersey-json,jersey-server,commons-cli-1,commons-codec,commons-collections,commons-configuration,commons-httpclient-3,commons-io-1,commons-lang-2.1,commons-logging,commons-net,servlet-4.0,log4j,jets3t,avro,commons-compress,commons-math-3,hadoop-annotations,hadoop-auth,zookeeper,jackson-core-asl,jackson-mapper-asl,jetty-6,jetty-util-6,slf4j-api,xmlenc,commons-el,jsp-2.3,slf4j-log4j12,jasper-compiler,jasper-runtime"
+JAVA_GENTOO_CLASSPATH="jsr305,guava,protobuf-java,jsch,jersey-core-1,jersey-json-1,jersey-server-1,commons-cli-1,commons-codec,commons-collections,commons-configuration,commons-httpclient-3,commons-io-1,commons-lang-2.1,commons-logging,commons-net,servlet-4.0,log4j,jets3t,avro,commons-compress,commons-math-3,hadoop-annotations,hadoop-auth,zookeeper,jackson-core-asl,jackson-mapper-asl,jetty-6,jetty-util-6,slf4j-api,xmlenc,commons-el,jsp-2.3,slf4j-log4j12,jasper-compiler,jasper-runtime"
 JAVA_CLASSPATH_EXTRA="ant-core"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

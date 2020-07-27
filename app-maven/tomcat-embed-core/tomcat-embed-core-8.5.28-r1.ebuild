@@ -25,6 +25,10 @@ MAVEN_ID="org.apache.tomcat.embed:tomcat-embed-core:8.5.28"
 
 CDEPEND="
 	>=app-maven/tomcat-annotations-api-8.5.28:0
+	java-virtuals/servlet-api:4.0
+	java-virtuals/ejb-api:0
+	app-maven/javax-mail:0
+	app-maven/javax-persistence:0
 "
 
 
@@ -42,7 +46,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="tomcat-annotations-api"
+JAVA_GENTOO_CLASSPATH="tomcat-annotations-api,servlet-api-4.0,ejb-api,javax-mail,javax-persistence"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

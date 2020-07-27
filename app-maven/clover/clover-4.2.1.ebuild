@@ -13,7 +13,6 @@ inherit java-pkg-2 java-pkg-simple
 DESCRIPTION="Clover is an award winning code coverage and testing tool for Java and Groovy.
         It integrates easily with Maven, Ant, Grails, Eclipse and IntelliJ IDEA
         as well as with continuous integration servers such as Bamboo, Jenkins or Hudson.
-
         Note: before Clover 4.0 this artifact was named com.cenqua.clover:clover."
 HOMEPAGE="http://openclover.org"
 SRC_URI="https://repo1.maven.org/maven2/org/open${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar

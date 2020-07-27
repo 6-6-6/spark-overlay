@@ -28,10 +28,12 @@ DEPEND="
 
 RDEPEND="
 	>=virtual/jre-1.7:*
+	dev-java/jetty-npn-api:0
 "
 
 S="${WORKDIR}"
 
+JAVA_GENTOO_CLASSPATH="jetty-npn-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

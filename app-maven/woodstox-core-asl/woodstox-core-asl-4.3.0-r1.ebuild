@@ -28,6 +28,9 @@ MAVEN_ID="org.codehaus.woodstox:woodstox-core-asl:4.3.0"
 CDEPEND="
 	>=dev-java/stax2-api-4.0.0:0
 	java-virtuals/stax-api:0
+	dev-java/relaxng-datatype:0
+	dev-java/osgi-framework:6
+	dev-java/msv:0
 "
 
 
@@ -45,7 +48,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="stax,stax2-api"
+JAVA_GENTOO_CLASSPATH="stax-api,stax2-api,relaxng-datatype,osgi-framework-6,msv"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

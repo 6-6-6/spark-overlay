@@ -22,11 +22,11 @@ MAVEN_ID="org.apache.curator:curator-framework:2.7.1"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.google.guava:guava:16.0.1 -> >=dev-java/guava-29.0:0
-# org.apache.curator:curator-client:2.7.1 -> >=app-maven/curator-client-2.8.0:0
+# org.apache.curator:curator-client:2.7.1 -> >=app-maven/curator-client-2.7.1:0
 # org.apache.zookeeper:zookeeper:3.4.6 -> >=app-maven/zookeeper-3.4.6:0
 
 CDEPEND="
-	>=app-maven/curator-client-2.8.0:0
+	>=app-maven/curator-client-2.7.1:0
 	>=app-maven/zookeeper-3.4.6:0
 	>=dev-java/guava-29.0:0
 "

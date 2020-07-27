@@ -22,7 +22,7 @@ MAVEN_ID="org.apache.hadoop:hadoop-auth:2.7.4"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # commons-codec:commons-codec:1.4 -> >=dev-java/commons-codec-1.7:0
-# org.apache.curator:curator-framework:2.7.1 -> >=app-maven/curator-framework-2.8.0:0
+# org.apache.curator:curator-framework:2.7.1 -> >=app-maven/curator-framework-2.7.1:0
 # org.apache.directory.server:apacheds-kerberos-codec:2.0.0-M15 -> >=app-maven/apacheds-kerberos-codec-2.0.0:0
 # org.apache.httpcomponents:httpclient:4.2.5 -> >=dev-java/httpcomponents-client-4.5:4.5
 # org.apache.zookeeper:zookeeper:3.4.6 -> >=app-maven/zookeeper-3.4.6:0
@@ -30,7 +30,7 @@ MAVEN_ID="org.apache.hadoop:hadoop-auth:2.7.4"
 
 CDEPEND="
 	>=app-maven/apacheds-kerberos-codec-2.0.0:0
-	>=app-maven/curator-framework-2.8.0:0
+	>=app-maven/curator-framework-2.7.1:0
 	>=app-maven/zookeeper-3.4.6:0
 	>=dev-java/commons-codec-1.7:0
 	>=dev-java/httpcomponents-client-4.5:4.5

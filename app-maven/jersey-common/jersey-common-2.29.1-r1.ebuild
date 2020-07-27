@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/jersey-common-2.29.1.pom --download-uri https://repo1.maven.org/maven2/org/glassfish/jersey/core/jersey-common/2.29.1/jersey-common-2.29.1-sources.jar --slot 0 --keywords "~amd64" --ebuild jersey-common-2.29.1-r1.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/jersey-common-2.29.1.pom --download-uri https://repo1.maven.org/maven2/org/glassfish/jersey/core/jersey-common/2.29.1/jersey-common-2.29.1-sources.jar --slot 2 --keywords "~amd64" --ebuild jersey-common-2.29.1-r1.ebuild
 
 EAPI=7
 
@@ -15,7 +15,7 @@ HOMEPAGE="https://projects.eclipse.org/projects/ee4j.jersey/jersey-common"
 SRC_URI="https://repo1.maven.org/maven2/org/glassfish/jersey/core/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/glassfish/jersey/core/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
-SLOT="0"
+SLOT="2"
 KEYWORDS="~amd64"
 MAVEN_ID="org.glassfish.jersey.core:jersey-common:2.29.1"
 

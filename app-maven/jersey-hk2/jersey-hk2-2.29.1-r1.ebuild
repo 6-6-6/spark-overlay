@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/jersey-hk2-2.29.1.pom --download-uri https://repo1.maven.org/maven2/org/glassfish/jersey/inject/jersey-hk2/2.29.1/jersey-hk2-2.29.1-sources.jar --slot 0 --keywords "~amd64" --ebuild jersey-hk2-2.29.1-r1.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/jersey-hk2-2.29.1.pom --download-uri https://repo1.maven.org/maven2/org/glassfish/jersey/inject/jersey-hk2/2.29.1/jersey-hk2-2.29.1-sources.jar --slot 2 --keywords "~amd64" --ebuild jersey-hk2-2.29.1-r1.ebuild
 
 EAPI=7
 
@@ -15,18 +15,18 @@ HOMEPAGE="https://projects.eclipse.org/projects/ee4j.jersey/project/jersey-hk2"
 SRC_URI="https://repo1.maven.org/maven2/org/glassfish/jersey/inject/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/glassfish/jersey/inject/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
-SLOT="0"
+SLOT="2"
 KEYWORDS="~amd64"
 MAVEN_ID="org.glassfish.jersey.inject:jersey-hk2:2.29.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # org.glassfish.hk2:hk2-locator:2.6.1 -> >=app-maven/hk2-locator-2.6.1:0
-# org.glassfish.jersey.core:jersey-common:2.29.1 -> >=app-maven/jersey-common-2.29.1:0
+# org.glassfish.jersey.core:jersey-common:2.29.1 -> >=app-maven/jersey-common-2.29.1:2
 
 CDEPEND="
 	>=app-maven/hk2-locator-2.6.1:0
-	>=app-maven/jersey-common-2.29.1:0
+	>=app-maven/jersey-common-2.29.1:2
 "
 
 
@@ -44,7 +44,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="hk2-locator,jersey-common"
+JAVA_GENTOO_CLASSPATH="hk2-locator,jersey-common-2"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

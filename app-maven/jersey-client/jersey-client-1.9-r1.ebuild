@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/jersey-client-1.9.pom --download-uri https://repo1.maven.org/maven2/com/sun/jersey/jersey-client/1.9/jersey-client-1.9-sources.jar --slot 0 --keywords "~amd64" --ebuild jersey-client-1.9-r1.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/jersey-client-1.9.pom --download-uri https://repo1.maven.org/maven2/com/sun/jersey/jersey-client/1.9/jersey-client-1.9-sources.jar --slot 1 --keywords "~amd64" --ebuild jersey-client-1.9-r1.ebuild
 
 EAPI=7
 
@@ -17,16 +17,16 @@ HOMEPAGE="https://jersey.java.net/jersey-client/"
 SRC_URI="https://repo1.maven.org/maven2/com/sun/jersey/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/sun/jersey/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
-SLOT="0"
+SLOT="1"
 KEYWORDS="~amd64"
 MAVEN_ID="com.sun.jersey:jersey-client:1.9"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.sun.jersey:jersey-core:1.9 -> >=app-maven/jersey-core-1.9:0
+# com.sun.jersey:jersey-core:1.9 -> >=app-maven/jersey-core-1.9:1
 
 CDEPEND="
-	>=app-maven/jersey-core-1.9:0
+	>=app-maven/jersey-core-1.9:1
 "
 
 # Compile dependencies
@@ -48,7 +48,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jersey-core"
+JAVA_GENTOO_CLASSPATH="jersey-core-1"
 JAVA_CLASSPATH_EXTRA="osgi-core-4"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

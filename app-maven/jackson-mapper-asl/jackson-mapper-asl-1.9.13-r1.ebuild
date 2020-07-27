@@ -26,6 +26,7 @@ MAVEN_ID="org.codehaus.jackson:jackson-mapper-asl:1.9.13"
 
 CDEPEND="
 	>=app-maven/jackson-core-asl-1.9.13:0
+	dev-java/joda-time:0
 "
 
 
@@ -43,7 +44,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-core-asl"
+JAVA_GENTOO_CLASSPATH="jackson-core-asl,joda-time"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

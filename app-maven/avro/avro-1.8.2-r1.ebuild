@@ -39,6 +39,7 @@ CDEPEND="
 	>=dev-java/slf4j-api-1.7.7:0
 	>=dev-java/snappy-1.1.7.5:1.1
 	>=dev-java/xz-java-1.8:0
+	dev-java/guava:0
 "
 
 
@@ -61,7 +62,7 @@ ${CDEPEND}
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="paranamer,joda-time,commons-compress,jackson-core-asl,jackson-mapper-asl,slf4j-api,xz-java,snappy-1.1,slf4j-simple"
+JAVA_GENTOO_CLASSPATH="paranamer,joda-time,commons-compress,jackson-core-asl,jackson-mapper-asl,slf4j-api,xz-java,snappy-1.1,slf4j-simple,guava"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

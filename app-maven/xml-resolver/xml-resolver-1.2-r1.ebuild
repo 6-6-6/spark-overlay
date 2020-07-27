@@ -23,19 +23,24 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="xml-resolver:xml-resolver:1.2"
 
-
+CDEPEND="
+	dev-java/junit:4
+"
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
+	${CDEPEND}
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
+	${CDEPEND}
 "
 
 S="${WORKDIR}"
 
+JAVA_GENTOO_CLASSPATH="junit-4"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

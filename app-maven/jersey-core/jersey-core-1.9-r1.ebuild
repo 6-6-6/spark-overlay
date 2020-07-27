@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/jersey-core-1.9.pom --download-uri https://repo1.maven.org/maven2/com/sun/jersey/jersey-core/1.9/jersey-core-1.9-sources.jar --slot 0 --keywords "~amd64" --ebuild jersey-core-1.9-r1.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/jersey-core-1.9.pom --download-uri https://repo1.maven.org/maven2/com/sun/jersey/jersey-core/1.9/jersey-core-1.9-sources.jar --slot 1 --keywords "~amd64" --ebuild jersey-core-1.9-r1.ebuild
 
 EAPI=7
 
@@ -17,7 +17,7 @@ HOMEPAGE="https://jersey.java.net/jersey-core/"
 SRC_URI="https://repo1.maven.org/maven2/com/sun/jersey/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/sun/jersey/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
-SLOT="0"
+SLOT="1"
 KEYWORDS="~amd64"
 MAVEN_ID="com.sun.jersey:jersey-core:1.9"
 

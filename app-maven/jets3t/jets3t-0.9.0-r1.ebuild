@@ -33,6 +33,10 @@ CDEPEND="
 	>=dev-java/commons-logging-1.2:0
 	>=dev-java/httpcomponents-client-4.5:4.5
 	>=dev-java/httpcomponents-core-4.4.1:4.4
+	dev-java/junit:4
+	app-maven/jackson-mapper-asl:0
+	app-maven/jug:0
+	dev-java/barebonesbrowserlaunch:0
 "
 
 
@@ -50,7 +54,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="java-xmlbuilder,commons-codec,commons-logging,httpcomponents-client-4.5,httpcomponents-core-4.4"
+JAVA_GENTOO_CLASSPATH="java-xmlbuilder,commons-codec,commons-logging,httpcomponents-client-4.5,httpcomponents-core-4.4,junit-4,jackson-mapper-asl,jug,barebonesbrowserlaunch"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

@@ -37,6 +37,10 @@ JAVA_ENCODING="iso-8859-1"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
+JAVA_RM_FILES=(
+	${JAVA_SRC_DIR}/module-info.java
+)
+
 src_unpack() {
 	mkdir -p "${S}"/${JAVA_SRC_DIR}
 	unzip "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die

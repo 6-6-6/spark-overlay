@@ -29,6 +29,8 @@ CDEPEND="
 	>=app-maven/jetty-util-6.1.26:6
 	>=dev-java/commons-logging-1.2:0
 	>=dev-java/guava-29.0:0
+	app-maven/jackson-databind:0
+	dev-java/jackson:2
 "
 
 
@@ -46,7 +48,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="guava,commons-logging,jetty-util-6"
+JAVA_GENTOO_CLASSPATH="guava,commons-logging,jetty-util-6,jackson-databind,jackson-2"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

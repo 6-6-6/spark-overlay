@@ -28,10 +28,12 @@ DEPEND="
 
 RDEPEND="
 	>=virtual/jre-1.8:*
+	dev-java/osgi-framework:6
 "
 
 S="${WORKDIR}"
 
+JAVA_GENTOO_CLASSPATH="osgi-framework-6"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

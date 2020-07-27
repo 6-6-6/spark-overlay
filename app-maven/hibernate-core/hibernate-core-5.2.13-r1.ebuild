@@ -59,7 +59,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="antlr,classmate,dom4j-1,hibernate-commons-annotations,hibernate-jpa-2.1-api,javassist-3,jandex,jboss-logging,jboss-transaction-api-1.2_spec,bytebuddy"
+JAVA_GENTOO_CLASSPATH="antlr,classmate,dom4j-1,hibernate-commons-annotations,hibernate-jpa-2.1-api,javassist-3,jandex,jboss-logging,jboss-transaction-api-1.2_spec,byte-buddy"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

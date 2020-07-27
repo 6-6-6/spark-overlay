@@ -25,6 +25,7 @@ MAVEN_ID="org.hibernate.common:hibernate-commons-annotations:5.0.1.Final"
 
 CDEPEND="
 	>=dev-java/jboss-logging-3.4.0:0
+	app-maven/jboss-logging-annotations:0
 "
 
 
@@ -42,7 +43,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jboss-logging"
+JAVA_GENTOO_CLASSPATH="jboss-logging,jboss-logging-annotations"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

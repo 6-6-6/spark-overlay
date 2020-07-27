@@ -31,6 +31,7 @@ CDEPEND="
 	>=dev-java/jsr305-3.0.2:0
 	>=dev-java/kotlin-common-bin-1.3.72:0
 	>=dev-java/slf4j-api-1.7.28:0
+	app-maven/java9-concurrent-backport:0
 "
 
 
@@ -48,11 +49,12 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jsr305,kotlin-common-bin,reactive-streams,slf4j-api"
+JAVA_GENTOO_CLASSPATH="jsr305,kotlin-common-bin,reactive-streams,slf4j-api,java9-concurrent-backport"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 src_unpack() {
 	mkdir -p "${S}"/${JAVA_SRC_DIR}
 	unzip "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
+	sed -i "s/java.util.concurrent/java9.util.concurrent/" ${S}/${JAVA_SRC_DIR}/reactor/adapter/JdkFlowAdapter.java || die
 }

@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/jetty-util-9.4.8.v20171121.pom --download-uri https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-util/9.4.8.v20171121/jetty-util-9.4.8.v20171121-sources.jar --slot 0 --keywords "~amd64" --ebuild jetty-util-9.4.8_p20171121-r1.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/jetty-util-9.4.8.v20171121.pom --download-uri https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-util/9.4.8.v20171121/jetty-util-9.4.8.v20171121-sources.jar --slot 9 --keywords "~amd64" --ebuild jetty-util-9.4.8_p20171121-r1.ebuild
 
 EAPI=7
 
@@ -15,7 +15,7 @@ HOMEPAGE="http://www.eclipse.org/jetty"
 SRC_URI="https://repo1.maven.org/maven2/org/eclipse/jetty/${PN}/9.4.8.v20171121/${PN}-9.4.8.v20171121-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/eclipse/jetty/${PN}/9.4.8.v20171121/${PN}-9.4.8.v20171121.jar -> ${P}-bin.jar"
 LICENSE=""
-SLOT="0"
+SLOT="9"
 KEYWORDS="~amd64"
 MAVEN_ID="org.eclipse.jetty:jetty-util:9.4.8.v20171121"
 

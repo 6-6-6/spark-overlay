@@ -31,10 +31,19 @@ new_args["--from-maven-central"] = ""
 new_args["--binjar-uri"] = new_args["--download-uri"].replace("-sources", "")
 new_args["--workdir"] = "/var/lib/java-ebuilder/poms"
 new_args["--cache-file"] = "/tmp/pre-stage3-cache"
-new_args["--ebuild"] = new_args["--ebuild"][:-7] + "-r1.ebuild"
 new_args["--keywords"] = "~amd64"
+
+if new_args["--ebuild"].endswith("r1.ebuild"):
+    DO=True
+else:
+    new_args["--ebuild"] = new_args["--ebuild"][:-7] + "-r1.ebuild"
+    DO=False
 
 cmd = "java-ebuilder"
 for i in new_args:
     cmd += " " + i + " " + new_args[i]
-print(cmd)
+
+if DO:
+    print(cmd)
+else:
+    print("echo nothing will happen")

@@ -37,14 +37,14 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.apache.hadoop:hadoop-client:2.5.1 -> >=app-maven/hadoop-client-2.5.1:0
+# org.apache.hadoop:hadoop-client:2.5.1 -> >=app-maven/hadoop-client-2.7.4:0
 
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip
 	!binary? (
 	${CDEPEND}
-	>=app-maven/hadoop-client-2.5.1:0
+	>=app-maven/hadoop-client-2.7.4:0
 	)
 "
 

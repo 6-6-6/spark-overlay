@@ -23,14 +23,14 @@ MAVEN_ID="org.codehaus.gpars:gpars:1.0.0"
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # org.codehaus.jcsp:jcsp:1.1-rc5 -> >=app-maven/jcsp-1.1_rc5:0
 # org.codehaus.jsr166-mirror:jsr166y:1.7.0 -> >=app-maven/jsr166y-1.7.0:0
-# org.jboss.netty:netty:3.2.7.Final -> >=app-maven/netty-3.2.7:0
+# org.jboss.netty:netty:3.2.7.Final -> >=app-maven/netty-3.2.7:3.2
 # org.multiverse:multiverse-beta:0.7-RC-1 -> >=app-maven/multiverse-beta-0.7:0
 
 CDEPEND="
 	>=app-maven/jcsp-1.1_rc5:0
 	>=app-maven/jsr166y-1.7.0:0
 	>=app-maven/multiverse-beta-0.7:0
-	>=app-maven/netty-3.2.7:0
+	>=app-maven/netty-3.2.7:3.2
 "
 
 
@@ -48,7 +48,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jcsp,jsr166y,netty,multiverse-beta"
+JAVA_GENTOO_CLASSPATH="jcsp,jsr166y,netty-3.2,multiverse-beta"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
