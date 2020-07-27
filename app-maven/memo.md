@@ -36,32 +36,9 @@ hadoop-client: empty package
 
 # wrong jdk version
 - [] xml-api: jdk-1.4
-- [] jetty-util: java-virtuals cannot be sepecified with >= ?
 - [] jetty-sslengine: should be greater than 1.4 while 1.4 is set
-- [] netty: java-virtuals cannot be sepecified with >= 
 - [] maven-ant-tasks: should be greater than 1.4 and less than 1.6 while 1.4 is set
-- [] jersey-common: java-virtuals
-- [] jersey-client: java-virtuals
-- [] jersey-server: java-virtuals
-- [] jersey-guice: java-virtuals
-- [] jersey-container-servlet: java-virtuals
-- [] jersey-container-servlet-core: java-virtuals
-- [] hadoop-auth: java-virtuals
-- [] hadoop-common: java-virtuals
-- [] xstream: java-virtuals
-- [] hadoop-yarn-common: java-virtuals
 - [] xbean-asm7-shaded: greater than 1.5 (diamod operator), while 1.5 is set
-- [] logback-core: java-virtuals
-- [] jsf-api: java-virtuals
-- [] weld-api: java-virtuals
-- [] weld-spi: java-virtuals
-- [] woodstox-core-asl: java-virtuals
-- [] jackson-dataformat-xml: java-virtuals
-- [] weld-core: java-virtuals
-- [] jetty-server: java-virtuals
-- [] hadoop-hdfs: java-virtuals
-- [] hadoop-yarn-server-nodemanager: java-virtuals
-- [] spark-core: java-virtuals
 
 # missing dependencies
 - [] htrace-core-3.10-incubating
@@ -96,13 +73,13 @@ hadoop-client: empty package
 - [] jakarta-xml-bind-api (MERTA_INF also)
 
 # handmade
-- [] lucene-queryparser:3.6 (needed by h2-*196)
-- [] jug (needed by jets3t)
-- [] app-maven/microemu-cldc (needed by osgi-cmpn)
-- [] apacheds-kerberos-codec
-- [] jersey-media-sse (needed by ehcache)
-- [] 2 verisons of gpars, which solves circular deps
-- [] java9-concurrent-backport: backport jdk9 feature
+- [] luc ene-queryparser:3.6 (needed by h2-*196)
+- [] ju g (needed by jet  s3t)
+- [] app-m aven/microemu-cldc (needed by osgi-cm pn)
+- [] apa cheds-kerberos-codec
+- [] je rsey-media-sse (needed by ehcac he)
+- [] 2 verisons of gp ars, which solves circular deps
+- [] java9-concur rent-backport: backport jdk9 feature
 
 # unpack fail
 - [] jruby-*

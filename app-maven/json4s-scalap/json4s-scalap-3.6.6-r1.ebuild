@@ -1,0 +1,52 @@
+# Copyright 1999-2020 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+# Skeleton command:
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/json4s-scalap_2.12-3.6.6.pom --download-uri https://repo1.maven.org/maven2/org/json4s/json4s-scalap_2.12/3.6.6/json4s-scalap_2.12-3.6.6-sources.jar --slot 2.12 --keywords "~amd64" --ebuild json4s-scalap-3.6.6-r1.ebuild
+
+EAPI=7
+
+JAVA_PKG_IUSE="doc source test binary"
+
+inherit java-pkg-2 java-pkg-simple
+
+DESCRIPTION="json4s-scalap"
+HOMEPAGE="https://github.com/json4s/json4s"
+SRC_URI="https://repo1.maven.org/maven2/org/json4s/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar -> ${P}-sources.jar
+	https://repo1.maven.org/maven2/org/json4s/${PN}_2.12/${PV}/${PN}_2.12-${PV}.jar -> ${P}-bin.jar"
+LICENSE=""
+SLOT="2.12"
+KEYWORDS="~amd64"
+MAVEN_ID="org.json4s:json4s-scalap_2.12:3.6.6"
+
+# Common dependencies
+# POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}.pom
+# org.scala-lang:scala-library:2.12.8 -> >=dev-java/scala-common-bin-2.12.4:2.12
+
+CDEPEND="
+	>=dev-java/scala-common-bin-2.12.4:2.12
+"
+
+
+DEPEND="
+	>=virtual/jdk-1.8:*
+	app-arch/unzip
+	!binary? (
+	${CDEPEND}
+	)
+"
+
+RDEPEND="
+	>=virtual/jre-1.8:*
+${CDEPEND}"
+
+S="${WORKDIR}"
+
+JAVA_GENTOO_CLASSPATH="scala-common-bin-2.12"
+JAVA_SRC_DIR="src/main/java"
+JAVA_BINJAR_FILENAME="${P}-bin.jar"
+
+src_unpack() {
+	mkdir -p "${S}"/${JAVA_SRC_DIR}
+	unzip "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
+}
