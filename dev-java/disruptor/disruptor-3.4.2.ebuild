@@ -15,7 +15,7 @@ HOMEPAGE="http://lmax-exchange.github.com/disruptor"
 SRC_URI="https://repo.maven.apache.org/maven2/com/lmax/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 MAVEN_ID="com.lmax:disruptor:3.4.2"
 
 

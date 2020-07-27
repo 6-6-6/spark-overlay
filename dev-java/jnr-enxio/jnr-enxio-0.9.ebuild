@@ -15,7 +15,7 @@ HOMEPAGE="http://github.com/jnr/jnr-enxio"
 SRC_URI="https://repo.maven.apache.org/maven2/com/github/jnr/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 MAVEN_ID="com.github.jnr:jnr-enxio:0.9"
 
 # Common dependencies

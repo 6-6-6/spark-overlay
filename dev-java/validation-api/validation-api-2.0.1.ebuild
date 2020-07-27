@@ -15,7 +15,7 @@ HOMEPAGE="http://beanvalidation.org"
 SRC_URI="https://repo.maven.apache.org/maven2/javax/validation/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 MAVEN_ID="javax.validation:validation-api:2.0.1.Final"
 
 

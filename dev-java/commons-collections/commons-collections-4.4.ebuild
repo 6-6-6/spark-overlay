@@ -17,7 +17,7 @@ HOMEPAGE="https://commons.apache.org/proper/commons-collections/"
 SRC_URI="https://repo.maven.apache.org/maven2/org/apache/commons/${MY_PN}/${PV}/${MY_PN}-${PV}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="4"
-KEYWORDS="~amd64"
+KEYWORDS="amd64 ppc64 x86"
 MAVEN_ID="org.apache.commons:commons-collections4:4.4"
 
 
@@ -34,14 +34,11 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_RESOURCE_DIRS=(
-	"src/main/resources"
+	"src/main/java"
 )
 JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p "${S}"/${JAVA_SRC_DIR}
 	unzip -q -o "${DISTDIR}"/${P}.jar -d "${S}"/${JAVA_SRC_DIR} || die
-
-	mkdir -p "${S}"/${JAVA_RESOURCE_DIRS[0]}
-	find "${S}"/${JAVA_SRC_DIR} -type f ! -name \*.java -exec mv {} "${S}"/${JAVA_RESOURCE_DIRS[0]} \;|| die
 }

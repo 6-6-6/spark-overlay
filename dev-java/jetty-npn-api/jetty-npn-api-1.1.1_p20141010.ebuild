@@ -17,7 +17,7 @@ HOMEPAGE="http://www.eclipse.org/jetty/npn-api"
 SRC_URI="https://repo.maven.apache.org/maven2/org/eclipse/jetty/npn/${MY_PN}/1.1.1.v20141010/${MY_PN}-1.1.1.v20141010-sources.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 MAVEN_ID="org.eclipse.jetty.npn:npn-api:1.1.1.v20141010"
 
 

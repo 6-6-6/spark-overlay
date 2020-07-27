@@ -15,7 +15,7 @@ HOMEPAGE="https://github.com/xerial/snappy-java"
 SRC_URI="https://repo.maven.apache.org/maven2/org/xerial/snappy/${PN}-java/${PV}/${PN}-java-${PV}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="1.1"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 MAVEN_ID="org.xerial.snappy:snappy-java:1.1.7.5"
 
 

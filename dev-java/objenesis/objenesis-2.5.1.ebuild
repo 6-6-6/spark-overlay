@@ -15,7 +15,7 @@ HOMEPAGE="http://objenesis.org"
 SRC_URI="https://repo.maven.apache.org/maven2/org/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~ppc64 ~x86 ~arm64"
 MAVEN_ID="org.objenesis:objenesis:2.5.1"
 
 

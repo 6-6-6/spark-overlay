@@ -15,7 +15,7 @@ HOMEPAGE="http://nexus.sonatype.org/oss-repository-hosting.html/jcodings"
 SRC_URI="https://repo.maven.apache.org/maven2/org/jruby/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~ppc64 ~x86-linux ~x86-solaris"
 MAVEN_ID="org.jruby.jcodings:jcodings:1.0.13"
 
 

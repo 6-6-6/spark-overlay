@@ -17,7 +17,7 @@ HOMEPAGE="http://www.eclipse.org/jetty/alpn-api"
 SRC_URI="https://repo.maven.apache.org/maven2/org/eclipse/jetty/alpn/${MY_PN}/1.1.3.v20160715/${MY_PN}-1.1.3.v20160715-sources.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 MAVEN_ID="org.eclipse.jetty.alpn:alpn-api:1.1.3.v20160715"
 
 

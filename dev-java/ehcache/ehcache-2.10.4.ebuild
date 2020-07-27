@@ -18,7 +18,7 @@ SRC_URI="https://repo1.maven.org/maven2/net/sf/${PN}/${PN}/${PV}/${P}-sources.ja
 	https://repo1.maven.org/maven2/net/sf/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~amd64-linux ~x86 ~x86-linux ~x86-macos"
 MAVEN_ID="net.sf.ehcache:ehcache:2.10.4"
 
 # Common dependencies

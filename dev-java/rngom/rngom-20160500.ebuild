@@ -18,7 +18,7 @@ SRC_URI="https://repo1.maven.org/maven2/org/kohsuke/${PN}/${PN}/${MY_PV}/${PN}-$
 	https://repo1.maven.org/maven2/org/kohsuke/${PN}/${PN}/${MY_PV}/${PN}-${MY_PV}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~ppc64 ~x86"
 MAVEN_ID="org.kohsuke.rngom:rngom:201605"
 
 # Common dependencies

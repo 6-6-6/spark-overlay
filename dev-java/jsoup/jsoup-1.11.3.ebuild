@@ -15,7 +15,7 @@ HOMEPAGE="https://jsoup.org/"
 SRC_URI="https://repo.maven.apache.org/maven2/org/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86 ~amd64-linux"
 MAVEN_ID="org.jsoup:jsoup:1.11.3"
 
 

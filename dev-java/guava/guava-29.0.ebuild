@@ -15,7 +15,7 @@ HOMEPAGE="https://github.com/google/guava/guava"
 SRC_URI="https://repo.maven.apache.org/maven2/com/google/${PN}/${PN}/${PV}-jre/${P}-jre-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~arm64 ~x86"
 MAVEN_ID="com.google.guava:guava:29.0-jre"
 MAVEN_PROVIDES="com.google.guava:listenablefuture:9999.0"
 

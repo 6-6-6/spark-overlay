@@ -15,7 +15,7 @@ HOMEPAGE="http://fasutil.di.unimi.it/"
 SRC_URI="https://repo.maven.apache.org/maven2/it/unimi/dsi/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~ppc64 ~x86"
 MAVEN_ID="it.unimi.dsi:fastutil:8.1.1"
 
 

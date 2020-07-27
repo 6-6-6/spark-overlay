@@ -16,7 +16,7 @@ SRC_URI="https://repo1.maven.org/maven2/org/apache/lucene/${PN}-core/${PV}/${PN}
 	https://repo1.maven.org/maven2/org/apache/lucene/${PN}-core/${PV}/${PN}-core-${PV}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 MAVEN_ID="org.apache.lucene:lucene-core:7.6.0"
 
 

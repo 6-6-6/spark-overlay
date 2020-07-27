@@ -10,9 +10,12 @@ JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-pkg-binjar
 
+MY_PN="jnr-posix"
+MY_P="${MY_PN}-${PV}"
+
 DESCRIPTION="Common cross-project/cross-platform POSIX APIs"
 HOMEPAGE=""
-SRC_URI="https://repo1.maven.org/maven2/org/jruby/ext/posix/${PN}/${PV}/${P}.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/jruby/ext/posix/${MY_PN}/${PV}/${MY_P}.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"

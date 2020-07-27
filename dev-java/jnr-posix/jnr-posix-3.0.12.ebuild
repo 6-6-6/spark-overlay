@@ -15,7 +15,7 @@ HOMEPAGE="http://nexus.sonatype.org/oss-repository-hosting.html/jnr-posix"
 SRC_URI="https://repo.maven.apache.org/maven2/com/github/jnr/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~arm64 ~x86-linux ~x86-solaris"
 MAVEN_ID="com.github.jnr:jnr-posix:3.0.12"
 
 # Common dependencies

@@ -16,7 +16,7 @@ SRC_URI="https://repo1.maven.org/maven2/org/jvnet/staxex/${PN}/${PV}-M2/${P}-M2-
 	https://repo1.maven.org/maven2/org/jvnet/staxex/${PN}/${PV}-M2/${P}-M2.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="1"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86 ~ppc64"
 MAVEN_ID="org.jvnet.staxex:stax-ex:2.0.0-M2"
 
 

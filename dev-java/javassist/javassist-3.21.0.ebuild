@@ -6,19 +6,19 @@
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source test binary"
 
 inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Javassist (JAVA programming ASSISTant) makes Java bytecode manipulation simple.  It is a class library for editing bytecodes in Java."
 HOMEPAGE="http://www.javassist.org/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/${PN}/${PN}/${PV}-GA/${P}-GA-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/${PN}/${PN}/${PV}-GA/${P}-GA-sources.jar -> ${P}-sources.jar
+		https://repo.maven.apache.org/maven2/org/${PN}/${PN}/${PV}-GA/${P}-GA.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="3"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~ppc64 ~x86 ~amd64-linux ~arm64 ~x86-linux ~x86-macos"
 MAVEN_ID="org.javassist:javassist:3.23.0-GA"
 MAVEN_PROVIDES="javassist:javassist:3.23.0-GA"
-
 
 JAVA_NEEDS_TOOLS=1
 
@@ -32,5 +32,4 @@ RDEPEND="
 "
 
 S="${WORKDIR}"
-
-JAVA_GENTOO_CLASSPATH_EXTRA="tools.jar"
+JAVA_BINJAR_FILENAME="${P}-bin.jar"

@@ -15,7 +15,7 @@ HOMEPAGE="http://commons.apache.org/collections/"
 SRC_URI="mirror://apache/${PN/-//}/source/${P}-src.tar.gz"
 LICENSE=""
 SLOT="3"
-KEYWORDS="~amd64"
+KEYWORDS="amd64 ppc64 x86"
 MAVEN_ID="commons-collections:commons-collections:3.2.2"
 
 PATCHES=( "${FILESDIR}/${P}-Java-8.patch" )

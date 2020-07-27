@@ -15,7 +15,7 @@ HOMEPAGE="https://github.com/headius/options"
 SRC_URI="https://repo.maven.apache.org/maven2/com/headius/options/${PV}/options-${PV}-sources.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 MAVEN_ID="com.headius:options:1.4"
 
 

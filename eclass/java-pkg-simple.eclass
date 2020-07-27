@@ -282,6 +282,7 @@ java-pkg-simple_prepend-resources() {
 # ${JAVA_BINJAR_FILENAME} to ${S} and skip src_compile.
 java-pkg-simple_src_compile() {
 	local sources=sources.lst classes=target/classes apidoc=target/api
+	local javac_default_args="-Xpkginfo:always"
 
 	# auto generate classpath
 	java-pkg_gen-cp JAVA_GENTOO_CLASSPATH
@@ -309,8 +310,8 @@ java-pkg-simple_src_compile() {
 	java-pkg-simple_getclasspath
 	java-pkg-simple_prepend-resources "${JAVA_RESOURCE_DIRS[@]}"
 
-	ejavac -d ${classes} -encoding ${JAVA_ENCODING} \
-		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS} \
+	ejavac -d ${classes} -encoding ${JAVA_ENCODING} ${javac_default_args}\
+		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS}\
 		@${sources}
 
 	# javadoc
@@ -405,7 +406,7 @@ java-pkg-simple_src_test() {
 
 			# ignore META-INF since it does not matter
 			pkgdiff ${JAVA_BINJAR_FILENAME} ${JAVA_JAR_FILENAME}\
-				-skip-pattern "META-INF|package-info.class"\
+				-skip-pattern "META-INF"\
 				-name ${PN} -report-path ${report}\
 				|| die "pkgdiff returns $?, check the report in ${S}/${report}"
 		fi

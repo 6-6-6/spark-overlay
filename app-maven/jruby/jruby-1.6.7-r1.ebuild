@@ -48,7 +48,7 @@ DEPEND="
 	>=app-maven/jaffl-0.5.11:0
 	>=app-maven/jffi-1.0.8:0
 	>=app-maven/jnr-netdb-1.0.3:0
-	>=app-maven/jnr-posix-1.1.9:0
+	>=app-maven/jruby-jnr-posix-1.1.9:0
 	>=dev-java/ant-core-1.10.7:0
 	>=dev-java/asm-8.0.1:4
 	>=dev-java/bsf-2.4.0:2.3
@@ -68,8 +68,8 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_CLASSPATH_EXTRA="asm-4,asm-4,asm-4,asm-4,asm-4,bsf-2.3,jline-2,joda-time,ant-core,jnr-posix,bytelist,constantine,jaffl,jffi,jnr-netdb,jcodings-1,joni-2.1,snakeyaml"
-JAVA_SRC_DIR="../../src"
+JAVA_CLASSPATH_EXTRA="asm-4,asm-4,asm-4,asm-4,asm-4,bsf-2.3,jline-2,joda-time,ant-core,jruby-jnr-posix,bytelist,constantine,jaffl,jffi,jnr-netdb,jcodings-1,joni-2.1,snakeyaml"
+JAVA_SRC_DIR="src"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 src_unpack() {

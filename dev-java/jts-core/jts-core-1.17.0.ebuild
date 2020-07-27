@@ -16,7 +16,7 @@ SRC_URI="https://repo1.maven.org/maven2/org/locationtech/jts/${PN}/${PV}/${P}-so
 	https://repo1.maven.org/maven2/org/locationtech/jts/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="1"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 MAVEN_ID="org.locationtech.jts:jts-core:1.17.0"
 
 

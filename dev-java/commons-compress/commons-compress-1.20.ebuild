@@ -18,7 +18,7 @@ HOMEPAGE="https://commons.apache.org/proper/commons-compress/"
 SRC_URI="https://repo.maven.apache.org/maven2/org/apache/commons/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="amd64 x86 ~arm64"
 MAVEN_ID="org.apache.commons:commons-compress:1.20"
 
 # Common dependencies

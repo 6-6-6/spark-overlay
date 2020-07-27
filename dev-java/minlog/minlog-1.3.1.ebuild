@@ -15,7 +15,7 @@ HOMEPAGE="https://github.com/EsotericSoftware/minlog"
 SRC_URI="https://repo.maven.apache.org/maven2/com/esotericsoftware/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 MAVEN_ID="com.esotericsoftware:minlog:1.3.1"
 
 
