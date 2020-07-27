@@ -36,21 +36,21 @@ S="${WORKDIR}"
 
 JAVA_ENCODING="iso-8859-1"
 
-JAVA_SRC_DIR="src/main/java"
+#JAVA_SRC_DIR="src/main/java"
 #JAVA_RESOURCE_DIRS=(
 #	"src/main/resources"
 #	"."
 #)
 
-JAVA_TESTING_FRAMEWORK="junit"
-JAVA_TEST_SRC_DIR="src/test/java"
-JAVA_TEST_RESOURCE_DIRS=("src/test/java")
+#JAVA_TESTING_FRAMEWORK="junit"
+#JAVA_TEST_SRC_DIR="src/test/java"
+#JAVA_TEST_RESOURCE_DIRS=("src/test/java")
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	mkdir -p ${S}/${JAVA_TEST_SRC_DIR}
+#	mkdir -p ${S}/${JAVA_TEST_SRC_DIR}
 	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
 	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
-	unzip ${DISTDIR}/${P}-test.jar -d ${S}/${JAVA_TEST_SRC_DIR} || die
+#	unzip ${DISTDIR}/${P}-test.jar -d ${S}/${JAVA_TEST_SRC_DIR} || die
 }

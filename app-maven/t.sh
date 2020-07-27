@@ -2,6 +2,7 @@ here=$(pwd)
 
 for i in $(ls); do
 	[[ -d ${i} ]] || continue
+	[[ ${i} =~ curator* ]] || exit
 	cd ${i}
 	if ! ls *ebuild > /dev/null; then
 		echo ${i}
@@ -11,7 +12,7 @@ for i in $(ls); do
 			echo pass due to java-pkg-binjar
 			continue
 		fi
-		$(python3 "${here}"/pseudoJebd.py ${j}) &
+		python3 "${here}"/pseudoJebd.py ${j}
 	done
 	cd ..
 done

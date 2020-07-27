@@ -37,7 +37,8 @@ if new_args["--ebuild"].endswith("r1.ebuild"):
     DO=True
 else:
     new_args["--ebuild"] = new_args["--ebuild"][:-7] + "-r1.ebuild"
-    DO=False
+    DO=True
+    #DO=False
 
 cmd = "java-ebuilder"
 for i in new_args:

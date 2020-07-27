@@ -6,7 +6,7 @@
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source binary"
+JAVA_PKG_IUSE="doc source binary test"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -33,9 +33,9 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
+JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
 	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
 }

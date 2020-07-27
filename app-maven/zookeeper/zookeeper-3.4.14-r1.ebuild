@@ -59,7 +59,6 @@ CDEPEND="
 	>=dev-java/xerces-2.12.0:2
 	dev-java/jline:0
 "
-"
 
 
 DEPEND="
