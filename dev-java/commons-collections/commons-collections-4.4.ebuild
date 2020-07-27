@@ -35,11 +35,13 @@ S="${WORKDIR}"
 
 JAVA_RESOURCE_DIRS=(
 	"src/main/resources"
-	"."
 )
 JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -o ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	mkdir -p "${S}"/${JAVA_SRC_DIR}
+	unzip -q -o "${DISTDIR}"/${P}.jar -d "${S}"/${JAVA_SRC_DIR} || die
+
+	mkdir -p "${S}"/${JAVA_RESOURCE_DIRS[0]}
+	find "${S}"/${JAVA_SRC_DIR} -type f ! -name \*.java -exec mv {} "${S}"/${JAVA_RESOURCE_DIRS[0]} \;|| die
 }

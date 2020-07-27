@@ -55,6 +55,6 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 src_unpack() {
 	mkdir -p "${S}"/${JAVA_SRC_DIR}
-	unzip "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
+	unzip -q "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
 	sed -i "s/java.util.concurrent/java9.util.concurrent/" ${S}/${JAVA_SRC_DIR}/reactor/adapter/JdkFlowAdapter.java || die
 }

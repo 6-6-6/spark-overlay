@@ -33,7 +33,7 @@ JAVA_ENCODING="iso8859-1"
 
 src_unpack() {
 	default
-	unzip "${S}"/aspectjweaver-${PV}-sources.jar -d "${S}"/src/ || die
+	unzip -q "${S}"/aspectjweaver-${PV}-sources.jar -d "${S}"/src/ || die
 }
 
 java_prepare() {

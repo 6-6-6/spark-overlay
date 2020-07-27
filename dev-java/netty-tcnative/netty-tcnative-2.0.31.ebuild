@@ -38,7 +38,7 @@ java_prepare() {
 	ln -sn . project-template || die
 
 	# Provides missing m4 files and Makefile.am template.
-	unzip -n $(java-pkg_getjars --build-only maven-hawtjni-plugin) project-template/\* || die
+	unzip -q -n $(java-pkg_getjars --build-only maven-hawtjni-plugin) project-template/\* || die
 
 	sed -i \
 		-e "s:@PROJECT_NAME@:${PN}:g" \

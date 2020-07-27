@@ -405,7 +405,8 @@ java-pkg-simple_src_test() {
 
 			# ignore META-INF since it does not matter
 			pkgdiff ${JAVA_BINJAR_FILENAME} ${JAVA_JAR_FILENAME}\
-				-name ${PN} -skip-pattern META-INF -report-path ${report}\
+				-skip-pattern "META-INF|package-info.class"\
+				-name ${PN} -report-path ${report}\
 				|| die "pkgdiff returns $?, check the report in ${S}/${report}"
 		fi
 	fi

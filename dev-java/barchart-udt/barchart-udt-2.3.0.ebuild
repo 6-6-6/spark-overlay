@@ -37,5 +37,5 @@ JAVA_GENTOO_CLASSPATH="slf4j-api"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -o ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	unzip -q -o ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
 }

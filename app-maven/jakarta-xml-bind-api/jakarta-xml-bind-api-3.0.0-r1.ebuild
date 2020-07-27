@@ -52,6 +52,6 @@ JAVA_RM_FILES=(
 
 src_unpack() {
 	mkdir -p "${S}"/${JAVA_SRC_DIR}
-	unzip "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
+	unzip -q "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
 	rm ${JAVA_SRC_DIR}/META-INF/versions -r || die
 }

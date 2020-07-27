@@ -46,5 +46,5 @@ JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
 }

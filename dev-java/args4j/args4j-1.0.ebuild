@@ -16,7 +16,7 @@ SRC_URI="https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar -> ${
 	https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="1"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 MAVEN_ID="args4j:args4j:1.0"
 
 
@@ -36,6 +36,6 @@ JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
 	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
 }

@@ -23,7 +23,8 @@ SRC_URI="mirror://apache/ant/ivy/${PV}/${MY_P}-src.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="2"
-KEYWORDS="amd64 ppc64 x86 ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS=""
+#KEYWORDS="amd64 ppc64 x86 ~amd64-linux ~x86-linux ~x86-macos"
 
 # We cannot build tests yet as there is no org.apache.tools.ant.BuildFileTest packaged anywhere yet.
 RESTRICT="test"

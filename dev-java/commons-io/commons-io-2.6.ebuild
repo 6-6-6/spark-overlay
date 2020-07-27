@@ -50,7 +50,7 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
 #	mkdir -p ${S}/${JAVA_TEST_SRC_DIR}
-	unzip ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
 	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
-#	unzip ${DISTDIR}/${P}-test.jar -d ${S}/${JAVA_TEST_SRC_DIR} || die
+#	unzip -q ${DISTDIR}/${P}-test.jar -d ${S}/${JAVA_TEST_SRC_DIR} || die
 }

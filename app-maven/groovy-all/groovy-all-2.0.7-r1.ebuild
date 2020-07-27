@@ -90,5 +90,5 @@ JAVA_TESTING_FRAMEWORK="junit"
 
 src_unpack() {
 	mkdir -p "${S}"/${JAVA_SRC_DIR}
-	unzip "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
+	unzip -q "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
 }

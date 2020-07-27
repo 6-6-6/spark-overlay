@@ -58,6 +58,6 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 src_unpack() {
 	mkdir -p "${S}"/${JAVA_SRC_DIR}
-	unzip "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
+	unzip -q "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
 	sed -i "s/CharMatcher.WHITESPACE/CharMatcher.whitespace()/" ${S}/${JAVA_SRC_DIR}/org/apache/mahout/math/random/IndianBuffet.java
 }

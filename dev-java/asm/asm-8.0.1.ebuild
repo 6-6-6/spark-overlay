@@ -24,7 +24,7 @@ SRC_URI="https://repo.maven.apache.org/maven2/org/ow2/${PN}/${PN}/${PV}/${P}-sou
 		https://repo.maven.apache.org/maven2/org/ow2/asm/${PN_UTIL}/${PV}/${PN_UTIL}-${PV}-sources.jar -> ${PN_UTIL}-${PV}.jar"
 LICENSE=""
 SLOT="4"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~arm ~ppc64 ~x86 ~x64-macos"
 MAVEN_ID="org.ow2.asm:asm:8.0.1"
 MAVEN_PROVIDES="asm:asm:3.3.1 asm:asm-analysis:3.3.1 asm:asm-commons:3.3.1 asm:asm-tree:3.3.1 asm:asm-util:3.3.1 org.ow2.asm:asm-analysis:8.0.1 org.ow2.asm:asm-commons:8.0.1 org.ow2.asm:asm-tree:8.0.1 org.ow2.asm:asm-util:8.0.1"
 
@@ -43,9 +43,9 @@ JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -o ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-	unzip -o ${DISTDIR}/${PN_ANA}-${PV}.jar -d ${S}/${JAVA_SRC_DIR} || die
-	unzip -o ${DISTDIR}/${PN_COMM}-${PV}.jar -d ${S}/${JAVA_SRC_DIR} || die
-	unzip -o ${DISTDIR}/${PN_TREE}-${PV}.jar -d ${S}/${JAVA_SRC_DIR} || die
-	unzip -o ${DISTDIR}/${PN_UTIL}-${PV}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	unzip -q -o ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	unzip -q -o ${DISTDIR}/${PN_ANA}-${PV}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	unzip -q -o ${DISTDIR}/${PN_COMM}-${PV}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	unzip -q -o ${DISTDIR}/${PN_TREE}-${PV}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	unzip -q -o ${DISTDIR}/${PN_UTIL}-${PV}.jar -d ${S}/${JAVA_SRC_DIR} || die
 }
