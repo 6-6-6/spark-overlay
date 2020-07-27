@@ -30,9 +30,8 @@ S="${WORKDIR}"
 # If it is possible, we will use pkgdiff to make sure our jar file is compatible
 # with the binary jars distributed by upstream.
 #
-# We are filtering out those *-macos and *-solaris machines, because
-# the KEYWORD of sys-devel/binutils does not include those hosts.
-if [[ ! ${ARCH} =~ ^.*-(macos|solaris)$ ]]; then
+# The only accepted ARCH is amd64, since pkgdiff only accept "amd64" as keyword.
+if [[ ${ARCH} == "amd64" ]]; then
 	if has test ${JAVA_PKG_IUSE}; then
 		DEPEND="test? ( dev-util/pkgdiff:0 )"
 	fi
@@ -171,13 +170,14 @@ fi
 # It is almost equivalent to ${JAVA_RESOURCE_DIRS} in src_test.
 
 # @FUNCTION: java-pkg-simple_getclasspath
+# @INTERNAL
 # @DESCRIPTION:
 # Get proper ${classpath} from ${JAVA_GENTOO_CLASSPATH_EXTRA},
 # ${JAVA_NEEDS_TOOLS}, ${JAVA_CLASSPATH_EXTRA} and
-# ${JAVA_GENTOO_CLASSPATH}. We may use it inside src_compile
-# and src_test.
+# ${JAVA_GENTOO_CLASSPATH}. We use it inside
+# java-pkg-simple_src_compile and java-pkg-simple_src_test.
 #
-# Note that you need to define a "classpath" variable before
+# Note that if you need to define a "classpath" variable before
 # calling this function.
 java-pkg-simple_getclasspath() {
 	debug-print-function ${FUNCNAME} $*
@@ -223,6 +223,7 @@ java-pkg-simple_getclasspath() {
 }
 
 # @FUNCTION: java-pkg-simple_junit-test
+# @INTERNAL
 # @DESCRIPTION:
 # Launch test using ejunit4.
 java-pkg-simple_junit-test() {
@@ -242,9 +243,11 @@ java-pkg-simple_junit-test() {
 
 # @FUNCTION: java-pkg-simple_prepend-resources
 # @USAGE: java-pkg-simple_prepend-resources "${JAVA_RESOURCE_DIRS[@]}"
+# @INTERNAL
 # @DESCRIPTION:
 # Accept "${JAVA_RESOURCE_DIRS[@]}" or "${JAVA_TEST_RESOURCE_DIRS[@]}"
-# and prepend the directories in the array to ${classpath}.
+# and prepend the directories in the array to ${classpath}. We use it
+# inside java-pkg-simple_src_compile and java-pkg-simple_src_test.
 #
 # Note that you need to define a "classpath" variable before calling
 # this function.
@@ -379,7 +382,9 @@ java-pkg-simple_src_install() {
 # @FUNCTION: java-pkg-simple_src_test
 # @DESCRIPTION:
 # src_test for simple single java jar file.
-# It will perform test with framework defined by ${JAVA_TESTING_FRAMEWORK}.
+# It will launch pkgdiff test if ${JAVA_BINJAR_FILENAME} is set.
+# Besides, it will perform test with framework defined by
+# ${JAVA_TESTING_FRAMEWORK}.
 java-pkg-simple_src_test() {
 	local test_sources=test_sources.lst classes=target/testclasses classpath
 	local report=${PN}-pkgdiff.html
@@ -391,8 +396,8 @@ java-pkg-simple_src_test() {
 		return
 	fi
 
-	# no macos and solaris because they do not have sys-devel/binutils
-	if [[ ! ${ARCH} =~ ^.*-(macos|solaris)$ ]]; then
+	# pkgdiff test
+	if [[ ${ARCH} == "amd64" ]]; then
 		if [[ -f "${DISTDIR}/${JAVA_BINJAR_FILENAME}" ]]; then
 			# pkgdiff cannot deal with symlinks, so this is a workaround
 			cp "${DISTDIR}/${JAVA_BINJAR_FILENAME}" ./ \
@@ -404,6 +409,9 @@ java-pkg-simple_src_test() {
 				|| die "pkgdiff returns $?, check the report in ${S}/${report}"
 		fi
 	fi
+
+	# return if there is no ${JAVA_TESTING_FRAMEWORK} defined
+	[[ "${JAVA_TESTING_FRAMEWORK}" ]] || return
 
 	# create the target directory
 	mkdir -p ${classes} || die "Could not create target directory for testing"
