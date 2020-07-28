@@ -23,10 +23,10 @@ SRC_URI="https://repo.maven.apache.org/maven2/org/ow2/${PN}/${PN}/${PV}/${P}-sou
 		https://repo.maven.apache.org/maven2/org/ow2/asm/${PN_TREE}/${PV}/${PN_TREE}-${PV}-sources.jar -> ${PN_TREE}-${PV}.jar
 		https://repo.maven.apache.org/maven2/org/ow2/asm/${PN_UTIL}/${PV}/${PN_UTIL}-${PV}-sources.jar -> ${PN_UTIL}-${PV}.jar"
 LICENSE=""
-SLOT="4"
+SLOT="7"
 KEYWORDS="~amd64 ~arm ~ppc64 ~x86 ~x64-macos"
 MAVEN_ID="org.ow2.asm:asm:8.0.1"
-MAVEN_PROVIDES="asm:asm:3.3.1 asm:asm-analysis:3.3.1 asm:asm-commons:3.3.1 asm:asm-tree:3.3.1 asm:asm-util:3.3.1 org.ow2.asm:asm-analysis:8.0.1 org.ow2.asm:asm-commons:8.0.1 org.ow2.asm:asm-tree:8.0.1 org.ow2.asm:asm-util:8.0.1"
+MAVEN_PROVIDES="org.ow2.asm:asm-analysis:8.0.1 org.ow2.asm:asm-commons:8.0.1 org.ow2.asm:asm-tree:8.0.1 org.ow2.asm:asm-util:8.0.1"
 
 
 DEPEND="
@@ -39,13 +39,33 @@ RDEPEND="
 "
 
 S="${WORKDIR}"
-JAVA_SRC_DIR="src/main/java"
+SRC_DIRS=(
+	"${PN}"
+	"${PN_TREE}"
+	"${PN_COMM}"
+	"${PN_ANA}"
+	"${PN_UTIL}"
+)
 
 src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q -o ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-	unzip -q -o ${DISTDIR}/${PN_ANA}-${PV}.jar -d ${S}/${JAVA_SRC_DIR} || die
-	unzip -q -o ${DISTDIR}/${PN_COMM}-${PV}.jar -d ${S}/${JAVA_SRC_DIR} || die
-	unzip -q -o ${DISTDIR}/${PN_TREE}-${PV}.jar -d ${S}/${JAVA_SRC_DIR} || die
-	unzip -q -o ${DISTDIR}/${PN_UTIL}-${PV}.jar -d ${S}/${JAVA_SRC_DIR} || die
+	for pkg in "${SRC_DIRS[@]}"; do
+		mkdir -p ${S}/${pkg}
+		unzip -q -o "${DISTDIR}"/${pkg}\-${PV}.jar -d "${S}"/${pkg} || die
+	done
+}
+
+src_compile() {
+	JAVA_GENTOO_CLASSPATH_EXTRA=""
+	for pkg in "${SRC_DIRS[@]}"; do
+		JAVA_SRC_DIR="${pkg}" JAVA_JAR_FILENAME="${pkg}.jar"\
+			java-pkg-simple_src_compile
+		rm target/classes/* -r || die
+		JAVA_GENTOO_CLASSPATH_EXTRA+="${pkg}.jar:"
+	done
+}
+
+src_install() {
+	for pkg in "${SRC_DIRS[@]}"; do
+		JAVA_JAR_FILENAME="${pkg}.jar" java-pkg-simple_src_install
+	done
 }

@@ -15,7 +15,7 @@ HOMEPAGE="https://projects.eclipse.org/projects/ee4j/stax-ex"
 SRC_URI="https://repo1.maven.org/maven2/org/jvnet/staxex/${PN}/${PV}-M2/${P}-M2-sources.jar -> ${P}.jar
 	https://repo1.maven.org/maven2/org/jvnet/staxex/${PN}/${PV}-M2/${P}-M2.jar -> ${P}-bin.jar"
 LICENSE=""
-SLOT="1"
+SLOT="2"
 KEYWORDS="~amd64 ~x86 ~ppc64"
 MAVEN_ID="org.jvnet.staxex:stax-ex:2.0.0-M2"
 

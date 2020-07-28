@@ -28,7 +28,7 @@ MAVEN_ID="com.sun.jersey:jersey-server:1.9"
 
 CDEPEND="
 	>=app-maven/jersey-core-1.9:1
-	>=dev-java/asm-8.0.1:4
+	>=dev-java/asm-3.1:3
 "
 
 # Compile dependencies
@@ -66,7 +66,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="asm-4,jersey-core-1"
+JAVA_GENTOO_CLASSPATH="asm-3,jersey-core-1"
 JAVA_CLASSPATH_EXTRA="ant-core,mail,persistence-api,servlet-4.0,jsp-2.3,jaxb-api,ejb,weld-osgi-bundle,osgi-core-4"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

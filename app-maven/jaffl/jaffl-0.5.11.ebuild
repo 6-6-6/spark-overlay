@@ -28,8 +28,7 @@ MAVEN_ID="org.jruby.extras:jaffl:0.5.11"
 CDEPEND="
 	>=app-maven/jffi-1.0.6:0
 	>=app-maven/jnr-x86asm-1.0.0:0
-	>=dev-java/asm-8.0.1:4
-"
+	>=dev-java/asm-3.3.1:3"
 
 
 DEPEND="
@@ -49,5 +48,5 @@ ${CDEPEND}
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="asm-4,asm-4,jffi,jnr-x86asm,jffi"
+JAVA_GENTOO_CLASSPATH="asm-3,jffi,jnr-x86asm,jffi"
 JAVA_SRC_DIR="src/main/java"

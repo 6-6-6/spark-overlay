@@ -17,7 +17,7 @@ LICENSE="EPL-1.0"
 SLOT="0"
 KEYWORDS="amd64 x86"
 
-CDEPEND=">=dev-java/asm-7.0.0:4
+CDEPEND=">=dev-java/asm-7.0.0:7
 	dev-java/commons-logging:0"
 DEPEND="${CDEPEND}
 	app-arch/zip

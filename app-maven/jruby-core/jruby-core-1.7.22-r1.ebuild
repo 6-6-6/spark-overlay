@@ -48,7 +48,7 @@ MAVEN_ID="org.jruby:jruby-core:1.7.22"
 CDEPEND="
 	>=app-maven/nailgun-server-0.9.1:0
 	>=app-maven/yecht-1.0:0
-	>=dev-java/asm-8.0.1:4
+	>=dev-java/asm-5.0.3:4
 	>=dev-java/bytelist-1.0.15:0
 	>=dev-java/headius-options-1.4:0
 	>=dev-java/invokebinder-1.6:0
@@ -100,7 +100,7 @@ S="${WORKDIR}"
 
 JAVA_ENCODING="utf-8"
 
-JAVA_GENTOO_CLASSPATH="jffi-1.2,jffi-1.2,jnr-constants,jnr-enxio,jnr-ffi,jnr-netdb-1.0,jnr-posix,jnr-unixsocket,jnr-x86asm-1.0,invokebinder,headius-options,jzlib-1.1.3,nailgun-server,joda-time,yecht,bytelist,jcodings,joni-2.1,asm-4,asm-4,asm-4,asm-4,snakeyaml"
+JAVA_GENTOO_CLASSPATH="jffi-1.2,jffi-1.2,jnr-constants,jnr-enxio,jnr-ffi,jnr-netdb-1.0,jnr-posix,jnr-unixsocket,jnr-x86asm-1.0,invokebinder,headius-options,jzlib-1.1.3,nailgun-server,joda-time,yecht,bytelist,jcodings,joni-2.1,asm-4,snakeyaml"
 JAVA_CLASSPATH_EXTRA="bsf-2.3,coro-mock,jsr292-mock,unsafe-mock,ant-core,joda-timezones,osgi-core-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

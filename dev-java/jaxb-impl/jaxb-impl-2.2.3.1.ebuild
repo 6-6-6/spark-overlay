@@ -30,7 +30,7 @@ CDEPEND="
 	dev-java/xsom:0
 	>=dev-java/rngom-20160500:0
 	dev-java/wsdl4j:0
-	dev-java/stax-ex:1
+	dev-java/stax-ex:2
 	dev-java/fastinfoset:0
 	dev-java/ant-core:0
 	dev-java/args4j:1
@@ -53,7 +53,7 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_NEEDS_TOOLS=1
-JAVA_GENTOO_CLASSPATH="jaxb-api,codemodel-2,junit-4,xsom,rngom,wsdl4j,stax-ex-1,fastinfoset,ant-core,args4j-1,jakarta-activation"
+JAVA_GENTOO_CLASSPATH="jaxb-api,codemodel-2,junit-4,xsom,rngom,wsdl4j,stax-ex-2,fastinfoset,ant-core,args4j-1,jakarta-activation"
 JAVA_SRC_DIR="src/main/java"
 
 JAVA_RM_FILES=(
