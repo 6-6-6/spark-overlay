@@ -1,3 +1,6 @@
+#!/bin/bash
+
+# call it inside a category
 here=$(pwd)
 
 for i in $(ls); do
