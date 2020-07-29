@@ -48,8 +48,5 @@ S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="guava,curator-framework,zookeeper"
 JAVA_SRC_DIR="src/main/java"
-JAVA_RESOURCE_DIRS=(
-	""
-)
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

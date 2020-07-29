@@ -48,7 +48,6 @@ JAVA_GENTOO_CLASSPATH="commons-lang-3.10"
 JAVA_SRC_DIR="src/main/java"
 JAVA_RESOURCE_DIRS=(
 	"src/main/resources"
-	""
 )
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
