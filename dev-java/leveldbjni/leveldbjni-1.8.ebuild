@@ -6,7 +6,7 @@
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source binary"
+JAVA_PKG_IUSE="doc source binary test"
 
 inherit java-pkg-2 java-pkg-simple
 

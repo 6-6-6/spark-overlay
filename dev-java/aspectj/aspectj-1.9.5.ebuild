@@ -28,7 +28,7 @@ RDEPEND="${CDEPEND}
 S=${WORKDIR}
 
 JAVA_SRC_DIR="${S}/src"
-JAVA_GENTOO_CLASSPATH="commons-logging,asm-4"
+JAVA_GENTOO_CLASSPATH="commons-logging,asm-7"
 JAVA_ENCODING="iso8859-1"
 
 src_unpack() {

@@ -6,14 +6,15 @@
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary test"
 
-inherit java-pkg-2 java-pkg-simple java-pkg-maven
+inherit java-pkg-2 java-pkg-simple
 
 
 DESCRIPTION="Barchart UDT [ BUNDLE ]"
 HOMEPAGE="https://github.com/barchart/barchart-udt/wiki"
-SRC_URI="https://repo.maven.apache.org/maven2/com/barchart/udt/${PN}-bundle/${PV}/${PN}-bundle-${PV}-sources.jar -> ${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/com/barchart/udt/${PN}-bundle/${PV}/${PN}-bundle-${PV}-sources.jar
+		https://repo.maven.apache.org/maven2/com/barchart/udt/${PN}-bundle/${PV}/${PN}-bundle-${PV}.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -23,15 +24,15 @@ MAVEN_PROVIDES="com.barchart.udt:barchart-udt-core:2.3.0"
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	dev-java/slf4j-api
 	app-arch/unzip
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
+	dev-java/slf4j-api:0
 "
 
 S="${WORKDIR}"
 JAVA_SRC_DIR="src/main/java"
 JAVA_GENTOO_CLASSPATH="slf4j-api"
-
+JAVA_BINJAR_FILENAME="${PN}-bundle-${PV}.jar"

@@ -15,7 +15,8 @@ MY_P=${MY_PN}-${PV}
 
 DESCRIPTION="A set of annotations used for code inspection support and code documentation."
 HOMEPAGE="http://www.jetbrains.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/jetbrains/${MY_PN}/${PV}/${MY_P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/jetbrains/${MY_PN}/${PV}/${MY_P}-sources.jar -> ${P}-sources.jar
+		https://repo.maven.apache.org/maven2/org/jetbrains/${MY_PN}/${PV}/${MY_P}.jar -> ${P}-bin.har"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -35,3 +36,4 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
+JAVA_BINJAR_FILENAME="${P}-bin.jar"

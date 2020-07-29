@@ -6,28 +6,28 @@
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary test"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="fastutil extends the Java Collections Framework by providing type-specific maps, sets, lists and priority queues with a small memory footprint and fast access and insertion; provides also big (64-bit) arrays, sets and lists, and fast, practical I/O classes for binary and text files."
 HOMEPAGE="http://fasutil.di.unimi.it/"
-SRC_URI="https://repo.maven.apache.org/maven2/it/unimi/dsi/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/it/unimi/dsi/${PN}/${PV}/${P}-sources.jar
+	https://repo.maven.apache.org/maven2/it/unimi/dsi/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64 ~ppc64 ~x86"
 MAVEN_ID="it.unimi.dsi:fastutil:8.1.1"
 
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	dev-java/junit:4
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
+	dev-java/junit:4
 "
 
 JAVA_GENTOO_CLASSPATH="junit-4"
@@ -35,4 +35,4 @@ JAVA_GENTOO_CLASSPATH="junit-4"
 S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
-
+JAVA_BINJAR_FILENAME="${P}-bin.jar"

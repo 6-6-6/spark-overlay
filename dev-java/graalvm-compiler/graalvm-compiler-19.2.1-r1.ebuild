@@ -16,7 +16,8 @@ SRC_URI="https://repo.maven.apache.org/maven2/org/graalvm/compiler/compiler/${PV
 	https://repo.maven.apache.org/maven2/org/graalvm/compiler/compiler/${PV}/compiler-${PV}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
+#KEYWORDS="~amd64"
 MAVEN_ID="org.graalvm.compiler:compiler:19.2.1"
 
 # Common dependencies

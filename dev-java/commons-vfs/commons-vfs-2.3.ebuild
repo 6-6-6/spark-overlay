@@ -13,7 +13,8 @@ SRC_URI="mirror://apache/commons/vfs/source/${P}-src.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="2"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+KEYWPRKDS=""
+#KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 
 #	app-maven/hadoop-hdfs-client:0
 CDEPEND="
