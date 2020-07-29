@@ -126,7 +126,7 @@ CDEPEND="
 	>=dev-java/ant-ivy-2.4.0:2
 	>=dev-java/commons-crypto-1.0.0:0
 	>=dev-java/commons-lang-3.10:3.10
-	>=dev-java/commons-math-3.6.1:0
+	>=dev-java/commons-math-3.4.1:3
 	>=dev-java/commons-net-3.2:0
 	>=dev-java/jakarta-oro-2.0.8:2.0
 	>=dev-java/jsr305-3.0.1:0
@@ -163,7 +163,7 @@ ${CDEPEND}
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="stream,jackson-databind,jackson-module-scala-2.12,zstd-jni,jsr305,compress-lzf,chill-java,chill-2.12,commons-net,metrics-core,metrics-graphite,metrics-jmx,metrics-json,metrics-jvm,netty-all,activation,servlet-4.0,log4j,pyrolite,py4j,avro,avro-mapred,commons-crypto,commons-lang-3.10,commons-math,commons-text,curator-recipes,hadoop-client,ant-ivy-2,spark-kvstore-2.12,spark-launcher-2.12,spark-network-common-2.12,spark-network-shuffle-2.12,spark-tags-2.12,spark-unsafe-2.12,xbean-asm7-shaded,zookeeper,jersey-container-servlet-2,jersey-container-servlet-core-2,jersey-client-2,jersey-common-2,jersey-server-2,jersey-hk2-2,json4s-jackson-2.12,lz4-java,RoaringBitmap,scala-common-bin-2.12,scala-common-bin-2.12,scala-common-bin-2.12,jcl-over-slf4j,jul-to-slf4j,slf4j-api,slf4j-log4j12,unused,snappy-1.1,jakarta-oro-2.0,paranamer"
+JAVA_GENTOO_CLASSPATH="stream,jackson-databind,jackson-module-scala-2.12,zstd-jni,jsr305,compress-lzf,chill-java,chill-2.12,commons-net,metrics-core,metrics-graphite,metrics-jmx,metrics-json,metrics-jvm,netty-all,activation,servlet-4.0,log4j,pyrolite,py4j,avro,avro-mapred,commons-crypto,commons-lang-3.10,commons-math-3,commons-text,curator-recipes,hadoop-client,ant-ivy-2,spark-kvstore-2.12,spark-launcher-2.12,spark-network-common-2.12,spark-network-shuffle-2.12,spark-tags-2.12,spark-unsafe-2.12,xbean-asm7-shaded,zookeeper,jersey-container-servlet-2,jersey-container-servlet-core-2,jersey-client-2,jersey-common-2,jersey-server-2,jersey-hk2-2,json4s-jackson-2.12,lz4-java,RoaringBitmap,scala-common-bin-2.12,scala-common-bin-2.12,scala-common-bin-2.12,jcl-over-slf4j,jul-to-slf4j,slf4j-api,slf4j-log4j12,unused,snappy-1.1,jakarta-oro-2.0,paranamer"
 JAVA_CLASSPATH_EXTRA="guava"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

@@ -13,6 +13,16 @@
 
 EXPORT_FUNCTIONS src_unpack
 
+# @ECLASS-VARIABLE: JAVA_SRC_DIR
+# @DESCRIPTION:
+# A directory relative to ${S} which contains the source code.
+# source code distributed by Maven Central are exactly the root of
+# the source code, we need to assign them a separate directory to
+# avoid the situation that the source code, the resources and the
+# source code for testing are mixed in ${S}.
+#
+: ${JAVA_SRC_DIR:=src/main/java}
+
 # @ECLASS-VARIABLE: JAVA_SOURCE_FILENAME
 # @DESCRIPTION:
 # The filename of the source code.
@@ -26,9 +36,16 @@ EXPORT_FUNCTIONS src_unpack
 # @ECLASS-VARIABLE: JAVA_RESOURCE_DIRS
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# A directory relative to ${S} which contain the resources of the
+# A directory relative to ${S} which contains the resources of the
 # application. Give it a default value to handle src_unpack.
 : ${JAVA_RESOURCE_DIRS:=src/main/resources}
+
+# @ECLASS-VARIABLE: JAVA_RESOURCE_DIRS
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# A directory relative to ${S} which contains the source code for testing
+# the application. Give it a default value to handle src_unpack.
+: ${JAVA_TEST_SRC_DIR:=src/test/java}
 
 # @FUNCTION: java-pkg-binjar_src_unpack
 # @DESCRIPTION:
