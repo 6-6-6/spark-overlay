@@ -52,8 +52,9 @@ src_install() {
 
 	exeinto /usr/lib/${PN}
 	# fix it!!!!!!!
-	# merge them into java-ebuilder when stable
-	cp -r ${FILESDIR}/scripts/* ${ED}/usr/lib/${PN}/ || die "failed to install scripts"
+	# TODO: merge them into java-ebuilder when stable
+	ln -s /var/lib/java-ebuilder/maven/app-portage/java-ebuilder/files/scripts/* ${ED}/usr/lib/${PN}/
+	#cp -r ${FILESDIR}/scripts/* ${ED}/usr/lib/${PN}/ || die "failed to install scripts"
 	#doexe scripts/{tree,meta}.sh
 
 	#dobin scripts/movl

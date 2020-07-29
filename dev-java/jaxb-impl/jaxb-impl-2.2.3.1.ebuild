@@ -6,13 +6,13 @@
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source binary"
+JAVA_PKG_IUSE="doc source binary test"
 
 inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="JAXB (JSR 222) reference implementation"
 HOMEPAGE="http://jaxb.java.net/"
-SRC_URI="https://repo1.maven.org/maven2/com/sun/xml/bind/${PN}/2.2.3-1/${PN}-2.2.3-1-sources.jar -> ${P}.jar
+SRC_URI="https://repo1.maven.org/maven2/com/sun/xml/bind/${PN}/2.2.3-1/${PN}-2.2.3-1-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/sun/xml/bind/${PN}/2.2.3-1/${PN}-2.2.3-1.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
@@ -30,7 +30,7 @@ CDEPEND="
 	dev-java/xsom:0
 	>=dev-java/rngom-20160500:0
 	dev-java/wsdl4j:0
-	dev-java/stax-ex:2
+	dev-java/stax-ex:1
 	dev-java/fastinfoset:0
 	dev-java/ant-core:0
 	dev-java/args4j:1
@@ -53,8 +53,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_NEEDS_TOOLS=1
-JAVA_GENTOO_CLASSPATH="jaxb-api,codemodel-2,junit-4,xsom,rngom,wsdl4j,stax-ex-2,fastinfoset,ant-core,args4j-1,jakarta-activation"
+JAVA_GENTOO_CLASSPATH="jaxb-api,codemodel-2,junit-4,xsom,rngom,wsdl4j,stax-ex-1,fastinfoset,ant-core,args4j-1,jakarta-activation"
 JAVA_SRC_DIR="src/main/java"
+JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 JAVA_RM_FILES=(
 	${JAVA_SRC_DIR}/txw2/wsdl11/src/WsdlTest.java
@@ -63,6 +64,5 @@ JAVA_RM_FILES=(
 
 src_unpack() {
 	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
+	unzip -q ${DISTDIR}/${P}-sources.jar -d ${S}/${JAVA_SRC_DIR} || die
 }

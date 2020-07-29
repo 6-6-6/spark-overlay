@@ -4932,6 +4932,60 @@
                 ]
             ]
         },
+        "asm": {
+            "3": [
+                [
+                    "asm",
+                    "asm"
+                ],
+                [
+                    "asm",
+                    "asm-analysis"
+                ],
+                [
+                    "asm",
+                    "asm-commons"
+                ],
+                [
+                    "asm",
+                    "asm-tree"
+                ],
+                [
+                    "asm",
+                    "asm-util"
+                ],
+                [
+                    "asm",
+                    "asm-xml"
+                ]
+            ],
+            "4": [
+                [
+                    "org.ow2.asm",
+                    "asm"
+                ],
+                [
+                    "org.ow2.asm",
+                    "asm-analysis"
+                ],
+                [
+                    "org.ow2.asm",
+                    "asm-commons"
+                ],
+                [
+                    "org.ow2.asm",
+                    "asm-tree"
+                ],
+                [
+                    "org.ow2.asm",
+                    "asm-util"
+                ],
+                [
+                    "org.ow2.asm",
+                    "asm-xml"
+                ]
+            ]
+        },
         "rat": {
             "0": [
                 [

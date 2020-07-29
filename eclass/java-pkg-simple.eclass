@@ -405,8 +405,10 @@ java-pkg-simple_src_test() {
 				|| die "Cannot copy binjar file to ${S}."
 
 			# ignore META-INF since it does not matter
+			# ignore module-info.class since jdk-1.8 does not support it
 			pkgdiff ${JAVA_BINJAR_FILENAME} ${JAVA_JAR_FILENAME}\
-				-skip-pattern "META-INF"\
+				-vnum1 ${PV}-bin -vnum2 ${PV}\
+				-skip-pattern "META-INF|module-info.class"\
 				-name ${PN} -report-path ${report}\
 				|| die "pkgdiff returns $?, check the report in ${S}/${report}"
 		fi
@@ -437,7 +439,8 @@ java-pkg-simple_src_test() {
 		@${test_sources}
 
 	# launch test
-	if [[ ${JAVA_TESTING_FRAMEWORK} == "junit" ]]; then
-		java-pkg-simple_junit-test
-	fi
+	case ${JAVA_TESTING_FRAMEWORK} in
+		junit)
+			java-pkg-simple_junit-test;;
+	esac
 }
