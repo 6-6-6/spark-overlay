@@ -30,8 +30,8 @@ MAVEN_PROVIDES="com.google.guava:listenablefuture:9999.0"
 # org.checkerframework:checker-qual:2.11.1 -> !!!artifactId-not-found!!!
 
 CDEPEND="
-	>=app-maven/checker-qual-2.11.1:0
-	>=app-maven/failureaccess-1.0.1:0
+	>=dev-java/checker-qual-2.11.1:0
+	>=dev-java/failureaccess-1.0.1:0
 	>=dev-java/j2objc-annotations-1.3:0
 	>=dev-java/error-prone-annotations-2.4.0
 	>=dev-java/jsr305-3.0.1:0

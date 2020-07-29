@@ -22,11 +22,11 @@ MAVEN_ID="org.graalvm.compiler:compiler:19.2.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/compiler-${PV}.pom
-# org.graalvm.sdk:graal-sdk:19.2.1 -> >=app-maven/graal-sdk-19.2.1:0
+# org.graalvm.sdk:graal-sdk:19.2.1 -> >=dev-java/graal-sdk-19.2.1:0
 # org.graalvm.truffle:truffle-api:19.2.1 -> >=dev-java/truffle-api-20.1.0:0
 
 CDEPEND="
-	>=app-maven/graal-sdk-19.2.1:0
+	>=dev-java/graal-sdk-19.2.1:0
 	>=dev-java/truffle-api-20.1.0:0
 "
 

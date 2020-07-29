@@ -61,21 +61,21 @@ CDEPEND="
 	>=dev-java/netty-handler-5.0.0:0
 	>=dev-java/netty-transport-5.0.0:0
 
-	>=app-maven/netty-codec-dns-5.0.0:0
-	>=app-maven/netty-codec-haproxy-5.0.0:0
-	>=app-maven/netty-codec-http2-5.0.0:0
-	>=app-maven/netty-codec-memcache-5.0.0:0
-	>=app-maven/netty-codec-mqtt-5.0.0:0
-	>=app-maven/netty-codec-stomp-5.0.0:0
-	>=app-maven/netty-example-5.0.0:0
-	>=app-maven/netty-handler-proxy-5.0.0:0
-	>=app-maven/netty-resolver-5.0.0:0
-	>=app-maven/netty-resolver-dns-5.0.0:0
-	>=app-maven/netty-transport-native-epoll-5.0.0:0
-	>=app-maven/netty-codec-socks-5.0.0:0
-	>=app-maven/netty-transport-rxtx-5.0.0:0
-	>=app-maven/netty-transport-sctp-5.0.0:0
-	>=app-maven/netty-transport-udt-5.0.0:0
+	>=dev-java/netty-codec-dns-5.0.0:0
+	>=dev-java/netty-codec-haproxy-5.0.0:0
+	>=dev-java/netty-codec-http2-5.0.0:0
+	>=dev-java/netty-codec-memcache-5.0.0:0
+	>=dev-java/netty-codec-mqtt-5.0.0:0
+	>=dev-java/netty-codec-stomp-5.0.0:0
+	>=dev-java/netty-example-5.0.0:0
+	>=dev-java/netty-handler-proxy-5.0.0:0
+	>=dev-java/netty-resolver-5.0.0:0
+	>=dev-java/netty-resolver-dns-5.0.0:0
+	>=dev-java/netty-transport-native-epoll-5.0.0:0
+	>=dev-java/netty-codec-socks-5.0.0:0
+	>=dev-java/netty-transport-rxtx-5.0.0:0
+	>=dev-java/netty-transport-sctp-5.0.0:0
+	>=dev-java/netty-transport-udt-5.0.0:0
 "
 
 

@@ -22,13 +22,13 @@ MAVEN_ID="com.sun.istack:istack-commons-runtime:4.0.0-M3"
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}-M3.pom
-# jakarta.activation:jakarta.activation-api:2.0.0-RC3 -> >=app-maven/jakarta-activation-api-2.0.0:0
+# jakarta.activation:jakarta.activation-api:2.0.0-RC3 -> >=dev-java/jakarta-activation-api-2.0.0:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	>=app-maven/jakarta-activation-api-2.0.0:0
+	>=dev-java/jakarta-activation-api-2.0.0:0
 	)
 "
 

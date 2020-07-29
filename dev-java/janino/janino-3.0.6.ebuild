@@ -23,7 +23,7 @@ MAVEN_ID="org.codehaus.janino:janino:3.0.6"
 # org.codehaus.janino:commons-compiler:3.0.6 -> !!!groupId-not-found!!!
 
 CDEPEND="
-	>=app-maven/commons-compiler-3.0.6:0
+	>=dev-java/commons-compiler-3.0.6:0
 "
 
 # Compile dependencies

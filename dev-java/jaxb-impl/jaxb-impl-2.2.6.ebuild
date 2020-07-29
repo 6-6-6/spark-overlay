@@ -21,10 +21,10 @@ MAVEN_ID="com.sun.xml.bind:jaxb-impl:2.2.6"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-2.2.3-1.pom
-# javax.xml.bind:jaxb-api:2.2.2 -> >=app-maven/jaxb-api-2.2.2:0
+# javax.xml.bind:jaxb-api:2.2.2 -> >=dev-java/jaxb-api-2.2.2:0
 
 CDEPEND="
-	>=app-maven/jaxb-api-2.2.2:0
+	>=dev-java/jaxb-api-2.2.2:0
 	dev-java/codemodel:2
 	dev-java/junit:4
 	dev-java/xsom:0
@@ -34,7 +34,7 @@ CDEPEND="
 	dev-java/fastinfoset:0
 	dev-java/ant-core:0
 	dev-java/args4j:2
-	app-maven/jakarta-activation:0
+	dev-java/jakarta-activation:0
 "
 
 

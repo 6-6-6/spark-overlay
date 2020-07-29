@@ -16,10 +16,10 @@ SLOT="2"
 KEYWPRKDS=""
 #KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 
-#	app-maven/hadoop-hdfs-client:0
+#	dev-java/hadoop-hdfs-client:0
 CDEPEND="
-	app-maven/hadoop-common:0
-	app-maven/hadoop-hdfs:0
+	dev-java/hadoop-common:0
+	dev-java/hadoop-hdfs:0
 
 	dev-java/ant-core:0
 	dev-java/commons-collections:4

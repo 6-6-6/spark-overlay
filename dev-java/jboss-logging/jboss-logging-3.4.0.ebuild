@@ -29,7 +29,7 @@ MAVEN_ID="org.jboss.logging:jboss-logging:3.4.0.Final"
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	>=app-maven/log4j-api-2.3:0
+	>=dev-java/log4j-api-2.3:0
 	>=dev-java/jboss-logmanager-1.5.2:0
 	>=dev-java/log4j-1.2.17:0
 	>=dev-java/slf4j-api-1.7.7:0

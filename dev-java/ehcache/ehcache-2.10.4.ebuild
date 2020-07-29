@@ -29,8 +29,8 @@ CDEPEND="
 	>=dev-java/slf4j-api-1.7.7:0
 
 	java-virtuals/ws-rs-api:0
-	app-maven/jersey-server:0
-	app-maven/jersey-media-sse:0
+	dev-java/jersey-server:0
+	dev-java/jersey-media-sse:0
 	java-virtuals/transaction-api:0
 "
 

@@ -24,7 +24,7 @@ MAVEN_ID="org.graalvm.truffle:truffle-api:20.1.0"
 # org.graalvm.sdk:graal-sdk:20.1.0 -> !!!groupId-not-found!!!
 
 CDEPEND="
-	>=app-maven/graal-sdk-20.1.0:0
+	>=dev-java/graal-sdk-20.1.0:0
 "
 
 

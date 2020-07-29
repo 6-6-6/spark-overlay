@@ -39,21 +39,21 @@ CDEPEND="
 	>=dev-java/netty-transport-5.0.0:0
 
 	>=dev-java/jetty-npn-api-1.1.1_p20120308:0
-	app-maven/tomcat-jni:0
+	dev-java/tomcat-jni:0
 "
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Alpha2.pom
-# org.mortbay.jetty.alpn:alpn-boot:8.1.2.v20141202 -> >=app-maven/alpn-boot-8.1.2_p20141202:0
-# org.mortbay.jetty.npn:npn-boot:1.1.9.v20141016 -> >=app-maven/npn-boot-1.1.9_p20141016:0
+# org.mortbay.jetty.alpn:alpn-boot:8.1.2.v20141202 -> >=dev-java/alpn-boot-8.1.2_p20141202:0
+# org.mortbay.jetty.npn:npn-boot:1.1.9.v20141016 -> >=dev-java/npn-boot-1.1.9_p20141016:0
 
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip
 	!binary? (
 	${CDEPEND}
-	>=app-maven/alpn-boot-8.1.2_p20141202:0
-	>=app-maven/npn-boot-1.1.9_p20141016:0
+	>=dev-java/alpn-boot-8.1.2_p20141202:0
+	>=dev-java/npn-boot-1.1.9_p20141016:0
 	)
 "
 

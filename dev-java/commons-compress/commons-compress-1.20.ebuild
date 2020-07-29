@@ -28,8 +28,8 @@ MAVEN_ID="org.apache.commons:commons-compress:1.20"
 # org.tukaani:xz:1.8 -> >=dev-java/xz-java-1.8:0
 
 CDEPEND="
-	>=app-maven/dec-0.1.2:0
-	>=app-maven/zstd-jni-1.4.4.7:0
+	>=dev-java/dec-0.1.2:0
+	>=dev-java/zstd-jni-1.4.4.7:0
 	>=dev-java/xz-java-1.8:0
 "
 

@@ -24,10 +24,10 @@ MAVEN_ID="io.netty:netty-transport:5.0.0.Alpha2"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Alpha2.pom
 # io.netty:netty-buffer:5.0.0.Alpha2 -> >=dev-java/netty-buffer-5.0.0:0
-# io.netty:netty-resolver:5.0.0.Alpha2 -> >=app-maven/netty-resolver-5.0.0:0
+# io.netty:netty-resolver:5.0.0.Alpha2 -> >=dev-java/netty-resolver-5.0.0:0
 
 CDEPEND="
-	>=app-maven/netty-resolver-5.0.0:0
+	>=dev-java/netty-resolver-5.0.0:0
 	>=dev-java/netty-buffer-5.0.0:0
 "
 

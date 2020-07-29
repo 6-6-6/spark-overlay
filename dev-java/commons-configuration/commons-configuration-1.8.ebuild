@@ -31,10 +31,10 @@ MAVEN_ID="commons-configuration:commons-configuration:1.8"
 # log4j:log4j:1.2.8 -> >=dev-java/log4j-1.2.17:0
 # org.apache.commons:commons-jexl:2.1.1 -> >=dev-java/commons-jexl-2.1.1:2
 # org.apache.commons:commons-vfs2:2.0 -> >=dev-java/commons-vfs-2.0:2
-# xml-resolver:xml-resolver:1.2 -> >=app-maven/xml-resolver-1.2:0
+# xml-resolver:xml-resolver:1.2 -> >=dev-java/xml-resolver-1.2:0
 
 CDEPEND="
-	>=app-maven/xml-resolver-1.2:0
+	>=dev-java/xml-resolver-1.2:0
 	>=dev-java/commons-beanutils-1.9.2:1.7
 	>=dev-java/commons-codec-1.7:0
 	>=dev-java/commons-collections-3.2.1:0
@@ -50,14 +50,14 @@ CDEPEND="
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # javax.servlet:servlet-api:2.4 -> >=java-virtuals/servlet-api-4.0:4.0
-# xml-apis:xml-apis:1.0.b2 -> >=app-maven/xml-apis-1.0:0
+# xml-apis:xml-apis:1.0.b2 -> >=dev-java/xml-apis-1.0:0
 
 DEPEND="
 	>=virtual/jdk-1.5:*
 	app-arch/unzip
 	!binary? (
 	${CDEPEND}
-	>=app-maven/xml-apis-1.0:0
+	>=dev-java/xml-apis-1.0:0
 	java-virtuals/servlet-api:4.0
 	)
 "

@@ -28,9 +28,9 @@ MAVEN_ID="com.oracle.substratevm:svm:19.2.1"
 # org.graalvm.truffle:truffle-nfi:19.2.1 -> dev-java/truffle-nfi:19
 
 CDEPEND="
-	>=app-maven/objectfile-19.2.1
-	>=app-maven/pointsto-19.2.1
-	>=app-maven/graal-sdk-19.2.1
+	>=dev-java/objectfile-19.2.1
+	>=dev-java/pointsto-19.2.1
+	>=dev-java/graal-sdk-19.2.1
 	>=dev-java/graalvm-compiler-19.2.1
 	dev-libs/libsvm
 	dev-java/truffle-nfi

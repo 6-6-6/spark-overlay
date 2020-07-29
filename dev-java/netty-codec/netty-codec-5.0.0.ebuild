@@ -22,18 +22,18 @@ MAVEN_ID="io.netty:netty-codec:5.0.0.Alpha2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Alpha2.pom
-# com.github.jponge:lzma-java:1.3 -> >=app-maven/lzma-java-1.3:0
+# com.github.jponge:lzma-java:1.3 -> >=dev-java/lzma-java-1.3:0
 # com.google.protobuf:protobuf-java:2.5.0 -> >=dev-java/protobuf-java-3.11.4:0
 # com.jcraft:jzlib:1.1.2 -> >=dev-java/jzlib-1.1.3:1.1.3
-# com.ning:compress-lzf:1.0.1 -> >=app-maven/compress-lzf-1.0.1:0
+# com.ning:compress-lzf:1.0.1 -> >=dev-java/compress-lzf-1.0.1:0
 # io.netty:netty-transport:5.0.0.Alpha2 -> >=dev-java/netty-transport-5.0.0:0
-# net.jpountz.lz4:lz4:1.2.0 -> >=app-maven/lz4-1.2.0:0
+# net.jpountz.lz4:lz4:1.2.0 -> >=dev-java/lz4-1.2.0:0
 # org.jboss.marshalling:jboss-marshalling:1.3.18.GA -> >=dev-java/jboss-marshalling-1.3.18:0
 
 CDEPEND="
-	>=app-maven/compress-lzf-1.0.1:0
-	>=app-maven/lz4-1.2.0:0
-	>=app-maven/lzma-java-1.3:0
+	>=dev-java/compress-lzf-1.0.1:0
+	>=dev-java/lz4-1.2.0:0
+	>=dev-java/lzma-java-1.3:0
 	>=dev-java/jboss-marshalling-1.3.18:0
 	>=dev-java/jzlib-1.1.3:1.1.3
 	>=dev-java/netty-transport-5.0.0:0
