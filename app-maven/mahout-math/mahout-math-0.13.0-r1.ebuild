@@ -10,9 +10,7 @@ JAVA_PKG_IUSE="doc source test binary"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="High performance scientific and technical computing data structures and methods,
-    mostly based on CERN's
-    Colt Java API"
+DESCRIPTION="High performance scientific and technical computing data structures and methods, mostly based on CERN's Colt Java API"
 HOMEPAGE="http://mahout.apache.org/mahout-math"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/mahout/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/mahout/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
@@ -56,3 +54,10 @@ JAVA_GENTOO_CLASSPATH="guava,t-digest,fastutil,commons-math-3,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
+src_prepare() {
+	java-pkg-2_src_prepare
+
+	sed -i "s/CharMatcher.WHITESPACE/CharMatcher.whitespace()/"\
+		${JAVA_SRC_DIR}/org/apache/mahout/math/random/IndianBuffet.java\
+		|| die
+}

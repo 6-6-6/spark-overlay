@@ -32,7 +32,7 @@ MAVEN_ID="io.netty:netty-handler:5.0.0.Alpha2"
 
 CDEPEND="
 	>=dev-java/bcpkix-1.50:1.50
-	>=dev-java/jetty-alpn-api-1.1.2:0
+	dev-java/jetty-alpn-api:0
 	>=dev-java/netty-buffer-5.0.0:0
 	>=dev-java/netty-codec-5.0.0:0
 	>=dev-java/netty-tcnative-1.1.33.15:0

@@ -22,12 +22,12 @@ MAVEN_ID="org.apache.xbean:xbean-asm7-shaded:4.15"
 
 
 DEPEND="
-	>=virtual/jdk-1.5:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 "
 
 RDEPEND="
-	>=virtual/jre-1.5:*
+	>=virtual/jre-1.8:*
 "
 
 S="${WORKDIR}"

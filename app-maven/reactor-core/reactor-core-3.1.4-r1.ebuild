@@ -53,3 +53,9 @@ JAVA_GENTOO_CLASSPATH="jsr305,kotlin-common-bin,reactive-streams,slf4j-api,java9
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
+src_prepare() {
+	java-pkg-2_src_prepare
+
+	sed -i "s/java.util.concurrent/java9.util.concurrent/"\
+		${S}/${JAVA_SRC_DIR}/reactor/adapter/JdkFlowAdapter.java || die
+}

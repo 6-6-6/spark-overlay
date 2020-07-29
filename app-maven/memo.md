@@ -25,9 +25,6 @@ hadoop-client: empty package
 - [] netty
 - [] npn-api: 1.1.x and 8.1.x ???
 
-# do not need things:
-- [] javax-persistence
-
 # strange source-files
 - [] maven-*
 - [] jruby-core
