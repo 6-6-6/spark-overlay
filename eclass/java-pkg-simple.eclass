@@ -170,6 +170,7 @@ fi
 # It is almost equivalent to ${JAVA_RESOURCE_DIRS} in src_test.
 
 # @FUNCTION: java-pkg-simple_getclasspath
+# @USAGE: java-pkg-simple_getclasspath [--runtime-only]
 # @INTERNAL
 # @DESCRIPTION:
 # Get proper ${classpath} from ${JAVA_GENTOO_CLASSPATH_EXTRA},
@@ -242,7 +243,7 @@ java-pkg-simple_junit-test() {
 }
 
 # @FUNCTION: java-pkg-simple_prepend-resources
-# @USAGE: java-pkg-simple_prepend-resources "${JAVA_RESOURCE_DIRS[@]}"
+# @USAGE: java-pkg-simple_prepend-resources <"${JAVA_RESOURCE_DIRS[@]}">
 # @INTERNAL
 # @DESCRIPTION:
 # Accept "${JAVA_RESOURCE_DIRS[@]}" or "${JAVA_TEST_RESOURCE_DIRS[@]}"
@@ -289,6 +290,12 @@ java-pkg-simple_src_compile() {
 
 	# do not compile if we decide to install binary jar
 	if has binary ${JAVA_PKG_IUSE} && use binary; then
+		# register the runtime dependencies
+		for dependency in ${JAVA_GENTOO_CLASSPATH}; do
+			java-pkg_getjars ${deep_jars} ${dependency}\
+				|| die "getjars failed for ${dependency}"
+		done
+
 		cp ${DISTDIR}/${JAVA_BINJAR_FILENAME} ${JAVA_JAR_FILENAME}\
 			|| die "Could not copy the binary jar file to ${S}"
 		return 0
@@ -299,7 +306,7 @@ java-pkg-simple_src_compile() {
 		|| die "Could not create an empty ${sources}"
 	local directory
 	for directory in "${JAVA_SRC_DIR[@]}"; do
-		find ${S}/"${directory}" -name \*.java >> ${sources}
+		find "${directory}" -name \*.java >> ${sources}
 	done
 
 	# create the target directory
@@ -336,7 +343,9 @@ java-pkg-simple_src_compile() {
 
 	# prepend resources
 	for resource in "${JAVA_RESOURCE_DIRS[@]}"; do
-		jar uf ${JAVA_JAR_FILENAME} -C "${resource:-.}" .\
+		# ${reource} == "." will make `jar uf` hang
+		[[ ${resource:-.} == "." ]] && die
+		jar uf ${JAVA_JAR_FILENAME} -C "${resource}" .\
 			|| die "Failed to add resources to ${JAVA_JAR_FILENAME}"
 	done
 }

@@ -42,7 +42,10 @@ java-pkg-maven_src_unpack() {
 				mkdir -p "${S}"/${JAVA_SRC_DIR}\
 					|| die "Could not create ${JAVA_SRC_DIR}"
 				unzip -q -o "${DISTDIR}"/${file} -d "${S}"/${JAVA_SRC_DIR}\
-					|| die "Could not unzip source code" ;;
+					|| die "Could not unzip source code"
+				if [[ -d "${S}"/${JAVA_SRC_DIR}/META-INF ]] ; then
+					rm "${S}"/${JAVA_SRC_DIR}/META-INF -r || die
+				fi ;;
 			${JAVA_TEST_SOURCE_FILENAME})
 				mkdir -p "${S}"/${JAVA_TEST_SRC_DIR}\
 					|| die "Could not create ${JAVA_TEST_SRC_DIR}"
@@ -52,8 +55,8 @@ java-pkg-maven_src_unpack() {
 	done
 
 	# the resources (maven resources are bundled inside source file)
+	mkdir -p $(dirname "${S}"/${JAVA_RESOURCE_DIRS}) || die
 	cp "${S}"/${JAVA_SRC_DIR} "${S}"/${JAVA_RESOURCE_DIRS} -r || die
-	rm "${S}"/${JAVA_RESOURCE_DIRS}/META-INF -r || die
 	find "${S}"/${JAVA_RESOURCE_DIRS} -type f ! -name \*.properties \
 		-exec rm {} \; || die
 }
