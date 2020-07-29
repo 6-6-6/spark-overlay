@@ -32,6 +32,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_SRC_DIR="../../../src/main"
+JAVA_SRC_DIR="src/main"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
