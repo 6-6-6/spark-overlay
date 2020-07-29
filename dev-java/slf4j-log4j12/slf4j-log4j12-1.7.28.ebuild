@@ -8,11 +8,11 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="SLF4J LOG4J-12 Binding"
 HOMEPAGE="http://www.slf4j.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/slf4j/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/slf4j/${PN}/${PV}/${P}-sources.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -44,7 +44,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="log4j,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-}

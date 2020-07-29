@@ -8,11 +8,11 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source binary"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="StAX is the reference implementation of the StAX API"
 HOMEPAGE="http://stax.codehaus.org/"
-SRC_URI="https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar
+SRC_URI="https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
@@ -45,9 +45,4 @@ S="${WORKDIR}"
 JAVA_ENCODING="iso-8859-1"
 JAVA_GENTOO_CLASSPATH="stax-api"
 JAVA_SRC_DIR="src/main/java"
-
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
-}
+JAVE_BINJAR_FILENAME="${P}-bin.jar"

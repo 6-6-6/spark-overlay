@@ -8,11 +8,11 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Common cross-project/cross-platform POSIX APIs"
 HOMEPAGE="http://nexus.sonatype.org/oss-repository-hosting.html/jnr-posix"
-SRC_URI="https://repo.maven.apache.org/maven2/com/github/jnr/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/com/github/jnr/${PN}/${PV}/${P}-sources.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~arm64 ~x86-linux ~x86-solaris"
@@ -43,8 +43,3 @@ S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jnr-constants,jnr-ffi"
 JAVA_SRC_DIR="src/main/java"
-
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-}

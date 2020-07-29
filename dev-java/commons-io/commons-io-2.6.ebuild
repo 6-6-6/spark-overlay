@@ -8,12 +8,12 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source binary test"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="The Apache Commons IO library contains utility classes, stream implementations, file filters,
 file comparators, endian transformation classes, and much more."
 HOMEPAGE="http://commons.apache.org/proper/commons-io/"
-SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar
+SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
 	https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-test-sources.jar -> ${P}-test.jar"
 LICENSE=""
@@ -36,21 +36,13 @@ S="${WORKDIR}"
 
 JAVA_ENCODING="iso-8859-1"
 
-#JAVA_SRC_DIR="src/main/java"
-#JAVA_RESOURCE_DIRS=(
-#	"src/main/resources"
-#	"."
-#)
+JAVA_SRC_DIR="src/main/java"
+JAVA_RESOURCE_DIRS=(
+	"src/main/resources"
+)
 
-#JAVA_TESTING_FRAMEWORK="junit"
-#JAVA_TEST_SRC_DIR="src/test/java"
-#JAVA_TEST_RESOURCE_DIRS=("src/test/java")
+JAVA_TESTING_FRAMEWORK="junit"
+JAVA_TEST_SRC_DIR="src/test/java"
+JAVA_TEST_RESOURCE_DIRS=("src/test/java")
+
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-#	mkdir -p ${S}/${JAVA_TEST_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
-#	unzip -q ${DISTDIR}/${P}-test.jar -d ${S}/${JAVA_TEST_SRC_DIR} || die
-}

@@ -9,7 +9,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="java library for writing localized messages using resource bundle: add prinln for debug purpose"
 HOMEPAGE="http://cal10n.qos.ch/"
-SRC_URI="http://repo1.maven.org/maven2/ch/qos/${PN}/${PN}-api/${PV}/${PN}-api-${PV}-sources.jar"
+SRC_URI="https://repo1.maven.org/maven2/ch/qos/${PN}/${PN}-api/${PV}/${PN}-api-${PV}-sources.jar -> ${P}-sources.jar"
 
 LICENSE="MIT"
 SLOT="0"

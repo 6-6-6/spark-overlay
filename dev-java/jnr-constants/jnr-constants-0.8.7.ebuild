@@ -8,11 +8,11 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="A set of platform constants (e.g. errno values)"
 HOMEPAGE="http://github.com/jnr/jnr-constants"
-SRC_URI="https://repo.maven.apache.org/maven2/com/github/jnr/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/com/github/jnr/${PN}/${PV}/${P}-sources.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~arm64"
@@ -32,8 +32,3 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
-
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-}

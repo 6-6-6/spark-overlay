@@ -8,14 +8,14 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Apache Commons Compress software defines an API for working with
 compression and archive formats.  These include: bzip2, gzip, pack200,
 lzma, xz, Snappy, traditional Unix Compress, DEFLATE, DEFLATE64, LZ4,
 Brotli, Zstandard and ar, cpio, jar, tar, zip, dump, 7z, arj."
 HOMEPAGE="https://commons.apache.org/proper/commons-compress/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/commons/${PN}/${PV}/${P}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/commons/${PN}/${PV}/${P}-sources.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="amd64 x86 ~arm64"
@@ -57,10 +57,5 @@ JAVA_GENTOO_CLASSPATH="zstd-jni,dec,xz-java"
 JAVA_GENTOO_CLASSPATH_EXTRA="osgi-core-6"
 JAVA_RESOURCE_DIRS=(
 	"src/main/resources"
-	"."
 )
 
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-}

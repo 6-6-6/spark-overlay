@@ -8,11 +8,11 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="OSGi Service Platform Release 4 Core Interfaces and Classes."
 HOMEPAGE="http://felix.apache.org/org.osgi.core/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.core/${PV}/org.osgi.core-${PV}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.core/${PV}/org.osgi.core-${PV}-sources.jar -> ${P}-sources.jar"
 LICENSE=""
 SLOT="1"
 KEYWORDS="~amd64"
@@ -33,12 +33,6 @@ S="${WORKDIR}"
 
 JAVA_RESOURCE_DIRS=(
 	"src/main/resources"
-	""
 )
 
 JAVA_SRC_DIR="src/main/java"
-
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-}

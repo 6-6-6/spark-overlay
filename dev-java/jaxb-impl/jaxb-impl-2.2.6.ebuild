@@ -33,7 +33,7 @@ CDEPEND="
 	dev-java/stax-ex:1
 	dev-java/fastinfoset:0
 	dev-java/ant-core:0
-	dev-java/args4j:1
+	dev-java/args4j:2
 	app-maven/jakarta-activation:0
 "
 
@@ -53,20 +53,9 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_NEEDS_TOOLS=1
-JAVA_GENTOO_CLASSPATH="jaxb-api,codemodel-2,junit-4,xsom,rngom,wsdl4j,stax-ex-1,fastinfoset,ant-core,args4j-1,jakarta-activation"
+JAVA_GENTOO_CLASSPATH="jaxb-api,codemodel-2,junit-4,xsom,rngom,wsdl4j,stax-ex-1,fastinfoset,ant-core,args4j-2,jakarta-activation"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-#JAVA_RESOURCE_DIRS=(
-#	"src/main/resources"
-#	)
-
-#src_unpack() {
-#	mkdir -p "${S}"/${JAVA_SRC_DIR}
-#	unzip -o -q "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
-#
-#	# the resources (maven sources are trange)
-#	cp "${S}"/${JAVA_SRC_DIR} "${S}"/${JAVA_RESOURCE_DIRS} -r || die
-#	rm "${S}"/${JAVA_RESOURCE_DIRS}/META-INF -r || die
-#	find "${S}"/${JAVA_RESOURCE_DIRS} -type f ! -name \*.properties \
-#		-exec rm {} \; || die
-#}
+JAVA_RESOURCE_DIRS=(
+	"src/main/resources"
+)

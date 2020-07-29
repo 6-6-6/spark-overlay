@@ -8,11 +8,12 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Guava is a suite of core and expanded libraries that include utility classes, google's collections, io classes, and much much more."
 HOMEPAGE="https://github.com/google/guava/guava"
-SRC_URI="https://repo.maven.apache.org/maven2/com/google/${PN}/${PN}/${PV}-jre/${P}-jre-sources.jar -> ${P}.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/com/google/${PN}/${PN}/${PV}-jre/${P}-jre-sources.jar -> ${P}-sources.jar
+		https://repo.maven.apache.org/maven2/com/google/${PN}/${PN}/${PV}-jre/${P}-jre.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64 ~arm64 ~x86"
@@ -52,8 +53,4 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="jsr305,error-prone-annotations,failureaccess,j2objc-annotations,checker-qual"
 
 JAVA_SRC_DIR="src/main/java"
-
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-}
+JAVA_BINJAR_FILENAME="${P}-bin.jar"

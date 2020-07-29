@@ -8,11 +8,11 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="OSGi Core Release 6, Interfaces and Classes for use in compiling bundles."
 HOMEPAGE="http://www.osgi.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/osgi/org.osgi.core/${PV}/org.osgi.core-${PV}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/osgi/org.osgi.core/${PV}/org.osgi.core-${PV}-sources.jar -> ${P}-sources.jar"
 LICENSE=""
 SLOT="6"
 KEYWORDS="~amd64"
@@ -40,7 +40,3 @@ JAVA_GENTOO_CLASSPATH="osgi-annotation-6"
 
 JAVA_SRC_DIR="src/main/java"
 
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-}

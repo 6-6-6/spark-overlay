@@ -8,11 +8,11 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source binary test"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Apache Lucene Java Core"
 HOMEPAGE="http://lucene.apache.org/lucene-parent/lucene-core"
-SRC_URI="https://repo1.maven.org/maven2/org/apache/lucene/${PN}-core/${PV}/${PN}-core-${PV}-sources.jar -> ${P}.jar
+SRC_URI="https://repo1.maven.org/maven2/org/apache/lucene/${PN}-core/${PV}/${PN}-core-${PV}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/lucene/${PN}-core/${PV}/${PN}-core-${PV}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
@@ -34,8 +34,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-}

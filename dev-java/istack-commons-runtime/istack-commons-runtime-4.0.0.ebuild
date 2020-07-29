@@ -8,11 +8,11 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source binary"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="istack common utility code"
 HOMEPAGE="https://projects.eclipse.org/projects/ee4j/istack-commons/istack-commons-runtime"
-SRC_URI="https://repo.maven.apache.org/maven2/com/sun/istack/${PN}/${PV}-M3/${P}-M3-sources.jar -> ${P}.jar
+SRC_URI="https://repo.maven.apache.org/maven2/com/sun/istack/${PN}/${PV}-M3/${P}-M3-sources.jar -> ${P}-sources.jar
 	https://repo.maven.apache.org/maven2/com/sun/istack/${PN}/${PV}-M3/${P}-M3.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
@@ -41,10 +41,6 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="jakarta-activation-api"
 JAVA_SRC_DIR="src/main/java"
 
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-	rm ${S}/${JAVA_SRC_DIR}/module-info.java || die
-	rm ${S}/${JAVA_SRC_DIR}/META-INF -r || die
-	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
-}
+JAVA_RM_FILES=(
+	"${JAVA_SRC_DIR}/module-info.java"
+)

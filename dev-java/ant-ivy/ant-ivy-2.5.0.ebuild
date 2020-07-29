@@ -42,7 +42,7 @@ CDEPEND="dev-java/jsch:0
 	dev-java/jakarta-oro:2.0
 	dev-java/httpcomponents-client:4.5
 	dev-java/httpcomponents-core:4.4
-	dev-java/jsch-agent-proxy"
+	dev-java/jsch-agent-proxy:0"
 
 DEPEND=">=virtual/jdk-1.8
 	test? (

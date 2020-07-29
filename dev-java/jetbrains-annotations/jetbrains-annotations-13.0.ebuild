@@ -8,14 +8,14 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 MY_PN="annotations"
 MY_P=${MY_PN}-${PV}
 
 DESCRIPTION="A set of annotations used for code inspection support and code documentation."
 HOMEPAGE="http://www.jetbrains.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/jetbrains/${MY_PN}/${PV}/${MY_P}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/jetbrains/${MY_PN}/${PV}/${MY_P}-sources.jar"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64"
@@ -35,8 +35,3 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
-
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-}

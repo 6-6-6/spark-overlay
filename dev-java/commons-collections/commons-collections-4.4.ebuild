@@ -8,13 +8,13 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 MY_PN=${PN}4
 
 DESCRIPTION="The Apache Commons Collections package contains types that extend and augment the Java Collections Framework."
 HOMEPAGE="https://commons.apache.org/proper/commons-collections/"
-SRC_URI="https://repo.maven.apache.org/maven2/org/apache/commons/${MY_PN}/${PV}/${MY_PN}-${PV}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/apache/commons/${MY_PN}/${PV}/${MY_PN}-${PV}-sources.jar -> ${P}-sources.jar"
 LICENSE=""
 SLOT="4"
 KEYWORDS="amd64 ppc64 x86"
@@ -34,11 +34,6 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_RESOURCE_DIRS=(
-	"src/main/java"
+	"src/main/resources"
 )
 JAVA_SRC_DIR="src/main/java"
-
-src_unpack() {
-	mkdir -p "${S}"/${JAVA_SRC_DIR}
-	unzip -q -o "${DISTDIR}"/${P}.jar -d "${S}"/${JAVA_SRC_DIR} || die
-}

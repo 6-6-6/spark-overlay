@@ -8,11 +8,11 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source binary"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="The JTS Topology Suite is an API for 2D linear geometry predicates and functions."
 HOMEPAGE="https://www.locationtech.org/projects/technology.jts/jts-modules/jts-core"
-SRC_URI="https://repo1.maven.org/maven2/org/locationtech/jts/${PN}/${PV}/${P}-sources.jar -> ${P}.jar
+SRC_URI="https://repo1.maven.org/maven2/org/locationtech/jts/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/locationtech/jts/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="1"
@@ -33,9 +33,4 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
-
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
-}
+JAVA_BINJAR_FILENAME="${P}-bin.jar"

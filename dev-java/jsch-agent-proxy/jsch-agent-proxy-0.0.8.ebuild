@@ -9,7 +9,7 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="a proxy to ssh-agent and Pageant in Java."
 HOMEPAGE="https://github.com/ymnk/jsch-agent-proxy"
-SRC_URI="https://github.com/ymnk/${PN}/archive/${PV}.tar.gz"
+SRC_URI="https://github.com/ymnk/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
@@ -31,16 +31,15 @@ RDEPEND=">=virtual/jre-1.8
 DEPEND=">=virtual/jdk-1.8
 	${CDEPEND}"
 
-S=${WORKDIR}/${P}
-JAVA_SRC_DIR="src/"
-
-src_unpack() {
-	default
-	rm ${S}/${PN}-usocket-junixsocket -r || die
-	rm ${S}/${PN}-sshj -r || die
-	rm ${S}/${PN}-svnkit-trilead-ssh2 -r || die
-	mkdir ${S}/${JAVA_SRC_DIR} -v
-	mv ${S}/${PN}* ${S}/${JAVA_SRC_DIR} -v || die "fail to move source files to ${JAVA_SRC_DIR}"
-}
+S="${WORKDIR}"/${P}
+JAVA_SRC_DIR=(
+	"jsch-agent-proxy-pageant/src/main/java"
+	"jsch-agent-proxy-usocket-jna/src/main/java"
+	"jsch-agent-proxy-connector-factory/src/main/java"
+	"jsch-agent-proxy-sshagent/src/main/java"
+	"jsch-agent-proxy-core/src/main/java"
+	"jsch-agent-proxy-usocket-nc/src/main/java"
+	"jsch-agent-proxy-jsch/src/main/java"
+)
 
 JAVA_GENTOO_CLASSPATH="jna-4,jsch,slf4j-api"

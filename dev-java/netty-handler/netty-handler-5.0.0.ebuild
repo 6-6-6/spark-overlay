@@ -8,13 +8,12 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source binary"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Netty is an asynchronous event-driven network application framework for
-    rapid development of maintainable high performance protocol servers and
-    clients."
+rapid development of maintainable high performance protocol servers and clients."
 HOMEPAGE="http://netty.io/netty-handler/"
-SRC_URI="https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Alpha2/${P}.Alpha2-sources.jar -> ${P}.jar
+SRC_URI="https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Alpha2/${P}.Alpha2-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Alpha2/${P}.Alpha2.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
@@ -67,9 +66,4 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="netty-buffer,netty-codec,netty-tcnative,netty-transport,bcpkix-1.50,jetty-alpn-api,jetty-npn-api,tomcat-jni"
 JAVA_CLASSPATH_EXTRA="alpn-boot,npn-boot"
 JAVA_SRC_DIR="src/main/java"
-
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
-}
+JAVA_BINJAR_FILENAME="${P}-bin.jar"

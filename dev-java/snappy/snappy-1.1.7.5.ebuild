@@ -8,11 +8,11 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="snappy-java: A fast compression/decompression library"
 HOMEPAGE="https://github.com/xerial/snappy-java"
-SRC_URI="https://repo.maven.apache.org/maven2/org/xerial/snappy/${PN}-java/${PV}/${PN}-java-${PV}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/xerial/snappy/${PN}-java/${PV}/${PN}-java-${PV}-sources.jar -> ${P}-sources.jar"
 LICENSE=""
 SLOT="1.1"
 KEYWORDS="~amd64 ~x86"
@@ -39,7 +39,3 @@ JAVA_CLASSPATH_EXTRA="osgi-core-6"
 
 JAVA_SRC_DIR="src/main/java"
 
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-}

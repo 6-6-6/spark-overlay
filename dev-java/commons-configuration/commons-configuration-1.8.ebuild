@@ -8,11 +8,11 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source binary"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Tools to assist in the reading of configuration/preferences files in various formats"
 HOMEPAGE="http://commons.apache.org/configuration/"
-SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}.jar
+SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
@@ -72,14 +72,8 @@ JAVA_ENCODING="iso-8859-1"
 
 JAVA_GENTOO_CLASSPATH="commons-beanutils-1.7,commons-codec,commons-collections,commons-digester,commons-jxpath,commons-lang-2.1,commons-logging,log4j,commons-jexl-2,commons-vfs-2,xml-resolver"
 JAVA_CLASSPATH_EXTRA="servlet-api-4.0,xml-apis"
-JAVA_SRC_DIR="poms/src/main/java"
+JAVA_SRC_DIR="src/main/java"
 JAVA_RESOURCE_DIRS=(
 	"src/main/resources"
-	""
 )
-
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-	use binary && ( cp ${DISTDIR}/${P}-bin.jar ${S}/${PN}.jar || die "failed to copy binary jar" )
-}
+JAVA_BINJAR_FILENAME="${P}-bin.jar"

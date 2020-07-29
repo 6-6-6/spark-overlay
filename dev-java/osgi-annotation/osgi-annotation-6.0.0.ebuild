@@ -8,11 +8,11 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="OSGi Annotation Release 6, Annotations for use in compiling bundles."
 HOMEPAGE="http://www.osgi.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/osgi/org.osgi.annotation/${PV}/org.osgi.annotation-${PV}-sources.jar -> ${P}.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/osgi/org.osgi.annotation/${PV}/org.osgi.annotation-${PV}-sources.jar -> ${P}-sources.jar"
 LICENSE=""
 SLOT="6"
 KEYWORDS="~amd64"
@@ -32,8 +32,3 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
-
-src_unpack() {
-	mkdir -p ${S}/${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}.jar -d ${S}/${JAVA_SRC_DIR} || die
-}
