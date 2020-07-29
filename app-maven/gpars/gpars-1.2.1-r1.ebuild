@@ -8,7 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="The Groovy and Java high-level concurrency library offering actors, dataflow, CSP, agents, parallel collections, fork/join and more"
 HOMEPAGE="http://gpars.codehaus.org"
@@ -54,7 +54,3 @@ JAVA_GENTOO_CLASSPATH="groovy-all,jcsp,jsr166y,netty-3.2,multiverse-core"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
-src_unpack() {
-	mkdir -p "${S}"/${JAVA_SRC_DIR}
-	unzip -q "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
-}

@@ -8,7 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Groovy: A powerful, dynamic language for the JVM"
 HOMEPAGE="http://groovy.codehaus.org/"
@@ -90,7 +90,3 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 JAVA_TESTING_FRAMEWORK="junit"
 
-src_unpack() {
-	mkdir -p "${S}"/${JAVA_SRC_DIR}
-	unzip -q "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
-}

@@ -8,7 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="The root pom file aggregate the dependencies use by the Retire.js extensions."
 HOMEPAGE="https://github.com/h3xstream/burp-retire-js/retirejs-core"
@@ -50,7 +50,3 @@ JAVA_GENTOO_CLASSPATH="minlog,compiler,json"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
-src_unpack() {
-	mkdir -p "${S}"/${JAVA_SRC_DIR}
-	unzip -q "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
-}

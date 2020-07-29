@@ -8,7 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="The Java(TM) EE  Interceptors 1.2 API classes from JSR 318."
 HOMEPAGE="http://www.jboss.org/jboss-interceptors-api_1.2_spec"
@@ -35,7 +35,3 @@ S="${WORKDIR}"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
-src_unpack() {
-	mkdir -p "${S}"/${JAVA_SRC_DIR}
-	unzip -q "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
-}

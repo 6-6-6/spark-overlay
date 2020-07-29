@@ -8,7 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Hibernate's Bean Validation (JSR-380) reference implementation."
 HOMEPAGE="http://hibernate.org/validator/hibernate-validator"
@@ -69,7 +69,3 @@ JAVA_CLASSPATH_EXTRA="javax-el,jboss-logging-annotations,jboss-logging-processor
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
-src_unpack() {
-	mkdir -p "${S}"/${JAVA_SRC_DIR}
-	unzip -q "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
-}

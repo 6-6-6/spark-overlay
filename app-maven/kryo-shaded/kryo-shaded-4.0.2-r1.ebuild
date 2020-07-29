@@ -8,7 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Fast, efficient Java serialization. This contains the shaded reflectasm jar to prevent conflicts with other versions of asm."
 HOMEPAGE="https://github.com/EsotericSoftware/kryo/kryo-shaded"
@@ -49,7 +49,3 @@ JAVA_GENTOO_CLASSPATH="minlog,objenesis,reflectasm"
 JAVA_SRC_DIR="src"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
-src_unpack() {
-	mkdir -p "${S}"/${JAVA_SRC_DIR}
-	unzip -q "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
-}

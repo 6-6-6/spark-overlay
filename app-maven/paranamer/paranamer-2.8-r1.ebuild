@@ -8,7 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Paranamer allows runtime access to constructor and method parameter names for Java classes"
 HOMEPAGE="https://github.com/paul-hammant/paranamer/paranamer"
@@ -46,7 +46,3 @@ JAVA_GENTOO_CLASSPATH="javax-inject"
 JAVA_SRC_DIR="src/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
-src_unpack() {
-	mkdir -p "${S}"/${JAVA_SRC_DIR}
-	unzip -q "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
-}

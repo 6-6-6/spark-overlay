@@ -8,7 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="A library for summarizing data in streams for which it is infeasible to store all events"
 HOMEPAGE="https://github.com/addthis/stream-lib"
@@ -58,7 +58,3 @@ JAVA_GENTOO_CLASSPATH="colt,guava,charts4j,commons-codec,fastutil,mahout-math,sl
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
-src_unpack() {
-	mkdir -p "${S}"/${JAVA_SRC_DIR}
-	unzip -q "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
-}

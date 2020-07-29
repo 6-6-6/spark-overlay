@@ -8,7 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="HK2 Implementation Utilities"
 HOMEPAGE="https://github.com/eclipse-ee4j/glassfish-hk2/hk2-utils"
@@ -56,7 +56,3 @@ JAVA_GENTOO_CLASSPATH="classmate,jakarta-annotation-api,validation-api,jakarta-i
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
-src_unpack() {
-	mkdir -p "${S}"/${JAVA_SRC_DIR}
-	unzip -q "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
-}

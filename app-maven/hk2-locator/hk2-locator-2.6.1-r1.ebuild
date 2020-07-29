@@ -8,7 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="ServiceLocator Default Implementation"
 HOMEPAGE="https://github.com/eclipse-ee4j/glassfish-hk2/hk2-locator"
@@ -56,7 +56,3 @@ JAVA_GENTOO_CLASSPATH="jakarta-annotation-api,hk2-api,hk2-utils,aopalliance-repa
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
-src_unpack() {
-	mkdir -p "${S}"/${JAVA_SRC_DIR}
-	unzip -q "${DISTDIR}"/${P}-sources.jar -d "${S}"/${JAVA_SRC_DIR} || die
-}
