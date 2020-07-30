@@ -124,7 +124,7 @@ ${CDEPEND}
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jsr305,gson-2.2.2,guava,protobuf-java,jsch,jersey-core-1,jersey-json-1,jersey-server-1,commons-cli-1,commons-codec,commons-collections-3,commons-configuration,commons-httpclient-3,commons-io-1,commons-lang-2.1,commons-logging,commons-net,servlet-4.0,log4j,jets3t,avro,commons-compress,commons-math-3,curator-client,curator-recipes,hadoop-annotations,hadoop-auth,htrace-core,zookeeper,jackson-core-asl,jackson-mapper-asl,jetty-6,jetty-sslengine-6,jetty-util-6,slf4j-api,xmlenc,jsp-2.3,slf4j-log4j12"
+JAVA_GENTOO_CLASSPATH="jsr305,gson-2.2.2,guava,protobuf-java,jsch,jersey-core-1,jersey-json-1,jersey-server-1,commons-cli-1,commons-codec,commons-collections-3,commons-configuration,commons-httpclient-3,commons-io-1,commons-lang-2.1,commons-logging,commons-net,servlet-api-4.0,log4j,jets3t,avro,commons-compress,commons-math-3,curator-client,curator-recipes,hadoop-annotations,hadoop-auth,htrace-core,zookeeper,jackson-core-asl,jackson-mapper-asl,jetty-6,jetty-sslengine-6,jetty-util-6,slf4j-api,xmlenc,jsp-2.3,slf4j-log4j12"
 JAVA_CLASSPATH_EXTRA="ant-core"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

@@ -40,7 +40,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_CLASSPATH_EXTRA="servlet-4.0,slf4j-api"
+JAVA_CLASSPATH_EXTRA="servlet-api-4.0,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

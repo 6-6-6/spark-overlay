@@ -67,7 +67,7 @@ ${CDEPEND}
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="commons-codec,curator-framework,apacheds-kerberos-codec,httpcomponents-client-4.5,zookeeper,slf4j-api,log4j,slf4j-log4j12"
-JAVA_CLASSPATH_EXTRA="servlet-4.0,hadoop-annotations"
+JAVA_CLASSPATH_EXTRA="servlet-api-4.0,hadoop-annotations"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

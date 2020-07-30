@@ -52,7 +52,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="logback-core,mail,servlet-4.0,groovy-all,janino,slf4j-api"
+JAVA_GENTOO_CLASSPATH="logback-core,mail,servlet-api-4.0,groovy-all,janino,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

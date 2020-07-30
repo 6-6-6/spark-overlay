@@ -84,7 +84,7 @@ ${CDEPEND}
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="bsf-2.3,jcommander,qdox-1.12,xstream,commons-logging,jline-2,junit-4,ant-core,ant-ivy-2,jansi-1.11,ant-antlr,ant-junit,ant-launcher,gpars,testng"
-JAVA_CLASSPATH_EXTRA="jsp-2.3,servlet-4.0"
+JAVA_CLASSPATH_EXTRA="jsp-2.3,servlet-api-4.0"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

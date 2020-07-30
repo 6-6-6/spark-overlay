@@ -72,7 +72,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="protobuf-java,commons-logging,netty-tcnative,activation,servlet-4.0,log4j,osgi-compendium,osgi-core-1,bcpkix-1.50,jetty-npn-api,jboss-logging,jboss-marshalling,slf4j-api"
+JAVA_GENTOO_CLASSPATH="protobuf-java,commons-logging,netty-tcnative,activation,servlet-api-4.0,log4j,osgi-compendium,osgi-core-1,bcpkix-1.50,jetty-npn-api,jboss-logging,jboss-marshalling,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

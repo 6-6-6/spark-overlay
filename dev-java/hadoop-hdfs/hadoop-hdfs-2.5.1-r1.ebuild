@@ -90,7 +90,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="guava,protobuf-java,jersey-core-1,jersey-server-1,commons-cli-1,commons-codec,commons-daemon,commons-io-1,commons-lang-2.1,commons-logging,netty,servlet-4.0,jsp-2.3,log4j,jackson-core-asl,jackson-mapper-asl,jetty-6,jetty-util-6,jasper-runtime,xmlenc"
+JAVA_GENTOO_CLASSPATH="guava,protobuf-java,jersey-core-1,jersey-server-1,commons-cli-1,commons-codec,commons-daemon,commons-io-1,commons-lang-2.1,commons-logging,netty,servlet-api-4.0,jsp-2.3,log4j,jackson-core-asl,jackson-mapper-asl,jetty-6,jetty-util-6,jasper-runtime,xmlenc"
 JAVA_CLASSPATH_EXTRA="hadoop-annotations,hadoop-auth,hadoop-common,slf4j-log4j12"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

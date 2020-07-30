@@ -15,7 +15,7 @@ file comparators, endian transformation classes, and much more."
 HOMEPAGE="http://commons.apache.org/proper/commons-io/"
 SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
-	https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-test-sources.jar -> ${P}-test.jar"
+	https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-test-sources.jar"
 LICENSE=""
 SLOT="1"
 KEYWORDS="~amd64"

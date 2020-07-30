@@ -85,7 +85,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="guava,guice-4,guice-4,protobuf-java,jersey-client-1,jersey-core-1,jersey-json-1,jersey-guice-1,commons-codec,commons-lang-2.1,commons-logging,servlet-4.0,jaxb-api,hadoop-annotations,hadoop-yarn-api,hadoop-yarn-common,hadoop-yarn-server-common,jettison,leveldbjni,jetty-util-6,slf4j-api"
+JAVA_GENTOO_CLASSPATH="guava,guice-4,guice-4,protobuf-java,jersey-client-1,jersey-core-1,jersey-json-1,jersey-guice-1,commons-codec,commons-lang-2.1,commons-logging,servlet-api-4.0,jaxb-api,hadoop-annotations,hadoop-yarn-api,hadoop-yarn-common,hadoop-yarn-server-common,jettison,leveldbjni,jetty-util-6,slf4j-api"
 JAVA_CLASSPATH_EXTRA="hadoop-common"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

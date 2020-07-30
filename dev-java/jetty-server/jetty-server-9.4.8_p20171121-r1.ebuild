@@ -48,7 +48,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="servlet-4.0,jetty-http-9,jetty-io-9,jetty-jmx-9"
+JAVA_GENTOO_CLASSPATH="servlet-api-4.0,jetty-http-9,jetty-io-9,jetty-jmx-9"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

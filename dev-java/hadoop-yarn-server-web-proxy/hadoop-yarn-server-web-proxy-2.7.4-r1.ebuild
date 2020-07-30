@@ -58,7 +58,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="guava,commons-logging,servlet-4.0,hadoop-yarn-api,hadoop-yarn-common,hadoop-yarn-server-common,jetty-6"
+JAVA_GENTOO_CLASSPATH="guava,commons-logging,servlet-api-4.0,hadoop-yarn-api,hadoop-yarn-common,hadoop-yarn-server-common,jetty-6"
 JAVA_CLASSPATH_EXTRA="hadoop-common"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

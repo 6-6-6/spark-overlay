@@ -292,8 +292,8 @@ java-pkg-simple_src_compile() {
 	if has binary ${JAVA_PKG_IUSE} && use binary; then
 		# register the runtime dependencies
 		for dependency in ${JAVA_GENTOO_CLASSPATH}; do
-			java-pkg_getjars ${deep_jars} ${dependency}\
-				|| die "getjars failed for ${dependency}"
+			java-pkg_getjars ${dependency}\
+				|| ewarn "runtime dep ${dependency} is not installed"
 		done
 
 		cp ${DISTDIR}/${JAVA_BINJAR_FILENAME} ${JAVA_JAR_FILENAME}\

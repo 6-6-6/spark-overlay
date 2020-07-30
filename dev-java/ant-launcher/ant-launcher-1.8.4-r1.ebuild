@@ -12,7 +12,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="master POM"
 HOMEPAGE="http://ant.apache.org/ant-launcher/"
-SRC_URI="https://repo1.maven.org/maven2/org/apache/ant/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/apache/ant/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/ant/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE=""
 SLOT="0"
@@ -32,6 +32,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_SRC_DIR="src/main"
+JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
