@@ -196,23 +196,20 @@ java-pkg-simple_getclasspath() {
 	# the extra classes that are installed by portage
 	for dependency in ${JAVA_CLASSPATH_EXTRA}; do
 		classpath="${classpath}:$(java-pkg_getjars ${buildonly_jars}\
-			${deep_jars} ${dependency})"\
-			|| die "getjars failed for ${dependency}"
+			${deep_jars} ${dependency})"
 	done
 
 	# add test dependencies if USE FLAG 'test' is set
 	if has test ${JAVA_PKG_IUSE} && use test; then
 		for dependency in ${JAVA_GENTOO_TEST_CLASSPATH}; do
 			classpath="${classpath}:$(java-pkg_getjars ${buildonly_jars}\
-				${deep_jars} ${dependency})" \
-				|| die "getjars failed for ${dependency}"
+				${deep_jars} ${dependency})"
 		done
 	fi
 
 	# add the RUNTIME dependencies
 	for dependency in ${JAVA_GENTOO_CLASSPATH}; do
-		classpath="${classpath}:$(java-pkg_getjars ${deep_jars} ${dependency})"\
-			|| die "getjars failed for ${dependency}"
+		classpath="${classpath}:$(java-pkg_getjars ${deep_jars} ${dependency})"
 	done
 
 	# purify classpath
@@ -291,9 +288,8 @@ java-pkg-simple_src_compile() {
 	# do not compile if we decide to install binary jar
 	if has binary ${JAVA_PKG_IUSE} && use binary; then
 		# register the runtime dependencies
-		for dependency in ${JAVA_GENTOO_CLASSPATH}; do
-			java-pkg_getjars ${dependency}\
-				|| ewarn "runtime dep ${dependency} is not installed"
+		for dependency in ${JAVA_GENTOO_CLASSPATH//,/ }; do
+			java-pkg_record-jar_ ${dependency}
 		done
 
 		cp ${DISTDIR}/${JAVA_BINJAR_FILENAME} ${JAVA_JAR_FILENAME}\
