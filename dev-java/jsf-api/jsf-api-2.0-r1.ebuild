@@ -45,7 +45,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_CLASSPATH_EXTRA="el-3.0,servlet-api-4.0,jsp-api-2.3,jstl"
+JAVA_CLASSPATH_EXTRA="el-api-3.0,servlet-api-4.0,jsp-api-2.3,jstl"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

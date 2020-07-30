@@ -29,7 +29,7 @@ MAVEN_ID="tomcat:jasper-runtime:5.5.23"
 
 CDEPEND="
 	>=dev-java/commons-el-1.0:0
-	>=java-virtuals/servlet-api-4.0:4.0
+	java-virtuals/servlet-api:4.0
 "
 
 

@@ -29,7 +29,7 @@ MAVEN_ID="tomcat:jasper-compiler:5.5.23"
 
 CDEPEND="
 	>=dev-java/ant-core-1.10.7:0
-	>=java-virtuals/jsp-api-2.3:2.3
+	java-virtuals/jsp-api:2.3
 "
 
 

@@ -44,7 +44,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="activation,stax"
+JAVA_GENTOO_CLASSPATH="activation,stax-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

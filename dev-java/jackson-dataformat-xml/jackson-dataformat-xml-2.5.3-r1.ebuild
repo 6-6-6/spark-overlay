@@ -58,7 +58,7 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind,jackson-module-jaxb-annotations,stax2-api"
-JAVA_CLASSPATH_EXTRA="stax"
+JAVA_CLASSPATH_EXTRA="stax-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
