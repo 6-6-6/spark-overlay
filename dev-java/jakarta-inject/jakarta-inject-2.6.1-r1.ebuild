@@ -10,7 +10,7 @@ JAVA_PKG_IUSE="doc source test binary"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Injection API (JSR 330) version ${javax.inject.version} repackaged as OSGi bundle"
+DESCRIPTION="Injection API (JSR 330) version ${PV} repackaged as OSGi bundle"
 HOMEPAGE="https://github.com/eclipse-ee4j/glassfish-hk2/external/jakarta.inject"
 SRC_URI="https://repo1.maven.org/maven2/org/glassfish/hk2/external/jakarta.inject/${PV}/jakarta.inject-${PV}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/glassfish/hk2/external/jakarta.inject/${PV}/jakarta.inject-${PV}.jar -> ${P}-bin.jar"
