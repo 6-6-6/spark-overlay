@@ -34,9 +34,6 @@ S="${WORKDIR}/${P}-src"
 JAVA_ENCODING="iso-8859-1"
 
 JAVA_SRC_DIR="src/java"
-JAVA_RESOURCE_DIRS=(
-	"src/main/resources"
-)
 
 src_prepare() {
 	default
