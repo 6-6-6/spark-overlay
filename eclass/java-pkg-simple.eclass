@@ -31,11 +31,11 @@ S="${WORKDIR}"
 # with the binary jars distributed by upstream.
 #
 # The only accepted ARCH is amd64, since pkgdiff only accept "amd64" as keyword.
-if [[ ${ARCH} == "amd64" ]]; then
-	if has test ${JAVA_PKG_IUSE}; then
-		DEPEND="test? ( dev-util/pkgdiff:0 )"
-	fi
-fi
+#if [[ ${ARCH} == "amd64" ]]; then
+#	if has test ${JAVA_PKG_IUSE}; then
+#		DEPEND="test? ( dev-util/pkgdiff:0 )"
+#	fi
+#fi
 
 # @ECLASS-VARIABLE: JAVA_GENTOO_CLASSPATH
 # @DEFAULT_UNSET
@@ -141,17 +141,17 @@ fi
 # name of the script.
 : ${JAVA_LAUNCHER_FILENAME:=${PN}-${SLOT}}
 
-# @ECLASS-VARIABLE: JAVA_TESTING_FRAMEWORK
+# @ECLASS-VARIABLE: JAVA_TESTING_FRAMEWORKS
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# The test framework that we will launch during src_test.
-# Currently, the only option is "junit".
+# A space separated list that defines which tests it should launch
+# during src_test.
 #
 # @CODE
-# JAVA_TESTING_FRAMEWORK="junit"
+# JAVA_TESTING_FRAMEWORKS="junit pkgdiff"
 # @CODE
 
-# @ECLASS-VARIABLE: JAVA_GENTOO_TEST_CLASSPATH
+# @ECLASS-VARIABLE: JAVA_TEST_GENTOO_CLASSPATH
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # The extra classpath we need while compiling and running the
@@ -201,7 +201,7 @@ java-pkg-simple_getclasspath() {
 
 	# add test dependencies if USE FLAG 'test' is set
 	if has test ${JAVA_PKG_IUSE} && use test; then
-		for dependency in ${JAVA_GENTOO_TEST_CLASSPATH}; do
+		for dependency in ${JAVA_TEST_GENTOO_CLASSPATH}; do
 			classpath="${classpath}:$(java-pkg_getjars ${buildonly_jars}\
 				${deep_jars} ${dependency})"
 		done
@@ -220,11 +220,11 @@ java-pkg-simple_getclasspath() {
 	debug-print "CLASSPATH=${classpath}"
 }
 
-# @FUNCTION: java-pkg-simple_junit-test
+# @FUNCTION: java-pkg-simple_test_with_junit_
 # @INTERNAL
 # @DESCRIPTION:
 # Launch test using ejunit4.
-java-pkg-simple_junit-test() {
+java-pkg-simple_test_with_junit_() {
 	debug-print-function ${FUNCNAME} $*
 
 	local tests_to_run
@@ -239,7 +239,31 @@ java-pkg-simple_junit-test() {
 
 }
 
-# @FUNCTION: java-pkg-simple_prepend-resources
+# @FUNCTION: java-pkg-simple_test_with_pkgdiff_
+# @INTERNAL
+# @DESCRIPTION:
+# Use pkgdiff to make sure the natively compiled jar is the compatible with
+# the provided binary jar.
+java-pkg-simple_test_with_pkgdiff_() {
+	debug-print-function ${FUNCNAME} $*
+
+	# pkgdiff test
+	if [[ -f "${DISTDIR}/${JAVA_BINJAR_FILENAME}" ]]; then
+		# pkgdiff cannot deal with symlinks, so this is a workaround
+		cp "${DISTDIR}/${JAVA_BINJAR_FILENAME}" ./ \
+			|| die "Cannot copy binjar file to ${S}."
+
+		# ignore META-INF since it does not matter
+		# ignore module-info.class since jdk-1.8 does not support it
+		pkgdiff ${JAVA_BINJAR_FILENAME} ${JAVA_JAR_FILENAME}\
+			-vnum1 ${PV}-bin -vnum2 ${PV}\
+			-skip-pattern "META-INF|module-info.class"\
+			-name ${PN} -report-path ${report}\
+			|| die "pkgdiff returns $?, check the report in ${S}/${report}"
+	fi
+}
+
+# @FUNCTION: java-pkg-simple_prepend_resources
 # @USAGE: java-pkg-simple_prepend-resources <"${JAVA_RESOURCE_DIRS[@]}">
 # @INTERNAL
 # @DESCRIPTION:
@@ -249,7 +273,7 @@ java-pkg-simple_junit-test() {
 #
 # Note that you need to define a "classpath" variable before calling
 # this function.
-java-pkg-simple_prepend-resources() {
+java-pkg-simple_prepend_resources() {
 	debug-print-function ${FUNCNAME} $*
 
 	local resources=("${@}")
@@ -311,7 +335,7 @@ java-pkg-simple_src_compile() {
 	# compile
 	local classpath=""
 	java-pkg-simple_getclasspath
-	java-pkg-simple_prepend-resources "${JAVA_RESOURCE_DIRS[@]}"
+	java-pkg-simple_prepend_resources "${JAVA_RESOURCE_DIRS[@]}"
 
 	ejavac -d ${classes} -encoding ${JAVA_ENCODING} ${javac_default_args}\
 		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS}\
@@ -390,37 +414,20 @@ java-pkg-simple_src_install() {
 # src_test for simple single java jar file.
 # It will launch pkgdiff test if ${JAVA_BINJAR_FILENAME} is set.
 # Besides, it will perform test with framework defined by
-# ${JAVA_TESTING_FRAMEWORK}.
+# ${JAVA_TESTING_FRAMEWORKS}.
 java-pkg-simple_src_test() {
 	local test_sources=test_sources.lst classes=target/testclasses classpath
 	local report=${PN}-pkgdiff.html
 
-	# do not continue if the USE FLAG 'test' is explicitly unset.
+	# do not continue if the USE FLAG 'test' is explicitly unset
+	# or no ${JAVA_TESTING_FRAMEWORKS} specified
 	if ! has test ${JAVA_PKG_IUSE}; then
 		return
 	elif ! use test; then
 		return
+	elif [[ ! "${JAVA_TESTING_FRAMEWORKS}" ]]; then
+		return
 	fi
-
-	# pkgdiff test
-	if [[ ${ARCH} == "amd64" ]]; then
-		if [[ -f "${DISTDIR}/${JAVA_BINJAR_FILENAME}" ]]; then
-			# pkgdiff cannot deal with symlinks, so this is a workaround
-			cp "${DISTDIR}/${JAVA_BINJAR_FILENAME}" ./ \
-				|| die "Cannot copy binjar file to ${S}."
-
-			# ignore META-INF since it does not matter
-			# ignore module-info.class since jdk-1.8 does not support it
-			pkgdiff ${JAVA_BINJAR_FILENAME} ${JAVA_JAR_FILENAME}\
-				-vnum1 ${PV}-bin -vnum2 ${PV}\
-				-skip-pattern "META-INF|module-info.class"\
-				-name ${PN} -report-path ${report}\
-				|| die "pkgdiff returns $?, check the report in ${S}/${report}"
-		fi
-	fi
-
-	# return if there is no ${JAVA_TESTING_FRAMEWORK} defined
-	[[ "${JAVA_TESTING_FRAMEWORK}" ]] || return
 
 	# create the target directory
 	mkdir -p ${classes} || die "Could not create target directory for testing"
@@ -428,7 +435,7 @@ java-pkg-simple_src_test() {
 	# get classpath
 	classpath="${classes}:${JAVA_JAR_FILENAME}"
 	java-pkg-simple_getclasspath
-	java-pkg-simple_prepend-resources "${JAVA_TEST_RESOURCE_DIRS[@]}"
+	java-pkg-simple_prepend_resources "${JAVA_TEST_RESOURCE_DIRS[@]}"
 
 	# gathering sources for testing
 	echo -n > ${test_sources}\
@@ -439,13 +446,17 @@ java-pkg-simple_src_test() {
 	done
 
 	# compile
-	ejavac -d ${classes} -encoding ${JAVA_ENCODING} \
-		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS} \
+	[[ -s ${test_sources} ]] && ejavac -d ${classes} ${JAVAC_ARGS} \
+		-encoding ${JAVA_ENCODING} ${classpath:+-classpath ${classpath}} \
 		@${test_sources}
 
 	# launch test
-	case ${JAVA_TESTING_FRAMEWORK} in
-		junit)
-			java-pkg-simple_junit-test;;
-	esac
+	for framework in ${JAVA_TESTING_FRAMEWORKS}; do
+		case ${framework} in
+			junit)
+				java-pkg-simple_test_with_junit_;;
+			pkgdiff)
+				java-pkg-simple_test_with_pkgdiff_;;
+		esac
+	done
 }
