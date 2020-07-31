@@ -23,16 +23,6 @@ EXPORT_FUNCTIONS src_unpack
 #
 : ${JAVA_SRC_DIR:=src/main/java}
 
-# @ECLASS-VARIABLE: JAVA_SOURCE_FILENAME
-# @DESCRIPTION:
-# The filename of the source code.
-: ${JAVA_SOURCE_FILENAME:=${P}-sources.jar}
-
-# @ECLASS-VARIABLE: JAVA_TEST_SOURCE_FILENAME
-# @DESCRIPTION:
-# The filename of the source code for launch testing.
-: ${JAVA_TEST_SOURCE_FILENAME:=${P}-test-sources.jar}
-
 # @ECLASS-VARIABLE: JAVA_RESOURCE_DIRS
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -54,8 +44,12 @@ EXPORT_FUNCTIONS src_unpack
 java-pkg-maven_src_unpack() {
 	for file in ${A}; do
 		case ${file} in
-			${JAVA_BINJAR_FILENAME}) ;;
-			${JAVA_SOURCE_FILENAME})
+			*-test-sources.jar)
+				mkdir -p "${S}"/${JAVA_TEST_SRC_DIR}\
+					|| die "Could not create ${JAVA_TEST_SRC_DIR}"
+				unzip -q -o "${DISTDIR}"/${file} -d "${S}"/${JAVA_TEST_SRC_DIR}\
+					|| die "Could not unzip source code for testing" ;;
+			*-sources.jar)
 				mkdir -p "${S}"/${JAVA_SRC_DIR}\
 					|| die "Could not create ${JAVA_SRC_DIR}"
 				unzip -q -o "${DISTDIR}"/${file} -d "${S}"/${JAVA_SRC_DIR}\
@@ -63,11 +57,7 @@ java-pkg-maven_src_unpack() {
 				if [[ -d "${S}"/${JAVA_SRC_DIR}/META-INF ]] ; then
 					rm "${S}"/${JAVA_SRC_DIR}/META-INF -r || die
 				fi ;;
-			${JAVA_TEST_SOURCE_FILENAME})
-				mkdir -p "${S}"/${JAVA_TEST_SRC_DIR}\
-					|| die "Could not create ${JAVA_TEST_SRC_DIR}"
-				unzip -q -o "${DISTDIR}"/${file} -d "${S}"/${JAVA_TEST_SRC_DIR}\
-					|| die "Could not unzip source code for testing" ;;
+			*) ;;
 		esac
 	done
 
