@@ -86,5 +86,5 @@ JAVA_CLASSPATH_EXTRA="jsp-api-2.3,servlet-api-4.0"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
-JAVA_TESTING_FRAMEWORK="junit"
+JAVA_TESTING_FRAMEWORKS="junit pkgdiff"
 

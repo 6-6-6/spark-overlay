@@ -28,9 +28,9 @@ JAVA_SRC_DIR=(
 	"${PN}/src/main/java-templates"
 )
 
-JAVA_GENTOO_TEST_CLASSPATH="junit-4"
+JAVA_TEST_GENTOO_CLASSPATH="junit-4"
 JAVA_TEST_SRC_DIR="${PN}/src/test/java"
-JAVA_TESTING_FRAMEWORK="junit"
+JAVA_TESTING_FRAMEWORKS="junit pkgdiff"
 
 JAVA_RM_FILES=( "${JAVA_SRC_DIR[0]}/module-info.java" )
 

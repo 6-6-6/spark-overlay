@@ -71,13 +71,9 @@ RDEPEND="
 	>=virtual/jre-1.8:*
 ${CDEPEND}
 	>=dev-java/ant-launcher-1.9.4:0
-
 	>=dev-java/gpars-1.2.1:0
-
 	>=dev-java/ant-antlr-1.10.7:0
-
 	>=dev-java/ant-junit-1.10.7:0
-
 	>=dev-java/testng-6.9.10:0
 "
 
@@ -88,5 +84,5 @@ JAVA_CLASSPATH_EXTRA="jsp-api-2.3,servlet-api-4.0"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
-JAVA_TESTING_FRAMEWORK="junit"
+JAVA_TESTING_FRAMEWORKS="junit pkgdiff"
 

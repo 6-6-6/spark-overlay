@@ -44,6 +44,7 @@ DEPEND="
 	!binary? (
 	${CDEPEND}
 	)
+	test? ( dev-util/pkgdiff )
 "
 
 RDEPEND="
@@ -59,3 +60,5 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 JAVA_RESOURCE_DIRS=(
 	"src/main/resources"
 )
+
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

@@ -40,10 +40,10 @@ JAVA_RESOURCE_DIRS=(
 	"src/main/resources"
 )
 
-JAVA_TESTING_FRAMEWORK="junit"
+JAVA_TESTING_FRAMEWORKS="junit pkgdiff"
 JAVA_TEST_SRC_DIR="src/test/java"
 JAVA_TEST_RESOURCE_DIRS=("src/test/java")
-JAVA_GENTOO_TEST_CLASSPATH="junit-4"
+JAVA_TEST_GENTOO_CLASSPATH="junit-4"
 
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
