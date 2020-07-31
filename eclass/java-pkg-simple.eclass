@@ -242,10 +242,13 @@ java-pkg-simple_test_with_junit_() {
 # @FUNCTION: java-pkg-simple_test_with_pkgdiff_
 # @INTERNAL
 # @DESCRIPTION:
-# Use pkgdiff to make sure the natively compiled jar is the compatible with
-# the provided binary jar.
+# use japi-compliance-checker the ensure the compabitily of \*.class files,
+# Besides, use pkgdiff to ensure the compabilty of resources.
 java-pkg-simple_test_with_pkgdiff_() {
 	debug-print-function ${FUNCNAME} $*
+
+	local report1=${PN}-japi-compliance-checker.html
+	local report2=${PN}-pkgdiff.html
 
 	# pkgdiff test
 	if [[ -f "${DISTDIR}/${JAVA_BINJAR_FILENAME}" ]]; then
@@ -253,13 +256,19 @@ java-pkg-simple_test_with_pkgdiff_() {
 		cp "${DISTDIR}/${JAVA_BINJAR_FILENAME}" ./ \
 			|| die "Cannot copy binjar file to ${S}."
 
+		# japi-compliance-checker
+		japi-compliance-checker ${JAVA_BINJAR_FILENAME} ${JAVA_JAR_FILENAME}\
+			--lib=${PN} -v1 ${PV}-bin -v2 ${PV} -report-path ${report1}\
+			|| die "japi-compliance-checker returns $?,"\
+				"check the report in ${S}/${report1}"
+
 		# ignore META-INF since it does not matter
-		# ignore module-info.class since jdk-1.8 does not support it
+		# ignore classes because japi-compilance checker will take care of it
 		pkgdiff ${JAVA_BINJAR_FILENAME} ${JAVA_JAR_FILENAME}\
 			-vnum1 ${PV}-bin -vnum2 ${PV}\
-			-skip-pattern "META-INF|module-info.class"\
-			-name ${PN} -report-path ${report}\
-			|| die "pkgdiff returns $?, check the report in ${S}/${report}"
+			-skip-pattern "META-INF|.class$"\
+			-name ${PN} -report-path ${report2}\
+			|| die "pkgdiff returns $?, check the report in ${S}/${report2}"
 	fi
 }
 
@@ -304,7 +313,6 @@ java-pkg-simple_prepend_resources() {
 # ${JAVA_BINJAR_FILENAME} to ${S} and skip src_compile.
 java-pkg-simple_src_compile() {
 	local sources=sources.lst classes=target/classes apidoc=target/api
-	local javac_default_args="-Xpkginfo:always"
 
 	# auto generate classpath
 	java-pkg_gen-cp JAVA_GENTOO_CLASSPATH
@@ -337,7 +345,7 @@ java-pkg-simple_src_compile() {
 	java-pkg-simple_getclasspath
 	java-pkg-simple_prepend_resources "${JAVA_RESOURCE_DIRS[@]}"
 
-	ejavac -d ${classes} -encoding ${JAVA_ENCODING} ${javac_default_args}\
+	ejavac -d ${classes} -encoding ${JAVA_ENCODING}\
 		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS}\
 		@${sources}
 
@@ -417,7 +425,6 @@ java-pkg-simple_src_install() {
 # ${JAVA_TESTING_FRAMEWORKS}.
 java-pkg-simple_src_test() {
 	local test_sources=test_sources.lst classes=target/testclasses classpath
-	local report=${PN}-pkgdiff.html
 
 	# do not continue if the USE FLAG 'test' is explicitly unset
 	# or no ${JAVA_TESTING_FRAMEWORKS} specified
