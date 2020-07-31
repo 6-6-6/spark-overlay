@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -16,16 +16,15 @@ HOMEPAGE="http://commons.apache.org/proper/commons-io/"
 SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
 	https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-test-sources.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="1"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 MAVEN_ID="commons-io:commons-io:2.6"
-
-
 
 DEPEND="
 	>=virtual/jdk-1.7:*
 	app-arch/unzip
+	test? ( dev-java/junit:4 )
 "
 
 RDEPEND="
@@ -44,5 +43,10 @@ JAVA_RESOURCE_DIRS=(
 JAVA_TESTING_FRAMEWORK="junit"
 JAVA_TEST_SRC_DIR="src/test/java"
 JAVA_TEST_RESOURCE_DIRS=("src/test/java")
+JAVA_GENTOO_TEST_CLASSPATH="junit-4"
 
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+
+JAVA_RM_FILES=(
+	"${JAVA_TEST_SRC_DIR}/org/apache/commons/io/comparator/DirectoryFileComparatorTest.java"
+)
