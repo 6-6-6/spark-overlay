@@ -14,7 +14,7 @@ DESCRIPTION="Sonatype helps open source projects to set up Maven repositories on
 HOMEPAGE="https://github.com/headius/unsafe-mock"
 SRC_URI="https://repo1.maven.org/maven2/com/headius/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/headius/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.headius:unsafe-mock:8.0"

@@ -14,7 +14,7 @@ DESCRIPTION="Py4J enables Python programs running in a Python interpreter to dyn
 HOMEPAGE="http://nexus.sonatype.org/oss-repository-hosting.html/py4j"
 SRC_URI="https://repo1.maven.org/maven2/net/sf/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/net/sf/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="net.sf.py4j:py4j:0.10.8.1"

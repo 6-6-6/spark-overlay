@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-binjar
 DESCRIPTION=""
 HOMEPAGE="http://jug.safehaus.org/"
 SRC_URI="https://repo1.maven.org/maven2/org/safehaus/${PN}/${PN}/${PV}/${P}-lgpl.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.safehaus.jug:jug:2.0.0"

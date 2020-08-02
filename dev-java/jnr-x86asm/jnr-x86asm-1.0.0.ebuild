@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-binjar
 DESCRIPTION="A pure-java X86 and X86_64 assembler"
 HOMEPAGE="http://github.com/wmeissner/jnr-x86asm"
 SRC_URI="https://repo1.maven.org/maven2/org/jruby/extras/${PN}/${PV}/${P}.jar"
-LICENSE=""
+LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jruby.extras:jnr-x86asm:1.0.0"

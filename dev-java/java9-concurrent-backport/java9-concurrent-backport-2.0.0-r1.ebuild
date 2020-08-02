@@ -14,7 +14,7 @@ DESCRIPTION="Backport of Java 9 CompletableFuture, Flow and SubmissionPublisher 
 HOMEPAGE="https://github.com/stefan-zobel/java9-concurrent-backport/"
 SRC_URI="https://repo1.maven.org/maven2/net/sourceforge/streamsupport/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/net/sourceforge/streamsupport/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="net.sourceforge.streamsupport:java9-concurrent-backport:2.0.0"

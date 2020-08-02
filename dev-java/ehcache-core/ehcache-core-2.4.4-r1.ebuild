@@ -15,7 +15,7 @@ DESCRIPTION="This is the ehcache core module. Pair it with other modules for add
 HOMEPAGE="http://ehcache.org"
 SRC_URI="https://repo1.maven.org/maven2/net/sf/ehcache/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/net/sf/ehcache/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="net.sf.ehcache:ehcache-core:2.4.4"

@@ -14,7 +14,7 @@ DESCRIPTION=""
 HOMEPAGE=""
 SRC_URI="https://repo1.maven.org/maven2/org/codehaus/plexus/${PN}/1.0-alpha-9-stable-1/${PN}-1.0-alpha-9-stable-1-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/codehaus/plexus/${PN}/1.0-alpha-9-stable-1/${PN}-1.0-alpha-9-stable-1.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1"

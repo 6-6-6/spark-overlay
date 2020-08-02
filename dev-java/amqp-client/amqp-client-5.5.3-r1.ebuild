@@ -14,7 +14,7 @@ DESCRIPTION="The RabbitMQ Java client library allows Java applications to interf
 HOMEPAGE="http://www.rabbitmq.com"
 SRC_URI="https://repo1.maven.org/maven2/com/rabbitmq/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/rabbitmq/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0 MPL-1.1 GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.rabbitmq:amqp-client:5.5.3"

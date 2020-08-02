@@ -14,7 +14,7 @@ DESCRIPTION="charts4j is a free, lightweight charts and graphs Java API. It enab
 HOMEPAGE="http://charts4j.googlecode.com"
 SRC_URI="https://repo1.maven.org/maven2/com/googlecode/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/googlecode/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.googlecode.charts4j:charts4j:1.3"

@@ -14,7 +14,7 @@ DESCRIPTION="H2 Database Engine"
 HOMEPAGE="http://www.h2database.com"
 SRC_URI="https://repo1.maven.org/maven2/com/${PN}database/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/${PN}database/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="|| ( MPL-1.1 EPL-1.0 )"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.h2database:h2:1.4.196"

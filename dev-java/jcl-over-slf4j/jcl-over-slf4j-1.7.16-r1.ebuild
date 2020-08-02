@@ -14,7 +14,7 @@ DESCRIPTION="JCL 1.1.1 implemented over SLF4J"
 HOMEPAGE="http://www.slf4j.org"
 SRC_URI="https://repo1.maven.org/maven2/org/slf4j/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/slf4j/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.slf4j:jcl-over-slf4j:1.7.16"

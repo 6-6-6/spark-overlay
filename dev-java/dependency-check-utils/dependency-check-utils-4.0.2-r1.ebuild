@@ -14,7 +14,7 @@ DESCRIPTION="dependency-check-utils is a collection of common utility classes us
 HOMEPAGE="https://github.com/jeremylong/DependencyCheck.git/dependency-check-utils"
 SRC_URI="https://repo1.maven.org/maven2/org/owasp/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/owasp/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.owasp:dependency-check-utils:4.0.2"

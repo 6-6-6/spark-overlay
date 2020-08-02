@@ -14,7 +14,7 @@ DESCRIPTION="The JavaBeans(TM) Activation Framework is used by the JavaMail(TM) 
 HOMEPAGE="http://java.sun.com/javase/technologies/desktop/javabeans/jaf/index.jsp"
 SRC_URI="https://repo1.maven.org/maven2/javax/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/javax/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="CDDL"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="javax.activation:activation:1.1.1"

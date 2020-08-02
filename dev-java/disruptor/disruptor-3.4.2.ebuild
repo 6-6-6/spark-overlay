@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="Disruptor - Concurrent Programming Framework"
 HOMEPAGE="http://lmax-exchange.github.com/disruptor"
 SRC_URI="https://repo.maven.apache.org/maven2/com/lmax/${PN}/${PV}/${P}-sources.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 MAVEN_ID="com.lmax:disruptor:3.4.2"

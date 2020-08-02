@@ -14,7 +14,7 @@ DESCRIPTION="Spice up your java: Automatic Resource Management, automatic genera
 HOMEPAGE="https://projectlombok.org"
 SRC_URI="https://repo1.maven.org/maven2/org/project${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/project${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.projectlombok:lombok:1.16.16"

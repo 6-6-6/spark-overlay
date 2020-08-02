@@ -18,7 +18,7 @@ DESCRIPTION="Clover is an award winning code coverage and testing tool for Java 
 HOMEPAGE="http://openclover.org"
 SRC_URI="https://repo1.maven.org/maven2/org/open${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/open${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.openclover:clover:4.2.1"

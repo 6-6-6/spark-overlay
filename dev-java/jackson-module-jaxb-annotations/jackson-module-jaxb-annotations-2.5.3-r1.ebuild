@@ -14,7 +14,7 @@ DESCRIPTION="Support for using JAXB annotations as an alternative to \"native\" 
 HOMEPAGE="http://wiki.fasterxml.com/JacksonJAXBAnnotations"
 SRC_URI="https://repo1.maven.org/maven2/com/fasterxml/jackson/module/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/fasterxml/jackson/module/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.5.3"

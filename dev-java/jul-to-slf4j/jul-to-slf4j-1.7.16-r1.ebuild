@@ -14,7 +14,7 @@ DESCRIPTION="JUL to SLF4J bridge"
 HOMEPAGE="http://www.slf4j.org"
 SRC_URI="https://repo1.maven.org/maven2/org/slf4j/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/slf4j/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.slf4j:jul-to-slf4j:1.7.16"

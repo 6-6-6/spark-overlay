@@ -14,7 +14,7 @@ DESCRIPTION="Jakarta XML Binding API"
 HOMEPAGE="https://github.com/eclipse-ee4j/jaxb-api/jakarta.xml.bind-api"
 SRC_URI="https://repo1.maven.org/maven2/jakarta/xml/bind/jakarta.xml.bind-api/${PV}-RC3/jakarta.xml.bind-api-${PV}-RC3-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/jakarta/xml/bind/jakarta.xml.bind-api/${PV}-RC3/jakarta.xml.bind-api-${PV}-RC3.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="EPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="jakarta.xml.bind:jakarta.xml.bind-api:3.0.0-RC3"

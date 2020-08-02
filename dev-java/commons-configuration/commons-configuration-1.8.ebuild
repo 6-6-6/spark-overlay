@@ -14,7 +14,7 @@ DESCRIPTION="Tools to assist in the reading of configuration/preferences files i
 HOMEPAGE="http://commons.apache.org/configuration/"
 SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="amd64 ppc64 x86"
 MAVEN_ID="commons-configuration:commons-configuration:1.8"

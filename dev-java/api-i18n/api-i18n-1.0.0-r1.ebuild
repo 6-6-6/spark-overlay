@@ -14,7 +14,7 @@ DESCRIPTION="Internationalization of errors and other messages"
 HOMEPAGE="http://directory.apache.org/api-parent/api-i18n/"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/directory/api/${PN}/${PV}-M20/${P}-M20-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/directory/api/${PN}/${PV}-M20/${P}-M20.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.directory.api:api-i18n:1.0.0-M20"

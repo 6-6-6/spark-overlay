@@ -14,7 +14,7 @@ DESCRIPTION="fastutil extends the Java Collections Framework by providing type-s
 HOMEPAGE="http://fasutil.di.unimi.it/"
 SRC_URI="https://repo.maven.apache.org/maven2/it/unimi/dsi/${PN}/${PV}/${P}-sources.jar
 	https://repo.maven.apache.org/maven2/it/unimi/dsi/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc64 ~x86"
 MAVEN_ID="it.unimi.dsi:fastutil:8.1.1"

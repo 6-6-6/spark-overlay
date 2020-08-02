@@ -14,7 +14,7 @@ DESCRIPTION="Jersey core common packages"
 HOMEPAGE="https://projects.eclipse.org/projects/ee4j.jersey/jersey-common"
 SRC_URI="https://repo1.maven.org/maven2/org/glassfish/jersey/core/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/glassfish/jersey/core/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="GPL-2-with-classpath-exception public-domain Apache-2.0 EPL-2.0"
 SLOT="2"
 KEYWORDS="~amd64"
 MAVEN_ID="org.glassfish.jersey.core:jersey-common:2.29.1"

@@ -14,7 +14,7 @@ DESCRIPTION="logback-core module"
 HOMEPAGE="http://logback.qos.ch/logback-core"
 SRC_URI="https://repo1.maven.org/maven2/ch/qos/logback/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/ch/qos/logback/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="LGPL-3 EPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="ch.qos.logback:logback-core:1.2.3"

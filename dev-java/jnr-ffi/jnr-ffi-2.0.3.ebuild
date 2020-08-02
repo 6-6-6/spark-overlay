@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="A library for invoking native functions from java"
 HOMEPAGE="http://github.com/jnr/jnr-ffi"
 SRC_URI="https://repo.maven.apache.org/maven2/com/github/jnr/${PN}/${PV}/${P}-sources.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~arm64"
 MAVEN_ID="com.github.jnr:jnr-ffi:2.0.3"

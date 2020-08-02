@@ -16,7 +16,7 @@ HOMEPAGE="http://commons.apache.org/proper/commons-io/"
 SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
 	https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-test-sources.jar"
-LICENSE="|| ( Apache-2.0 BSD ) BSD"
+LICENSE="Apache-2.0"
 SLOT="1"
 KEYWORDS="~amd64"
 #KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"

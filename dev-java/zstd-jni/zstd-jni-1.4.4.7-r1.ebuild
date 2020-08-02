@@ -14,7 +14,7 @@ DESCRIPTION="JNI bindings for Zstd native library that provides fast and high co
 HOMEPAGE="https://github.com/luben/zstd-jni"
 SRC_URI="https://repo1.maven.org/maven2/com/github/luben/${PN}/1.4.4-7/${PN}-1.4.4-7-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/github/luben/${PN}/1.4.4-7/${PN}-1.4.4-7.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="BSD-2"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.github.luben:zstd-jni:1.4.4-7"

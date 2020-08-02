@@ -14,7 +14,7 @@ DESCRIPTION="XML Builder is a utility that creates simple XML documents using re
 HOMEPAGE="http://code.google.com/p/java-xmlbuilder/"
 SRC_URI="https://repo1.maven.org/maven2/com/jamesmurty/utils/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/jamesmurty/utils/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.jamesmurty.utils:java-xmlbuilder:0.4"

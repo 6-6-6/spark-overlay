@@ -14,7 +14,7 @@ DESCRIPTION="Jakarta Activation API jar"
 HOMEPAGE="https://github.com/eclipse-ee4j/jaf/jakarta.activation-api"
 SRC_URI="https://repo1.maven.org/maven2/jakarta/activation/jakarta.activation-api/${PV}-RC3/jakarta.activation-api-${PV}-RC3-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/jakarta/activation/jakarta.activation-api/${PV}-RC3/jakarta.activation-api-${PV}-RC3.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="EPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="jakarta.activation:jakarta.activation-api:2.0.0-RC3"

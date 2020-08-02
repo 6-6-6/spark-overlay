@@ -14,7 +14,7 @@ DESCRIPTION=""
 HOMEPAGE="http://plexus.codehaus.org/plexus-components/plexus-interpolation"
 SRC_URI="https://repo1.maven.org/maven2/org/codehaus/plexus/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/codehaus/plexus/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.codehaus.plexus:plexus-interpolation:1.11"

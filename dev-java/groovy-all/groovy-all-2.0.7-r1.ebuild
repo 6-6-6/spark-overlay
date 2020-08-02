@@ -14,7 +14,7 @@ DESCRIPTION="Groovy: A powerful, dynamic language for the JVM"
 HOMEPAGE="http://groovy.codehaus.org/"
 SRC_URI="https://repo1.maven.org/maven2/org/codehaus/groovy/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/codehaus/groovy/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.codehaus.groovy:groovy-all:2.0.7"

@@ -14,7 +14,7 @@ DESCRIPTION="JetS3t is a free, open-source Java toolkit and application suite fo
 HOMEPAGE="http://www.jets3t.org"
 SRC_URI="https://repo1.maven.org/maven2/net/java/dev/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/net/java/dev/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="net.java.dev.jets3t:jets3t:0.9.0"

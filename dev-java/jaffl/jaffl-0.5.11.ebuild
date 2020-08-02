@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-binjar
 DESCRIPTION="An abstracted interface to invoking native functions from java"
 HOMEPAGE="http://github.com/wmeissner/jaffl"
 SRC_URI="https://repo1.maven.org/maven2/org/jruby/extras/${PN}/${PV}/${P}.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jruby.extras:jaffl:0.5.11"

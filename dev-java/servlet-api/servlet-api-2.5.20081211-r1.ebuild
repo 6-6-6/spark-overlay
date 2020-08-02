@@ -14,7 +14,7 @@ DESCRIPTION="Servlet Specification API"
 HOMEPAGE="http://jetty.mortbay.org/servlet-api"
 SRC_URI="https://repo1.maven.org/maven2/org/mortbay/jetty/${PN}/2.5-20081211/${PN}-2.5-20081211-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/mortbay/jetty/${PN}/2.5-20081211/${PN}-2.5-20081211.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.mortbay.jetty:servlet-api:2.5-20081211"

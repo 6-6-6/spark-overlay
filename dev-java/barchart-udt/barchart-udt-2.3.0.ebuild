@@ -15,7 +15,7 @@ DESCRIPTION="Barchart UDT [ BUNDLE ]"
 HOMEPAGE="https://github.com/barchart/barchart-udt/wiki"
 SRC_URI="https://repo.maven.apache.org/maven2/com/barchart/udt/${PN}-bundle/${PV}/${PN}-bundle-${PV}-sources.jar
 		https://repo.maven.apache.org/maven2/com/barchart/udt/${PN}-bundle/${PV}/${PN}-bundle-${PV}.jar"
-LICENSE=""
+LICENSE="BSD-2"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.barchart.udt:barchart-udt-bundle:2.3.0"

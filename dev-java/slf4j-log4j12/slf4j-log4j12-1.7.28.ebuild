@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="SLF4J LOG4J-12 Binding"
 HOMEPAGE="http://www.slf4j.org"
 SRC_URI="https://repo.maven.apache.org/maven2/org/slf4j/${PN}/${PV}/${P}-sources.jar"
-LICENSE=""
+LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 MAVEN_ID="org.slf4j:slf4j-log4j12:1.7.28"

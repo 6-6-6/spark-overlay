@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="Minimal overhead Java logging"
 HOMEPAGE="https://github.com/EsotericSoftware/minlog"
 SRC_URI="https://repo.maven.apache.org/maven2/com/esotericsoftware/${PN}/${PV}/${P}-sources.jar"
-LICENSE="GPL-2"
+LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 MAVEN_ID="com.esotericsoftware:minlog:1.3.1"

@@ -21,7 +21,7 @@ Support for unpickling protocol 5 pickles with out-of-band buffers (Python 3.8)"
 HOMEPAGE="https://github.com/irmen/Pyrolite"
 SRC_URI="https://repo1.maven.org/maven2/net/razorvine/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/net/razorvine/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="net.razorvine:pyrolite:4.30"

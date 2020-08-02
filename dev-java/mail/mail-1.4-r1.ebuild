@@ -14,7 +14,7 @@ DESCRIPTION="The JavaMail API provides a platform-independent and protocol-indep
 HOMEPAGE="https://glassfish.dev.java.net/javaee5/mail/"
 SRC_URI="https://repo1.maven.org/maven2/javax/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/javax/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="CDDL"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="javax.mail:mail:1.4"

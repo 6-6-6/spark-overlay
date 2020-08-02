@@ -14,7 +14,7 @@ DESCRIPTION="Sonatype helps open source projects to set up Maven repositories on
 HOMEPAGE="https://github.com/jruby/yecht"
 SRC_URI="https://repo1.maven.org/maven2/org/jruby/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/jruby/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="EPL-1.0 GPL-3 LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jruby:yecht:1.0"

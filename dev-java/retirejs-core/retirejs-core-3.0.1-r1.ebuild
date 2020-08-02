@@ -14,7 +14,7 @@ DESCRIPTION="The root pom file aggregate the dependencies use by the Retire.js e
 HOMEPAGE="https://github.com/h3xstream/burp-retire-js/retirejs-core"
 SRC_URI="https://repo1.maven.org/maven2/com/h3xstream/retirejs/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/h3xstream/retirejs/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.h3xstream.retirejs:retirejs-core:3.0.1"

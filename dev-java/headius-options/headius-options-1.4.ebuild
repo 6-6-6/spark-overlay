@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple
 DESCRIPTION="Sonatype helps open source projects to set up Maven repositories on https://oss.sonatype.org/"
 HOMEPAGE="https://github.com/headius/options"
 SRC_URI="https://repo.maven.apache.org/maven2/com/headius/options/${PV}/options-${PV}-sources.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 MAVEN_ID="com.headius:options:1.4"

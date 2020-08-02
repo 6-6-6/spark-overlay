@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-binjar
 DESCRIPTION="Sonatype helps open source projects to set up Maven repositories on https://oss.sonatype.org/"
 HOMEPAGE="http://nexus.sonatype.org/oss-repository-hosting.html/joda-timezones"
 SRC_URI="https://repo1.maven.org/maven2/org/jruby/${PN}/${PV}d/${P}d.jar -> ${P}.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jruby:joda-timezones:2013d"

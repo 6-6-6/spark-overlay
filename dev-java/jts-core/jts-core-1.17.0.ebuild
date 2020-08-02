@@ -14,7 +14,7 @@ DESCRIPTION="The JTS Topology Suite is an API for 2D linear geometry predicates 
 HOMEPAGE="https://www.locationtech.org/projects/technology.jts/jts-modules/jts-core"
 SRC_URI="https://repo1.maven.org/maven2/org/locationtech/jts/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/locationtech/jts/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="EPL-2.0 EPL-1.0"
 SLOT="1"
 KEYWORDS="~amd64 ~x86"
 MAVEN_ID="org.locationtech.jts:jts-core:1.17.0"

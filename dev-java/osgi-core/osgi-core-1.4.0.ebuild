@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="OSGi Service Platform Release 4 Core Interfaces and Classes."
 HOMEPAGE="http://felix.apache.org/org.osgi.core/"
 SRC_URI="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.core/${PV}/org.osgi.core-${PV}-sources.jar -> ${P}-sources.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="1"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.felix:org.osgi.core:1.4.0"

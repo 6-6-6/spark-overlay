@@ -14,7 +14,7 @@ DESCRIPTION="Implementation of mustache.js for Java"
 HOMEPAGE="http://github.com/spullara/mustache.java"
 SRC_URI="https://repo1.maven.org/maven2/com/github/spullara/mustache/java/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/github/spullara/mustache/java/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.github.spullara.mustache.java:compiler:0.8.17"

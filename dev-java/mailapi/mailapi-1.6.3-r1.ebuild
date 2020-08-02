@@ -14,7 +14,7 @@ DESCRIPTION="JavaMail API (no providers)"
 HOMEPAGE="http://eclipse-ee4j.github.io/javamail/mailapi"
 SRC_URI="https://repo1.maven.org/maven2/com/sun/mail/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/sun/mail/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="EPL-2.0 EPL-1.0 GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.sun.mail:mailapi:1.6.3"

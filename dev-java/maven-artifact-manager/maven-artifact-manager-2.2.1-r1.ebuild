@@ -14,7 +14,7 @@ DESCRIPTION="Maven is a project development management and comprehension tool. B
 HOMEPAGE="http://maven.apache.org/maven-artifact-manager"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/maven/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/maven/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.maven:maven-artifact-manager:2.2.1"

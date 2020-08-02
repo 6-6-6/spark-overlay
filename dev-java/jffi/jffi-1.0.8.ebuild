@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-binjar
 DESCRIPTION="Java wrapper around libffi"
 HOMEPAGE="http://github.com/wmeissner/jffi"
 SRC_URI="https://repo1.maven.org/maven2/org/jruby/extras/${PN}/${PV}/${P}.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jruby.extras:jffi:1.0.8"

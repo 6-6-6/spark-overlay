@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-binjar
 DESCRIPTION="Square’s meticulous HTTP client for Java and Kotlin."
 HOMEPAGE="https://square.github.io/okhttp/"
 SRC_URI="https://repo1.maven.org/maven2/com/squareup/${PN}3/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.squareup.okhttp3:okhttp:4.7.2"

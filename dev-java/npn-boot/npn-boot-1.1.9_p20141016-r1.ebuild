@@ -14,7 +14,7 @@ DESCRIPTION="A pure Java(TM) implementation of the Next Protocol Negotiation TLS
 HOMEPAGE="http://www.eclipse.org/jetty/npn-project/npn-boot"
 SRC_URI="https://repo1.maven.org/maven2/org/mortbay/jetty/npn/${PN}/1.1.9.v20141016/${PN}-1.1.9.v20141016-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/mortbay/jetty/npn/${PN}/1.1.9.v20141016/${PN}-1.1.9.v20141016.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0 GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.mortbay.jetty.npn:npn-boot:1.1.9.v20141016"

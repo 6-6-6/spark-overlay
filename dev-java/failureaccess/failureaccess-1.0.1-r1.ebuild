@@ -20,7 +20,7 @@ DESCRIPTION="Contains
 HOMEPAGE="https://github.com/google/guava/failureaccess"
 SRC_URI="https://repo1.maven.org/maven2/com/google/guava/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/google/guava/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.google.guava:failureaccess:1.0.1"

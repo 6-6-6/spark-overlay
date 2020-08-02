@@ -14,7 +14,7 @@ DESCRIPTION="Injection API (JSR 330) version ${PV} repackaged as OSGi bundle"
 HOMEPAGE="https://github.com/eclipse-ee4j/glassfish-hk2/external/jakarta.inject"
 SRC_URI="https://repo1.maven.org/maven2/org/glassfish/hk2/external/jakarta.inject/${PV}/jakarta.inject-${PV}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/glassfish/hk2/external/jakarta.inject/${PV}/jakarta.inject-${PV}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="EPL-2.0 GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.glassfish.hk2.external:jakarta.inject:2.6.1"

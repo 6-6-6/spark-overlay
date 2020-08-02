@@ -16,7 +16,7 @@ DESCRIPTION="Jersey is the open source (under dual CDDL+GPL license) JAX-RS (JSR
 HOMEPAGE="https://jersey.java.net/jersey-core/"
 SRC_URI="https://repo1.maven.org/maven2/com/sun/jersey/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/sun/jersey/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="CDDL-1.1 GPL-2-with-classpath-exception"
 SLOT="1"
 KEYWORDS="~amd64"
 MAVEN_ID="com.sun.jersey:jersey-core:1.9"

@@ -14,7 +14,7 @@ DESCRIPTION="The GraalVM compiler and the Graal-truffle optimizer."
 HOMEPAGE="http://www.graalvm.org/"
 SRC_URI="https://repo.maven.apache.org/maven2/org/graalvm/compiler/compiler/${PV}/compiler-${PV}-sources.jar -> ${P}-sources.jar
 	https://repo.maven.apache.org/maven2/org/graalvm/compiler/compiler/${PV}/compiler-${PV}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS=""
 #KEYWORDS="~amd64"

@@ -14,7 +14,7 @@ DESCRIPTION="SubstrateVM static analysis to find ahead-of-time the code"
 HOMEPAGE="https://github.com/oracle/graal/tree/master/substratevm"
 SRC_URI="https://repo1.maven.org/maven2/com/oracle/substratevm/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/oracle/substratevm/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.oracle.substratevm:pointsto:19.2.1"

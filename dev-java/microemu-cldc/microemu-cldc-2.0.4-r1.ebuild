@@ -14,7 +14,7 @@ DESCRIPTION="cldc interfaces"
 HOMEPAGE="http://www.microemu.org/microemu-cldc/"
 SRC_URI="https://repo1.maven.org/maven2/org/microemu/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/microemu/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.microemu:microemu-cldc:2.0.4"

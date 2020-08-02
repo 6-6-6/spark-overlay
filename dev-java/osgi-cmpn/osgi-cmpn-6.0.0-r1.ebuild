@@ -14,7 +14,7 @@ DESCRIPTION="OSGi Compendium Release 6, Interfaces and Classes for use in compil
 HOMEPAGE="http://www.osgi.org/"
 SRC_URI="https://repo1.maven.org/maven2/org/osgi/osgi.cmpn/${PV}/osgi.cmpn-${PV}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/osgi/osgi.cmpn/${PV}/osgi.cmpn-${PV}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="6"
 KEYWORDS="~amd64"
 MAVEN_ID="org.osgi:osgi.cmpn:6.0.0"

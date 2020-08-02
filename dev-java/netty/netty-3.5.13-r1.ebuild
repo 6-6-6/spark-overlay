@@ -20,7 +20,7 @@ DESCRIPTION="The Netty project is an effort to provide an asynchronous event-dri
 HOMEPAGE="http://netty.io/"
 SRC_URI="https://repo1.maven.org/maven2/io/${PN}/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/io/${PN}/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="io.netty:netty:3.5.13.Final"

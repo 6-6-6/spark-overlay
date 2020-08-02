@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-binjar
 DESCRIPTION=""
 HOMEPAGE=""
 SRC_URI="https://repo1.maven.org/maven2/org/apache/geronimo/specs/${PN}_1.1_spec/${PV}/${PN}_1.1_spec-${PV}.jar -> ${P}.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="1.1_spec"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.geronimo.specs:geronimo-jms_1.1_spec:1.0"

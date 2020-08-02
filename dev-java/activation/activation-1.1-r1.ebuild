@@ -14,7 +14,7 @@ DESCRIPTION="JavaBeans Activation Framework (JAF) is a standard extension to the
 HOMEPAGE="http://java.sun.com/products/javabeans/jaf/index.jsp"
 SRC_URI="https://repo1.maven.org/maven2/javax/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/javax/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="CDDL"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="javax.activation:activation:1.1"

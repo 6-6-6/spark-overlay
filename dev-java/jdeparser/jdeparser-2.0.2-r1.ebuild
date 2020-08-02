@@ -14,7 +14,7 @@ DESCRIPTION="Parent POM for JBoss projects. Provides default project build confi
 HOMEPAGE="http://www.jboss.org/jdeparser"
 SRC_URI="https://repo1.maven.org/maven2/org/jboss/${PN}/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/jboss/${PN}/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jboss.jdeparser:jdeparser:2.0.2.Final"

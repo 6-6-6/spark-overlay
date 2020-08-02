@@ -15,7 +15,7 @@ implements Stax (JSR-173) and SAX2 APIs"
 HOMEPAGE="http://woodstox.codehaus.org"
 SRC_URI="https://repo1.maven.org/maven2/org/codehaus/woodstox/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/codehaus/woodstox/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.codehaus.woodstox:woodstox-core-asl:4.3.0"

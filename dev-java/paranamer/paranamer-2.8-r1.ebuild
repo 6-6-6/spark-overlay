@@ -14,7 +14,7 @@ DESCRIPTION="Paranamer allows runtime access to constructor and method parameter
 HOMEPAGE="https://github.com/paul-hammant/paranamer/paranamer"
 SRC_URI="https://repo1.maven.org/maven2/com/thoughtworks/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/thoughtworks/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="BSD-1"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.thoughtworks.paranamer:paranamer:2.8"

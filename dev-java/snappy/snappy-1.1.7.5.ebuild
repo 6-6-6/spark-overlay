@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="snappy-java: A fast compression/decompression library"
 HOMEPAGE="https://github.com/xerial/snappy-java"
 SRC_URI="https://repo.maven.apache.org/maven2/org/xerial/snappy/${PN}-java/${PV}/${PN}-java-${PV}-sources.jar -> ${P}-sources.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="1.1"
 KEYWORDS="~amd64 ~x86"
 MAVEN_ID="org.xerial.snappy:snappy-java:1.1.7.5"

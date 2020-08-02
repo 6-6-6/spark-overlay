@@ -14,7 +14,7 @@ DESCRIPTION="The Java Transaction 1.1 API classes"
 HOMEPAGE="http://jboss-transaction-api_1.1_spec/"
 SRC_URI="https://repo1.maven.org/maven2/org/jboss/spec/javax/transaction/${PN}_1.1_spec/${PV}.Beta1/${PN}_1.1_spec-${PV}.Beta1-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/jboss/spec/javax/transaction/${PN}_1.1_spec/${PV}.Beta1/${PN}_1.1_spec-${PV}.Beta1.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="LGPL-3"
 SLOT="1.1_spec"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec:1.0.0.Beta1"

@@ -14,7 +14,7 @@ DESCRIPTION="High performance scientific and technical computing data structures
 HOMEPAGE="http://mahout.apache.org/mahout-math"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/mahout/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/mahout/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.mahout:mahout-math:0.13.0"

@@ -14,7 +14,7 @@ DESCRIPTION="Guava is a suite of core and expanded libraries that include utilit
 HOMEPAGE="https://github.com/google/guava/guava"
 SRC_URI="https://repo.maven.apache.org/maven2/com/google/${PN}/${PN}/${PV}-jre/${P}-jre-sources.jar -> ${P}-sources.jar
 		https://repo.maven.apache.org/maven2/com/google/${PN}/${PN}/${PV}-jre/${P}-jre.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~arm64 ~x86"
 MAVEN_ID="com.google.guava:guava:29.0-jre"

@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple
 DESCRIPTION="Types that extend and augment the Java Collections Framework."
 HOMEPAGE="http://commons.apache.org/collections/"
 SRC_URI="mirror://apache/${PN/-//}/source/${P}-src.tar.gz"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="3"
 KEYWORDS="amd64 ppc64 x86"
 MAVEN_ID="commons-collections:commons-collections:3.2.2"

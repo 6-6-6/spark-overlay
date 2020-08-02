@@ -14,7 +14,7 @@ DESCRIPTION="Truffle is a multi-language framework for executing dynamic languag
 that achieves high performance when combined with Graal."
 HOMEPAGE="http://openjdk.java.net/projects/graal"
 SRC_URI="https://repo.maven.apache.org/maven2/org/graalvm/truffle/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar"
-LICENSE=""
+LICENSE="UPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.graalvm.truffle:truffle-api:20.1.0"

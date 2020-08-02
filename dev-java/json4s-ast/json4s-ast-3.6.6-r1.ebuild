@@ -14,7 +14,7 @@ DESCRIPTION="json4s-ast"
 HOMEPAGE="https://github.com/json4s/json4s"
 SRC_URI="https://repo1.maven.org/maven2/org/json4s/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/json4s/${PN}_2.12/${PV}/${PN}_2.12-${PV}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="2.12"
 KEYWORDS="~amd64"
 MAVEN_ID="org.json4s:json4s-ast_2.12:3.6.6"

@@ -14,7 +14,7 @@ DESCRIPTION="Annotations for defining API boundaries and tools for managing java
 HOMEPAGE="https://yetus.apache.org/audience-annotations"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/yetus/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/yetus/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.yetus:audience-annotations:0.5.0"

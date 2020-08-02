@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="The slf4j API"
 HOMEPAGE="http://www.slf4j.org"
 SRC_URI="https://repo.maven.apache.org/maven2/org/slf4j/${PN}/${PV}/${P}-sources.jar"
-LICENSE=""
+LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~pc64 ~x86 ~arm64"
 MAVEN_ID="org.slf4j:slf4j-api:1.7.28"

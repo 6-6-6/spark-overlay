@@ -13,7 +13,8 @@ inherit java-pkg-2 java-pkg-binjar
 DESCRIPTION=""
 HOMEPAGE=""
 SRC_URI="https://repo1.maven.org/maven2/org/multiverse/${PN}/${PV}-RC-1/${P}-RC-1.jar -> ${P}.jar"
-LICENSE=""
+# NOT SURE
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.multiverse:multiverse-beta:0.7-RC-1"

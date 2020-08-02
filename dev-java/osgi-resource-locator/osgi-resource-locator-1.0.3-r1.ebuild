@@ -14,7 +14,7 @@ DESCRIPTION="Used by various API providers that rely on META-INF/services mechan
 HOMEPAGE="https://projects.eclipse.org/projects/ee4j/osgi-resource-locator"
 SRC_URI="https://repo1.maven.org/maven2/org/glassfish/hk2/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/glassfish/hk2/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="GPL-2-with-classpath-exception EPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.glassfish.hk2:osgi-resource-locator:1.0.3"

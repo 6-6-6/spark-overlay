@@ -22,7 +22,7 @@ SRC_URI="https://repo.maven.apache.org/maven2/org/ow2/${PN}/${PN}/${PV}/${P}-sou
 		https://repo.maven.apache.org/maven2/org/ow2/asm/${PN_COMM}/${PV}/${PN_COMM}-${PV}-sources.jar -> ${PN_COMM}-${PV}.jar
 		https://repo.maven.apache.org/maven2/org/ow2/asm/${PN_TREE}/${PV}/${PN_TREE}-${PV}-sources.jar -> ${PN_TREE}-${PV}.jar
 		https://repo.maven.apache.org/maven2/org/ow2/asm/${PN_UTIL}/${PV}/${PN_UTIL}-${PV}-sources.jar -> ${PN_UTIL}-${PV}.jar"
-LICENSE=""
+LICENSE="BSD"
 SLOT="7"
 KEYWORDS="~amd64 ~arm ~ppc64 ~x86 ~x64-macos"
 MAVEN_ID="org.ow2.asm:asm:8.0.1"

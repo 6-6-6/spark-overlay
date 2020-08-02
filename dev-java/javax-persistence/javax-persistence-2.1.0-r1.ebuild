@@ -14,7 +14,7 @@ DESCRIPTION="EclipseLink build based upon Git transaction 3faac2b"
 HOMEPAGE="http://www.eclipse.org/eclipselink"
 SRC_URI="https://repo1.maven.org/maven2/org/eclipse/persistence/javax.persistence/${PV}/javax.persistence-${PV}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/eclipse/persistence/javax.persistence/${PV}/javax.persistence-${PV}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="EPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.eclipse.persistence:javax.persistence:2.1.0"

@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="Apache Commons Crypto is a cryptographic library optimized with AES-NI (Advanced Encryption Standard New Instructions)."
 HOMEPAGE="http://commons.apache.org/proper/commons-crypto/"
 SRC_URI="https://repo.maven.apache.org/maven2/org/apache/commons/${PN}/${PV}/${P}-sources.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.commons:commons-crypto:1.0.0"

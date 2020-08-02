@@ -15,7 +15,7 @@ DESCRIPTION="The Enterprise JavaBeans architecture is a component architecture f
 HOMEPAGE="http://www.jcp.org/en/jsr/detail?id=220"
 SRC_URI="https://repo1.maven.org/maven2/javax/persistence/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/javax/persistence/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="CDDL"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="javax.persistence:persistence-api:1.0"

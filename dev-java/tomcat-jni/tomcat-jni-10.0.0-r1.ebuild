@@ -14,7 +14,7 @@ DESCRIPTION="Interface code to the native connector"
 HOMEPAGE="https://tomcat.apache.org/"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/tomcat/${PN}/${PV}-M7/${P}-M7-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/tomcat/${PN}/${PV}-M7/${P}-M7.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.tomcat:tomcat-jni:10.0.0-M7"

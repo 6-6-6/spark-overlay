@@ -14,7 +14,7 @@ DESCRIPTION="A 1.8.7 compatible Ruby interpreter written in 100% pure Java"
 HOMEPAGE="http://www.jruby.org/jruby-common/jruby/"
 SRC_URI="https://repo1.maven.org/maven2/org/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="LGPL-2.1 GPL-2 CPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jruby:jruby:1.6.7"

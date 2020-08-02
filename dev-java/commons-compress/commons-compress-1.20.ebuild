@@ -16,7 +16,7 @@ lzma, xz, Snappy, traditional Unix Compress, DEFLATE, DEFLATE64, LZ4,
 Brotli, Zstandard and ar, cpio, jar, tar, zip, dump, 7z, arj."
 HOMEPAGE="https://commons.apache.org/proper/commons-compress/"
 SRC_URI="https://repo.maven.apache.org/maven2/org/apache/commons/${PN}/${PV}/${P}-sources.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="amd64 x86 ~arm64"
 MAVEN_ID="org.apache.commons:commons-compress:1.20"

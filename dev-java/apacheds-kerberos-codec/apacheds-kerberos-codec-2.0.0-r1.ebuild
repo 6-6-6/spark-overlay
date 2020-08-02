@@ -14,7 +14,7 @@ DESCRIPTION="The Kerberos protocol encoder/decoder module"
 HOMEPAGE="http://directory.apache.org/apacheds/1.5/apacheds-kerberos-codec"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/directory/server/${PN}/${PV}-M15/${P}-M15-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/directory/server/${PN}/${PV}-M15/${P}-M15.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.directory.server:apacheds-kerberos-codec:2.0.0-M15"

@@ -14,7 +14,7 @@ DESCRIPTION="Clean-room definition of JPA APIs intended for use in developing Hi
 HOMEPAGE="http://hibernate.org"
 SRC_URI="https://repo1.maven.org/maven2/org/hibernate/javax/persistence/${PN}-2.1-api/${PV}.Final/${PN}-2.1-api-${PV}.Final-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/hibernate/javax/persistence/${PN}-2.1-api/${PV}.Final/${PN}-2.1-api-${PV}.Final.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="EPL-1.0"
 SLOT="2.1-api"
 KEYWORDS="~amd64"
 MAVEN_ID="org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"

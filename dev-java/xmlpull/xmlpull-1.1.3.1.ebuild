@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-binjar
 DESCRIPTION=""
 HOMEPAGE="http://www.xmlpull.org"
 SRC_URI="https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}.jar"
-LICENSE=""
+LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="xmlpull:xmlpull:1.1.3.1"

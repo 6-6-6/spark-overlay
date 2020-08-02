@@ -16,7 +16,7 @@ DESCRIPTION="RNGOM is an open-source Java library for parsing RELAX NG grammars.
 HOMEPAGE="http://rngom.java.net/"
 SRC_URI="https://repo1.maven.org/maven2/org/kohsuke/${PN}/${PN}/${MY_PV}/${PN}-${MY_PV}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/kohsuke/${PN}/${PN}/${MY_PV}/${PN}-${MY_PV}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc64 ~x86"
 MAVEN_ID="org.kohsuke.rngom:rngom:201605"

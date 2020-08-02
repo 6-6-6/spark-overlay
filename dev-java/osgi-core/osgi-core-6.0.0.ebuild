@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="OSGi Core Release 6, Interfaces and Classes for use in compiling bundles."
 HOMEPAGE="http://www.osgi.org"
 SRC_URI="https://repo.maven.apache.org/maven2/org/osgi/org.osgi.core/${PV}/org.osgi.core-${PV}-sources.jar -> ${P}-sources.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="6"
 KEYWORDS="~amd64"
 MAVEN_ID="org.osgi:org.osgi.core:6.0.0"

@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-binjar
 DESCRIPTION="xmlenc Library"
 HOMEPAGE="http://xmlenc.sourceforge.net"
 SRC_URI="https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}.jar"
-LICENSE=""
+LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="xmlenc:xmlenc:0.52"

@@ -14,7 +14,7 @@ DESCRIPTION="JAXB (JSR 222) reference implementation"
 HOMEPAGE="http://jaxb.java.net/"
 SRC_URI="https://repo1.maven.org/maven2/com/sun/xml/bind/${PN}/2.2.3-1/${PN}-2.2.3-1-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/sun/xml/bind/${PN}/2.2.3-1/${PN}-2.2.3-1.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="CDDL-1.1 GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.sun.xml.bind:jaxb-impl:2.2.3-1"

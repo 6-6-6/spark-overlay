@@ -15,7 +15,7 @@ DESCRIPTION="A set of classes which allow you to monitor critical aspects of you
 HOMEPAGE="http://metrics.dropwizard.io/metrics-jvm"
 SRC_URI="https://repo1.maven.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="io.dropwizard.metrics:metrics-jvm:4.1.1"

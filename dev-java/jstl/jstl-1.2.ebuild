@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-binjar
 DESCRIPTION=""
 HOMEPAGE=""
 SRC_URI="https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}.jar"
-LICENSE=""
+LICENSE="CDDL GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="jstl:jstl:1.2"

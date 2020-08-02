@@ -14,7 +14,8 @@ DESCRIPTION="The Multiverse core"
 HOMEPAGE=""
 SRC_URI="https://repo1.maven.org/maven2/org/multiverse/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/multiverse/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+# NOT SURE
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.multiverse:multiverse-core:0.7.0"

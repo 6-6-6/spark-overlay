@@ -17,7 +17,7 @@ DESCRIPTION="The Apache Software Foundation provides support for the Apache comm
     and users."
 HOMEPAGE="http://tomcat.apache.org/jasper-runtime"
 SRC_URI="https://repo1.maven.org/maven2/tomcat/${PN}/${PV}/${P}.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="tomcat:jasper-runtime:5.5.23"

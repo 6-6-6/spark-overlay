@@ -14,7 +14,7 @@ DESCRIPTION="Native function interface for the Truffle framework."
 HOMEPAGE="http://openjdk.java.net/projects/graal"
 SRC_URI="https://repo.maven.apache.org/maven2/org/graalvm/truffle/${PN}/${PV}/${P}-sources.jar
 		https://repo1.maven.org/maven2/org/graalvm/truffle/${PN}-native-linux-amd64/${PV}/${PN}-native-linux-amd64-${PV}.tar.gz"
-LICENSE=""
+LICENSE="UPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.graalvm.truffle:truffle-nfi:20.1.0"

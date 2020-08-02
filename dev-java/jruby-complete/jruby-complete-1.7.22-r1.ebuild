@@ -14,7 +14,7 @@ DESCRIPTION="JRuby is the effort to recreate the Ruby (http://www.ruby-lang.org)
 HOMEPAGE="https://github.com/jruby/jruby/jruby-artifacts/jruby-complete"
 SRC_URI="https://repo1.maven.org/maven2/org/jruby/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/jruby/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="LGPL-3 EPL-1.0 GPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jruby:jruby-complete:1.7.22"

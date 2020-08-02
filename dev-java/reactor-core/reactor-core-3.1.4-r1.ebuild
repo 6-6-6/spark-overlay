@@ -14,7 +14,7 @@ DESCRIPTION="Non-Blocking Reactive Foundation for the JVM"
 HOMEPAGE="https://github.com/reactor/reactor-core"
 SRC_URI="https://repo1.maven.org/maven2/io/projectreactor/${PN}/${PV}.RELEASE/${P}.RELEASE-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/io/projectreactor/${PN}/${PV}.RELEASE/${P}.RELEASE.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="io.projectreactor:reactor-core:3.1.4.RELEASE"

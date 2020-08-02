@@ -14,7 +14,7 @@ DESCRIPTION="Common reflection code used in support of annotation processing"
 HOMEPAGE="http://hibernate.org"
 SRC_URI="https://repo1.maven.org/maven2/org/hibernate/common/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/hibernate/common/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.hibernate.common:hibernate-commons-annotations:5.0.1.Final"

@@ -14,7 +14,7 @@ DESCRIPTION="Java.net - The Source for Java Technology Collaboration"
 HOMEPAGE="http://uel.java.net"
 SRC_URI="https://repo1.maven.org/maven2/org/glassfish/javax.el/3.0.1-b09/javax.el-3.0.1-b09-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/glassfish/javax.el/3.0.1-b09/javax.el-3.0.1-b09.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="GPL-2-with-classpath-exception CDDL"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.glassfish:javax.el:3.0.1-b09"

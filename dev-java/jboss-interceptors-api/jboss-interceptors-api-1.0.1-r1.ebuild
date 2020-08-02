@@ -14,7 +14,7 @@ DESCRIPTION="The Java(TM) EE  Interceptors 1.2 API classes from JSR 318."
 HOMEPAGE="http://www.jboss.org/jboss-interceptors-api_1.2_spec"
 SRC_URI="https://repo1.maven.org/maven2/org/jboss/spec/javax/interceptor/${PN}_1.2_spec/${PV}.Final/${PN}_1.2_spec-${PV}.Final-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/jboss/spec/javax/interceptor/${PN}_1.2_spec/${PV}.Final/${PN}_1.2_spec-${PV}.Final.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="GPL-2-with-classpath-exception CDDL"
 SLOT="1.2_spec"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.2_spec:1.0.1.Final"

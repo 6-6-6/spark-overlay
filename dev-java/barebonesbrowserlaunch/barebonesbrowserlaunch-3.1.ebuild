@@ -11,8 +11,7 @@ inherit java-pkg-2 java-pkg-simple
 DESCRIPTION="Use the default browser to open a web page from a Swing application"
 HOMEPAGE="https://centerkey.com/java/browser/"
 SRC_URI="https://centerkey.com/java/browser/project/com/centerkey/utils/BareBonesBrowserLaunch.java"
-
-LICENSE=""
+LICENSE="WTFPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 

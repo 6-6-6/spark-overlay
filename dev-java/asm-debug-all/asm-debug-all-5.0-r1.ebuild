@@ -14,7 +14,7 @@ DESCRIPTION="A very small and fast Java bytecode manipulation framework"
 HOMEPAGE="http://asm.objectweb.org/asm-debug-all/"
 SRC_URI="https://repo1.maven.org/maven2/org/ow2/asm/${PN}/${PV}_BETA/${P}_BETA-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/ow2/asm/${PN}/${PV}_BETA/${P}_BETA.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="BSD-1"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.ow2.asm:asm-debug-all:5.0_BETA"

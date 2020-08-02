@@ -14,7 +14,7 @@ DESCRIPTION="A reporter for Metrics which announces measurements to a Graphite s
 HOMEPAGE="http://metrics.dropwizard.io/metrics-graphite"
 SRC_URI="https://repo1.maven.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="io.dropwizard.metrics:metrics-graphite:4.1.1"

@@ -14,7 +14,7 @@ DESCRIPTION="JSR 354 provides an API for representing, transporting, and perform
 HOMEPAGE="http://java.net/projects/javamoney"
 SRC_URI="https://repo1.maven.org/maven2/javax/money/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/javax/money/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="javax.money:money-api:1.0.1"

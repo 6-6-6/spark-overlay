@@ -14,7 +14,7 @@ DESCRIPTION="Core Tomcat implementation"
 HOMEPAGE="http://tomcat.apache.org/"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/tomcat/embed/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/tomcat/embed/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.tomcat.embed:tomcat-embed-core:8.5.28"

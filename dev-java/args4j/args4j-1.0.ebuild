@@ -10,11 +10,11 @@ JAVA_PKG_IUSE="doc source binary test"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION=""
-HOMEPAGE=""
+DESCRIPTION="args4j is a small Java class library that makes it easy to parse command line options/arguments in your CUI application."
+HOMEPAGE="https://github.com/kohsuke/args4j"
 SRC_URI="https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="MIT"
 SLOT="1"
 KEYWORDS="~amd64 ~x86"
 MAVEN_ID="args4j:args4j:1.0"

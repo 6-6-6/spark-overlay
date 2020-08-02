@@ -14,7 +14,7 @@ DESCRIPTION="JBoss EJB 3.1 Common Interceptor Library Parent"
 HOMEPAGE="http://www.jboss.org/jboss-interceptor-parent/jboss-interceptor-core"
 SRC_URI="https://repo1.maven.org/maven2/org/jboss/interceptor/${PN}/${PV}.CR1/${P}.CR1-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/jboss/interceptor/${PN}/${PV}.CR1/${P}.CR1.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jboss.interceptor:jboss-interceptor-core:2.0.0.CR1"

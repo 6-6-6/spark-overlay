@@ -17,7 +17,7 @@ DESCRIPTION="A set of annotations used for code inspection support and code docu
 HOMEPAGE="http://www.jetbrains.org"
 SRC_URI="https://repo.maven.apache.org/maven2/org/jetbrains/${MY_PN}/${PV}/${MY_P}-sources.jar -> ${P}-sources.jar
 		https://repo.maven.apache.org/maven2/org/jetbrains/${MY_PN}/${PV}/${MY_P}.jar -> ${P}-bin.har"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jetbrains:annotations:13.0"

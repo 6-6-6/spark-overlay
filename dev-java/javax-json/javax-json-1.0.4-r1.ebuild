@@ -14,7 +14,7 @@ DESCRIPTION="Default provider for JSR 353:Java API for Processing JSON"
 HOMEPAGE="http://jsonp.java.net"
 SRC_URI="https://repo1.maven.org/maven2/org/glassfish/javax.json/${PV}/javax.json-${PV}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/glassfish/javax.json/${PV}/javax.json-${PV}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="CDDL-1.1 GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.glassfish:javax.json:1.0.4"

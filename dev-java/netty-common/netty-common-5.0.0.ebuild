@@ -15,7 +15,7 @@ rapid development of maintainable high performance protocol servers and clients.
 HOMEPAGE="http://netty.io/netty-common/"
 SRC_URI="https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Alpha2/${P}.Alpha2-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Alpha2/${P}.Alpha2.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~arm64"
 MAVEN_ID="io.netty:netty-common:5.0.0.Alpha2"

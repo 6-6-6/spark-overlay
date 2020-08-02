@@ -14,7 +14,7 @@ DESCRIPTION="The Java Transaction 1.2 API classes"
 HOMEPAGE="http://www.jboss.org/jboss-transaction-api_1.2_spec"
 SRC_URI="https://repo1.maven.org/maven2/org/jboss/spec/javax/transaction/${PN}_1.2_spec/${PV}.Final/${PN}_1.2_spec-${PV}.Final-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/jboss/spec/javax/transaction/${PN}_1.2_spec/${PV}.Final/${PN}_1.2_spec-${PV}.Final.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="CDDL GPL-2-with-classpath-exception"
 SLOT="1.2_spec"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec:1.0.1.Final"

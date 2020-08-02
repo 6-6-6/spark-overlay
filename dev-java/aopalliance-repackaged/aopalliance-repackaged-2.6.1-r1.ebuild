@@ -14,7 +14,7 @@ DESCRIPTION="Dependency Injection Kernel"
 HOMEPAGE="https://github.com/eclipse-ee4j/glassfish-hk2/external/aopalliance-repackaged"
 SRC_URI="https://repo1.maven.org/maven2/org/glassfish/hk2/external/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/glassfish/hk2/external/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="EPL-2.0 GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.glassfish.hk2.external:aopalliance-repackaged:2.6.1"

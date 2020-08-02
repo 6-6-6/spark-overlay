@@ -14,7 +14,8 @@ DESCRIPTION="The javax.transaction package. It is appropriate for inclusion in a
 HOMEPAGE="http://java.sun.com/products/jta"
 SRC_URI="https://repo1.maven.org/maven2/javax/transaction/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/javax/transaction/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+# totally not sure
+LICENSE="CDDL"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="javax.transaction:jta:1.1"

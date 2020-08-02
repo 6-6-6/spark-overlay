@@ -14,7 +14,7 @@ DESCRIPTION="rxjava"
 HOMEPAGE="https://github.com/ReactiveX/RxJava"
 SRC_URI="https://repo1.maven.org/maven2/io/reactivex/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/io/reactivex/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="io.reactivex:rxjava:1.2.0"

@@ -14,7 +14,7 @@ DESCRIPTION="Wagon that gets and puts artifacts using file system protocol"
 HOMEPAGE="http://maven.apache.org/wagon/wagon-providers/wagon-file"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/maven/wagon/${PN}/1.0-beta-6/${PN}-1.0-beta-6-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/maven/wagon/${PN}/1.0-beta-6/${PN}-1.0-beta-6.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.maven.wagon:wagon-file:1.0-beta-6"

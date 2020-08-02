@@ -18,7 +18,7 @@ DESCRIPTION="The Apache Software Foundation provides support for the Apache comm
 HOMEPAGE="http://spark.apache.org/"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="2.12"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.spark:spark-tags_2.12:3.0.0-preview2"

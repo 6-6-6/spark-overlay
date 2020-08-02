@@ -14,7 +14,7 @@ DESCRIPTION="Semantic versioning for Java apps."
 HOMEPAGE="https://github.com/vdurmont/semver4j"
 SRC_URI="https://repo1.maven.org/maven2/com/vdurmont/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/vdurmont/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.vdurmont:semver4j:2.2.0"

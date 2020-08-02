@@ -14,7 +14,7 @@ DESCRIPTION="Jakarta Bean Validation API"
 HOMEPAGE="https://beanvalidation.org"
 SRC_URI="https://repo1.maven.org/maven2/jakarta/validation/jakarta.validation-api/${PV}/jakarta.validation-api-${PV}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/jakarta/validation/jakarta.validation-api/${PV}/jakarta.validation-api-${PV}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="jakarta.validation:jakarta.validation-api:2.0.2"

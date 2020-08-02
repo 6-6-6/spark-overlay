@@ -14,7 +14,7 @@ DESCRIPTION="A pure Java(TM) implementation of the Application Layer Protocol Ne
 HOMEPAGE="http://www.eclipse.org/jetty/alpn-project/alpn-boot"
 SRC_URI="https://repo1.maven.org/maven2/org/mortbay/jetty/alpn/${PN}/8.1.13.v20181017/${PN}-8.1.13.v20181017-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/mortbay/jetty/alpn/${PN}/8.1.13.v20181017/${PN}-8.1.13.v20181017.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="GPL-2-with-classpath-exception Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.mortbay.jetty.alpn:alpn-boot:8.1.13.v20181017"

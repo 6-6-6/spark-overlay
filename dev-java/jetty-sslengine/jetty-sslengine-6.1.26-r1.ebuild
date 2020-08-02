@@ -14,7 +14,7 @@ DESCRIPTION="Parent pom for Jetty at Codehaus"
 HOMEPAGE="http://jetty.mortbay.org"
 SRC_URI="https://repo1.maven.org/maven2/org/mortbay/jetty/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/mortbay/jetty/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="6"
 KEYWORDS="~amd64"
 MAVEN_ID="org.mortbay.jetty:jetty-sslengine:6.1.26"

@@ -14,7 +14,7 @@ DESCRIPTION="Jakarta Annotations API"
 HOMEPAGE="https://projects.eclipse.org/projects/ee4j.ca"
 SRC_URI="https://repo1.maven.org/maven2/jakarta/annotation/jakarta.annotation-api/${PV}/jakarta.annotation-api-${PV}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/jakarta/annotation/jakarta.annotation-api/${PV}/jakarta.annotation-api-${PV}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="GPL-2-with-classpath-exception EPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="jakarta.annotation:jakarta.annotation-api:1.3.5"

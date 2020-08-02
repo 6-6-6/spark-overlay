@@ -14,7 +14,7 @@ DESCRIPTION="Apache Lucene Java Core"
 HOMEPAGE="http://lucene.apache.org/lucene-parent/lucene-core"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/lucene/${PN}-core/${PV}/${PN}-core-${PV}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/lucene/${PN}-core/${PV}/${PN}-core-${PV}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 MAVEN_ID="org.apache.lucene:lucene-core:7.6.0"

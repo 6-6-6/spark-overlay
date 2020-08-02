@@ -14,7 +14,7 @@ DESCRIPTION="Janino is a super-small, super-fast Java compiler."
 HOMEPAGE="https://github.com/janino-compiler/janino"
 SRC_URI="https://repo1.maven.org/maven2/org/codehaus/janino/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/codehaus/janino/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.codehaus.janino:commons-compiler:3.0.6"

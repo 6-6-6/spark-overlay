@@ -14,7 +14,7 @@ DESCRIPTION="Hibernate's Bean Validation (JSR-380) reference implementation."
 HOMEPAGE="http://hibernate.org/validator/hibernate-validator"
 SRC_URI="https://repo1.maven.org/maven2/org/hibernate/validator/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/hibernate/validator/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.hibernate.validator:hibernate-validator:6.0.10.Final"

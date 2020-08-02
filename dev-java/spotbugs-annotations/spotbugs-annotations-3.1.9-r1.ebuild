@@ -14,7 +14,7 @@ DESCRIPTION="Annotations the SpotBugs tool supports"
 HOMEPAGE="https://spotbugs.github.io/"
 SRC_URI="https://repo1.maven.org/maven2/com/github/spotbugs/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/github/spotbugs/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.github.spotbugs:spotbugs-annotations:3.1.9"

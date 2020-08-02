@@ -14,7 +14,7 @@ DESCRIPTION="(deprecated - use hibernate-core instead) Hibernate O/RM implementa
 HOMEPAGE="http://hibernate.org"
 SRC_URI="https://repo1.maven.org/maven2/org/hibernate/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/hibernate/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.hibernate:hibernate-entitymanager:5.2.13.Final"

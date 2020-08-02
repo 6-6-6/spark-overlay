@@ -14,7 +14,7 @@ DESCRIPTION="OSGi Companion Code for org.osgi.service.jdbc Version 1.0.0."
 HOMEPAGE="http://www.osgi.org/"
 SRC_URI="https://repo1.maven.org/maven2/org/osgi/org.osgi.service.jdbc/${PV}/org.osgi.service.jdbc-${PV}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/osgi/org.osgi.service.jdbc/${PV}/org.osgi.service.jdbc-${PV}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.osgi:org.osgi.service.jdbc:1.0.0"

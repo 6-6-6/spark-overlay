@@ -14,7 +14,7 @@ DESCRIPTION="A BER Codec Implementation for ASN.1"
 HOMEPAGE="http://directory.apache.org/api-parent/api-asn1-parent/api-asn1-ber/"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/directory/api/${PN}/${PV}-M20/${P}-M20-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/directory/api/${PN}/${PV}-M20/${P}-M20.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.directory.api:api-asn1-ber:1.0.0-M20"

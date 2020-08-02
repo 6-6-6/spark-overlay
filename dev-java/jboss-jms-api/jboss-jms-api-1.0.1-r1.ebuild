@@ -14,7 +14,7 @@ DESCRIPTION="JSR-000914: Java(TM) Message Service (JMS) 1.1 API"
 HOMEPAGE="http://www.jboss.org/jboss-jms-api_1.1_spec"
 SRC_URI="https://repo1.maven.org/maven2/org/jboss/spec/javax/jms/${PN}_1.1_spec/${PV}.Final/${PN}_1.1_spec-${PV}.Final-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/jboss/spec/javax/jms/${PN}_1.1_spec/${PV}.Final/${PN}_1.1_spec-${PV}.Final.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="CDDL GPL-2-with-classpath-exception"
 SLOT="1.1_spec"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jboss.spec.javax.jms:jboss-jms-api_1.1_spec:1.0.1.Final"

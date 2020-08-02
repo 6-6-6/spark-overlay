@@ -14,7 +14,7 @@ DESCRIPTION="The Java EJB 3.1 API classes"
 HOMEPAGE="http://jboss-ejb-api_3.1_spec/"
 SRC_URI="https://repo1.maven.org/maven2/org/jboss/spec/javax/ejb/${PN}_3.1_spec/${PV}.CR2/${PN}_3.1_spec-${PV}.CR2-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/jboss/spec/javax/ejb/${PN}_3.1_spec/${PV}.CR2/${PN}_3.1_spec-${PV}.CR2.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="LGPL-3"
 SLOT="3.1_spec"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jboss.spec.javax.ejb:jboss-ejb-api_3.1_spec:1.0.0.CR2"

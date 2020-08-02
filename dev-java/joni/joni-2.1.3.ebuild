@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="Java port of Oniguruma: http://www.geocities.jp/kosako3/oniguruma that uses byte arrays directly instead of java Strings and chars"
 HOMEPAGE="http://nexus.sonatype.org/oss-repository-hosting.html/joni"
 SRC_URI="https://repo.maven.apache.org/maven2/org/jruby/${PN}/${PN}/${PV}/${P}-sources.jar"
-LICENSE=""
+LICENSE="MIT"
 SLOT="2.1"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~ppc64 ~x86-linux ~x86-solaris"
 MAVEN_ID="org.jruby.joni:joni:2.1.3"

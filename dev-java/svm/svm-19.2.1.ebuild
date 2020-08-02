@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple
 DESCRIPTION="SubstrateVM image builder components"
 HOMEPAGE="https://github.com/oracle/graal/tree/master/substratevm"
 SRC_URI="https://repo.maven.apache.org/maven2/com/oracle/substratevm/${PN}/${PV}/${P}-sources.jar"
-LICENSE=""
+LICENSE="GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS=""
 #KEYWORKDS="~amd64"

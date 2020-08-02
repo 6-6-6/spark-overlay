@@ -14,7 +14,7 @@ DESCRIPTION="LatencyUtils is a package that provides latency recording and repor
 HOMEPAGE="http://latencyutils.github.io/LatencyUtils/"
 SRC_URI="https://repo1.maven.org/maven2/org/latencyutils/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/latencyutils/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.latencyutils:LatencyUtils:2.0.3"

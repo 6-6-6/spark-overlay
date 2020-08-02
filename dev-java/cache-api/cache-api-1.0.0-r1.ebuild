@@ -14,7 +14,7 @@ DESCRIPTION="Sonatype helps open source projects to set up Maven repositories on
 HOMEPAGE="https://github.com/jsr107/jsr107spec"
 SRC_URI="https://repo1.maven.org/maven2/javax/cache/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/javax/cache/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="javax.cache:cache-api:1.0.0"

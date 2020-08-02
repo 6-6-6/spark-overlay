@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple
 DESCRIPTION="Annotation the FindBugs tool supports"
 HOMEPAGE="http://findbugs.sourceforge.net/"
 SRC_URI="https://repo.maven.apache.org/maven2/com/google/code/findbugs/annotations/3.0.1u2/annotations-3.0.1u2-sources.jar"
-LICENSE=""
+LICENSE="LGPL-3"
 SLOT="3"
 KEYWORDS="~amd64"
 MAVEN_ID="com.google.code.findbugs:annotations:3.0.1u2"

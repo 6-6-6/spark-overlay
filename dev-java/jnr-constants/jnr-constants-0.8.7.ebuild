@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="A set of platform constants (e.g. errno values)"
 HOMEPAGE="http://github.com/jnr/jnr-constants"
 SRC_URI="https://repo.maven.apache.org/maven2/com/github/jnr/${PN}/${PV}/${P}-sources.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~arm64"
 MAVEN_ID="com.github.jnr:jnr-constants:0.8.7"

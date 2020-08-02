@@ -14,7 +14,7 @@ DESCRIPTION="Jetty server core"
 HOMEPAGE="http://www.eclipse.org/jetty/jetty-parent/project/modules/jetty"
 SRC_URI="https://repo1.maven.org/maven2/org/mortbay/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/mortbay/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0 EPL-1.0"
 SLOT="6"
 KEYWORDS="~amd64"
 MAVEN_ID="org.mortbay.jetty:jetty:6.1.26"

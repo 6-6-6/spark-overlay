@@ -14,7 +14,7 @@ DESCRIPTION="Parent POM for JBoss projects. Provides default project build confi
 HOMEPAGE="http://www.jboss.org/jboss-logging-tools-parent/jboss-logging-annotations"
 SRC_URI="https://repo1.maven.org/maven2/org/jboss/logging/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/jboss/logging/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jboss.logging:jboss-logging-annotations:2.1.0.Final"

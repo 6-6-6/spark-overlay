@@ -16,7 +16,7 @@ DESCRIPTION="Eclipse Enterprise for Java (EE4J) is an open source initiative to 
 HOMEPAGE="https://projects.eclipse.org/projects/ee4j.servlet"
 SRC_URI="https://repo1.maven.org/maven2/jakarta/servlet/jakarta.servlet-api/${PV}/jakarta.servlet-api-${PV}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/jakarta/servlet/jakarta.servlet-api/${PV}/jakarta.servlet-api-${PV}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="EPL-2.0 GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="jakarta.servlet:jakarta.servlet-api:4.0.3"

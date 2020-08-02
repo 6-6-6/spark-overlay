@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="Jakarta RESTful Web Services API"
 HOMEPAGE="https://github.com/eclipse-ee4j/jaxrs-api"
 SRC_URI="https://repo.maven.apache.org/maven2/jakarta/ws/rs/jakarta.ws.rs-api/${PV}/jakarta.ws.rs-api-${PV}-sources.jar -> ${P}-sources.jar"
-LICENSE=""
+LICENSE="GPL-2-with-classpath-exception EPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="VIRTUAL:PROVIDED:0"

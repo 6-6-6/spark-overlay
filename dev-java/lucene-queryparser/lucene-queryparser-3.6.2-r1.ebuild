@@ -14,7 +14,7 @@ DESCRIPTION="This is the Flexible Query Parser for apache lucene java"
 HOMEPAGE="http://lucene.apache.org/java/lucene-parent/lucene-queryparser"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/lucene/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/lucene/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="3.6"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.lucene:lucene-queryparser:3.6.2"

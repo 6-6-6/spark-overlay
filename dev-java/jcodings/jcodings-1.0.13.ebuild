@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="Byte based encoding support library for java"
 HOMEPAGE="http://nexus.sonatype.org/oss-repository-hosting.html/jcodings"
 SRC_URI="https://repo.maven.apache.org/maven2/org/jruby/${PN}/${PN}/${PV}/${P}-sources.jar"
-LICENSE=""
+LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~ppc64 ~x86-linux ~x86-solaris"
 MAVEN_ID="org.jruby.jcodings:jcodings:1.0.13"

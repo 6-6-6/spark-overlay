@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="Janino is a super-small, super-fast Java compiler."
 HOMEPAGE="http://janino-compiler.github.io/janino/"
 SRC_URI="https://repo.maven.apache.org/maven2/org/codehaus/${PN}/${PN}/${PV}/${P}-sources.jar"
-LICENSE=""
+LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 MAVEN_ID="org.codehaus.janino:janino:3.0.6"

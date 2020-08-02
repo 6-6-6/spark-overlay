@@ -14,7 +14,7 @@ DESCRIPTION="XStream is a serialization library from Java objects to XML and bac
 HOMEPAGE="http://codehaus.org/xstream-parent/xstream/"
 SRC_URI="https://repo1.maven.org/maven2/com/thoughtworks/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/thoughtworks/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.thoughtworks.xstream:xstream:1.4.7"

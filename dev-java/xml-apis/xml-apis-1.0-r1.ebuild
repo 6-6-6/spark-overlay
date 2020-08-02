@@ -21,7 +21,7 @@ DESCRIPTION="xml-commons provides an Apache-hosted set of DOM, SAX, and
 HOMEPAGE="http://xml.apache.org/commons/#external"
 SRC_URI="https://repo1.maven.org/maven2/${PN}/${PN}/${PV}.b2/${P}.b2-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/${PN}/${PN}/${PV}.b2/${P}.b2.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="xml-apis:xml-apis:1.0.b2"

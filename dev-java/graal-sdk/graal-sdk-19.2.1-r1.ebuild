@@ -15,7 +15,7 @@ GraalVM removes the isolation between programming languages and enables interope
 HOMEPAGE="https://github.com/oracle/graal"
 SRC_URI="https://repo1.maven.org/maven2/org/graalvm/sdk/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/graalvm/sdk/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="UPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.graalvm.sdk:graal-sdk:19.2.1"

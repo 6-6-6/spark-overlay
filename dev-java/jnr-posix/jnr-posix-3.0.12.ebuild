@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="Common cross-project/cross-platform POSIX APIs"
 HOMEPAGE="http://nexus.sonatype.org/oss-repository-hosting.html/jnr-posix"
 SRC_URI="https://repo.maven.apache.org/maven2/com/github/jnr/${PN}/${PV}/${P}-sources.jar"
-LICENSE=""
+LICENSE="LGPL-2.1 CPL-1.0 GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~arm64 ~x86-linux ~x86-solaris"
 MAVEN_ID="com.github.jnr:jnr-posix:3.0.12"

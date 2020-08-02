@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-binjar
 DESCRIPTION="This library contains classes realizing Communicating Sequential Processes (CSP) for use in Java code."
 HOMEPAGE="http://www.cs.kent.ac.uk/projects/ofa/jcsp"
 SRC_URI="https://repo1.maven.org/maven2/org/codehaus/${PN}/${PN}/1.1-rc5/${PN}-1.1-rc5.jar -> ${P}.jar"
-LICENSE=""
+LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.codehaus.jcsp:jcsp:1.1-rc5"

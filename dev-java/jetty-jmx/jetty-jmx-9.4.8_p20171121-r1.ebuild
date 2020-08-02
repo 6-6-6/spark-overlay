@@ -14,7 +14,7 @@ DESCRIPTION="JMX management artifact for jetty."
 HOMEPAGE="http://www.eclipse.org/jetty"
 SRC_URI="https://repo1.maven.org/maven2/org/eclipse/jetty/${PN}/9.4.8.v20171121/${PN}-9.4.8.v20171121-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/eclipse/jetty/${PN}/9.4.8.v20171121/${PN}-9.4.8.v20171121.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="EPL-1.0 Apache-2.0"
 SLOT="9"
 KEYWORDS="~amd64"
 MAVEN_ID="org.eclipse.jetty:jetty-jmx:9.4.8.v20171121"

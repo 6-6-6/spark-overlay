@@ -14,7 +14,7 @@ DESCRIPTION="istack common utility code"
 HOMEPAGE="https://projects.eclipse.org/projects/ee4j/istack-commons/istack-commons-runtime"
 SRC_URI="https://repo.maven.apache.org/maven2/com/sun/istack/${PN}/${PV}-M3/${P}-M3-sources.jar -> ${P}-sources.jar
 	https://repo.maven.apache.org/maven2/com/sun/istack/${PN}/${PV}-M3/${P}-M3.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="CDDL"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc64 ~x86"
 MAVEN_ID="com.sun.istack:istack-commons-runtime:4.0.0-M3"

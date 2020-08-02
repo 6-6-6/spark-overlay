@@ -15,7 +15,7 @@ DESCRIPTION="This library is used to not only read Maven project object model fi
 HOMEPAGE="http://maven.apache.org/maven-project"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/maven/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/maven/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.maven:maven-project:2.2.1"
