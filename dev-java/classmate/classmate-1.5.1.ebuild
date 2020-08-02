@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 JAVA_PKG_IUSE="doc source test"
 
@@ -28,20 +28,12 @@ S="${WORKDIR}/java-${PN}-${P}"
 
 JAVA_SRC_DIR="src/main/java"
 
+JAVA_TESTING_FRAMEWORKS="junit"
+JAVA_TEST_SRC_DIR="src/test/java"
+JAVA_TEST_GENTOO_CLASSPATH="junit-4"
+
 src_prepare() {
 	default
 	rm -v pom.xml \
 		src/test/java/com/fasterxml/classmate/AnnotationsTest.java || die
-}
-
-src_test() {
-	testcp="${S}/${PN}.jar:$(java-pkg_getjars junit-4):target/tests"
-
-	mkdir target/tests || die
-	ejavac -cp "${testcp}" -d target/tests $(find src/test/java -name "*.java")
-
-	tests=$(find target/tests -name "*Test.class" -not -name "BaseTest.class" \
-			| sed -e 's/target\/tests\///g' -e "s/\.class//" -e "s/\//./g" \
-			| grep -vP '\$');
-	ejunit4 -cp "${testcp}" ${tests}
 }

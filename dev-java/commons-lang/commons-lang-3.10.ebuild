@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 JAVA_PKG_IUSE="doc source test"
 
@@ -22,7 +22,9 @@ CDEPEND=""
 
 DEPEND="
 	${CDEPEND}
-	>=virtual/jdk-1.8"
+	>=virtual/jdk-1.8
+	test? ( dev-java/junit:0 )
+"
 
 RDEPEND="
 	${CDEPEND}
@@ -34,10 +36,12 @@ JAVA_ANT_ENCODING="ISO-8859-1"
 
 DOCS=( CONTRIBUTING.md NOTICE.txt RELEASE-NOTES.txt LICENSE.txt README.md )
 
-src_prepare() {
-	default
-	rm -rv src/test || die
-}
+JAVA_SRC_DIR="src/main/java"
+
+JAVA_TEST_SRC_DIR="src/test/java"
+JAVA_TEST_RESOURCE_DIRS="src/test/resources"
+JAVA_TEST_GENTOO_CLASSPATH="junit"
+#JAVA_TESTING_FRAMEWORKS="junit"
 
 src_install() {
 	einstalldocs

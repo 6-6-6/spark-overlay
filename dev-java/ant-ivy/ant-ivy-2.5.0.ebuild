@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI=5
 
 JAVA_PKG_IUSE="doc examples source test"
 MAVEN_ID="org.apache.ivy:ivy:2.5.0"
@@ -23,7 +23,7 @@ SRC_URI="mirror://apache/ant/ivy/${PV}/${MY_P}-src.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="2"
-KEYWORDS="~"
+KEYWORDS=""
 #KEYWORDS="amd64 ppc64 x86 ~amd64-linux ~x86-linux ~x86-macos"
 
 # We cannot build tests yet as there is no org.apache.tools.ant.BuildFileTest packaged anywhere yet.

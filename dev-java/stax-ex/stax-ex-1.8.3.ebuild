@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 
@@ -27,4 +27,5 @@ RDEPEND=">=virtual/jre-1.5
 	${COMMON_DEPEND}"
 DEPEND=">=virtual/jdk-1.5
 	app-arch/unzip
-	${COMMON_DEPEND}"
+	${COMMON_DEPEND}
+"

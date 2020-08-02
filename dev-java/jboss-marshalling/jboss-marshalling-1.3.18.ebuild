@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 JAVA_PKG_IUSE="doc source binary test"
 
@@ -21,7 +21,12 @@ CDEPEND="
 	dev-java/jboss-modules:0"
 
 RDEPEND="${CDEPEND}
-	>=virtual/jre-1.7"
+	>=virtual/jre-1.7
+	test? ( amd64? (
+		dev-util/pkgdiff
+		dev-util/japi-compliance-checker
+		)
+	)"
 
 DEPEND="${CDEPEND}
 	>=virtual/jdk-1.7"
@@ -29,3 +34,5 @@ DEPEND="${CDEPEND}
 JAVA_SRC_DIR="src/main/java"
 JAVA_GENTOO_CLASSPATH="jboss-modules"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
