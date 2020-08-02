@@ -18,8 +18,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 MAVEN_ID="com.lmax:disruptor:3.4.2"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -32,4 +30,3 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
-

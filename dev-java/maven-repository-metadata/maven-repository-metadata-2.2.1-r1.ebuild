@@ -27,7 +27,6 @@ CDEPEND="
 	>=dev-java/plexus-utils-1.5.15:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	app-arch/unzip
@@ -45,4 +44,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="plexus-utils"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

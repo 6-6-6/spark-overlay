@@ -27,7 +27,6 @@ CDEPEND="
 	>=dev-java/aopalliance-1.0:1
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -45,4 +44,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="aopalliance-1"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

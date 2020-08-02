@@ -31,7 +31,6 @@ CDEPEND="
 	java-virtuals/stax-api:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	app-arch/unzip

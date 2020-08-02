@@ -40,7 +40,6 @@ CDEPEND="
 	>=dev-java/protobuf-java-3.11.4:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip

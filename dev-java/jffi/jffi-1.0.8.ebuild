@@ -18,8 +18,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jruby.extras:jffi:1.0.8"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

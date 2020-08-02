@@ -19,8 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.twitter:hpack:0.10.1"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip
@@ -34,4 +32,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

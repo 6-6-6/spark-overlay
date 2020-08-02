@@ -19,7 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jboss.logging:jboss-logging-annotations:2.1.0.Final"
 
-
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Final.pom
 # org.jboss.logging:jboss-logging:3.1.2.GA -> >=dev-java/jboss-logging-3.1.4:0
@@ -41,4 +40,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="jboss-logging"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

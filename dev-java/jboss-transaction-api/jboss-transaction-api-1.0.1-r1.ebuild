@@ -19,7 +19,6 @@ SLOT="1.2_spec"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec:1.0.1.Final"
 
-
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_1.2_spec-${PV}.Final.pom
 # javax.enterprise:cdi-api:1.2 -> >=dev-java/cdi-api-1.2:1.2
@@ -43,4 +42,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="cdi-api-1.2,jboss-interceptors-api-1.2_spec"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

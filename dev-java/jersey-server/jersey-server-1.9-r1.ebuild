@@ -70,4 +70,3 @@ JAVA_GENTOO_CLASSPATH="asm-3,jersey-core-1"
 JAVA_CLASSPATH_EXTRA="ant-core,mail,persistence-api,servlet-api-4.0,jsp-api-2.3,jaxb-api,ejb,weld-osgi-bundle,osgi-core-4"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

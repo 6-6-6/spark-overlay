@@ -27,7 +27,6 @@ CDEPEND="
 	>=dev-java/activation-1.1:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -45,4 +44,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="activation"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

@@ -28,7 +28,6 @@ CDEPEND="
 	>=dev-java/okio-2.6.0:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
@@ -43,4 +42,3 @@ S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="okio,kotlin-common-bin"
 JAVA_SRC_DIR="src/main/java"
-

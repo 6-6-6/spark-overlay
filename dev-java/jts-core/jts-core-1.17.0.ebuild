@@ -19,8 +19,6 @@ SLOT="1"
 KEYWORDS="~amd64 ~x86"
 MAVEN_ID="org.locationtech.jts:jts-core:1.17.0"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

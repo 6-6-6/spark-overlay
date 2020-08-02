@@ -18,7 +18,6 @@ SLOT="1.1"
 KEYWORDS="~amd64 ~x86"
 MAVEN_ID="org.xerial.snappy:snappy-java:1.1.7.5"
 
-
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # org.osgi:org.osgi.core:4.3.0 -> >=dev-java/osgi-core-6.0.0:6
@@ -38,4 +37,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="osgi-core-6"
 
 JAVA_SRC_DIR="src/main/java"
-

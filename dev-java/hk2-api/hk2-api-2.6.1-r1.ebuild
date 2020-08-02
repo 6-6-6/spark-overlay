@@ -33,7 +33,6 @@ CDEPEND="
 	>=dev-java/osgi-resource-locator-1.0.3:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -51,4 +50,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="hk2-utils,osgi-resource-locator,aopalliance-repackaged,jakarta-inject"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

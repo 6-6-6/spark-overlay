@@ -57,4 +57,3 @@ JAVA_GENTOO_CLASSPATH="slf4j-api"
 JAVA_CLASSPATH_EXTRA="servlet-api-4.0,jta,hibernate-core,slf4j-jdk14"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

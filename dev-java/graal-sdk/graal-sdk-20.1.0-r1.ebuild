@@ -20,8 +20,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.graalvm.sdk:graal-sdk:20.1.0"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -35,4 +33,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

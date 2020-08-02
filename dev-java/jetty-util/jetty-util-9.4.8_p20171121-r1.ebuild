@@ -19,7 +19,6 @@ SLOT="9"
 KEYWORDS="~amd64"
 MAVEN_ID="org.eclipse.jetty:jetty-util:9.4.8.v20171121"
 
-
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-9.4.8.v20171121.pom
 # javax.servlet:javax.servlet-api:3.1.0 -> java-virtuals/servlet-api:4.0
@@ -43,4 +42,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="servlet-api-4.0,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

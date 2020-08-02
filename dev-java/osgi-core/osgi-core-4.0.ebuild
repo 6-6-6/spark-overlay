@@ -10,7 +10,6 @@ JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-pkg-binjar
 
-
 MY_PV="1.0"
 DESCRIPTION="OSGi R4 core"
 HOMEPAGE="http://www.osgi.org"
@@ -19,8 +18,6 @@ LICENSE="Apache-2.0"
 SLOT="4"
 KEYWORDS="~amd64"
 MAVEN_ID="org.osgi:osgi_R4_core:1.0"
-
-
 
 DEPEND="
 	>=virtual/jdk-1.8:*
@@ -32,4 +29,3 @@ RDEPEND="
 "
 
 S="${WORKDIR}"
-

@@ -18,7 +18,6 @@ SLOT="6"
 KEYWORDS="~amd64"
 MAVEN_ID="org.osgi:org.osgi.framework:1.9.0"
 
-
 CDEPEND="
 	dev-java/osgi-core:6
 	dev-java/osgi-annotation:6
@@ -40,4 +39,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="osgi-core-6,osgi-annotation-6"
 
 JAVA_SRC_DIR="src/main/java"
-

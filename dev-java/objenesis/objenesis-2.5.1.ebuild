@@ -18,8 +18,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc64 ~x86 ~arm64"
 MAVEN_ID="org.objenesis:objenesis:2.5.1"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	app-arch/unzip

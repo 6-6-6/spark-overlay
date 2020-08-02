@@ -19,8 +19,6 @@ SLOT="1.2_spec"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.2_spec:1.0.1.Final"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -34,4 +32,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

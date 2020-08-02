@@ -29,7 +29,6 @@ CDEPEND="
 	>=dev-java/jackson-annotations-2.11.0:2
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.7:*
 	app-arch/unzip
@@ -47,4 +46,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

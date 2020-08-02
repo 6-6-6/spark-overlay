@@ -20,8 +20,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 MAVEN_ID="org.eclipse.jetty.npn:npn-api:1.1.1.v20141010"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -32,4 +30,3 @@ RDEPEND="
 "
 
 S="${WORKDIR}"
-

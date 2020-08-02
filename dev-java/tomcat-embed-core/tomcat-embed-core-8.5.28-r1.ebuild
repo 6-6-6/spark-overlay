@@ -31,7 +31,6 @@ CDEPEND="
 	dev-java/javax-persistence:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -49,4 +48,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="tomcat-annotations-api,servlet-api-4.0,ejb-api,javax-mail,javax-persistence"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

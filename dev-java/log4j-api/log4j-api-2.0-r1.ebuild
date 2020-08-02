@@ -19,7 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.logging.log4j:log4j-api:2.0"
 
-
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # org.osgi:org.osgi.core:4.3.1 -> >=dev-java/osgi-core-api-5.0.0:0
@@ -41,4 +40,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="osgi-core-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

@@ -27,7 +27,6 @@ CDEPEND="
 	>=dev-java/jetty-6.1.26:6
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.4:*
 	app-arch/unzip
@@ -45,4 +44,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="jetty-6"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

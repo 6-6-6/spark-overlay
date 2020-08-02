@@ -66,4 +66,3 @@ JAVA_GENTOO_CLASSPATH="guava,cdi-api-1.2,javax-inject,javassist-3,jboss-intercep
 JAVA_CLASSPATH_EXTRA="slf4j-jdk14"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

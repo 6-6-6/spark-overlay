@@ -59,7 +59,6 @@ CDEPEND="
 	>=dev-java/okhttp-4.7.2:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -77,4 +76,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="logback-classic,caffeine,jsr305,guava,hazelcast,hystrix-core,okhttp,metrics-core,reactor-core,cache-api,ehcache,tomcat-embed-core,aspectj,jetty-server-9,HdrHistogram,hibernate-entitymanager,LatencyUtils"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

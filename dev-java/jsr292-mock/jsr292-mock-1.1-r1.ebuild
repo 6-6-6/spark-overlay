@@ -27,7 +27,6 @@ CDEPEND="
 	>=dev-java/asm-debug-all-5.0:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -45,4 +44,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="asm-debug-all"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

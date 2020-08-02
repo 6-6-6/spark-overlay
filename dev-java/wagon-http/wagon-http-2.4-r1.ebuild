@@ -33,7 +33,6 @@ CDEPEND="
 	>=dev-java/httpcomponents-core-4.4.1:4.4
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	app-arch/unzip
@@ -51,4 +50,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="httpcomponents-client-4.5,httpcomponents-core-4.4,wagon-http-shared4,wagon-provider-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

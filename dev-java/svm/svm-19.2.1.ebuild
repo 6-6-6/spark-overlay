@@ -15,7 +15,7 @@ HOMEPAGE="https://github.com/oracle/graal/tree/master/substratevm"
 SRC_URI="https://repo.maven.apache.org/maven2/com/oracle/substratevm/${PN}/${PV}/${P}-sources.jar"
 LICENSE="GPL-2-with-classpath-exception"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~"
 #KEYWORKDS="~amd64"
 MAVEN_ID="com.oracle.substratevm:svm:19.2.1"
 
@@ -35,7 +35,6 @@ CDEPEND="
 	dev-libs/libsvm
 	dev-java/truffle-nfi
 "
-
 
 DEPEND="
 	>=virtual/jdk-1.8:*

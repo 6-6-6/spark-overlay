@@ -34,7 +34,6 @@ CDEPEND="
 	>=dev-java/nekohtml-1.9.18:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.4:*
 	app-arch/unzip
@@ -52,4 +51,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="commons-httpclient-3,nekohtml,xercesMinimal,wagon-provider-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

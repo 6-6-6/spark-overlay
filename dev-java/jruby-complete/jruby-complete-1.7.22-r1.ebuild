@@ -19,7 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jruby:jruby-complete:1.7.22"
 
-
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # org.jruby:jruby-core:1.7.22 -> >=dev-java/jruby-core-1.7.22:0
@@ -45,4 +44,3 @@ JAVA_ENCODING="utf-8"
 JAVA_CLASSPATH_EXTRA="jruby-core,jruby-stdlib"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

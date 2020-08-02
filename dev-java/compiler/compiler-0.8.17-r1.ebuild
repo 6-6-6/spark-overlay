@@ -50,4 +50,3 @@ JAVA_GENTOO_CLASSPATH="guava"
 JAVA_CLASSPATH_EXTRA="jruby"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

@@ -52,7 +52,6 @@ CDEPEND="
 	java-virtuals/stax-api:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	app-arch/unzip
@@ -70,4 +69,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="cglib-3,dom4j-1,joda-time,kxml-2,kxml-2,jettison,wstx-3.2,jdom,json,stax,stax-api,xmlpull,xom,xpp3"
 JAVA_SRC_DIR="src/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

@@ -11,7 +11,7 @@ JAVA_PKG_IUSE="doc source test binary"
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="The Multiverse core"
-HOMEPAGE=""
+HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 SRC_URI="https://repo1.maven.org/maven2/org/multiverse/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/multiverse/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 # NOT SURE
@@ -19,8 +19,6 @@ LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.multiverse:multiverse-core:0.7.0"
-
-
 
 DEPEND="
 	>=virtual/jdk-1.8:*
@@ -35,4 +33,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

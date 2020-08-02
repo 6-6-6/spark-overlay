@@ -8,7 +8,7 @@ JAVA_PKG_IUSE="doc source"
 inherit java-pkg-2 java-pkg-binjar
 
 DESCRIPTION="Pseudo scala libs"
-HOMEPAGE=""
+HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 SRC_URI=""
 
 MAVEN_PROVIDES="org.scala-lang:scala-library:2.12.10 org.scala-lang:scala-reflect:2.12.10 org.scala-lang.modules:scala-xml_2.12:1.2.0"

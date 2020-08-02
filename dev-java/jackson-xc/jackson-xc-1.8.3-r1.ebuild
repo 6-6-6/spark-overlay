@@ -30,7 +30,6 @@ CDEPEND="
 	>=dev-java/jackson-mapper-asl-1.9.13:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -48,4 +47,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="jackson-core-asl,jackson-mapper-asl"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

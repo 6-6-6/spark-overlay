@@ -18,8 +18,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~pc64 ~x86 ~arm64"
 MAVEN_ID="org.slf4j:slf4j-api:1.7.28"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	app-arch/unzip
@@ -32,4 +30,3 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
-

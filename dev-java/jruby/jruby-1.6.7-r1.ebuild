@@ -19,7 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jruby:jruby:1.6.7"
 
-
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # asm:asm:3.3.1 -> >=dev-java/asm-8.0.1:4
@@ -71,4 +70,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="asm-3,bsf-2.3,jline-2,joda-time,ant-core,jruby-jnr-posix,bytelist,constantine,jaffl,jffi,jnr-netdb,jcodings-1,joni-2.1,snakeyaml"
 JAVA_SRC_DIR="src"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

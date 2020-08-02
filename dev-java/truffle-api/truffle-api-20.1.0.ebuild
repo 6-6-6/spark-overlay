@@ -27,7 +27,6 @@ CDEPEND="
 	>=dev-java/graal-sdk-20.1.0:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
@@ -38,9 +37,7 @@ RDEPEND="
 	>=virtual/jre-1.8:*
 ${CDEPEND}"
 
-
 JAVA_GENTOO_CLASSPATH="graal-sdk"
 
 S="${WORKDIR}"
 JAVA_SRC_DIR="src/main/java"
-

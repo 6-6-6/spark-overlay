@@ -45,7 +45,6 @@ CDEPEND="
 	java-virtuals/servlet-api:4.0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	app-arch/unzip
@@ -63,4 +62,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="jsr250,cdi-api-1.2,jsf-api,persistence-api,servlet-api-4.0,jta,validation-api-1.0,jboss-ejb-api-3.1_spec,jboss-interceptors-api-1.1_spec,weld-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

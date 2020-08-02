@@ -57,7 +57,6 @@ CDEPEND="
 	>=dev-java/protobuf-java-3.11.4:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip
@@ -86,4 +85,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="protobuf-java,metrics-core,netty-codec-http,netty-codec-http2,netty-codec-memcache,netty-codec-socks,netty-codec-stomp,netty-handler,netty-handler-proxy,netty-tcnative,netty-transport,netty-transport-rxtx,netty-transport-sctp,netty-transport-udt,jetty-npn-api,logback-classic,jzlib-1.1.3,javassist-3"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

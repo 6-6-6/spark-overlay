@@ -26,7 +26,6 @@ CDEPEND="
 	>=dev-java/jna-4.2.2:4
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.7:*
 	${CDEPEND}
@@ -46,4 +45,3 @@ JAVA_GENTOO_CLASSPATH="jna-4"
 JAVA_RESOURCE_DIRS=(
 	"src/main/resources"
 )
-

@@ -28,7 +28,6 @@ CDEPEND="
 	dev-java/jboss-logging-annotations:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -46,4 +45,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="jboss-logging,jboss-logging-annotations"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

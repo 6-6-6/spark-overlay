@@ -85,4 +85,3 @@ JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 JAVA_TESTING_FRAMEWORKS="junit pkgdiff"
-

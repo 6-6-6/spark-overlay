@@ -68,4 +68,3 @@ JAVA_GENTOO_CLASSPATH="classmate,paranamer,money-api,validation-api,joda-time,hi
 JAVA_CLASSPATH_EXTRA="javax-el,jboss-logging-annotations,jboss-logging-processor"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

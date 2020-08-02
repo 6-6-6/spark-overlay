@@ -19,8 +19,6 @@ SLOT="2.1-api"
 KEYWORDS="~amd64"
 MAVEN_ID="org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -34,4 +32,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

@@ -19,7 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.glassfish.hk2:osgi-resource-locator:1.0.3"
 
-
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # org.osgi:osgi.cmpn:6.0.0 -> >=dev-java/osgi-cmpn-6.0.0:6
@@ -43,4 +42,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="osgi-cmpn-6,osgi-core-6"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

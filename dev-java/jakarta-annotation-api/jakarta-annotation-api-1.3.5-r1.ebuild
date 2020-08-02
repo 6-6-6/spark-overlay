@@ -19,8 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="jakarta.annotation:jakarta.annotation-api:1.3.5"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -34,4 +32,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

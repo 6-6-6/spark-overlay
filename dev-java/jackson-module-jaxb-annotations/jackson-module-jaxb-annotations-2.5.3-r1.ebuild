@@ -52,4 +52,3 @@ JAVA_GENTOO_CLASSPATH="jackson-2,jackson-databind"
 JAVA_CLASSPATH_EXTRA="jaxb-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

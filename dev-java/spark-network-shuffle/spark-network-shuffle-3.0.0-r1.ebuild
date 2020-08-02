@@ -60,4 +60,3 @@ JAVA_GENTOO_CLASSPATH="metrics-core,spark-network-common-2.12,unused"
 JAVA_CLASSPATH_EXTRA="guava,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

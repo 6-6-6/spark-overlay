@@ -39,7 +39,6 @@ CDEPEND="
 	dev-java/barebonesbrowserlaunch:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -57,4 +56,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="java-xmlbuilder,commons-codec,commons-logging,httpcomponents-client-4.5,httpcomponents-core-4.4,junit-4,jackson-mapper-asl,jug,barebonesbrowserlaunch"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

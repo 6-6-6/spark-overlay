@@ -18,8 +18,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 MAVEN_ID="javax.validation:validation-api:2.0.1.Final"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

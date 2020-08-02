@@ -26,7 +26,6 @@ CDEPEND="
 	>=dev-java/jaffl-0.5.11:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

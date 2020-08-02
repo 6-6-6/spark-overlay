@@ -30,7 +30,6 @@ CDEPEND="
 	>=dev-java/paranamer-2.8:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.7:*
 	app-arch/unzip
@@ -48,4 +47,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="jackson-databind,paranamer"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

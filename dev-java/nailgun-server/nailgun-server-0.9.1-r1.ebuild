@@ -24,8 +24,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.martiansoftware:nailgun-server:0.9.1"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.4:*
 	app-arch/unzip
@@ -39,4 +37,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

@@ -10,8 +10,8 @@ JAVA_PKG_IUSE="doc source test binary"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION=""
-HOMEPAGE=""
+DESCRIPTION="${MAVEN_ID}"
+HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 SRC_URI="https://repo1.maven.org/maven2/javax/xml/bind/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/javax/xml/bind/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="GPL-2-with-classpath-exception CDDL-1.1"
@@ -28,7 +28,6 @@ CDEPEND="
 	>=dev-java/activation-1.1:0
 	java-virtuals/stax-api:0
 "
-
 
 DEPEND="
 	>=virtual/jdk-1.8:*
@@ -47,4 +46,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="activation,stax-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

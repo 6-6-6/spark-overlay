@@ -31,7 +31,6 @@ CDEPEND="
 	>=dev-java/snakeyaml-1.16:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip
@@ -49,4 +48,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="jackson-2,jackson-databind,snakeyaml"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

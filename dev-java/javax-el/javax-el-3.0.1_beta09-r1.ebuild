@@ -19,8 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.glassfish:javax.el:3.0.1-b09"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -34,4 +32,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

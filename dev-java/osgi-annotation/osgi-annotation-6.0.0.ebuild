@@ -18,8 +18,6 @@ SLOT="6"
 KEYWORDS="~amd64"
 MAVEN_ID="org.osgi:org.osgi.annotation:6.0.0"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

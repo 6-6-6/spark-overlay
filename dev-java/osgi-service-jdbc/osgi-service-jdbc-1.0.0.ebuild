@@ -19,8 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.osgi:org.osgi.service.jdbc:1.0.0"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

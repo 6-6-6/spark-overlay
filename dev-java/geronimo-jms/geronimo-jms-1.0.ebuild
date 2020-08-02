@@ -10,15 +10,13 @@ JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-pkg-binjar
 
-DESCRIPTION=""
-HOMEPAGE=""
+DESCRIPTION="${MAVEN_ID}"
+HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/geronimo/specs/${PN}_1.1_spec/${PV}/${PN}_1.1_spec-${PV}.jar -> ${P}.jar"
 LICENSE="Apache-2.0"
 SLOT="1.1_spec"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.geronimo.specs:geronimo-jms_1.1_spec:1.0"
-
-
 
 DEPEND="
 	>=virtual/jdk-1.8:*

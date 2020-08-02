@@ -27,7 +27,6 @@ CDEPEND="
 	>=dev-java/javax-json-api-1.0:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip
@@ -45,4 +44,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="javax-json-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

@@ -54,4 +54,3 @@ JAVA_GENTOO_CLASSPATH="osgi-resource-locator,jakarta-inject,jersey-common-2"
 JAVA_CLASSPATH_EXTRA="jakarta-xml-bind-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

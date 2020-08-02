@@ -10,7 +10,6 @@ JAVA_PKG_IUSE="doc source binary test"
 
 inherit java-pkg-2 java-pkg-simple
 
-
 DESCRIPTION="Barchart UDT [ BUNDLE ]"
 HOMEPAGE="https://github.com/barchart/barchart-udt/wiki"
 SRC_URI="https://repo.maven.apache.org/maven2/com/barchart/udt/${PN}-bundle/${PV}/${PN}-bundle-${PV}-sources.jar
@@ -20,7 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.barchart.udt:barchart-udt-bundle:2.3.0"
 MAVEN_PROVIDES="com.barchart.udt:barchart-udt-core:2.3.0"
-
 
 DEPEND="
 	>=virtual/jdk-1.8:*

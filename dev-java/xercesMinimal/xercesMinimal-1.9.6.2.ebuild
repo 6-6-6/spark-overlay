@@ -10,15 +10,13 @@ JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-pkg-binjar
 
-DESCRIPTION=""
-HOMEPAGE=""
+DESCRIPTION="${MAVEN_ID}"
+HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 SRC_URI="https://repo1.maven.org/maven2/nekohtml/${PN}/${PV}/${P}.jar"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="nekohtml:xercesMinimal:1.9.6.2"
-
-
 
 DEPEND="
 	>=virtual/jdk-1.8:*

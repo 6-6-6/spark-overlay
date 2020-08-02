@@ -29,7 +29,6 @@ CDEPEND="
 	>=dev-java/wagon-provider-api-1.0_beta6:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.4:*
 	app-arch/unzip
@@ -47,4 +46,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="wagon-http-shared,wagon-provider-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

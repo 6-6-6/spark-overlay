@@ -29,7 +29,6 @@ CDEPEND="
 	>=dev-java/jersey-common-2.29.1:2
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -47,4 +46,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="hk2-locator,jersey-common-2"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

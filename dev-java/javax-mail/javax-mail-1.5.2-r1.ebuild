@@ -27,7 +27,6 @@ CDEPEND="
 	>=dev-java/activation-1.1:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -47,4 +46,3 @@ JAVA_ENCODING="iso-8859-1"
 JAVA_GENTOO_CLASSPATH="activation"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

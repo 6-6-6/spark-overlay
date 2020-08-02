@@ -10,8 +10,8 @@ JAVA_PKG_IUSE="doc source test binary"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION=""
-HOMEPAGE=""
+DESCRIPTION="${MAVEN_ID}"
+HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
@@ -60,7 +60,6 @@ CDEPEND="
 	dev-java/jline:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -78,4 +77,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="spotbugs-annotations,commons-collections-3,commons-lang-2.1,netty,jdiff,jline-2,log4j,maven-ant-tasks,wagon-http,apache-rat-tasks,audience-annotations,clover,dependency-check-ant,slf4j-api,slf4j-log4j12,jdeb,xerces-2,jline"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

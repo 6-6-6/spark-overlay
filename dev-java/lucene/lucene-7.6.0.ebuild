@@ -19,8 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 MAVEN_ID="org.apache.lucene:lucene-core:7.6.0"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

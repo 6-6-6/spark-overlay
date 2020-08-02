@@ -33,7 +33,6 @@ CDEPEND="
 	>=dev-java/netty-transport-5.0.0:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip
@@ -51,4 +50,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="netty-codec-dns,netty-resolver,netty-transport"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

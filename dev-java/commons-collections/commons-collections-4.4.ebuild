@@ -17,10 +17,8 @@ HOMEPAGE="https://commons.apache.org/proper/commons-collections/"
 SRC_URI="https://repo.maven.apache.org/maven2/org/apache/commons/${MY_PN}/${PV}/${MY_PN}-${PV}-sources.jar -> ${P}-sources.jar"
 LICENSE="Apache-2.0"
 SLOT="4"
-KEYWORDS="amd64 ppc64 x86"
+KEYWORDS="~amd64 ~ppc64 ~x86"
 MAVEN_ID="org.apache.commons:commons-collections4:4.4"
-
-
 
 DEPEND="
 	>=virtual/jdk-1.8:*

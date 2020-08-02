@@ -19,8 +19,6 @@ SLOT="1.1_spec"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jboss.spec.javax.jms:jboss-jms-api_1.1_spec:1.0.1.Final"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip
@@ -34,4 +32,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

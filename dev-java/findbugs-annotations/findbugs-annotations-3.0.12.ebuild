@@ -29,7 +29,6 @@ CDEPEND="
 	>=dev-java/jsr305-3.0.1:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}

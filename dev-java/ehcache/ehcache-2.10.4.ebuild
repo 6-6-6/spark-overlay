@@ -34,7 +34,6 @@ CDEPEND="
 	java-virtuals/transaction-api:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	${CDEPEND}

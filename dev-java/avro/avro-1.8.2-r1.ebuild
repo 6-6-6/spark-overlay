@@ -42,7 +42,6 @@ CDEPEND="
 	dev-java/guava:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip
@@ -65,4 +64,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="paranamer,joda-time,commons-compress,jackson-core-asl,jackson-mapper-asl,slf4j-api,xz-java,snappy-1.1,slf4j-simple,guava"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

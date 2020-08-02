@@ -56,4 +56,3 @@ JAVA_GENTOO_CLASSPATH="gson-2.7,commons-io-1,commons-lang-3.10,slf4j-api"
 JAVA_CLASSPATH_EXTRA="findbugs-annotations-3"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

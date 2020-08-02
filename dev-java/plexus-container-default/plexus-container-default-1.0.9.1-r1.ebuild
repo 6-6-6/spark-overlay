@@ -10,8 +10,8 @@ JAVA_PKG_IUSE="doc source test binary"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION=""
-HOMEPAGE=""
+DESCRIPTION="${MAVEN_ID}"
+HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 SRC_URI="https://repo1.maven.org/maven2/org/codehaus/plexus/${PN}/1.0-alpha-9-stable-1/${PN}-1.0-alpha-9-stable-1-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/codehaus/plexus/${PN}/1.0-alpha-9-stable-1/${PN}-1.0-alpha-9-stable-1.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
@@ -30,7 +30,6 @@ CDEPEND="
 	>=dev-java/plexus-utils-1.5.15:0
 	>=dev-java/junit-4.12:4
 "
-
 
 DEPEND="
 	>=virtual/jdk-1.8:*
@@ -51,4 +50,3 @@ JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 JAVA_TESTING_FRAMEWORKS="pkgdiff"
-

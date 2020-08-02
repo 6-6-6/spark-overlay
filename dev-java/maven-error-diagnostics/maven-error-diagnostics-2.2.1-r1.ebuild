@@ -29,7 +29,6 @@ CDEPEND="
 	>=dev-java/plexus-container-default-1.0.9.1:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	app-arch/unzip
@@ -47,4 +46,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="plexus-container-default"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

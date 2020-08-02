@@ -52,4 +52,3 @@ JAVA_GENTOO_CLASSPATH="jersey-core-1"
 JAVA_CLASSPATH_EXTRA="osgi-core-4"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

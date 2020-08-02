@@ -19,8 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.microemu:microemu-cldc:2.0.4"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.4:*
 	app-arch/unzip
@@ -36,4 +34,3 @@ JAVA_ENCODING="ISO-8859-1"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

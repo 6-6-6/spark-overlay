@@ -19,8 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.yetus:audience-annotations:0.5.0"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.7:*
 	app-arch/unzip
@@ -35,4 +33,3 @@ S="${WORKDIR}"
 JAVA_NEEDS_TOOLS=1
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

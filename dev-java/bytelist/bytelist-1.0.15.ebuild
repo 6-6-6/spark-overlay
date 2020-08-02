@@ -13,7 +13,7 @@ SRC_URI="https://github.com/jruby/${PN}/archive/${P}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="|| ( CPL-1.0 GPL-2 LGPL-2.1 )"
 SLOT="0"
-KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-solaris"
 
 MAVEN_ID="org.jruby.extras:bytelist:1.0.15"
 

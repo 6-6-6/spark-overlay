@@ -19,7 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc64 ~x86"
 MAVEN_ID="com.sun.istack:istack-commons-runtime:4.0.0-M3"
 
-
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}-M3.pom
 # jakarta.activation:jakarta.activation-api:2.0.0-RC3 -> >=dev-java/jakarta-activation-api-2.0.0:0

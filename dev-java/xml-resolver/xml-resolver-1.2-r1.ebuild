@@ -43,4 +43,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="junit-4"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

@@ -33,7 +33,6 @@ CDEPEND="
 	dev-java/jackson:2
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip
@@ -51,4 +50,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="guava,commons-logging,jetty-util-6,jackson-databind,jackson-2"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

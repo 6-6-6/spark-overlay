@@ -19,7 +19,6 @@ KEYWORDS="~amd64"
 MAVEN_ID="org.osgi:org.osgi.core:6.0.0"
 MAVEN_PROVIDES="org.osgi:osgi.core:6.0.0"
 
-
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # org.osgi:org.osgi.annotation:6.0.0 -> >=dev-java/osgi-annotation-6.0.0
@@ -39,4 +38,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="osgi-annotation-6"
 
 JAVA_SRC_DIR="src/main/java"
-

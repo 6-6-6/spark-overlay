@@ -37,7 +37,6 @@ CDEPEND="
 	dev-java/jakarta-activation:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

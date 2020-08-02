@@ -14,13 +14,12 @@ MY_PN="jnr-posix"
 MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Common cross-project/cross-platform POSIX APIs"
-HOMEPAGE=""
+HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 SRC_URI="https://repo1.maven.org/maven2/org/jruby/ext/posix/${MY_PN}/${PV}/${MY_P}.jar -> ${P}.jar"
 LICENSE="GPL-2 CPL-1.0 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jruby.ext.posix:jnr-posix:1.1.9"
-
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

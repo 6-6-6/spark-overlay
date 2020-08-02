@@ -19,8 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.mortbay.jetty.npn:npn-boot:1.1.9.v20141016"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.7:*
 	app-arch/unzip
@@ -36,4 +34,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="jetty-npn-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

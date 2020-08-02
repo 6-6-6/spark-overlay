@@ -31,7 +31,6 @@ CDEPEND="
 	>=dev-java/minlog-1.3.1:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.7:*
 	app-arch/unzip
@@ -49,4 +48,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="minlog,compiler,json"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

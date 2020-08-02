@@ -10,16 +10,14 @@ JAVA_PKG_IUSE="doc source test binary"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION=""
-HOMEPAGE=""
+DESCRIPTION="${MAVEN_ID}"
+HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 SRC_URI="https://repo1.maven.org/maven2/org/codehaus/jsr166-mirror/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/codehaus/jsr166-mirror/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.codehaus.jsr166-mirror:jsr166y:1.7.0"
-
-
 
 DEPEND="
 	>=virtual/jdk-1.8:*
@@ -34,4 +32,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

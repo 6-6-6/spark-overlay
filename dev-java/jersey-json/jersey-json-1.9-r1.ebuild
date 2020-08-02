@@ -41,7 +41,6 @@ CDEPEND="
 	>=dev-java/jettison-1.3.7:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip
@@ -59,4 +58,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="jersey-core-1,jaxb-impl,jackson-core-asl,jackson-jaxrs,jackson-mapper-asl,jackson-xc,jettison"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

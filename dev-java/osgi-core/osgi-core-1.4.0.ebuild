@@ -18,8 +18,6 @@ SLOT="1"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.felix:org.osgi.core:1.4.0"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

@@ -18,8 +18,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux"
 MAVEN_ID="org.jsoup:jsoup:1.11.3"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

@@ -21,8 +21,6 @@ SLOT="3"
 KEYWORDS="~amd64"
 MAVEN_ID="org.apache.commons:commons-math3:3.6.1"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	app-arch/unzip

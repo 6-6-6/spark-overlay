@@ -70,4 +70,3 @@ JAVA_GENTOO_CLASSPATH="jackson-2,jackson-databind,jackson-dataformat-xml,jackson
 JAVA_CLASSPATH_EXTRA="jboss-jms-api-1.1_spec,osgi-core-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

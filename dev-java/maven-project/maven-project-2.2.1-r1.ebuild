@@ -44,7 +44,6 @@ CDEPEND="
 	>=dev-java/plexus-utils-1.5.15:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	app-arch/unzip
@@ -62,4 +61,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="maven-artifact,maven-artifact-manager,maven-model,maven-plugin-registry,maven-profile,maven-settings,plexus-container-default,plexus-interpolation,plexus-utils"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

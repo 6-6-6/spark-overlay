@@ -16,7 +16,7 @@ SRC_URI="https://repo.maven.apache.org/maven2/org/graalvm/compiler/compiler/${PV
 	https://repo.maven.apache.org/maven2/org/graalvm/compiler/compiler/${PV}/compiler-${PV}.jar -> ${P}-bin.jar"
 LICENSE="GPL-2-with-classpath-exception"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~"
 #KEYWORDS="~amd64"
 MAVEN_ID="org.graalvm.compiler:compiler:19.2.1"
 
@@ -29,7 +29,6 @@ CDEPEND="
 	>=dev-java/graal-sdk-19.2.1:0
 	>=dev-java/truffle-api-20.1.0:0
 "
-
 
 DEPEND="
 	>=virtual/jdk-1.8:*

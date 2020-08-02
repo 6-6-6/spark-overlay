@@ -19,7 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jboss:jandex:2.0.3.Final"
 
-
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Final.pom
 # org.apache.ant:ant:1.8.1 -> >=dev-java/ant-core-1.10.7:0
@@ -41,4 +40,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="ant-core"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

@@ -68,4 +68,3 @@ JAVA_GENTOO_CLASSPATH="commons-io-1,ant-core,commons-compress,maven-artifact,mav
 JAVA_CLASSPATH_EXTRA="maven-plugin-annotations"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

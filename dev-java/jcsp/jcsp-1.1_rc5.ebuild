@@ -26,7 +26,6 @@ CDEPEND="
 	>=dev-java/osgi-core-1.4.0:1
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

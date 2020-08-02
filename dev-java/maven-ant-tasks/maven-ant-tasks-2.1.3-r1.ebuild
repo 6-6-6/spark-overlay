@@ -53,7 +53,6 @@ CDEPEND="
 	>=dev-java/ant-core-1.10.7:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.4:*
 	app-arch/unzip
@@ -71,4 +70,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="classworlds,ant-core,maven-artifact,maven-artifact-manager,maven-error-diagnostics,maven-model,maven-project,maven-settings,wagon-file,wagon-http-lightweight,wagon-provider-api,plexus-container-default,plexus-interpolation,plexus-utils"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

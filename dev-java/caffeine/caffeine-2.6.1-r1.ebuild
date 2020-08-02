@@ -19,7 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.github.ben-manes.caffeine:caffeine:2.6.1"
 
-
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.google.code.findbugs:jsr305:3.0.2 -> >=dev-java/jsr305-3.0.2:0
@@ -43,4 +42,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="jsr305,error-prone-annotations"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

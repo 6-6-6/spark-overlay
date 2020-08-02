@@ -20,7 +20,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="javax.faces:jsf-api:2.0"
 
-
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # javax.el:el-api:1.0 -> java-virtuals/el-api:3.0
@@ -48,4 +47,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="el-api-3.0,servlet-api-4.0,jsp-api-2.3,jstl"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

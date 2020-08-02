@@ -63,4 +63,3 @@ JAVA_GENTOO_CLASSPATH="commons-codec,avro-ipc,jackson-core-asl,jackson-mapper-as
 JAVA_CLASSPATH_EXTRA="hadoop-client"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

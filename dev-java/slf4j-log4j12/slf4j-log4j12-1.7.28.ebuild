@@ -28,7 +28,6 @@ CDEPEND="
 	>=dev-java/slf4j-api-1.7.28:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	${CDEPEND}
@@ -43,4 +42,3 @@ S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="log4j,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
-

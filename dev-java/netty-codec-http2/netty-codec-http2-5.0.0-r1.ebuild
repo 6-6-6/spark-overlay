@@ -35,7 +35,6 @@ CDEPEND="
 	>=dev-java/netty-handler-5.0.0:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip
@@ -53,4 +52,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="jzlib-1.1.3,hpack,netty-codec-http,netty-handler"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

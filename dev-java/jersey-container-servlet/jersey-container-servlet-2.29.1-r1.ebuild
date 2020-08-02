@@ -56,4 +56,3 @@ JAVA_GENTOO_CLASSPATH="ws-rs,jersey-container-servlet-core-2,jersey-common-2,jer
 JAVA_CLASSPATH_EXTRA="jakarta-servlet-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

@@ -32,7 +32,6 @@ CDEPEND="
 	>=dev-java/jnr-posix-3.0.12:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}

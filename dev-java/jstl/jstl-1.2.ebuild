@@ -10,15 +10,13 @@ JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-pkg-binjar
 
-DESCRIPTION=""
-HOMEPAGE=""
+DESCRIPTION="${MAVEN_ID}"
+HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 SRC_URI="https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}.jar"
 LICENSE="CDDL GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="jstl:jstl:1.2"
-
-
 
 DEPEND="
 	>=virtual/jdk-1.8:*

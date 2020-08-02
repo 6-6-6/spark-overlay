@@ -19,8 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.sun.mail:mailapi:1.6.3"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -40,4 +38,3 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 JAVA_RM_FILES=(
 	${JAVA_SRC_DIR}/module-info.java
 )
-

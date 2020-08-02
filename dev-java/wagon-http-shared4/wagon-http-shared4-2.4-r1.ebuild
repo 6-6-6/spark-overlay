@@ -38,7 +38,6 @@ CDEPEND="
 	>=dev-java/jsoup-1.8.3:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	app-arch/unzip
@@ -56,4 +55,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="commons-io-1,commons-logging,httpcomponents-client-4.5,httpcomponents-core-4.4,wagon-provider-api,jsoup"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

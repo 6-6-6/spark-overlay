@@ -20,7 +20,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="net.bytebuddy:byte-buddy:1.6.14"
 
-
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.google.code.findbugs:annotations:3.0.1u2 -> >=dev-java/findbugs-annotations-3.0.12:3
@@ -44,4 +43,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="findbugs-annotations-3,lombok"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

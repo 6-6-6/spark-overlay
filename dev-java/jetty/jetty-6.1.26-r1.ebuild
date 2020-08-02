@@ -29,7 +29,6 @@ CDEPEND="
 	>=dev-java/servlet-api-2.5.20081211:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.4:*
 	app-arch/unzip
@@ -47,4 +46,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="jetty-util-6,servlet-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

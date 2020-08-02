@@ -37,7 +37,6 @@ CDEPEND="
 	dev-java/jakarta-activation:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -61,4 +60,3 @@ JAVA_RM_FILES=(
 	${JAVA_SRC_DIR}/txw2/wsdl11/src/WsdlTest.java
 	${JAVA_SRC_DIR}/txw2/xmlschema/src/XsdTest.java
 )
-

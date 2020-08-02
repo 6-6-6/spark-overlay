@@ -31,7 +31,6 @@ CDEPEND="
 	>=dev-java/netty-buffer-5.0.0:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip

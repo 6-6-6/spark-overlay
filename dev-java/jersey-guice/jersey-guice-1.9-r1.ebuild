@@ -56,4 +56,3 @@ JAVA_GENTOO_CLASSPATH="guice-4,guice-4,jersey-server-1,javax-inject"
 JAVA_CLASSPATH_EXTRA="servlet-api-4.0"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

@@ -56,4 +56,3 @@ JAVA_GENTOO_CLASSPATH="guava,javassist-3,jboss-interceptor-spi,slf4j-api"
 JAVA_CLASSPATH_EXTRA="jboss-interceptors-api-1.1_spec"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

@@ -27,7 +27,6 @@ CDEPEND="
 	>=dev-java/commons-lang-3.10:3.10
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -50,4 +49,3 @@ JAVA_RESOURCE_DIRS=(
 	"src/main/resources"
 )
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

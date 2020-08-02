@@ -26,7 +26,6 @@ CDEPEND="
 	>=dev-java/joda-convert-1.3.1:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	${CDEPEND}

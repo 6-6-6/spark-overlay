@@ -33,7 +33,6 @@ CDEPEND="
 	java-virtuals/servlet-api:4.0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip
@@ -51,4 +50,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="mail,servlet-api-4.0,janino,jansi-1.11"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

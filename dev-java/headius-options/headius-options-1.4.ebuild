@@ -18,8 +18,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 MAVEN_ID="com.headius:options:1.4"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -30,4 +28,3 @@ RDEPEND="
 "
 
 S="${WORKDIR}"
-

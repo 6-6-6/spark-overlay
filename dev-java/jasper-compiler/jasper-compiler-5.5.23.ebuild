@@ -32,7 +32,6 @@ CDEPEND="
 	java-virtuals/jsp-api:2.3
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

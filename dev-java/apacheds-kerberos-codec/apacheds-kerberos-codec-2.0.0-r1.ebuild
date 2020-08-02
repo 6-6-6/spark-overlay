@@ -64,4 +64,3 @@ JAVA_GENTOO_CLASSPATH="ehcache-core,api-asn1-api,api-asn1-ber,api-i18n,api-ldap-
 JAVA_CLASSPATH_EXTRA="findbugs-annotations-3"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

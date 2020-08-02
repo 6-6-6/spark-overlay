@@ -33,7 +33,6 @@ CDEPEND="
 	>=dev-java/rxtx-2.2_pre2:2
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip
@@ -51,4 +50,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="netty-buffer,netty-transport,rxtx-2"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

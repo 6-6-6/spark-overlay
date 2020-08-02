@@ -10,15 +10,13 @@ JAVA_PKG_IUSE="doc source binary"
 
 inherit java-pkg-2 java-pkg-binjar
 
-DESCRIPTION=""
+DESCRIPTION="${MAVEN_ID}"
 HOMEPAGE="http://jug.safehaus.org/"
 SRC_URI="https://repo1.maven.org/maven2/org/safehaus/${PN}/${PN}/${PV}/${P}-lgpl.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.safehaus.jug:jug:2.0.0"
-
-
 
 DEPEND="
 	>=virtual/jdk-1.8:*
@@ -30,4 +28,3 @@ RDEPEND="
 "
 
 S="${WORKDIR}"
-

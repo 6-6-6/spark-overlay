@@ -19,7 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jboss.interceptor:jboss-interceptor-spi:2.0.0.CR1"
 
-
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.CR1.pom
 # org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.1_spec:1.0.0.Beta1 -> >=dev-java/jboss-interceptors-api-1.0.0:1.1_spec
@@ -41,4 +40,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="jboss-interceptors-api-1.1_spec"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

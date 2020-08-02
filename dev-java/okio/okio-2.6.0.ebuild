@@ -27,7 +27,6 @@ CDEPEND="
 	dev-java/kotlin-common-bin
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
@@ -42,4 +41,3 @@ S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="kotlin-common-bin"
 JAVA_SRC_DIR="src/main/java"
-

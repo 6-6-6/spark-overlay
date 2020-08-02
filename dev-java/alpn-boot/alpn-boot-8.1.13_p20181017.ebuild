@@ -19,8 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.mortbay.jetty.alpn:alpn-boot:8.1.13.v20181017"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -36,4 +34,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="jetty-alpn-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

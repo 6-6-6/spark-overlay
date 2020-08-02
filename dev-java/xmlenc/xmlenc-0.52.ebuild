@@ -18,8 +18,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="xmlenc:xmlenc:0.52"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

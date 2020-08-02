@@ -30,7 +30,6 @@ CDEPEND="
 	>=dev-java/jnr-x86asm-1.0.2:1.0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	${CDEPEND}

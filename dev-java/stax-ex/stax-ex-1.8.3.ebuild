@@ -14,7 +14,7 @@ SRC_URI="https://repo1.maven.org/maven2/org/jvnet/${PN/-/}/${PN}/${PV}/${P}-sour
 
 LICENSE="CDDL GPL-2"
 SLOT="1"
-KEYWORDS="amd64 ~ppc64 x86"
+KEYWORDS="~amd64 ~ppc64 ~x86"
 
 IUSE=""
 

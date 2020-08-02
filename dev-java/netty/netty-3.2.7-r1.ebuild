@@ -47,7 +47,6 @@ CDEPEND="
 	java-virtuals/servlet-api:4.0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	app-arch/unzip
@@ -65,4 +64,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="protobuf-java,commons-logging,servlet-api-4.0,log4j,osgi-compendium,osgi-core-1,jboss-logging-spi,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

@@ -11,7 +11,7 @@ JAVA_PKG_IUSE="doc source test binary"
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Apache Hadoop Project POM"
-HOMEPAGE=""
+HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
@@ -64,4 +64,3 @@ JAVA_GENTOO_CLASSPATH="guava,protobuf-java,commons-logging,hadoop-annotations,ha
 JAVA_CLASSPATH_EXTRA="hadoop-common"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

@@ -18,8 +18,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~ppc64 ~x86-linux ~x86-solaris"
 MAVEN_ID="org.jruby.jcodings:jcodings:1.0.13"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

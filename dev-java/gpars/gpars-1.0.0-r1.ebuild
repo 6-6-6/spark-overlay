@@ -33,7 +33,6 @@ CDEPEND="
 	>=dev-java/netty-3.2.7:3.2
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -51,4 +50,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="jcsp,jsr166y,netty-3.2,multiverse-beta"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

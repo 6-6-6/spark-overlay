@@ -43,7 +43,6 @@ CDEPEND="
 	>=dev-java/velocity-1.7:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip
@@ -66,4 +65,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="netty,avro,velocity,jackson-core-asl,jackson-mapper-asl,jetty-6,jetty-util-6,servlet-api,slf4j-api,slf4j-simple"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

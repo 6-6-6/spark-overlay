@@ -50,4 +50,3 @@ JAVA_GENTOO_CLASSPATH="rat"
 JAVA_CLASSPATH_EXTRA="ant-core"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

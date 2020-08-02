@@ -52,4 +52,3 @@ JAVA_GENTOO_CLASSPATH="freemarker"
 JAVA_CLASSPATH_EXTRA="findbugs-annotations-3,cache-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

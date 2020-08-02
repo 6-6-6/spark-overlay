@@ -15,7 +15,7 @@ MAVEN_ID="com.ibm.icu:icu4j:67.1"
 
 LICENSE="icu"
 SLOT="67"
-KEYWORDS="amd64 ppc64 x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64 ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND=">=virtual/jdk-1.8"
@@ -26,4 +26,3 @@ S="${WORKDIR}"
 #JAVA_RM_FILES=(
 #	tools/build/src/com/ibm/icu/dev/tool/docs/ICUTaglet.java
 #)
-

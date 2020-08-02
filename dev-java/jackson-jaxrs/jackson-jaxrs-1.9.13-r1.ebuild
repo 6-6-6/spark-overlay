@@ -33,7 +33,6 @@ CDEPEND="
 	>=dev-java/jackson-xc-${PV}
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -51,4 +50,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="jackson-core-asl,jackson-mapper-asl,ws-rs-api,jackson-xc"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

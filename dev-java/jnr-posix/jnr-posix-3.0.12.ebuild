@@ -28,7 +28,6 @@ CDEPEND="
 	>=dev-java/jnr-ffi-2.0.3:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	${CDEPEND}

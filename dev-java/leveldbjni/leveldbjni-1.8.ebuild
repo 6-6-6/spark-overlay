@@ -33,7 +33,6 @@ CDEPEND="
 	dev-libs/leveldb[snappy]
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	app-arch/unzip

@@ -30,7 +30,6 @@ CDEPEND="
 	>=dev-java/jnr-x86asm-1.0.0:0
 	>=dev-java/asm-3.3.1:3"
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

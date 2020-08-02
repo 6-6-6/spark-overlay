@@ -19,7 +19,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc64 ~x86"
 MAVEN_ID="it.unimi.dsi:fastutil:8.1.1"
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

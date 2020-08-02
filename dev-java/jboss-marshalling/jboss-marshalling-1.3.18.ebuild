@@ -13,7 +13,7 @@ SRC_URI="https://repo1.maven.org/maven2/org/jboss/marshalling/${PN}/${PV}.GA/${P
 		https://repo1.maven.org/maven2/org/jboss/marshalling/${PN}/${PV}.GA/${P}.GA.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="amd64"
+KEYWORDS="~amd64"
 
 MAVEN_ID="org.jboss.marshalling:jboss-marshalling:1.3.18.GA"
 

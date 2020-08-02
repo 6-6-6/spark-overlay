@@ -22,8 +22,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jetbrains:annotations:13.0"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

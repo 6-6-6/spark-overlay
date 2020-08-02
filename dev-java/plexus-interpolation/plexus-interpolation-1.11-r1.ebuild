@@ -10,7 +10,7 @@ JAVA_PKG_IUSE="doc source test binary"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION=""
+DESCRIPTION="${MAVEN_ID}"
 HOMEPAGE="http://plexus.codehaus.org/plexus-components/plexus-interpolation"
 SRC_URI="https://repo1.maven.org/maven2/org/codehaus/plexus/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/codehaus/plexus/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
@@ -18,8 +18,6 @@ LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="org.codehaus.plexus:plexus-interpolation:1.11"
-
-
 
 DEPEND="
 	>=virtual/jdk-1.4:*
@@ -34,4 +32,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

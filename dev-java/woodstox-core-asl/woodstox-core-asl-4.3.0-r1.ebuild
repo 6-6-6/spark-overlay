@@ -33,7 +33,6 @@ CDEPEND="
 	dev-java/msv:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -51,4 +50,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="stax-api,stax2-api,relaxng-datatype,osgi-framework-6,msv"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

@@ -31,7 +31,6 @@ CDEPEND="
 	>=dev-java/guava-29.0:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	app-arch/unzip
@@ -49,4 +48,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="guava,curator-framework,zookeeper"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

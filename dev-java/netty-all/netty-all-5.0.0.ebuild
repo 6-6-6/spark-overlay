@@ -78,7 +78,6 @@ CDEPEND="
 	>=dev-java/netty-transport-udt-5.0.0:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.6:*
 	${CDEPEND}

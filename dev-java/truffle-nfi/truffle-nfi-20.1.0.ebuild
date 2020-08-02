@@ -27,7 +27,6 @@ CDEPEND="
 	dev-java/truffle-api
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}

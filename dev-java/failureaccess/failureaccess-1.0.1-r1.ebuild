@@ -25,8 +25,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.google.guava:failureaccess:1.0.1"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.7:*
 	app-arch/unzip
@@ -40,4 +38,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

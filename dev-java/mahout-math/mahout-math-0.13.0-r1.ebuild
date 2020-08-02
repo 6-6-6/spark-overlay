@@ -35,7 +35,6 @@ CDEPEND="
 	>=dev-java/slf4j-api-1.7.28:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.7:*
 	app-arch/unzip

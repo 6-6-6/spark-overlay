@@ -18,7 +18,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 MAVEN_ID="org.jboss.logging:jboss-logging:3.4.0.Final"
 
-
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Final.pom
 # log4j:log4j:1.2.16 -> >=dev-java/log4j-1.2.17:0

@@ -62,4 +62,3 @@ JAVA_GENTOO_CLASSPATH="jakarta-annotation-api,jakarta-validation-api,ws-rs,jakar
 JAVA_CLASSPATH_EXTRA="osgi-core-6"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

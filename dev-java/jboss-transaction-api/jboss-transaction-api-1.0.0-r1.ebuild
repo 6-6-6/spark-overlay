@@ -19,8 +19,6 @@ SLOT="1.1_spec"
 KEYWORDS="~amd64"
 MAVEN_ID="org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec:1.0.0.Beta1"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	app-arch/unzip
@@ -34,4 +32,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

@@ -28,7 +28,6 @@ KEYWORDS="~amd64 ~arm ~ppc64 ~x86 ~x64-macos"
 MAVEN_ID="org.ow2.asm:asm:8.0.1"
 MAVEN_PROVIDES="org.ow2.asm:asm-analysis:8.0.1 org.ow2.asm:asm-commons:8.0.1 org.ow2.asm:asm-tree:8.0.1 org.ow2.asm:asm-util:8.0.1"
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip

@@ -30,7 +30,6 @@ CDEPEND="
 	dev-java/reflectasm:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.7:*
 	app-arch/unzip
@@ -48,4 +47,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="minlog,objenesis,reflectasm"
 JAVA_SRC_DIR="src"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

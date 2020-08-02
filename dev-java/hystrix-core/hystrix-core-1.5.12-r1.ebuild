@@ -31,7 +31,6 @@ CDEPEND="
 	>=dev-java/rxjava-1.2.0:0
 "
 
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -54,4 +53,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="archaius-core,rxjava,HdrHistogram,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

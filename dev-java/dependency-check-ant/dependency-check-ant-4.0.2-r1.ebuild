@@ -54,4 +54,3 @@ JAVA_GENTOO_CLASSPATH="dependency-check-core,dependency-check-utils"
 JAVA_CLASSPATH_EXTRA="findbugs-annotations-3,ant-core"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

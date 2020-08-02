@@ -21,7 +21,6 @@ SLOT="1"
 KEYWORDS="~amd64"
 MAVEN_ID="com.sun.jersey:jersey-core:1.9"
 
-
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # javax.mail:mail:1.4 -> >=dev-java/mail-1.4:0
@@ -49,4 +48,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="mail,jsr311-api,jaxb-api,osgi-core-4"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

@@ -66,4 +66,3 @@ JAVA_GENTOO_CLASSPATH="antlr,commons-collections,commons-lang-2.1,api-asn1-api,a
 JAVA_CLASSPATH_EXTRA="findbugs-annotations-3"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-

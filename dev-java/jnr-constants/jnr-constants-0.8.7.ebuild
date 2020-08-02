@@ -18,8 +18,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86 ~arm64"
 MAVEN_ID="com.github.jnr:jnr-constants:0.8.7"
 
-
-
 DEPEND="
 	>=virtual/jdk-1.5:*
 	app-arch/unzip
