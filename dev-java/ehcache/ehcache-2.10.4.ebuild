@@ -11,14 +11,15 @@ JAVA_PKG_IUSE="doc source binary test"
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Ehcache is an open source, standards-based cache used to boost performance,
-  offload the database and simplify scalability. Ehcache is robust, proven and full-featured and
-  this has made it the most widely-used Java-based cache."
+offload the database and simplify scalability. Ehcache is robust, proven and full-featured and
+this has made it the most widely-used Java-based cache."
 HOMEPAGE="http://ehcache.org"
 SRC_URI="https://repo1.maven.org/maven2/net/sf/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/net/sf/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~amd64-linux ~x86 ~x86-linux ~x86-macos"
+KEYWORDS="~amd64"
+#~amd64-linux ~x86 ~x86-linux ~x86-macos"
 MAVEN_ID="net.sf.ehcache:ehcache:2.10.4"
 
 # Common dependencies

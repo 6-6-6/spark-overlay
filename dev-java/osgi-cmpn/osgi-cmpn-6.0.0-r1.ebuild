@@ -19,16 +19,28 @@ SLOT="6"
 KEYWORDS="~amd64"
 MAVEN_ID="org.osgi:osgi.cmpn:6.0.0"
 
+CDEPEND="
+	dev-java/osgi-annotation:6
+	dev-java/osgi-framework:6
+
+	dev-java/glassfish-persistence:0
+	java-virtuals/servlet-api:4.0
+	dev-java/microemu-cldc:0
+"
+
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
+	${CDEPEND}
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
+	${CDEPEND}
 "
 
 S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_GENTOO_CLASSPATH="osgi-annotation-6,osgi-framework-6,servlet-api-4.0,glassfish-persistence,microemu-cldc"

@@ -23,6 +23,6 @@ DEPEND=">=virtual/jdk-1.8"
 JAVA_SRC_DIR=${S}
 
 src_unpack() {
-	mkdir -p ${S}/com/centerkey/utils
-	cp ${DISTDIR}/${A} ${S}/com/centerkey/utils
+	mkdir -p "${S}"/com/centerkey/utils
+	cp "${DISTDIR}"/${A} "${S}"/com/centerkey/utils
 }
