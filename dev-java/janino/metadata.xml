@@ -6,6 +6,6 @@
 		<name>zongyu</name>
 	</maintainer>
 	<upstream>
-		<remote-id type="maven">pseudo:pseudo</remote-id>
+			<!-- <remote-id type="maven">pseudo:pseudo</remote-id> -->
 	</upstream>
 </pkgmetadata>
