@@ -14,7 +14,7 @@ DESCRIPTION="JavaMail API"
 HOMEPAGE="http://javamail.java.net/javax.mail"
 SRC_URI="https://repo1.maven.org/maven2/com/sun/mail/javax.mail/${PV}/javax.mail-${PV}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/com/sun/mail/javax.mail/${PV}/javax.mail-${PV}.jar -> ${P}-bin.jar"
-LICENSE=""
+LICENSE="|| ( CDDL GPL-2-with-classpath-exception )"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="com.sun.mail:javax.mail:1.5.2"
