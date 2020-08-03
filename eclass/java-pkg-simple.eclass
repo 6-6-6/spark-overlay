@@ -230,7 +230,10 @@ java-pkg-simple_test_with_junit_() {
 	local tests_to_run
 
 	tests_to_run=$(find "${classes}" \-type f\
-		-name "*Test.class" ! -name "Abstract*" ! -name "*\$*")
+		-name "*Test.class"\
+		! -name "Abstract*"\
+		! -name "*\$*"\
+		! -name "BaseTest*")
 	tests_to_run=${tests_to_run//"${classes}"\/}
 	tests_to_run=${tests_to_run//.class}
 	tests_to_run=${tests_to_run//\//.}
