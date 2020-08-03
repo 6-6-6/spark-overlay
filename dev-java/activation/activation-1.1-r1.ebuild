@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="JavaBeans Activation Framework (JAF) is a standard extension to the Java platform that lets you take advantage of standard services to: determine the type of an arbitrary piece of data; encapsulate access to it; discover the operations available on it; and instantiate the appropriate bean to perform the operation(s)."
 HOMEPAGE="http://java.sun.com/products/javabeans/jaf/index.jsp"
-SRC_URI="https://repo1.maven.org/maven2/javax/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/javax/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/javax/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="CDDL"
 SLOT="0"

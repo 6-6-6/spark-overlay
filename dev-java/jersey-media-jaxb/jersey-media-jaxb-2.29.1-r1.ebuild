@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="JAX-RS features based upon JAX-B."
 HOMEPAGE="https://projects.eclipse.org/projects/ee4j.jersey/project/jersey-media-jaxb"
-SRC_URI="https://repo1.maven.org/maven2/org/glassfish/jersey/media/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/glassfish/jersey/media/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/glassfish/jersey/media/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="EPL-2.0 CC0-1.0 MIT EPL-1.0 Apache-2.0 GPL-2-with-classpath-exception BSD-2 public-domain BSD W3C"
 SLOT="2"

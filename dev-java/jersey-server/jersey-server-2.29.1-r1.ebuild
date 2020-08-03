@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Jersey core server implementation"
 HOMEPAGE="https://projects.eclipse.org/projects/ee4j.jersey/jersey-server"
-SRC_URI="https://repo1.maven.org/maven2/org/glassfish/jersey/core/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/glassfish/jersey/core/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/glassfish/jersey/core/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="GPL-2-with-classpath-exception EPL-2.0 Apache-2.0 BSD"
 SLOT="2"

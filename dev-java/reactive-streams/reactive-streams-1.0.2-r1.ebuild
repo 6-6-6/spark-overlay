@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="A Protocol for Asynchronous Non-Blocking Data Sequence"
 HOMEPAGE="http://www.reactive-streams.org/"
-SRC_URI="https://repo1.maven.org/maven2/org/reactivestreams/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/reactivestreams/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/reactivestreams/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="CC0-1.0"
 SLOT="0"

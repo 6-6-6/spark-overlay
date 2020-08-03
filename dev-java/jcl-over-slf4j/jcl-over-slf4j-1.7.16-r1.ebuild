@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="JCL 1.1.1 implemented over SLF4J"
 HOMEPAGE="http://www.slf4j.org"
-SRC_URI="https://repo1.maven.org/maven2/org/slf4j/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/slf4j/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/slf4j/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="MIT"
 SLOT="0"

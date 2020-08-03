@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Spice up your java: Automatic Resource Management, automatic generation of getters, setters, equals, hashCode and toString, and more!"
 HOMEPAGE="https://projectlombok.org"
-SRC_URI="https://repo1.maven.org/maven2/org/project${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/project${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/project${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="MIT"
 SLOT="0"

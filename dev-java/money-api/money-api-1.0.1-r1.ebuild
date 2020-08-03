@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="JSR 354 provides an API for representing, transporting, and performing comprehensive calculations with Money and Currency."
 HOMEPAGE="http://java.net/projects/javamoney"
-SRC_URI="https://repo1.maven.org/maven2/javax/money/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/javax/money/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/javax/money/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"

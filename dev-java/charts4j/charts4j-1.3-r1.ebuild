@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="charts4j is a free, lightweight charts and graphs Java API. It enables developers to programmatically create the charts available in the Google Chart API through a straightforward and intuitive Java API."
 HOMEPAGE="http://charts4j.googlecode.com"
-SRC_URI="https://repo1.maven.org/maven2/com/googlecode/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/com/googlecode/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/googlecode/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="MIT"
 SLOT="0"

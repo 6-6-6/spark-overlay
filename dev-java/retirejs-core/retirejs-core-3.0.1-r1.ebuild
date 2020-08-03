@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="The root pom file aggregate the dependencies use by the Retire.js extensions."
 HOMEPAGE="https://github.com/h3xstream/burp-retire-js/retirejs-core"
-SRC_URI="https://repo1.maven.org/maven2/com/h3xstream/retirejs/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/com/h3xstream/retirejs/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/h3xstream/retirejs/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="LGPL-3"
 SLOT="0"

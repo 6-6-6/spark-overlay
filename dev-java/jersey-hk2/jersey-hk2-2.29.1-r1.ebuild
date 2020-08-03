@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="HK2 InjectionManager implementation"
 HOMEPAGE="https://projects.eclipse.org/projects/ee4j.jersey/project/jersey-hk2"
-SRC_URI="https://repo1.maven.org/maven2/org/glassfish/jersey/inject/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/glassfish/jersey/inject/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/glassfish/jersey/inject/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="CC0-1.0 EPL-2.0 public-domain W3C BSD-2 GPL-2-with-classpath-exception Apache-2.0 MIT EPL-1.0 BSD"
 SLOT="2"

@@ -10,7 +10,7 @@ inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="JRuby support library"
 HOMEPAGE="https://github.com/codehaus"
-SRC_URI="https://github.com/jruby/${PN}/archive/${P}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/jruby/${PN}/archive/${P}.tar.gz"
 
 LICENSE="|| ( CPL-1.0 GPL-2 LGPL-2.1 )"
 SLOT="0"

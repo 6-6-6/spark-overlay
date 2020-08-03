@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Paranamer allows runtime access to constructor and method parameter names for Java classes"
 HOMEPAGE="https://github.com/paul-hammant/paranamer/paranamer"
-SRC_URI="https://repo1.maven.org/maven2/com/thoughtworks/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/com/thoughtworks/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/thoughtworks/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="BSD-1"
 SLOT="0"

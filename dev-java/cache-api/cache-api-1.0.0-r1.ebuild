@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Sonatype helps open source projects to set up Maven repositories on https://oss.sonatype.org/"
 HOMEPAGE="https://github.com/jsr107/jsr107spec"
-SRC_URI="https://repo1.maven.org/maven2/javax/cache/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/javax/cache/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/javax/cache/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"

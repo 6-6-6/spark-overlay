@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="The Groovy and Java high-level concurrency library offering actors, dataflow, CSP, agents, parallel collections, fork/join and more"
 HOMEPAGE="http://gpars.codehaus.org"
-SRC_URI="https://repo1.maven.org/maven2/org/codehaus/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/codehaus/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/codehaus/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"

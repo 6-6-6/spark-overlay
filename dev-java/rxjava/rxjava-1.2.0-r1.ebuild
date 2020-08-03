@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="rxjava"
 HOMEPAGE="https://github.com/ReactiveX/RxJava"
-SRC_URI="https://repo1.maven.org/maven2/io/reactivex/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/io/reactivex/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/io/reactivex/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"

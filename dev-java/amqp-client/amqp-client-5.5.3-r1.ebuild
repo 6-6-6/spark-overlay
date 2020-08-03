@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="The RabbitMQ Java client library allows Java applications to interface with RabbitMQ."
 HOMEPAGE="http://www.rabbitmq.com"
-SRC_URI="https://repo1.maven.org/maven2/com/rabbitmq/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/com/rabbitmq/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/rabbitmq/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0 MPL-1.1 GPL-2"
 SLOT="0"

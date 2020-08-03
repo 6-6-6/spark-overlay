@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="The JTS Topology Suite is an API for 2D linear geometry predicates and functions."
 HOMEPAGE="https://www.locationtech.org/projects/technology.jts/jts-modules/jts-core"
-SRC_URI="https://repo1.maven.org/maven2/org/locationtech/jts/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/locationtech/jts/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/locationtech/jts/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="EPL-2.0 EPL-1.0"
 SLOT="1"

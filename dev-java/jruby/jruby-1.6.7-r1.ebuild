@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="A 1.8.7 compatible Ruby interpreter written in 100% pure Java"
 HOMEPAGE="http://www.jruby.org/jruby-common/jruby/"
-SRC_URI="https://repo1.maven.org/maven2/org/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="LGPL-2.1 GPL-2 CPL-1.0"
 SLOT="0"

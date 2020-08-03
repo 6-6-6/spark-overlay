@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="The Multiverse core"
 HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
-SRC_URI="https://repo1.maven.org/maven2/org/multiverse/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/multiverse/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/multiverse/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 # NOT SURE
 LICENSE="Apache-2.0"

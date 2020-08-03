@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Fast, efficient Java serialization. This contains the shaded reflectasm jar to prevent conflicts with other versions of asm."
 HOMEPAGE="https://github.com/EsotericSoftware/kryo/kryo-shaded"
-SRC_URI="https://repo1.maven.org/maven2/com/esotericsoftware/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/com/esotericsoftware/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/esotericsoftware/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="BSD"
 SLOT="0"

@@ -14,7 +14,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="Jax-RS provider for JSON content type, based on 
 Jackson JSON processor's data binding functionality."
 HOMEPAGE="http://jackson.codehaus.org"
-SRC_URI="https://repo1.maven.org/maven2/org/codehaus/jackson/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/codehaus/jackson/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/codehaus/jackson/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0 LGPL-2.1"
 SLOT="0"

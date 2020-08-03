@@ -14,7 +14,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="This is the ehcache core module. Pair it with other modules for added
         functionality."
 HOMEPAGE="http://ehcache.org"
-SRC_URI="https://repo1.maven.org/maven2/net/sf/ehcache/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/net/sf/ehcache/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/net/sf/ehcache/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"

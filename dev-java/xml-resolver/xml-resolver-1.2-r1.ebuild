@@ -17,7 +17,7 @@ DESCRIPTION="xml-commons provides an Apache-hosted set of DOM, SAX, and
     critical XML standards interfaces to make the lives of both our developers 
     and users easier."
 HOMEPAGE="http://xml.apache.org/commons/components/resolver/"
-SRC_URI="https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"

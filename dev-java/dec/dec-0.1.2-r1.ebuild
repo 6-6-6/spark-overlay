@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Brotli is a generic-purpose lossless compression algorithm."
 HOMEPAGE="http://brotli.org/dec"
-SRC_URI="https://repo1.maven.org/maven2/org/brotli/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/brotli/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/brotli/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="MIT"
 SLOT="0"

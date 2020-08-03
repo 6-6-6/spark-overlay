@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Sonatype helps open source projects to set up Maven repositories on https://oss.sonatype.org/"
 HOMEPAGE="https://github.com/headius/unsafe-mock"
-SRC_URI="https://repo1.maven.org/maven2/com/headius/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/com/headius/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/headius/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="GPL-2-with-classpath-exception"
 SLOT="0"

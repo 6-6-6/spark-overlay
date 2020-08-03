@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Support for using JAXB annotations as an alternative to \"native\" Jackson annotations, for configuring data binding."
 HOMEPAGE="http://wiki.fasterxml.com/JacksonJAXBAnnotations"
-SRC_URI="https://repo1.maven.org/maven2/com/fasterxml/jackson/module/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/com/fasterxml/jackson/module/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/fasterxml/jackson/module/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"

@@ -14,7 +14,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="An addition to Metrics which provides the ability to run application-specific health checks,
         allowing you to check your application's heath in production."
 HOMEPAGE="http://metrics.dropwizard.io/metrics-healthchecks"
-SRC_URI="https://repo1.maven.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"

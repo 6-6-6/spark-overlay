@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="XML Builder is a utility that creates simple XML documents using relatively sparse Java code"
 HOMEPAGE="http://code.google.com/p/java-xmlbuilder/"
-SRC_URI="https://repo1.maven.org/maven2/com/jamesmurty/utils/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/com/jamesmurty/utils/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/jamesmurty/utils/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"

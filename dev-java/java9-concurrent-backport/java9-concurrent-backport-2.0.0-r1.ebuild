@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Backport of Java 9 CompletableFuture, Flow and SubmissionPublisher API for Java 8"
 HOMEPAGE="https://github.com/stefan-zobel/java9-concurrent-backport/"
-SRC_URI="https://repo1.maven.org/maven2/net/sourceforge/streamsupport/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/net/sourceforge/streamsupport/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/net/sourceforge/streamsupport/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="GPL-2-with-classpath-exception"
 SLOT="0"

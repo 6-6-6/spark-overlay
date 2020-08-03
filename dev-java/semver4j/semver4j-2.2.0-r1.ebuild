@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Semantic versioning for Java apps."
 HOMEPAGE="https://github.com/vdurmont/semver4j"
-SRC_URI="https://repo1.maven.org/maven2/com/vdurmont/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/com/vdurmont/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/vdurmont/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="MIT"
 SLOT="0"

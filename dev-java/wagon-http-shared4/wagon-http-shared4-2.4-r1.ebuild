@@ -14,7 +14,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="Shared Library for the wagon-http, and wagon-http-lightweight wagon
     providers based on httpclient-4.x."
 HOMEPAGE="http://maven.apache.org/wagon/wagon-providers/wagon-http-shared4"
-SRC_URI="https://repo1.maven.org/maven2/org/apache/maven/wagon/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/apache/maven/wagon/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/maven/wagon/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"

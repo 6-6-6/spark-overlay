@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="The javax.transaction package. It is appropriate for inclusion in a classpath, and may be added to a Java 2 installation."
 HOMEPAGE="http://java.sun.com/products/jta"
-SRC_URI="https://repo1.maven.org/maven2/javax/transaction/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/javax/transaction/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/javax/transaction/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 # totally not sure
 LICENSE="CDDL"

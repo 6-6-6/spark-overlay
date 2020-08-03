@@ -22,7 +22,6 @@ CDEPEND=""
 DEPEND="
 	${CDEPEND}
 	>=virtual/jdk-1.8
-	test? ( dev-java/junit:0 )
 "
 
 RDEPEND="
@@ -39,8 +38,8 @@ JAVA_SRC_DIR="src/main/java"
 
 JAVA_TEST_SRC_DIR="src/test/java"
 JAVA_TEST_RESOURCE_DIRS="src/test/resources"
-JAVA_TEST_GENTOO_CLASSPATH="junit"
-#JAVA_TESTING_FRAMEWORKS="junit"
+#JAVA_TEST_GENTOO_CLASSPATH="junit-5"
+#JAVA_TESTING_FRAMEWORKS="junit-5"
 
 src_install() {
 	einstalldocs

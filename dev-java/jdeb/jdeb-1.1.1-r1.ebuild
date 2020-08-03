@@ -15,7 +15,7 @@ DESCRIPTION="This library provides an Ant task and a Maven plugin to create Debi
         platform manner. Build your Debian packages on any platform that has Java support. Windows, Linux, OS X - it doesn't
         require additional native tools installed."
 HOMEPAGE="http://github.com/tcurdt/jdeb"
-SRC_URI="https://repo1.maven.org/maven2/org/vafer/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/vafer/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/vafer/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"

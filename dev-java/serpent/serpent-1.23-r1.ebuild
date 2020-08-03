@@ -17,7 +17,7 @@ There is also a deserializer or parse provided that turns such a literal express
 
 It is an alternative to JSON to provide easy data integration between Java and Python.  Serpent is more expressive as JSON (it supports more data types)."
 HOMEPAGE="https://github.com/irmen/Serpent"
-SRC_URI="https://repo1.maven.org/maven2/net/razorvine/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/net/razorvine/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/net/razorvine/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="MIT"
 SLOT="0"

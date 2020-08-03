@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="The Codehaus is a collaborative environment for building open source projects with a strong emphasis on modern languages, focussed on quality components that meet real world needs."
 HOMEPAGE="http://codehaus.org/xstream-parent/xstream/"
-SRC_URI="https://repo1.maven.org/maven2/com/thoughtworks/${PN}/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/com/thoughtworks/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/thoughtworks/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="BSD"
 SLOT="0"

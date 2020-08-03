@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="dependency-check-utils is a collection of common utility classes used within dependency-check that might be useful in other projects."
 HOMEPAGE="https://github.com/jeremylong/DependencyCheck.git/dependency-check-utils"
-SRC_URI="https://repo1.maven.org/maven2/org/owasp/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/owasp/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/owasp/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"

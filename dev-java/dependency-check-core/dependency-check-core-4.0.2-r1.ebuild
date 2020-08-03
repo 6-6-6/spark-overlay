@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="dependency-check-core is the engine and reporting tool used to identify and report if there are any known, publicly disclosed vulnerabilities in the scanned project's dependencies. The engine extracts meta-data from the dependencies and uses this to do fuzzy key-word matching against the Common Platfrom Enumeration (CPE), if any CPE identifiers are found the associated Common Vulnerability and Exposure (CVE) entries are added to the generated report."
 HOMEPAGE="https://github.com/jeremylong/DependencyCheck.git/dependency-check-core"
-SRC_URI="https://repo1.maven.org/maven2/org/owasp/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/owasp/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/owasp/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"

@@ -16,7 +16,7 @@ alternative support for serializing POJOs as XML and deserializing XML as pojos.
 Support implemented on top of Stax API (javax.xml.stream), by implementing core Jackson Streaming API types like JsonGenerator, JsonParser and JsonFactory.
 Some data-binding types overridden as well (ObjectMapper sub-classed as XmlMapper)."
 HOMEPAGE="http://wiki.fasterxml.com/JacksonExtensionXmlDataBinding"
-SRC_URI="https://repo1.maven.org/maven2/com/fasterxml/jackson/dataformat/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/com/fasterxml/jackson/dataformat/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/fasterxml/jackson/dataformat/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"

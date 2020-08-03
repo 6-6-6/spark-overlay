@@ -15,7 +15,7 @@ DESCRIPTION="Compression codec for LZF encoding for particularly encoding/decodi
 Compressor is basic Lempel-Ziv codec, without Huffman (deflate/gzip) or statistical post-encoding.
 See \"http://oldhome.schmorp.de/marc/liblzf.html\" for more on original LZF package."
 HOMEPAGE="http://github.com/ning/compress"
-SRC_URI="https://repo1.maven.org/maven2/com/ning/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/com/ning/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/ning/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"

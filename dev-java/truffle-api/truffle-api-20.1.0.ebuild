@@ -14,7 +14,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="Truffle is a multi-language framework for executing dynamic languages
 that achieves high performance when combined with Graal."
 HOMEPAGE="http://openjdk.java.net/projects/graal"
-SRC_URI="https://repo.maven.apache.org/maven2/org/graalvm/truffle/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/org/graalvm/truffle/${PN}/${PV}/${P}-sources.jar"
 LICENSE="UPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64"

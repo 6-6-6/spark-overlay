@@ -14,7 +14,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 DESCRIPTION="This is the master POM file for Sun's Implementation of
 the JSF 2.0 Specification."
 HOMEPAGE="http://java.sun.com/javaee/javaserverfaces/"
-SRC_URI="https://repo1.maven.org/maven2/javax/faces/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/javax/faces/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/javax/faces/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="CDDL GPL-1"
 SLOT="0"

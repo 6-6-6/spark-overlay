@@ -13,7 +13,7 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="${MAVEN_ID}"
 HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
-SRC_URI="https://repo1.maven.org/maven2/org/codehaus/jsr166-mirror/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
+SRC_URI="https://repo1.maven.org/maven2/org/codehaus/jsr166-mirror/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/codehaus/jsr166-mirror/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="public-domain"
 SLOT="0"
