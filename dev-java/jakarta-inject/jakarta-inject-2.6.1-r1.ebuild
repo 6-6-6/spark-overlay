@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.glassfish.hk2.external:jakarta.inject:2.6.1"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/glassfish/hk2/external/jakarta.injec
 LICENSE="EPL-2.0 GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.glassfish.hk2.external:jakarta.inject:2.6.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/jakarta.inject-${PV}.pom

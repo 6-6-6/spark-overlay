@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.multiverse:multiverse-core:0.7.0"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -18,7 +19,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/multiverse/${PN}/${PV}/${P}-sources.
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.multiverse:multiverse-core:0.7.0"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

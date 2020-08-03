@@ -7,6 +7,8 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="com.google.code.findbugs:annotations:3.0.1u2"
+MAVEN_PROVIDES="findbugs:annotations:1.0.0 net.sourceforge.findbugs:annotations:1.3.2 com.google.code.findbugs:findbugs-annotations:3.0.1"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -16,8 +18,6 @@ SRC_URI="https://repo.maven.apache.org/maven2/com/google/code/findbugs/annotatio
 LICENSE="LGPL-3"
 SLOT="3"
 KEYWORDS="~amd64"
-MAVEN_ID="com.google.code.findbugs:annotations:3.0.1u2"
-MAVEN_PROVIDES="findbugs:annotations:1.0.0 net.sourceforge.findbugs:annotations:1.3.2 com.google.code.findbugs:findbugs-annotations:3.0.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/annotations-3.0.1u2.pom

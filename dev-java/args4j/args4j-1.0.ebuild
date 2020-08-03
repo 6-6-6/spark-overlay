@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source binary test"
+MAVEN_ID="args4j:args4j:1.0"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar
 LICENSE="MIT"
 SLOT="1"
 KEYWORDS="~amd64 ~x86"
-MAVEN_ID="args4j:args4j:1.0"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

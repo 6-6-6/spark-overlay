@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="com.esotericsoftware:minlog:1.3.1"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -16,7 +17,6 @@ SRC_URI="https://repo.maven.apache.org/maven2/com/esotericsoftware/${PN}/${PV}/$
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-MAVEN_ID="com.esotericsoftware:minlog:1.3.1"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

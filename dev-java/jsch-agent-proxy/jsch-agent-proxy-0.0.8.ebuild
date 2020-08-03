@@ -4,6 +4,8 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="com.jcraft:jsch.agentproxy:0.0.8"
+MAVEN_PROVIDES="com.jcraft:jsch-agent-proxy-core:0.0.8 com.jcraft:jsch-agent-proxy-connector-factory:0.0.8 com.jcraft:jsch-agent-proxy-jsch:0.0.8 com.jcraft:jsch-agent-proxy-pageant:0.0.8 com.jcraft:jsch-agent-proxy-sshagent:0.0.8 com.jcraft:jsch-agent-proxy-usocket-jna:0.0.8 com.jcraft:jsch-agent-proxy-usocket-nc:0.0.8"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -14,10 +16,6 @@ SRC_URI="https://github.com/ymnk/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-
-MAVEN_ID="com.jcraft:jsch.agentproxy:0.0.8"
-
-MAVEN_PROVIDES="com.jcraft:jsch-agent-proxy-core:0.0.8 com.jcraft:jsch-agent-proxy-connector-factory:0.0.8 com.jcraft:jsch-agent-proxy-jsch:0.0.8 com.jcraft:jsch-agent-proxy-pageant:0.0.8 com.jcraft:jsch-agent-proxy-sshagent:0.0.8 com.jcraft:jsch-agent-proxy-usocket-jna:0.0.8 com.jcraft:jsch-agent-proxy-usocket-nc:0.0.8"
 
 IUSE=""
 

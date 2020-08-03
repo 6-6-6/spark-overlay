@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.slf4j:slf4j-api:1.7.28"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
 #"ppc64 ~x86 ~arm64"
-MAVEN_ID="org.slf4j:slf4j-api:1.7.28"
 
 DEPEND="
 	>=virtual/jdk-1.5:*

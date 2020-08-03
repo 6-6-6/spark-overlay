@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.openclover:clover:4.2.1"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -21,7 +22,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/open${PN}/${PN}/${PV}/${P}-sources.j
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.openclover:clover:4.2.1"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

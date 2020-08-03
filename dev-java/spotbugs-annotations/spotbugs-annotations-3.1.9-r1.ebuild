@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="com.github.spotbugs:spotbugs-annotations:3.1.9"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/com/github/spotbugs/${PN}/${PV}/${P}-sou
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="com.github.spotbugs:spotbugs-annotations:3.1.9"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

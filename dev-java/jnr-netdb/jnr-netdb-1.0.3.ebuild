@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.jruby.extras:jnr-netdb:1.0.3"
 
 inherit java-pkg-2 java-pkg-binjar
 
@@ -16,7 +17,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/jruby/extras/${PN}/${PV}/${P}.jar"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.jruby.extras:jnr-netdb:1.0.3"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

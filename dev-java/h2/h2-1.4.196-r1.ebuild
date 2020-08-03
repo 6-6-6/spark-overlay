@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="com.h2database:h2:1.4.196"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/com/${PN}database/${PN}/${PV}/${P}-sourc
 LICENSE="|| ( MPL-1.1 EPL-1.0 )"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="com.h2database:h2:1.4.196"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

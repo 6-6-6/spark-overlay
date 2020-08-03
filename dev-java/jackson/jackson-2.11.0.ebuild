@@ -4,6 +4,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="com.fasterxml.jackson.core:jackson-core:2.11.0"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -15,8 +16,6 @@ SLOT="2"
 KEYWORDS="~amd64 ~x86"
 IUSE="test"
 RESTRICT="!test? ( test )"
-
-MAVEN_ID="com.fasterxml.jackson.core:jackson-core:2.11.0"
 
 RDEPEND=">=virtual/jre-1.7"
 DEPEND=">=virtual/jdk-1.7

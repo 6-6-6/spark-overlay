@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="com.sun.jersey.contribs:jersey-guice:1.9"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -18,7 +19,6 @@ SRC_URI="https://repo1.maven.org/maven2/com/sun/jersey/contribs/${PN}/${PV}/${P}
 LICENSE="CDDL-1.1 GPL-2-with-classpath-exception"
 SLOT="1"
 KEYWORDS="~amd64"
-MAVEN_ID="com.sun.jersey.contribs:jersey-guice:1.9"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

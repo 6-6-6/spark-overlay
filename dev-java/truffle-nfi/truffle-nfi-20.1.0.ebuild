@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.graalvm.truffle:truffle-nfi:20.1.0"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo.maven.apache.org/maven2/org/graalvm/truffle/${PN}/${PV}/${
 LICENSE="UPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.graalvm.truffle:truffle-nfi:20.1.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

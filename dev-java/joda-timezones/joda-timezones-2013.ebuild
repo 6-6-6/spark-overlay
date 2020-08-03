@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.jruby:joda-timezones:2013d"
 
 inherit java-pkg-2 java-pkg-binjar
 
@@ -16,7 +17,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/jruby/${PN}/${PV}d/${P}d.jar -> ${P}
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.jruby:joda-timezones:2013d"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}d.pom

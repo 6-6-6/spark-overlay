@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.jruby.ext.posix:jnr-posix:1.1.9"
 
 inherit java-pkg-2 java-pkg-binjar
 
@@ -19,7 +20,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/jruby/ext/posix/${MY_PN}/${PV}/${MY_
 LICENSE="GPL-2 CPL-1.0 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.jruby.ext.posix:jnr-posix:1.1.9"
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.mortbay.jetty.alpn:alpn-boot:8.1.13.v20181017"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/mortbay/jetty/alpn/${PN}/8.1.13.v201
 LICENSE="GPL-2-with-classpath-exception Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.mortbay.jetty.alpn:alpn-boot:8.1.13.v20181017"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

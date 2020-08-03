@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source binary test"
+MAVEN_ID="commons-io:commons-io:2.6"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -20,7 +21,6 @@ LICENSE="Apache-2.0"
 SLOT="1"
 KEYWORDS="~amd64"
 #KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-MAVEN_ID="commons-io:commons-io:2.6"
 
 DEPEND="
 	>=virtual/jdk-1.7:*

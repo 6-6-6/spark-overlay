@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.jboss.logging:jboss-logging-spi:2.1.2.GA"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/jboss/logging/${PN}/${PV}.GA/${P}.GA
 LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.jboss.logging:jboss-logging-spi:2.1.2.GA"
 
 DEPEND="
 	>=virtual/jdk-1.5:*

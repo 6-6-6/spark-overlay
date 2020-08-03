@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="tomcat:jasper-runtime:5.5.23"
 
 inherit java-pkg-2 java-pkg-binjar
 
@@ -20,7 +21,6 @@ SRC_URI="https://repo1.maven.org/maven2/tomcat/${PN}/${PV}/${P}.jar"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="tomcat:jasper-runtime:5.5.23"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

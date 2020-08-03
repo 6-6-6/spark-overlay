@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="com.fasterxml.jackson.module:jackson-module-scala_2.12:2.10.0"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/com/fasterxml/jackson/module/${PN}_2.12/
 LICENSE="Apache-2.0"
 SLOT="2.12"
 KEYWORDS="~amd64"
-MAVEN_ID="com.fasterxml.jackson.module:jackson-module-scala_2.12:2.10.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}.pom

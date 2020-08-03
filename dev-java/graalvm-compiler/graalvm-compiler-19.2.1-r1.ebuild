@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source binary test"
+MAVEN_ID="org.graalvm.compiler:compiler:19.2.1"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -18,7 +19,6 @@ LICENSE="GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS=""
 #KEYWORDS="~amd64"
-MAVEN_ID="org.graalvm.compiler:compiler:19.2.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/compiler-${PV}.pom

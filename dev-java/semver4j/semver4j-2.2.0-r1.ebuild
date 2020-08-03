@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="com.vdurmont:semver4j:2.2.0"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/com/vdurmont/${PN}/${PV}/${P}-sources.ja
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="com.vdurmont:semver4j:2.2.0"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

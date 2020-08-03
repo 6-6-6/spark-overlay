@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source binary"
+MAVEN_ID="org.safehaus.jug:jug:2.0.0"
 
 inherit java-pkg-2 java-pkg-binjar
 
@@ -16,7 +17,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/safehaus/${PN}/${PN}/${PV}/${P}-lgpl
 LICENSE="Apache-2.0 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.safehaus.jug:jug:2.0.0"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

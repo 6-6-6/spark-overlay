@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.jsoup:jsoup:1.11.3"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -16,7 +17,6 @@ SRC_URI="https://repo.maven.apache.org/maven2/org/${PN}/${PN}/${PV}/${P}-sources
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux"
-MAVEN_ID="org.jsoup:jsoup:1.11.3"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

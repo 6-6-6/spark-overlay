@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="net.sourceforge.streamsupport:java9-concurrent-backport:2.0.0"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/net/sourceforge/streamsupport/${PN}/${PV
 LICENSE="GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="net.sourceforge.streamsupport:java9-concurrent-backport:2.0.0"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

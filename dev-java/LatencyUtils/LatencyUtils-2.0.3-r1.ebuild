@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.latencyutils:LatencyUtils:2.0.3"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/latencyutils/${PN}/${PV}/${P}-source
 LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.latencyutils:LatencyUtils:2.0.3"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

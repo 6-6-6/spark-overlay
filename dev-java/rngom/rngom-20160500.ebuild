@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source binary test"
+MAVEN_ID="org.kohsuke.rngom:rngom:201605"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -19,7 +20,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/kohsuke/${PN}/${PN}/${MY_PV}/${PN}-$
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc64 ~x86"
-MAVEN_ID="org.kohsuke.rngom:rngom:201605"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

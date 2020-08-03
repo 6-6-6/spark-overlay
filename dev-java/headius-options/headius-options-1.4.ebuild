@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="com.headius:options:1.4"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -16,7 +17,6 @@ SRC_URI="https://repo.maven.apache.org/maven2/com/headius/options/${PV}/options-
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
-MAVEN_ID="com.headius:options:1.4"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

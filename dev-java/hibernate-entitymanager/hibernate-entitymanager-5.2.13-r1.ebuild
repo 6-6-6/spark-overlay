@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.hibernate:hibernate-entitymanager:5.2.13.Final"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/hibernate/${PN}/${PV}.Final/${P}.Fin
 LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.hibernate:hibernate-entitymanager:5.2.13.Final"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Final.pom

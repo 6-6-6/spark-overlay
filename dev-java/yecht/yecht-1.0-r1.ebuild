@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.jruby:yecht:1.0"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/jruby/${PN}/${PV}/${P}-sources.jar -
 LICENSE="EPL-1.0 GPL-3 LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.jruby:yecht:1.0"
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

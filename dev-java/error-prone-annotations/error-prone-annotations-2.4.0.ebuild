@@ -6,6 +6,7 @@ EAPI=7
 MY_PN="${PN%-annotations}"
 MY_P="${MY_PN}-${PV}"
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="com.google.errorprone:error_prone_annotations:2.4.0"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -21,4 +22,3 @@ RDEPEND=">=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_P}/annotations"
 JAVA_SRC_DIR="src/main/java"
-MAVEN_ID="com.google.errorprone:error_prone_annotations:2.4.0"

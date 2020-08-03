@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.glassfish:javax.el:3.0.1-b09"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/glassfish/javax.el/3.0.1-b09/javax.e
 LICENSE="GPL-2-with-classpath-exception CDDL"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.glassfish:javax.el:3.0.1-b09"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

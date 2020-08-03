@@ -4,6 +4,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.jboss.logmanager:jboss-logmanager:1.5.2.Final"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -15,8 +16,6 @@ LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
-
-MAVEN_ID="org.jboss.logmanager:jboss-logmanager:1.5.2.Final"
 
 CDEPEND="dev-java/jboss-modules:0"
 RDEPEND=">=virtual/jre-1.5

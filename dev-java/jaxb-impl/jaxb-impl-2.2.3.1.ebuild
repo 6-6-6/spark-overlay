@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source binary test"
+MAVEN_ID="com.sun.xml.bind:jaxb-impl:2.2.3-1"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/com/sun/xml/bind/${PN}/2.2.3-1/${PN}-2.2
 LICENSE="CDDL-1.1 GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="com.sun.xml.bind:jaxb-impl:2.2.3-1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-2.2.3-1.pom

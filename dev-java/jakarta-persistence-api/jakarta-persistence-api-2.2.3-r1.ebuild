@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="jakarta.persistence:jakarta.persistence-api:2.2.3"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -19,7 +20,6 @@ SRC_URI="https://repo1.maven.org/maven2/jakarta/persistence/jakarta.persistence-
 LICENSE="EPL-2.0 EPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="jakarta.persistence:jakarta.persistence-api:2.2.3"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

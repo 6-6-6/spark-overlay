@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.osgi:osgi_R4_core:1.0"
 
 inherit java-pkg-2 java-pkg-binjar
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo.maven.apache.org/maven2/org/osgi/osgi_R4_core/${MY_PV}/osg
 LICENSE="Apache-2.0"
 SLOT="4"
 KEYWORDS="~amd64"
-MAVEN_ID="org.osgi:osgi_R4_core:1.0"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

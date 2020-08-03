@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source binary test"
+MAVEN_ID="net.sf.ehcache:ehcache:2.10.4"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -20,7 +21,6 @@ LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 #~amd64-linux ~x86 ~x86-linux ~x86-macos"
-MAVEN_ID="net.sf.ehcache:ehcache:2.10.4"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

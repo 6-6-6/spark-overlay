@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="ch.qos.logback:logback-core:1.0.13"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/ch/qos/logback/${PN}/${PV}/${P}-sources.
 LICENSE="LGPL-3 EPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="ch.qos.logback:logback-core:1.0.13"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

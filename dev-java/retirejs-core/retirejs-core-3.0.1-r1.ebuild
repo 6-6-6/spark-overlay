@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="com.h3xstream.retirejs:retirejs-core:3.0.1"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/com/h3xstream/retirejs/${PN}/${PV}/${P}-
 LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="com.h3xstream.retirejs:retirejs-core:3.0.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

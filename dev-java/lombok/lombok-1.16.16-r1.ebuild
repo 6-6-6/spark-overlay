@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.projectlombok:lombok:1.16.16"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/project${PN}/${PN}/${PV}/${P}-source
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.projectlombok:lombok:1.16.16"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

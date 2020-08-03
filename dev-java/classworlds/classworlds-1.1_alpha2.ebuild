@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="classworlds:classworlds:1.1-alpha-2"
 
 inherit java-pkg-2 java-pkg-binjar
 
@@ -16,7 +17,6 @@ SRC_URI="https://repo1.maven.org/maven2/${PN}/${PN}/1.1-alpha-2/${PN}-1.1-alpha-
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="classworlds:classworlds:1.1-alpha-2"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

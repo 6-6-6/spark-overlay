@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source binary test"
+MAVEN_ID="io.netty:netty-transport:5.0.0.Alpha2"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -20,7 +21,6 @@ LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 #"x86"
-MAVEN_ID="io.netty:netty-transport:5.0.0.Alpha2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Alpha2.pom

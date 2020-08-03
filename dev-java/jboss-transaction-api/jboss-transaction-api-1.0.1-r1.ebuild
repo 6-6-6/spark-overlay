@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec:1.0.1.Final"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/jboss/spec/javax/transaction/${PN}_1
 LICENSE="CDDL GPL-2-with-classpath-exception"
 SLOT="1.2_spec"
 KEYWORDS="~amd64"
-MAVEN_ID="org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec:1.0.1.Final"
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_1.2_spec-${PV}.Final.pom

@@ -5,6 +5,7 @@ EAPI=7
 
 MY_P="${PN}-parent-${PV}"
 JAVA_PKG_IUSE="doc source test"
+MAVEN_ID="com.google.code.gson:gson:2.8.6"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -14,8 +15,6 @@ SRC_URI="https://github.com/google/${PN}/archive/${MY_P}.tar.gz"
 LICENSE="Apache-2.0"
 SLOT="2.7"
 KEYWORDS="~amd64 ~x86"
-
-MAVEN_ID="com.google.code.gson:gson:2.8.6"
 
 CDEPEND="test? ( dev-java/junit:4 )"
 

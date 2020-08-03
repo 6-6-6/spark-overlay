@@ -7,6 +7,8 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.osgi:org.osgi.core:6.0.0"
+MAVEN_PROVIDES="org.osgi:osgi.core:6.0.0"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -16,8 +18,6 @@ SRC_URI="https://repo.maven.apache.org/maven2/org/osgi/org.osgi.core/${PV}/org.o
 LICENSE="Apache-2.0"
 SLOT="6"
 KEYWORDS="~amd64"
-MAVEN_ID="org.osgi:org.osgi.core:6.0.0"
-MAVEN_PROVIDES="org.osgi:osgi.core:6.0.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

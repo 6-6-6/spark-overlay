@@ -4,14 +4,13 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc examples source test"
+MAVEN_ID="com.ibm.icu:icu4j:67.1"
 
 inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="A set of Java libraries providing Unicode and Globalization support"
 HOMEPAGE="http://www.icu-project.org/"
 SRC_URI="https://github.com/unicode-org/icu/releases/download/release-67-1/icu4j-67_1-src.jar"
-
-MAVEN_ID="com.ibm.icu:icu4j:67.1"
 
 LICENSE="icu"
 SLOT="67"

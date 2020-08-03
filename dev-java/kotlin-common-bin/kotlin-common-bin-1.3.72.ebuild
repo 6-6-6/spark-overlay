@@ -4,14 +4,13 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_PROVIDES="org.jetbrains.kotlin:kotlin-stdlib:1.3.72 org.jetbrains.kotlin:kotlin-stdlib-common:1.3.72 org.jetbrains.kotlin:kotlin-reflect:1.3.72"
 
 inherit java-pkg-2 java-pkg-binjar
 
 DESCRIPTION="Pseudo kotlin libs"
 HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 SRC_URI=""
-
-MAVEN_PROVIDES="org.jetbrains.kotlin:kotlin-stdlib:1.3.72 org.jetbrains.kotlin:kotlin-stdlib-common:1.3.72 org.jetbrains.kotlin:kotlin-reflect:1.3.72"
 
 LICENSE="Apache-2.0 BSD MIT NPL-1.1"
 SLOT="0"

@@ -7,6 +7,8 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source binary test"
+MAVEN_ID="com.google.guava:guava:29.0-jre"
+MAVEN_PROVIDES="com.google.guava:listenablefuture:9999.0"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -18,8 +20,6 @@ LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 #"x86 arm64"
-MAVEN_ID="com.google.guava:guava:29.0-jre"
-MAVEN_PROVIDES="com.google.guava:listenablefuture:9999.0"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}-jre.pom

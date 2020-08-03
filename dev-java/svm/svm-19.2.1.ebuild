@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="com.oracle.substratevm:svm:19.2.1"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -17,7 +18,6 @@ LICENSE="GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS=""
 #KEYWORKDS="~amd64"
-MAVEN_ID="com.oracle.substratevm:svm:19.2.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="VIRTUAL:PROVIDED:0"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -16,7 +17,6 @@ SRC_URI="https://repo.maven.apache.org/maven2/jakarta/ws/rs/jakarta.ws.rs-api/${
 LICENSE="GPL-2-with-classpath-exception EPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="VIRTUAL:PROVIDED:0"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

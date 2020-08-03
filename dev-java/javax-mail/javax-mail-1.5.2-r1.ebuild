@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="com.sun.mail:javax.mail:1.5.2"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/com/sun/mail/javax.mail/${PV}/javax.mail
 LICENSE="|| ( CDDL GPL-2-with-classpath-exception )"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="com.sun.mail:javax.mail:1.5.2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/javax.mail-${PV}.pom

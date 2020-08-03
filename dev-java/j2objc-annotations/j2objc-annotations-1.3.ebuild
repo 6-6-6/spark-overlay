@@ -6,6 +6,7 @@ EAPI=7
 MY_PN="${PN%-annotations}"
 MY_P="${MY_PN}-${PV}"
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="com.google.j2objc:j2objc-annotations:1.3"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -21,5 +22,3 @@ RDEPEND=">=virtual/jre-1.7"
 
 S="${WORKDIR}/${MY_P}/annotations"
 JAVA_SRC_DIR="src/main/java"
-
-MAVEN_ID="com.google.j2objc:j2objc-annotations:1.3"

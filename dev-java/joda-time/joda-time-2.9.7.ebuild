@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="joda-time:joda-time:2.9.7"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -16,7 +17,6 @@ SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc64 ~x86 ~amd64-linux ~ppc-macos ~sparc-solaris ~x86-linux ~x86-macos ~x86-solaris"
-MAVEN_ID="joda-time:joda-time:2.9.7"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

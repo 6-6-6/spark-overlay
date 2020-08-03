@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.glassfish.jersey.inject:jersey-hk2:2.29.1"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/glassfish/jersey/inject/${PN}/${PV}/
 LICENSE="CC0-1.0 EPL-2.0 public-domain W3C BSD-2 GPL-2-with-classpath-exception Apache-2.0 MIT EPL-1.0 BSD"
 SLOT="2"
 KEYWORDS="~amd64"
-MAVEN_ID="org.glassfish.jersey.inject:jersey-hk2:2.29.1"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

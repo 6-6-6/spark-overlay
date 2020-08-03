@@ -3,6 +3,7 @@
 
 EAPI=5
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.aspectj:aspectjweaver:1.9.5"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -10,7 +11,6 @@ DESCRIPTION="A seamless aspect-oriented extension to the Java programming langua
 HOMEPAGE="http://eclipse.org/aspectj/"
 SRC_URI="http://www.eclipse.org/downloads/download.php?file=/tools/${PN}/${P}-src.jar&r=1 -> ${P}-src.jar"
 
-MAVEN_ID="org.aspectj:aspectjweaver:1.9.5"
 #MAVEN_PROVIDES="org.aspectj:aspectjweaver:1.9.5 org.aspectj:aspectjtools:1.9.5 org.aspectj:aspectjrt:1.9.5"
 
 LICENSE="EPL-1.0"

@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.jruby.joni:joni:2.1.3"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -16,7 +17,6 @@ SRC_URI="https://repo.maven.apache.org/maven2/org/jruby/${PN}/${PN}/${PV}/${P}-s
 LICENSE="MIT"
 SLOT="2.1"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~ppc64 ~x86-linux ~x86-solaris"
-MAVEN_ID="org.jruby.joni:joni:2.1.3"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

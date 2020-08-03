@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="com.github.luben:zstd-jni:1.4.4-7"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/com/github/luben/${PN}/1.4.4-7/${PN}-1.4
 LICENSE="BSD-2"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="com.github.luben:zstd-jni:1.4.4-7"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

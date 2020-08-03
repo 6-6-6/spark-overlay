@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="xmlpull:xmlpull:1.1.3.1"
 
 inherit java-pkg-2 java-pkg-binjar
 
@@ -16,7 +17,6 @@ SRC_URI="https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}.jar"
 LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="xmlpull:xmlpull:1.1.3.1"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

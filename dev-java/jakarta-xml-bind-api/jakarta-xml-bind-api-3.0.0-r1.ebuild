@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="jakarta.xml.bind:jakarta.xml.bind-api:3.0.0-RC3"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/jakarta/xml/bind/jakarta.xml.bind-api/${
 LICENSE="EPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="jakarta.xml.bind:jakarta.xml.bind-api:3.0.0-RC3"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/jakarta.xml.bind-api-${PV}-RC3.pom

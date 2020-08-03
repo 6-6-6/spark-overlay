@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.reactivestreams:reactive-streams:1.0.2"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/reactivestreams/${PN}/${PV}/${P}-sou
 LICENSE="CC0-1.0"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.reactivestreams:reactive-streams:1.0.2"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

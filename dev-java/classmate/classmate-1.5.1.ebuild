@@ -4,6 +4,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test"
+MAVEN_ID="com.fasterxml:classmate:1.5.1"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -14,8 +15,6 @@ SRC_URI="https://github.com/cowtowncoder/java-classmate/archive/${P}.tar.gz"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-
-MAVEN_ID="com.fasterxml:classmate:1.5.1"
 
 RDEPEND="
 	>=virtual/jre-1.6"

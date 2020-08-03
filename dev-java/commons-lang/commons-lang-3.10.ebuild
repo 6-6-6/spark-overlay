@@ -4,6 +4,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test"
+MAVEN_ID="org.apache.commons:commons-lang3:3.10"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -15,8 +16,6 @@ SRC_URI="mirror://apache/commons/lang/source/${MY_P}-src.tar.gz -> ${P}.tar.gz"
 LICENSE="Apache-2.0"
 SLOT="3.10"
 KEYWORDS="~amd64 ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
-
-MAVEN_ID="org.apache.commons:commons-lang3:3.10"
 
 CDEPEND=""
 

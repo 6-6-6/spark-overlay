@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.apache.maven.wagon:wagon-file:1.0-beta-6"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/apache/maven/wagon/${PN}/1.0-beta-6/
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.apache.maven.wagon:wagon-file:1.0-beta-6"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-1.0-beta-6.pom

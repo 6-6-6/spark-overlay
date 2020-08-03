@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.eclipse.jetty.alpn:alpn-api:1.1.3.v20160715"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -18,7 +19,6 @@ SRC_URI="https://repo.maven.apache.org/maven2/org/eclipse/jetty/alpn/${MY_PN}/1.
 LICENSE="Apache-2.0 EPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-MAVEN_ID="org.eclipse.jetty.alpn:alpn-api:1.1.3.v20160715"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.apache.commons:commons-collections4:4.4"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -18,7 +19,6 @@ SRC_URI="https://repo.maven.apache.org/maven2/org/apache/commons/${MY_PN}/${PV}/
 LICENSE="Apache-2.0"
 SLOT="4"
 KEYWORDS="~amd64 ~ppc64 ~x86"
-MAVEN_ID="org.apache.commons:commons-collections4:4.4"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

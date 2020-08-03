@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.2_spec:1.0.1.Final"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/jboss/spec/javax/interceptor/${PN}_1
 LICENSE="GPL-2-with-classpath-exception CDDL"
 SLOT="1.2_spec"
 KEYWORDS="~amd64"
-MAVEN_ID="org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.2_spec:1.0.1.Final"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

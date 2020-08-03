@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.json4s:json4s-ast_2.12:3.6.6"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/json4s/${PN}_2.12/${PV}/${PN}_2.12-$
 LICENSE="Apache-2.0"
 SLOT="2.12"
 KEYWORDS="~amd64"
-MAVEN_ID="org.json4s:json4s-ast_2.12:3.6.6"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}.pom

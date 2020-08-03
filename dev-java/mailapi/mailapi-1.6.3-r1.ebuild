@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="com.sun.mail:mailapi:1.6.3"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/com/sun/mail/${PN}/${PV}/${P}-sources.ja
 LICENSE="EPL-2.0 EPL-1.0 GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="com.sun.mail:mailapi:1.6.3"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec:1.0.0.Beta1"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/jboss/spec/javax/transaction/${PN}_1
 LICENSE="LGPL-3"
 SLOT="1.1_spec"
 KEYWORDS="~amd64"
-MAVEN_ID="org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec:1.0.0.Beta1"
 
 DEPEND="
 	>=virtual/jdk-1.5:*

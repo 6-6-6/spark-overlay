@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.apache.directory.api:api-i18n:1.0.0-M20"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/apache/directory/api/${PN}/${PV}-M20
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.apache.directory.api:api-i18n:1.0.0-M20"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}-M20.pom

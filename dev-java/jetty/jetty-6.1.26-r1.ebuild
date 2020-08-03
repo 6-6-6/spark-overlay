@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.mortbay.jetty:jetty:6.1.26"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/mortbay/${PN}/${PN}/${PV}/${P}-sourc
 LICENSE="Apache-2.0 EPL-1.0"
 SLOT="6"
 KEYWORDS="~amd64"
-MAVEN_ID="org.mortbay.jetty:jetty:6.1.26"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

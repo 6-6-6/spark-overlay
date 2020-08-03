@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.codehaus.jackson:jackson-jaxrs:1.9.13"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -18,7 +19,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/codehaus/jackson/${PN}/${PV}/${P}-so
 LICENSE="Apache-2.0 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.codehaus.jackson:jackson-jaxrs:1.9.13"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

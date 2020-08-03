@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.ow2.asm:asm-debug-all:5.0_BETA"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/ow2/asm/${PN}/${PV}_BETA/${P}_BETA-s
 LICENSE="BSD-1"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.ow2.asm:asm-debug-all:5.0_BETA"
 
 DEPEND="
 	>=virtual/jdk-1.8:*

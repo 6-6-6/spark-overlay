@@ -7,6 +7,8 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source binary test"
+MAVEN_ID="org.fusesource.leveldbjni:leveldbjni:1.8"
+MAVEN_PROVIDES="org.fusesource.leveldbjni:leveldbjni-all:1.8"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -19,8 +21,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/fusesource/${PN}/${PN}/${PV}/${P}-so
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="org.fusesource.leveldbjni:leveldbjni:1.8"
-MAVEN_PROVIDES="org.fusesource.leveldbjni:leveldbjni-all:1.8"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

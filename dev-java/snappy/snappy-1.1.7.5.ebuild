@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.xerial.snappy:snappy-java:1.1.7.5"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ LICENSE="Apache-2.0"
 SLOT="1.1"
 KEYWORDS="~amd64"
 #"x86"
-MAVEN_ID="org.xerial.snappy:snappy-java:1.1.7.5"
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.jboss.spec.javax.ejb:jboss-ejb-api_3.1_spec:1.0.0.CR2"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ SRC_URI="https://repo1.maven.org/maven2/org/jboss/spec/javax/ejb/${PN}_3.1_spec/
 LICENSE="LGPL-3"
 SLOT="3.1_spec"
 KEYWORDS="~amd64"
-MAVEN_ID="org.jboss.spec.javax.ejb:jboss-ejb-api_3.1_spec:1.0.0.CR2"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_3.1_spec-${PV}.CR2.pom

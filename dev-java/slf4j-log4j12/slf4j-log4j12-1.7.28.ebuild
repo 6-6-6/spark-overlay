@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.slf4j:slf4j-log4j12:1.7.28"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -17,7 +18,6 @@ LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
 #"x86"
-MAVEN_ID="org.slf4j:slf4j-log4j12:1.7.28"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

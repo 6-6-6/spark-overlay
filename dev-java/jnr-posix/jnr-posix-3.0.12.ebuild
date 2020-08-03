@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="com.github.jnr:jnr-posix:3.0.12"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -16,7 +17,6 @@ SRC_URI="https://repo.maven.apache.org/maven2/com/github/jnr/${PN}/${PV}/${P}-so
 LICENSE="LGPL-2.1 CPL-1.0 GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~arm64 ~x86-linux ~x86-solaris"
-MAVEN_ID="com.github.jnr:jnr-posix:3.0.12"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

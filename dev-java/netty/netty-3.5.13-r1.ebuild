@@ -7,6 +7,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="io.netty:netty:3.5.13.Final"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -23,7 +24,6 @@ SRC_URI="https://repo1.maven.org/maven2/io/${PN}/${PN}/${PV}.Final/${P}.Final-so
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-MAVEN_ID="io.netty:netty:3.5.13.Final"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Final.pom
