@@ -288,6 +288,14 @@ java-pkg-simple_test_with_pkgdiff_() {
 java-pkg-simple_prepend_resources() {
 	debug-print-function ${FUNCNAME} $*
 
+	if [[ ! ${ARCH} == "amd64" ]]; then
+		elog "For architectures other than amd64, "\
+			"the pkgdiff test is currently unavailable "\
+			"because 'dev-util/japi-compliance-checker "\
+			"and 'dev-util/pkgdiff' do not support those architectures."
+		return
+	fi
+
 	local resources=("${@}")
 
 	# add resources directory to classpath
@@ -467,6 +475,10 @@ java-pkg-simple_src_test() {
 				java-pkg-simple_test_with_junit_;;
 			pkgdiff)
 				java-pkg-simple_test_with_pkgdiff_;;
+			junit-5) ;&
+			testng) ;&
+			*)
+				elog "No suitable function found for framework ${framework}"
 		esac
 	done
 }
