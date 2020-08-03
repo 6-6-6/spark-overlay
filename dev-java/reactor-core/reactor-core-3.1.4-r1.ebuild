@@ -56,5 +56,5 @@ src_prepare() {
 	java-pkg-2_src_prepare
 
 	sed -i "s/java.util.concurrent/java9.util.concurrent/"\
-		${S}/${JAVA_SRC_DIR}/reactor/adapter/JdkFlowAdapter.java || die
+		"${S}"/${JAVA_SRC_DIR}/reactor/adapter/JdkFlowAdapter.java || die
 }

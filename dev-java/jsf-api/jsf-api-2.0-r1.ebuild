@@ -11,11 +11,11 @@ JAVA_PKG_IUSE="doc source test binary"
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="This is the master POM file for Sun's Implementation of
-        the JSF 2.0 Specification."
+the JSF 2.0 Specification."
 HOMEPAGE="http://java.sun.com/javaee/javaserverfaces/"
 SRC_URI="https://repo1.maven.org/maven2/javax/faces/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/javax/faces/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE="CDDL GPL"
+LICENSE="CDDL GPL-1"
 SLOT="0"
 KEYWORDS="~amd64"
 MAVEN_ID="javax.faces:jsf-api:2.0"

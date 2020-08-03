@@ -13,7 +13,7 @@ SRC_URI=""
 
 MAVEN_PROVIDES="org.jetbrains.kotlin:kotlin-stdlib:1.3.72 org.jetbrains.kotlin:kotlin-stdlib-common:1.3.72 org.jetbrains.kotlin:kotlin-reflect:1.3.72"
 
-LICENSE=""
+LICENSE="Apache-2.0 BSD MIT NPL-1.1"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
@@ -29,12 +29,12 @@ DEPEND=">=virtual/jdk-1.8
 	${CP_DEPEND}"
 
 src_unpack() {
-	mkdir -p ${S}
-	cp ${EPREFIX}/opt/kotlin-bin/lib/*jar ${S}/
+	mkdir -p "${S}"
+	cp ${EPREFIX}/opt/kotlin-bin/lib/*jar "${S}"/
 }
 
 src_install() {
-	for x in ${S}/*.jar ; do
+	for x in "${S}"/*.jar ; do
 		java-pkg_newjar "${x}" $(basename "${x%-*}.jar")
 	done
 }

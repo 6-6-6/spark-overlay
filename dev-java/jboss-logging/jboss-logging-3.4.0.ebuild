@@ -15,7 +15,8 @@ HOMEPAGE="http://www.jboss.org"
 SRC_URI="https://repo.maven.apache.org/maven2/org/jboss/logging/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
+#"x86"
 MAVEN_ID="org.jboss.logging:jboss-logging:3.4.0.Final"
 
 # Compile dependencies

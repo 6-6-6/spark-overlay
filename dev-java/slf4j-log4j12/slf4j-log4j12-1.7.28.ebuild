@@ -15,7 +15,8 @@ HOMEPAGE="http://www.slf4j.org"
 SRC_URI="https://repo.maven.apache.org/maven2/org/slf4j/${PN}/${PV}/${P}-sources.jar"
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
+#"x86"
 MAVEN_ID="org.slf4j:slf4j-log4j12:1.7.28"
 
 # Common dependencies

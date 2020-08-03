@@ -15,7 +15,8 @@ HOMEPAGE="http://janino-compiler.github.io/janino/"
 SRC_URI="https://repo.maven.apache.org/maven2/org/codehaus/${PN}/${PN}/${PV}/${P}-sources.jar"
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
+#"x86"
 MAVEN_ID="org.codehaus.janino:janino:3.0.6"
 
 # Common dependencies

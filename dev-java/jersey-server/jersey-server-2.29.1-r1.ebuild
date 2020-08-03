@@ -58,7 +58,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jakarta-annotation-api,jakarta-validation-api,ws-rs,jakarta-inject,jersey-client-2,jersey-common-2,jersey-media-jaxb-2"
+JAVA_GENTOO_CLASSPATH="jakarta-annotation-api,jakarta-validation-api,ws-rs-api,jakarta-inject,jersey-client-2,jersey-common-2,jersey-media-jaxb-2"
 JAVA_CLASSPATH_EXTRA="osgi-core-6"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

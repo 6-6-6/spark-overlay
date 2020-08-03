@@ -16,7 +16,8 @@ SRC_URI="https://repo.maven.apache.org/maven2/com/google/${PN}/${PN}/${PV}-jre/$
 		https://repo.maven.apache.org/maven2/com/google/${PN}/${PN}/${PV}-jre/${P}-jre.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~arm64 ~x86"
+KEYWORDS="~amd64"
+#"x86 arm64"
 MAVEN_ID="com.google.guava:guava:29.0-jre"
 MAVEN_PROVIDES="com.google.guava:listenablefuture:9999.0"
 

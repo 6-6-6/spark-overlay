@@ -44,8 +44,8 @@ JAVA_SRC_DIR="src/main/java"
 
 src_unpack() {
 	mkdir -p ${JAVA_SRC_DIR}
-	unzip -q ${DISTDIR}/${P}-sources.jar -d ${JAVA_SRC_DIR} || die "failed to unpack source code"
-	tar xvf ${DISTDIR}/${PN}-native-linux-amd64-${PV}.tar.gz || die "failed to unpack truffle-nfi-native"
+	unzip -q "${DISTDIR}"/${P}-sources.jar -d ${JAVA_SRC_DIR} || die "failed to unpack source code"
+	tar xvf "${DISTDIR}"/${PN}-native-linux-amd64-${PV}.tar.gz || die "failed to unpack truffle-nfi-native"
 }
 
 src_install() {

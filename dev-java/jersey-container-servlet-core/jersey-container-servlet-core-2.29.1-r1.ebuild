@@ -14,7 +14,7 @@ DESCRIPTION="Jersey core Servlet 2.x implementation"
 HOMEPAGE="https://projects.eclipse.org/projects/ee4j.jersey/project/jersey-container-servlet-core"
 SRC_URI="https://repo1.maven.org/maven2/org/glassfish/jersey/containers/${PN}/${PV}/${P}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/glassfish/jersey/containers/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
-LICENSE="BSD-2 EPL-2.0 W3C BSD GPL-2-with-classpath-exception EPL-1.0 MIT Apache-2.0 CC0 public-domain"
+LICENSE="BSD-2 EPL-2.0 W3C BSD GPL-2-with-classpath-exception EPL-1.0 MIT Apache-2.0 CC0-1.0 public-domain"
 SLOT="2"
 KEYWORDS="~amd64"
 MAVEN_ID="org.glassfish.jersey.containers:jersey-container-servlet-core:2.29.1"
@@ -54,7 +54,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="ws-rs,jakarta-inject,jersey-common-2,jersey-server-2"
+JAVA_GENTOO_CLASSPATH="ws-rs-api,jakarta-inject,jersey-common-2,jersey-server-2"
 JAVA_CLASSPATH_EXTRA="jakarta-persistence-api,jakarta-servlet-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

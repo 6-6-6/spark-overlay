@@ -48,7 +48,7 @@ SRC_DIRS=(
 
 src_unpack() {
 	for pkg in "${SRC_DIRS[@]}"; do
-		mkdir -p ${S}/${pkg}
+		mkdir -p "${S}"/${pkg}
 		unzip -q -o "${DISTDIR}"/${pkg}\-${PV}.jar -d "${S}"/${pkg} || die
 	done
 }

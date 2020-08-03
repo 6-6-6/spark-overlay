@@ -10,7 +10,7 @@ JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-pkg-binjar
 
-DESCRIPTION="Square’s meticulous HTTP client for Java and Kotlin."
+DESCRIPTION="Square's meticulous HTTP client for Java and Kotlin."
 HOMEPAGE="https://square.github.io/okhttp/"
 SRC_URI="https://repo1.maven.org/maven2/com/squareup/${PN}3/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"

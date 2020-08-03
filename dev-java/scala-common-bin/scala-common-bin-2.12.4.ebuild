@@ -13,7 +13,7 @@ SRC_URI=""
 
 MAVEN_PROVIDES="org.scala-lang:scala-library:2.12.10 org.scala-lang:scala-reflect:2.12.10 org.scala-lang.modules:scala-xml_2.12:1.2.0"
 
-LICENSE=""
+LICENSE="BSD"
 SLOT="2.12"
 KEYWORDS="~amd64 ~x86"
 
@@ -29,12 +29,12 @@ DEPEND=">=virtual/jdk-1.8
 	${CP_DEPEND}"
 
 src_unpack() {
-	mkdir -p ${S}
-	cp ${EPREFIX}/usr/share/scala-2.12/lib/*jar ${S}/
+	mkdir -p "${S}"
+	cp "${EPREFIX}"/usr/share/scala-2.12/lib/*jar "${S}"/
 }
 
 src_install() {
-	for x in ${S}/*.jar ; do
+	for x in "${S}"/*.jar ; do
 		java-pkg_newjar "${x}" $(basename "${x%-*}.jar")
 	done
 }
