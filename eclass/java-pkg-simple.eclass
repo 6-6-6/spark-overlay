@@ -230,7 +230,6 @@ java-pkg-simple_getclasspath() {
 # $1 - -cp or -classpath
 # $2 - the classpath passed to it
 # $@ - test classes for testng to run.
-#		multiple classes can be separated by space or comma
 # @CODE
 etestng_() {
 	debug-print-function ${FUNCNAME} $*
@@ -250,10 +249,6 @@ etestng_() {
 		tests+="${test},"
 	done
 
-	ewarn ttr ${tests}
-	ewarn "java -cp \"${cp}\" -Djava.io.tmpdir=\"${T}\""\
-		"-Djava.awt.headless=true ${runner}"\
-		"-usedefaultlisteners false -testclass ${tests}"
 	debug-print "java -cp \"${cp}\" -Djava.io.tmpdir=\"${T}\""\
 		"-Djava.awt.headless=true ${runner}"\
 		"-usedefaultlisteners false -testclass ${tests}"
@@ -495,13 +490,9 @@ java-pkg-simple_src_test() {
 		! -name "Abstract*"\
 		! -name "BaseTest*"\
 		! -name "*\$*")
-	ewarn ttr  ${tests_to_run}
 	tests_to_run=${tests_to_run//"${classes}"\/}
-	ewarn ttr ${tests_to_run}
 	tests_to_run=${tests_to_run//.class}
-	ewarn ttr ${tests_to_run}
 	tests_to_run=${tests_to_run//\//.}
-	ewarn ttr ${tests_to_run}
 
 	# launch test
 	for framework in ${JAVA_TESTING_FRAMEWORKS}; do

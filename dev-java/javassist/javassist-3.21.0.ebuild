@@ -18,7 +18,7 @@ HOMEPAGE="http://www.javassist.org/"
 SRC_URI="https://repo.maven.apache.org/maven2/org/${PN}/${PN}/${PV}-GA/${P}-GA-sources.jar -> ${P}-sources.jar
 	https://repo.maven.apache.org/maven2/org/${PN}/${PN}/${PV}-GA/${P}-GA.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0 LGPL-2.1 MPL-1.1"
-SLOT="0"
+SLOT="3"
 KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 
 DEPEND="
