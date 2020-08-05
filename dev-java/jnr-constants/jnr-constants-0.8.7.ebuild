@@ -16,7 +16,7 @@ HOMEPAGE="http://github.com/jnr/jnr-constants"
 SRC_URI="https://repo.maven.apache.org/maven2/com/github/jnr/${PN}/${PV}/${P}-sources.jar"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~arm64"
+KEYWORDS="~amd64 ~arm64 ~x86"
 
 DEPEND="
 	>=virtual/jdk-1.5:*
