@@ -220,26 +220,46 @@ java-pkg-simple_getclasspath() {
 	debug-print "CLASSPATH=${classpath}"
 }
 
-# @FUNCTION: java-pkg-simple_test_with_junit_
+# @FUNCTION: etestng_
+# @USAGE: etestng_ [-cp $classpath] <org.gentoo.example.test>
 # @INTERNAL
 # @DESCRIPTION:
-# Launch test using ejunit4.
-java-pkg-simple_test_with_junit_() {
+# Launch test with testng.
+#
+# @CODE
+# $1 - -cp or -classpath
+# $2 - the classpath passed to it
+# $@ - test classes for testng to run.
+#		multiple classes can be separated by space or comma
+# @CODE
+etestng_() {
 	debug-print-function ${FUNCNAME} $*
 
-	local tests_to_run
+	local runner=org.testng.TestNG
+	local cp=$(java-pkg_getjars --with-dependencies testng)
+	local tests
 
-	tests_to_run=$(find "${classes}" \-type f\
-		-name "*Test.class"\
-		! -name "Abstract*"\
-		! -name "*\$*"\
-		! -name "BaseTest*")
-	tests_to_run=${tests_to_run//"${classes}"\/}
-	tests_to_run=${tests_to_run//.class}
-	tests_to_run=${tests_to_run//\//.}
+	if [[ ${1} = -cp || ${1} = -classpath ]]; then
+		cp="${cp}:${2}"
+		shift 2
+	else
+		cp="${cp}:."
+	fi
 
-	ejunit4 -classpath ${classpath} ${tests_to_run}
+	for test in ${@}; do
+		tests+="${test},"
+	done
 
+	ewarn ttr ${tests}
+	ewarn "java -cp \"${cp}\" -Djava.io.tmpdir=\"${T}\""\
+		"-Djava.awt.headless=true ${runner}"\
+		"-usedefaultlisteners false -testclass ${tests}"
+	debug-print "java -cp \"${cp}\" -Djava.io.tmpdir=\"${T}\""\
+		"-Djava.awt.headless=true ${runner}"\
+		"-usedefaultlisteners false -testclass ${tests}"
+	java -cp "${cp}" -Djava.io.tmpdir=\"${T}\" -Djava.awt.headless=true\
+		${runner} -usedefaultlisteners false -testclass ${tests}\
+		|| die "Running TestNG failed."
 }
 
 # @FUNCTION: java-pkg-simple_test_with_pkgdiff_
@@ -435,10 +455,11 @@ java-pkg-simple_src_install() {
 # Besides, it will perform test with framework defined by
 # ${JAVA_TESTING_FRAMEWORKS}.
 java-pkg-simple_src_test() {
-	local test_sources=test_sources.lst classes=target/testclasses classpath
+	local test_sources=test_sources.lst classes=target/testclasses
+	local tests_to_run classpath
 
 	# do not continue if the USE FLAG 'test' is explicitly unset
-	# or no ${JAVA_TESTING_FRAMEWORKS} specified
+	# or no ${JAVA_TESTING_FRSerializingCAMEWORKS} specified
 	if ! has test ${JAVA_PKG_IUSE}; then
 		return
 	elif ! use test; then
@@ -468,15 +489,29 @@ java-pkg-simple_src_test() {
 		-encoding ${JAVA_ENCODING} ${classpath:+-classpath ${classpath}} \
 		@${test_sources}
 
+	# grab a set of tests that testing framework will run
+	tests_to_run=$(find "${classes}" -type f\
+		-name "*Test*.class"\
+		! -name "Abstract*"\
+		! -name "BaseTest*"\
+		! -name "*\$*")
+	ewarn ttr  ${tests_to_run}
+	tests_to_run=${tests_to_run//"${classes}"\/}
+	ewarn ttr ${tests_to_run}
+	tests_to_run=${tests_to_run//.class}
+	ewarn ttr ${tests_to_run}
+	tests_to_run=${tests_to_run//\//.}
+	ewarn ttr ${tests_to_run}
+
 	# launch test
 	for framework in ${JAVA_TESTING_FRAMEWORKS}; do
 		case ${framework} in
 			junit)
-				java-pkg-simple_test_with_junit_;;
+				ejunit4 -classpath "${classpath}" ${tests_to_run};;
 			pkgdiff)
 				java-pkg-simple_test_with_pkgdiff_;;
-			junit-5) ;&
-			testng) ;&
+			testng)
+				etestng_ -classpath "${classpath}" ${tests_to_run};;
 			*)
 				elog "No suitable function found for framework ${framework}"
 		esac

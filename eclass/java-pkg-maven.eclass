@@ -57,7 +57,8 @@ java-pkg-maven_src_unpack() {
 				if [[ -d "${S}"/${JAVA_SRC_DIR}/META-INF ]] ; then
 					rm "${S}"/${JAVA_SRC_DIR}/META-INF -r || die
 				fi ;;
-			*) ;;
+			*)
+				unpack ${file};;
 		esac
 	done
 
