@@ -9,14 +9,14 @@ EAPI=7
 JAVA_PKG_IUSE="doc source"
 MAVEN_ID="org.jruby.jcodings:jcodings:1.0.13"
 
-inherit java-pkg-2 java-pkg-simple java-pkg-maven
+inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Byte based encoding support library for java"
 HOMEPAGE="http://nexus.sonatype.org/oss-repository-hosting.html/jcodings"
 SRC_URI="https://repo.maven.apache.org/maven2/org/jruby/${PN}/${PN}/${PV}/${P}-sources.jar"
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~ppc64 ~x86-linux ~x86-solaris"
+KEYWORDS="~amd64 ~ppc64 ~x86 ~amd64-linux ~x86-linux ~x86-solaris"
 
 DEPEND="
 	>=virtual/jdk-1.8:*
@@ -28,5 +28,3 @@ RDEPEND="
 "
 
 S="${WORKDIR}"
-
-JAVA_SRC_DIR="src/main/java"

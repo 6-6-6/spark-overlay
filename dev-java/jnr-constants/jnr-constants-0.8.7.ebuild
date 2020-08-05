@@ -9,7 +9,7 @@ EAPI=7
 JAVA_PKG_IUSE="doc source"
 MAVEN_ID="com.github.jnr:jnr-constants:0.8.7"
 
-inherit java-pkg-2 java-pkg-simple java-pkg-maven
+inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="A set of platform constants (e.g. errno values)"
 HOMEPAGE="http://github.com/jnr/jnr-constants"
@@ -28,5 +28,3 @@ RDEPEND="
 "
 
 S="${WORKDIR}"
-
-JAVA_SRC_DIR="src/main/java"

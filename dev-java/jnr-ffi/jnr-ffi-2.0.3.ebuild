@@ -6,17 +6,18 @@
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="com.github.jnr:jnr-ffi:2.0.3"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="A library for invoking native functions from java"
 HOMEPAGE="http://github.com/jnr/jnr-ffi"
-SRC_URI="https://repo.maven.apache.org/maven2/com/github/jnr/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/com/github/jnr/${PN}/${PV}/${P}-sources.jar
+		https://repo.maven.apache.org/maven2/com/github/jnr/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~arm64"
+KEYWORDS="~amd64 ~arm64 ~x86"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
@@ -34,6 +35,12 @@ DEPEND="
 	>=virtual/jdk-1.6:*
 	${CDEPEND}
 	app-arch/unzip
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)
 "
 
 # Runtime dependencies
@@ -49,3 +56,6 @@ S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jffi-1.2,jnr-x86asm-1.0,asm-4,jffi-1.2"
 JAVA_SRC_DIR="src/main/java"
+
+JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

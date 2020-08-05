@@ -2,21 +2,21 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/joda-time-2.9.7.pom --download-uri https://repo.maven.apache.org/maven2/joda-time/joda-time/2.9.7/joda-time-2.9.7-sources.jar --slot 0 --keywords "~amd64" --ebuild joda-time-2.9.7.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/joda-time-2.9.7.pom --download-uri https://repo.maven.apache.org/maven2/joda-time/joda-time/2.9.7/joda-time-2.9.7-sources.jar --slot 0 --keywords "~amd64 ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris" --ebuild joda-time-2.9.7.ebuild
 
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+
+inherit java-pkg-2 java-pkg-simple
+
 MAVEN_ID="joda-time:joda-time:2.9.7"
-
-inherit java-pkg-2 java-pkg-simple java-pkg-maven
-
 DESCRIPTION="Date and time library to replace JDK date handling"
 HOMEPAGE="http://www.joda.org/joda-time/"
 SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc64 ~x86 ~amd64-linux ~ppc-macos ~sparc-solaris ~x86-linux ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
@@ -28,8 +28,8 @@ CDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.5:*
-	${CDEPEND}
 	app-arch/unzip
+	${CDEPEND}
 "
 
 RDEPEND="
@@ -39,4 +39,3 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="joda-convert"
-JAVA_SRC_DIR="src/main/java"

@@ -17,18 +17,21 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 CDEPEND="
-	dev-java/jboss-modules:0"
+	dev-java/jboss-modules:0
+"
 
 RDEPEND="${CDEPEND}
 	>=virtual/jre-1.7
+"
+
+DEPEND="${CDEPEND}
+	>=virtual/jdk-1.7
 	test? ( amd64? (
 		dev-util/pkgdiff
 		dev-util/japi-compliance-checker
 		)
-	)"
-
-DEPEND="${CDEPEND}
-	>=virtual/jdk-1.7"
+	)
+"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_GENTOO_CLASSPATH="jboss-modules"
