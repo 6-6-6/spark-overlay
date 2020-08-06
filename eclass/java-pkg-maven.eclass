@@ -28,7 +28,7 @@ EXPORT_FUNCTIONS src_unpack
 # @DESCRIPTION:
 # A directory relative to ${S} which contains the resources of the
 # application. Give it a default value to handle src_unpack.
-: ${JAVA_RESOURCE_DIRS:=src/main/resources}
+: ${JAVA_RESOURCE_DIRS:=resources}
 
 # @ECLASS-VARIABLE: JAVA_RESOURCE_DIRS
 # @DEFAULT_UNSET
@@ -68,4 +68,3 @@ java-pkg-maven_src_unpack() {
 	find "${S}"/${JAVA_RESOURCE_DIRS} -type f ! -name \*.properties \
 		-exec rm {} \; || die
 }
-
