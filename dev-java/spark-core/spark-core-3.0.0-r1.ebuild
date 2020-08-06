@@ -11,11 +11,7 @@ MAVEN_ID="org.apache.spark:spark-core_2.12:3.0.0-preview2"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="The Apache Software Foundation provides support for the Apache community of open-source software projects.
-    The Apache projects are characterized by a collaborative, consensus based development process, an open and
-    pragmatic software license, and a desire to create high quality software that leads the way in its field.
-    We consider ourselves not simply a group of projects sharing a server, but rather a community of developers
-    and users."
+DESCRIPTION="The Apache Software Foundation provides support for the Apache community of open-source software projects. The Apache projects are characterized by a collaborative, consensus based development process, an open and pragmatic software license, and a desire to create high quality software that leads the way in its field. We consider ourselves not simply a group of projects sharing a server, but rather a community of developers and users."
 HOMEPAGE="http://spark.apache.org/"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2.jar -> ${P}-bin.jar"

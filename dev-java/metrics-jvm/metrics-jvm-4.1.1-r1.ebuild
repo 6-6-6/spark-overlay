@@ -11,8 +11,7 @@ MAVEN_ID="io.dropwizard.metrics:metrics-jvm:4.1.1"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="A set of classes which allow you to monitor critical aspects of your Java Virtual Machine
-        using Metrics."
+DESCRIPTION="A set of classes which allow you to monitor critical aspects of your Java Virtual Machine using Metrics."
 HOMEPAGE="http://metrics.dropwizard.io/metrics-jvm"
 SRC_URI="https://repo1.maven.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"

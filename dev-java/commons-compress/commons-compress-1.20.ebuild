@@ -11,10 +11,7 @@ MAVEN_ID="org.apache.commons:commons-compress:1.20"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Apache Commons Compress software defines an API for working with
-compression and archive formats.  These include: bzip2, gzip, pack200,
-lzma, xz, Snappy, traditional Unix Compress, DEFLATE, DEFLATE64, LZ4,
-Brotli, Zstandard and ar, cpio, jar, tar, zip, dump, 7z, arj."
+DESCRIPTION="Apache Commons Compress software defines an API for working with compression and archive formats.  These include: bzip2, gzip, pack200, lzma, xz, Snappy, traditional Unix Compress, DEFLATE, DEFLATE64, LZ4, Brotli, Zstandard and ar, cpio, jar, tar, zip, dump, 7z, arj."
 HOMEPAGE="https://commons.apache.org/proper/commons-compress/"
 SRC_URI="https://repo.maven.apache.org/maven2/org/apache/commons/${PN}/${PV}/${P}-sources.jar"
 LICENSE="Apache-2.0"

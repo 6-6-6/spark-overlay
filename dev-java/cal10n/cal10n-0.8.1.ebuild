@@ -25,5 +25,5 @@ java_prepare() {
 	mkdir -p "${S}"/target/classes || die
 	mv "${S}"/META-INF "${S}"/target/classes || die
 
-	cp ${FILESDIR}/* ch/qos/cal10n/util/ || die
+	cp "${FILESDIR}"/* ch/qos/cal10n/util/ || die
 }

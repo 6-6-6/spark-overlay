@@ -11,8 +11,7 @@ MAVEN_ID="commons-io:commons-io:2.6"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="The Apache Commons IO library contains utility classes, stream implementations, file filters,
-file comparators, endian transformation classes, and much more."
+DESCRIPTION="The Apache Commons IO library contains utility classes, stream implementations, file filters, file comparators, endian transformation classes, and much more."
 HOMEPAGE="http://commons.apache.org/proper/commons-io/"
 SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar

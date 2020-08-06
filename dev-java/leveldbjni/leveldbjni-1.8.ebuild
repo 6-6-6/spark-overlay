@@ -16,7 +16,7 @@ DESCRIPTION="leveldbjni is a jni library for acessing leveldb."
 HOMEPAGE="http://leveldbjni.fusesource.org/leveldbjni"
 SRC_URI="https://repo1.maven.org/maven2/org/fusesource/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/fusesource/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
-	https://repo.maven.apache.org/maven2/org/fusesource/leveldbjni/leveldbjni/1.8/leveldbjni-1.8-native-src.zip
+	https://repo.maven.apache.org/maven2/org/fusesource/${PN}/${PN}/${PV}/${P}-native-src.zip
 	"
 LICENSE="BSD"
 SLOT="0"
@@ -54,7 +54,7 @@ JNI_SRC_DIR="leveldbjni-1.8-native-src"
 src_unpack() {
 	mkdir -p ${JAVA_SRC_DIR} ${JNI_SRC_DIR}
 	unzip -q "${DISTDIR}"/${P}-sources.jar -d ${JAVA_SRC_DIR}
-	unzip -q "${DISTDIR}"/leveldbjni-1.8-native-src.zip -d ${S}
+	unzip -q "${DISTDIR}"/leveldbjni-1.8-native-src.zip -d "${S}"
 }
 
 src_prepare() {

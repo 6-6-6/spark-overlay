@@ -7,13 +7,12 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.javassist:javassist:3.21.0-GA"
+MAVEN_PROVIDES="javassist:javassist:3.21.0-GA"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-MAVEN_ID="org.javassist:javassist:3.21.0-GA"
-MAVEN_PROVIDES="javassist:javassist:3.21.0-GA"
-DESCRIPTION="Javassist (JAVA programming ASSISTant) makes Java bytecode manipulation
-simple.  It is a class library for editing bytecodes in Java."
+DESCRIPTION="Javassist (JAVA programming ASSISTant) makes Java bytecode manipulation simple.  It is a class library for editing bytecodes in Java."
 HOMEPAGE="http://www.javassist.org/"
 SRC_URI="https://repo.maven.apache.org/maven2/org/${PN}/${PN}/${PV}-GA/${P}-GA-sources.jar -> ${P}-sources.jar
 	https://repo.maven.apache.org/maven2/org/${PN}/${PN}/${PV}-GA/${P}-GA.jar -> ${P}-bin.jar"

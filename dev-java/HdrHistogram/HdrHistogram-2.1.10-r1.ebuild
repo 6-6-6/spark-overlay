@@ -11,12 +11,7 @@ MAVEN_ID="org.hdrhistogram:HdrHistogram:2.1.10"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="HdrHistogram supports the recording and analyzing sampled data value
-        counts across a configurable integer value range with configurable value
-        precision within the range. Value precision is expressed as the number of
-        significant digits in the value recording, and provides control over value
-        quantization behavior across the value range and the subsequent value
-        resolution at any given level."
+DESCRIPTION="HdrHistogram supports the recording and analyzing sampled data value counts across a configurable integer value range with configurable value precision within the range. Value precision is expressed as the number of significant digits in the value recording, and provides control over value quantization behavior across the value range and the subsequent value resolution at any given level."
 HOMEPAGE="http://hdrhistogram.github.io/HdrHistogram/"
 SRC_URI="https://repo1.maven.org/maven2/org/hdrhistogram/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/hdrhistogram/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"

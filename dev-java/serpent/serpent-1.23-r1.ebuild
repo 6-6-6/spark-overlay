@@ -11,11 +11,7 @@ MAVEN_ID="net.razorvine:serpent:1.23"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Serpent serializes an object tree into a Python ast.literal_eval() compatible literal expression. It is safe to send serpent data to other machines over the network for instance
-(because only 'safe' literals are encoded).
-There is also a deserializer or parse provided that turns such a literal expression back into the appropriate Java object tree.
-
-It is an alternative to JSON to provide easy data integration between Java and Python.  Serpent is more expressive as JSON (it supports more data types)."
+DESCRIPTION="Serpent serializes an object tree into a Python ast.literal_eval() compatible literal expression. It is safe to send serpent data to other machines over the network for instance (because only 'safe' literals are encoded). There is also a deserializer or parse provided that turns such a literal expression back into the appropriate Java object tree.  It is an alternative to JSON to provide easy data integration between Java and Python.  Serpent is more expressive as JSON (it supports more data types)."
 HOMEPAGE="https://github.com/irmen/Serpent"
 SRC_URI="https://repo1.maven.org/maven2/net/razorvine/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/net/razorvine/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"

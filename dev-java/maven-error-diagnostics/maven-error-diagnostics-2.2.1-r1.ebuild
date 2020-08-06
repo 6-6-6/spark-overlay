@@ -11,9 +11,7 @@ MAVEN_ID="org.apache.maven:maven-error-diagnostics:2.2.1"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Provides a manager component which will process a given Throwable instance through a set of diagnostic
-    sub-components, and return a String message with user-friendly information about the error and possibly
-    how to fix it."
+DESCRIPTION="Provides a manager component which will process a given Throwable instance through a set of diagnostic sub-components, and return a String message with user-friendly information about the error and possibly how to fix it."
 HOMEPAGE="http://maven.apache.org/maven-error-diagnostics"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/maven/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/maven/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"

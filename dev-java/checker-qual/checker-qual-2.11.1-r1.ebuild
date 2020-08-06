@@ -11,10 +11,7 @@ MAVEN_ID="org.checkerframework:checker-qual:2.11.1"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Checker Qual is the set of annotations (qualifiers) and supporting classes
-        used by the Checker Framework to type check Java source code.  Please
-        see artifact:
-        org.checkerframework:checker"
+DESCRIPTION="Checker Qual is the set of annotations (qualifiers) and supporting classes used by the Checker Framework to type check Java source code.  Please see artifact: org.checkerframework:checker"
 HOMEPAGE="https://checkerframework.org"
 SRC_URI="https://repo1.maven.org/maven2/org/checkerframework/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/checkerframework/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"

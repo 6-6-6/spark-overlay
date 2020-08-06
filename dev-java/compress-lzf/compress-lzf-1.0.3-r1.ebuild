@@ -11,9 +11,7 @@ MAVEN_ID="com.ning:compress-lzf:1.0.3"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Compression codec for LZF encoding for particularly encoding/decoding, with reasonable compression.
-Compressor is basic Lempel-Ziv codec, without Huffman (deflate/gzip) or statistical post-encoding.
-See \"http://oldhome.schmorp.de/marc/liblzf.html\" for more on original LZF package."
+DESCRIPTION="Compression codec for LZF encoding for particularly encoding/decoding, with reasonable compression. Compressor is basic Lempel-Ziv codec, without Huffman (deflate/gzip) or statistical post-encoding. See \"http://oldhome.schmorp.de/marc/liblzf.html\" for more on original LZF package."
 HOMEPAGE="http://github.com/ning/compress"
 SRC_URI="https://repo1.maven.org/maven2/com/ning/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/ning/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"

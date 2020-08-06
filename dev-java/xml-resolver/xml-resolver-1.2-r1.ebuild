@@ -11,11 +11,7 @@ MAVEN_ID="xml-resolver:xml-resolver:1.2"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="xml-commons provides an Apache-hosted set of DOM, SAX, and 
-    JAXP interfaces for use in other xml-based projects. Our hope is that we 
-    can standardize on both a common version and packaging scheme for these 
-    critical XML standards interfaces to make the lives of both our developers 
-    and users easier."
+DESCRIPTION="xml-commons provides an Apache-hosted set of DOM, SAX, and JAXP interfaces for use in other xml-based projects. Our hope is that we can standardize on both a common version and packaging scheme for these critical XML standards interfaces to make the lives of both our developers and users easier."
 HOMEPAGE="http://xml.apache.org/commons/components/resolver/"
 SRC_URI="https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"

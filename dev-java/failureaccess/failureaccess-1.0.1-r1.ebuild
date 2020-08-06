@@ -11,13 +11,7 @@ MAVEN_ID="com.google.guava:failureaccess:1.0.1"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Contains
-    com.google.common.util.concurrent.internal.InternalFutureFailureAccess and
-    InternalFutures. Most users will never need to use this artifact. Its
-    classes is conceptually a part of Guava, but they're in this separate
-    artifact so that Android libraries can use them without pulling in all of
-    Guava (just as they can use ListenableFuture by depending on the
-    listenablefuture artifact)."
+DESCRIPTION="Contains com.google.common.util.concurrent.internal.InternalFutureFailureAccess and InternalFutures. Most users will never need to use this artifact. Its classes is conceptually a part of Guava, but they're in this separate artifact so that Android libraries can use them without pulling in all of Guava (just as they can use ListenableFuture by depending on the listenablefuture artifact)."
 HOMEPAGE="https://github.com/google/guava/failureaccess"
 SRC_URI="https://repo1.maven.org/maven2/com/google/guava/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/google/guava/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"

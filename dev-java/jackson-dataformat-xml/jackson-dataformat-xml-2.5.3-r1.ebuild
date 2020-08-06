@@ -11,10 +11,7 @@ MAVEN_ID="com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.5.3"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Data format extension for Jackson (http://jackson.codehaus.org) to offer
-alternative support for serializing POJOs as XML and deserializing XML as pojos.
-Support implemented on top of Stax API (javax.xml.stream), by implementing core Jackson Streaming API types like JsonGenerator, JsonParser and JsonFactory.
-Some data-binding types overridden as well (ObjectMapper sub-classed as XmlMapper)."
+DESCRIPTION="Data format extension for Jackson (http://jackson.codehaus.org) to offer alternative support for serializing POJOs as XML and deserializing XML as pojos. Support implemented on top of Stax API (javax.xml.stream), by implementing core Jackson Streaming API types like JsonGenerator, JsonParser and JsonFactory. Some data-binding types overridden as well (ObjectMapper sub-classed as XmlMapper)."
 HOMEPAGE="http://wiki.fasterxml.com/JacksonExtensionXmlDataBinding"
 SRC_URI="https://repo1.maven.org/maven2/com/fasterxml/jackson/dataformat/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/fasterxml/jackson/dataformat/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"

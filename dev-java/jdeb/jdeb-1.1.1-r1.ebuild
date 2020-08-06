@@ -11,9 +11,7 @@ MAVEN_ID="org.vafer:jdeb:1.1.1"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="This library provides an Ant task and a Maven plugin to create Debian packages from Java builds in a truly cross
-        platform manner. Build your Debian packages on any platform that has Java support. Windows, Linux, OS X - it doesn't
-        require additional native tools installed."
+DESCRIPTION="This library provides an Ant task and a Maven plugin to create Debian packages from Java builds in a truly cross platform manner. Build your Debian packages on any platform that has Java support. Windows, Linux, OS X - it doesn't require additional native tools installed."
 HOMEPAGE="http://github.com/tcurdt/jdeb"
 SRC_URI="https://repo1.maven.org/maven2/org/vafer/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/vafer/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"

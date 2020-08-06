@@ -11,8 +11,7 @@ MAVEN_ID="org.apache.maven:maven-project:2.2.1"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="This library is used to not only read Maven project object model files, but to assemble inheritence
-    and to retrieve remote models as required."
+DESCRIPTION="This library is used to not only read Maven project object model files, but to assemble inheritence and to retrieve remote models as required."
 HOMEPAGE="http://maven.apache.org/maven-project"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/maven/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/maven/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"

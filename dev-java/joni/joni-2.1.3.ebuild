@@ -7,10 +7,10 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.jruby.joni:joni:2.1.3"
 
 inherit java-pkg-2 java-pkg-simple
 
-MAVEN_ID="org.jruby.joni:joni:2.1.3"
 DESCRIPTION="Java port of Oniguruma: http://www.geocities.jp/kosako3/oniguruma that uses byte arrays directly instead of java Strings and chars"
 HOMEPAGE="http://nexus.sonatype.org/oss-repository-hosting.html/joni"
 SRC_URI="https://repo.maven.apache.org/maven2/org/jruby/${PN}/${PN}/${PV}/${P}-sources.jar"

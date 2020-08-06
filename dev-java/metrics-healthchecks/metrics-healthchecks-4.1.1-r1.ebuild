@@ -11,8 +11,7 @@ MAVEN_ID="io.dropwizard.metrics:metrics-healthchecks:4.1.1"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="An addition to Metrics which provides the ability to run application-specific health checks,
-        allowing you to check your application's heath in production."
+DESCRIPTION="An addition to Metrics which provides the ability to run application-specific health checks, allowing you to check your application's heath in production."
 HOMEPAGE="http://metrics.dropwizard.io/metrics-healthchecks"
 SRC_URI="https://repo1.maven.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"

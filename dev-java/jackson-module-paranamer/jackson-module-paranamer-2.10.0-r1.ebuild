@@ -11,8 +11,7 @@ MAVEN_ID="com.fasterxml.jackson.module:jackson-module-paranamer:2.10.0"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="AnnotationIntrospectors that use Paranamer (http://paranamer.codehaus.org)
-to introspect names of constructor (and factory method) parameters."
+DESCRIPTION="AnnotationIntrospectors that use Paranamer (http://paranamer.codehaus.org) to introspect names of constructor (and factory method) parameters."
 HOMEPAGE="https://github.com/FasterXML/jackson-modules-base"
 SRC_URI="https://repo1.maven.org/maven2/com/fasterxml/jackson/module/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/fasterxml/jackson/module/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"

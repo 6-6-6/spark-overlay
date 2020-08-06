@@ -11,8 +11,7 @@ MAVEN_ID="org.apache.maven.wagon:wagon-http-shared:1.0-beta-6"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Shared Library for the wagon-http, and wagon-http-lightweight wagon
-    providers."
+DESCRIPTION="Shared Library for the wagon-http, and wagon-http-lightweight wagon providers."
 HOMEPAGE="http://maven.apache.org/wagon/wagon-providers/wagon-http-shared"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/maven/wagon/${PN}/1.0-beta-6/${PN}-1.0-beta-6-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/maven/wagon/${PN}/1.0-beta-6/${PN}-1.0-beta-6.jar -> ${P}-bin.jar"

@@ -11,13 +11,7 @@ MAVEN_ID="io.netty:netty:3.10.6.Final"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="The Netty project is an effort to provide an asynchronous event-driven
-    network application framework and tools for rapid development of
-    maintainable high performance and high scalability protocol servers and
-    clients.  In other words, Netty is a NIO client server framework which
-    enables quick and easy development of network applications such as protocol
-    servers and clients. It greatly simplifies and streamlines network
-    programming such as TCP and UDP socket server."
+DESCRIPTION="The Netty project is an effort to provide an asynchronous event-driven network application framework and tools for rapid development of maintainable high performance and high scalability protocol servers and clients.  In other words, Netty is a NIO client server framework which enables quick and easy development of network applications such as protocol servers and clients. It greatly simplifies and streamlines network programming such as TCP and UDP socket server."
 HOMEPAGE="http://netty.io/"
 SRC_URI="https://repo1.maven.org/maven2/io/${PN}/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/io/${PN}/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar"

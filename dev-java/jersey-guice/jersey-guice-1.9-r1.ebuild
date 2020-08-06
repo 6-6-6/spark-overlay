@@ -11,8 +11,7 @@ MAVEN_ID="com.sun.jersey.contribs:jersey-guice:1.9"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Projects that provide additional functionality to jersey, like integration
-        with other projects/frameworks."
+DESCRIPTION="Projects that provide additional functionality to jersey, like integration with other projects/frameworks."
 HOMEPAGE="https://jersey.java.net/jersey-contribs/jersey-guice/"
 SRC_URI="https://repo1.maven.org/maven2/com/sun/jersey/contribs/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/sun/jersey/contribs/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"

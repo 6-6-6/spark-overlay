@@ -7,10 +7,10 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="joda-time:joda-time:2.9.7"
 
 inherit java-pkg-2 java-pkg-simple
 
-MAVEN_ID="joda-time:joda-time:2.9.7"
 DESCRIPTION="Date and time library to replace JDK date handling"
 HOMEPAGE="http://www.joda.org/joda-time/"
 SRC_URI="https://repo.maven.apache.org/maven2/${PN}/${PN}/${PV}/${P}-sources.jar"

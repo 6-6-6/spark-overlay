@@ -11,14 +11,7 @@ MAVEN_ID="xml-apis:xml-apis:1.0.b2"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="xml-commons provides an Apache-hosted set of DOM, SAX, and 
-    JAXP interfaces for use in other xml-based projects. Our hope is that we 
-    can standardize on both a common version and packaging scheme for these 
-    critical XML standards interfaces to make the lives of both our developers 
-    and users easier. The External Components portion of xml-commons contains 
-    interfaces that are defined by external standards organizations. For DOM, 
-    that's the W3C; for SAX it's David Megginson and sax.sourceforge.net; for 
-    JAXP it's Sun."
+DESCRIPTION="xml-commons provides an Apache-hosted set of DOM, SAX, and JAXP interfaces for use in other xml-based projects. Our hope is that we can standardize on both a common version and packaging scheme for these critical XML standards interfaces to make the lives of both our developers and users easier. The External Components portion of xml-commons contains interfaces that are defined by external standards organizations. For DOM, that's the W3C; for SAX it's David Megginson and sax.sourceforge.net; for JAXP it's Sun."
 HOMEPAGE="http://xml.apache.org/commons/#external"
 SRC_URI="https://repo1.maven.org/maven2/${PN}/${PN}/${PV}.b2/${P}.b2-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/${PN}/${PN}/${PV}.b2/${P}.b2.jar -> ${P}-bin.jar"

@@ -11,8 +11,7 @@ MAVEN_ID="org.codehaus.jackson:jackson-mapper-asl:1.9.13"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Data Mapper package is a high-performance data binding package
-built on Jackson JSON processor"
+DESCRIPTION="Data Mapper package is a high-performance data binding package built on Jackson JSON processor"
 HOMEPAGE="http://jackson.codehaus.org"
 SRC_URI="https://repo1.maven.org/maven2/org/codehaus/jackson/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/codehaus/jackson/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"

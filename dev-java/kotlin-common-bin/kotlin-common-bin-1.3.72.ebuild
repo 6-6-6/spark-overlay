@@ -29,7 +29,7 @@ DEPEND=">=virtual/jdk-1.8
 
 src_unpack() {
 	mkdir -p "${S}"
-	cp ${EPREFIX}/opt/kotlin-bin/lib/*jar "${S}"/
+	cp "${EPREFIX}"/opt/kotlin-bin/lib/*jar "${S}"/
 }
 
 src_install() {

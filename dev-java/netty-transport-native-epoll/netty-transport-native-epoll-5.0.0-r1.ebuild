@@ -11,9 +11,7 @@ MAVEN_ID="io.netty:netty-transport-native-epoll:5.0.0.Alpha2"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Netty is an asynchronous event-driven network application framework for
-    rapid development of maintainable high performance protocol servers and
-    clients."
+DESCRIPTION="Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers and clients."
 HOMEPAGE="http://netty.io/netty-transport-native-epoll/"
 SRC_URI="https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Alpha2/${P}.Alpha2-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Alpha2/${P}.Alpha2.jar -> ${P}-bin.jar"

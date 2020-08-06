@@ -11,9 +11,7 @@ MAVEN_ID="jakarta.persistence:jakarta.persistence-api:2.2.3"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Eclipse Enterprise for Java (EE4J) is an open source initiative to create standard APIs,
-        implementations of those APIs, and technology compatibility kits for Java runtimes
-        that enable development, deployment, and management of server-side and cloud-native applications."
+DESCRIPTION="Eclipse Enterprise for Java (EE4J) is an open source initiative to create standard APIs, implementations of those APIs, and technology compatibility kits for Java runtimes that enable development, deployment, and management of server-side and cloud-native applications."
 HOMEPAGE="https://github.com/eclipse-ee4j/jpa-api"
 SRC_URI="https://repo1.maven.org/maven2/jakarta/persistence/jakarta.persistence-api/${PV}/jakarta.persistence-api-${PV}-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/jakarta/persistence/jakarta.persistence-api/${PV}/jakarta.persistence-api-${PV}.jar -> ${P}-bin.jar"

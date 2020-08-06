@@ -11,11 +11,7 @@ MAVEN_ID="tomcat:jasper-runtime:5.5.23"
 
 inherit java-pkg-2 java-pkg-binjar
 
-DESCRIPTION="The Apache Software Foundation provides support for the Apache community of open-source software projects.
-    The Apache projects are characterized by a collaborative, consensus based development process, an open and
-    pragmatic software license, and a desire to create high quality software that leads the way in its field.
-    We consider ourselves not simply a group of projects sharing a server, but rather a community of developers
-    and users."
+DESCRIPTION="The Apache Software Foundation provides support for the Apache community of open-source software projects. The Apache projects are characterized by a collaborative, consensus based development process, an open and pragmatic software license, and a desire to create high quality software that leads the way in its field. We consider ourselves not simply a group of projects sharing a server, but rather a community of developers and users."
 HOMEPAGE="http://tomcat.apache.org/jasper-runtime"
 SRC_URI="https://repo1.maven.org/maven2/tomcat/${PN}/${PV}/${P}.jar"
 LICENSE="Apache-2.0"

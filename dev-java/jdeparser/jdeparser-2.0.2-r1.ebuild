@@ -7,10 +7,10 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.jboss.jdeparser:jdeparser:2.0.2.Final"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-MAVEN_ID="org.jboss.jdeparser:jdeparser:2.0.2.Final"
 DESCRIPTION="Parent POM for JBoss projects. Provides default project build configuration."
 HOMEPAGE="http://www.jboss.org/jdeparser"
 SRC_URI="https://repo1.maven.org/maven2/org/jboss/${PN}/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar

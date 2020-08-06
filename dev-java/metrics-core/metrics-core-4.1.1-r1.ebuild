@@ -11,9 +11,7 @@ MAVEN_ID="io.dropwizard.metrics:metrics-core:4.1.1"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Metrics is a Java library which gives you unparalleled insight into what your code does in
-        production. Metrics provides a powerful toolkit of ways to measure the behavior of critical
-        components in your production environment."
+DESCRIPTION="Metrics is a Java library which gives you unparalleled insight into what your code does in production. Metrics provides a powerful toolkit of ways to measure the behavior of critical components in your production environment."
 HOMEPAGE="http://metrics.dropwizard.io/metrics-core"
 SRC_URI="https://repo1.maven.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/io/dropwizard/metrics/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"

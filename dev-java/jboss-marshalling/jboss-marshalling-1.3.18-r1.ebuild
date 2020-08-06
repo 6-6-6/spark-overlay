@@ -7,10 +7,10 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test"
+MAVEN_ID="org.jboss.marshalling:jboss-marshalling:1.3.18.GA"
 
 inherit java-pkg-2 java-pkg-simple
 
-MAVEN_ID="org.jboss.marshalling:jboss-marshalling:1.3.18.GA"
 DESCRIPTION="JBoss Marshalling API"
 HOMEPAGE="http://www.jboss.org/jboss-marshalling-parent/jboss-marshalling"
 SRC_URI="https://github.com/jboss-remoting/${PN}/archive/${PV}.GA.tar.gz -> ${P}-sources.tar.gz"

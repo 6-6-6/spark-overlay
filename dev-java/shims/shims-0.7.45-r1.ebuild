@@ -11,8 +11,7 @@ MAVEN_ID="org.roaringbitmap:shims:0.7.45"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Roaring bitmaps are compressed bitmaps (also called bitsets) which tend to outperform
-     conventional compressed bitmaps such as WAH or Concise."
+DESCRIPTION="Roaring bitmaps are compressed bitmaps (also called bitsets) which tend to outperform conventional compressed bitmaps such as WAH or Concise."
 HOMEPAGE="https://github.com/RoaringBitmap/RoaringBitmap/shims"
 SRC_URI="https://repo1.maven.org/maven2/org/roaringbitmap/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/roaringbitmap/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"

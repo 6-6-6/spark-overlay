@@ -11,9 +11,7 @@ MAVEN_ID="com.sun.jersey:jersey-server:1.9"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Jersey is the open source (under dual CDDL+GPL license) JAX-RS (JSR 311)
-        production quality Reference Implementation for building
-        RESTful Web services."
+DESCRIPTION="Jersey is the open source (under dual CDDL+GPL license) JAX-RS (JSR 311) production quality Reference Implementation for building RESTful Web services."
 HOMEPAGE="https://jersey.java.net/jersey-server/"
 SRC_URI="https://repo1.maven.org/maven2/com/sun/jersey/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/sun/jersey/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
