@@ -27,4 +27,8 @@ java-pkg-binjar_src_unpack() {
 # @FUNCTION: java-pkg-simple_src_compile
 # @DESCRIPTION:
 # Do nothing as we are doing binary install.
-java-pkg-binjar_src_compile() { :; }
+java-pkg-binjar_src_compile() {
+	for dependency in ${JAVA_GENTOO_CLASSPATH//,/ }; do
+		java-pkg_record-jar_ ${dependency}
+	done
+}
