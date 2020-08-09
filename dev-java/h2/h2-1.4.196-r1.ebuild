@@ -19,16 +19,28 @@ LICENSE="|| ( MPL-1.1 EPL-1.0 )"
 SLOT="0"
 KEYWORDS="~amd64"
 
+CDEPEND="
+	dev-java/lucene:3.6
+	dev-java/slf4j-api:0
+	dev-java/jts-core:0
+	dev-java/osgi-framework:1.8
+	dev-java/osgi-service-jdbc:0
+	java-virtuals/servlet-api:4.0
+"
+
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
+	${CDEPEND}
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
+	${CDEPEND}
 "
 
 S="${WORKDIR}"
 
+JAVA_GENTOO_CLASSPATH="lucene-3.6,jts-core,slf4j-api,osgi-framework-1.8,osgi-service-jdbc,servlet-api-4.0"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

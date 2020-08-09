@@ -21,7 +21,7 @@ KEYWORDS="~amd64"
 
 CDEPEND="
 	dev-java/osgi-annotation:6
-	dev-java/osgi-framework:6
+	dev-java/osgi-framework:1.9
 
 	dev-java/glassfish-persistence:0
 	java-virtuals/servlet-api:4.0
@@ -43,4 +43,4 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_GENTOO_CLASSPATH="osgi-annotation-6,osgi-framework-6,servlet-api-4.0,glassfish-persistence,microemu-cldc"
+JAVA_GENTOO_CLASSPATH="osgi-annotation-6,osgi-framework-1.9,servlet-api-4.0,glassfish-persistence,microemu-cldc"

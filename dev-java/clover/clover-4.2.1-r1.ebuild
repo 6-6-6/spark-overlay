@@ -19,16 +19,21 @@ LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 
+CDEPEND="dev-java/jetbrains-annotations:0"
+
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
+	${CDEPEND}
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
+	${CDEPEND}
 "
 
 S="${WORKDIR}"
 
+JAVA_GENTOO_CLASSPATH="jetbrains-annotations"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

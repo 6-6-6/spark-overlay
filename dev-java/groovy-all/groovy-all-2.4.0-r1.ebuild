@@ -43,6 +43,7 @@ CDEPEND="
 	>=dev-java/jline-2.12.1:2
 	>=dev-java/junit-4.12:4
 	>=dev-java/qdox-1.12.1:1.12
+	dev-java/commons-cli:1
 "
 
 # Compile dependencies
@@ -79,7 +80,7 @@ ${CDEPEND}
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="bsf-2.3,jcommander,qdox-1.12,xstream,commons-logging,jline-2,junit-4,ant-core,ant-ivy-2,jansi-1.11,ant-antlr,ant-junit,ant-launcher,gpars,testng"
+JAVA_GENTOO_CLASSPATH="bsf-2.3,jcommander,qdox-1.12,xstream,commons-logging,jline-2,junit-4,ant-core,ant-ivy-2,jansi-1.11,ant-antlr,ant-junit,ant-launcher,gpars,testng,commons-cli-1"
 JAVA_CLASSPATH_EXTRA="jsp-api-2.3,servlet-api-4.0"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
