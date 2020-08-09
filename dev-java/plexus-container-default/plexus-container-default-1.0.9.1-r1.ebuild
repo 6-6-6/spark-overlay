@@ -48,5 +48,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="classworlds,junit-4,plexus-utils"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

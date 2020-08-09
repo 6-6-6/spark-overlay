@@ -277,6 +277,7 @@ java-pkg-simple_test_with_pkgdiff_() {
 		# japi-compliance-checker
 		japi-compliance-checker ${JAVA_BINJAR_FILENAME} ${JAVA_JAR_FILENAME}\
 			--lib=${PN} -v1 ${PV}-bin -v2 ${PV} -report-path ${report1}\
+			--binary\
 			|| die "japi-compliance-checker returns $?,"\
 				"check the report in ${S}/${report1}"
 

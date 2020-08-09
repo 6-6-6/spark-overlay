@@ -9,7 +9,7 @@ EAPI=7
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.json4s:json4s-ast_2.12:3.6.6"
 
-inherit java-pkg-2 java-pkg-simple java-pkg-maven
+inherit java-pkg-2 java-pkg-simple java-pkg-maven java-pkg-simple-plugins
 
 DESCRIPTION="json4s-ast"
 HOMEPAGE="https://github.com/json4s/json4s"
@@ -44,3 +44,7 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="scala-common-bin-2.12"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+
+src_compile() {
+	java-pkg-simple-plugins_src_compile
+}

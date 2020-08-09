@@ -9,7 +9,7 @@ EAPI=7
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="com.fasterxml.jackson.module:jackson-module-scala_2.12:2.10.0"
 
-inherit java-pkg-2 java-pkg-simple java-pkg-maven
+inherit java-pkg-2 java-pkg-simple java-pkg-maven java-pkg-simple-plugins
 
 DESCRIPTION="jackson-module-scala"
 HOMEPAGE="http://wiki.fasterxml.com/JacksonModuleScala"
@@ -52,3 +52,7 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind,jackson-module-paranamer,scala-common-bin-2.12"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+
+src_compile() {
+	java-pkg-simple-plugins_src_compile
+}

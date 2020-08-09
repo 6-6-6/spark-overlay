@@ -9,7 +9,7 @@ EAPI=7
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.apache.spark:spark-core_2.12:3.0.0-preview2"
 
-inherit java-pkg-2 java-pkg-simple java-pkg-maven
+inherit java-pkg-2 java-pkg-simple java-pkg-maven java-pkg-simple-plugins
 
 DESCRIPTION="The Apache Software Foundation provides support for the Apache community of open-source software projects. The Apache projects are characterized by a collaborative, consensus based development process, an open and pragmatic software license, and a desire to create high quality software that leads the way in its field. We consider ourselves not simply a group of projects sharing a server, but rather a community of developers and users."
 HOMEPAGE="http://spark.apache.org/"
@@ -163,3 +163,7 @@ JAVA_GENTOO_CLASSPATH="stream,jackson-databind,jackson-module-scala-2.12,zstd-jn
 JAVA_CLASSPATH_EXTRA="guava"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+
+src_compile() {
+	java-pkg-simple-plugins_src_compile
+}

@@ -43,6 +43,7 @@ CDEPEND="
 	>=dev-java/protobuf-java-3.11.4:0
 	>=dev-java/slf4j-api-1.7.7:0
 	java-virtuals/servlet-api:4.0
+	dev-java/tomcat-jni:0
 "
 
 DEPEND="
@@ -59,6 +60,6 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="protobuf-java,commons-logging,activation,servlet-api-4.0,log4j,osgi-compendium,osgi-core-1,jboss-logging-spi,jboss-marshalling,slf4j-api"
+JAVA_GENTOO_CLASSPATH="protobuf-java,commons-logging,activation,servlet-api-4.0,log4j,osgi-compendium,osgi-core-1,jboss-logging-spi,jboss-marshalling,slf4j-api,tomcat-jni"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

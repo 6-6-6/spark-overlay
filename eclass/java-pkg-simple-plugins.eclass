@@ -56,6 +56,7 @@ ekotlinc() {
 
 java-pkg-simple-plugins_src_compile() {
 	local classes=target/classes
+	local java_sources=java_sources.lst
 	local scala_sources=scala_sources.lst
 	local kotlin_sources=kotlin_sources.lst
 
@@ -72,12 +73,15 @@ java-pkg-simple-plugins_src_compile() {
 	fi
 
 	# gather sources
+	echo -n > ${java_sources}\
+		|| die "Could not create an empty ${java_sources}"
 	echo -n > ${scala_sources}\
 		|| die "Could not create an empty ${scala_sources}"
 	echo -n > ${kotlin_sources}\
 		|| die "Could not create an empty ${kotlin_sources}"
 	local directory
 	for directory in "${JAVA_SRC_DIR[@]}"; do
+		find "${directory}" -name \*.java >> ${java_sources}
 		find "${directory}" -name \*.scala >> ${scala_sources}
 		find "${directory}" -name \*.kt >> ${kotlin_sources}
 	done
@@ -97,6 +101,10 @@ java-pkg-simple-plugins_src_compile() {
 	[[ -s ${kotlin_sources} ]] && ekotlinc -d ${classes}\
 		${classpath:+-classpath ${classpath}} ${KOTLINC_ARGS}\
 		@${kotlin_sources}
+
+	[[ -s ${java_sources} ]] && ejavac -d ${classes} -encoding ${JAVA_ENCODING}\
+		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS}\
+		@${sources}
 
 	local jar_args
 	if [[ -e ${classes}/META-INF/MANIFEST.MF ]]; then

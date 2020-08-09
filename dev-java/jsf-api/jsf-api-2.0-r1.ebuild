@@ -34,6 +34,7 @@ DEPEND="
 	java-virtuals/el-api:3.0
 	java-virtuals/jsp-api:2.3
 	java-virtuals/servlet-api:4.0
+	dev-java/validation-api:0
 	)
 "
 
@@ -43,6 +44,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_CLASSPATH_EXTRA="el-api-3.0,servlet-api-4.0,jsp-api-2.3,jstl"
+JAVA_CLASSPATH_EXTRA="el-api-3.0,servlet-api-4.0,jsp-api-2.3,jstl,validation-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

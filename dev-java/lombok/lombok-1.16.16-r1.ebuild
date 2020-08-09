@@ -19,6 +19,10 @@ LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
 
+CP_DEPEND="
+	dev-java/junit:4
+"
+
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
@@ -30,5 +34,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
+JAVA_NEEDS_TOOLS=1
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

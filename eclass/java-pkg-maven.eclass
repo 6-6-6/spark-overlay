@@ -68,3 +68,4 @@ java-pkg-maven_src_unpack() {
 	find "${S}"/${JAVA_RESOURCE_DIRS} -type f ! -name \*.properties \
 		-exec rm {} \; || die
 }
+

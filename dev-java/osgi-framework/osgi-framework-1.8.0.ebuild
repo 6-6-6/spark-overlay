@@ -15,7 +15,7 @@ DESCRIPTION="OSGi Companion Code for org.osgi.framework Version 1.9.0"
 HOMEPAGE="http://www.osgi.org"
 SRC_URI="https://repo.maven.apache.org/maven2/org/osgi/org.osgi.framework/${PV}/org.osgi.framework-${PV}-sources.jar -> ${P}-sources.jar"
 LICENSE="Apache-2.0"
-SLOT="1.8"
+SLOT="1"
 KEYWORDS="~amd64"
 
 CDEPEND="
