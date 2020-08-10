@@ -37,6 +37,11 @@ EXPORT_FUNCTIONS src_unpack
 # the application. Give it a default value to handle src_unpack.
 : ${JAVA_TEST_SRC_DIR:=src/test/java}
 
+# @ECLASS-VARIABLE: JAVA_BINJAR_FILENAME
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# The name of the binary jar file that java-pkg-maven will not unpack
+
 # @FUNCTION: java-pkg-binjar_src_unpack
 # @DESCRIPTION:
 # Copy the binary jar into the expected place of java-pkg-simple.  Do
@@ -57,6 +62,7 @@ java-pkg-maven_src_unpack() {
 				if [[ -d "${S}"/${JAVA_SRC_DIR}/META-INF ]] ; then
 					rm "${S}"/${JAVA_SRC_DIR}/META-INF -r || die
 				fi ;;
+			${JAVA_BINJAR_FILENAME}) ;;
 			*)
 				unpack ${file};;
 		esac

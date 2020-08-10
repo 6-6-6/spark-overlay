@@ -69,11 +69,12 @@ S="${WORKDIR}"
 # package.env.
 
 # @ECLASS-VARIABLE: JAVA_SRC_DIR
+# @DEFAULT_UNSET
 # @DESCRIPTION:
 # An array of directories relative to ${S} which contain the sources
 # of the application. If you set ${JAVA_SRC_DIR} to a string it works
-# as well. The default value is set to "." which means it will get
-# all source files inside ${S}.
+# as well. The default value "" means it will get all source files
+# inside ${S}.
 # For the generated source package (if source is listed in
 # ${JAVA_PKG_IUSE}), it is important that these directories are
 # actually the roots of the corresponding source trees.
@@ -83,7 +84,6 @@ S="${WORKDIR}"
 #		"arquillian/weld-ee-container/src/main/java/"
 #	)
 # @CODE
-: ${JAVA_SRC_DIR:=.}
 
 # @DESCRIPTION:
 # @ECLASS-VARIABLE: JAVA_RESOURCE_DIRS
@@ -158,11 +158,11 @@ S="${WORKDIR}"
 # source code for testing.
 
 # @ECLASS-VARIABLE: JAVA_TEST_SRC_DIR
+# @DEFAULT_UNSET
 # @DESCRIPTION:
 # An array of directories relative to ${S} which contain the
 # sources for testing. It is almost equivalent to
 # ${JAVA_SRC_DIR} in src_test.
-: ${JAVA_TEST_SRC_DIR:=.}
 
 # @ECLASS-VARIABLE: JAVA_TEST_RESOURCE_DIRS
 # @DEFAULT_UNSET
@@ -357,12 +357,7 @@ java-pkg-simple_src_compile() {
 	fi
 
 	# gather sources
-	echo -n > ${sources}\
-		|| die "Could not create an empty ${sources}"
-	local directory
-	for directory in "${JAVA_SRC_DIR[@]}"; do
-		find "${directory}" -name \*.java >> ${sources}
-	done
+	find "${JAVA_SRC_DIR[@]}" -name \*.java > ${sources}
 
 	# create the target directory
 	mkdir -p ${classes} || die "Could not create target directory"
@@ -399,7 +394,8 @@ java-pkg-simple_src_compile() {
 	# prepend resources
 	for resource in "${JAVA_RESOURCE_DIRS[@]}"; do
 		# ${reource} == "." will make `jar uf` hang
-		[[ ${resource:-.} == "." ]] && die
+		[[ ${resource:-.} == "." ]]\
+			&& die "resource directory could not be ${resource}"
 		jar uf ${JAVA_JAR_FILENAME} -C "${resource}" .\
 			|| die "Failed to add resources to ${JAVA_JAR_FILENAME}"
 	done
@@ -432,9 +428,7 @@ java-pkg-simple_src_install() {
 		if [[ "${JAVA_SRC_DIR[@]}" ]]; then
 			local parent child
 			for parent in "${JAVA_SRC_DIR[@]}"; do
-				for child in "${parent:-.}"/*; do
-					srcdirs="${srcdirs} ${child}"
-				done
+				srcdirs="${srcdirs} ${parent}"
 			done
 		else
 			# take all directories actually containing any sources
@@ -473,12 +467,7 @@ java-pkg-simple_src_test() {
 	java-pkg-simple_prepend_resources "${JAVA_TEST_RESOURCE_DIRS[@]}"
 
 	# gathering sources for testing
-	echo -n > ${test_sources}\
-		|| die "Could not create an empty ${test_sources}"
-	local directory
-	for directory in "${JAVA_TEST_SRC_DIR[@]}"; do
-		find "${directory}" -name \*.java >> ${test_sources}
-	done
+	find "${JAVA_TEST_SRC_DIR[@]}" -name \*.java > ${test_sources}
 
 	# compile
 	[[ -s ${test_sources} ]] && ejavac -d ${classes} ${JAVAC_ARGS} \
@@ -487,9 +476,11 @@ java-pkg-simple_src_test() {
 
 	# grab a set of tests that testing framework will run
 	tests_to_run=$(find "${classes}" -type f\
-		-name "*Test*.class"\
-		! -name "Abstract*"\
-		! -name "BaseTest*"\
+		\( -name "*Test.class"\
+		-o -name "*Tests.class"\
+		-o -name "*TestCase.class" \)\
+		! -name "*Abstract*"\
+		! -name "*Base*"\
 		! -name "*\$*")
 	tests_to_run=${tests_to_run//"${classes}"\/}
 	tests_to_run=${tests_to_run//.class}
