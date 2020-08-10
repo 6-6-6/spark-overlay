@@ -47,16 +47,19 @@ EXPORT_FUNCTIONS src_unpack
 # Copy the binary jar into the expected place of java-pkg-simple.  Do
 # not extract files from archive.
 java-pkg-maven_src_unpack() {
+	# mkdir
+	mkdir -p "${S}"/${JAVA_TEST_SRC_DIR}\
+		|| die "Could not create ${JAVA_TEST_SRC_DIR}"
+	mkdir -p "${S}"/${JAVA_SRC_DIR}\
+		|| die "Could not create ${JAVA_SRC_DIR}"
+
+	# unpack files
 	for file in ${A}; do
 		case ${file} in
 			*-test-sources.jar)
-				mkdir -p "${S}"/${JAVA_TEST_SRC_DIR}\
-					|| die "Could not create ${JAVA_TEST_SRC_DIR}"
 				unzip -q -o "${DISTDIR}"/${file} -d "${S}"/${JAVA_TEST_SRC_DIR}\
 					|| die "Could not unzip source code for testing" ;;
 			*-sources.jar)
-				mkdir -p "${S}"/${JAVA_SRC_DIR}\
-					|| die "Could not create ${JAVA_SRC_DIR}"
 				unzip -q -o "${DISTDIR}"/${file} -d "${S}"/${JAVA_SRC_DIR}\
 					|| die "Could not unzip source code"
 				if [[ -d "${S}"/${JAVA_SRC_DIR}/META-INF ]] ; then
