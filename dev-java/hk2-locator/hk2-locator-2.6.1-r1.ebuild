@@ -43,7 +43,12 @@ DEPEND="
 	!binary? (
 	${CDEPEND}
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -54,3 +59,4 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="jakarta-annotation-api,hk2-api,hk2-utils,aopalliance-repackaged,jakarta-inject,javassist-3"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

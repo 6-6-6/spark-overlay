@@ -44,6 +44,10 @@ DEPEND="
 	${CDEPEND}
 	)
 	test? ( dev-util/pkgdiff )
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
 "
 
 RDEPEND="

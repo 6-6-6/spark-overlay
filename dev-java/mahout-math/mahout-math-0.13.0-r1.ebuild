@@ -41,7 +41,12 @@ DEPEND="
 	!binary? (
 	${CDEPEND}
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.7:*
@@ -60,3 +65,4 @@ src_prepare() {
 		${JAVA_SRC_DIR}/org/apache/mahout/math/random/IndianBuffet.java\
 		|| die
 }
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

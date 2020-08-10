@@ -43,7 +43,12 @@ DEPEND="
 	!binary? (
 	${CDEPEND}
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.5:*
@@ -54,3 +59,4 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="commons-io-1,commons-logging,httpcomponents-client-4.5,httpcomponents-core-4.4,wagon-provider-api,jsoup"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

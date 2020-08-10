@@ -45,7 +45,12 @@ DEPEND="
 	>=dev-java/osgi-core-api-5.0.0:0
 	>=dev-java/slf4j-api-1.7.7:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.6:*
@@ -56,3 +61,4 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="findbugs-annotations-3,cache-api,log4j,log4j-api,log4j-core,groovy-all,jruby-complete,osgi-core-api,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

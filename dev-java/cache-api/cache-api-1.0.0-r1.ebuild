@@ -29,7 +29,12 @@ DEPEND="
 	!binary? (
 	>=dev-java/cdi-api-1.2:1.2
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -40,3 +45,4 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="cdi-api-1.2"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

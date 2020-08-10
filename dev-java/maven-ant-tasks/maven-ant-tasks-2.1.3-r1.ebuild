@@ -59,7 +59,12 @@ DEPEND="
 	!binary? (
 	${CDEPEND}
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -70,3 +75,4 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="classworlds,ant-core,maven-artifact,maven-artifact-manager,maven-error-diagnostics,maven-model,maven-project,maven-settings,wagon-file,wagon-http-lightweight,wagon-provider-api,plexus-container-default,plexus-interpolation,plexus-utils"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

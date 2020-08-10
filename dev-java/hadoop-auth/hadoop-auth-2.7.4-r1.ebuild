@@ -50,7 +50,12 @@ DEPEND="
 	>=dev-java/hadoop-annotations-2.7.4:0
 	java-virtuals/servlet-api:4.0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
@@ -70,3 +75,4 @@ JAVA_GENTOO_CLASSPATH="commons-codec,curator-framework,apacheds-kerberos-codec,h
 JAVA_CLASSPATH_EXTRA="servlet-api-4.0,hadoop-annotations"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

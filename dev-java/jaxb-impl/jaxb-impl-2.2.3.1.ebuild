@@ -43,7 +43,12 @@ DEPEND="
 	!binary? (
 	${CDEPEND}
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -60,3 +65,4 @@ JAVA_RM_FILES=(
 	${JAVA_SRC_DIR}/txw2/wsdl11/src/WsdlTest.java
 	${JAVA_SRC_DIR}/txw2/xmlschema/src/XsdTest.java
 )
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

@@ -52,7 +52,12 @@ DEPEND="
 	!binary? (
 	${CDEPEND}
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -63,3 +68,4 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="protobuf-java,commons-logging,activation,servlet-api-4.0,log4j,osgi-compendium,osgi-core-1,jboss-logging-spi,jboss-marshalling,slf4j-api,tomcat-jni"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

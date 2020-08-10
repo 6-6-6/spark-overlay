@@ -42,7 +42,12 @@ DEPEND="
 	>=dev-java/ant-core-1.10.7:0
 	>=dev-java/findbugs-annotations-3.0.12:3
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -54,3 +59,4 @@ JAVA_GENTOO_CLASSPATH="dependency-check-core,dependency-check-utils"
 JAVA_CLASSPATH_EXTRA="findbugs-annotations-3,ant-core"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

@@ -42,7 +42,12 @@ DEPEND="
 	${CDEPEND}
 	>=dev-java/jakarta-xml-bind-api-3.0.0:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -54,3 +59,4 @@ JAVA_GENTOO_CLASSPATH="osgi-resource-locator,jakarta-inject,jersey-common-2"
 JAVA_CLASSPATH_EXTRA="jakarta-xml-bind-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

@@ -59,7 +59,12 @@ DEPEND="
 	>=dev-java/joni-2.1.0:2.1
 	>=dev-java/snakeyaml-1.16:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.5:*
@@ -70,3 +75,4 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="asm-3,bsf-2.3,jline-2,joda-time,ant-core,jruby-jnr-posix,bytelist,constantine,jaffl,jffi,jnr-netdb,jcodings-1,joni-2.1,snakeyaml"
 JAVA_SRC_DIR="src"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

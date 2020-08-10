@@ -32,7 +32,12 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	${CDEPEND}
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -44,3 +49,4 @@ S="${WORKDIR}"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 JAVA_GENTOO_CLASSPATH="osgi-annotation-6,osgi-framework-1,servlet-api-4.0,glassfish-persistence,microemu-cldc"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

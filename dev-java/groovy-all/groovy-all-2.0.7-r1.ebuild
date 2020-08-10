@@ -56,7 +56,12 @@ DEPEND="
 	java-virtuals/jsp-api:2.3
 	java-virtuals/servlet-api:4.0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

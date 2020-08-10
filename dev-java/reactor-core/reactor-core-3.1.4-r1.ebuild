@@ -40,7 +40,12 @@ DEPEND="
 	!binary? (
 	${CDEPEND}
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -58,3 +63,4 @@ src_prepare() {
 	sed -i "s/java.util.concurrent/java9.util.concurrent/"\
 		"${S}"/${JAVA_SRC_DIR}/reactor/adapter/JdkFlowAdapter.java || die
 }
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

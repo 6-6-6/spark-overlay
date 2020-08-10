@@ -52,7 +52,12 @@ DEPEND="
 	${CDEPEND}
 	>=dev-java/hadoop-common-2.5.1:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.6:*
@@ -64,3 +69,4 @@ JAVA_GENTOO_CLASSPATH="guava,commons-httpclient-3,commons-logging,servlet-api-4.
 JAVA_CLASSPATH_EXTRA="hadoop-common"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

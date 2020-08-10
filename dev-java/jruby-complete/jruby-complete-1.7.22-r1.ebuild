@@ -31,7 +31,12 @@ DEPEND="
 	>=dev-java/jruby-core-1.7.22:0
 	>=dev-java/jruby-stdlib-1.7.22:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -44,3 +49,4 @@ JAVA_ENCODING="utf-8"
 JAVA_CLASSPATH_EXTRA="jruby-core,jruby-stdlib"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

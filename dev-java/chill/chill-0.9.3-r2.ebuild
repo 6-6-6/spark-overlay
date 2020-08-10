@@ -37,7 +37,12 @@ DEPEND="
 	!binary? (
 	${CDEPEND}
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -54,3 +59,4 @@ src_compile() {
 		${JAVA_SRC_DIR}/com/twitter/chill/ClosureCleaner.scala || die "sed failed"
 	java-pkg-simple-plugins_src_compile
 }
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

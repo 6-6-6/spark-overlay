@@ -70,7 +70,12 @@ DEPEND="
 	>=dev-java/commons-logging-1.2:0
 	>=dev-java/guava-29.0:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.7:*
@@ -82,3 +87,4 @@ JAVA_GENTOO_CLASSPATH="guice-4,protobuf-java,netty,avro,hadoop-annotations,hadoo
 JAVA_CLASSPATH_EXTRA="guava,commons-cli-1,commons-codec,commons-collections-3,commons-lang-2.1,commons-logging,hadoop-common"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

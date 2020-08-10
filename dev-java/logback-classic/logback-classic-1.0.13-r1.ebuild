@@ -45,7 +45,12 @@ DEPEND="
 	!binary? (
 	${CDEPEND}
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.5:*
@@ -56,3 +61,4 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="logback-core,mail,servlet-api-4.0,geronimo-jms-1.1_spec,groovy-all,janino,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

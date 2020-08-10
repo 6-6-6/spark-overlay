@@ -29,7 +29,12 @@ DEPEND="
 	!binary? (
 	>=dev-java/ant-core-1.10.7:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.6:*
@@ -40,3 +45,4 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="ant-core"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

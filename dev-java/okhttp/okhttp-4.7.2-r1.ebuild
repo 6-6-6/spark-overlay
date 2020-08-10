@@ -6,7 +6,7 @@
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source binary"
+JAVA_PKG_IUSE="doc source binary test"
 MAVEN_ID="com.squareup.okhttp3:okhttp:4.7.2"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven java-pkg-simple-plugins
@@ -34,7 +34,12 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -49,3 +54,4 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 src_compile() {
 	java-pkg-simple-plugins_src_compile
 }
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

@@ -28,4 +28,10 @@ RDEPEND=">=virtual/jre-1.5
 DEPEND=">=virtual/jdk-1.5
 	app-arch/unzip
 	${COMMON_DEPEND}
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

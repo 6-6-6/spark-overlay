@@ -1,48 +1,34 @@
 
-# emerge spark-core
+# The goal of this overlay
+## to make [java-ebuilder](https://github.com/6-6-6/java-ebuilder) ready to generate repoman-compatible ebuild files
+## improve java-pkg-simple.eclass
+## to emerge spark-core
 
-## extra ECLASSES
-### java-simple
-
-- [x] need more error message
-- [x] src\_test()
-- [ ] pkgdiff
-- [x] JAVA_SRC_DIR=("dir1" "dir2")
-- [x] JAVA_TEST_SRC_DIR=("dir1" "dir2")
-- [ ] weld-core(cal10n resource bundle)
-
-### kotlin
-1. okio
-2. okhttp
-
-### scala
-1. spark-core
-2. chill
-3. json4s-scalap
-4. jackson-module-scala
-5. json4s-jackson
-
-### ruby
-1. jruby: ruby source files exist
-2. jruby-complete
-
-### lombok
-1. lombok
-
-## java-ebuilder
-
-- [ ] deal with java-virtuals/\* packages
-- [ ] test scope dependencies
+# TODO list
+## java-ebuilder related
+- [x] makefile-driven maven overlay
+- [x] translate dev-java/\* into groupId:artifactId
+- [ ] new movl
+- [x] match version string that mvn artifacts may use
+- [x] MAVEN_PROVIDES if one package jointly includes many artifacts
+- [x] deal with java-virtuals/\* packages: discard ">="
 - [ ] detect the need of tools.jar to support JAVA\_NEED\_TOOLS
+- [x] install binary jar
+- [ ] determine more testing frameworks (do not support spock now)
+- [x] guess license from pom.xml
+- [x] sort the provided keywords
 
-## notes for dev-java
+## java-pkg-simple.eclass related
+- [x] extend JAVA_SRC_DIR to array (JAVA_SRC_DIR=("dir1" "dir2"))
+- [x] extend JAVA_TEST_SRC_DIR to array
+- [x] src\_test()
+- [x] junit-4 test
+- [x] pkgdiff test
+- [x] testng test
+- [ ] junit-5 platform test
+- [ ] cucumber-junit test
 
-see [the memo for dev-java](dev-java/memo.md)
+## emerging spark-core related
+- [ ] emerge without USE="binary" (list of [pkgs](./pkgs-need-binary.md) that needs "binary")
+- [ ] a demo that works with spark-core
 
-## notes for app-maven
-
-see [the memo for app-maven](app-maven/memo.md)
-
-## notes for java-virtuals
-
-use java-virtuals/\* to manage javax-\* and jakarta-\*

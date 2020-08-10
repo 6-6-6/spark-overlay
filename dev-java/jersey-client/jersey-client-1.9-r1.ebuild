@@ -38,7 +38,12 @@ DEPEND="
 	${CDEPEND}
 	>=dev-java/osgi-core-4.0:4
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.6:*
@@ -50,3 +55,4 @@ JAVA_GENTOO_CLASSPATH="jersey-core-1"
 JAVA_CLASSPATH_EXTRA="osgi-core-4"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

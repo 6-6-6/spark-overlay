@@ -46,7 +46,12 @@ DEPEND="
 	>=dev-java/guava-29.0:0
 	>=dev-java/slf4j-api-1.7.28:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -58,3 +63,4 @@ JAVA_GENTOO_CLASSPATH="jsr305,chill-2.12,spark-tags-2.12,unused"
 JAVA_CLASSPATH_EXTRA="guava,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

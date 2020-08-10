@@ -31,7 +31,12 @@ DEPEND="
 	>=dev-java/osgi-cmpn-6.0.0:6
 	>=dev-java/osgi-core-6.0.0:6
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -42,3 +47,4 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="osgi-cmpn-6,osgi-core-6"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

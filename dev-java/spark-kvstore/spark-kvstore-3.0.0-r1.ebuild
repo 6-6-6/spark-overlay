@@ -48,7 +48,12 @@ DEPEND="
 	${CDEPEND}
 	>=dev-java/guava-29.0:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -60,3 +65,4 @@ JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind,spark-ta
 JAVA_CLASSPATH_EXTRA="guava"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

@@ -29,7 +29,12 @@ DEPEND="
 	!binary? (
 	>=dev-java/jdiff-1.0.9:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.7:*
@@ -41,3 +46,4 @@ JAVA_NEEDS_TOOLS=1
 JAVA_CLASSPATH_EXTRA="jdiff"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

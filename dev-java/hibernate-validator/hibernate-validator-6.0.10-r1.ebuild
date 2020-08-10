@@ -56,7 +56,12 @@ DEPEND="
 	>=dev-java/jboss-logging-annotations-2.1.0:0
 	>=dev-java/jboss-logging-processor-2.1.0:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -68,3 +73,4 @@ JAVA_GENTOO_CLASSPATH="classmate,paranamer,money-api,validation-api,joda-time,hi
 JAVA_CLASSPATH_EXTRA="javax-el,jboss-logging-annotations,jboss-logging-processor"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

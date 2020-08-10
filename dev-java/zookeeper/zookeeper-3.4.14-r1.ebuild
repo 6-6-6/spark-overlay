@@ -66,7 +66,12 @@ DEPEND="
 	!binary? (
 	${CDEPEND}
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -77,3 +82,4 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="spotbugs-annotations,commons-collections-3,commons-lang-2.1,netty,jdiff,jline-2,log4j,maven-ant-tasks,wagon-http,apache-rat-tasks,audience-annotations,clover,dependency-check-ant,slf4j-api,slf4j-log4j12,jdeb,xerces-2,jline"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

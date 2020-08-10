@@ -46,7 +46,12 @@ DEPEND="
 	${CDEPEND}
 	>=dev-java/hadoop-client-2.7.4:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
@@ -63,3 +68,4 @@ JAVA_GENTOO_CLASSPATH="commons-codec,avro-ipc,jackson-core-asl,jackson-mapper-as
 JAVA_CLASSPATH_EXTRA="hadoop-client"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

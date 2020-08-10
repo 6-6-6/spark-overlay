@@ -36,7 +36,12 @@ DEPEND="
 	!binary? (
 	${CDEPEND}
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.7:*
@@ -47,3 +52,4 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="minlog,objenesis,reflectasm"
 JAVA_SRC_DIR="src"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

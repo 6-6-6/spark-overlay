@@ -58,7 +58,12 @@ DEPEND="
 	>=dev-java/jboss-jms-api-1.0.1:1.1_spec
 	>=dev-java/osgi-core-api-5.0.0:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.6:*
@@ -70,3 +75,4 @@ JAVA_GENTOO_CLASSPATH="jackson-2,jackson-databind,jackson-dataformat-xml,jackson
 JAVA_CLASSPATH_EXTRA="jboss-jms-api-1.1_spec,osgi-core-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

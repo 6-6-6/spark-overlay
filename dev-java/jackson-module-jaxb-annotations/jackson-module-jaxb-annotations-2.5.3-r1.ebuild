@@ -40,7 +40,12 @@ DEPEND="
 	${CDEPEND}
 	>=dev-java/jaxb-api-2.2:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.6:*
@@ -52,3 +57,4 @@ JAVA_GENTOO_CLASSPATH="jackson-2,jackson-databind"
 JAVA_CLASSPATH_EXTRA="jaxb-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

@@ -146,7 +146,12 @@ DEPEND="
 	${CDEPEND}
 	>=dev-java/guava-29.0:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-preview2.pom
@@ -167,3 +172,4 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 src_compile() {
 	java-pkg-simple-plugins_src_compile
 }
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

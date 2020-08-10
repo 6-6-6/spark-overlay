@@ -44,7 +44,12 @@ DEPEND="
 	${CDEPEND}
 	>=dev-java/jboss-interceptors-api-1.0.0:1.1_spec
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.5:*
@@ -56,3 +61,4 @@ JAVA_GENTOO_CLASSPATH="guava,javassist-3,jboss-interceptor-spi,slf4j-api"
 JAVA_CLASSPATH_EXTRA="jboss-interceptors-api-1.1_spec"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

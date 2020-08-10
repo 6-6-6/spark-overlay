@@ -26,8 +26,10 @@ DEPEND="
 	app-arch/unzip
 	test? (
 		dev-java/junit:4
-		dev-util/japi-compliance-checker
-		dev-util/pkgdiff
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
 	)
 "
 
@@ -44,7 +46,7 @@ JAVA_RESOURCE_DIRS=(
 	"src/main/resources"
 )
 
-JAVA_TESTING_FRAMEWORKS="junit pkgdiff"
+JAVA_TESTING_FRAMEWORKS="pkgdiff junit"
 JAVA_TEST_SRC_DIR="src/test/java"
 JAVA_TEST_RESOURCE_DIRS=("src/test/java")
 JAVA_TEST_GENTOO_CLASSPATH="junit-4"
@@ -53,4 +55,6 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 JAVA_RM_FILES=(
 	"${JAVA_TEST_SRC_DIR}/org/apache/commons/io/comparator/DirectoryFileComparatorTest.java"
+	"${JAVA_TEST_SRC_DIR}/org/apache/commons/io/FileUtilsTestCase.java"
+	"${JAVA_TEST_SRC_DIR}/org/apache/commons/io/filefilter/FileFilterTestCase.java"
 )

@@ -108,7 +108,12 @@ DEPEND="
 	${CDEPEND}
 	>=dev-java/ant-core-1.10.7:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
@@ -128,3 +133,4 @@ JAVA_GENTOO_CLASSPATH="jsr305,gson-2.2.2,guava,protobuf-java,jsch,jersey-core-1,
 JAVA_CLASSPATH_EXTRA="ant-core"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

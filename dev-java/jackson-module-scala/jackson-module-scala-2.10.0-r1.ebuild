@@ -41,7 +41,12 @@ DEPEND="
 	!binary? (
 	${CDEPEND}
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -56,3 +61,4 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 src_compile() {
 	java-pkg-simple-plugins_src_compile
 }
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

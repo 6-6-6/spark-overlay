@@ -40,7 +40,12 @@ DEPEND="
 	${CDEPEND}
 	>=dev-java/jboss-logging-3.1.4:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -52,3 +57,4 @@ JAVA_GENTOO_CLASSPATH="jdeparser,jboss-logging-annotations"
 JAVA_CLASSPATH_EXTRA="jboss-logging"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

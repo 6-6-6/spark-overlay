@@ -44,7 +44,12 @@ DEPEND="
 	>=dev-java/slf4j-jdk14-1.6.1:0
 	java-virtuals/servlet-api:4.0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -56,3 +61,4 @@ JAVA_GENTOO_CLASSPATH="slf4j-api"
 JAVA_CLASSPATH_EXTRA="servlet-api-4.0,jta,hibernate-core,slf4j-jdk14"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

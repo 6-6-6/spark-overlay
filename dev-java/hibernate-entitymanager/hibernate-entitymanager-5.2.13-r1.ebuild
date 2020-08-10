@@ -47,7 +47,12 @@ DEPEND="
 	!binary? (
 	${CDEPEND}
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -58,3 +63,4 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="dom4j-1,byte-buddy,hibernate-core,hibernate-commons-annotations,hibernate-jpa-2.1-api,javassist-3,jboss-logging,jboss-transaction-api-1.2_spec"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

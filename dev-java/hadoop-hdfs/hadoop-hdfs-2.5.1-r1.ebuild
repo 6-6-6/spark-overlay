@@ -82,7 +82,12 @@ DEPEND="
 	>=dev-java/hadoop-common-2.5.1:0
 	>=dev-java/slf4j-log4j12-1.7.7:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.6:*
@@ -94,3 +99,4 @@ JAVA_GENTOO_CLASSPATH="guava,protobuf-java,jersey-core-1,jersey-server-1,commons
 JAVA_CLASSPATH_EXTRA="hadoop-annotations,hadoop-auth,hadoop-common,slf4j-log4j12"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

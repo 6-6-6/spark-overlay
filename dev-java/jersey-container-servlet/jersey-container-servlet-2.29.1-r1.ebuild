@@ -44,7 +44,12 @@ DEPEND="
 	${CDEPEND}
 	>=dev-java/jakarta-servlet-api-4.0.3:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -56,3 +61,4 @@ JAVA_GENTOO_CLASSPATH="ws-rs-api,jersey-container-servlet-core-2,jersey-common-2
 JAVA_CLASSPATH_EXTRA="jakarta-servlet-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

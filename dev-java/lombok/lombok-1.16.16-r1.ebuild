@@ -26,7 +26,12 @@ CP_DEPEND="
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -37,3 +42,4 @@ S="${WORKDIR}"
 JAVA_NEEDS_TOOLS=1
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

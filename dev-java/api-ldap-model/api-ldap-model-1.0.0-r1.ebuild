@@ -54,7 +54,12 @@ DEPEND="
 	${CDEPEND}
 	>=dev-java/findbugs-annotations-3.0.12:3
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.6:*
@@ -66,3 +71,4 @@ JAVA_GENTOO_CLASSPATH="antlr,commons-collections,commons-lang-2.1,api-asn1-api,a
 JAVA_CLASSPATH_EXTRA="findbugs-annotations-3"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

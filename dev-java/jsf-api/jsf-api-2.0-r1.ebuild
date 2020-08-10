@@ -36,7 +36,12 @@ DEPEND="
 	java-virtuals/servlet-api:4.0
 	dev-java/validation-api:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -47,3 +52,4 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="el-api-3.0,servlet-api-4.0,jsp-api-2.3,jstl,validation-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

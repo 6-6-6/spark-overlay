@@ -31,7 +31,12 @@ DEPEND="
 	>=dev-java/lombok-1.16.16:0
 	>=dev-java/findbugs-annotations-3.0.12:3
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.6:*
@@ -42,3 +47,4 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="findbugs-annotations-3,lombok"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

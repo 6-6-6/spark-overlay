@@ -71,7 +71,12 @@ DEPEND="
 	!binary? (
 	${CDEPEND}
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
@@ -87,3 +92,4 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="findbugs-annotations-3,gson-2.7,guava,retirejs-core,mailapi,semver4j,commons-collections-3,commons-io-1,joda-time,commons-compress,commons-lang-3.10,commons-text,lucene-analyzers-common,lucene,lucene-queryparser,velocity,javax-json,jsoup,dependency-check-utils,slf4j-api,h2"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

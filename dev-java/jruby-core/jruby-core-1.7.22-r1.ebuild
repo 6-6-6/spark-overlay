@@ -90,7 +90,12 @@ DEPEND="
 	>=dev-java/bsf-2.4.0:2.3
 	>=dev-java/osgi-core-api-5.0.0:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -104,3 +109,4 @@ JAVA_GENTOO_CLASSPATH="jffi-1.2,jffi-1.2,jnr-constants,jnr-enxio,jnr-ffi,jnr-net
 JAVA_CLASSPATH_EXTRA="bsf-2.3,coro-mock,jsr292-mock,unsafe-mock,ant-core,joda-timezones,osgi-core-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

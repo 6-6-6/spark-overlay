@@ -56,7 +56,12 @@ DEPEND="
 	java-virtuals/jsp-api:2.3
 	java-virtuals/servlet-api:4.0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.6:*
@@ -68,3 +73,4 @@ JAVA_GENTOO_CLASSPATH="asm-3,jersey-core-1"
 JAVA_CLASSPATH_EXTRA="ant-core,mail,persistence-api,servlet-api-4.0,jsp-api-2.3,jaxb-api,ejb-api,weld-osgi-bundle,osgi-core-4"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

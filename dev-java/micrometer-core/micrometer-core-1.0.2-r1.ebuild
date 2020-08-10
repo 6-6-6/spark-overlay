@@ -65,7 +65,12 @@ DEPEND="
 	!binary? (
 	${CDEPEND}
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -76,3 +81,4 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="logback-classic,caffeine,jsr305,guava,hazelcast,hystrix-core,okhttp,metrics-core,reactor-core,cache-api,ehcache,tomcat-embed-core,aspectj,jetty-server-9,HdrHistogram,hibernate-entitymanager,LatencyUtils"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

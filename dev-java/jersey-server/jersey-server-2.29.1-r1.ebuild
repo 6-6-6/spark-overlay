@@ -50,7 +50,12 @@ DEPEND="
 	${CDEPEND}
 	>=dev-java/osgi-core-6.0.0:6
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -62,3 +67,4 @@ JAVA_GENTOO_CLASSPATH="jakarta-annotation-api,jakarta-validation-api,ws-rs-api,j
 JAVA_CLASSPATH_EXTRA="osgi-core-6"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

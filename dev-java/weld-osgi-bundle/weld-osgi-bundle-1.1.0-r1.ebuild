@@ -54,7 +54,12 @@ DEPEND="
 	${CDEPEND}
 	>=dev-java/slf4j-jdk14-1.5.10:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.5:*
@@ -66,3 +71,4 @@ JAVA_GENTOO_CLASSPATH="guava,cdi-api-1.2,javax-inject,javassist-3,jboss-intercep
 JAVA_CLASSPATH_EXTRA="slf4j-jdk14"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

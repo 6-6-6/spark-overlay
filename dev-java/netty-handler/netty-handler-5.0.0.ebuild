@@ -54,7 +54,12 @@ DEPEND="
 	>=dev-java/alpn-boot-8.1.2_p20141202:0
 	>=dev-java/npn-boot-1.1.9_p20141016:0
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.6:*
@@ -66,3 +71,4 @@ JAVA_GENTOO_CLASSPATH="netty-buffer,netty-codec,netty-tcnative,netty-transport,b
 JAVA_CLASSPATH_EXTRA="alpn-boot,npn-boot"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"

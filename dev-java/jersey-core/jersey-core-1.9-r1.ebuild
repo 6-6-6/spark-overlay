@@ -35,7 +35,12 @@ DEPEND="
 	>=dev-java/jsr311-api-1.1.1:0
 	>=dev-java/osgi-core-4.0:4
 	)
-"
+	test? (
+		amd64? (
+			dev-util/japi-compliance-checker
+			dev-util/pkgdiff
+		)
+	)"
 
 RDEPEND="
 	>=virtual/jre-1.6:*
@@ -46,3 +51,4 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="mail,jsr311-api,jaxb-api,osgi-core-4"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
