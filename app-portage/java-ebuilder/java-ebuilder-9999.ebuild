@@ -50,6 +50,7 @@ src_install() {
 
 	exeinto /usr/lib/${PN}
 	doexe scripts/{tree,meta}.sh
+	doexe "${FILESDIR}"/scripts/simple_formatter
 	# TODO: merge them into java-ebuilder when stable
 	#cp -r ${FILESDIR}/scripts/* ${ED}/usr/lib/${PN}/ || die "failed to install scripts"
 

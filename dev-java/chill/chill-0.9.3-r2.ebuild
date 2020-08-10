@@ -6,15 +6,14 @@
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source test binary"
+JAVA_PKG_IUSE="doc source test"
 MAVEN_ID="com.twitter:chill_2.12:0.9.3"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven java-pkg-simple-plugins
 
 DESCRIPTION="chill"
 HOMEPAGE="https://github.com/twitter/chill"
-SRC_URI="https://repo1.maven.org/maven2/com/twitter/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar -> ${P}-sources.jar
-	https://repo1.maven.org/maven2/com/twitter/${PN}_2.12/${PV}/${PN}_2.12-${PV}.jar -> ${P}-bin.jar"
+SRC_URI="https://repo1.maven.org/maven2/com/twitter/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar -> ${P}-sources.jar"
 LICENSE="Apache-2.0"
 SLOT="2.12"
 KEYWORDS="~amd64"
@@ -34,15 +33,8 @@ CDEPEND="
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	!binary? (
 	${CDEPEND}
-	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -59,4 +51,3 @@ src_compile() {
 		${JAVA_SRC_DIR}/com/twitter/chill/ClosureCleaner.scala || die "sed failed"
 	java-pkg-simple-plugins_src_compile
 }
-JAVA_TESTING_FRAMEWORKS="pkgdiff"
