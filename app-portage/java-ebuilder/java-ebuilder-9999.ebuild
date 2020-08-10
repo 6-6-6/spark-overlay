@@ -1,4 +1,4 @@
-# Copyright 2016-2019 Gentoo Authors
+# Copyright 2016-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -33,10 +33,8 @@ JAVA_RESOURCE_DIRS=("src/main/resources")
 JAVA_LAUNCHER_FILENAME=${PN}
 JAVA_MAIN_CLASS="org.gentoo.java.ebuilder.Main"
 
-
 src_prepare() {
 	default
-
 	hprefixify scripts/{{tree,meta}.sh,movl} java-ebuilder.conf
 }
 
@@ -51,13 +49,11 @@ src_install() {
 	dodoc README maven.conf
 
 	exeinto /usr/lib/${PN}
-	# fix it!!!!!!!
+	doexe scripts/{tree,meta}.sh
 	# TODO: merge them into java-ebuilder when stable
-	ln -s /var/lib/java-ebuilder/maven/app-portage/java-ebuilder/files/scripts/* ${ED}/usr/lib/${PN}/
 	#cp -r ${FILESDIR}/scripts/* ${ED}/usr/lib/${PN}/ || die "failed to install scripts"
-	#doexe scripts/{tree,meta}.sh
 
-	#dobin scripts/movl
+	dobin scripts/movl
 
 	insinto /etc
 	doins java-ebuilder.conf
