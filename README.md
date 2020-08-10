@@ -1,8 +1,8 @@
 
 # The goal of this overlay
-## to make [java-ebuilder](https://github.com/6-6-6/java-ebuilder) ready to generate repoman-compatible ebuild files
-## improve java-pkg-simple.eclass
-## to emerge spark-core
+1. to make [java-ebuilder](https://github.com/6-6-6/java-ebuilder) ready to generate repoman-compatible ebuild files
+2. to improve java-pkg-simple.eclass
+3. to emerge spark-core
 
 # TODO list
 ## java-ebuilder related
@@ -29,6 +29,6 @@
 - [ ] cucumber-junit test
 
 ## emerging spark-core related
-- [ ] emerge without USE="binary" (list of [pkgs](./pkgs-need-binary.md) that needs "binary")
+- [ ] emerge without USE="binary" (list of [pkgs](./pkgs-need-binary.txt) that needs "binary")
 - [ ] a demo that works with spark-core
 
