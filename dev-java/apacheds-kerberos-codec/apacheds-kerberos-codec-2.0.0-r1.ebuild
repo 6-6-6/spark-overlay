@@ -21,7 +21,7 @@ KEYWORDS="~amd64"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}-M15.pom
-# net.sf.ehcache:ehcache-core:2.4.4 -> >=dev-java/ehcache-core-2.4.4:0
+# net.sf.ehcache:ehcache-core:2.4.4 -> >=dev-java/ehcache-core-2.4.4:2
 # org.apache.directory.api:api-asn1-api:1.0.0-M20 -> >=dev-java/api-asn1-api-1.0.0:0
 # org.apache.directory.api:api-asn1-ber:1.0.0-M20 -> >=dev-java/api-asn1-ber-1.0.0:0
 # org.apache.directory.api:api-i18n:1.0.0-M20 -> >=dev-java/api-i18n-1.0.0:0
@@ -37,7 +37,7 @@ CDEPEND="
 	>=dev-java/api-i18n-1.0.0:0
 	>=dev-java/api-ldap-model-1.0.0:0
 	>=dev-java/api-util-1.0.0:0
-	>=dev-java/ehcache-core-2.4.4:0
+	>=dev-java/ehcache-2.4.4:2
 	>=dev-java/slf4j-api-1.7.7:0
 "
 
@@ -65,7 +65,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="ehcache-core,api-asn1-api,api-asn1-ber,api-i18n,api-ldap-model,api-util,apacheds-i18n,slf4j-api"
+JAVA_GENTOO_CLASSPATH="ehcache-2,api-asn1-api,api-asn1-ber,api-i18n,api-ldap-model,api-util,apacheds-i18n,slf4j-api"
 JAVA_CLASSPATH_EXTRA="findbugs-annotations-3"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

@@ -2,21 +2,21 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/ehcache-core-2.4.4.pom --download-uri https://repo1.maven.org/maven2/net/sf/ehcache/ehcache-core/2.4.4/ehcache-core-2.4.4-sources.jar --slot 0 --keywords "~amd64" --ebuild ehcache-core-2.4.4-r1.ebuild
+# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/ehcache-core-2.6.11.pom --download-uri https://repo1.maven.org/maven2/net/sf/ehcache/ehcache-core/2.6.11/ehcache-core-2.6.11-sources.jar --slot 0 --keywords "~amd64" --ebuild ehcache-core-2.6.11-r1.ebuild
 
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
-MAVEN_ID="net.sf.ehcache:ehcache-core:2.4.4"
+MAVEN_ID="net.sf.ehcache:ehcache-core:2.6.11"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="This is the ehcache core module. Pair it with other modules for added functionality."
 HOMEPAGE="http://ehcache.org"
-SRC_URI="https://repo1.maven.org/maven2/net/sf/ehcache/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/net/sf/ehcache/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+SRC_URI="https://repo1.maven.org/maven2/net/sf/${PN}/${PN}-core/${PV}/${PN}-core-${PV}-sources.jar
+	https://repo1.maven.org/maven2/net/sf/${PN}/${PN}-core/${PV}/${PN}-core-${PV}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
-SLOT="0"
+SLOT="2"
 KEYWORDS="~amd64"
 
 # Common dependencies
