@@ -1,33 +1,43 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-# Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/slf4j-api-1.7.28.pom --download-uri https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.28/slf4j-api-1.7.28-sources.jar --slot 0 --keywords "~amd64" --ebuild slf4j-api-1.7.28.ebuild
-
-EAPI=7
-
+EAPI=5
 JAVA_PKG_IUSE="doc source"
-MAVEN_ID="org.slf4j:slf4j-api:1.7.28"
 
-inherit java-pkg-2 java-pkg-simple java-pkg-maven
+inherit java-pkg-2 java-ant-2
 
-DESCRIPTION="The slf4j API"
-HOMEPAGE="http://www.slf4j.org"
-SRC_URI="https://repo.maven.apache.org/maven2/org/slf4j/${PN}/${PV}/${P}-sources.jar"
+DESCRIPTION="Simple Logging Facade for Java"
+HOMEPAGE="http://www.slf4j.org/"
+SRC_URI="https://github.com/qos-ch/slf4j/archive/v_${PV}.tar.gz -> ${P}.tar.gz"
+
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64"
-#"ppc64 ~x86 ~arm64"
+KEYWORDS="amd64 ~arm64 ppc64 x86"
+IUSE="test"
+RESTRICT="!test? ( test )"
 
-DEPEND="
-	>=virtual/jdk-1.5:*
+RDEPEND=">=virtual/jre-1.6"
+DEPEND=">=virtual/jdk-1.6
 	app-arch/unzip
-"
+	test? (
+		dev-java/junit:4
+		dev-java/ant-junit:0
+	)"
 
-RDEPEND="
-	>=virtual/jre-1.5:*
-"
+S="${WORKDIR}/slf4j-v_${PV}/${PN}"
 
-S="${WORKDIR}"
+JAVA_ANT_REWRITE_CLASSPATH="yes"
+EANT_TEST_GENTOO_CLASSPATH="junit-4"
+EANT_TEST_ANT_TASKS="ant-junit"
+EANT_EXTRA_ARGS="-Dmaven.build.finalName=${PN}"
 
-JAVA_SRC_DIR="src/main/java"
+java_prepare() {
+	cp "${FILESDIR}"/"${PV}"-build.xml build.xml || die
+	find "${WORKDIR}" -iname '*.jar' -delete || die
+}
+
+src_install() {
+	java-pkg_dojar target/${PN}.jar
+	use doc && java-pkg_dojavadoc target/site/apidocs
+	use source && java-pkg_dosrc src/main/java/org
+}

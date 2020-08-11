@@ -25,6 +25,7 @@ KEYWORDS="~amd64"
 
 CDEPEND="
 	>=dev-java/slf4j-api-1.7.7:0
+	dev-java/quartz:0
 "
 
 # Compile dependencies
@@ -57,7 +58,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="slf4j-api"
+JAVA_GENTOO_CLASSPATH="slf4j-api,quartz"
 JAVA_CLASSPATH_EXTRA="servlet-api-4.0,jta,hibernate-core,slf4j-jdk14"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

@@ -9,8 +9,6 @@ dev-java/caffeine binary
 dev-java/clover binary
 dev-java/curator-framework binary
 dev-java/curator-recipes binary
-dev-java/ehcache binary
-dev-java/ehcache-core binary
 dev-java/groovy-all binary
 dev-java/h2 binary
 dev-java/hadoop-client binary
@@ -41,6 +39,7 @@ dev-java/maven-ant-tasks binary
 dev-java/maven-artifact-manager binary
 dev-java/maven-project binary
 dev-java/npn-boot binary
+dev-java/quartz binary
 dev-java/spark-core binary
 dev-java/spark-network-common binary
 dev-java/spark-network-shuffle binary
