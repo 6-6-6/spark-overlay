@@ -16,8 +16,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc64 ~x86"
 IUSE=""
 
-RDEPEND=">=virtual/jre-1.5"
-DEPEND=">=virtual/jdk-1.5"
+RDEPEND=">=virtual/jre-1.8"
+DEPEND=">=virtual/jdk-1.8"
 
 S="${WORKDIR}"
 

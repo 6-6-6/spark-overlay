@@ -38,7 +38,7 @@ CDEPEND="
 # org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.1_spec:1.0.0.Beta1 -> >=dev-java/jboss-interceptors-api-1.0.0:1.1_spec
 
 DEPEND="
-	>=virtual/jdk-1.5:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	${CDEPEND}
@@ -52,7 +52,7 @@ DEPEND="
 	)"
 
 RDEPEND="
-	>=virtual/jre-1.5:*
+	>=virtual/jre-1.8:*
 ${CDEPEND}"
 
 S="${WORKDIR}"

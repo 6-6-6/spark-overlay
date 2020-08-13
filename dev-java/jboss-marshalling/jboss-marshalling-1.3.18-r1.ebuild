@@ -25,7 +25,7 @@ KEYWORDS="~amd64"
 # test? org.testng:testng:5.12.1 -> >=dev-java/testng-6.9.10:0
 
 DEPEND="
-	>=virtual/jdk-1.6:*
+	>=virtual/jdk-1.8:*
 	>=dev-java/jboss-modules-1.3.3:0
 	test? (
 		>=dev-java/testng-6.9.10:0
@@ -33,7 +33,7 @@ DEPEND="
 "
 
 RDEPEND="
-	>=virtual/jre-1.6:*
+	>=virtual/jre-1.8:*
 "
 
 S="${WORKDIR}"

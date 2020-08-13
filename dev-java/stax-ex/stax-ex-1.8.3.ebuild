@@ -23,9 +23,9 @@ JAVA_RM_FILES=(
 	"module-info.java"
 	)
 
-RDEPEND=">=virtual/jre-1.5
+RDEPEND=">=virtual/jre-1.8
 	${COMMON_DEPEND}"
-DEPEND=">=virtual/jdk-1.5
+DEPEND=">=virtual/jdk-1.8
 	app-arch/unzip
 	${COMMON_DEPEND}
 	test? (

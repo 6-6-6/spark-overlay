@@ -21,11 +21,11 @@ CDEPEND="
 "
 
 RDEPEND="${CDEPEND}
-	>=virtual/jre-1.7
+	>=virtual/jre-1.8
 "
 
 DEPEND="${CDEPEND}
-	>=virtual/jdk-1.7
+	>=virtual/jdk-1.8
 	test? ( amd64? (
 		dev-util/pkgdiff
 		dev-util/japi-compliance-checker

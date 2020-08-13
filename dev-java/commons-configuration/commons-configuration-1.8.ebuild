@@ -53,7 +53,7 @@ CDEPEND="
 # xml-apis:xml-apis:1.0.b2 -> >=dev-java/xml-apis-1.0:0
 
 DEPEND="
-	>=virtual/jdk-1.5:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	${CDEPEND}
@@ -68,7 +68,7 @@ DEPEND="
 	)"
 
 RDEPEND="
-	>=virtual/jre-1.5:*
+	>=virtual/jre-1.8:*
 ${CDEPEND}"
 
 S="${WORKDIR}"

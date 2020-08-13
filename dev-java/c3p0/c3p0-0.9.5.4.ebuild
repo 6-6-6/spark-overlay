@@ -26,11 +26,11 @@ DEPEND="
 	test? (
 		dev-java/junit:4
 	)
-	>=virtual/jdk-1.6"
+	>=virtual/jdk-1.8"
 
 RDEPEND="
 	${CDEPEND}
-	>=virtual/jre-1.6"
+	>=virtual/jre-1.8"
 
 S="${WORKDIR}/${MY_P}"
 

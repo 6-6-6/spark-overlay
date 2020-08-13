@@ -22,7 +22,7 @@ KEYWORDS="~amd64"
 #KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 DEPEND="
-	>=virtual/jdk-1.7:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	test? (
 		dev-java/junit:4
@@ -34,7 +34,7 @@ DEPEND="
 "
 
 RDEPEND="
-	>=virtual/jre-1.7:*
+	>=virtual/jre-1.8:*
 "
 
 S="${WORKDIR}"

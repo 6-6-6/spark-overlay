@@ -24,7 +24,7 @@ KEYWORDS="~amd64"
 # org.jboss.modules:jboss-modules:1.1.0.Beta1 -> >=dev-java/jboss-modules-1.3.3:0
 
 DEPEND="
-	>=virtual/jdk-1.7:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	>=dev-java/jboss-modules-1.3.3:0
@@ -39,7 +39,7 @@ DEPEND="
 "
 
 RDEPEND="
-	>=virtual/jre-1.7:*
+	>=virtual/jre-1.8:*
 "
 
 S="${WORKDIR}"

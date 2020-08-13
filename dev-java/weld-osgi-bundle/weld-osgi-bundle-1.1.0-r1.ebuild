@@ -48,7 +48,7 @@ CDEPEND="
 # org.slf4j:slf4j-jdk14:1.5.10 -> >=dev-java/slf4j-jdk14-1.5.10:0
 
 DEPEND="
-	>=virtual/jdk-1.5:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	${CDEPEND}
@@ -62,7 +62,7 @@ DEPEND="
 	)"
 
 RDEPEND="
-	>=virtual/jre-1.5:*
+	>=virtual/jre-1.8:*
 ${CDEPEND}"
 
 S="${WORKDIR}"

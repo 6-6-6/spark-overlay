@@ -41,7 +41,7 @@ KEYWORDS="~amd64"
 # org.yaml:snakeyaml:1.9 -> >=dev-java/snakeyaml-1.16:0
 
 DEPEND="
-	>=virtual/jdk-1.5:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	>=dev-java/jaffl-0.5.11:0
@@ -67,7 +67,7 @@ DEPEND="
 	)"
 
 RDEPEND="
-	>=virtual/jre-1.5:*
+	>=virtual/jre-1.8:*
 "
 
 S="${WORKDIR}"

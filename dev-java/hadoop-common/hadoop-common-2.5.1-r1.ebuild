@@ -92,7 +92,7 @@ CDEPEND="
 # org.apache.ant:ant:1.8.1 -> >=dev-java/ant-core-1.10.7:0
 
 DEPEND="
-	>=virtual/jdk-1.6:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	${CDEPEND}
@@ -113,7 +113,7 @@ DEPEND="
 # tomcat:jasper-compiler:5.5.23 -> >=dev-java/jasper-compiler-5.5.23:0
 # tomcat:jasper-runtime:5.5.23 -> >=dev-java/jasper-runtime-5.5.23:0
 RDEPEND="
-	>=virtual/jre-1.6:*
+	>=virtual/jre-1.8:*
 ${CDEPEND}
 	>=dev-java/jasper-compiler-5.5.23:0
 

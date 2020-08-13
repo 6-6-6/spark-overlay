@@ -24,7 +24,7 @@ KEYWORDS="~amd64"
 # org.codehaus.plexus:plexus-interpolation:1.11 -> >=dev-java/plexus-interpolation-1.11:0
 
 DEPEND="
-	>=virtual/jdk-1.4:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	>=dev-java/plexus-interpolation-1.11:0
@@ -37,7 +37,7 @@ DEPEND="
 	)"
 
 RDEPEND="
-	>=virtual/jre-1.4:*
+	>=virtual/jre-1.8:*
 "
 
 S="${WORKDIR}"

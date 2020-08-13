@@ -48,7 +48,7 @@ CDEPEND="
 # org.apache.maven.plugin-tools:maven-plugin-annotations:3.2 -> >=dev-java/maven-plugin-annotations-3.2:0
 
 DEPEND="
-	>=virtual/jdk-1.6:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	${CDEPEND}
@@ -62,7 +62,7 @@ DEPEND="
 	)"
 
 RDEPEND="
-	>=virtual/jre-1.6:*
+	>=virtual/jre-1.8:*
 ${CDEPEND}"
 
 S="${WORKDIR}"

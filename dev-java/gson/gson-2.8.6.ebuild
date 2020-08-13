@@ -18,8 +18,8 @@ KEYWORDS="~amd64 ~x86"
 
 CDEPEND="test? ( dev-java/junit:4 )"
 
-DEPEND=">=virtual/jdk-1.7"
-RDEPEND=">=virtual/jre-1.7"
+DEPEND=">=virtual/jdk-1.8"
+RDEPEND=">=virtual/jre-1.8"
 
 S="${WORKDIR}/${PN}-${MY_P}"
 JAVA_SRC_DIR=(

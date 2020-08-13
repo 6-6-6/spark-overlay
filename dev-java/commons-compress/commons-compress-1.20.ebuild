@@ -36,14 +36,14 @@ CDEPEND="
 # org.osgi:org.osgi.core:6.0.0 -> >=dev-java/osgi-core-6.0.0:6
 
 DEPEND="
-	>=virtual/jdk-1.7:*
+	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
 	>=dev-java/osgi-core-6.0.0:6
 "
 
 RDEPEND="
-	>=virtual/jre-1.7:*
+	>=virtual/jre-1.8:*
 ${CDEPEND}"
 
 S="${WORKDIR}"

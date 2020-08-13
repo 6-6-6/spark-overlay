@@ -40,7 +40,7 @@ CDEPEND="
 # org.apache.hadoop:hadoop-client:2.5.1 -> >=dev-java/hadoop-client-2.7.4:0
 
 DEPEND="
-	>=virtual/jdk-1.6:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	${CDEPEND}
@@ -57,7 +57,7 @@ DEPEND="
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # org.slf4j:slf4j-simple:1.7.7 -> >=dev-java/slf4j-simple-1.7.7:0
 RDEPEND="
-	>=virtual/jre-1.6:*
+	>=virtual/jre-1.8:*
 ${CDEPEND}
 	>=dev-java/slf4j-simple-1.7.7:0
 "

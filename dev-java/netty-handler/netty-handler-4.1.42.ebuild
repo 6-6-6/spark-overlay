@@ -45,7 +45,7 @@ CDEPEND="
 # org.eclipse.jetty.npn:npn-api:1.1.1.v20141010 -> >=dev-java/jetty-npn-api-1.1.1_p20141010:0
 
 DEPEND="
-	>=virtual/jdk-1.6:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	${CDEPEND}
@@ -62,7 +62,7 @@ DEPEND="
 "
 
 RDEPEND="
-	>=virtual/jre-1.6:*
+	>=virtual/jre-1.8:*
 ${CDEPEND}"
 
 S="${WORKDIR}"

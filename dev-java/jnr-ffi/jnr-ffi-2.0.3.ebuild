@@ -32,7 +32,7 @@ CDEPEND="
 "
 
 DEPEND="
-	>=virtual/jdk-1.6:*
+	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
 	test? (
@@ -47,7 +47,7 @@ DEPEND="
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.github.jnr:jffi:1.2.9 -> >=dev-java/jffi-1.2.9:1.2
 RDEPEND="
-	>=virtual/jre-1.6:*
+	>=virtual/jre-1.8:*
 ${CDEPEND}
 	>=dev-java/jffi-1.2.9:1.2
 "

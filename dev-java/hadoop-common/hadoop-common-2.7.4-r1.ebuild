@@ -102,7 +102,7 @@ CDEPEND="
 # org.apache.ant:ant:1.8.1 -> >=dev-java/ant-core-1.10.7:0
 
 DEPEND="
-	>=virtual/jdk-1.7:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	${CDEPEND}
@@ -120,7 +120,7 @@ DEPEND="
 # javax.servlet.jsp:jsp-api:2.1 -> java-virtuals/jsp-api:2.3
 # org.slf4j:slf4j-log4j12:1.7.10 -> >=dev-java/slf4j-log4j12-1.7.28:0
 RDEPEND="
-	>=virtual/jre-1.7:*
+	>=virtual/jre-1.8:*
 ${CDEPEND}
 	>=dev-java/slf4j-log4j12-1.7.28:0
 

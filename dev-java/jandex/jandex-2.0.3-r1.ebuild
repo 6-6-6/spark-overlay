@@ -24,7 +24,7 @@ KEYWORDS="~amd64"
 # org.apache.ant:ant:1.8.1 -> >=dev-java/ant-core-1.10.7:0
 
 DEPEND="
-	>=virtual/jdk-1.6:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	>=dev-java/ant-core-1.10.7:0
@@ -37,7 +37,7 @@ DEPEND="
 	)"
 
 RDEPEND="
-	>=virtual/jre-1.6:*
+	>=virtual/jre-1.8:*
 "
 
 S="${WORKDIR}"

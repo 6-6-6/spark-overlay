@@ -17,8 +17,8 @@ KEYWORDS="~amd64 ~x86"
 IUSE="test"
 RESTRICT="!test? ( test )"
 
-RDEPEND=">=virtual/jre-1.7"
-DEPEND=">=virtual/jdk-1.7
+RDEPEND=">=virtual/jre-1.8"
+DEPEND=">=virtual/jdk-1.8
 	test? ( dev-java/junit:4 )"
 
 S="${WORKDIR}/${PN}-core-${PN}-core-${PV}"

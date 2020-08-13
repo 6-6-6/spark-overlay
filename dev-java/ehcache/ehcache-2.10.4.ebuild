@@ -34,7 +34,7 @@ CDEPEND="
 "
 
 DEPEND="
-	>=virtual/jdk-1.6:*
+	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
 	test? (
@@ -45,7 +45,7 @@ DEPEND="
 	)"
 
 RDEPEND="
-	>=virtual/jre-1.6:*
+	>=virtual/jre-1.8:*
 ${CDEPEND}"
 
 S="${WORKDIR}"

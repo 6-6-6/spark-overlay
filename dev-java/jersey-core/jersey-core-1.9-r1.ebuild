@@ -27,7 +27,7 @@ KEYWORDS="~amd64"
 # org.osgi:osgi_R4_core:1.0 -> >=dev-java/osgi-core-4.0:4
 
 DEPEND="
-	>=virtual/jdk-1.6:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	>=dev-java/jaxb-api-2.2:0
@@ -43,7 +43,7 @@ DEPEND="
 	)"
 
 RDEPEND="
-	>=virtual/jre-1.6:*
+	>=virtual/jre-1.8:*
 "
 
 S="${WORKDIR}"

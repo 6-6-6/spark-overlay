@@ -24,7 +24,7 @@ KEYWORDS="~amd64"
 # jdiff:jdiff:1.0.9 -> >=dev-java/jdiff-1.0.9:0
 
 DEPEND="
-	>=virtual/jdk-1.7:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	>=dev-java/jdiff-1.0.9:0
@@ -37,7 +37,7 @@ DEPEND="
 	)"
 
 RDEPEND="
-	>=virtual/jre-1.7:*
+	>=virtual/jre-1.8:*
 "
 
 S="${WORKDIR}"

@@ -21,12 +21,12 @@ KEYWORDS="~amd64 ~ppc64 ~x86"
 PATCHES=( "${FILESDIR}/${P}-Java-8.patch" )
 
 DEPEND="
-	>=virtual/jdk-1.3:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 "
 
 RDEPEND="
-	>=virtual/jre-1.3:*
+	>=virtual/jre-1.8:*
 "
 
 S="${WORKDIR}/${P}-src"

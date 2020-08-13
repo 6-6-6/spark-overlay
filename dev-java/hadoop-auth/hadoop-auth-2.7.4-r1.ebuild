@@ -43,7 +43,7 @@ CDEPEND="
 # org.apache.hadoop:hadoop-annotations:2.7.4 -> >=dev-java/hadoop-annotations-2.7.4:0
 
 DEPEND="
-	>=virtual/jdk-1.7:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	${CDEPEND}
@@ -62,7 +62,7 @@ DEPEND="
 # log4j:log4j:1.2.17 -> >=dev-java/log4j-1.2.17:0
 # org.slf4j:slf4j-log4j12:1.7.10 -> >=dev-java/slf4j-log4j12-1.7.28:0
 RDEPEND="
-	>=virtual/jre-1.7:*
+	>=virtual/jre-1.8:*
 ${CDEPEND}
 	>=dev-java/log4j-1.2.17:0
 

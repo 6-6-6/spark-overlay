@@ -16,8 +16,8 @@ KEYWORDS="amd64 ~arm64 ppc64 x86"
 IUSE="test"
 RESTRICT="!test? ( test )"
 
-RDEPEND=">=virtual/jre-1.6"
-DEPEND=">=virtual/jdk-1.6
+RDEPEND=">=virtual/jre-1.8"
+DEPEND=">=virtual/jdk-1.8
 	app-arch/unzip
 	test? (
 		dev-java/junit:4

@@ -20,7 +20,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 DEPEND="
-	>=virtual/jdk-1.7:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	test? (
 
@@ -32,7 +32,7 @@ DEPEND="
 "
 
 RDEPEND="
-	>=virtual/jre-1.7:*
+	>=virtual/jre-1.8:*
 "
 
 S="${WORKDIR}"

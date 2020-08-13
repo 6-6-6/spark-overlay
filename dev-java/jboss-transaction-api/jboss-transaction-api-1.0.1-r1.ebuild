@@ -25,7 +25,7 @@ KEYWORDS="~amd64"
 # org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.2_spec:1.0.0.Final -> >=dev-java/jboss-interceptors-api-1.0.1:1.2_spec
 
 DEPEND="
-	>=virtual/jdk-1.7:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	>=dev-java/jboss-interceptors-api-1.0.1:1.2_spec
@@ -39,7 +39,7 @@ DEPEND="
 	)"
 
 RDEPEND="
-	>=virtual/jre-1.7:*
+	>=virtual/jre-1.8:*
 "
 
 S="${WORKDIR}"

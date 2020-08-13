@@ -38,7 +38,7 @@ CDEPEND="
 # com.oracle.substratevm:svm:19.0.0 -> >=dev-java/svm-19.2.1:0
 
 DEPEND="
-	>=virtual/jdk-1.6:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	${CDEPEND}
@@ -54,7 +54,7 @@ DEPEND="
 "
 
 RDEPEND="
-	>=virtual/jre-1.6:*
+	>=virtual/jre-1.8:*
 ${CDEPEND}"
 
 S="${WORKDIR}"

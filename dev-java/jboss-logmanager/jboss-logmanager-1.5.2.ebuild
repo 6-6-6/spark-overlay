@@ -18,9 +18,9 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 CDEPEND="dev-java/jboss-modules:0"
-RDEPEND=">=virtual/jre-1.5
+RDEPEND=">=virtual/jre-1.8
 		${CDEPEND}"
-DEPEND=">=virtual/jdk-1.5
+DEPEND=">=virtual/jdk-1.8
 		${CDEPEND}"
 
 S="${WORKDIR}/${P}.Final/"

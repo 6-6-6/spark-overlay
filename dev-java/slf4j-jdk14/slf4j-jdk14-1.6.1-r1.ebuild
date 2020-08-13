@@ -28,7 +28,7 @@ CDEPEND="
 "
 
 DEPEND="
-	>=virtual/jdk-1.3:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	${CDEPEND}
@@ -41,7 +41,7 @@ DEPEND="
 	)"
 
 RDEPEND="
-	>=virtual/jre-1.3:*
+	>=virtual/jre-1.8:*
 ${CDEPEND}"
 
 S="${WORKDIR}"

@@ -32,7 +32,7 @@ KEYWORDS="~amd64"
 # org.slf4j:slf4j-api:1.6.6 -> >=dev-java/slf4j-api-1.7.7:0
 
 DEPEND="
-	>=virtual/jdk-1.6:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	>=dev-java/cache-api-1.0.0:0
@@ -53,7 +53,7 @@ DEPEND="
 	)"
 
 RDEPEND="
-	>=virtual/jre-1.6:*
+	>=virtual/jre-1.8:*
 "
 
 S="${WORKDIR}"

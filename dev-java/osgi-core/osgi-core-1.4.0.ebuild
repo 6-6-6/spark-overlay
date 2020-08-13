@@ -24,7 +24,7 @@ DEPEND="
 "
 
 RDEPEND="
-	>=virtual/jre-1.3:*
+	>=virtual/jre-1.8:*
 "
 
 S="${WORKDIR}"

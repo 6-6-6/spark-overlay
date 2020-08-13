@@ -76,7 +76,7 @@ CDEPEND="
 # org.eclipse.jetty.npn:npn-api:1.1.1.v20141010 -> >=dev-java/jetty-npn-api-1.1.1_p20141010:0
 
 DEPEND="
-	>=virtual/jdk-1.6:*
+	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 	${CDEPEND}
@@ -98,7 +98,7 @@ DEPEND="
 # org.javassist:javassist:3.20.0-GA -> >=dev-java/javassist-3.21.0:3
 
 RDEPEND="
-	>=virtual/jre-1.6:*
+	>=virtual/jre-1.8:*
 ${CDEPEND}
 	>=dev-java/javassist-3.21.0:3
 
