@@ -76,5 +76,7 @@ java-pkg-maven_src_unpack() {
 	cp "${S}"/${JAVA_SRC_DIR} "${S}"/${JAVA_RESOURCE_DIRS} -r || die
 	find "${S}"/${JAVA_RESOURCE_DIRS} -type f ! -name \*.properties \
 		-exec rm {} \; || die
+	find "${S}"/${JAVA_RESOURCE_DIRS} -type d -empty -delete || die
+	mkdir -p "${S}"/${JAVA_RESOURCE_DIRS}
 }
 

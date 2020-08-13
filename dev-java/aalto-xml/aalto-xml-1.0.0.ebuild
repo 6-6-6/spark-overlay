@@ -53,3 +53,8 @@ JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 JAVA_TESTING_FRAMEWORKS="pkgdiff"
+
+src_prepare() {
+	java-pkg-2_src_prepare
+	rm ${JAVA_SRC_DIR}/{annotations,test} -r || die
+}

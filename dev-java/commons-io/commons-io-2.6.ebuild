@@ -6,6 +6,7 @@
 
 EAPI=7
 
+JAVA_TESTING_FRAMEWORKS="pkgdiff junit"
 JAVA_PKG_IUSE="doc source binary test"
 MAVEN_ID="commons-io:commons-io:2.6"
 
@@ -24,13 +25,6 @@ KEYWORDS="~amd64"
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	test? (
-		dev-java/junit:4
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)
 "
 
 RDEPEND="
@@ -46,7 +40,6 @@ JAVA_RESOURCE_DIRS=(
 	"src/main/resources"
 )
 
-JAVA_TESTING_FRAMEWORKS="pkgdiff junit"
 JAVA_TEST_SRC_DIR="src/test/java"
 JAVA_TEST_RESOURCE_DIRS=("src/test/java")
 JAVA_TEST_GENTOO_CLASSPATH="junit-4"

@@ -93,6 +93,11 @@ java-pkg-simple-plugins_src_compile() {
 	local classpath=""
 	java-pkg-simple_getclasspath
 	java-pkg-simple_prepend_resources "${JAVA_RESOURCE_DIRS[@]}"
+	classpath+=":${classes}"
+
+	[[ -s ${java_sources} ]] && ejavac -d ${classes} -encoding ${JAVA_ENCODING}\
+		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS}\
+		@${java_sources}
 
 	[[ -s ${scala_sources} ]] && escalac -d ${classes} -encoding ${JAVA_ENCODING}\
 		${classpath:+-classpath ${classpath}} ${SCALAC_ARGS}\
@@ -101,10 +106,6 @@ java-pkg-simple-plugins_src_compile() {
 	[[ -s ${kotlin_sources} ]] && ekotlinc -d ${classes}\
 		${classpath:+-classpath ${classpath}} ${KOTLINC_ARGS}\
 		@${kotlin_sources}
-
-	[[ -s ${java_sources} ]] && ejavac -d ${classes} -encoding ${JAVA_ENCODING}\
-		${classpath:+-classpath ${classpath}} ${JAVAC_ARGS}\
-		@${sources}
 
 	local jar_args
 	if [[ -e ${classes}/META-INF/MANIFEST.MF ]]; then

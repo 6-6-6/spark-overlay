@@ -27,15 +27,21 @@ EXPORT_FUNCTIONS src_compile src_install src_test
 # We are only interested in finding all java source files, wherever they may be.
 S="${WORKDIR}"
 
-# If it is possible, we will use pkgdiff to make sure our jar file is compatible
-# with the binary jars distributed by upstream.
-#
-# The only accepted ARCH is amd64, since pkgdiff only accept "amd64" as keyword.
-#if [[ ${ARCH} == "amd64" ]]; then
-#	if has test ${JAVA_PKG_IUSE}; then
-#		DEPEND="test? ( dev-util/pkgdiff:0 )"
-#	fi
-#fi
+# handle dependencies for testing frameworks
+if has test ${JAVA_PKG_IUSE}; then
+	local test_deps
+	for framework in ${JAVA_TESTING_FRAMEWORKS}; do
+		case ${framework} in
+			pkgdiff)
+				test_deps+=" amd64? ( dev-util/pkgdiff dev-util/japi-compliance-checker )";;
+			junit)
+				test_deps+=" dev-java/junit:4";;
+			testng)
+				test_deps+=" dev-java/testng:0";;
+		esac
+	done
+	[[ ${test_deps} ]] && DEPEND="test? ( ${test_deps} )"
+fi
 
 # @ECLASS-VARIABLE: JAVA_GENTOO_CLASSPATH
 # @DEFAULT_UNSET
