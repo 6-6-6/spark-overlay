@@ -21,12 +21,12 @@ KEYWORDS="~amd64"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# net.jpountz.lz4:lz4:1.3.0 -> >=dev-java/lz4-1.3.0:0
+# net.jpountz.lz4:lz4:1.3.0 -> >=dev-java/lz4-java-1.3.0:0
 # org.slf4j:slf4j-api:1.7.21 -> >=dev-java/slf4j-api-1.7.28:0
 # org.xerial.snappy:snappy-java:1.1.2.6 -> >=dev-java/snappy-1.1.7.5:1.1
 
 CDEPEND="
-	>=dev-java/lz4-1.3.0:0
+	>=dev-java/lz4-java-1.3.0:0
 	>=dev-java/slf4j-api-1.7.28:0
 	>=dev-java/snappy-1.1.7.5:1.1
 "
@@ -52,7 +52,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="lz4,slf4j-api,snappy-1.1"
+JAVA_GENTOO_CLASSPATH="lz4-java,slf4j-api,snappy-1.1"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

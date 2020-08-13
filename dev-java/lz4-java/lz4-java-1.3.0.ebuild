@@ -13,8 +13,8 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 MAVEN_ID="net.jpountz.lz4:lz4:1.3.0"
 DESCRIPTION="Java ports and bindings of the LZ4 compression algorithm and the xxHash hashing algorithm"
 HOMEPAGE="https://github.com/jpountz/lz4-java"
-SRC_URI="https://repo1.maven.org/maven2/net/jpountz/${PN}/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/net/jpountz/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+SRC_URI="https://repo1.maven.org/maven2/net/jpountz/lz4/lz4/${PV}/lz4-${PV}-sources.jar -> ${P}-sources.jar
+	https://repo1.maven.org/maven2/net/jpountz/lz4/lz4/${PV}/lz4-${PV}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
