@@ -23,7 +23,7 @@ KEYWORDS="~amd64"
 # POM: /var/lib/java-ebuilder/poms/${P}.Final.pom
 # com.google.protobuf:protobuf-java:2.4.1 -> >=dev-java/protobuf-java-3.11.4:0
 # commons-logging:commons-logging:1.1.1 -> >=dev-java/commons-logging-1.2:0
-# javax.activation:activation:1.1.1 -> >=dev-java/activation-1.1.1:0
+# javax.activation:activation:1.1.1 -> >=dev-java/javax-activation-1.1.1:0
 # javax.servlet:servlet-api:2.5 -> java-virtuals/servlet-api:4.0
 # log4j:log4j:1.2.16 -> >=dev-java/log4j-1.2.17:0
 # org.apache.felix:org.osgi.compendium:1.4.0 -> >=dev-java/osgi-compendium-4.3.1:0
@@ -33,7 +33,7 @@ KEYWORDS="~amd64"
 # org.slf4j:slf4j-api:1.6.4 -> >=dev-java/slf4j-api-1.7.7:0
 
 CDEPEND="
-	>=dev-java/activation-1.1.1:0
+	>=dev-java/javax-activation-1.1.1:0
 	>=dev-java/jboss-logging-spi-2.1.2:0
 	>=dev-java/commons-logging-1.2:0
 	>=dev-java/jboss-marshalling-1.3.18:0
@@ -64,7 +64,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="protobuf-java,commons-logging,activation,servlet-api-4.0,log4j,osgi-compendium,osgi-core-1,jboss-logging-spi,jboss-marshalling,slf4j-api"
+JAVA_GENTOO_CLASSPATH="protobuf-java,commons-logging,javax-activation,servlet-api-4.0,log4j,osgi-compendium,osgi-core-1,jboss-logging-spi,jboss-marshalling,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 JAVA_TESTING_FRAMEWORKS="pkgdiff"

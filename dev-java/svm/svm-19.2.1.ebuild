@@ -6,14 +6,15 @@
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary"
 MAVEN_ID="com.oracle.substratevm:svm:19.2.1"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="SubstrateVM image builder components"
 HOMEPAGE="https://github.com/oracle/graal/tree/master/substratevm"
-SRC_URI="https://repo.maven.apache.org/maven2/com/oracle/substratevm/${PN}/${PV}/${P}-sources.jar"
+SRC_URI="https://repo.maven.apache.org/maven2/com/oracle/substratevm/${PN}/${PV}/${P}-sources.jar
+	https://repo.maven.apache.org/maven2/com/oracle/substratevm/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS=""
@@ -49,3 +50,4 @@ ${CDEPEND}"
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="truffle-nfi,objectfile,pointsto,graal-sdk,graalvm-compiler"
+JAVA_BINJAR_FILENAME="${P}-bin.jar"

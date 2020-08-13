@@ -63,7 +63,7 @@ CDEPEND="
 	>=dev-java/guava-29.0:0
 	>=dev-java/leveldbjni-1.8:0
 	>=dev-java/log4j-1.2.17:0
-	>=dev-java/netty-all-5.0.0:0
+	>=dev-java/netty-all-4.0.24:0
 	>=dev-java/protobuf-java-3.11.4:0
 	>=dev-java/xerces-2.12.0:2
 	java-virtuals/servlet-api:4.0

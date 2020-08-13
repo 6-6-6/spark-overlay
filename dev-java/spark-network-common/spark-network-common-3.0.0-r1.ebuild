@@ -41,8 +41,9 @@ CDEPEND="
 	>=dev-java/jackson-annotations-2.11.0:2
 	>=dev-java/jsr305-3.0.1:0
 	>=dev-java/leveldbjni-1.8:0
-	>=dev-java/netty-all-5.0.0:0
+	>=dev-java/netty-all-4.1.42:0
 	>=dev-java/scala-common-bin-2.12.4:2.12
+	dev-java/scala-xml:2.12
 "
 
 # Compile dependencies
@@ -69,7 +70,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-databind,jsr305,metrics-core,netty-all,commons-crypto,commons-lang-3.10,leveldbjni,scala-common-bin-2.12,unused"
+JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-databind,jsr305,metrics-core,netty-all,commons-crypto,commons-lang-3.10,leveldbjni,scala-common-bin-2.12,unused,scala-xml-2.12"
 JAVA_CLASSPATH_EXTRA="slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

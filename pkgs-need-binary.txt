@@ -1,5 +1,9 @@
 # from /etc/portage/package.use/9-spark-overlay
 
+dev-java/netty-common binary
+dev-java/svm binary
+dev-java/pointsto binary
+dev-java/conscrypt-openjdk-uber binary
 #dev-java/yecht binary
 #dev-java/gpars binary
 dev-java/alpn-boot binary

@@ -36,7 +36,7 @@ KEYWORDS="~amd64"
 # io.dropwizard.metrics:metrics-json:4.1.1 -> >=dev-java/metrics-json-4.1.1:0
 # io.dropwizard.metrics:metrics-jvm:4.1.1 -> >=dev-java/metrics-jvm-4.1.1:0
 # io.netty:netty-all:4.1.42.Final -> >=dev-java/netty-all-5.0.0:0
-# javax.activation:activation:1.1.1 -> >=dev-java/activation-1.1.1:0
+# javax.activation:activation:1.1.1 -> >=dev-java/javax-activation-1.1.1:0
 # javax.servlet:javax.servlet-api:3.1.0 -> java-virtuals/servlet-api:4.0
 # log4j:log4j:1.2.17 -> >=dev-java/log4j-1.2.17:0
 # net.razorvine:pyrolite:4.30 -> >=dev-java/pyrolite-4.30:0
@@ -80,7 +80,7 @@ KEYWORDS="~amd64"
 
 CDEPEND="
 	>=dev-java/RoaringBitmap-0.7.45:0
-	>=dev-java/activation-1.1.1:0
+	>=dev-java/javax-activation-1.1.1:0
 	>=dev-java/avro-1.8.2:0
 	>=dev-java/avro-mapred-1.8.2:0
 	>=dev-java/chill-0.9.3:2.12
@@ -127,7 +127,7 @@ CDEPEND="
 	>=dev-java/jakarta-oro-2.0.8:2.0
 	>=dev-java/jsr305-3.0.1:0
 	>=dev-java/log4j-1.2.17:0
-	>=dev-java/netty-all-5.0.0:0
+	>=dev-java/netty-all-4.1.42:0
 	>=dev-java/scala-common-bin-2.12.4:2.12
 	>=dev-java/slf4j-api-1.7.28:0
 	>=dev-java/slf4j-log4j12-1.7.28:0
@@ -164,7 +164,7 @@ ${CDEPEND}
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="stream,jackson-databind,jackson-module-scala-2.12,zstd-jni,jsr305,compress-lzf,chill-java,chill-2.12,commons-net,metrics-core,metrics-graphite,metrics-jmx,metrics-json,metrics-jvm,netty-all,activation,servlet-api-4.0,log4j,pyrolite,py4j,avro,avro-mapred,commons-crypto,commons-lang-3.10,commons-math-3,commons-text,curator-recipes,hadoop-client,ant-ivy-2,spark-kvstore-2.12,spark-launcher-2.12,spark-network-common-2.12,spark-network-shuffle-2.12,spark-tags-2.12,spark-unsafe-2.12,xbean-asm7-shaded,zookeeper,jersey-container-servlet-2,jersey-container-servlet-core-2,jersey-client-2,jersey-common-2,jersey-server-2,jersey-hk2-2,json4s-jackson-2.12,lz4-java,RoaringBitmap,scala-common-bin-2.12,scala-common-bin-2.12,scala-common-bin-2.12,jcl-over-slf4j,jul-to-slf4j,slf4j-api,slf4j-log4j12,unused,snappy-1.1,jakarta-oro-2.0,paranamer"
+JAVA_GENTOO_CLASSPATH="stream,jackson-databind,jackson-module-scala-2.12,zstd-jni,jsr305,compress-lzf,chill-java,chill-2.12,commons-net,metrics-core,metrics-graphite,metrics-jmx,metrics-json,metrics-jvm,netty-all,javax-activation,servlet-api-4.0,log4j,pyrolite,py4j,avro,avro-mapred,commons-crypto,commons-lang-3.10,commons-math-3,commons-text,curator-recipes,hadoop-client,ant-ivy-2,spark-kvstore-2.12,spark-launcher-2.12,spark-network-common-2.12,spark-network-shuffle-2.12,spark-tags-2.12,spark-unsafe-2.12,xbean-asm7-shaded,zookeeper,jersey-container-servlet-2,jersey-container-servlet-core-2,jersey-client-2,jersey-common-2,jersey-server-2,jersey-hk2-2,json4s-jackson-2.12,lz4-java,RoaringBitmap,scala-common-bin-2.12,scala-common-bin-2.12,scala-common-bin-2.12,jcl-over-slf4j,jul-to-slf4j,slf4j-api,slf4j-log4j12,unused,snappy-1.1,jakarta-oro-2.0,paranamer"
 JAVA_CLASSPATH_EXTRA="guava"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

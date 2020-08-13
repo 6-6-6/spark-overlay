@@ -21,11 +21,11 @@ KEYWORDS="~amd64"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# javax.activation:activation:1.1 -> >=dev-java/activation-1.1:0
+# javax.activation:activation:1.1 -> >=dev-java/javax-activation-1.1:0
 # javax.xml.stream:stax-api:1.0-2 -> java-virtuals/stax-api:0
 
 CDEPEND="
-	>=dev-java/activation-1.1:0
+	>=dev-java/javax-activation-1.1:0
 	java-virtuals/stax-api:0
 "
 
@@ -48,7 +48,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="activation,stax-api"
+JAVA_GENTOO_CLASSPATH="javax-activation,stax-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 JAVA_TESTING_FRAMEWORKS="pkgdiff"

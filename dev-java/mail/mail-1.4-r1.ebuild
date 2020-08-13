@@ -21,10 +21,10 @@ KEYWORDS="~amd64"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# javax.activation:activation:1.1 -> >=dev-java/activation-1.1:0
+# javax.activation:activation:1.1 -> >=dev-java/javax-activation-1.1:0
 
 CDEPEND="
-	>=dev-java/activation-1.1:0
+	>=dev-java/javax-activation-1.1:0
 "
 
 DEPEND="
@@ -46,7 +46,7 @@ ${CDEPEND}"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="activation"
+JAVA_GENTOO_CLASSPATH="javax-activation"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 JAVA_TESTING_FRAMEWORKS="pkgdiff"
