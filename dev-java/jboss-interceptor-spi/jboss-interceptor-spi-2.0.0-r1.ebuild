@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.jboss.interceptor:jboss-interceptor-spi:2.0.0.CR1"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -27,14 +28,9 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	>=dev-java/jboss-interceptors-api-1.0.0:1.1_spec
+		>=dev-java/jboss-interceptors-api-1.0.0:1.1_spec
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -45,4 +41,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="jboss-interceptors-api-1.1_spec"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

@@ -41,7 +41,7 @@ DEPEND="
 # org.jruby.extras:jffi:1.0.6 -> >=dev-java/jffi-1.0.6:0
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}
+	${CDEPEND}
 	>=dev-java/jffi-1.0.6:0
 "
 

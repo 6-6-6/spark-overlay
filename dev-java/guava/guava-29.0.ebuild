@@ -9,6 +9,7 @@ EAPI=7
 JAVA_PKG_IUSE="doc source binary test"
 MAVEN_ID="com.google.guava:guava:29.0-jre"
 MAVEN_PROVIDES="com.google.guava:listenablefuture:9999.0"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -42,16 +43,11 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -59,4 +55,3 @@ JAVA_GENTOO_CLASSPATH="jsr305,error-prone-annotations,failureaccess,j2objc-annot
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

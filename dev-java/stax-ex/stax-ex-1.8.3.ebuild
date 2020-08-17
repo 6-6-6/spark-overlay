@@ -4,6 +4,7 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -28,10 +29,4 @@ RDEPEND=">=virtual/jre-1.8
 DEPEND=">=virtual/jdk-1.8
 	app-arch/unzip
 	${COMMON_DEPEND}
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"
+"

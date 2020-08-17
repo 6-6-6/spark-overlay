@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.apache.avro:avro-ipc:1.8.2"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -46,22 +47,15 @@ CDEPEND="
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	!binary? (
-	${CDEPEND}
-	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+	!binary? ( ${CDEPEND} )
+"
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # org.slf4j:slf4j-simple:1.7.7 -> >=dev-java/slf4j-simple-1.7.7:0
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}
+	${CDEPEND}
 	>=dev-java/slf4j-simple-1.7.7:0
 "
 
@@ -70,4 +64,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="netty,avro,velocity,jackson-core-asl,jackson-mapper-asl,jetty-6,jetty-util-6,servlet-api,slf4j-api,slf4j-simple"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

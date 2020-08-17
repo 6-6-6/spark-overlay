@@ -28,7 +28,7 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	>=dev-java/jakarta-activation-api-2.0.0:0
+		>=dev-java/jakarta-activation-api-2.0.0:0
 	)
 "
 

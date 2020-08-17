@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="com.sun.jersey:jersey-core:1.9"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -30,17 +31,12 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	>=dev-java/jaxb-api-2.2:0
-	>=dev-java/mail-1.4:0
-	>=dev-java/jsr311-api-1.1.1:0
-	>=dev-java/osgi-core-4.0:4
+		>=dev-java/jaxb-api-2.2:0
+		>=dev-java/mail-1.4:0
+		>=dev-java/jsr311-api-1.1.1:0
+		>=dev-java/osgi-core-4.0:4
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -51,4 +47,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="mail,jsr311-api,jaxb-api,osgi-core-4"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

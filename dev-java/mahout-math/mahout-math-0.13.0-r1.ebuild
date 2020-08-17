@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.apache.mahout:mahout-math:0.13.0"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -38,19 +39,12 @@ CDEPEND="
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	!binary? (
-	${CDEPEND}
-	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+	!binary? ( ${CDEPEND} )
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -65,4 +59,3 @@ src_prepare() {
 		${JAVA_SRC_DIR}/org/apache/mahout/math/random/IndianBuffet.java\
 		|| die
 }
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

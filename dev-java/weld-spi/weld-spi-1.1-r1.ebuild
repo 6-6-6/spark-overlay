@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.jboss.weld:weld-spi:1.1.Final"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -48,23 +49,15 @@ CDEPEND="
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	!binary? (
-	${CDEPEND}
-	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+	!binary? ( ${CDEPEND} )
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jsr250,cdi-api-1.2,jsf-api,persistence-api,servlet-api-4.0,jta,validation-api-1.0,jboss-ejb-api-3.1_spec,jboss-interceptors-api-1.1_spec,weld-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

@@ -7,10 +7,11 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.8.3"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-MAVEN_ID="com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.8.3"
 DESCRIPTION="Data format extension for Jackson (http://jackson.codehaus.org) to offer alternative support for serializing POJOs as XML and deserializing XML as pojos. Support implemented on top of Stax API (javax.xml.stream), by implementing core Jackson Streaming API types like JsonGenerator, JsonParser and JsonFactory. Some data-binding types overridden as well (ObjectMapper sub-classed as XmlMapper)."
 HOMEPAGE="http://wiki.fasterxml.com/JacksonExtensionXmlDataBinding"
 SRC_URI="https://repo1.maven.org/maven2/com/fasterxml/jackson/dataformat/${PN}/${PV}/${P}-sources.jar
@@ -45,21 +46,14 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	java-virtuals/stax-api:0
-	)
-	test? (
-
-		amd64? (
-			dev-util/pkgdiff
-			dev-util/japi-compliance-checker
-		)
+		${CDEPEND}
+		java-virtuals/stax-api:0
 	)
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -67,5 +61,3 @@ JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind,jackson-
 JAVA_CLASSPATH_EXTRA="stax-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

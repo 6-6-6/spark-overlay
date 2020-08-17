@@ -6,6 +6,7 @@ EAPI=7
 MY_P="${PN}-parent-${PV}"
 JAVA_PKG_IUSE="doc source test"
 MAVEN_ID="com.google.code.gson:gson:2.8.6"
+JAVA_TESTING_FRAMEWORKS="junit pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -29,7 +30,6 @@ JAVA_SRC_DIR=(
 
 JAVA_TEST_GENTOO_CLASSPATH="junit-4"
 JAVA_TEST_SRC_DIR="${PN}/src/test/java"
-JAVA_TESTING_FRAMEWORKS="junit pkgdiff"
 
 JAVA_RM_FILES=( "${JAVA_SRC_DIR[0]}/module-info.java" )
 

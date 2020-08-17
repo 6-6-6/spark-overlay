@@ -7,10 +7,11 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="io.netty:netty-transport-native-unix-common:4.1.42.Final"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-MAVEN_ID="io.netty:netty-transport-native-unix-common:4.1.42.Final"
 DESCRIPTION="Static library which contains common unix utilities."
 HOMEPAGE="https://netty.io/netty-transport-native-unix-common/"
 SRC_URI="https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
@@ -34,26 +35,15 @@ CDEPEND="
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	!binary? (
-	${CDEPEND}
-	)
-	test? (
-
-		amd64? (
-			dev-util/pkgdiff
-			dev-util/japi-compliance-checker
-		)
-	)
+	!binary? ( ${CDEPEND} )
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="netty-buffer,netty-common,netty-transport"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="io.projectreactor:reactor-core:3.1.4.RELEASE"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -37,19 +38,12 @@ CDEPEND="
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	!binary? (
-	${CDEPEND}
-	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+	!binary? ( ${CDEPEND} )
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -63,4 +57,3 @@ src_prepare() {
 	sed -i "s/java.util.concurrent/java9.util.concurrent/"\
 		"${S}"/${JAVA_SRC_DIR}/reactor/adapter/JdkFlowAdapter.java || die
 }
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

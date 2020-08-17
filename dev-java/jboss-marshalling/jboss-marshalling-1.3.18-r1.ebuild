@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test"
 MAVEN_ID="org.jboss.marshalling:jboss-marshalling:1.3.18.GA"
+JAVA_TESTING_FRAMEWORKS="testng"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -27,9 +28,6 @@ KEYWORDS="~amd64"
 DEPEND="
 	>=virtual/jdk-1.8:*
 	>=dev-java/jboss-modules-1.3.3:0
-	test? (
-		>=dev-java/testng-6.9.10:0
-	)
 "
 
 RDEPEND="
@@ -42,6 +40,5 @@ JAVA_CLASSPATH_EXTRA="jboss-modules"
 JAVA_SRC_DIR="${P}.GA/api/src/main/java"
 JAVA_MAIN_CLASS="org.jboss.marshalling.Version"
 
-JAVA_TESTING_FRAMEWORKS="testng"
 JAVA_TEST_GENTOO_CLASSPATH="testng"
 JAVA_TEST_SRC_DIR="${P}.GA/api/src/test/java"

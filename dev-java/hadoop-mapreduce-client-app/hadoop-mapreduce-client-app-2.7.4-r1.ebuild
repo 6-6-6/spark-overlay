@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.apache.hadoop:hadoop-mapreduce-client-app:2.7.4"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -59,25 +60,20 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	>=dev-java/hadoop-common-2.7.4:0
-	>=dev-java/commons-cli-1.3.1:1
-	>=dev-java/commons-codec-1.7:0
-	>=dev-java/commons-collections-3.2.2:3
-	>=dev-java/commons-lang-2.6:2.1
-	>=dev-java/commons-logging-1.2:0
-	>=dev-java/guava-29.0:0
+		${CDEPEND}
+		>=dev-java/hadoop-common-2.7.4:0
+		>=dev-java/commons-cli-1.3.1:1
+		>=dev-java/commons-codec-1.7:0
+		>=dev-java/commons-collections-3.2.2:3
+		>=dev-java/commons-lang-2.6:2.1
+		>=dev-java/commons-logging-1.2:0
+		>=dev-java/guava-29.0:0
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -85,4 +81,3 @@ JAVA_GENTOO_CLASSPATH="guice-4,protobuf-java,netty,avro,hadoop-annotations,hadoo
 JAVA_CLASSPATH_EXTRA="guava,commons-cli-1,commons-codec,commons-collections-3,commons-lang-2.1,commons-logging,hadoop-common"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

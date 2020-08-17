@@ -7,10 +7,11 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.scala-lang.modules:scala-xml_2.12:1.3.0"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven java-pkg-simple-plugins
 
-MAVEN_ID="org.scala-lang.modules:scala-xml_2.12:1.3.0"
 DESCRIPTION="scala-xml"
 HOMEPAGE="http://www.scala-lang.org/"
 SRC_URI="https://repo1.maven.org/maven2/org/scala-lang/modules/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar -> ${P}-sources.jar
@@ -30,29 +31,18 @@ CDEPEND="
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	!binary? (
-	${CDEPEND}
-	)
-	test? (
-
-		amd64? (
-			dev-util/pkgdiff
-			dev-util/japi-compliance-checker
-		)
-	)
+	!binary? ( ${CDEPEND} )
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="scala-common-bin-2.12"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 src_compile() {
 	java-pkg-simple-plugins_src_compile

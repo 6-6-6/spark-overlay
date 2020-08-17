@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.hibernate.validator:hibernate-validator:6.0.10.Final"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -51,21 +52,16 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	>=dev-java/javax-el-3.0.1_beta09:0
-	>=dev-java/jboss-logging-annotations-2.1.0:0
-	>=dev-java/jboss-logging-processor-2.1.0:0
+		${CDEPEND}
+		>=dev-java/javax-el-3.0.1_beta09:0
+		>=dev-java/jboss-logging-annotations-2.1.0:0
+		>=dev-java/jboss-logging-processor-2.1.0:0
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -73,4 +69,3 @@ JAVA_GENTOO_CLASSPATH="classmate,paranamer,money-api,validation-api,joda-time,hi
 JAVA_CLASSPATH_EXTRA="javax-el,jboss-logging-annotations,jboss-logging-processor"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

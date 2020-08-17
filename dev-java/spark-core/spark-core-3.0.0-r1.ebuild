@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.apache.spark:spark-core_2.12:3.0.0-preview2"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven java-pkg-simple-plugins
 
@@ -143,22 +144,17 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	>=dev-java/guava-29.0:0
+		${CDEPEND}
+		>=dev-java/guava-29.0:0
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-preview2.pom
 # com.thoughtworks.paranamer:paranamer:2.8 -> >=dev-java/paranamer-2.8:0
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}
+	${CDEPEND}
 	>=dev-java/paranamer-2.8:0
 "
 
@@ -172,4 +168,3 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 src_compile() {
 	java-pkg-simple-plugins_src_compile
 }
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

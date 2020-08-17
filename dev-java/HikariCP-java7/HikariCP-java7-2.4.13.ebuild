@@ -7,10 +7,11 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="com.zaxxer:HikariCP-java7:2.4.13"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-MAVEN_ID="com.zaxxer:HikariCP-java7:2.4.13"
 DESCRIPTION="Ultimate JDBC Connection Pool"
 HOMEPAGE="https://github.com/brettwooldridge/HikariCP"
 SRC_URI="https://repo1.maven.org/maven2/com/zaxxer/${PN}/${PV}/${P}-sources.jar
@@ -40,24 +41,17 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	>=dev-java/simpleclient-0.0.16:0
-	>=dev-java/hibernate-core-5.2.13:0
-	>=dev-java/metrics-core-4.1.1:0
-	>=dev-java/metrics-healthchecks-4.1.1:0
-	)
-	test? (
-
-		amd64? (
-			dev-util/pkgdiff
-			dev-util/japi-compliance-checker
-		)
+		${CDEPEND}
+		>=dev-java/simpleclient-0.0.16:0
+		>=dev-java/hibernate-core-5.2.13:0
+		>=dev-java/metrics-core-4.1.1:0
+		>=dev-java/metrics-healthchecks-4.1.1:0
 	)
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -65,5 +59,3 @@ JAVA_GENTOO_CLASSPATH="javassist-3,slf4j-api"
 JAVA_CLASSPATH_EXTRA="metrics-core,metrics-healthchecks,simpleclient,hibernate-core"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

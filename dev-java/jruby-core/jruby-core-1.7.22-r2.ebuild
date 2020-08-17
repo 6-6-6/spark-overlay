@@ -80,20 +80,20 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	>=dev-java/coro-mock-1.0:0
-	>=dev-java/joda-timezones-2013:0
-	>=dev-java/jsr292-mock-1.1:0
-	>=dev-java/unsafe-mock-8.0:0
-	>=dev-java/ant-core-1.10.7:0
-	>=dev-java/bsf-2.4.0:2.3
-	>=dev-java/osgi-core-api-5.0.0:0
+		${CDEPEND}
+		>=dev-java/coro-mock-1.0:0
+		>=dev-java/joda-timezones-2013:0
+		>=dev-java/jsr292-mock-1.1:0
+		>=dev-java/unsafe-mock-8.0:0
+		>=dev-java/ant-core-1.10.7:0
+		>=dev-java/bsf-2.4.0:2.3
+		>=dev-java/osgi-core-api-5.0.0:0
 	)
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 

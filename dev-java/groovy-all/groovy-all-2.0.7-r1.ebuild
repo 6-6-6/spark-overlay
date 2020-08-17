@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.codehaus.groovy:groovy-all:2.0.7"
+JAVA_TESTING_FRAMEWORKS="junit pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -52,16 +53,11 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	java-virtuals/jsp-api:2.3
-	java-virtuals/servlet-api:4.0
+		${CDEPEND}
+		java-virtuals/jsp-api:2.3
+		java-virtuals/servlet-api:4.0
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
@@ -72,7 +68,7 @@ DEPEND="
 # org.testng:testng:6.5.2 -> >=dev-java/testng-6.9.10:0
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}
+	${CDEPEND}
 	>=dev-java/ant-launcher-1.8.4:0
 
 	>=dev-java/gpars-1.0.0:0
@@ -90,5 +86,3 @@ JAVA_GENTOO_CLASSPATH="bsf-2.3,qdox-1.12,xstream,commons-logging,jline-2,junit-4
 JAVA_CLASSPATH_EXTRA="jsp-api-2.3,servlet-api-4.0"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="junit pkgdiff"

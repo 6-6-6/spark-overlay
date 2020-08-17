@@ -7,10 +7,10 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.codehaus.mojo:animal-sniffer-annotations:1.19"
 
 inherit java-pkg-2 java-pkg-simple
 
-MAVEN_ID="org.codehaus.mojo:animal-sniffer-annotations:1.19"
 DESCRIPTION="Animal Sniffer Parent POM."
 HOMEPAGE="http://www.mojohaus.org/animal-sniffer/animal-sniffer-annotations"
 SRC_URI="https://github.com/mojohaus/animal-sniffer/archive/animal-sniffer-parent-${PV}.tar.gz -> ${P}-sources.tar.gz"

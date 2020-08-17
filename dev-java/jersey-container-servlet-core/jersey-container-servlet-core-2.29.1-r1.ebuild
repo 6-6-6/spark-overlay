@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.glassfish.jersey.containers:jersey-container-servlet-core:2.29.1"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -42,20 +43,15 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	>=dev-java/jakarta-persistence-api-2.2.3:0
-	>=dev-java/jakarta-servlet-api-4.0.3:0
+		${CDEPEND}
+		>=dev-java/jakarta-persistence-api-2.2.3:0
+		>=dev-java/jakarta-servlet-api-4.0.3:0
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -63,4 +59,3 @@ JAVA_GENTOO_CLASSPATH="ws-rs-api,jakarta-inject,jersey-common-2,jersey-server-2"
 JAVA_CLASSPATH_EXTRA="jakarta-persistence-api,jakarta-servlet-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

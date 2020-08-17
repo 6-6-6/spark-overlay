@@ -27,8 +27,8 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	>=dev-java/jruby-core-1.7.22:0
-	>=dev-java/jruby-stdlib-1.7.22:0
+		>=dev-java/jruby-core-1.7.22:0
+		>=dev-java/jruby-stdlib-1.7.22:0
 	)"
 
 RDEPEND="

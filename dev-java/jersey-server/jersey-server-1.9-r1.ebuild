@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="com.sun.jersey:jersey-server:1.9"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -45,27 +46,22 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	>=dev-java/jaxb-api-2.2:0
-	>=dev-java/mail-1.4:0
-	>=dev-java/persistence-api-1.0:0
-	>=dev-java/weld-osgi-bundle-1.1.0:0
-	>=dev-java/ant-core-1.10.7:0
-	>=dev-java/osgi-core-4.0:4
-	java-virtuals/ejb-api:0
-	java-virtuals/jsp-api:2.3
-	java-virtuals/servlet-api:4.0
+		${CDEPEND}
+		>=dev-java/jaxb-api-2.2:0
+		>=dev-java/mail-1.4:0
+		>=dev-java/persistence-api-1.0:0
+		>=dev-java/weld-osgi-bundle-1.1.0:0
+		>=dev-java/ant-core-1.10.7:0
+		>=dev-java/osgi-core-4.0:4
+		java-virtuals/ejb-api:0
+		java-virtuals/jsp-api:2.3
+		java-virtuals/servlet-api:4.0
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -73,4 +69,3 @@ JAVA_GENTOO_CLASSPATH="asm-3,jersey-core-1"
 JAVA_CLASSPATH_EXTRA="ant-core,mail,persistence-api,servlet-api-4.0,jsp-api-2.3,jaxb-api,ejb-api,weld-osgi-bundle,osgi-core-4"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

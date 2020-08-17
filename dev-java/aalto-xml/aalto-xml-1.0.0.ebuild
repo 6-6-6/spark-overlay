@@ -7,10 +7,11 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="com.fasterxml:aalto-xml:1.0.0"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-MAVEN_ID="com.fasterxml:aalto-xml:1.0.0"
 DESCRIPTION="Ultra-high performance non-blocking XML processor (Stax/Stax2, SAX/SAX2)"
 HOMEPAGE="http://github.com/FasterXML/aalto-xml/"
 SRC_URI="https://repo1.maven.org/maven2/com/fasterxml/${PN}/${PV}/${P}-sources.jar
@@ -30,29 +31,18 @@ CDEPEND="
 DEPEND="
 	virtual/jdk:1.8
 	app-arch/unzip
-	!binary? (
-	${CDEPEND}
-	)
-	test? (
-
-		amd64? (
-			dev-util/pkgdiff
-			dev-util/japi-compliance-checker
-		)
-	)
+	!binary? ( ${CDEPEND} )
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="stax2-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 src_prepare() {
 	java-pkg-2_src_prepare

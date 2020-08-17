@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.jboss.weld:weld-osgi-bundle:1.1.0.Final"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -51,19 +52,14 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	>=dev-java/slf4j-jdk14-1.5.10:0
+		${CDEPEND}
+		>=dev-java/slf4j-jdk14-1.5.10:0
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -71,4 +67,3 @@ JAVA_GENTOO_CLASSPATH="guava,cdi-api-1.2,javax-inject,javassist-3,jboss-intercep
 JAVA_CLASSPATH_EXTRA="slf4j-jdk14"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

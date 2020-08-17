@@ -5,6 +5,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source binary test"
 MAVEN_ID="org.jboss.marshalling:jboss-marshalling:1.3.18.GA"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -26,15 +27,8 @@ RDEPEND="${CDEPEND}
 
 DEPEND="${CDEPEND}
 	>=virtual/jdk-1.8
-	test? ( amd64? (
-		dev-util/pkgdiff
-		dev-util/japi-compliance-checker
-		)
-	)
 "
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_GENTOO_CLASSPATH="jboss-modules"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

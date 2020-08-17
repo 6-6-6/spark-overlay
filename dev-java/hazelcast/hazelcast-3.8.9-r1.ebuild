@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="com.hazelcast:hazelcast:3.8.9"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -35,22 +36,17 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	>=dev-java/cache-api-1.0.0:0
-	>=dev-java/groovy-all-2.4.0:0
-	>=dev-java/jruby-complete-1.7.22:0
-	>=dev-java/log4j-api-2.3:0
-	>=dev-java/log4j-core-2.3:0
-	>=dev-java/findbugs-annotations-3.0.12:3
-	>=dev-java/log4j-1.2.17:0
-	>=dev-java/osgi-core-api-5.0.0:0
-	>=dev-java/slf4j-api-1.7.7:0
+		>=dev-java/cache-api-1.0.0:0
+		>=dev-java/groovy-all-2.4.0:0
+		>=dev-java/jruby-complete-1.7.22:0
+		>=dev-java/log4j-api-2.3:0
+		>=dev-java/log4j-core-2.3:0
+		>=dev-java/findbugs-annotations-3.0.12:3
+		>=dev-java/log4j-1.2.17:0
+		>=dev-java/osgi-core-api-5.0.0:0
+		>=dev-java/slf4j-api-1.7.7:0
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -61,4 +57,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="findbugs-annotations-3,cache-api,log4j,log4j-api,log4j-core,groovy-all,jruby-complete,osgi-core-api,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

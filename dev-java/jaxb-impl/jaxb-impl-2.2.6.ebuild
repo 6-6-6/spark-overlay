@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source binary test"
 MAVEN_ID="com.sun.xml.bind:jaxb-impl:2.2.6"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -40,11 +41,8 @@ CDEPEND="
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	!binary? (
-	${CDEPEND}
-	)
-	test? ( dev-util/pkgdiff )
-		amd64? (
+	!binary? ( ${CDEPEND} )
+amd64? (
 			dev-util/japi-compliance-checker
 			dev-util/pkgdiff
 		)
@@ -52,7 +50,7 @@ DEPEND="
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -63,5 +61,3 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 JAVA_RESOURCE_DIRS=(
 	"src/main/resources"
 )
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

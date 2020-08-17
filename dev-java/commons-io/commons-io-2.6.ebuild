@@ -6,8 +6,8 @@
 
 EAPI=7
 
-JAVA_TESTING_FRAMEWORKS="pkgdiff junit"
 JAVA_PKG_IUSE="doc source binary test"
+JAVA_TESTING_FRAMEWORKS="pkgdiff junit"
 MAVEN_ID="commons-io:commons-io:2.6"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven

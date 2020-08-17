@@ -7,10 +7,11 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="com.fasterxml.woodstox:woodstox-core:5.0.2"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-MAVEN_ID="com.fasterxml.woodstox:woodstox-core:5.0.2"
 DESCRIPTION="Woodstox is a high-performance XML processor that implements Stax (JSR-173), SAX2 and Stax2 APIs"
 HOMEPAGE="https://github.com/FasterXML/woodstox"
 SRC_URI="https://repo1.maven.org/maven2/com/fasterxml/woodstox/${PN}/${PV}/${P}-sources.jar
@@ -39,25 +40,18 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	>=dev-java/msv-rngconverter-2013.6.1:0
-	>=dev-java/msv-20130601:0
-	>=dev-java/osgi-core-1.4.0:1
-	>=dev-java/xsdlib-20090415:0
-	java-virtuals/stax-api:0
-	)
-	test? (
-
-		amd64? (
-			dev-util/pkgdiff
-			dev-util/japi-compliance-checker
-		)
+		${CDEPEND}
+		>=dev-java/msv-rngconverter-2013.6.1:0
+		>=dev-java/msv-20130601:0
+		>=dev-java/osgi-core-1.4.0:1
+		>=dev-java/xsdlib-20090415:0
+		java-virtuals/stax-api:0
 	)
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -65,5 +59,3 @@ JAVA_GENTOO_CLASSPATH="stax2-api"
 JAVA_CLASSPATH_EXTRA="stax-api,msv,msv-rngconverter,xsdlib,osgi-core-1"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

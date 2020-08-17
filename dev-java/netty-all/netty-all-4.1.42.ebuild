@@ -7,10 +7,10 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="io.netty:netty-all:4.1.42.Final"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-MAVEN_ID="io.netty:netty-all:4.1.42.Final"
 DESCRIPTION="Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers and clients."
 HOMEPAGE="https://netty.io/netty-all/"
 SRC_URI="https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar"
@@ -88,21 +88,12 @@ CDEPEND="
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	!binary? (
-	${CDEPEND}
-	)
-	test? (
-
-		amd64? (
-			dev-util/pkgdiff
-			dev-util/japi-compliance-checker
-		)
-	)
+	!binary? ( ${CDEPEND} )
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -111,8 +102,6 @@ JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 src_unpack() {
-	java-pkg-maven_unpack
-	mkdir -p ${JAVA_SRC_DIR}
-	mkdir -p resources
+	java-pkg-maven_src_unpack
 	echo -n > ${JAVA_SRC_DIR}/pseudo.java
 }

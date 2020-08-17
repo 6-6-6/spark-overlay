@@ -7,10 +7,11 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.8.3"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-MAVEN_ID="com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.8.3"
 DESCRIPTION="Support for using JAXB annotations as an alternative to \"native\" Jackson annotations, for configuring data binding."
 HOMEPAGE="http://github.com/FasterXML/jackson-module-jaxb-annotations"
 SRC_URI="https://repo1.maven.org/maven2/com/fasterxml/jackson/module/${PN}/${PV}/${P}-sources.jar
@@ -39,21 +40,14 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	>=dev-java/jaxb-api-2.2:0
-	)
-	test? (
-
-		amd64? (
-			dev-util/pkgdiff
-			dev-util/japi-compliance-checker
-		)
+		${CDEPEND}
+		>=dev-java/jaxb-api-2.2:0
 	)
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -61,5 +55,3 @@ JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind"
 JAVA_CLASSPATH_EXTRA="jaxb-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

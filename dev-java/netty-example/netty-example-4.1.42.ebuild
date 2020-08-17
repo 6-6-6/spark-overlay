@@ -7,10 +7,11 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="io.netty:netty-example:4.1.42.Final"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-MAVEN_ID="io.netty:netty-example:4.1.42.Final"
 DESCRIPTION="Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers and clients."
 HOMEPAGE="https://netty.io/netty-example/"
 SRC_URI="https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
@@ -79,15 +80,8 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	>=dev-java/jetty-npn-api-1.1.1_p20141010:0
-	)
-	test? (
-
-		amd64? (
-			dev-util/pkgdiff
-			dev-util/japi-compliance-checker
-		)
+		${CDEPEND}
+		>=dev-java/jetty-npn-api-1.1.1_p20141010:0
 	)
 "
 
@@ -99,7 +93,7 @@ DEPEND="
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}
+	${CDEPEND}
 	>=dev-java/javassist-3.21.0:3
 
 	>=dev-java/jzlib-1.1.3:1.1.3
@@ -113,5 +107,3 @@ JAVA_GENTOO_CLASSPATH="protobuf-java,javax-activation,metrics-core,netty-buffer,
 JAVA_CLASSPATH_EXTRA="jetty-npn-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

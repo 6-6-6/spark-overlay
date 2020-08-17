@@ -9,6 +9,7 @@ EAPI=7
 JAVA_PKG_IUSE="doc source binary test"
 MAVEN_ID="com.barchart.udt:barchart-udt-bundle:2.3.0"
 MAVEN_PROVIDES="com.barchart.udt:barchart-udt-core:2.3.0"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -23,12 +24,7 @@ KEYWORDS="~amd64"
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -39,4 +35,3 @@ S="${WORKDIR}"
 JAVA_SRC_DIR="src/main/java"
 JAVA_GENTOO_CLASSPATH="slf4j-api"
 JAVA_BINJAR_FILENAME="${PN}-bundle-${PV}.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

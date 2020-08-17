@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.apache.hadoop:hadoop-auth:2.5.1"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -42,16 +43,11 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	>=dev-java/hadoop-annotations-2.5.1:0
-	java-virtuals/servlet-api:4.0
+		${CDEPEND}
+		>=dev-java/hadoop-annotations-2.5.1:0
+		java-virtuals/servlet-api:4.0
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
@@ -59,7 +55,7 @@ DEPEND="
 # org.slf4j:slf4j-log4j12:1.7.5 -> >=dev-java/slf4j-log4j12-1.7.7:0
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}
+	${CDEPEND}
 	>=dev-java/log4j-1.2.17:0
 
 	>=dev-java/slf4j-log4j12-1.7.7:0
@@ -71,4 +67,3 @@ JAVA_GENTOO_CLASSPATH="commons-codec,apacheds-kerberos-codec,httpcomponents-clie
 JAVA_CLASSPATH_EXTRA="servlet-api-4.0,hadoop-annotations"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

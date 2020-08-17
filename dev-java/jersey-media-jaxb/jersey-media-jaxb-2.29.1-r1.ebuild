@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.glassfish.jersey.media:jersey-media-jaxb:2.29.1"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -39,19 +40,14 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	>=dev-java/jakarta-xml-bind-api-3.0.0:0
+		${CDEPEND}
+		>=dev-java/jakarta-xml-bind-api-3.0.0:0
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -59,4 +55,3 @@ JAVA_GENTOO_CLASSPATH="osgi-resource-locator,jakarta-inject,jersey-common-2"
 JAVA_CLASSPATH_EXTRA="jakarta-xml-bind-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

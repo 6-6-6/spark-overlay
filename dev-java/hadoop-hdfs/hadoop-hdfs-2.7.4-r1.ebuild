@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.apache.hadoop:hadoop-hdfs:2.7.4"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -80,22 +81,17 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	>=dev-java/hadoop-annotations-2.7.4:0
-	>=dev-java/hadoop-auth-2.7.4:0
-	>=dev-java/hadoop-common-2.7.4:0
-	>=dev-java/slf4j-log4j12-1.7.28:0
+		${CDEPEND}
+		>=dev-java/hadoop-annotations-2.7.4:0
+		>=dev-java/hadoop-auth-2.7.4:0
+		>=dev-java/hadoop-common-2.7.4:0
+		>=dev-java/slf4j-log4j12-1.7.28:0
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -103,4 +99,3 @@ JAVA_GENTOO_CLASSPATH="guava,protobuf-java,jersey-core-1,jersey-server-1,commons
 JAVA_CLASSPATH_EXTRA="hadoop-annotations,hadoop-auth,hadoop-common,slf4j-log4j12"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.owasp:dependency-check-core:4.0.2"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -68,22 +69,15 @@ CDEPEND="
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	!binary? (
-	${CDEPEND}
-	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+	!binary? ( ${CDEPEND} )
+"
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.h2database:h2:1.4.196 -> >=dev-java/h2-1.4.196:0
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}
+	${CDEPEND}
 	>=dev-java/h2-1.4.196:0
 "
 
@@ -92,4 +86,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="findbugs-annotations-3,gson-2.7,guava,retirejs-core,mailapi,semver4j,commons-collections-3,commons-io-1,joda-time,commons-compress,commons-lang-3.10,commons-text,lucene-analyzers-common,lucene,lucene-queryparser,velocity,javax-json,jsoup,dependency-check-utils,slf4j-api,h2"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

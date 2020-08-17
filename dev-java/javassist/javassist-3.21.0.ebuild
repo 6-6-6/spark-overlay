@@ -9,6 +9,7 @@ EAPI=7
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.javassist:javassist:3.21.0-GA"
 MAVEN_PROVIDES="javassist:javassist:3.21.0-GA"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -23,12 +24,6 @@ KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	test? (
-		amd64? (
-			dev-util/pkgdiff
-			dev-util/japi-compliance-checker
-		)
-	)
 "
 
 RDEPEND="
@@ -40,5 +35,3 @@ S="${WORKDIR}"
 JAVA_NEEDS_TOOLS=1
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

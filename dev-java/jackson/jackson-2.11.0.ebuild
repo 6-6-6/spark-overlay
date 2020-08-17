@@ -19,7 +19,7 @@ RESTRICT="!test? ( test )"
 
 RDEPEND=">=virtual/jre-1.8"
 DEPEND=">=virtual/jdk-1.8
-	test? ( dev-java/junit:4 )"
+"
 
 S="${WORKDIR}/${PN}-core-${PN}-core-${PV}"
 JAVA_SRC_DIR="src/main/java"

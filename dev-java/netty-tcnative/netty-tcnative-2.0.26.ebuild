@@ -7,10 +7,11 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="io.netty:netty-tcnative:2.0.26.Final"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-MAVEN_ID="io.netty:netty-tcnative:2.0.26.Final"
 DESCRIPTION="A Mavenized fork of Tomcat Native which incorporates various patches. This artifact is dynamically linked to OpenSSL and Apache APR."
 HOMEPAGE="https://github.com/netty/netty-tcnative/netty-tcnative/"
 SRC_URI="https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
@@ -22,13 +23,6 @@ KEYWORDS="~amd64"
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	test? (
-
-		amd64? (
-			dev-util/pkgdiff
-			dev-util/japi-compliance-checker
-		)
-	)
 "
 
 RDEPEND="
@@ -39,5 +33,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

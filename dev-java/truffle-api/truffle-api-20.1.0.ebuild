@@ -34,7 +34,7 @@ DEPEND="
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 JAVA_GENTOO_CLASSPATH="graal-sdk"
 

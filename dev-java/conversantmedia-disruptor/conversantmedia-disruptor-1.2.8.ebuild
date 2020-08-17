@@ -7,12 +7,13 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="com.conversantmedia:disruptor:1.2.8-JDK7"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 MY_PN="disruptor"
 MY_P=${MY_PN}-${PV}
-MAVEN_ID="com.conversantmedia:disruptor:1.2.8-JDK7"
 DESCRIPTION="Conversant Disruptor - very low latency Java BlockingQueue"
 HOMEPAGE="https://github.com/conversant/disruptor"
 SRC_URI="https://repo1.maven.org/maven2/com/conversantmedia/${MY_PN}/${PV}-JDK7/${MY_P}-JDK7-sources.jar -> ${P}-sources.jar
@@ -32,26 +33,15 @@ CDEPEND="
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	!binary? (
-	${CDEPEND}
-	)
-	test? (
-
-		amd64? (
-			dev-util/pkgdiff
-			dev-util/japi-compliance-checker
-		)
-	)
+	!binary? ( ${CDEPEND} )
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="com.github.jnr:jnr-ffi:2.0.3"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -35,12 +36,6 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)
 "
 
 # Runtime dependencies
@@ -48,7 +43,7 @@ DEPEND="
 # com.github.jnr:jffi:1.2.9 -> >=dev-java/jffi-1.2.9:1.2
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}
+	${CDEPEND}
 	>=dev-java/jffi-1.2.9:1.2
 "
 
@@ -58,4 +53,3 @@ JAVA_GENTOO_CLASSPATH="jffi-1.2,jnr-x86asm-1.0,asm-4,jffi-1.2"
 JAVA_SRC_DIR="src/main/java"
 
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

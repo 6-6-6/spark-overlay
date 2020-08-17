@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.jruby:jruby-core:1.7.22"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -81,25 +82,20 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	>=dev-java/coro-mock-1.0:0
-	>=dev-java/joda-timezones-2013:0
-	>=dev-java/jsr292-mock-1.1:0
-	>=dev-java/unsafe-mock-8.0:0
-	>=dev-java/ant-core-1.10.7:0
-	>=dev-java/bsf-2.4.0:2.3
-	>=dev-java/osgi-core-api-5.0.0:0
+		${CDEPEND}
+		>=dev-java/coro-mock-1.0:0
+		>=dev-java/joda-timezones-2013:0
+		>=dev-java/jsr292-mock-1.1:0
+		>=dev-java/unsafe-mock-8.0:0
+		>=dev-java/ant-core-1.10.7:0
+		>=dev-java/bsf-2.4.0:2.3
+		>=dev-java/osgi-core-api-5.0.0:0
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -109,4 +105,3 @@ JAVA_GENTOO_CLASSPATH="jffi-1.2,jffi-1.2,jnr-constants,jnr-enxio,jnr-ffi,jnr-net
 JAVA_CLASSPATH_EXTRA="bsf-2.3,coro-mock,jsr292-mock,unsafe-mock,ant-core,joda-timezones,osgi-core-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

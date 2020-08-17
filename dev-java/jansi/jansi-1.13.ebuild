@@ -7,10 +7,11 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.fusesource.jansi:jansi:1.13"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-MAVEN_ID="org.fusesource.jansi:jansi:1.13"
 DESCRIPTION="Jansi is a java library for generating and interpreting ANSI escape sequences."
 HOMEPAGE="http://jansi.fusesource.org/jansi"
 SRC_URI="https://repo1.maven.org/maven2/org/fusesource/${PN}/${PN}/${PV}/${P}-sources.jar
@@ -22,13 +23,6 @@ KEYWORDS="~amd64"
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	test? (
-
-		amd64? (
-			dev-util/pkgdiff
-			dev-util/japi-compliance-checker
-		)
-	)
 "
 
 RDEPEND="
@@ -39,5 +33,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

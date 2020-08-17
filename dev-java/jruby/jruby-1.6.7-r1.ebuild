@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.jruby:jruby:1.6.7"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -44,27 +45,22 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	>=dev-java/jaffl-0.5.11:0
-	>=dev-java/jffi-1.0.8:0
-	>=dev-java/jnr-netdb-1.0.3:0
-	>=dev-java/jruby-jnr-posix-1.1.9:0
-	>=dev-java/ant-core-1.10.7:0
-	>=dev-java/asm-3.3.1:3
-	>=dev-java/bsf-2.4.0:2.3
-	>=dev-java/bytelist-1.0.10:0
-	>=dev-java/constantine-0.7:0
-	>=dev-java/jcodings-1.0.11:1
-	>=dev-java/jline-2.12.1:2
-	>=dev-java/joda-time-2.7:0
-	>=dev-java/joni-2.1.0:2.1
-	>=dev-java/snakeyaml-1.16:0
+		>=dev-java/jaffl-0.5.11:0
+		>=dev-java/jffi-1.0.8:0
+		>=dev-java/jnr-netdb-1.0.3:0
+		>=dev-java/jruby-jnr-posix-1.1.9:0
+		>=dev-java/ant-core-1.10.7:0
+		>=dev-java/asm-3.3.1:3
+		>=dev-java/bsf-2.4.0:2.3
+		>=dev-java/bytelist-1.0.10:0
+		>=dev-java/constantine-0.7:0
+		>=dev-java/jcodings-1.0.11:1
+		>=dev-java/jline-2.12.1:2
+		>=dev-java/joda-time-2.7:0
+		>=dev-java/joni-2.1.0:2.1
+		>=dev-java/snakeyaml-1.16:0
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -75,4 +71,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="asm-3,bsf-2.3,jline-2,joda-time,ant-core,jruby-jnr-posix,bytelist,constantine,jaffl,jffi,jnr-netdb,jcodings-1,joni-2.1,snakeyaml"
 JAVA_SRC_DIR="src"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.apache.hadoop:hadoop-common:2.5.1"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -95,15 +96,10 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	${CDEPEND}
-	>=dev-java/ant-core-1.10.7:0
+		${CDEPEND}
+		>=dev-java/ant-core-1.10.7:0
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
@@ -114,7 +110,7 @@ DEPEND="
 # tomcat:jasper-runtime:5.5.23 -> >=dev-java/jasper-runtime-5.5.23:0
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}
+	${CDEPEND}
 	>=dev-java/jasper-compiler-5.5.23:0
 
 	>=dev-java/jasper-runtime-5.5.23:0
@@ -132,4 +128,3 @@ JAVA_GENTOO_CLASSPATH="jsr305,guava,protobuf-java,jsch,jersey-core-1,jersey-json
 JAVA_CLASSPATH_EXTRA="ant-core"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

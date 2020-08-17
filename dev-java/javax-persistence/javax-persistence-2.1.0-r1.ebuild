@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.eclipse.persistence:javax.persistence:2.1.0"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -22,12 +23,7 @@ KEYWORDS="~amd64"
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -39,4 +35,3 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="osgi-framework-1"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

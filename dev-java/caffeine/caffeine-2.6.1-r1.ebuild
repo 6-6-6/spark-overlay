@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="com.github.ben-manes.caffeine:caffeine:2.6.1"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -28,15 +29,10 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	>=dev-java/error-prone-annotations-2.1.3:0
-	>=dev-java/jsr305-3.0.2:0
+		>=dev-java/error-prone-annotations-2.1.3:0
+		>=dev-java/jsr305-3.0.2:0
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -47,4 +43,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="jsr305,error-prone-annotations"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

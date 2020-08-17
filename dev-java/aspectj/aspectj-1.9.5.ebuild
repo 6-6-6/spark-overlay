@@ -22,6 +22,7 @@ CDEPEND=">=dev-java/asm-7.0.0:7
 DEPEND="${CDEPEND}
 	app-arch/zip
 	>=virtual/jdk-1.8"
+
 RDEPEND="${CDEPEND}
 	>=virtual/jre-1.8"
 

@@ -7,10 +7,11 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="net.jpountz.lz4:lz4:1.3.0"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-MAVEN_ID="net.jpountz.lz4:lz4:1.3.0"
 DESCRIPTION="Java ports and bindings of the LZ4 compression algorithm and the xxHash hashing algorithm"
 HOMEPAGE="https://github.com/jpountz/lz4-java"
 SRC_URI="https://repo1.maven.org/maven2/net/jpountz/lz4/lz4/${PV}/lz4-${PV}-sources.jar -> ${P}-sources.jar
@@ -22,13 +23,6 @@ KEYWORDS="~amd64"
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	test? (
-
-		amd64? (
-			dev-util/pkgdiff
-			dev-util/japi-compliance-checker
-		)
-	)
 "
 
 RDEPEND="
@@ -39,5 +33,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

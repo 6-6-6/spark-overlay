@@ -7,10 +7,11 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="org.jboss.marshalling:jboss-marshalling:1.4.11.Final"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-MAVEN_ID="org.jboss.marshalling:jboss-marshalling:1.4.11.Final"
 DESCRIPTION="JBoss Marshalling API"
 HOMEPAGE="http://www.jboss.org/jboss-marshalling-parent/jboss-marshalling"
 SRC_URI="https://repo1.maven.org/maven2/org/jboss/marshalling/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
@@ -27,14 +28,7 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	>=dev-java/jboss-modules-1.3.3:0
-	)
-	test? (
-
-		amd64? (
-			dev-util/pkgdiff
-			dev-util/japi-compliance-checker
-		)
+		>=dev-java/jboss-modules-1.3.3:0
 	)
 "
 
@@ -47,5 +41,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="jboss-modules"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

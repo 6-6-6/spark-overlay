@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="com.sun.activation:jakarta.activation:2.0.0-RC3"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -22,12 +23,7 @@ KEYWORDS="~amd64"
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -43,4 +39,3 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 JAVA_RM_FILES=(
 	${JAVA_SRC_DIR}/module-info.java
 )
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

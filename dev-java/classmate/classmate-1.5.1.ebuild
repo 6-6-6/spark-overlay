@@ -5,6 +5,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test"
 MAVEN_ID="com.fasterxml:classmate:1.5.1"
+JAVA_TESTING_FRAMEWORKS="junit"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -21,13 +22,12 @@ RDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8
-	test? ( dev-java/junit:4 )"
+"
 
 S="${WORKDIR}/java-${PN}-${P}"
 
 JAVA_SRC_DIR="src/main/java"
 
-JAVA_TESTING_FRAMEWORKS="junit"
 JAVA_TEST_SRC_DIR="src/test/java"
 JAVA_TEST_GENTOO_CLASSPATH="junit-4"
 

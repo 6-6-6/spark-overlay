@@ -7,10 +7,11 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-5"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-MAVEN_ID="com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-5"
 DESCRIPTION="Protocol Buffers are a way of encoding structured data in an efficient yet extensible format."
 HOMEPAGE="https://developers.google.com/protocol-buffers/"
 SRC_URI="https://repo1.maven.org/maven2/com/google/protobuf/nano/${PN}/3.0.0-alpha-5/${PN}-3.0.0-alpha-5-sources.jar -> ${P}-sources.jar
@@ -22,13 +23,6 @@ KEYWORDS="~amd64"
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	test? (
-
-		amd64? (
-			dev-util/pkgdiff
-			dev-util/japi-compliance-checker
-		)
-	)
 "
 
 RDEPEND="
@@ -39,5 +33,3 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

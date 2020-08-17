@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source binary test"
 MAVEN_ID="net.sf.ehcache:ehcache:2.10.4"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -37,16 +38,11 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -54,4 +50,3 @@ JAVA_NEEDS_TOOLS=1
 JAVA_GENTOO_CLASSPATH="slf4j-api,ws-rs-api,jersey-server-2,jersey-media-sse-2,transaction-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

@@ -7,10 +7,11 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
+MAVEN_ID="com.sun.mail:javax.mail:1.5.5"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-MAVEN_ID="com.sun.mail:javax.mail:1.5.5"
 DESCRIPTION="JavaMail API"
 HOMEPAGE="http://javamail.java.net/javax.mail"
 SRC_URI="https://repo1.maven.org/maven2/com/sun/mail/javax.mail/${PV}/javax.mail-${PV}-sources.jar -> ${P}-sources.jar
@@ -30,21 +31,12 @@ CDEPEND="
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
-	!binary? (
-	${CDEPEND}
-	)
-	test? (
-
-		amd64? (
-			dev-util/pkgdiff
-			dev-util/japi-compliance-checker
-		)
-	)
+	!binary? ( ${CDEPEND} )
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-${CDEPEND}"
+	${CDEPEND}"
 
 S="${WORKDIR}"
 
@@ -53,5 +45,3 @@ JAVA_ENCODING="iso-8859-1"
 JAVA_GENTOO_CLASSPATH="javax-activation"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-
-JAVA_TESTING_FRAMEWORKS="pkgdiff"

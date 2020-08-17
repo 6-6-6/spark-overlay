@@ -8,6 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.glassfish.hk2:osgi-resource-locator:1.0.3"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -28,15 +29,10 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-	>=dev-java/osgi-cmpn-6.0.0:6
-	>=dev-java/osgi-core-6.0.0:6
+		>=dev-java/osgi-cmpn-6.0.0:6
+		>=dev-java/osgi-core-6.0.0:6
 	)
-	test? (
-		amd64? (
-			dev-util/japi-compliance-checker
-			dev-util/pkgdiff
-		)
-	)"
+"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -47,4 +43,3 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="osgi-cmpn-6,osgi-core-6"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"
