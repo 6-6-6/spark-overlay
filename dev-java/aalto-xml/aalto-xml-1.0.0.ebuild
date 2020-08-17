@@ -28,7 +28,7 @@ CDEPEND="
 "
 
 DEPEND="
-	>=virtual/jdk-1.8:*
+	virtual/jdk:1.8
 	app-arch/unzip
 	!binary? (
 	${CDEPEND}
