@@ -1,0 +1,3 @@
+#!/bin/bash
+cp=$(java-config -dp spark-demo-2.12)
+CLASSPATH=${cp} scala-2.12 -Dspark.testing.memory=500000000 net.novazy.spark.demo.main "$@"

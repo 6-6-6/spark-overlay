@@ -80,11 +80,9 @@ java-pkg-simple-plugins_src_compile() {
 	echo -n > ${kotlin_sources}\
 		|| die "Could not create an empty ${kotlin_sources}"
 	local directory
-	for directory in "${JAVA_SRC_DIR[@]}"; do
-		find "${directory}" -name \*.java >> ${java_sources}
-		find "${directory}" -name \*.scala >> ${scala_sources}
-		find "${directory}" -name \*.kt >> ${kotlin_sources}
-	done
+	find "${JAVA_SRC_DIR[@]}" -name \*.java >> ${java_sources}
+	find "${JAVA_SRC_DIR[@]}" -name \*.scala >> ${scala_sources}
+	find "${JAVA_SRC_DIR[@]}" -name \*.kt >> ${kotlin_sources}
 
 	# create the target directory
 	mkdir -p ${classes} || die "Could not create target directory"

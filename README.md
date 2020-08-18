@@ -4,6 +4,10 @@
 2. to improve java-pkg-simple.eclass
 3. to emerge spark-core
 
+#
+1. `emerge -1av spark-demo::maven`
+2. `spark-demo-2.12 $(nproc)`
+
 # TODO list
 ## java-ebuilder related
 - [x] makefile-driven maven overlay
