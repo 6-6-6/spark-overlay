@@ -3,6 +3,7 @@
 
 EAPI=5
 JAVA_PKG_IUSE="doc source"
+MAVEN_ID="org.slf4j:slf4j-api:1.7.28"
 
 inherit java-pkg-2 java-ant-2
 
