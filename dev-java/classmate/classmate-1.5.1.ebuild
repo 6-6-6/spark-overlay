@@ -5,7 +5,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test"
 MAVEN_ID="com.fasterxml:classmate:1.5.1"
-JAVA_TESTING_FRAMEWORKS="junit"
+JAVA_TESTING_FRAMEWORKS="junit-4"
 
 inherit java-pkg-2 java-pkg-simple
 

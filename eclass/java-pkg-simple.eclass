@@ -32,10 +32,12 @@ if has test ${JAVA_PKG_IUSE}; then
 	local test_deps
 	for framework in ${JAVA_TESTING_FRAMEWORKS}; do
 		case ${framework} in
+			junit)
+				test_deps+=" dev-java/junit:0";;
+			junit-4)
+				test_deps+=" dev-java/junit:4";;
 			pkgdiff)
 				test_deps+=" amd64? ( dev-util/pkgdiff dev-util/japi-compliance-checker )";;
-			junit)
-				test_deps+=" dev-java/junit:4";;
 			testng)
 				test_deps+=" dev-java/testng:0";;
 		esac
@@ -496,6 +498,8 @@ java-pkg-simple_src_test() {
 	for framework in ${JAVA_TESTING_FRAMEWORKS}; do
 		case ${framework} in
 			junit)
+				ejunit -classpath "${classpath}" ${tests_to_run};;
+			junit-4)
 				ejunit4 -classpath "${classpath}" ${tests_to_run};;
 			pkgdiff)
 				java-pkg-simple_test_with_pkgdiff_;;

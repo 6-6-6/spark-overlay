@@ -8,7 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.codehaus.groovy:groovy-all:2.4.0"
-JAVA_TESTING_FRAMEWORKS="junit pkgdiff"
+JAVA_TESTING_FRAMEWORKS="junit-4 pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 

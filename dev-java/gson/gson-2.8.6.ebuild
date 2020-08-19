@@ -6,7 +6,7 @@ EAPI=7
 MY_P="${PN}-parent-${PV}"
 JAVA_PKG_IUSE="doc source test"
 MAVEN_ID="com.google.code.gson:gson:2.8.6"
-JAVA_TESTING_FRAMEWORKS="junit pkgdiff"
+JAVA_TESTING_FRAMEWORKS="junit-4 pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple
 

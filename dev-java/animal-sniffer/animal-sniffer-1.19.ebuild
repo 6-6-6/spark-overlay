@@ -8,7 +8,7 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test"
 MAVEN_ID="org.codehaus.mojo:animal-sniffer:1.19"
-JAVA_TESTING_FRAMEWORKS="junit"
+JAVA_TESTING_FRAMEWORKS="junit-4"
 
 inherit java-pkg-2 java-pkg-simple
 

@@ -21,7 +21,7 @@ object main {
     val listRdd: RDD[Int] = sc.makeRDD(1 to n)
     val integral = sc.parallelize(1 until n, slices).map { i =>
       val x = random * 0.789
-      1/sqrt(1-x*x)/sqrt(1-0.7*x*x)
+      1/sqrt((1-x*x)*(1-0.7*x*x))
     }.reduce(_ + _)
     println(s"integrate \\int^{0.789}_{0} dt/\\sqrt{(1-t^2)(1-0.7t^2)} : ${0.789/n*integral}")
 
