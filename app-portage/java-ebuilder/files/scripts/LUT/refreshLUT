@@ -1,6 +1,0 @@
-echo \{\} > /tmp/LUT.raw
-#./cache2LUT --src-cache ./materials/cache.0 --LUT LUT
-#./cache2LUT --src-cache ./materials/cache.1 --LUT LUT
-#./cache2LUT --src-cache handmade.cache --LUT LUT
-./cache2LUT --src-cache neo.cache --LUT /tmp/LUT.raw
-json_reformat < /tmp/LUT.raw > LUT

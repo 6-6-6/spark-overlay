@@ -6,7 +6,7 @@
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="doc source binary"
 MAVEN_ID="com.squareup.okio:okio:2.6.0"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven java-pkg-simple-plugins
@@ -43,6 +43,7 @@ S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="kotlin-common-bin,animal-sniffer-annotations"
 JAVA_SRC_DIR="src/main/java/jvmMain"
+JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 KOTLINC_ARGS="-Xmulti-platform"
 

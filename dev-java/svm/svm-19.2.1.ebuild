@@ -17,8 +17,7 @@ SRC_URI="https://repo.maven.apache.org/maven2/com/oracle/substratevm/${PN}/${PV}
 	https://repo.maven.apache.org/maven2/com/oracle/substratevm/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="GPL-2-with-classpath-exception"
 SLOT="0"
-KEYWORDS=""
-#KEYWORKDS="~amd64"
+KEYWORKDS="~amd64"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom

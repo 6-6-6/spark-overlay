@@ -29,6 +29,7 @@ CDEPEND="
 	>=dev-java/slf4j-api-1.7.7:0
 
 	java-virtuals/ws-rs-api:0
+	dev-java/quartz:0
 	dev-java/jersey-server:2
 	dev-java/jersey-media-sse:2
 	java-virtuals/transaction-api:0
@@ -47,6 +48,6 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_NEEDS_TOOLS=1
-JAVA_GENTOO_CLASSPATH="slf4j-api,ws-rs-api,jersey-server-2,jersey-media-sse-2,transaction-api"
+JAVA_GENTOO_CLASSPATH="quartz,slf4j-api,ws-rs-api,jersey-server-2,jersey-media-sse-2,transaction-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"

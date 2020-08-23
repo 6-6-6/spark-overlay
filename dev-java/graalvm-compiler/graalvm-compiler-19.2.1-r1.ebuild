@@ -18,8 +18,7 @@ SRC_URI="https://repo.maven.apache.org/maven2/org/graalvm/compiler/compiler/${PV
 	https://repo.maven.apache.org/maven2/org/graalvm/compiler/compiler/${PV}/compiler-${PV}.jar -> ${P}-bin.jar"
 LICENSE="GPL-2-with-classpath-exception"
 SLOT="0"
-KEYWORDS=""
-#KEYWORDS="~amd64"
+KEYWORDS="~amd64"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/compiler-${PV}.pom
