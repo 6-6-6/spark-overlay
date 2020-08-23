@@ -1,5 +1,7 @@
 # from /etc/portage/package.use/9-spark-overlay
 
+dev-java/lz4-java binary
+dev-java/xbean-asm7-shaded binary
 dev-java/netty-common binary
 dev-java/svm binary
 dev-java/pointsto binary
