@@ -24,12 +24,12 @@ KEYWORDS="~amd64"
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.google.code.gson:gson:2.8.5 -> >=dev-java/gson-2.8.6:2.7
 # commons-io:commons-io:2.6 -> >=dev-java/commons-io-2.6:1
-# org.apache.commons:commons-lang3:3.4 -> >=dev-java/commons-lang-3.10:3.10
+# org.apache.commons:commons-lang3:3.4 -> >=dev-java/commons-lang-3.10
 # org.slf4j:slf4j-api:1.7.25 -> >=dev-java/slf4j-api-1.7.28:0
 
 CDEPEND="
 	>=dev-java/commons-io-2.6:1
-	>=dev-java/commons-lang-3.10:3.10
+	>=dev-java/commons-lang-3.10
 	>=dev-java/gson-2.8.6:2.7
 	>=dev-java/slf4j-api-1.7.28:0
 "
