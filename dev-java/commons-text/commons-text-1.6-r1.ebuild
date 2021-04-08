@@ -22,10 +22,10 @@ KEYWORDS="~amd64"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.apache.commons:commons-lang3:3.8.1 -> >=dev-java/commons-lang-3.10:3.10
+# org.apache.commons:commons-lang3:3.8.1 -> >=dev-java/commons-lang-3.10
 
 CDEPEND="
-	>=dev-java/commons-lang-3.10:3.10
+	>=dev-java/commons-lang-3.10
 "
 
 DEPEND="
