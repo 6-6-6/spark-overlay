@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -18,7 +18,7 @@ MY_P=${MY_PN}-${PV}
 DESCRIPTION="A set of annotations used for code inspection support and code documentation."
 HOMEPAGE="http://www.jetbrains.org"
 SRC_URI="https://repo.maven.apache.org/maven2/org/jetbrains/${MY_PN}/${PV}/${MY_P}-sources.jar -> ${P}-sources.jar
-		https://repo.maven.apache.org/maven2/org/jetbrains/${MY_PN}/${PV}/${MY_P}.jar -> ${P}-bin.har"
+		https://repo.maven.apache.org/maven2/org/jetbrains/${MY_PN}/${PV}/${MY_P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
