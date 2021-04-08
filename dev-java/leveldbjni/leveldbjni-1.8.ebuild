@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -48,6 +48,7 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="hawtjni-runtime,leveldb-api"
 JAVA_SRC_DIR="src/main/java"
 JNI_SRC_DIR="leveldbjni-1.8-native-src"
+JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 src_unpack() {
 	mkdir -p ${JAVA_SRC_DIR} ${JNI_SRC_DIR}
