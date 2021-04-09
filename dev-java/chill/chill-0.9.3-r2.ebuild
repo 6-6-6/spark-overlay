@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -6,14 +6,15 @@
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source test"
+JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="com.twitter:chill_2.12:0.9.3"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven java-pkg-simple-plugins
 
 DESCRIPTION="chill"
 HOMEPAGE="https://github.com/twitter/chill"
-SRC_URI="https://repo1.maven.org/maven2/com/twitter/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar -> ${P}-sources.jar"
+SRC_URI="https://repo1.maven.org/maven2/com/twitter/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar -> ${P}-sources.jar
+	binary? ( https://repo1.maven.org/maven2/com/twitter/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar -> ${P}-bin.jar )"
 LICENSE="Apache-2.0"
 SLOT="2.12"
 KEYWORDS="~amd64"
@@ -32,6 +33,7 @@ CDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
+	!binary? ( dev-lang/scala )
 	app-arch/unzip
 	${CDEPEND}
 "
