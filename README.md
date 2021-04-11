@@ -1,3 +1,11 @@
+# pkgs that need maintenance
+```
+dev-java/brotli-codec
+dev-java/json-smart
+dev-java/jaxb-xjc
+dev-java/geronimo-jcache
+```
+
 
 # The goal of this overlay
 1. to make [java-ebuilder](https://github.com/6-6-6/java-ebuilder) ready to generate repoman-compatible ebuild files
