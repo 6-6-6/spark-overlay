@@ -19,7 +19,7 @@ MAVEN_PROVIDES="
 	org.jetbrains.kotlin:kotlin-test-testng:1.3.72
 "
 
-inherit java-pkg-2 java-pkg-binjar
+inherit java-pkg-2
 
 DESCRIPTION="Pseudo kotlin libs"
 HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
@@ -42,10 +42,6 @@ DEPEND="
 "
 
 S="${WORKDIR}/kotlinc"
-
-src_unpack() {
-	default
-}
 
 src_install() {
 	for maven_art in ${MAVEN_PROVIDES}; do
