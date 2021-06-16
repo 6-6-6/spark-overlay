@@ -4,7 +4,20 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source"
-MAVEN_PROVIDES="org.jetbrains.kotlin:kotlin-stdlib:1.3.72 org.jetbrains.kotlin:kotlin-stdlib-common:1.3.72 org.jetbrains.kotlin:kotlin-reflect:1.3.72"
+MAVEN_PROVIDES="
+	org.jetbrains.kotlin:kotlin-annotations-android:1.3.72
+	org.jetbrains.kotlin:kotlin-annotations-jvm:1.3.72
+	org.jetbrains.kotlin:kotlin-reflect:1.3.72
+	org.jetbrains.kotlin:kotlin-stdlib:1.3.72
+	org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72
+	org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72
+	org.jetbrains.kotlin:kotlin-stdlib-js:1.3.72
+	org.jetbrains.kotlin:kotlin-test:1.3.72
+	org.jetbrains.kotlin:kotlin-test-js:1.3.72
+	org.jetbrains.kotlin:kotlin-test-junit:1.3.72
+	org.jetbrains.kotlin:kotlin-test-junit5:1.3.72
+	org.jetbrains.kotlin:kotlin-test-testng:1.3.72
+"
 
 inherit java-pkg-2 java-pkg-binjar
 
@@ -35,13 +48,15 @@ src_unpack() {
 }
 
 src_install() {
-	local lib_jars=(
-		$(find "${S}/lib" -type f -name '*.jar' -not -name '*-sources.jar')
-	)
-	java-pkg_dojar "${lib_jars[@]}"
-	if use source; then
-		local source_jars=( "${S}/lib"/*-sources.jar )
-		insinto "${JAVA_PKG_SOURCESPATH}"
-		doins "${source_jars[@]}"
-	fi
+	for maven_art in ${MAVEN_PROVIDES}; do
+		local jar_name=$(cut -d ':' -f 2 <<< "${maven_art}")
+		java-pkg_dojar "${S}/lib/${jar_name}.jar"
+		if use source; then
+			local src_jar="${S}/lib/${jar_name}-sources.jar"
+			if [[ -f "${src_jar}" ]]; then
+				insinto "${JAVA_PKG_SOURCESPATH}"
+				doins "${src_jar}"
+			fi
+		fi
+	done
 }
