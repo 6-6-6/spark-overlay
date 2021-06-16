@@ -21,6 +21,9 @@ IUSE=""
 RDEPEND="
 	>=virtual/jre-1.8
 "
+BDEPEND="
+	app-arch/unzip
+"
 DEPEND="
 	>=virtual/jdk-1.8
 "
