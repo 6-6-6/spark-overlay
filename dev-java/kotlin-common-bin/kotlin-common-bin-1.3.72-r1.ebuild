@@ -26,7 +26,7 @@ HOMEPAGE="https://kotlinlang.org/"
 SRC_URI="https://github.com/JetBrains/kotlin/releases/download/v${PV}/kotlin-compiler-${PV}.zip"
 
 LICENSE="Apache-2.0 BSD MIT NPL-1.1"
-SLOT="0"
+SLOT="${PV%.*}"
 KEYWORDS="~amd64 ~x86"
 
 IUSE=""
