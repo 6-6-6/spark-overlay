@@ -72,11 +72,13 @@ src_install() {
 		dosym "../../${kotlin_home}/${exe}" "/usr/bin/$(basename ${exe})"
 	done
 
-	insinto "${kotlin_home}/lib"
-	doins "${KOTLINC_LIBS[@]/#/${S}/lib/}"
-
-	java-pkg_jar-from --into "${ED}/${kotlin_home}/lib" \
+	local kotlinc_libs_tmp="${T}/lib"
+	mkdir "${kotlinc_libs_tmp}" || die
+	cp "${KOTLINC_LIBS[@]/#/lib/}" "${kotlinc_libs_tmp}" || die
+	java-pkg_jar-from --into "${kotlinc_libs_tmp}" \
 		"kotlin-common-bin-${KOTLIN_LIB_SLOT}"
+	insinto "${kotlin_home}/lib"
+	doins "${kotlinc_libs_tmp}"/*
 
 	dodoc -r license/*
 }
