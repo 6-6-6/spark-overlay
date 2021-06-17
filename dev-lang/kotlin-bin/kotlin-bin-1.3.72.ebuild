@@ -55,6 +55,7 @@ KOTLINC_LIBS="
 	kotlin-scripting-jvm.jar
 	kotlin-script-runtime.jar
 	kotlin-source-sections-compiler-plugin.jar
+	kotlinx-serialization-compiler-plugin.jar
 	mutability-annotations-compat.jar
 	noarg-compiler-plugin.jar
 	sam-with-receiver-compiler-plugin.jar
