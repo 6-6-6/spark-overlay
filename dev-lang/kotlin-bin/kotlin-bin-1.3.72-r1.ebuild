@@ -16,17 +16,15 @@ IUSE=""
 
 KOTLIN_LIB_SLOT="${PV%.*}"
 
-COMMON_DEPEND="
+RDEPEND="
 	dev-java/kotlin-common-bin:${KOTLIN_LIB_SLOT}
+	>=virtual/jdk-1.8:*
 "
-DEPEND="
-	${COMMON_DEPEND}
+BDEPEND="
 	app-arch/unzip
 "
-RDEPEND="
-	${COMMON_DEPEND}
-	>=virtual/jdk-1.8
-	>=virtual/jre-1.8
+DEPEND="
+	${RDEPEND}
 "
 
 S="${WORKDIR}/kotlinc"
