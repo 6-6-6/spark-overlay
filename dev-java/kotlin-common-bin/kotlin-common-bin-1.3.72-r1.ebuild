@@ -59,4 +59,8 @@ src_install() {
 			fi
 		fi
 	done
+
+	dodoc license/COPYRIGHT.txt
+	dodoc license/LICENSE.txt
+	dodoc license/README.md
 }
