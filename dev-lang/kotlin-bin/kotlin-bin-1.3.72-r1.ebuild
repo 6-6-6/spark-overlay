@@ -82,5 +82,5 @@ src_install() {
 	java-pkg_jar-from --into "${ED}/${kotlin_home}/lib" \
 		"kotlin-common-bin-${KOTLIN_LIB_SLOT}"
 
-	dodoc license/NOTICE.txt
+	dodoc -r license/*
 }
