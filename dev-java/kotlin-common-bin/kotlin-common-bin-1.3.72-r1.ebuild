@@ -4,6 +4,10 @@
 EAPI=7
 
 JAVA_PKG_IUSE="source"
+
+# During a version bump, please check if any artifact listed here has been
+# removed and if any new artifacts for Kotlin core libraries have been added,
+# then update the value of MAVEN_PROVIDES accordingly if necessary
 MAVEN_PROVIDES="
 	org.jetbrains.kotlin:kotlin-annotations-android:${PV}
 	org.jetbrains.kotlin:kotlin-annotations-jvm:${PV}
