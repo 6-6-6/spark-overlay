@@ -50,9 +50,9 @@ S="${WORKDIR}/kotlinc"
 src_install() {
 	for maven_art in ${MAVEN_PROVIDES}; do
 		local jar_name=$(cut -d ':' -f 2 <<< "${maven_art}")
-		java-pkg_dojar "${S}/lib/${jar_name}.jar"
+		java-pkg_dojar "lib/${jar_name}.jar"
 		if use source; then
-			local src_jar="${S}/lib/${jar_name}-sources.jar"
+			local src_jar="lib/${jar_name}-sources.jar"
 			if [[ -f "${src_jar}" ]]; then
 				insinto "${JAVA_PKG_SOURCESPATH}"
 				doins "${src_jar}"
