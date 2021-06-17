@@ -36,13 +36,13 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="
-	>=virtual/jre-1.8
+	>=virtual/jre-1.8:*
 "
 BDEPEND="
 	app-arch/unzip
 "
 DEPEND="
-	>=virtual/jdk-1.8
+	>=virtual/jdk-1.8:*
 "
 
 S="${WORKDIR}/kotlinc"
