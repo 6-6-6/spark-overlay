@@ -79,11 +79,8 @@ src_install() {
 		doins "${S}/lib/${jar}"
 	done
 
-	local kotlin_libs="$(java-pkg_getjars \
-		"kotlin-common-bin-${KOTLIN_LIB_SLOT}" | tr ':' ' ')"
-	for jar in ${kotlin_libs}; do
-		dosym "../../../../${jar}" "${kotlin_home}/lib/$(basename ${jar})"
-	done
+	java-pkg_jar-from --into "${ED}/${kotlin_home}/lib" \
+		"kotlin-common-bin-${KOTLIN_LIB_SLOT}"
 
 	dodoc license/NOTICE.txt
 }
