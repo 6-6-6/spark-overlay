@@ -5,18 +5,18 @@ EAPI=7
 
 JAVA_PKG_IUSE="source"
 MAVEN_PROVIDES="
-	org.jetbrains.kotlin:kotlin-annotations-android:1.3.72
-	org.jetbrains.kotlin:kotlin-annotations-jvm:1.3.72
-	org.jetbrains.kotlin:kotlin-reflect:1.3.72
-	org.jetbrains.kotlin:kotlin-stdlib:1.3.72
-	org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72
-	org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72
-	org.jetbrains.kotlin:kotlin-stdlib-js:1.3.72
-	org.jetbrains.kotlin:kotlin-test:1.3.72
-	org.jetbrains.kotlin:kotlin-test-js:1.3.72
-	org.jetbrains.kotlin:kotlin-test-junit:1.3.72
-	org.jetbrains.kotlin:kotlin-test-junit5:1.3.72
-	org.jetbrains.kotlin:kotlin-test-testng:1.3.72
+	org.jetbrains.kotlin:kotlin-annotations-android:${PV}
+	org.jetbrains.kotlin:kotlin-annotations-jvm:${PV}
+	org.jetbrains.kotlin:kotlin-reflect:${PV}
+	org.jetbrains.kotlin:kotlin-stdlib:${PV}
+	org.jetbrains.kotlin:kotlin-stdlib-jdk7:${PV}
+	org.jetbrains.kotlin:kotlin-stdlib-jdk8:${PV}
+	org.jetbrains.kotlin:kotlin-stdlib-js:${PV}
+	org.jetbrains.kotlin:kotlin-test:${PV}
+	org.jetbrains.kotlin:kotlin-test-js:${PV}
+	org.jetbrains.kotlin:kotlin-test-junit:${PV}
+	org.jetbrains.kotlin:kotlin-test-junit5:${PV}
+	org.jetbrains.kotlin:kotlin-test-testng:${PV}
 "
 
 inherit java-pkg-2
