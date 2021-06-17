@@ -25,7 +25,6 @@ DEPEND="
 "
 RDEPEND="
 	${COMMON_DEPEND}
-	app-shells/bash
 	>=virtual/jdk-1.8
 	>=virtual/jre-1.8
 "
