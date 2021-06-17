@@ -36,6 +36,7 @@ KOTLINC_LIBS="
 	android-extensions-runtime.jar
 	annotations-13.0.jar
 	js.engines.jar
+	jvm-abi-gen.jar
 	kotlin-annotation-processing.jar
 	kotlin-annotation-processing-cli.jar
 	kotlin-annotation-processing-runtime.jar
@@ -59,7 +60,6 @@ KOTLINC_LIBS="
 	mutability-annotations-compat.jar
 	noarg-compiler-plugin.jar
 	sam-with-receiver-compiler-plugin.jar
-	slf4j-api-1.7.25.jar
 	trove4j.jar
 "
 
