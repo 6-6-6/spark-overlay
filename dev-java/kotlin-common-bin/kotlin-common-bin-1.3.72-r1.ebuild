@@ -21,8 +21,8 @@ MAVEN_PROVIDES="
 
 inherit java-pkg-2
 
-DESCRIPTION="Pseudo kotlin libs"
-HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
+DESCRIPTION="Kotlin Common Libraries"
+HOMEPAGE="https://kotlinlang.org/"
 SRC_URI="https://github.com/JetBrains/kotlin/releases/download/v${PV}/kotlin-compiler-${PV}.zip"
 
 LICENSE="Apache-2.0 BSD MIT NPL-1.1"
