@@ -14,8 +14,10 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
+KOTLIN_LIB_SLOT="${PV%.*}"
+
 COMMON_DEPEND="
-	dev-java/kotlin-common-bin:0=
+	dev-java/kotlin-common-bin:${KOTLIN_LIB_SLOT}
 "
 DEPEND="
 	${COMMON_DEPEND}
@@ -78,7 +80,8 @@ src_install() {
 		doins "${S}/lib/${jar}"
 	done
 
-	local kotlin_libs="$(java-pkg_getjars "kotlin-common-bin" | tr ':' ' ')"
+	local kotlin_libs="$(java-pkg_getjars \
+		"kotlin-common-bin-${KOTLIN_LIB_SLOT}" | tr ':' ' ')"
 	for jar in ${kotlin_libs}; do
 		dosym "../../../../${jar}" "${kotlin_home}/lib/$(basename ${jar})"
 	done
