@@ -29,7 +29,7 @@ DEPEND="
 
 S="${WORKDIR}/kotlinc"
 
-KOTLINC_LIBS="
+KOTLINC_LIBS=(
 	allopen-compiler-plugin.jar
 	android-extensions-compiler.jar
 	android-extensions-runtime.jar
@@ -60,7 +60,7 @@ KOTLINC_LIBS="
 	noarg-compiler-plugin.jar
 	sam-with-receiver-compiler-plugin.jar
 	trove4j.jar
-"
+)
 
 src_install() {
 	local kotlin_home="/usr/$(get_libdir)/${PN}"
@@ -73,9 +73,7 @@ src_install() {
 	done
 
 	insinto "${kotlin_home}/lib"
-	for jar in ${KOTLINC_LIBS}; do
-		doins "${S}/lib/${jar}"
-	done
+	doins "${KOTLINC_LIBS[@]/#/${S}/lib/}"
 
 	java-pkg_jar-from --into "${ED}/${kotlin_home}/lib" \
 		"kotlin-common-bin-${KOTLIN_LIB_SLOT}"
