@@ -3,7 +3,7 @@
 
 EAPI=7
 
-JAVA_PKG_IUSE="doc source"
+JAVA_PKG_IUSE="source"
 MAVEN_PROVIDES="
 	org.jetbrains.kotlin:kotlin-annotations-android:1.3.72
 	org.jetbrains.kotlin:kotlin-annotations-jvm:1.3.72
