@@ -11,7 +11,7 @@ SRC_URI="https://github.com/JetBrains/kotlin/releases/download/v${PV}/kotlin-com
 
 LICENSE="Apache-2.0 BSD MIT NPL-1.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 IUSE=""
 
 KOTLIN_LIB_SLOT="${PV%.*}"
