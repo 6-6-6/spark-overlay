@@ -15,9 +15,11 @@ KEYWORDS="~amd64"
 IUSE=""
 
 KOTLIN_LIB_SLOT="${PV%.*}"
+JB_ANNOTATIONS_SLOT="13.0"
 
 RDEPEND="
 	dev-java/kotlin-common-bin:${KOTLIN_LIB_SLOT}
+	dev-java/jetbrains-annotations:${JB_ANNOTATIONS_SLOT}
 	>=virtual/jdk-1.8:*
 "
 BDEPEND="
@@ -33,7 +35,6 @@ KOTLINC_LIBS=(
 	allopen-compiler-plugin.jar
 	android-extensions-compiler.jar
 	android-extensions-runtime.jar
-	annotations-13.0.jar
 	js.engines.jar
 	jvm-abi-gen.jar
 	kotlin-annotation-processing.jar
@@ -78,6 +79,9 @@ src_install() {
 	cp "${KOTLINC_LIBS[@]/#/lib/}" "${kotlinc_libs_tmp}" || die
 	java-pkg_jar-from --into "${kotlinc_libs_tmp}" \
 		"kotlin-common-bin-${KOTLIN_LIB_SLOT}"
+	java-pkg_jar-from --into "${kotlinc_libs_tmp}" \
+		"jetbrains-annotations-${JB_ANNOTATIONS_SLOT}" \
+		jetbrains-annotations.jar annotations-13.0.jar
 	insinto "${kotlin_home}/lib"
 	doins "${kotlinc_libs_tmp}"/*
 
