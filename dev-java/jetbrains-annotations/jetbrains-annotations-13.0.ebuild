@@ -16,7 +16,7 @@ MY_PN="annotations"
 MY_P=${MY_PN}-${PV}
 
 DESCRIPTION="A set of annotations used for code inspection support and code documentation."
-HOMEPAGE="http://www.jetbrains.org"
+HOMEPAGE="https://github.com/JetBrains/java-annotations"
 SRC_URI="https://repo.maven.apache.org/maven2/org/jetbrains/${MY_PN}/${PV}/${MY_P}-sources.jar -> ${P}-sources.jar
 		https://repo.maven.apache.org/maven2/org/jetbrains/${MY_PN}/${PV}/${MY_P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
