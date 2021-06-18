@@ -20,6 +20,7 @@ JB_ANNOTATIONS_SLOT="13.0"
 RDEPEND="
 	dev-java/kotlin-common-bin:${KOTLIN_LIB_SLOT}
 	dev-java/jetbrains-annotations:${JB_ANNOTATIONS_SLOT}
+	dev-java/jetbrains-trove:0
 	>=virtual/jdk-1.8:*
 "
 BDEPEND="
@@ -61,7 +62,6 @@ KOTLINC_LIBS=(
 	parcelize-compiler.jar
 	parcelize-runtime.jar
 	sam-with-receiver-compiler-plugin.jar
-	trove4j.jar
 )
 
 src_install() {
@@ -82,6 +82,9 @@ src_install() {
 	java-pkg_jar-from --into "${kotlinc_libs_tmp}" \
 		"jetbrains-annotations-${JB_ANNOTATIONS_SLOT}" \
 		jetbrains-annotations.jar annotations-13.0.jar
+	java-pkg_jar-from --into "${kotlinc_libs_tmp}" \
+		"jetbrains-trove" \
+		jetbrains-trove.jar trove4j.jar
 	insinto "${kotlin_home}/lib"
 	doins "${kotlinc_libs_tmp}"/*
 
