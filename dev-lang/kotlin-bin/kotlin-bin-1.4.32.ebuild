@@ -18,7 +18,7 @@ KOTLIN_LIB_SLOT="${PV%.*}"
 JB_ANNOTATIONS_SLOT="13.0"
 
 RDEPEND="
-	dev-java/kotlin-common-bin:${KOTLIN_LIB_SLOT}
+	~dev-java/kotlin-common-bin-${PV}:${KOTLIN_LIB_SLOT}
 	dev-java/jetbrains-annotations:${JB_ANNOTATIONS_SLOT}
 	dev-java/jetbrains-trove:0
 	>=virtual/jdk-1.8:*
