@@ -15,7 +15,7 @@ KEYWORDS="~amd64"
 IUSE=""
 
 KOTLIN_LIB_SLOT="${PV%.*}"
-JB_ANNOTATIONS_SLOT="13.0"
+JB_ANNOTATIONS_SLOT="13"
 
 RDEPEND="
 	~dev-java/kotlin-common-bin-${PV}:${KOTLIN_LIB_SLOT}
