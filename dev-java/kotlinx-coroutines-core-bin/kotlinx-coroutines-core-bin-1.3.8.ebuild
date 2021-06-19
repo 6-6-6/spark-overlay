@@ -30,3 +30,8 @@ DEPEND="${RDEPEND}"
 PDEPEND="
 	dev-lang/kotlin-bin
 "
+
+src_install() {
+	java-pkg_jarinto "/opt/${PN}-${SLOT}/lib"
+	java-pkg-simple_src_install
+}
