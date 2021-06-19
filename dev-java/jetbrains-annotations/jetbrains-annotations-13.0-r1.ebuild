@@ -17,7 +17,9 @@ HOMEPAGE="https://github.com/JetBrains/java-annotations"
 SRC_URI="https://repo.maven.apache.org/maven2/org/jetbrains/${MY_PN}/${PV}/${MY_P}-sources.jar -> ${P}-sources.jar
 		https://repo.maven.apache.org/maven2/org/jetbrains/${MY_PN}/${PV}/${MY_P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
-SLOT="13.0"
+# For SLOT, please take the smallest version number for which the API is
+# compatible with this version, and remove all trailing zero components
+SLOT="13"
 KEYWORDS="~amd64"
 
 BDEPEND="
