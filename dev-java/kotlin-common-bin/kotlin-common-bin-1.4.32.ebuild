@@ -47,6 +47,7 @@ DEPEND="${RDEPEND}"
 S="${WORKDIR}/kotlinc"
 
 src_install() {
+	java-pkg_jarinto "/opt/${PN}-${SLOT}/lib"
 	for maven_art in ${MAVEN_PROVIDES}; do
 		local jar_name=$(cut -d ':' -f 2 <<< "${maven_art}")
 		java-pkg_dojar "lib/${jar_name}.jar"
