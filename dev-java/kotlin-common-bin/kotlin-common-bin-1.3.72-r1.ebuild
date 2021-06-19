@@ -46,19 +46,30 @@ DEPEND="${RDEPEND}"
 
 S="${WORKDIR}/kotlinc"
 
+src_prepare() {
+	java-pkg-2_src_prepare
+
+	KOTLIN_LIB_TMP="${T}/lib"
+	mkdir "${KOTLIN_LIB_TMP}" || die
+	for maven_art in ${MAVEN_PROVIDES}; do
+		local jar_name=$(cut -d ':' -f 2 <<< "${maven_art}" || die)
+		cp "lib/${jar_name}.jar" "${KOTLIN_LIB_TMP}" || die
+	done
+}
+
 src_install() {
 	java-pkg_jarinto "/opt/${PN}-${SLOT}/lib"
-	for maven_art in ${MAVEN_PROVIDES}; do
-		local jar_name=$(cut -d ':' -f 2 <<< "${maven_art}")
-		java-pkg_dojar "lib/${jar_name}.jar"
-		if use source; then
+	java-pkg_dojar "${KOTLIN_LIB_TMP}"/*
+	if use source; then
+		for maven_art in ${MAVEN_PROVIDES}; do
+			local jar_name=$(cut -d ':' -f 2 <<< "${maven_art}" || die)
 			local src_jar="lib/${jar_name}-sources.jar"
 			if [[ -f "${src_jar}" ]]; then
 				insinto "${JAVA_PKG_SOURCESPATH}"
 				doins "${src_jar}"
 			fi
-		fi
-	done
+		done
+	fi
 
 	dodoc license/COPYRIGHT.txt
 	dodoc license/LICENSE.txt
