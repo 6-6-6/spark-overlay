@@ -90,7 +90,7 @@ src_prepare() {
 }
 
 src_install() {
-	local kotlin_home="/usr/$(get_libdir)/${PN}"
+	local kotlin_home="/opt/${PN}"
 
 	into "${kotlin_home}"
 	for exe in "${KOTLINC_BIN_TMP}"/*; do
