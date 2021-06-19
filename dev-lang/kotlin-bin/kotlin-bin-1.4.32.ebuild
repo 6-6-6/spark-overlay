@@ -65,32 +65,42 @@ KOTLINC_LIBS=(
 	sam-with-receiver-compiler-plugin.jar
 )
 
+src_prepare() {
+	java-pkg-2_src_prepare
+
+	KOTLINC_BIN_TMP="${T}/bin"
+	mkdir "${KOTLINC_BIN_TMP}" || die
+	rm bin/*.bat || die
+	cp bin/* "${KOTLINC_BIN_TMP}" || die
+
+	KOTLINC_LIB_TMP="${T}/lib"
+	mkdir "${KOTLINC_LIB_TMP}" || die
+	cp "${KOTLINC_LIBS[@]/#/lib/}" "${KOTLINC_LIB_TMP}" || die
+	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
+		"kotlin-common-bin-${KOTLIN_LIB_SLOT}"
+	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
+		"kotlinx-coroutines-core-bin:${COROUTINES_CORE_SLOT}" \
+		kotlinx-coroutines-core-bin.jar kotlinx-coroutines-core.jar
+	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
+		"jetbrains-annotations-${JB_ANNOTATIONS_SLOT}" \
+		jetbrains-annotations.jar annotations-13.0.jar
+	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
+		"jetbrains-trove" \
+		jetbrains-trove.jar trove4j.jar
+}
+
 src_install() {
 	local kotlin_home="/usr/$(get_libdir)/${PN}"
 
-	rm bin/*.bat || die
 	into "${kotlin_home}"
-	for exe in bin/*; do
+	for exe in "${KOTLINC_BIN_TMP}"/*; do
 		dobin "${exe}"
-		dosym "../../${kotlin_home}/${exe}" "/usr/bin/$(basename ${exe})"
+		local basename=$(basename "${exe}" || die)
+		dosym "../../${kotlin_home}/bin/${basename}" "/usr/bin/${basename}"
 	done
 
-	local kotlinc_libs_tmp="${T}/lib"
-	mkdir "${kotlinc_libs_tmp}" || die
-	cp "${KOTLINC_LIBS[@]/#/lib/}" "${kotlinc_libs_tmp}" || die
-	java-pkg_jar-from --into "${kotlinc_libs_tmp}" \
-		"kotlin-common-bin-${KOTLIN_LIB_SLOT}"
-	java-pkg_jar-from --into "${kotlinc_libs_tmp}" \
-		"kotlinx-coroutines-core-bin:${COROUTINES_CORE_SLOT}" \
-		kotlinx-coroutines-core-bin.jar kotlinx-coroutines-core.jar
-	java-pkg_jar-from --into "${kotlinc_libs_tmp}" \
-		"jetbrains-annotations-${JB_ANNOTATIONS_SLOT}" \
-		jetbrains-annotations.jar annotations-13.0.jar
-	java-pkg_jar-from --into "${kotlinc_libs_tmp}" \
-		"jetbrains-trove" \
-		jetbrains-trove.jar trove4j.jar
 	insinto "${kotlin_home}/lib"
-	doins "${kotlinc_libs_tmp}"/*
+	doins "${KOTLINC_LIB_TMP}"/*
 
 	dodoc -r license/*
 }
