@@ -15,10 +15,12 @@ KEYWORDS="~amd64"
 IUSE=""
 
 KOTLIN_LIB_SLOT="${PV%.*}"
+COROUTINES_CORE_SLOT="1.3.8"
 JB_ANNOTATIONS_SLOT="13"
 
 RDEPEND="
 	~dev-java/kotlin-common-bin-${PV}:${KOTLIN_LIB_SLOT}
+	dev-java/kotlinx-coroutines-core-bin:${COROUTINES_CORE_SLOT}
 	dev-java/jetbrains-annotations:${JB_ANNOTATIONS_SLOT}
 	dev-java/jetbrains-trove:0
 	>=virtual/jdk-1.8:*
@@ -55,7 +57,6 @@ KOTLINC_LIBS=(
 	kotlin-scripting-js.jar
 	kotlin-scripting-jvm.jar
 	kotlin-script-runtime.jar
-	kotlinx-coroutines-core.jar
 	kotlinx-serialization-compiler-plugin.jar
 	mutability-annotations-compat.jar
 	noarg-compiler-plugin.jar
@@ -79,6 +80,9 @@ src_install() {
 	cp "${KOTLINC_LIBS[@]/#/lib/}" "${kotlinc_libs_tmp}" || die
 	java-pkg_jar-from --into "${kotlinc_libs_tmp}" \
 		"kotlin-common-bin-${KOTLIN_LIB_SLOT}"
+	java-pkg_jar-from --into "${kotlinc_libs_tmp}" \
+		"kotlinx-coroutines-core-bin:${COROUTINES_CORE_SLOT}" \
+		kotlinx-coroutines-core-bin.jar kotlinx-coroutines-core.jar
 	java-pkg_jar-from --into "${kotlinc_libs_tmp}" \
 		"jetbrains-annotations-${JB_ANNOTATIONS_SLOT}" \
 		jetbrains-annotations.jar annotations-13.0.jar
