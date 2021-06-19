@@ -40,9 +40,8 @@ RDEPEND="
 BDEPEND="
 	app-arch/unzip
 "
-DEPEND="
-	>=virtual/jdk-1.8:*
-"
+# Binary package, permitted to use JRE in DEPEND
+DEPEND="${RDEPEND}"
 
 S="${WORKDIR}/kotlinc"
 
