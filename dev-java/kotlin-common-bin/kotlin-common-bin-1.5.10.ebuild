@@ -5,13 +5,23 @@ EAPI=7
 
 JAVA_PKG_IUSE="source"
 
+# Maven artifact IDs for pseudo Kotlin library artifacts.  A pseudo artifact
+# does not have a corresponding JAR in kotlin-compiler-${PV}.zip but must
+# present in MAVEN_PROVIDES because other Maven artifacts may depend on it
+KOTLIN_PSEUDO_LIBS=(
+	# org.jetbrains.kotlin:kotlin-stdlib-common
+	kotlin-stdlib-common
+)
+
 # During a version bump, please check if any artifact listed here has been
 # removed and if any new artifacts for Kotlin core libraries have been added,
-# then update the value of MAVEN_PROVIDES accordingly if necessary
+# then update the value of MAVEN_PROVIDES accordingly if necessary.  However,
+# please preserve all artifacts whose artifact ID is in KOTLIN_PSEUDO_LIBS
 MAVEN_PROVIDES="
 	org.jetbrains.kotlin:kotlin-annotations-jvm:${PV}
 	org.jetbrains.kotlin:kotlin-reflect:${PV}
 	org.jetbrains.kotlin:kotlin-stdlib:${PV}
+	org.jetbrains.kotlin:kotlin-stdlib-common:${PV}
 	org.jetbrains.kotlin:kotlin-stdlib-jdk7:${PV}
 	org.jetbrains.kotlin:kotlin-stdlib-jdk8:${PV}
 	org.jetbrains.kotlin:kotlin-stdlib-js:${PV}
@@ -60,6 +70,12 @@ src_prepare() {
 	java-pkg-2_src_prepare
 
 	local artifact_ids=( $(cut -d ':' -f 2 <<< "${MAVEN_PROVIDES}" || die) )
+	# Remove pseudo artifacts
+	for pseudo_artifact in "${KOTLIN_PSEUDO_LIBS[@]}"; do
+		artifact_ids=( ${artifact_ids[@]%${pseudo_artifact}} )
+	done
+	artifact_ids=( ${artifact_ids[@]/} )
+
 	# An array of Kotlin library JAR file names for subsequent phases
 	KOTLIN_LIBS=( ${artifact_ids[@]/%/.jar} )
 
