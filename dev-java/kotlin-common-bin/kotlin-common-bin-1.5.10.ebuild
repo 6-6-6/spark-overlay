@@ -60,6 +60,7 @@ BDEPEND="
 DEPEND="
 	${RDEPEND}
 	test? (
+		>=virtual/jdk-1.8:*
 		dev-java/junit:0
 	)
 "
