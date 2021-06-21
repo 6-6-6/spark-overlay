@@ -49,20 +49,20 @@ S="${WORKDIR}/kotlinc"
 src_prepare() {
 	java-pkg-2_src_prepare
 
+	local artifact_ids=( $(cut -d ':' -f 2 <<< "${MAVEN_PROVIDES}" || die) )
+	# An array of Kotlin library JAR file names for subsequent phases
+	KOTLIN_LIBS=( ${artifact_ids[@]/%/.jar} )
+
 	KOTLIN_LIB_TMP="${T}/lib"
 	mkdir "${KOTLIN_LIB_TMP}" || die
-	for maven_art in ${MAVEN_PROVIDES}; do
-		local jar_name=$(cut -d ':' -f 2 <<< "${maven_art}" || die)
-		cp "lib/${jar_name}.jar" "${KOTLIN_LIB_TMP}" || die
-	done
+	cp "${KOTLIN_LIBS[@]/#/lib/}" "${KOTLIN_LIB_TMP}" || die
 }
 
 src_install() {
 	java-pkg_jarinto "/opt/${PN}-${SLOT}/lib"
 	java-pkg_dojar "${KOTLIN_LIB_TMP}"/*
 	if use source; then
-		for maven_art in ${MAVEN_PROVIDES}; do
-			local jar_name=$(cut -d ':' -f 2 <<< "${maven_art}" || die)
+		for jar_name in "${KOTLIN_LIBS[@]/%.jar/}"; do
 			local src_jar="lib/${jar_name}-sources.jar"
 			if [[ -f "${src_jar}" ]]; then
 				insinto "${JAVA_PKG_SOURCESPATH}"
