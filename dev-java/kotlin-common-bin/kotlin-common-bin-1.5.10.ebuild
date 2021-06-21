@@ -26,13 +26,19 @@ inherit java-pkg-2
 
 DESCRIPTION="Kotlin Common Libraries"
 HOMEPAGE="https://kotlinlang.org/"
-SRC_URI="https://github.com/JetBrains/kotlin/releases/download/v${PV}/kotlin-compiler-${PV}.zip"
+SRC_URI="
+	https://github.com/JetBrains/kotlin/releases/download/v${PV}/kotlin-compiler-${PV}.zip
+	test? (
+		https://github.com/JetBrains/kotlin/archive/refs/tags/v${PV}.tar.gz -> kotlin-${PV}.tar.gz
+	)
+"
 
 LICENSE="Apache-2.0 BSD MIT NPL-1.1"
 SLOT="${PV%.*}"
 KEYWORDS="~amd64 ~x86"
 
-IUSE=""
+IUSE="test"
+RESTRICT="!test? ( test )"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
@@ -41,7 +47,12 @@ BDEPEND="
 	app-arch/unzip
 "
 # Binary package, permitted to use JRE in DEPEND
-DEPEND="${RDEPEND}"
+DEPEND="
+	${RDEPEND}
+	test? (
+		dev-java/junit:0
+	)
+"
 
 S="${WORKDIR}/kotlinc"
 
@@ -55,6 +66,25 @@ src_prepare() {
 	KOTLIN_LIB_TMP="${T}/lib"
 	mkdir "${KOTLIN_LIB_TMP}" || die
 	cp "${KOTLIN_LIBS[@]/#/lib/}" "${KOTLIN_LIB_TMP}" || die
+}
+
+src_test() {
+	cd "${WORKDIR}/kotlin-${PV}/libraries/examples/kotlin-java-example/src/test/java" || die
+
+	local OLD_IFS="${IFS}"
+	IFS=':'
+	local CP=".:${KOTLIN_LIBS[*]/#/${KOTLIN_LIB_TMP}/}:$(java-pkg_getjars junit)"
+	IFS="${OLD_IFS}"
+
+	local TESTS=$(find * -name "*.java")
+	TESTS="${TESTS//.java}"
+	TESTS="${TESTS//\//.}"
+
+	ejavac -cp "${CP}" $(find * -name "*.java")
+	# JUnit 3's TestRunner only runs the first class specified in the arguments
+	for test_class in ${TESTS}; do
+		ejunit -cp "${CP}" "${test_class}"
+	done
 }
 
 src_install() {
