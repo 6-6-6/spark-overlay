@@ -7,12 +7,18 @@ inherit java-pkg-2
 
 DESCRIPTION="Statically typed programming language for modern multiplatform applications"
 HOMEPAGE="https://kotlinlang.org/"
-SRC_URI="https://github.com/JetBrains/kotlin/releases/download/v${PV}/kotlin-compiler-${PV}.zip"
+SRC_URI="
+	https://github.com/JetBrains/kotlin/releases/download/v${PV}/kotlin-compiler-${PV}.zip
+	test? (
+		https://github.com/JetBrains/kotlin/archive/refs/tags/v${PV}.tar.gz -> kotlin-${PV}.tar.gz
+	)
+"
 
 LICENSE="Apache-2.0 BSD MIT NPL-1.1"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
+IUSE="test"
+RESTRICT="!test? ( test )"
 
 KOTLIN_LIB_SLOT="${PV%.*}"
 COROUTINES_CORE_SLOT="1.3.8"
@@ -30,6 +36,9 @@ BDEPEND="
 "
 DEPEND="
 	${RDEPEND}
+	test? (
+		dev-java/junit:4
+	)
 "
 
 S="${WORKDIR}/kotlinc"
@@ -87,6 +96,62 @@ src_prepare() {
 	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
 		"jetbrains-trove" \
 		jetbrains-trove.jar trove4j.jar
+}
+
+my_kotlinc() {
+	"${KOTLINC_BIN_TMP}/kotlinc" -jvm-target "$(java-pkg_get-target)" "$@" \
+		|| die
+}
+
+run_sample_tests() {
+	cd "${STDLIB_S}/samples/test" || die
+
+	# All sample files except _sampleUtils.kt,
+	# the utility class used to support the samples
+	local samples=( $(find * -mindepth 2 -name "*.kt") )
+
+	ebegin "Compiling samples"
+	# Compile the utility class which is used by all classes in the samples
+	my_kotlinc -cp "${CP}" samples/_sampleUtils.kt
+	my_kotlinc -cp "${CP}" \
+		-Xuse-experimental=kotlin.ExperimentalStdlibApi \
+		-Xuse-experimental=kotlin.time.ExperimentalTime \
+		"${samples[@]}"
+
+	ebegin "Running tests from samples"
+	local TESTS=$(find * -mindepth 2 -name "*.class" \
+		-not -name "*\$*.class" -not -name "*Kt.class")
+	TESTS="${TESTS//.class}"
+	TESTS="${TESTS//\//.}"
+	ejunit4 -cp "${CP}" ${TESTS}
+}
+
+# This test does not work yet
+run_module_tests() {
+	cd "${STDLIB_S}" || die
+
+	# All module tests except testUtils.kt
+	local test_sources=( $(find test -mindepth 2 -name "*.kt") )
+
+	ebegin "Compiling module tests"
+	# Compile the utility class first
+	my_kotlinc -cp "${CP}" test/testUtils.kt
+	JAVA_OPTS="-Xmx768M" my_kotlinc -cp "${CP}" \
+		-Xuse-experimental=kotlin.ExperimentalStdlibApi \
+		"${test_sources[@]}"
+
+	ebegin "Running module tests"
+	local TESTS=$(find * -mindepth 2 -name "*.class" \
+		-not -name "*\$*.class" -not -name "*Kt.class")
+	TESTS="${TESTS//.class}"
+	TESTS="${TESTS//\//.}"
+	ejunit4 -cp "${CP}" ${TESTS}
+}
+
+src_test() {
+	STDLIB_S="${WORKDIR}/kotlin-${PV}/libraries/stdlib"
+	CP=".:$(java-pkg_getjars "kotlin-common-bin-${KOTLIN_LIB_SLOT},junit-4")"
+	run_sample_tests
 }
 
 src_install() {
