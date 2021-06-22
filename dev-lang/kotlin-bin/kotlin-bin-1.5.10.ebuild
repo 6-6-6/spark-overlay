@@ -79,7 +79,7 @@ src_prepare() {
 	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
 		"kotlin-common-bin-${KOTLIN_LIB_SLOT}"
 	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
-		"kotlinx-coroutines-core-bin:${COROUTINES_CORE_SLOT}" \
+		"kotlinx-coroutines-core-bin-${COROUTINES_CORE_SLOT}" \
 		kotlinx-coroutines-core-bin.jar kotlinx-coroutines-core.jar
 	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
 		"jetbrains-annotations-${JB_ANNOTATIONS_SLOT}" \
