@@ -149,8 +149,9 @@ run_module_tests() {
 }
 
 src_test() {
-	STDLIB_S="${WORKDIR}/kotlin-${PV}/libraries/stdlib"
-	CP=".:$(java-pkg_getjars "kotlin-common-bin-${KOTLIN_LIB_SLOT},junit-4")"
+	local STDLIB_S="${WORKDIR}/kotlin-${PV}/libraries/stdlib"
+	local CP=".:$(java-pkg_getjars \
+		"kotlin-common-bin-${KOTLIN_LIB_SLOT},junit-4")"
 	run_sample_tests
 }
 
