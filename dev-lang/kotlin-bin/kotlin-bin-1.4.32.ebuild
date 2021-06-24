@@ -179,33 +179,39 @@ pkg_postinst() {
 	local kotlin_lib_PN="kotlin-common-bin"
 	local kotlin_lib_pkg="dev-java/${kotlin_lib_PN}"
 	local kotlin_lib_ver=$(best_version "${kotlin_lib_pkg}:${KOTLIN_LIB_SLOT}")
-	if has_version ">${kotlin_lib_ver}"; then
-		local newer_ver=$(best_version ">${kotlin_lib_ver}")
-		local newer_slot=$(get_kotlin_lib_atom_slot "${newer_ver}")
+	local any_newer_ver=$(best_version ">${kotlin_lib_ver}")
+	local any_older_ver=$(best_version "<${kotlin_lib_ver}")
+
+	if [[ -n "${any_newer_ver}" ]]; then
+		local newer_slot=$(get_kotlin_lib_atom_slot "${any_newer_ver}")
 		local newer_pkg="${kotlin_lib_PN}-${newer_slot}"
 		elog "The following version of ${kotlin_lib_pkg} for"
 		elog "Kotlin feature release newer than ${KOTLIN_LIB_SLOT} is found:"
-		elog "	${newer_ver}"
+		elog "	${any_newer_ver}"
 		elog
 		elog "To use this version of Kotlin libraries, please invoke kotlinc"
 		elog "using a command with options like the following:"
 		elog "	kotlinc -classpath \"\$(java-config -p ${newer_pkg})\" \\"
 		elog "		-no-stdlib"
+	fi
+
+	# Print some empty lines only if necessary
+	if [[ -n "${any_newer_ver}" && -n "${any_older_ver}" ]]; then
+		elog
 		elog
 	fi
-	if has_version "<${kotlin_lib_ver}"; then
-		local older_ver=$(best_version "<${kotlin_lib_ver}")
-		local older_slot=$(get_kotlin_lib_atom_slot "${older_ver}")
+
+	if [[ -n "${any_older_ver}" ]]; then
+		local older_slot=$(get_kotlin_lib_atom_slot "${any_older_ver}")
 		local older_pkg="${kotlin_lib_PN}-${older_slot}"
 		elog "The following version of ${kotlin_lib_pkg} for"
 		elog "Kotlin feature release older than ${KOTLIN_LIB_SLOT} is found:"
-		elog "	${older_ver}"
+		elog "	${any_older_ver}"
 		elog
 		elog "To use this version of Kotlin libraries, please invoke kotlinc"
 		elog "using a command with options like the following:"
 		elog "	kotlinc -classpath \"\$(java-config -p ${older_pkg})\" \\"
 		elog "		-api-version ${older_slot} \\"
 		elog "		-no-stdlib"
-		elog
 	fi
 }
