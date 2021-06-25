@@ -45,7 +45,7 @@ SRC_URI="
 "
 
 LICENSE="Apache-2.0 BSD MIT NPL-1.1"
-SLOT="${PV%.*}"
+SLOT="$(ver_cut 1-2)"
 KEYWORDS="~amd64 ~x86"
 
 IUSE="test"

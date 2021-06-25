@@ -20,7 +20,7 @@ KEYWORDS="~amd64"
 IUSE="test"
 RESTRICT="!test? ( test )"
 
-KOTLIN_LIB_SLOT="${PV%.*}"
+KOTLIN_LIB_SLOT="$(ver_cut 1-2)"
 JB_ANNOTATIONS_SLOT="13"
 
 RDEPEND="
