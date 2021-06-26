@@ -38,6 +38,7 @@ DEPEND="
 	${RDEPEND}
 	test? (
 		dev-java/junit:4
+		dev-java/kotlin-coroutines-experimental-compat-bin:0
 	)
 "
 
@@ -129,23 +130,47 @@ run_sample_tests() {
 	ejunit4 -cp "${CP}" ${TESTS}
 }
 
-# This test does not work yet
 run_module_tests() {
 	cd "${STDLIB_S}" || die
 
-	# All module tests except testUtils.kt
-	local test_sources=( $(find test -mindepth 2 -name "*.kt") )
+	local skipped_classes=(
+		# JavaScript tests, which cannot be run on JVM
+		test/js/*
+		# Test that requires Kotlin Native
+		test/random/RandomTest.kt
+		# Failing tests
+		jvm/test/utils/AssertionsJVMTest.kt
+		jvm/test/reflection/JavaTypeTest.kt
+	)
+	if has network-sandbox ${FEATURES}; then
+		einfo "Skipping classes with test cases that require network connection"
+		einfo "due to FEATURES=network-sandbox"
+		skipped_classes+=( jvm/test/io/ReadWrite.kt )
+	fi
+	rm "${skipped_classes[@]}" || die
+
+	local CP="${CP}:$(java-pkg_getjars \
+		"kotlin-coroutines-experimental-compat-bin")"
+
+	local common_sources=( $(find {.,common}/test -name "*.kt") )
+	local test_sources=( $(find {.,common,jvm}/test -name "*.kt") )
+
+	local OLD_IFS="${IFS}"
+	IFS=','
+	local common_sources_val="${common_sources[*]}"
+	IFS="${OLD_IFS}"
 
 	ebegin "Compiling module tests"
-	# Compile the utility class first
-	my_kotlinc -cp "${CP}" test/testUtils.kt
 	JAVA_OPTS="-Xmx768M" my_kotlinc -cp "${CP}" \
-		-Xuse-experimental=kotlin.ExperimentalStdlibApi \
+		-Xmulti-platform \
+		-Xopt-in=kotlin.ExperimentalStdlibApi \
+		-Xopt-in=kotlin.ExperimentalUnsignedTypes \
+		-Xopt-in=kotlin.time.ExperimentalTime \
+		-Xcommon-sources="${common_sources_val}" \
 		"${test_sources[@]}"
 
 	ebegin "Running module tests"
-	local TESTS=$(find * -mindepth 2 -name "*.class" \
-		-not -name "*\$*.class" -not -name "*Kt.class")
+	local TESTS=$(find * -name "*Test.class")
 	TESTS="${TESTS//.class}"
 	TESTS="${TESTS//\//.}"
 	ejunit4 -cp "${CP}" ${TESTS}
@@ -156,6 +181,7 @@ src_test() {
 	local CP=".:$(java-pkg_getjars \
 		"kotlin-common-bin-${KOTLIN_LIB_SLOT},junit-4")"
 	run_sample_tests
+	run_module_tests
 }
 
 src_install() {
