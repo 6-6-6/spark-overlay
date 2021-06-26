@@ -113,9 +113,12 @@ run_sample_tests() {
 	ebegin "Compiling samples"
 	# Compile the utility class which is used by all classes in the samples
 	my_kotlinc -cp "${CP}" samples/_sampleUtils.kt
+	# See libraries/stdlib/samples/build.gradle under Kotlin source tree for
+	# compiler arguments
 	my_kotlinc -cp "${CP}" \
-		-Xuse-experimental=kotlin.ExperimentalStdlibApi \
-		-Xuse-experimental=kotlin.time.ExperimentalTime \
+		-Xopt-in=kotlin.ExperimentalStdlibApi \
+		-Xopt-in=kotlin.ExperimentalUnsignedTypes \
+		-Xopt-in=kotlin.time.ExperimentalTime \
 		"${samples[@]}"
 
 	ebegin "Running tests from samples"
