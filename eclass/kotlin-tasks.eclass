@@ -95,6 +95,20 @@ _KOTLIN_TASKS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
 # ebuild. Default is unset, can be overriden from ebuild BEFORE inheriting this
 # eclass.
 
+# @ECLASS-VARIABLE: KOTLIN_TASKS_TEST_SRC_DIR
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# An array of directories relative to ${S} which contain the sources for
+# testing. A string with directories separated by white space works as well.
+# Default is unset, which will cause all source files inside ${S} to be
+# compiled for testing, and can be overriden from ebuild anywhere.
+
+# @ECLASS-VARIABLE: KOTLIN_TASKS_TEST_EXCLUDES
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# An array of test classes that should not be executed during the test. Default
+# is unset, can be overriden from ebuild anywhere.
+
 # @ECLASS-VARIABLE: KOTLIN_TASKS_BINJAR_SRC_URI
 # @DEFAULT_UNSET
 # @PRE_INHERIT
@@ -306,26 +320,69 @@ kotlin-tasks_src_test() {
 		return
 	fi
 
-	local unsupported_frameworks=()
+	local tests_require_compile=false
 	for framework in ${JAVA_TESTING_FRAMEWORKS}; do
-		case ${framework} in
-			pkgdiff)
-				java-pkg-simple_test_with_pkgdiff_;;
-			*)
-				unsupported_frameworks+=( ${framework} );;
+		case "${framework}" in
+			junit|junit-4|testng)
+				tests_require_compile=true
 		esac
 	done
-	if [[ -n "${unsupported_frameworks[@]}" ]]; then
-		einfo "To maintainers of ${CATEGORY}/${PF}:"
-		einfo
-		einfo "kotlin-tasks does not provide built-in support for running tests"
-		einfo "with these frameworks in \${JAVA_TESTING_FRAMEWORKS} yet:"
-		einfo
-		einfo "	${unsupported_frameworks[@]}"
-		einfo
-		einfo "If you want to run test cases using these frameworks,"
-		einfo "please manually compile and run them in src_test."
+
+	if "${tests_require_compile}"; then
+		local test_sources="test_sources.lst"
+		local target="test-target"
+
+		# Create the target directory
+		mkdir -p "${target}" || \
+			die "Could not create target directory for testing"
+
+		# Compute classpath
+		classpath="${target}:${JAVA_JAR_FILENAME}"
+		java-pkg-simple_getclasspath
+		java-pkg-simple_prepend_resources "${target}" \
+			"${JAVA_TEST_RESOURCE_DIRS[@]}"
+
+		# Generate a list of source files for testing
+		find "${KOTLIN_TASKS_SRC_DIR[@]}" -name "*.kt" > "${test_sources}"
+
+		# Compile tests
+		[[ -s "${test_sources}" ]] && \
+			kotlin-tasks_kotlinc -d "${target}" \
+			${classpath:+-classpath ${classpath}} "@${test_sources}"
+
+		# Generate list of test classes to execute
+		tests_to_run=$(find "${target}" -type f\
+			\( -name "*Test.class"\
+			-o -name "Test*.class"\
+			-o -name "*Tests.class"\
+			-o -name "*TestCase.class" \)\
+			! -name "*Abstract*"\
+			! -name "*BaseTest*"\
+			! -name "*TestTypes*"\
+			! -name "*TestUtils*"\
+			! -name "*\$*")
+		tests_to_run=${tests_to_run//"${target}"\/}
+		tests_to_run=${tests_to_run//.class}
+		tests_to_run=${tests_to_run//\//.}
+		for class in "${JAVA_TEST_EXCLUDES[@]}"; do
+			tests_to_run=${tests_to_run//${target}}
+		done
 	fi
+
+	for framework in ${JAVA_TESTING_FRAMEWORKS}; do
+		case "${framework}" in
+			junit)
+				ejunit -classpath "${classpath}" ${tests_to_run};;
+			junit-4)
+				ejunit4 -classpath "${classpath}" ${tests_to_run};;
+			pkgdiff)
+				java-pkg-simple_test_with_pkgdiff_;;
+			testng)
+				etestng -classpath "${classpath}" ${tests_to_run};;
+			*)
+				elog "No suitable function found for framework ${framework}"
+		esac
+	done
 }
 
 # @FUNCTION: kotlin-tasks_dosrc
