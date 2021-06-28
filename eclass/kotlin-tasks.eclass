@@ -49,17 +49,23 @@ _KOTLIN_TASKS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
 # overriden from ebuild anywhere.
 : ${KOTLIN_TASKS_MODULE_NAME:="${PN}"}
 
-# @ECLASS-VARIABLE: KOTLIN_TASKS_JAVA_SOURCE_ROOTS
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# The argument to kotlinc's -Xjava-source-roots option. Default is unset, can
-# be overriden from ebuild anywhere.
-
 # @ECLASS-VARIABLE: KOTLIN_TASKS_COMMON_SOURCES
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# The argument to kotlinc's -Xcommon-sources option. Default is unset, can be
-# overriden from ebuild anywhere.
+# An array containing the arguments to kotlinc's -Xcommon-sources option. This
+# eclass will concatenate each element in the array into a single string, using
+# a comma to separate each pair of adjacent elements, and pass the string as
+# the option's value to kotlinc. Default is unset, can be overriden from ebuild
+# anywhere.
+
+# @ECLASS-VARIABLE: KOTLIN_TASKS_JAVA_SOURCE_ROOTS
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# An array containing the arguments to kotlinc's -Xjava-source-roots option.
+# This eclass will concatenate each element in the array into a single string,
+# using a comma to separate each pair of adjacent elements, and pass the string
+# as the option's value to kotlinc. Default is unset, can be overriden from
+# ebuild anywhere.
 
 # @ECLASS-VARIABLE: KOTLIN_TASKS_KOTLINC_ARGS
 # @DEFAULT_UNSET
@@ -202,13 +208,21 @@ kotlin-tasks_kotlinc() {
 	local compiler_executable
 	compiler_executable="kotlinc"
 
+	local OLD_IFS="${IFS}"
+	IFS=','
+	local common_sources=\
+		"${KOTLIN_TASKS_COMMON_SOURCES:+-Xcommon-sources=${KOTLIN_TASKS_COMMON_SOURCES[*]}}"
+	local java_source_roots=\
+		"${KOTLIN_TASKS_JAVA_SOURCE_ROOTS:+-Xjava-source-roots=${KOTLIN_TASKS_JAVA_SOURCE_ROOTS[*]}}"
+	IFS="${OLD_IFS}"
+
 	local compiler_command_args=(
 		"${compiler_executable}"
 		"${KOTLIN_TASKS_WANT_TARGET:+-api-version ${KOTLIN_TASKS_WANT_TARGET}}"
 		"${KOTLIN_TASKS_WANT_TARGET:+-language-version ${KOTLIN_TASKS_WANT_TARGET}}"
 		"${KOTLIN_TASKS_MODULE_NAME:+-module-name ${KOTLIN_TASKS_MODULE_NAME}}"
-		"${KOTLIN_TASKS_COMMON_SOURCES:+-Xcommon-sources=${KOTLIN_TASKS_COMMON_SOURCES}}"
-		"${KOTLIN_TASKS_JAVA_SOURCE_ROOTS:+-Xjava-source-roots=${KOTLIN_TASKS_JAVA_SOURCE_ROOTS}}"
+		"${common_sources}"
+		"${java_source_roots}"
 		"${KOTLIN_TASKS_KOTLINC_ARGS[@]}"
 		"$@"
 	)
