@@ -72,6 +72,13 @@ _KOTLIN_TASKS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
 # arguments set by the variables of this eclass and before the list of source
 # files. Default is unset, can be overriden from ebuild anywhere.
 
+# @ECLASS-VARIABLE: KOTLIN_TASKS_CLASSPATH_EXTRA
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# An extra comma- or space-separated list of Java packages that are needed only
+# when sources are being compiled. Default is unset, can be overriden from
+# ebuild anywhere.
+
 # @ECLASS-VARIABLE: KOTLIN_TASKS_SRC_DIR
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -132,6 +139,12 @@ _KOTLIN_TASKS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
 # arguments set by the variables of this eclass and before the list of test
 # sources files during the test. Default is unset, can be overriden from ebuild
 # anywhere.
+
+# @ECLASS-VARIABLE: KOTLIN_TASKS_TEST_CLASSPATH_EXTRA
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# An extra comma- or space-separated list of Java packages that are needed only
+# during the test. Default is unset, can be overriden from ebuild anywhere.
 
 # @ECLASS-VARIABLE: KOTLIN_TASKS_TEST_KOTLINC_JAVA_OPTS
 # @DESCRIPTION:
@@ -348,11 +361,28 @@ kotlin-tasks_src_compile() {
 	# Create the target directory
 	mkdir -p "${target}" || die "Could not create target directory"
 
-	# Compile the source files
+	# Compute classpath
 	local classpath=""
-	java-pkg-simple_getclasspath
+	# Add compile-time dependencies
+	for dependency in ${KOTLIN_TASKS_CLASSPATH_EXTRA}; do
+		classpath="${classpath}:$(java-pkg_getjars \
+			--build-only --with-dependencies ${dependency})"
+	done
+	# Add runtime dependencies
+	for dependency in ${JAVA_GENTOO_CLASSPATH}; do
+		classpath="${classpath}:$(java-pkg_getjars \
+			--with-dependencies ${dependency})"
+	done
+	# Purify classpath
+	while [[ $classpath = *::* ]]; do
+		classpath="${classpath//::/:}"
+	done
+	classpath=${classpath%:}
+	classpath=${classpath#:}
+
 	java-pkg-simple_prepend_resources "${target}" "${JAVA_RESOURCE_DIRS[@]}"
 
+	# Compile the source files
 	_KOTLIN_TASKS_COMMON_SOURCES_DIR=( "${KOTLIN_TASKS_COMMON_SOURCES_DIR[@]}" )
 	_KOTLIN_TASKS_JAVA_SOURCE_ROOTS=( "${KOTLIN_TASKS_JAVA_SOURCE_ROOTS[@]}" )
 	_KOTLIN_TASKS_KOTLINC_ARGS=( "${KOTLIN_TASKS_KOTLINC_ARGS[@]}" )
@@ -407,7 +437,23 @@ kotlin-tasks_src_test() {
 
 		# Compute classpath
 		classpath="${target}:${JAVA_JAR_FILENAME}"
-		java-pkg-simple_getclasspath
+		# Add compile-time dependencies of tests
+		for dependency in ${KOTLIN_TASKS_TEST_CLASSPATH_EXTRA}; do
+			classpath="${classpath}:$(java-pkg_getjars \
+				--build-only --with-dependencies ${dependency})"
+		done
+		# Add runtime dependencies
+		for dependency in ${JAVA_GENTOO_CLASSPATH}; do
+			classpath="${classpath}:$(java-pkg_getjars \
+				--with-dependencies ${dependency})"
+		done
+		# Purify classpath
+		while [[ $classpath = *::* ]]; do
+			classpath="${classpath//::/:}";
+		done
+		classpath=${classpath%:}
+		classpath=${classpath#:}
+
 		java-pkg-simple_prepend_resources "${target}" \
 			"${JAVA_TEST_RESOURCE_DIRS[@]}"
 
