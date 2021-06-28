@@ -52,27 +52,27 @@ _KOTLIN_TASKS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
 # @ECLASS-VARIABLE: KOTLIN_TASKS_COMMON_SOURCES
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# An array containing the arguments to kotlinc's -Xcommon-sources option. This
-# eclass will concatenate each element in the array into a single string, using
-# a comma to separate each pair of adjacent elements, and pass the string as
-# the option's value to kotlinc. Default is unset, can be overriden from ebuild
+# An array of the arguments to kotlinc's -Xcommon-sources option. This eclass
+# will concatenate each element in the array into a single string, using a
+# comma to separate each pair of adjacent elements, and pass the string as the
+# option's value to kotlinc. Default is unset, can be overriden from ebuild
 # anywhere.
 
 # @ECLASS-VARIABLE: KOTLIN_TASKS_JAVA_SOURCE_ROOTS
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# An array containing the arguments to kotlinc's -Xjava-source-roots option.
-# This eclass will concatenate each element in the array into a single string,
-# using a comma to separate each pair of adjacent elements, and pass the string
-# as the option's value to kotlinc. Default is unset, can be overriden from
-# ebuild anywhere.
+# An array of the arguments to kotlinc's -Xjava-source-roots option. This
+# eclass will concatenate each element in the array into a single string, using
+# a comma to separate each pair of adjacent elements, and pass the string as
+# the option's value to kotlinc. Default is unset, can be overriden from ebuild
+# anywhere.
 
 # @ECLASS-VARIABLE: KOTLIN_TASKS_KOTLINC_ARGS
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# An array containing any extra arguments to kotlinc that will added after all
-# other arguments set by the variables of this eclass and before the list of
-# source files. Default is unset, can be overriden from ebuild anywhere.
+# An array of any extra arguments to kotlinc that will added after all other
+# arguments set by the variables of this eclass and before the list of source
+# files. Default is unset, can be overriden from ebuild anywhere.
 
 # @ECLASS-VARIABLE: KOTLIN_TASKS_SOURCES
 # @DEFAULT_UNSET
