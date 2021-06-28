@@ -49,14 +49,12 @@ _KOTLIN_TASKS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
 # overriden from ebuild anywhere.
 : ${KOTLIN_TASKS_MODULE_NAME:="${PN}"}
 
-# @ECLASS-VARIABLE: KOTLIN_TASKS_COMMON_SOURCES
+# @ECLASS-VARIABLE: KOTLIN_TASKS_COMMON_SOURCES_DIR
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# An array of the arguments to kotlinc's -Xcommon-sources option. This eclass
-# will concatenate each element in the array into a single string, using a
-# comma to separate each pair of adjacent elements, and pass the string as the
-# option's value to kotlinc. Default is unset, can be overriden from ebuild
-# anywhere.
+# An array of directories relative to ${S} which contains the sources to pass
+# to kotlinc's -Xcommon-sources option. Default is unset, can be overriden from
+# ebuild anywhere.
 
 # @ECLASS-VARIABLE: KOTLIN_TASKS_JAVA_SOURCE_ROOTS
 # @DEFAULT_UNSET
@@ -74,12 +72,13 @@ _KOTLIN_TASKS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
 # arguments set by the variables of this eclass and before the list of source
 # files. Default is unset, can be overriden from ebuild anywhere.
 
-# @ECLASS-VARIABLE: KOTLIN_TASKS_SOURCES
+# @ECLASS-VARIABLE: KOTLIN_TASKS_SRC_DIR
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# The list of source files that are used as compiler input, where file names
-# are separated by white space. Must be overriden from ebuild somewhere when
-# compiling from source.
+# An array of directories relative to ${S} which contain the sources to compile
+# for the ebuild. A string with directories separated by white space works as
+# well. Default is unset, which will cause all source files inside ${S} to be
+# compiled, and can be overriden from ebuild anywhere.
 
 # @ECLASS-VARIABLE: KOTLIN_TASKS_KOTLINC_JAVA_OPTS
 # @DESCRIPTION:
@@ -200,20 +199,24 @@ kotlin-tasks_pkg_setup() {
 # @USAGE: <kotlinc_arguments>
 # @DESCRIPTION:
 # Invokes the Kotlin compiler with arguments specified by pertaining variables
-# in this eclass, followed by <kotlinc_arguments>, using the source files
-# listed in ${KOTLIN_TASKS_SOURCES} as compiler input.
+# in this eclass, followed by <kotlinc_arguments>.
 kotlin-tasks_kotlinc() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	local compiler_executable
 	compiler_executable="kotlinc"
 
+	# Prepare arguments whose values should be separated by comma
 	local OLD_IFS="${IFS}"
+	if [[ "${KOTLIN_TASKS_COMMON_SOURCES_DIR}" ]]; then
+		local common_sources_files=(
+			$(find "${KOTLIN_TASKS_COMMON_SOURCES_DIR[@]}" -name "*.kt")
+		)
+		IFS=','
+		local common_sources="-Xcommon-sources=${common_sources_files[*]}"
+	fi
 	IFS=','
-	local common_sources=\
-		"${KOTLIN_TASKS_COMMON_SOURCES:+-Xcommon-sources=${KOTLIN_TASKS_COMMON_SOURCES[*]}}"
-	local java_source_roots=\
-		"${KOTLIN_TASKS_JAVA_SOURCE_ROOTS:+-Xjava-source-roots=${KOTLIN_TASKS_JAVA_SOURCE_ROOTS[*]}}"
+	local java_source_roots="${KOTLIN_TASKS_JAVA_SOURCE_ROOTS:+-Xjava-source-roots=${KOTLIN_TASKS_JAVA_SOURCE_ROOTS[*]}}"
 	IFS="${OLD_IFS}"
 
 	local compiler_command_args=(
@@ -233,19 +236,16 @@ kotlin-tasks_kotlinc() {
 		einfo "JAVA_OPTS: ${KOTLIN_TASKS_KOTLINC_JAVA_OPTS}"
 		einfo "Compiler arguments:"
 		einfo "${compiler_command}"
-		einfo "Input source files:"
-		einfo "${KOTLIN_TASKS_SOURCES}"
 	fi
 
 	ebegin "Compiling"
-	JAVA_OPTS="${KOTLIN_TASKS_KOTLINC_JAVA_OPTS}" \
-		${compiler_command} ${KOTLIN_TASKS_SOURCES} || \
+	JAVA_OPTS="${KOTLIN_TASKS_KOTLINC_JAVA_OPTS}" ${compiler_command} || \
 		die "${FUNCNAME} failed"
 }
 
 # @FUNCTION: kotlin-tasks_src_compile
 # @DESCRIPTION:
-# Compiles the source files in ${KOTLIN_TASKS_SOURCES} using compiler arguments
+# Compiles the source files in ${KOTLIN_TASKS_SRC_DIR} using compiler arguments
 # specified by other variables of this eclass, with classpath calculated from
 # ${JAVA_GENTOO_CLASSPATH}, and packages the resulting classes to a single JAR
 # ${JAVA_JAR_FILENAME}. If the file target/META-INF/MANIFEST.MF exists, it will
@@ -253,6 +253,7 @@ kotlin-tasks_kotlinc() {
 # enabled, nothing will be compiled and the binary JAR ${JAVA_BINJAR_FILENAME}
 # will be used directly.
 kotlin-tasks_src_compile() {
+	local sources="sources.lst"
 	local target="target"
 
 	java-pkg_gen-cp JAVA_GENTOO_CLASSPATH
@@ -265,21 +266,22 @@ kotlin-tasks_src_compile() {
 		cp "${DISTDIR}"/${JAVA_BINJAR_FILENAME} ${JAVA_JAR_FILENAME} \
 			|| die "Could not copy the binary JAR file to ${S}"
 		return 0
-	else
-		# Fail fast if the package is requested to be built from source, but no
-		# source files are specified
-		[[ -n "${KOTLIN_TASKS_SOURCES}" ]] \
-			|| die "Building from source, but no source files were specified"
 	fi
 
+	# Generate a list of source files
+	find "${KOTLIN_TASKS_SRC_DIR[@]}" -name "*.kt" > "${sources}"
+	# Create the target directory
 	mkdir -p "${target}" || die "Could not create target directory"
 
+	# Compile the source files
 	local classpath=""
 	java-pkg-simple_getclasspath
 	java-pkg-simple_prepend_resources "${target}" "${JAVA_RESOURCE_DIRS[@]}"
 
-	kotlin-tasks_kotlinc -d "${target}" ${classpath:+-classpath ${classpath}}
+	kotlin-tasks_kotlinc -d "${target}" ${classpath:+-classpath ${classpath}} \
+		"@${sources}"
 
+	# Package compiled class files into a JAR
 	local jar_args
 	if [[ -e ${target}/META-INF/MANIFEST.MF ]]; then
 		jar_args="cfm ${JAVA_JAR_FILENAME} ${target}/META-INF/MANIFEST.MF"
@@ -382,6 +384,8 @@ kotlin-tasks_dosrc() {
 # ${JAVA_MAIN_CLASS} is set. If the 'source' USE flag is enabled, a Zip archive
 # containing the source will also be installed.
 kotlin-tasks_src_install() {
+	local sources="sources.lst"
+
 	java-pkg_dojar ${JAVA_JAR_FILENAME}
 
 	if [[ -n "${JAVA_MAIN_CLASS}" ]]; then
@@ -394,7 +398,17 @@ kotlin-tasks_src_install() {
 			insinto "${JAVA_PKG_SOURCESPATH}"
 			doins "${KOTLIN_TASKS_SRCJAR_FILENAME}"
 		else
-			kotlin-tasks_dosrc ${KOTLIN_TASKS_SOURCES}
+			local srcdirs=""
+			if [[ "${KOTLIN_TASKS_SRC_DIR[@]}" ]]; then
+				local parent child
+				for parent in "${KOTLIN_TASKS_SRC_DIR[@]}"; do
+					srcdirs="${srcdirs} ${parent}"
+				done
+			else
+				# Take all directories actually containing any sources
+				srcdirs="$(cut -d/ -f1 ${sources} | sort -u)"
+			fi
+			kotlin-tasks_dosrc ${srcdirs}
 		fi
 	fi
 }
