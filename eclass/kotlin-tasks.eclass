@@ -109,6 +109,38 @@ _KOTLIN_TASKS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
 # An array of test classes that should not be executed during the test. Default
 # is unset, can be overriden from ebuild anywhere.
 
+# @ECLASS-VARIABLE: KOTLIN_TASKS_TEST_COMMON_SOURCES_DIR
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# An array of directories relative to ${S} which contains the sources to pass
+# to kotlinc's -Xcommon-sources option during the test. Default is unset, can
+# be overriden from ebuild anywhere.
+
+# @ECLASS-VARIABLE: KOTLIN_TASKS_TEST_JAVA_SOURCE_ROOTS
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# An array of the arguments to kotlinc's -Xjava-source-roots option during the
+# test. This eclass will concatenate each element in the array into a single
+# string, using a comma to separate each pair of adjacent elements, and pass
+# the string as the option's value to kotlinc. Default is unset, can be
+# overriden from ebuild anywhere.
+
+# @ECLASS-VARIABLE: KOTLIN_TASKS_TEST_KOTLINC_ARGS
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# An array of any extra arguments to kotlinc that will added after all other
+# arguments set by the variables of this eclass and before the list of test
+# sources files during the test. Default is unset, can be overriden from ebuild
+# anywhere.
+
+# @ECLASS-VARIABLE: KOTLIN_TASKS_TEST_KOTLINC_JAVA_OPTS
+# @DESCRIPTION:
+# Any options for the JVM instances started by kotlinc during the test. The
+# default option allots enough memory to kotlinc to compile every Kotlin
+# Standard Library component's test, and it can be overriden from ebuild
+# anywhere.
+: ${KOTLIN_TASKS_TEST_KOTLINC_JAVA_OPTS:="-Xmx768M"}
+
 # @ECLASS-VARIABLE: KOTLIN_TASKS_BINJAR_SRC_URI
 # @DEFAULT_UNSET
 # @PRE_INHERIT
@@ -209,11 +241,41 @@ kotlin-tasks_pkg_setup() {
 	fi
 }
 
+# @ECLASS-VARIABLE: _KOTLIN_TASKS_COMMON_SOURCES_DIR
+# @DEFAULT_UNSET
+# @INTERNAL
+# @DESCRIPTION:
+# An array of directories relative to ${S} which contains the sources to pass
+# to kotlinc's -Xcommon-sources option. Used internally, should not be touched
+# by ebuild.
+
+# @ECLASS-VARIABLE: _KOTLIN_TASKS_JAVA_SOURCE_ROOTS
+# @DEFAULT_UNSET
+# @INTERNAL
+# @DESCRIPTION:
+# An array of the arguments to kotlinc's -Xjava-source-roots option. Used
+# internally, should not be touched by ebuild.
+
+# @ECLASS-VARIABLE: _KOTLIN_TASKS_KOTLINC_ARGS
+# @DEFAULT_UNSET
+# @INTERNAL
+# @DESCRIPTION:
+# An array of any extra arguments to kotlinc that will added after all other
+# arguments set by the variables of this eclass and before the list of source
+# files. Used internally, should not be touched by ebuild.
+
+# @ECLASS-VARIABLE: _KOTLIN_TASKS_KOTLINC_JAVA_OPTS
+# @DEFAULT_UNSET
+# @INTERNAL
+# @DESCRIPTION:
+# Any options for the JVM instances started by kotlinc. Used internally, should
+# not be touched by ebuild.
+
 # @FUNCTION: kotlin-tasks_kotlinc
 # @USAGE: <kotlinc_arguments>
 # @DESCRIPTION:
-# Invokes the Kotlin compiler with arguments specified by pertaining variables
-# in this eclass, followed by <kotlinc_arguments>.
+# Invokes the Kotlin compiler with arguments specified by the above internal
+# variables, followed by <kotlinc_arguments>.
 kotlin-tasks_kotlinc() {
 	debug-print-function ${FUNCNAME} "$@"
 
@@ -222,38 +284,37 @@ kotlin-tasks_kotlinc() {
 
 	# Prepare arguments whose values should be separated by comma
 	local OLD_IFS="${IFS}"
-	if [[ -n "${KOTLIN_TASKS_COMMON_SOURCES_DIR}" ]]; then
+	if [[ -n "${_KOTLIN_TASKS_COMMON_SOURCES_DIR}" ]]; then
 		local common_sources_files=(
-			$(find "${KOTLIN_TASKS_COMMON_SOURCES_DIR[@]}" -name "*.kt")
+			$(find "${_KOTLIN_TASKS_COMMON_SOURCES_DIR[@]}" -name "*.kt")
 		)
 		IFS=','
 		local common_sources="-Xcommon-sources=${common_sources_files[*]}"
 	fi
 	IFS=','
-	local java_source_roots="${KOTLIN_TASKS_JAVA_SOURCE_ROOTS:+-Xjava-source-roots=${KOTLIN_TASKS_JAVA_SOURCE_ROOTS[*]}}"
+	local java_source_roots="${_KOTLIN_TASKS_JAVA_SOURCE_ROOTS:+-Xjava-source-roots=${_KOTLIN_TASKS_JAVA_SOURCE_ROOTS[*]}}"
 	IFS="${OLD_IFS}"
 
 	local compiler_command_args=(
 		"${compiler_executable}"
 		"${KOTLIN_TASKS_WANT_TARGET:+-api-version ${KOTLIN_TASKS_WANT_TARGET}}"
 		"${KOTLIN_TASKS_WANT_TARGET:+-language-version ${KOTLIN_TASKS_WANT_TARGET}}"
-		"${KOTLIN_TASKS_MODULE_NAME:+-module-name ${KOTLIN_TASKS_MODULE_NAME}}"
 		"${common_sources}"
 		"${java_source_roots}"
-		"${KOTLIN_TASKS_KOTLINC_ARGS[@]}"
+		"${_KOTLIN_TASKS_KOTLINC_ARGS[@]}"
 		"$@"
 	)
 	local compiler_command="${compiler_command_args[@]}"
 
 	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
 		einfo "Verbose logging for \"${FUNCNAME}\" function"
-		einfo "JAVA_OPTS: ${KOTLIN_TASKS_KOTLINC_JAVA_OPTS}"
+		einfo "JAVA_OPTS: ${_KOTLIN_TASKS_KOTLINC_JAVA_OPTS}"
 		einfo "Compiler arguments:"
 		einfo "${compiler_command}"
 	fi
 
 	ebegin "Compiling"
-	JAVA_OPTS="${KOTLIN_TASKS_KOTLINC_JAVA_OPTS}" ${compiler_command} || \
+	JAVA_OPTS="${_KOTLIN_TASKS_KOTLINC_JAVA_OPTS}" ${compiler_command} || \
 		die "${FUNCNAME} failed"
 }
 
@@ -292,7 +353,15 @@ kotlin-tasks_src_compile() {
 	java-pkg-simple_getclasspath
 	java-pkg-simple_prepend_resources "${target}" "${JAVA_RESOURCE_DIRS[@]}"
 
-	kotlin-tasks_kotlinc -d "${target}" ${classpath:+-classpath ${classpath}} \
+	_KOTLIN_TASKS_COMMON_SOURCES_DIR=( "${KOTLIN_TASKS_COMMON_SOURCES_DIR[@]}" )
+	_KOTLIN_TASKS_JAVA_SOURCE_ROOTS=( "${KOTLIN_TASKS_JAVA_SOURCE_ROOTS[@]}" )
+	_KOTLIN_TASKS_KOTLINC_ARGS=( "${KOTLIN_TASKS_KOTLINC_ARGS[@]}" )
+	_KOTLIN_TASKS_KOTLINC_JAVA_OPTS="${KOTLIN_TASKS_KOTLINC_JAVA_OPTS}"
+
+	kotlin-tasks_kotlinc \
+		-d "${target}" \
+		${classpath:+-classpath ${classpath}} \
+		${KOTLIN_TASKS_MODULE_NAME:+-module-name ${KOTLIN_TASKS_MODULE_NAME}} \
 		"@${sources}"
 
 	# Package compiled class files into a JAR
@@ -343,12 +412,17 @@ kotlin-tasks_src_test() {
 			"${JAVA_TEST_RESOURCE_DIRS[@]}"
 
 		# Generate a list of source files for testing
-		find "${KOTLIN_TASKS_SRC_DIR[@]}" -name "*.kt" > "${test_sources}"
+		find "${KOTLIN_TASKS_TEST_SRC_DIR[@]}" -name "*.kt" > "${test_sources}"
 
 		# Compile tests
-		[[ -s "${test_sources}" ]] && \
+		if [[ -s "${test_sources}" ]]; then
+			_KOTLIN_TASKS_COMMON_SOURCES_DIR=( "${KOTLIN_TASKS_TEST_COMMON_SOURCES_DIR[@]}" )
+			_KOTLIN_TASKS_JAVA_SOURCE_ROOTS=( "${KOTLIN_TASKS_TEST_JAVA_SOURCE_ROOTS[@]}" )
+			_KOTLIN_TASKS_KOTLINC_ARGS=( "${KOTLIN_TASKS_TEST_KOTLINC_ARGS[@]}" )
+			_KOTLIN_TASKS_KOTLINC_JAVA_OPTS="${KOTLIN_TASKS_TEST_KOTLINC_JAVA_OPTS}"
 			kotlin-tasks_kotlinc -d "${target}" \
-			${classpath:+-classpath ${classpath}} "@${test_sources}"
+				${classpath:+-classpath ${classpath}} "@${test_sources}"
+		fi
 
 		# Generate list of test classes to execute
 		tests_to_run=$(find "${target}" -type f\
@@ -364,8 +438,8 @@ kotlin-tasks_src_test() {
 		tests_to_run=${tests_to_run//"${target}"\/}
 		tests_to_run=${tests_to_run//.class}
 		tests_to_run=${tests_to_run//\//.}
-		for class in "${JAVA_TEST_EXCLUDES[@]}"; do
-			tests_to_run=${tests_to_run//${target}}
+		for class in "${KOTLIN_TASKS_TEST_EXCLUDES[@]}"; do
+			tests_to_run=${tests_to_run//${class}}
 		done
 	fi
 
