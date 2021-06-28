@@ -13,7 +13,7 @@
 # building Kotlin library packages. It is based on java-pkg-simple.eclass and
 # recognizes variables declared by that eclass when appropriate.
 
-case ${EAPI:-0} in
+case "${EAPI:-0}" in
 	6|7) ;;
 	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
 esac
@@ -22,7 +22,7 @@ EXPORT_FUNCTIONS pkg_setup src_compile src_test src_install
 
 # Allow use of EAPI 7 version manipulators in older EAPIs for both this eclass
 # and consumer ebuilds
-[[ ${EAPI:-0} -eq 6 ]] && inherit eapi7-ver
+[[ "${EAPI:-0}" -eq 6 ]] && inherit eapi7-ver
 
 _KOTLIN_TASKS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
 
@@ -222,7 +222,7 @@ kotlin-tasks_kotlinc() {
 
 	# Prepare arguments whose values should be separated by comma
 	local OLD_IFS="${IFS}"
-	if [[ "${KOTLIN_TASKS_COMMON_SOURCES_DIR}" ]]; then
+	if [[ -n "${KOTLIN_TASKS_COMMON_SOURCES_DIR}" ]]; then
 		local common_sources_files=(
 			$(find "${KOTLIN_TASKS_COMMON_SOURCES_DIR[@]}" -name "*.kt")
 		)
@@ -274,10 +274,10 @@ kotlin-tasks_src_compile() {
 
 	if has binary ${JAVA_PKG_IUSE} && use binary; then
 		for dependency in ${JAVA_GENTOO_CLASSPATH//,/ }; do
-			java-pkg_record-jar_ ${dependency}
+			java-pkg_record-jar_ "${dependency}"
 		done
 
-		cp "${DISTDIR}"/${JAVA_BINJAR_FILENAME} ${JAVA_JAR_FILENAME} \
+		cp "${DISTDIR}/${JAVA_BINJAR_FILENAME}" "${JAVA_JAR_FILENAME}" \
 			|| die "Could not copy the binary JAR file to ${S}"
 		return 0
 	fi
@@ -297,14 +297,14 @@ kotlin-tasks_src_compile() {
 
 	# Package compiled class files into a JAR
 	local jar_args
-	if [[ -e ${target}/META-INF/MANIFEST.MF ]]; then
+	if [[ -e "${target}/META-INF/MANIFEST.MF" ]]; then
 		jar_args="cfm ${JAVA_JAR_FILENAME} ${target}/META-INF/MANIFEST.MF"
-	elif [[ ${JAVA_MAIN_CLASS} ]]; then
+	elif [[ -n "${JAVA_MAIN_CLASS}" ]]; then
 		jar_args="cfe ${JAVA_JAR_FILENAME} ${JAVA_MAIN_CLASS}"
 	else
 		jar_args="cf ${JAVA_JAR_FILENAME}"
 	fi
-	jar ${jar_args} -C ${target} . || die "jar failed"
+	jar ${jar_args} -C "${target}" . || die "jar failed"
 }
 
 # @FUNCTION: kotlin-tasks_src_test
@@ -316,7 +316,7 @@ kotlin-tasks_src_test() {
 		return
 	elif ! use test; then
 		return
-	elif [[ ! "${JAVA_TESTING_FRAMEWORKS}" ]]; then
+	elif [[ -z "${JAVA_TESTING_FRAMEWORKS}" ]]; then
 		return
 	fi
 
@@ -394,11 +394,11 @@ kotlin-tasks_dosrc() {
 
 	java-pkg_check-phase install
 
-	[[ $# -lt 1 ]] && die "At least one argument needed for ${FUNCNAME}"
+	[[ "$#" -lt 1 ]] && die "At least one argument needed for ${FUNCNAME}"
 
-	if ! [[ ${DEPEND} = *app-arch/zip* ]]; then
+	if [[ "${DEPEND}" != *app-arch/zip* ]]; then
 		local msg="${FUNCNAME} called without app-arch/zip in DEPEND"
-		java-pkg_announce-qa-violation ${msg}
+		java-pkg_announce-qa-violation "${msg}"
 	fi
 
 	java-pkg_init_paths_
@@ -409,20 +409,21 @@ kotlin-tasks_dosrc() {
 	for path in "$@"; do
 		local dir_parent=$(dirname "${path}")
 		local dir_name=$(basename "${path}")
-		pushd ${dir_parent} > /dev/null || die "problem entering ${dir_parent}"
-		zip -q -r ${zip_path} ${dir_name}
+		pushd "${dir_parent}" > /dev/null || \
+			die "Failed to enter directory ${dir_parent}"
+		zip -q -r "${zip_path}" "${dir_name}"
 		local result=$?
 		# 12 means zip has nothing to do
-		if [[ ${result} != 12 && ${result} != 0 ]]; then
-			die "failed to zip ${dir_name}"
+		if [[ "${result}" != 12 && "${result}" != 0 ]]; then
+			die "Failed to add ${dir_name} to Zip archive"
 		fi
-		popd >/dev/null || die
+		popd > /dev/null || die "Failed to exit directory ${dir_parent}"
 	done
 
 	insinto "${JAVA_PKG_SOURCESPATH}"
-	doins ${zip_path}
+	doins "${zip_path}"
 
-	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
+	if [[ -n "${JAVA_PKG_DEBUG}" ]]; then
 		einfo "Verbose logging for \"${FUNCNAME}\" function"
 		einfo "Zip filename created: ${zip_name}"
 		einfo "Zip file destination: ${JAVA_PKG_SOURCESPATH}"
@@ -443,10 +444,11 @@ kotlin-tasks_dosrc() {
 kotlin-tasks_src_install() {
 	local sources="sources.lst"
 
-	java-pkg_dojar ${JAVA_JAR_FILENAME}
+	java-pkg_dojar "${JAVA_JAR_FILENAME}"
 
 	if [[ -n "${JAVA_MAIN_CLASS}" ]]; then
-		java-pkg_dolauncher "${JAVA_LAUNCHER_FILENAME}" --main ${JAVA_MAIN_CLASS}
+		java-pkg_dolauncher "${JAVA_LAUNCHER_FILENAME}" \
+			--main "${JAVA_MAIN_CLASS}"
 	fi
 
 	if has source ${JAVA_PKG_IUSE} && use source; then
@@ -456,7 +458,7 @@ kotlin-tasks_src_install() {
 			doins "${KOTLIN_TASKS_SRCJAR_FILENAME}"
 		else
 			local srcdirs=""
-			if [[ "${KOTLIN_TASKS_SRC_DIR[@]}" ]]; then
+			if [[ -n "${KOTLIN_TASKS_SRC_DIR[@]}" ]]; then
 				local parent child
 				for parent in "${KOTLIN_TASKS_SRC_DIR[@]}"; do
 					srcdirs="${srcdirs} ${parent}"
