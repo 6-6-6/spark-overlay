@@ -8,10 +8,10 @@ MAVEN_PROVIDES="
 	org.jetbrains.kotlin:kotlin-stdlib-common:${PV}
 "
 
-KOTLIN_TASKS_BINJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}.jar"
-KOTLIN_TASKS_SRCJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}-sources.jar"
+KOTLIN_LIBS_BINJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}.jar"
+KOTLIN_LIBS_SRCJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}-sources.jar"
 
-inherit kotlin-tasks
+inherit kotlin-libs
 
 KEYWORDS="~amd64"
 
@@ -26,7 +26,7 @@ JAVA_CLASSPATH_EXTRA="
 "
 JAVA_BINJAR_FILENAME="${P}.jar"
 
-KOTLIN_TASKS_KOTLINC_ARGS=(
+KOTLIN_LIBS_KOTLINC_ARGS=(
 	-jvm-target 1.6
 	-no-stdlib
 	-Xallow-kotlin-package
@@ -44,9 +44,9 @@ KOTLIN_TASKS_KOTLINC_ARGS=(
 	-Xuse-14-inline-classes-mangling-scheme
 	-Xuse-old-backend
 )
-KOTLIN_TASKS_JAVA_SOURCE_ROOTS=( libraries/stdlib/jvm/{src,runtime} )
-KOTLIN_TASKS_COMMON_SOURCES_DIR=( libraries/stdlib/{,common,unsigned}/src )
-KOTLIN_TASKS_SRC_DIR=(
+KOTLIN_LIBS_JAVA_SOURCE_ROOTS=( libraries/stdlib/jvm/{src,runtime} )
+KOTLIN_LIBS_COMMON_SOURCES_DIR=( libraries/stdlib/{,common,unsigned}/src )
+KOTLIN_LIBS_SRC_DIR=(
 	core/builtins/src
 	libraries/stdlib/jvm/runtime
 	libraries/stdlib/{,common,jvm,unsigned}/src
