@@ -26,6 +26,14 @@ EXPORT_FUNCTIONS pkg_setup src_compile src_test src_install
 
 # Kotlin Compiler options
 
+# @ECLASS-VARIABLE: KOTLIN_LIBS_SRC_DIR
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# An array of directories relative to ${S} which contain the Kotlin sources to
+# compile for the ebuild. A string with directories separated by white space
+# works as well. Default is unset, which will cause all source files inside
+# ${S} to be compiled, and can be overriden from ebuild anywhere.
+
 # @ECLASS-VARIABLE: KOTLIN_LIBS_MODULE_NAME
 # @DESCRIPTION:
 # The argument to kotlinc's -module-name option. Defaults to ${PN}, can be
@@ -52,8 +60,8 @@ EXPORT_FUNCTIONS pkg_setup src_compile src_test src_install
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # An array of any extra arguments to kotlinc that will added after all other
-# arguments set by the variables of this eclass and before the list of source
-# files. Default is unset, can be overriden from ebuild anywhere.
+# arguments set by the variables of this eclass and before the list of Kotlin
+# source files. Default is unset, can be overriden from ebuild anywhere.
 
 # @ECLASS-VARIABLE: KOTLIN_LIBS_CLASSPATH_EXTRA
 # @DEFAULT_UNSET
@@ -62,20 +70,38 @@ EXPORT_FUNCTIONS pkg_setup src_compile src_test src_install
 # when sources are being compiled. Default is unset, can be overriden from
 # ebuild anywhere.
 
-# @ECLASS-VARIABLE: KOTLIN_LIBS_SRC_DIR
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# An array of directories relative to ${S} which contain the sources to compile
-# for the ebuild. A string with directories separated by white space works as
-# well. Default is unset, which will cause all source files inside ${S} to be
-# compiled, and can be overriden from ebuild anywhere.
-
 # @ECLASS-VARIABLE: KOTLIN_LIBS_KOTLINC_JAVA_OPTS
 # @DESCRIPTION:
 # Any options for the JVM instances started by kotlinc. The default option
 # allots enough memory to kotlinc to compile every Kotlin Standard Library
 # component, and it can be overriden from ebuild anywhere.
 : ${KOTLIN_LIBS_KOTLINC_JAVA_OPTS:="-Xmx768M"}
+
+# Java compiler options for library components that have Java code
+
+# @ECLASS-VARIABLE: KOTLIN_LIBS_JAVA_SRC_DIR
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# An array of directories relative to ${S} which contain any Java sources to
+# compile for the ebuild. A string with directories separated by white space
+# works as well. Default is unset, in which case no additional Java sources
+# will be compiled, and can be overriden from ebuild anywhere. A few Kotlin
+# library components have additional Java sources that need to be compiled
+# after the Kotlin sources, and this variable facilitates compilation of those
+# Java sources.
+
+# @ECLASS-VARIABLE: KOTLIN_LIBS_JAVA_WANT_SOURCE_TARGET
+# @DESCRIPTION:
+# The argument to javac's -source and -target options. Defaults to 1.6, which
+# is what the upstream uses, and can be overriden from ebuild anywhere.
+: ${KOTLIN_LIBS_JAVA_WANT_SOURCE_TARGET:="1.6"}
+
+# @ECLASS-VARIABLE: KOTLIN_LIBS_JAVAC_ARGS
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# An array of any extra arguments to javac that will added after all other
+# arguments set by the variables of this eclass and before the list of Java
+# source files. Default is unset, can be overriden from ebuild anywhere.
 
 # Helpful options when upgrading to a new feature release
 
@@ -257,7 +283,6 @@ kotlin-libs_kotlinc() {
 # enabled, nothing will be compiled and the binary JAR ${JAVA_BINJAR_FILENAME}
 # will be used directly.
 kotlin-libs_src_compile() {
-	local sources="sources.lst"
 	local target="target"
 
 	java-pkg_gen-cp JAVA_GENTOO_CLASSPATH
@@ -272,17 +297,34 @@ kotlin-libs_src_compile() {
 		return 0
 	fi
 
-	# Generate a list of source files
-	find "${KOTLIN_LIBS_SRC_DIR[@]}" -name "*.kt" > "${sources}"
 	# Create the target directory
 	mkdir -p "${target}" || die "Could not create target directory"
 
-	# Compile the source files
+	# Compute classpath
 	local classpath=""
 	java-pkg-simple_getclasspath
+
 	java-pkg-simple_prepend_resources "${target}" "${JAVA_RESOURCE_DIRS[@]}"
+
+	# Compile Kotlin source files
+	local kotlin_sources="kotlin_sources.lst"
+	find "${KOTLIN_LIBS_SRC_DIR[@]}" -name "*.kt" > "${kotlin_sources}"
 	kotlin-libs_kotlinc -d "${target}" ${classpath:+-classpath ${classpath}} \
-		"@${sources}"
+		"@${kotlin_sources}"
+	# Compile any Java source files after the Kotlin sources because for Kotlin
+	# libraries, the Java sources require the Kotlin classes as dependencies
+	if [[ -n "${KOTLIN_LIBS_JAVA_SRC_DIR[@]}" ]]; then
+		local java_sources="java_sources.lst"
+		local java_classpath="${classpath:+${classpath}:}${target}"
+		find "${KOTLIN_LIBS_JAVA_SRC_DIR[@]}" -name "*.java" > "${java_sources}"
+		ebegin "Compiling Java sources"
+		$(java-pkg_get-javac) -d "${target}" -classpath ${java_classpath} \
+			-source "${KOTLIN_LIBS_JAVA_WANT_SOURCE_TARGET}" \
+			-target "${KOTLIN_LIBS_JAVA_WANT_SOURCE_TARGET}" \
+			-encoding "${JAVA_ENCODING}" \
+			"${KOTLIN_LIBS_JAVAC_ARGS[@]}" \
+			"@${java_sources}" || die "Failed to compile Java sources"
+	fi
 
 	# Package compiled class files into a JAR
 	local jar_args
@@ -374,7 +416,14 @@ kotlin-libs_dosrc() {
 # ${JAVA_MAIN_CLASS} is set. If the 'source' USE flag is enabled, a Zip archive
 # containing the source will also be installed.
 kotlin-libs_src_install() {
-	local sources="sources.lst"
+	local sources
+	if [[ -s "java_sources.lst" ]]; then
+		sources="sources.lst"
+		cat kotlin_sources.lst java_sources.lst > "${sources}" || \
+			die "Failed to create combined Kotlin and Java source list"
+	else
+		sources="kotlin_sources.lst"
+	fi
 
 	java-pkg_dojar "${JAVA_JAR_FILENAME}"
 
@@ -390,9 +439,13 @@ kotlin-libs_src_install() {
 			doins "${KOTLIN_LIBS_SRCJAR_FILENAME}"
 		else
 			local srcdirs=""
-			if [[ -n "${KOTLIN_LIBS_SRC_DIR[@]}" ]]; then
+			local kt_java_src_dir=(
+				"${KOTLIN_LIBS_SRC_DIR[@]}"
+				"${KOTLIN_LIBS_JAVA_SRC_DIR[@]}"
+			)
+			if [[ -n "${kt_java_src_dir[@]}" ]]; then
 				local parent child
-				for parent in "${KOTLIN_LIBS_SRC_DIR[@]}"; do
+				for parent in "${kt_java_src_dir[@]}"; do
 					srcdirs="${srcdirs} ${parent}"
 				done
 			else
