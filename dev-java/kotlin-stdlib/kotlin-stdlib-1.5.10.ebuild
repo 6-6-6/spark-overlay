@@ -15,15 +15,9 @@ inherit kotlin-libs
 
 KEYWORDS="~amd64"
 
-DEPEND="!binary? (
-	dev-java/kotlin-common-bin:${SLOT}
-	dev-java/jetbrains-annotations:13
-)"
+DEPEND="!binary? ( dev-java/jetbrains-annotations:13 )"
 
-JAVA_CLASSPATH_EXTRA="
-	kotlin-common-bin-${SLOT}
-	jetbrains-annotations-13
-"
+JAVA_CLASSPATH_EXTRA="jetbrains-annotations-13"
 JAVA_BINJAR_FILENAME="${P}.jar"
 
 KOTLIN_LIBS_KOTLINC_ARGS=(
