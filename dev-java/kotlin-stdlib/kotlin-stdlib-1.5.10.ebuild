@@ -51,3 +51,10 @@ KOTLIN_LIBS_SRC_DIR=(
 	libraries/stdlib/jvm/runtime
 	libraries/stdlib/{,common,jvm,unsigned}/src
 )
+KOTLIN_LIBS_JAVA_ARGS=(
+	-g
+	-sourcepath
+	-proc:none
+	-XDuseUnsharedTable=true
+)
+KOTLIN_LIBS_JAVA_SRC_DIR=( libraries/stdlib/jvm/{src,runtime} )
