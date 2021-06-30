@@ -51,7 +51,7 @@ KOTLIN_LIBS_SRC_DIR=(
 	libraries/stdlib/jvm/runtime
 	libraries/stdlib/{,common,jvm,unsigned}/src
 )
-KOTLIN_LIBS_JAVA_ARGS=(
+KOTLIN_LIBS_JAVAC_ARGS=(
 	-g
 	-sourcepath
 	-proc:none
