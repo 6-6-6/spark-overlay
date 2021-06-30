@@ -119,16 +119,20 @@ fi
 kotlin-core-deps_src_prepare() {
 	java-pkg-2_src_prepare
 
-	local source_pkg_path="${KOTLIN_LIBS_SRC_DIR}/$(tr '.' '/' <<< \
-		"${KOTLIN_CORE_DEPS_SOURCE_PKG}")"
-	local dest_pkg_path="${KOTLIN_LIBS_SRC_DIR}/$(tr '.' '/' <<< \
-		"${KOTLIN_CORE_DEPS_DEST_PKG}")"
+	for src_dir in "${KOTLIN_LIBS_SRC_DIR[@]}"; do
+		local source_pkg_path="${src_dir}/$(tr '.' '/' <<< \
+			"${KOTLIN_CORE_DEPS_SOURCE_PKG}")"
+		local dest_pkg_path="${src_dir}/$(tr '.' '/' <<< \
+			"${KOTLIN_CORE_DEPS_DEST_PKG}")"
+		if [[ -d "${source_pkg_path}" ]]; then
+			mkdir -p "${dest_pkg_path}" || \
+				die "Failed to create directory for relocation target package"
+			mv "${source_pkg_path}"/* "${dest_pkg_path}" || \
+				die "Failed to move source files to relocation target directory"
+		fi
+	done
 
-	mkdir -p "${dest_pkg_path}" || \
-		die "Failed to create directory for relocation target package"
-	mv "${source_pkg_path}"/* "${dest_pkg_path}" || \
-		die "Failed to move source files to relocation target directory"
-	find "${dest_pkg_path}" -type f -exec sed -i -e \
+	find "${KOTLIN_LIBS_SRC_DIR[@]}" -type f -exec sed -i -e \
 		"s/${KOTLIN_CORE_DEPS_SOURCE_PKG}/${KOTLIN_CORE_DEPS_DEST_PKG}/g" \
 		{} \; || die "Failed to modify package names in source files"
 
@@ -136,7 +140,7 @@ kotlin-core-deps_src_prepare() {
 	# to avoid changing them in the first place, but it is not easy to
 	# implement in Bash.
 	for exclude in "${KOTLIN_CORE_DEPS_EXCLUDE_CHILDREN[@]}"; do
-		find "${dest_pkg_path}" -type f -exec sed -i -e \
+		find "${KOTLIN_LIBS_SRC_DIR[@]}" -type f -exec sed -i -e \
 			"s/${KOTLIN_CORE_DEPS_DEST_PKG}.${exclude}/${KOTLIN_CORE_DEPS_SOURCE_PKG}.${exclude}/g" \
 			{} \; || die "Failed to process packages excluded from relocation"
 	done
