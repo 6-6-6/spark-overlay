@@ -52,6 +52,20 @@ EXPORT_FUNCTIONS src_prepare
 # overriden from ebuild anywhere.
 : ${KOTLIN_CORE_DEPS_SOURCE_PKG:="org.jetbrains.kotlin"}
 
+# @ECLASS-VARIABLE: KOTLIN_CORE_DEPS_EXCLUDE_CHILDREN
+# @DESCRIPTION:
+# An array of package name components after KOTLIN_CORE_DEPS_SOURCE_PKG that
+# should not be relocated.  For example, if the value of
+# KOTLIN_CORE_DEPS_SOURCE_PKG is "org.jetbrains.kotlin" but the package
+# "org.jetbrains.kotlin.foo.bar" should not be relocated, then add "foo.bar" to
+# the array for this value. Defaults to entries for packages under
+# "org.jetbrains.kotlin" that are seen in common external dependencies of
+# dev-java/kotlin-core-*, can be overriden from ebuild anywhere.
+if [[ -z "${KOTLIN_CORE_DEPS_EXCLUDE_CHILDREN[@]}" ]]; then
+	KOTLIN_CORE_DEPS_EXCLUDE_CHILDREN=()
+fi
+KOTLIN_CORE_DEPS_EXCLUDE_CHILDREN=( "protobuf" )
+
 # @ECLASS-VARIABLE: KOTLIN_CORE_DEPS_DEST_PKG
 # @DESCRIPTION:
 # The name of the destination Java package in the relocation. Defaults to the
@@ -109,6 +123,7 @@ kotlin-core-deps_src_prepare() {
 		"${KOTLIN_CORE_DEPS_SOURCE_PKG}")"
 	local dest_pkg_path="${KOTLIN_LIBS_SRC_DIR}/$(tr '.' '/' <<< \
 		"${KOTLIN_CORE_DEPS_DEST_PKG}")"
+
 	mkdir -p "${dest_pkg_path}" || \
 		die "Failed to create directory for relocation target package"
 	mv "${source_pkg_path}"/* "${dest_pkg_path}" || \
@@ -116,4 +131,13 @@ kotlin-core-deps_src_prepare() {
 	find "${dest_pkg_path}" -type f -exec sed -i -e \
 		"s/${KOTLIN_CORE_DEPS_SOURCE_PKG}/${KOTLIN_CORE_DEPS_DEST_PKG}/g" \
 		{} \; || die "Failed to modify package names in source files"
+
+	# Revert changes to references to excluded packages. A better solution is
+	# to avoid changing them in the first place, but it is not easy to
+	# implement in Bash.
+	for exclude in "${KOTLIN_CORE_DEPS_EXCLUDE_CHILDREN[@]}"; do
+		find "${dest_pkg_path}" -type f -exec sed -i -e \
+			"s/${KOTLIN_CORE_DEPS_DEST_PKG}.${exclude}/${KOTLIN_CORE_DEPS_SOURCE_PKG}.${exclude}/g" \
+			{} \; || die "Failed to process packages excluded from relocation"
+	done
 }
