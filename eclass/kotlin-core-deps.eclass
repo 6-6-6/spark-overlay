@@ -58,13 +58,11 @@ EXPORT_FUNCTIONS src_prepare
 # should not be relocated.  For example, if the value of
 # KOTLIN_CORE_DEPS_SOURCE_PKG is "org.jetbrains.kotlin" but the package
 # "org.jetbrains.kotlin.foo.bar" should not be relocated, then add "foo.bar" to
-# the array for this value. Defaults to entries for packages under
-# "org.jetbrains.kotlin" that are seen in common external dependencies of
-# dev-java/kotlin-core-*, can be overriden from ebuild anywhere.
+# the array for this value. Default is empty, can be overriden from ebuild
+# anywhere.
 if [[ -z "${KOTLIN_CORE_DEPS_EXCLUDE_CHILDREN[@]}" ]]; then
 	KOTLIN_CORE_DEPS_EXCLUDE_CHILDREN=()
 fi
-KOTLIN_CORE_DEPS_EXCLUDE_CHILDREN=( "protobuf" )
 
 # @ECLASS-VARIABLE: KOTLIN_CORE_DEPS_DEST_PKG
 # @DESCRIPTION:
