@@ -3,7 +3,9 @@
 
 EAPI=7
 
-inherit kotlin-libs
+KOTLIN_CORE_DEPS_MODULE_NAME="compiler.common"
+
+inherit kotlin-core-deps
 
 KEYWORDS="~amd64"
 
@@ -20,21 +22,3 @@ JAVA_CLASSPATH_EXTRA="
 	kotlin-stdlib-${SLOT}
 	jetbrains-annotations-13
 "
-
-KOTLIN_LIBS_MODULE_NAME="compiler.common"
-KOTLIN_LIBS_KOTLINC_ARGS=(
-	-jvm-target 1.6
-	-no-stdlib
-	-Xallow-no-source-files
-	-Xjvm-default=compatibility
-	-Xno-kotlin-nothing-value-exception
-	-Xno-optimized-callable-references
-	-Xnormalize-constructor-calls=enable
-	-Xopt-in=kotlin.RequiresOptIn
-	-Xread-deserialized-contracts
-	-Xsuppress-deprecated-jvm-target-warning
-	-Xuse-ir
-)
-KOTLIN_LIBS_JAVA_SOURCE_ROOTS=( core/compiler.common/src )
-KOTLIN_LIBS_SRC_DIR=( core/compiler.common/src )
-KOTLIN_LIBS_JAVA_SRC_DIR=( core/compiler.common/src )
