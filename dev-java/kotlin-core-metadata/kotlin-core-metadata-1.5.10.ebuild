@@ -35,3 +35,4 @@ KOTLIN_LIBS_KOTLINC_ARGS=(
 )
 KOTLIN_LIBS_JAVA_SOURCE_ROOTS=( core/metadata/src )
 KOTLIN_LIBS_SRC_DIR=( core/metadata/src )
+KOTLIN_LIBS_JAVA_SRC_DIR=( core/metadata/src )
