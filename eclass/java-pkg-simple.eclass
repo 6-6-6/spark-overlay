@@ -312,27 +312,18 @@ java-pkg-simple_test_with_pkgdiff_() {
 java-pkg-simple_prepend_resources() {
 	debug-print-function ${FUNCNAME} $*
 
-	if [[ ! ${ARCH} == "amd64" ]]; then
-		elog "For architectures other than amd64, "\
-			"the pkgdiff test is currently unavailable "\
-			"because 'dev-util/japi-compliance-checker "\
-			"and 'dev-util/pkgdiff' do not support those architectures."
-		return
-	fi
+	local destination="${1}"
+	shift 1
 
+	# return if there is no resource dirs defined
+	[[ "$@" ]] || return
 	local resources=("${@}")
 
 	# add resources directory to classpath
 	for resource in "${resources[@]}"; do
-		classpath+=":${resource}"
+		cp -rT "${resource:-.}" "${destination}"\
+			|| die "Could not copy resources from ${resource:-.} to ${destination}"
 	done
-
-	# purify classpath
-	while [[ $classpath = *::* ]]; do classpath="${classpath//::/:}"; done
-	classpath=${classpath%:}
-	classpath=${classpath#:}
-
-	debug-print "CLASSPATH=${classpath}"
 }
 
 # @FUNCTION: java-pkg-simple_src_compile
