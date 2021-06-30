@@ -15,9 +15,15 @@ inherit kotlin-libs
 
 KEYWORDS="~amd64"
 
-DEPEND="!binary? ( dev-java/jetbrains-annotations:13 )"
+DEPEND="!binary? (
+	dev-java/jetbrains-annotations:13
+	~dev-java/kotlin-core-builtins-${PV}:${SLOT}
+)"
 
-JAVA_CLASSPATH_EXTRA="jetbrains-annotations-13"
+JAVA_CLASSPATH_EXTRA="
+	jetbrains-annotations-13
+	kotlin-core-builtins-${SLOT}
+"
 JAVA_BINJAR_FILENAME="${P}.jar"
 
 KOTLIN_LIBS_KOTLINC_ARGS=(
@@ -53,37 +59,15 @@ KOTLIN_LIBS_JAVA_ARGS=(
 )
 KOTLIN_LIBS_JAVA_SRC_DIR=( libraries/stdlib/jvm/{src,runtime} )
 
-src_compile() {
-	if has binary ${JAVA_PKG_IUSE} && use binary; then
-		kotlin-libs_src_compile
-		return 0
+src_unpack() {
+	default
+	if ! has binary ${JAVA_PKG_IUSE} || ! use binary; then
+		unpack "$(java-pkg_getjar --build-only \
+			"kotlin-core-builtins-${SLOT}" kotlin-core-builtins.jar)"
+		local target="${S}/target"
+		mkdir -p "${target}" || \
+			die "Failed to create target directory for compiler output"
+		mv kotlin "${target}" || \
+			die "Failed to move built-ins to target directory"
 	fi
-
-	# Generate vital *.kotlin_builtins file prior to compilation
-	# Process adapted from logic for the 'serialize' task in
-	# core/builtins/build.gradle.kts
-	local target="target"
-	local builtins_cherry_picked="${T}/core/builtins/build/src"
-	#local kotlinc_jar="$(java-pkg_getjar --build-only \
-		#kotlin-bin kotlin-compiler.jar)"
-	local kotlinc_jar="/opt/kotlin-bin/lib/kotlin-compiler.jar"
-
-	mkdir -p "${target}" || die "Failed to create target directory"
-	mkdir -p "${builtins_cherry_picked}" || \
-		die "Failed to create temporary directory for cherry-picked built-ins"
-	cp libraries/stdlib/src/kotlin/reflect/* "${builtins_cherry_picked}" || \
-		die "Failed to copy sources for built-ins to temporary directory"
-	rm "${builtins_cherry_picked}"/{typeOf.kt,KClasses.kt} || \
-		die "Failed to remove extraneous sources from cherry-picked built-ins"
-	ebegin "Serializing built-ins"
-	# The built-in serializer needs to access XDG_CACHE_HOME, reassign it to
-	# avoid access violations caused by 'mkdir /var/lib/portage/home/.cache'
-	XDG_CACHE_HOME="${HOME}/.cache" \
-	java -classpath "${kotlinc_jar}" \
-		org.jetbrains.kotlin.serialization.builtins.RunKt \
-		"${target}" \
-		core/builtins/{src,native} "${builtins_cherry_picked}" || \
-		die "Failed to serialize built-ins"
-
-	kotlin-libs_src_compile
 }
