@@ -9,11 +9,11 @@ KEYWORDS="~amd64"
 
 DEPEND="
 	~dev-java/kotlin-annotations-jvm-${PV}:${SLOT}
-	~dev-java/kotlin-core-compiler_common-${PV}:${SLOT}
+	~dev-java/kotlin-core-compiler-common-${PV}:${SLOT}
 	~dev-java/kotlin-core-descriptors-${PV}:${SLOT}
-	~dev-java/kotlin-core-deserialization_common-${PV}:${SLOT}
+	~dev-java/kotlin-core-deserialization-common-${PV}:${SLOT}
 	~dev-java/kotlin-core-metadata-${PV}:${SLOT}
-	~dev-java/kotlin-core-util_runtime-${PV}:${SLOT}
+	~dev-java/kotlin-core-util-runtime-${PV}:${SLOT}
 	~dev-java/kotlin-stdlib-${PV}:${SLOT}
 	dev-java/javax-inject:0
 	dev-java/jetbrains-annotations:13
@@ -22,11 +22,11 @@ DEPEND="
 
 JAVA_CLASSPATH_EXTRA="
 	kotlin-annotations-jvm-${SLOT}
-	kotlin-core-compiler_common-${SLOT}
+	kotlin-core-compiler-common-${SLOT}
 	kotlin-core-descriptors-${SLOT}
-	kotlin-core-deserialization_common-${SLOT}
+	kotlin-core-deserialization-common-${SLOT}
 	kotlin-core-metadata-${SLOT}
-	kotlin-core-util_runtime-${SLOT}
+	kotlin-core-util-runtime-${SLOT}
 	kotlin-stdlib-${SLOT}
 	javax-inject
 	jetbrains-annotations-13

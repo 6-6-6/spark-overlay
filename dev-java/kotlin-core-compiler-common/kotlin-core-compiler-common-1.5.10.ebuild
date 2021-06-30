@@ -9,14 +9,14 @@ KEYWORDS="~amd64"
 
 DEPEND="
 	~dev-java/kotlin-annotations-jvm-${PV}:${SLOT}
-	~dev-java/kotlin-core-util_runtime-${PV}:${SLOT}
+	~dev-java/kotlin-core-util-runtime-${PV}:${SLOT}
 	~dev-java/kotlin-stdlib-${PV}:${SLOT}
 	dev-java/jetbrains-annotations:13
 "
 
 JAVA_CLASSPATH_EXTRA="
 	kotlin-annotations-jvm-${SLOT}
-	kotlin-core-util_runtime-${SLOT}
+	kotlin-core-util-runtime-${SLOT}
 	kotlin-stdlib-${SLOT}
 	jetbrains-annotations-13
 "
