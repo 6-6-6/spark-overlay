@@ -11,11 +11,11 @@ DEPEND="
 	~dev-java/kotlin-annotations-jvm-${PV}:${SLOT}
 	~dev-java/kotlin-core-compiler_common-${PV}:${SLOT}
 	~dev-java/kotlin-core-compiler_common_jvm-${PV}:${SLOT}
+	~dev-java/kotlin-core-descriptors-${PV}:${SLOT}
+	~dev-java/kotlin-core-descriptors_jvm-${PV}:${SLOT}
 	~dev-java/kotlin-core-deserialization-${PV}:${SLOT}
 	~dev-java/kotlin-core-deserialization_common-${PV}:${SLOT}
 	~dev-java/kotlin-core-deserialization_common_jvm-${PV}:${SLOT}
-	~dev-java/kotlin-core-descriptors-${PV}:${SLOT}
-	~dev-java/kotlin-core-descriptors_jvm-${PV}:${SLOT}
 	~dev-java/kotlin-core-metadata-${PV}:${SLOT}
 	~dev-java/kotlin-core-metadata_jvm-${PV}:${SLOT}
 	~dev-java/kotlin-core-util_runtime-${PV}:${SLOT}
@@ -29,11 +29,11 @@ JAVA_CLASSPATH_EXTRA="
 	kotlin-annotations-jvm-${SLOT}
 	kotlin-core-compiler_common-${SLOT}
 	kotlin-core-compiler_common_jvm-${SLOT}
+	kotlin-core-descriptors-${SLOT}
+	kotlin-core-descriptors_jvm-${SLOT}
 	kotlin-core-deserialization-${SLOT}
 	kotlin-core-deserialization_common-${SLOT}
 	kotlin-core-deserialization_common_jvm-${SLOT}
-	kotlin-core-descriptors-${SLOT}
-	kotlin-core-descriptors_jvm-${SLOT}
 	kotlin-core-metadata-${SLOT}
 	kotlin-core-metadata_jvm-${SLOT}
 	kotlin-core-util_runtime-${SLOT}
