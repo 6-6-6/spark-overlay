@@ -220,7 +220,7 @@ fi
 # Sets up the environment according to settings like enabled USE flags that can
 # only be checked within a function.
 kotlin-libs_pkg_setup() {
-	if ! use binary; then
+	if ! has binary ${JAVA_PKG_IUSE} || ! use binary; then
 		S="${WORKDIR}/kotlin-${PV}"
 	fi
 }
