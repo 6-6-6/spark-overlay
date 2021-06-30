@@ -12,11 +12,11 @@ KEYWORDS="~amd64"
 DEPEND="
 	~dev-java/kotlin-stdlib-${PV}:${SLOT}
 	dev-java/jetbrains-annotations:13
-	>=dev-java/jetbrains-protobuf-lite-2.6.1:0
+	>=dev-java/kotlin-protobuf-lite-2.6.1:0
 "
 
 JAVA_CLASSPATH_EXTRA="
 	kotlin-stdlib-${SLOT}
 	jetbrains-annotations-13
-	jetbrains-protobuf-lite
+	kotlin-protobuf-lite
 "

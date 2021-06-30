@@ -13,12 +13,12 @@ DEPEND="
 	~dev-java/kotlin-core-metadata-${PV}:${SLOT}
 	~dev-java/kotlin-stdlib-${PV}:${SLOT}
 	dev-java/jetbrains-annotations:13
-	>=dev-java/jetbrains-protobuf-lite-2.6.1:0
+	>=dev-java/kotlin-protobuf-lite-2.6.1:0
 "
 
 JAVA_CLASSPATH_EXTRA="
 	kotlin-core-metadata-${SLOT}
 	kotlin-stdlib-${SLOT}
 	jetbrains-annotations-13
-	jetbrains-protobuf-lite
+	kotlin-protobuf-lite
 "
