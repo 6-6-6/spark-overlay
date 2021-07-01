@@ -42,7 +42,6 @@ RDEPEND="${CP_DEPEND}"
 
 JAVA_CLASSPATH_EXTRA="
 	kotlin-annotations-jvm-${SLOT}
-	kotlin-stdlib-${SLOT}
 	javax-inject
 	jetbrains-annotations-13
 	kotlin-protobuf-lite
