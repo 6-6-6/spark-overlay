@@ -45,6 +45,13 @@ EXPORT_FUNCTIONS src_prepare
 # If a non-empty value is set, no Java source will be compiled. Default is
 # unset, can be overriden from ebuild BEFORE inheriting this eclass.
 
+# @ECLASS-VARIABLE: KOTLIN_CORE_DEPS_INCLUDE_RESOURCES
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# If a non-empty value is set, automatically include the resources for the
+# package in the produced JAR. Default is unset, can be overriden from ebuild
+# BEFORE inhering this eclass.
+
 # @ECLASS-VARIABLE: KOTLIN_CORE_DEPS_SOURCE_PKG
 # @DESCRIPTION:
 # The name of the Java package whose classes need to be relocated. Defaults to
@@ -84,6 +91,10 @@ if [[ ! "${KOTLIN_CORE_DEPS_SKIP_JAVAC}" ]]; then
 	: ${KOTLIN_LIBS_JAVA_SRC_DIR:="${KOTLIN_LIBS_SRC_DIR[@]}"}
 fi
 
+if [[ "${KOTLIN_CORE_INCLUDE_RESOURCES}" ]]; then
+	: ${JAVA_RESOURCE_DIRS:="core/${KOTLIN_LIBS_MODULE_NAME}/resources"}
+fi
+
 if [[ -z "${KOTLIN_LIBS_KOTLINC_ARGS[@]}" ]]; then
 	KOTLIN_LIBS_KOTLINC_ARGS=(
 		-jvm-target 1.6
@@ -117,6 +128,9 @@ fi
 kotlin-core-deps_src_prepare() {
 	java-pkg-2_src_prepare
 
+	local sed_script
+	sed_script="s/${KOTLIN_CORE_DEPS_SOURCE_PKG}/${KOTLIN_CORE_DEPS_DEST_PKG}/g"
+
 	for src_dir in "${KOTLIN_LIBS_SRC_DIR[@]}"; do
 		local source_pkg_path="${src_dir}/$(tr '.' '/' <<< \
 			"${KOTLIN_CORE_DEPS_SOURCE_PKG}")"
@@ -130,15 +144,29 @@ kotlin-core-deps_src_prepare() {
 		fi
 	done
 
-	find "${KOTLIN_LIBS_SRC_DIR[@]}" -type f -exec sed -i -e \
-		"s/${KOTLIN_CORE_DEPS_SOURCE_PKG}/${KOTLIN_CORE_DEPS_DEST_PKG}/g" \
+	if [[ -n "${JAVA_RESOURCE_DIRS[@]}" ]]; then
+		# Modify package name occurrences in resource file names
+		find "${JAVA_RESOURCE_DIRS[@]}" \
+			-type f -name "${KOTLIN_CORE_DEPS_SOURCE_PKG}.*" \
+			-exec bash -c 'echo {} > ebuild-mv-dest' \; \
+			-exec sed -i -e ${sed_script} ebuild-mv-dest \; \
+			-exec bash -c 'mv {} $(cat ebuild-mv-dest)' \; \
+			-exec rm ebuild-mv-dest \;
+	fi
+
+	local modify_dirs=(
+		"${KOTLIN_LIBS_SRC_DIR[@]}"
+		"${JAVA_RESOURCE_DIRS[@]}"
+	)
+
+	find "${modify_dirs[@]}" -type f -exec sed -i -e "${sed_script}" \
 		{} \; || die "Failed to modify package names in source files"
 
 	# Revert changes to references to excluded packages. A better solution is
 	# to avoid changing them in the first place, but it is not easy to
 	# implement in Bash.
 	for exclude in "${KOTLIN_CORE_DEPS_EXCLUDE_CHILDREN[@]}"; do
-		find "${KOTLIN_LIBS_SRC_DIR[@]}" -type f -exec sed -i -e \
+		find "${modify_dirs[@]}" -type f -exec sed -i -e \
 			"s/${KOTLIN_CORE_DEPS_DEST_PKG}.${exclude}/${KOTLIN_CORE_DEPS_SOURCE_PKG}.${exclude}/g" \
 			{} \; || die "Failed to process packages excluded from relocation"
 	done
