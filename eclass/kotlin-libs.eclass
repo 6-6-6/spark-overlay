@@ -124,6 +124,17 @@ _KOTLIN_LIBS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
 # that variable is overriden.
 : ${KOTLIN_LIBS_WANT_TARGET:="${_KOTLIN_LIBS_FEATURE_RELEASE_FROM_PV}"}
 
+# Options that control MANIFEST.MF in resulting JAR
+
+# @ECLASS-VARIABLE: KOTLIN_LIBS_RUNTIME_COMPONENT
+# @DEFAULT_UNSET
+# The value used in the 'Kotlin-Runtime-Component' field in the MANIFEST.MF
+# file for the package. Default is unset, can be overriden from ebuild
+# anywhere. Once a value is set, a full MANIFEST.MF with additional fields like
+# 'Implementation-Title' and 'Kotlin-Version' will be created for consistency
+# with the upstream.  The set of values that the upstream can use for this
+# field includes 'Main' and 'Test'.
+
 # ebuild variables
 
 # @ECLASS-VARIABLE: KOTLIN_LIBS_BINJAR_SRC_URI
@@ -273,6 +284,27 @@ kotlin-libs_kotlinc() {
 		die "${FUNCNAME} failed"
 }
 
+# @FUNCTION: kotlin-libs_create_manifest_
+# @INTERNAL
+# @USAGE: <destination_dir>
+# @DESCRIPTION:
+# Creates an appropriate manifest for the package under
+# <destination_dir>/META-INF/MANIFEST.MF.
+kotlin-libs_create_manifest_() {
+	debug-print-function ${FUNCNAME} "$@"
+
+	[[ $# -ne 1 ]] && die "${FUNCNAME[0]} takes exactly one argument"
+	mkdir -p "$1/META-INF" || die "Failed to create the META-INF directory"
+	cat <<- _EOF_ \
+		> "$1/META-INF/MANIFEST.MF" || die "Failed to create MANIFEST.MF"
+	Implementation-Title: ${PN}
+	Kotlin-Runtime-Component: ${KOTLIN_LIBS_RUNTIME_COMPONENT}
+	Kotlin-Version: ${SLOT}
+	Implementation-Version: ${PVR}
+	Implementation-Vendor: Gentoo
+	_EOF_
+}
+
 # @FUNCTION: kotlin-libs_src_compile
 # @DESCRIPTION:
 # Compiles the source files in ${KOTLIN_LIBS_SRC_DIR} using compiler arguments
@@ -324,6 +356,10 @@ kotlin-libs_src_compile() {
 			-encoding "${JAVA_ENCODING}" \
 			"${KOTLIN_LIBS_JAVAC_ARGS[@]}" \
 			"@${java_sources}" || die "Failed to compile Java sources"
+	fi
+	# Create MANIFEST.MF if needed
+	if [[ "${KOTLIN_LIBS_RUNTIME_COMPONENT}" ]]; then
+		kotlin-libs_create_manifest_ "${target}"
 	fi
 
 	# Package compiled class files into a JAR
