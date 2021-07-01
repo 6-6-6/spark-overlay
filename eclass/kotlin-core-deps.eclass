@@ -116,6 +116,10 @@ fi
 kotlin-core-deps_src_prepare() {
 	java-pkg-2_src_prepare
 
+	if has binary ${JAVA_PKG_IUSE} && use binary; then
+		return 0
+	fi
+
 	local sed_script
 	sed_script="s/${KOTLIN_CORE_DEPS_SOURCE_PKG}/${KOTLIN_CORE_DEPS_DEST_PKG}/g"
 
