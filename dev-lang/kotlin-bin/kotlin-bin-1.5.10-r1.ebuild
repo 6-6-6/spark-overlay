@@ -103,6 +103,9 @@ src_install() {
 
 	insinto "${kotlin_home}/lib"
 	doins "${KOTLINC_LIB_TMP}"/*
+	# Register the core compiler JAR to provide it to other packages that need
+	# to call its less commonly-used components, like the built-in serializer
+	java-pkg_regjar "${ED}/${kotlin_home}/lib/kotlin-compiler.jar"
 
 	# Remove copyright header template used for source files
 	rm license/COPYRIGHT_HEADER.txt || die
