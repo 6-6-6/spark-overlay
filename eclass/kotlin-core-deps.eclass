@@ -59,18 +59,6 @@ EXPORT_FUNCTIONS src_prepare
 # overriden from ebuild anywhere.
 : ${KOTLIN_CORE_DEPS_SOURCE_PKG:="org.jetbrains.kotlin"}
 
-# @ECLASS-VARIABLE: KOTLIN_CORE_DEPS_EXCLUDE_CHILDREN
-# @DESCRIPTION:
-# An array of package name components after KOTLIN_CORE_DEPS_SOURCE_PKG that
-# should not be relocated.  For example, if the value of
-# KOTLIN_CORE_DEPS_SOURCE_PKG is "org.jetbrains.kotlin" but the package
-# "org.jetbrains.kotlin.foo.bar" should not be relocated, then add "foo.bar" to
-# the array for this value. Default is empty, can be overriden from ebuild
-# anywhere.
-if [[ -z "${KOTLIN_CORE_DEPS_EXCLUDE_CHILDREN[@]}" ]]; then
-	KOTLIN_CORE_DEPS_EXCLUDE_CHILDREN=()
-fi
-
 # @ECLASS-VARIABLE: KOTLIN_CORE_DEPS_DEST_PKG
 # @DESCRIPTION:
 # The name of the destination Java package in the relocation. Defaults to the
@@ -158,16 +146,6 @@ kotlin-core-deps_src_prepare() {
 		"${KOTLIN_LIBS_SRC_DIR[@]}"
 		"${JAVA_RESOURCE_DIRS[@]}"
 	)
-
 	find "${modify_dirs[@]}" -type f -exec sed -i -e "${sed_script}" \
 		{} \; || die "Failed to modify package names in source files"
-
-	# Revert changes to references to excluded packages. A better solution is
-	# to avoid changing them in the first place, but it is not easy to
-	# implement in Bash.
-	for exclude in "${KOTLIN_CORE_DEPS_EXCLUDE_CHILDREN[@]}"; do
-		find "${modify_dirs[@]}" -type f -exec sed -i -e \
-			"s/${KOTLIN_CORE_DEPS_DEST_PKG}.${exclude}/${KOTLIN_CORE_DEPS_SOURCE_PKG}.${exclude}/g" \
-			{} \; || die "Failed to process packages excluded from relocation"
-	done
 }
