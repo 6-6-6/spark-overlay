@@ -103,7 +103,6 @@ src_unpack() {
 
 		# Directories not in the binary JAR from the upstream
 		local rm_dirs=(
-			kotlin/reflect/jvm/internal/impl/container
 			kotlin/reflect/jvm/internal/impl/contracts
 			kotlin/reflect/jvm/internal/impl/descriptors/synthetic
 			kotlin/reflect/jvm/internal/impl/metadata/jvm/serialization
