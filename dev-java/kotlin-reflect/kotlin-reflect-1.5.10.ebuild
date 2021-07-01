@@ -14,24 +14,30 @@ inherit kotlin-core-deps
 
 KEYWORDS="~amd64"
 
-DEPEND="!binary? (
-	~dev-java/kotlin-annotations-jvm-${PV}:${SLOT}
-	~dev-java/kotlin-core-compiler-common-${PV}:${SLOT}
-	~dev-java/kotlin-core-compiler-common-jvm-${PV}:${SLOT}
-	~dev-java/kotlin-core-descriptors-${PV}:${SLOT}
-	~dev-java/kotlin-core-descriptors-jvm-${PV}:${SLOT}
-	~dev-java/kotlin-core-descriptors-runtime-${PV}:${SLOT}
-	~dev-java/kotlin-core-deserialization-${PV}:${SLOT}
-	~dev-java/kotlin-core-deserialization-common-${PV}:${SLOT}
-	~dev-java/kotlin-core-deserialization-common-jvm-${PV}:${SLOT}
-	~dev-java/kotlin-core-metadata-${PV}:${SLOT}
-	~dev-java/kotlin-core-metadata-jvm-${PV}:${SLOT}
-	~dev-java/kotlin-core-util-runtime-${PV}:${SLOT}
+CP_DEPEND="
 	~dev-java/kotlin-stdlib-${PV}:${SLOT}
-	dev-java/javax-inject:0
-	dev-java/jetbrains-annotations:13
-	>=dev-java/kotlin-protobuf-lite-2.6.1:0
-)"
+"
+DEPEND="
+	${CP_DEPEND}
+	!binary? (
+		~dev-java/kotlin-annotations-jvm-${PV}:${SLOT}
+		~dev-java/kotlin-core-compiler-common-${PV}:${SLOT}
+		~dev-java/kotlin-core-compiler-common-jvm-${PV}:${SLOT}
+		~dev-java/kotlin-core-descriptors-${PV}:${SLOT}
+		~dev-java/kotlin-core-descriptors-jvm-${PV}:${SLOT}
+		~dev-java/kotlin-core-descriptors-runtime-${PV}:${SLOT}
+		~dev-java/kotlin-core-deserialization-${PV}:${SLOT}
+		~dev-java/kotlin-core-deserialization-common-${PV}:${SLOT}
+		~dev-java/kotlin-core-deserialization-common-jvm-${PV}:${SLOT}
+		~dev-java/kotlin-core-metadata-${PV}:${SLOT}
+		~dev-java/kotlin-core-metadata-jvm-${PV}:${SLOT}
+		~dev-java/kotlin-core-util-runtime-${PV}:${SLOT}
+		dev-java/javax-inject:0
+		dev-java/jetbrains-annotations:13
+		>=dev-java/kotlin-protobuf-lite-2.6.1:0
+	)
+"
+RDEPEND="${CP_DEPEND}"
 
 JAVA_CLASSPATH_EXTRA="
 	kotlin-annotations-jvm-${SLOT}
