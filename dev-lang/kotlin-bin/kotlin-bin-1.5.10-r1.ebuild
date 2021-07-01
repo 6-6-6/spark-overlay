@@ -34,7 +34,14 @@ DEPEND="${RDEPEND}"
 
 S="${WORKDIR}/kotlinc"
 
-KOTLINC_LIBS=(
+# An array of JARs to be recorded in the package.env file
+KOTLINC_EXPORTED_LIBS=(
+	kotlin-compiler.jar
+)
+
+# An array of JARs that should not be added to package.env and thus used only
+# by the compiler as private libraries
+KOTLINC_PRIVATE_LIBS=(
 	allopen-compiler-plugin.jar
 	android-extensions-compiler.jar
 	android-extensions-runtime.jar
@@ -44,7 +51,6 @@ KOTLINC_LIBS=(
 	kotlin-annotation-processing-cli.jar
 	kotlin-annotation-processing-runtime.jar
 	kotlin-ant.jar
-	kotlin-compiler.jar
 	kotlin-daemon-client.jar
 	kotlin-daemon.jar
 	kotlin-imports-dumper-compiler-plugin.jar
@@ -75,7 +81,8 @@ src_prepare() {
 
 	KOTLINC_LIB_TMP="${T}/lib"
 	mkdir "${KOTLINC_LIB_TMP}" || die
-	cp "${KOTLINC_LIBS[@]/#/lib/}" "${KOTLINC_LIB_TMP}" || die
+	cp "${KOTLINC_EXPORTED_LIBS[@]/#/lib/}" "${KOTLINC_LIB_TMP}" || die
+	cp "${KOTLINC_PRIVATE_LIBS[@]/#/lib/}" "${KOTLINC_LIB_TMP}" || die
 	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
 		"kotlin-stdlib-${KOTLIN_LIB_SLOT}"
 	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
@@ -101,11 +108,17 @@ src_install() {
 		dosym "../../${kotlin_home}/bin/${basename}" "/usr/bin/${basename}"
 	done
 
+	local exported_libs="${KOTLINC_EXPORTED_LIBS[@]/#/${KOTLINC_LIB_TMP}/}"
+	local private_libs="${KOTLINC_PRIVATE_LIBS[@]/#/${KOTLINC_LIB_TMP}/}"
+	# Install exported libraries
+	java-pkg_jarinto "${kotlin_home}/lib"
+	java-pkg_dojar ${exported_libs}
+	# Install private libraries
 	insinto "${kotlin_home}/lib"
+	doins ${private_libs}
+	# Install symbolic links to dependency libraries
+	rm ${exported_libs} ${private_libs} || die
 	doins "${KOTLINC_LIB_TMP}"/*
-	# Register the core compiler JAR to provide it to other packages that need
-	# to call its less commonly-used components, like the built-in serializer
-	java-pkg_regjar "${ED}/${kotlin_home}/lib/kotlin-compiler.jar"
 
 	# Remove copyright header template used for source files
 	rm license/COPYRIGHT_HEADER.txt || die
