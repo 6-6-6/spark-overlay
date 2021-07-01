@@ -7,14 +7,18 @@ inherit kotlin-libs
 
 KEYWORDS="~amd64"
 
-# Kotlin compiler needs not be called for this package
+# Depend on the first version of package for Kotlin compiler 1.5.x series that
+# registers the compiler JAR in package.env
+DEPEND=">=dev-lang/kotlin-bin-1.5.10-r1:0"
+
+# Kotlin compiler needs not be called for this package; only the built-ins
+# serializer is invoked
 
 src_compile() {
 	local target="target"
 	local builtins_cherry_picked="${T}/core/builtins/build/src"
-	#local kotlinc_jar="$(java-pkg_getjar --build-only \
-		#kotlin-bin kotlin-compiler.jar)"
-	local kotlinc_jar="/opt/kotlin-bin/lib/kotlin-compiler.jar"
+	local kotlinc_jar="$(java-pkg_getjar --build-only \
+		kotlin-bin kotlin-compiler.jar)"
 
 	mkdir -p "${target}" || die "Failed to create target directory"
 	mkdir -p "${builtins_cherry_picked}" || \
