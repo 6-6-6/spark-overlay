@@ -4,6 +4,7 @@
 EAPI=7
 
 KOTLIN_CORE_DEPS_MODULE_NAME="deserialization"
+KOTLIN_CORE_INCLUDE_RESOURCES="true"
 
 inherit kotlin-core-deps
 
