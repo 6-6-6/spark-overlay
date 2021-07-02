@@ -3,7 +3,10 @@
 
 EAPI=7
 
-MAVEN_ID="org.jetbrains.kotlin:${PN}:${PV}"
+MAVEN_PROVIDES="
+	org.jetbrains.kotlin:${PN}:${PV}
+	org.jetbrains.kotlin:${PN}-common:${PV}
+"
 
 KOTLIN_LIBS_BINJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}.jar"
 KOTLIN_LIBS_SRCJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}-sources.jar"
