@@ -473,6 +473,9 @@ kotlin-libs_test_with_junit4_() {
 	tests_to_run=${tests_to_run//"${target}"\/}
 	tests_to_run=${tests_to_run//.class}
 	tests_to_run=${tests_to_run//\//.}
+	for class in "${JAVA_TEST_EXCLUDES[@]}"; do
+		tests_to_run=${tests_to_run//${class}}
+	done
 	ejunit4 -classpath "${classpath}" ${tests_to_run}
 }
 
