@@ -115,8 +115,31 @@ src_compile() {
 	kotlin-libs_kotlinc -output "${main_target}/kotlin.js" \
 		$(find "${src_dirs[@]}" -name "*.kt")
 
-	# TODO: Build and use kotlin.js and kotlin.js.map
+	# :kotlin-stdlib-js:compileJs
+
+	# Call the JSStdlibLinker directly with Java because it does not recognize
+	# the standard Kotlin compiler command-line options
+	local kotlinc_jar="$(java-pkg_getjar --build-only \
+		kotlin-bin kotlin-compiler.jar)"
+	local js_output_file="${target}/classes/kotlin.js"
+	java -classpath "${kotlinc_jar}" \
+		org.jetbrains.kotlin.cli.js.internal.JSStdlibLinker \
+		"${js_output_file}" \
+		"." \
+		libraries/stdlib/js-v1/src/wrapper.js \
+		$(find libraries/stdlib/js-v1/src/js -name "*.js") \
+		"${builtins_target}/kotlin.js" \
+		"${main_target}/kotlin.js" || die "Failed to link standard library"
+	sed -i -E -e 's/module.exports,\s*require\([^)]+\)//g' \
+		"${js_output_file}" || die "Failed to modify the final kotlin.js"
+	sed -i -E -e 's/function\s*\(_,\s*Kotlin\)/function\(\)/g' \
+		"${js_output_file}" || die "Failed to modify the final kotlin.js"
+	sed -i -E -e 's/return\s+_;//g' \
+		"${js_output_file}" || die "Failed to modify the final kotlin.js"
+	# TODO: Build and use a new kotlin.js.map created
 	# with the logic of :kotlin-stdlib-js:compileJs
+	cp "${js_output_file}" "${main_target}" || \
+		die "Failed to copy the final kotlin.js"
 
 	# :kotlin-stdlib-js-ir:commonMainSources is unnecessary
 	# because it unconditionally copies all files under
