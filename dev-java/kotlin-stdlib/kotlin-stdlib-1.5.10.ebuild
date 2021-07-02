@@ -5,7 +5,7 @@ EAPI=7
 
 MAVEN_PROVIDES="
 	org.jetbrains.kotlin:${PN}:${PV}
-	org.jetbrains.kotlin:kotlin-stdlib-common:${PV}
+	org.jetbrains.kotlin:${PN}-common:${PV}
 "
 
 KOTLIN_LIBS_BINJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}.jar"
