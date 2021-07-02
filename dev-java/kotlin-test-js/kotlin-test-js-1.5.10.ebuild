@@ -31,9 +31,7 @@ src_compile() {
 
 	export KOTLIN_COMPILER=org.jetbrains.kotlin.cli.js.K2JSCompiler
 	local target="target"
-
-	local sources="kotlin_sources.lst"
-	local src_files
+	local src_dirs
 
 	# :kotlin-test:kotlin-test-js
 	local main_target="${target}/classes/main"
@@ -57,17 +55,14 @@ src_compile() {
 		libraries/kotlin.test/common/src/main
 		libraries/kotlin.test/annotations-common
 	)
-	src_files=(
-		$(find \
-			libraries/kotlin.test/js/src/main \
-			libraries/kotlin.test/common/src/main \
-			libraries/kotlin.test/annotations-common/src/main \
-			-name "*.kt")
+	src_dirs=(
+		libraries/kotlin.test/js/src/main
+		libraries/kotlin.test/common/src/main
+		libraries/kotlin.test/annotations-common/src/main
 	)
-	tr ' ' '\n' <<< "${src_files[@]}" >> "${sources}" || \
-		die "Failed to append to list of source files"
+	KOTLIN_LIBS_SRC_DIR+=( "${src_dirs[@]}" )
 	kotlin-libs_kotlinc -output "${main_target}/kotlin-test.js" \
-		"${src_files[@]}"
+		$(find "${src_dirs[@]}" -name "*.kt")
 
 	# :kotlin-test:kotlin-test-js-ir
 	local js_ir_target="${target}/classes/js-ir"
@@ -92,20 +87,14 @@ src_compile() {
 		-Xuse-experimental=kotlin.ExperimentalMultiplatform
 		-Xuse-experimental=kotlin.contracts.ExperimentalContracts
 	)
-	src_files=(
-		$(find \
-			libraries/kotlin.test/js/src \
-			libraries/kotlin.test/common/src \
-			libraries/kotlin.test/annotations-common/src \
-			-name "*.kt")
-	)
-	KOTLIN_LIBS_COMMON_SOURCES_DIR=(
+	src_dirs=(
+		libraries/kotlin.test/js/src
 		libraries/kotlin.test/common/src
 		libraries/kotlin.test/annotations-common/src
 	)
-	tr ' ' '\n' <<< "${src_files[@]}" >> "${sources}" || \
-		die "Failed to append to list of source files"
-	kotlin-libs_kotlinc -output "${js_ir_target}" "${src_files[@]}"
+	KOTLIN_LIBS_SRC_DIR+=( "${src_dirs[@]}" )
+	kotlin-libs_kotlinc -output "${js_ir_target}" \
+		$(find "${src_dirs[@]}" -name "*.kt")
 	cp -r "${js_ir_target}/default" "${main_target}" || \
 		die "Could not copy compiled files for IR to main target directory"
 
