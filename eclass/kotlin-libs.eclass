@@ -128,6 +128,7 @@ _KOTLIN_LIBS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
 
 # @ECLASS-VARIABLE: KOTLIN_LIBS_RUNTIME_COMPONENT
 # @DEFAULT_UNSET
+# @DESCRIPTION:
 # The value used in the 'Kotlin-Runtime-Component' field in the MANIFEST.MF
 # file for the package. Default is unset, can be overriden from ebuild
 # anywhere. Once a value is set, a full MANIFEST.MF with additional fields like
