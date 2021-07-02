@@ -460,9 +460,16 @@ kotlin-libs_test_with_junit4_() {
 	fi
 
 	tests_to_run=$(find "${target}" -type f \
-		-name "*.class" \
-		-not -name "*\$*" \
-		-not -name "*Kt.class")
+		\( -name "*Test.class" \
+		-o -name "Test*.class" \
+		-o -name "*Tests.class" \
+		-o -name "*TestCase.class" \) \
+		! -name "*Abstract*"\
+		! -name "*BaseTest*"\
+		! -name "*TestTypes*"\
+		! -name "*TestUtils*"\
+		! -name "*\$*" \
+		! -name "*Kt.class")
 	tests_to_run=${tests_to_run//"${target}"\/}
 	tests_to_run=${tests_to_run//.class}
 	tests_to_run=${tests_to_run//\//.}
