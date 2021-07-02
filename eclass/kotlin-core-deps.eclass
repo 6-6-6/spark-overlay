@@ -66,9 +66,9 @@ EXPORT_FUNCTIONS src_prepare
 # from ebuild anywhere.
 : ${KOTLIN_CORE_DEPS_DEST_PKG:="kotlin.reflect.jvm.internal.impl"}
 
-inherit kotlin-libs
-
 : ${DESCRIPTION:="Kotlin library build-time dependency ${PN}"}
+
+inherit kotlin-libs
 
 if [[ -n "${KOTLIN_CORE_DEPS_MODULE_NAME}" ]]; then
 	KOTLIN_LIBS_MODULE_NAME="${KOTLIN_CORE_DEPS_MODULE_NAME}"
