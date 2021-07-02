@@ -30,12 +30,7 @@ src_compile() {
 
 	export KOTLIN_COMPILER=org.jetbrains.kotlin.cli.js.K2JSCompiler
 	local target="target"
-
-	# Maintain a list of used sources for source Zip archive generation,
-	# although the list of source files actually collected into the archive
-	# seems inaccurate
-	local sources="kotlin_sources.lst"
-	local src_files
+	local src_dirs
 
 	# :kotlin-stdlib-js:compileBuiltinsKotlin2Js
 	local builtins_target="${target}/classes/builtins"
@@ -51,14 +46,14 @@ src_compile() {
 		-Xallow-result-return-type
 		-Xmulti-platform
 	)
-	src_files=(
+	src_dirs=(
 		core/builtins/native/kotlin/Comparable.kt
 		libraries/stdlib/js/runtime/primitiveCompanionObjects.kt
-		$(find libraries/stdlib/js-v1/runtime -name "*.kt")
+		libraries/stdlib/js-v1/runtime
 	)
-	tr ' ' '\n' <<< "${src_files[@]}" >> "${sources}" || \
-		die "Failed to append to list of source files"
-	kotlin-libs_kotlinc -output "${builtins_target}/kotlin.js" "${src_files[@]}"
+	KOTLIN_LIBS_SRC_DIR+=( "${src_dirs[@]}" )
+	kotlin-libs_kotlinc -output "${builtins_target}/kotlin.js" \
+		$(find "${src_dirs[@]}" -name "*.kt")
 
 	# :kotlin-stdlib-js:prepareBuiltinsSources
 	local builtin_sources_dir="${target}/builtin-sources"
@@ -110,17 +105,15 @@ src_compile() {
 		-Xopt-in=kotlin.ExperimentalMultiplatform
 		-Xopt-in=kotlin.contracts.ExperimentalContracts
 	)
-	src_files=(
-		$(find \
-			"${builtin_sources_dir}" \
-			libraries/stdlib/js/src \
-			libraries/stdlib/{,common,unsigned}/src \
-			libraries/stdlib/js-v1/src/kotlin \
-			-name "*.kt")
+	src_dirs=(
+		"${builtin_sources_dir}"
+		libraries/stdlib/js/src
+		libraries/stdlib/{,common,unsigned}/src
+		libraries/stdlib/js-v1/src/kotlin
 	)
-	tr ' ' '\n' <<< "${src_files[@]}" >> "${sources}" || \
-		die "Failed to append to list of source files"
-	kotlin-libs_kotlinc -output "${main_target}/kotlin.js" "${src_files[@]}"
+	KOTLIN_LIBS_SRC_DIR+=( "${src_dirs[@]}" )
+	kotlin-libs_kotlinc -output "${main_target}/kotlin.js" \
+		$(find "${src_dirs[@]}" -name "*.kt")
 
 	# TODO: Build and use kotlin.js and kotlin.js.map
 	# with the logic of :kotlin-stdlib-js:compileJs
@@ -195,16 +188,14 @@ src_compile() {
 		-Xuse-experimental=kotlin.ExperimentalMultiplatform
 		-Xuse-experimental=kotlin.contracts.ExperimentalContracts
 	)
-	src_files=(
-		$(find \
-			"${ir_js_main_dir}" \
-			libraries/stdlib/js-ir \
-			libraries/stdlib/{,common,unsigned}/src \
-			-name "*.kt")
+	src_dirs=(
+		"${ir_js_main_dir}"
+		libraries/stdlib/js-ir
+		libraries/stdlib/{,common,unsigned}/src
 	)
-	tr ' ' '\n' <<< "${src_files[@]}" >> "${sources}" || \
-		die "Failed to append to list of source files"
-	kotlin-libs_kotlinc -output "${js_ir_target}" "${src_files[@]}"
+	KOTLIN_LIBS_SRC_DIR+=( "${src_dirs[@]}" )
+	kotlin-libs_kotlinc -output "${js_ir_target}" \
+		$(find "${src_dirs[@]}" -name "*.kt")
 	cp -r "${js_ir_target}/default" "${main_target}" || \
 		die "Could not copy compiled files for IR to main target directory"
 
