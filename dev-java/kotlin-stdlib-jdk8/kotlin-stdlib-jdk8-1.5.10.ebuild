@@ -11,6 +11,7 @@ KOTLIN_LIBS_TESTING_FRAMEWORKS="junit-4"
 
 inherit kotlin-libs
 
+DESCRIPTION="Kotlin Standard Library JDK 8 extension"
 KEYWORDS="~amd64"
 
 CP_DEPEND="

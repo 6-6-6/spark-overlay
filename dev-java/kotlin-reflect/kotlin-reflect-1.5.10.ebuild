@@ -13,6 +13,7 @@ KOTLIN_LIBS_RUNTIME_COMPONENT="Main"
 
 inherit kotlin-core-deps
 
+DESCRIPTION="Kotlin Full Reflection Library"
 KEYWORDS="~amd64"
 
 CP_DEPEND="

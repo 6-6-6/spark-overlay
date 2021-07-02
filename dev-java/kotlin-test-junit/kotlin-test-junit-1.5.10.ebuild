@@ -11,6 +11,7 @@ KOTLIN_LIBS_TESTING_FRAMEWORKS="junit-4"
 
 inherit kotlin-libs
 
+DESCRIPTION="Kotlin Test Support for JUnit 4"
 KEYWORDS="~amd64"
 
 CP_DEPEND="

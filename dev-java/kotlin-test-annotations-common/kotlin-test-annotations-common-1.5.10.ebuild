@@ -10,6 +10,7 @@ KOTLIN_LIBS_SRCJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/
 
 inherit kotlin-libs
 
+DESCRIPTION="Common Annotations for Kotlin Test"
 KEYWORDS="~amd64"
 
 JAVA_BINJAR_FILENAME="${P}.jar"

@@ -10,6 +10,7 @@ KOTLIN_LIBS_SRCJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/
 
 inherit kotlin-libs
 
+DESCRIPTION="Kotlin Standard Library for JS"
 KEYWORDS="~amd64"
 
 DEPEND="!binary? (

@@ -10,6 +10,7 @@ KOTLIN_LIBS_SRCJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/
 
 inherit kotlin-libs
 
+DESCRIPTION="Kotlin annotations for JVM"
 KEYWORDS="~amd64"
 
 DEPEND="!binary? ( ~dev-java/kotlin-core-builtins-${PV}:${SLOT} )"
