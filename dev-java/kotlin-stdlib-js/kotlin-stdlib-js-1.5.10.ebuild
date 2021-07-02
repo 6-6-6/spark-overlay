@@ -12,6 +12,10 @@ inherit kotlin-libs
 
 KEYWORDS="~amd64"
 
+DEPEND="!binary? (
+	>=dev-lang/kotlin-bin-1.5.10-r1:0[javascript]
+)"
+
 JAVA_BINJAR_FILENAME="${P}.jar"
 
 # No -module-name option for Kotlin/JS compiler
