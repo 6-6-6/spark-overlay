@@ -284,13 +284,12 @@ kotlin-libs_kotlinc() {
 		die "${FUNCNAME} failed"
 }
 
-# @FUNCTION: kotlin-libs_create_manifest_
-# @INTERNAL
+# @FUNCTION: kotlin-libs_create_manifest
 # @USAGE: <destination_dir>
 # @DESCRIPTION:
 # Creates an appropriate manifest for the package under
 # <destination_dir>/META-INF/MANIFEST.MF.
-kotlin-libs_create_manifest_() {
+kotlin-libs_create_manifest() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	[[ $# -ne 1 ]] && die "${FUNCNAME[0]} takes exactly one argument"
@@ -359,7 +358,7 @@ kotlin-libs_src_compile() {
 	fi
 	# Create MANIFEST.MF if needed
 	if [[ "${KOTLIN_LIBS_RUNTIME_COMPONENT}" ]]; then
-		kotlin-libs_create_manifest_ "${target}"
+		kotlin-libs_create_manifest "${target}"
 	fi
 
 	# Package compiled class files into a JAR
