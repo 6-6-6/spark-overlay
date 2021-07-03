@@ -7,10 +7,6 @@ inherit kotlin-libs
 
 KEYWORDS="~amd64"
 
-# Depend on the first version of package for Kotlin compiler 1.5.x series that
-# registers the compiler JAR in package.env
-DEPEND=">=dev-lang/kotlin-bin-1.4.32-r1:0"
-
 # Kotlin compiler needs not be called for this package; only the built-ins
 # serializer is invoked
 

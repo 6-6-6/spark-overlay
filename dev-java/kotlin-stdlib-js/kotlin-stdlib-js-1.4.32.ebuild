@@ -14,7 +14,7 @@ DESCRIPTION="Kotlin Standard Library for JS"
 KEYWORDS="~amd64"
 
 DEPEND="!binary? (
-	>=dev-lang/kotlin-bin-1.4.32-r1:0[javascript]
+	>=dev-lang/kotlin-bin-1.4:0[javascript]
 	<dev-lang/kotlin-bin-1.5:0
 )"
 

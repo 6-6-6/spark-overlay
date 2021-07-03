@@ -14,7 +14,7 @@ DESCRIPTION="Kotlin Test for JS"
 KEYWORDS="~amd64"
 
 DEPEND="!binary? (
-	>=dev-lang/kotlin-bin-1.5.10-r1:0[javascript]
+	>=dev-lang/kotlin-bin-1.5:0[javascript]
 	~dev-java/kotlin-stdlib-js-${PV}:${SLOT}
 )"
 
