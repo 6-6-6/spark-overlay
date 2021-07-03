@@ -84,7 +84,6 @@ fi
 
 if [[ -z "${KOTLIN_LIBS_KOTLINC_ARGS[@]}" ]]; then
 	KOTLIN_LIBS_KOTLINC_ARGS=(
-		-jvm-target 1.6
 		-no-stdlib
 		-Xallow-kotlin-package
 		-Xallow-no-source-files
@@ -94,9 +93,16 @@ if [[ -z "${KOTLIN_LIBS_KOTLINC_ARGS[@]}" ]]; then
 		-Xnormalize-constructor-calls=enable
 		-Xopt-in=kotlin.RequiresOptIn
 		-Xread-deserialized-contracts
-		-Xsuppress-deprecated-jvm-target-warning
 		-Xuse-ir
 	)
+	_KOTLIN_CORE_DEPS_FEATURE_REL="$(ver_cut 2)"
+	if [[ "${_KOTLIN_CORE_DEPS_FEATURE_REL}" -ge 5 ]]; then
+		# Additional options for Kotlin 1.5
+		KOTLIN_LIBS_KOTLINC_ARGS+=(
+			-jvm-target 1.6
+			-Xsuppress-deprecated-jvm-target-warning
+		)
+	fi
 fi
 
 if [[ -z "${KOTLIN_LIBS_JAVAC_ARGS[@]}" ]]; then
