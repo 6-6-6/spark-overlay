@@ -40,9 +40,8 @@ JAVA_TEST_GENTOO_CLASSPATH="
 JAVA_BINJAR_FILENAME="${P}.jar"
 
 KOTLIN_LIBS_RUNTIME_COMPONENT="Main"
+KOTLIN_LIBS_WANT_TARGET="1.3"
 KOTLIN_LIBS_KOTLINC_ARGS=(
-	-api-version 1.3
-	-language-version 1.3
 	-no-stdlib
 	-Xallow-kotlin-package
 	-Xcoroutines=enable
