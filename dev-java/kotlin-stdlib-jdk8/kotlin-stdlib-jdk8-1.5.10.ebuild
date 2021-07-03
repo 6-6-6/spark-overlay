@@ -87,8 +87,8 @@ JAVA_TEST_EXCLUDES=(
 
 src_test() {
 	if has network-sandbox ${FEATURES}; then
-		einfo "Skipping classes with test cases that require network connection"
-		einfo "due to FEATURES=network-sandbox"
+		elog "Skipping classes with test cases that require network connection"
+		elog "due to FEATURES=network-sandbox"
 		JAVA_TEST_EXCLUDES+=( test.io.ReadWriteTest )
 	fi
 	kotlin-libs_src_test
