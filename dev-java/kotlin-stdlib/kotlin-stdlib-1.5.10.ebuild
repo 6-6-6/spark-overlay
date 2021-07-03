@@ -94,8 +94,6 @@ KOTLIN_LIBS_TEST_COMMON_SOURCES_DIR=(
 )
 KOTLIN_LIBS_TEST_SRC_DIR=(
 	libraries/stdlib/{,jvm,common}/test
-	# libraries/stdlib//test does not work
-	#libraries/stdlib/test
 )
 JAVA_TEST_EXCLUDES=(
 	# Non-tests
