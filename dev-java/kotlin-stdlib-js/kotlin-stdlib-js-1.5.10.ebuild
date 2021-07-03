@@ -229,4 +229,6 @@ src_compile() {
 	# Create JAR
 	jar cfm "${JAVA_JAR_FILENAME}" "${main_target}/META-INF/MANIFEST.MF" \
 		-C "${main_target}" . || die "jar failed"
+
+	unset KOTLIN_COMPILER
 }
