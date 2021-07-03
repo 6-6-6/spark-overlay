@@ -18,7 +18,7 @@ case "${EAPI:-0}" in
 	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
 esac
 
-EXPORT_FUNCTIONS pkg_setup src_compile src_test src_install
+EXPORT_FUNCTIONS src_unpack src_compile src_test src_install
 
 # Allow use of EAPI 7 version manipulators in older EAPIs for both this eclass
 # and consumer ebuilds
@@ -266,14 +266,17 @@ else
 	DEPEND+=" ${_KOTLIN_LIBS_KOTLINC_DEPEND}"
 fi
 
-# @FUNCTION: kotlin-libs_pkg_setup
+S="${WORKDIR}/kotlin-${PV}"
+
+# @FUNCTION: kotlin-libs_src_unpack
 # @DESCRIPTION:
-# Sets up the environment according to settings like enabled USE flags that can
-# only be checked within a function.
-kotlin-libs_pkg_setup() {
-	if ! has binary ${JAVA_PKG_IUSE} || ! use binary; then
-		S="${WORKDIR}/kotlin-${PV}"
-	fi
+# Unpacks all source files, then ensures ${S} exists. ${S} is created only if
+# the Kotlin project's source repository archive is unpacked; the archive might
+# not be unpacked if the 'binary' USE flag is enabled, thus ${S} might be
+# absent in this case.
+kotlin-libs_src_unpack() {
+	default
+	mkdir -p "${S}" || die "Failed to create \${S}"
 }
 
 # @FUNCTION: kotlin-libs_kotlinc
