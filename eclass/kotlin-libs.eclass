@@ -47,15 +47,6 @@ EXPORT_FUNCTIONS pkg_setup src_compile src_test src_install
 # to kotlinc's -Xcommon-sources option. Default is unset, can be overriden from
 # ebuild anywhere.
 
-# @ECLASS-VARIABLE: KOTLIN_LIBS_JAVA_SOURCE_ROOTS
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# An array of the arguments to kotlinc's -Xjava-source-roots option. This
-# eclass will concatenate each element in the array into a single string, using
-# a comma to separate each pair of adjacent elements, and pass the string as
-# the option's value to kotlinc. Default is unset, can be overriden from ebuild
-# anywhere.
-
 # @ECLASS-VARIABLE: KOTLIN_LIBS_KOTLINC_ARGS
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -79,16 +70,15 @@ EXPORT_FUNCTIONS pkg_setup src_compile src_test src_install
 
 # Java compiler options for library components that have Java code
 
-# @ECLASS-VARIABLE: KOTLIN_LIBS_JAVA_SRC_DIR
+# @ECLASS-VARIABLE: KOTLIN_LIBS_JAVA_SOURCE_ROOTS
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# An array of directories relative to ${S} which contain any Java sources to
-# compile for the ebuild. A string with directories separated by white space
-# works as well. Default is unset, in which case no additional Java sources
-# will be compiled, and can be overriden from ebuild anywhere. A few Kotlin
-# library components have additional Java sources that need to be compiled
-# after the Kotlin sources, and this variable facilitates compilation of those
-# Java sources.
+# An array of the arguments to kotlinc's -Xjava-source-roots option. This
+# eclass will concatenate each element in the array into a single string, using
+# a comma to separate each pair of adjacent elements, and pass the string as
+# the option's value to kotlinc. All Java sources in the specified directory
+# will be compiled after the Kotlin sources. Default is unset, can be overriden
+# from ebuild anywhere.
 
 # @ECLASS-VARIABLE: KOTLIN_LIBS_JAVA_WANT_SOURCE_TARGET
 # @DESCRIPTION:
@@ -394,10 +384,10 @@ kotlin-libs_src_compile() {
 		"@${kotlin_sources}"
 	# Compile any Java source files after the Kotlin sources because for Kotlin
 	# libraries, the Java sources require the Kotlin classes as dependencies
-	if [[ -n "${KOTLIN_LIBS_JAVA_SRC_DIR[@]}" ]]; then
+	if [[ -n "${KOTLIN_LIBS_JAVA_SOURCE_ROOTS[@]}" ]]; then
 		local java_sources="java_sources.lst"
 		local java_classpath="${classpath:+${classpath}:}${target}"
-		find "${KOTLIN_LIBS_JAVA_SRC_DIR[@]}" -name "*.java" > "${java_sources}"
+		find "${KOTLIN_LIBS_JAVA_SOURCE_ROOTS[@]}" -name "*.java" > "${java_sources}"
 		ebegin "Compiling Java sources"
 		$(java-pkg_get-javac) -d "${target}" -classpath ${java_classpath} \
 			-source "${KOTLIN_LIBS_JAVA_WANT_SOURCE_TARGET}" \
@@ -586,7 +576,7 @@ kotlin-libs_src_install() {
 			local srcdirs=""
 			local kt_java_src_dir=(
 				"${KOTLIN_LIBS_SRC_DIR[@]}"
-				"${KOTLIN_LIBS_JAVA_SRC_DIR[@]}"
+				"${KOTLIN_LIBS_JAVA_SOURCE_ROOTS[@]}"
 			)
 			if [[ -n "${kt_java_src_dir[@]}" ]]; then
 				local parent child
