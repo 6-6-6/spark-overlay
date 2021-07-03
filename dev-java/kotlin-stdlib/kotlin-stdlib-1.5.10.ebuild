@@ -73,7 +73,6 @@ KOTLIN_LIBS_JAVAC_ARGS=(
 	-proc:none
 	-XDuseUnsharedTable=true
 )
-KOTLIN_LIBS_JAVA_SRC_DIR=( libraries/stdlib/jvm/{src,runtime} )
 
 KOTLIN_LIBS_TEST_KOTLINC_ARGS=(
 	-jvm-target 1.6
