@@ -202,14 +202,12 @@ _KOTLIN_LIBS_REQUIRED_USE=""
 
 if [[ -n "${KOTLIN_LIBS_BINJAR_SRC_URI}" ]]; then
 	# The binary JAR can be used for pkgdiff tests when the package is built
-	# from source; pkgdiff tests are unnecessary with USE="binary"
+	# from source
 	JAVA_PKG_IUSE+=" binary test"
 	JAVA_TESTING_FRAMEWORKS="pkgdiff"
 	if [[ -z "${KOTLIN_LIBS_SRCJAR_SRC_URI}" ]]; then
 		# No source JAR is available for the binary JAR, disable the USE flag
-		_KOTLIN_LIBS_REQUIRED_USE="binary? ( !source !test )"
-	else
-		_KOTLIN_LIBS_REQUIRED_USE="binary? ( !test )"
+		_KOTLIN_LIBS_REQUIRED_USE="binary? ( !source )"
 	fi
 fi
 
@@ -233,6 +231,10 @@ _KOTLIN_LIBS_DEFAULT_SRC_URI="
 "
 if has binary ${JAVA_PKG_IUSE}; then
 	: ${SRC_URI:=""}
+	if has junit-4 ${JAVA_TESTING_FRAMEWORKS}; then
+		# Unpack source archive to compile and run the test suite in it
+		_KOTLIN_LIBS_TEST_SRC="test? ( ${_KOTLIN_LIBS_DEFAULT_SRC_URI} )"
+	fi
 	SRC_URI+="
 	!binary? (
 		${_KOTLIN_LIBS_DEFAULT_SRC_URI}
@@ -241,6 +243,7 @@ if has binary ${JAVA_PKG_IUSE}; then
 	binary? (
 		${KOTLIN_LIBS_BINJAR_SRC_URI}
 		source? ( ${KOTLIN_LIBS_SRCJAR_SRC_URI} )
+		${_KOTLIN_LIBS_TEST_SRC}
 	)
 	"
 else
@@ -490,7 +493,13 @@ kotlin-libs_src_test() {
 			junit-4)
 				kotlin-libs_test_with_junit4_;;
 			pkgdiff)
-				java-pkg-simple_test_with_pkgdiff_;;
+				if has binary ${JAVA_PKG_IUSE} && use binary; then
+					elog "Skipping pkgdiff tests because they will always pass"
+					elog "due to USE=binary"
+				else
+					java-pkg-simple_test_with_pkgdiff_
+				fi
+				;;
 			*)
 				elog "Testing framework ${framework} is not supported yet";;
 		esac
