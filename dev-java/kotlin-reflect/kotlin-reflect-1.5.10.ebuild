@@ -20,8 +20,8 @@ CP_DEPEND="
 	~dev-java/kotlin-stdlib-${PV}:${SLOT}
 "
 DEPEND="
-	${CP_DEPEND}
 	!binary? (
+		${CP_DEPEND}
 		~dev-java/kotlin-annotations-jvm-${PV}:${SLOT}
 		~dev-java/kotlin-core-compiler-common-${PV}:${SLOT}
 		~dev-java/kotlin-core-compiler-common-jvm-${PV}:${SLOT}

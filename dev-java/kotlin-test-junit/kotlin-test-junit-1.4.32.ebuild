@@ -20,11 +20,12 @@ CP_DEPEND="
 	dev-java/junit:4
 "
 DEPEND="
-	${CP_DEPEND}
 	!binary? (
+		${CP_DEPEND}
 		dev-java/jetbrains-annotations:13
 	)
 	test? (
+		${CP_DEPEND}
 		dev-java/jetbrains-annotations:13
 		~dev-java/kotlin-test-annotations-common-${PV}:${SLOT}
 	)

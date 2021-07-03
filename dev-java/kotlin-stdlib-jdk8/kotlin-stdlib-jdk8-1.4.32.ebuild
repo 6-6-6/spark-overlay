@@ -19,11 +19,12 @@ CP_DEPEND="
 	~dev-java/kotlin-stdlib-jdk7-${PV}:${SLOT}
 "
 DEPEND="
-	${CP_DEPEND}
 	!binary? (
+		${CP_DEPEND}
 		dev-java/jetbrains-annotations:13
 	)
 	test? (
+		${CP_DEPEND}
 		~dev-java/kotlin-coroutines-experimental-compat-${PV}:${SLOT}
 		~dev-java/kotlin-test-annotations-common-${PV}:${SLOT}
 		~dev-java/kotlin-test-${PV}:${SLOT}
