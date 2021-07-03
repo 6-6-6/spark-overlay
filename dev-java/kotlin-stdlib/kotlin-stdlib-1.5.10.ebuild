@@ -110,7 +110,7 @@ JAVA_TEST_EXCLUDES=(
 )
 
 src_unpack() {
-	default
+	kotlin-libs_src_unpack
 	if ! has binary ${JAVA_PKG_IUSE} || ! use binary; then
 		unpack "$(java-pkg_getjar --build-only \
 			"kotlin-core-builtins-${SLOT}" kotlin-core-builtins.jar)"

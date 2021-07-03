@@ -78,7 +78,7 @@ KOTLIN_LIBS_JAVA_SOURCE_ROOTS=( core/reflection.jvm/src )
 KOTLIN_LIBS_SRC_DIR=( core/reflection.jvm/src )
 
 src_unpack() {
-	default
+	kotlin-libs_src_unpack
 	if ! has binary ${JAVA_PKG_IUSE} || ! use binary; then
 		# Unpack JARs whose contents should be bundled within this package
 		unpack "$(java-pkg_getjar --build-only \
