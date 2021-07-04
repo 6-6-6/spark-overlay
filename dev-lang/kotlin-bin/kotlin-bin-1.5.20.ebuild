@@ -47,6 +47,7 @@ KOTLINC_PRIVATE_LIBS=(
 	allopen-compiler-plugin.jar
 	android-extensions-compiler.jar
 	android-extensions-runtime.jar
+	js.engines.jar
 	jvm-abi-gen.jar
 	kotlin-annotation-processing.jar
 	kotlin-annotation-processing-cli.jar
@@ -61,6 +62,7 @@ KOTLINC_PRIVATE_LIBS=(
 	kotlin-scripting-common.jar
 	kotlin-scripting-compiler-impl.jar
 	kotlin-scripting-compiler.jar
+	kotlin-scripting-js.jar
 	kotlin-scripting-jvm.jar
 	kotlin-script-runtime.jar
 	kotlinx-serialization-compiler-plugin.jar
@@ -71,15 +73,6 @@ KOTLINC_PRIVATE_LIBS=(
 	parcelize-runtime.jar
 	sam-with-receiver-compiler-plugin.jar
 )
-
-pkg_setup() {
-	if use javascript; then
-		KOTLINC_PRIVATE_LIBS+=(
-			js.engines.jar
-			kotlin-scripting-js.jar
-		)
-	fi
-}
 
 src_prepare() {
 	java-pkg-2_src_prepare
