@@ -212,6 +212,7 @@ if [[ -n "${KOTLIN_LIBS_BINJAR_SRC_URI}" ]]; then
 fi
 
 if [[ -n "${KOTLIN_LIBS_TESTING_FRAMEWORKS}" ]]; then
+	has test ${JAVA_PKG_IUSE} || JAVA_PKG_IUSE+=" test"
 	if [[ -z "${JAVA_TESTING_FRAMEWORKS}" ]]; then
 		JAVA_TESTING_FRAMEWORKS="${KOTLIN_LIBS_TESTING_FRAMEWORKS}"
 	else
