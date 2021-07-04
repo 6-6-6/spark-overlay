@@ -15,20 +15,12 @@ LICENSE="Apache-2.0"
 SLOT="1.3.8"
 KEYWORDS="~amd64"
 
-# No dependency declaration for dev-java/kotlin-common-bin because it is a
-# transitive dependency via dev-lang/kotlin-bin, and declaring it here would
-# always cause its latest slot to be pulled during first-time installation
-RDEPEND="
-	>=virtual/jre-1.8:*
-"
-
 # Binary package, permitted to use JRE in DEPEND
-DEPEND="${RDEPEND}"
+DEPEND=">=virtual/jre-1.8:*"
 
-# It is impossible to use Coroutines outside Kotlin,
-# so dev-lang/kotlin-bin is required
-PDEPEND="
-	dev-lang/kotlin-bin
+RDEPEND="
+	${DEPEND}
+	>=dev-java/kotlin-stdlib-1.3.71:*
 "
 
 src_install() {
