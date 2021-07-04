@@ -64,6 +64,7 @@ KOTLINC_PRIVATE_LIBS=(
 	kotlin-scripting-jvm.jar
 	kotlin-script-runtime.jar
 	kotlinx-serialization-compiler-plugin.jar
+	lombok-compiler-plugin.jar
 	mutability-annotations-compat.jar
 	noarg-compiler-plugin.jar
 	parcelize-compiler.jar
