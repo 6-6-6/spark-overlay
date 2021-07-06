@@ -277,12 +277,21 @@ S="${WORKDIR}/kotlin-${PV}"
 
 # @FUNCTION: kotlin-libs_src_unpack
 # @DESCRIPTION:
-# Unpacks all source files, then ensures ${S} exists. ${S} is created only if
-# the Kotlin project's source repository archive is unpacked; the archive might
-# not be unpacked if the 'binary' USE flag is enabled, thus ${S} might be
-# absent in this case.
+# Unpacks all source files except the binary JAR or the source JAR, then
+# ensures ${S} exists. ${S} is created only if the Kotlin project's source
+# repository archive is unpacked; the archive might not be unpacked if the
+# 'binary' USE flag is enabled, thus ${S} might be absent in this case.
 kotlin-libs_src_unpack() {
-	default
+	for f in ${A}; do
+		case "${f}" in
+			${JAVA_BINJAR_FILENAME}|${KOTLIN_LIBS_SRCJAR_FILENAME})
+				;;
+			*)
+				unpack "${f}"
+				;;
+		esac
+	done
+
 	mkdir -p "${S}" || die "Failed to create \${S}"
 }
 
