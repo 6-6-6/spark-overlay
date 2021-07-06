@@ -31,10 +31,7 @@ DEPEND="
 	)
 "
 
-JAVA_CLASSPATH_EXTRA="
-	jetbrains-annotations-13
-	kotlin-core-builtins-${SLOT}
-"
+JAVA_CLASSPATH_EXTRA="jetbrains-annotations-13"
 JAVA_TEST_GENTOO_CLASSPATH="
 	kotlin-coroutines-experimental-compat-${SLOT}
 	kotlin-test-annotations-common-${SLOT}
