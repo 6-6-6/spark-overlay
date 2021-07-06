@@ -59,6 +59,7 @@ JAVA_CLASSPATH_EXTRA="
 	kotlin-core-util-runtime-${SLOT}
 "
 JAVA_BINJAR_FILENAME="${P}.jar"
+KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
 JAVA_RESOURCE_DIRS=( core/reflection.jvm/resources )
 
 KOTLIN_LIBS_KOTLINC_ARGS=(

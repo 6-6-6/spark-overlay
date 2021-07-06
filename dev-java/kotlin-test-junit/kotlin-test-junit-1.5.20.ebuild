@@ -34,6 +34,7 @@ RDEPEND="${CP_DEPEND}"
 
 JAVA_CLASSPATH_EXTRA="jetbrains-annotations-13"
 JAVA_BINJAR_FILENAME="${P}.jar"
+KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
 JAVA_RESOURCE_DIRS=( libraries/kotlin.test/junit/src/main/resources )
 
 KOTLIN_LIBS_RUNTIME_COMPONENT="Test"

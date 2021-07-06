@@ -14,6 +14,7 @@ DESCRIPTION="Kotlin annotations for JVM"
 KEYWORDS="~amd64"
 
 JAVA_BINJAR_FILENAME="${P}.jar"
+KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
 
 # Kotlin compiler needs not be called for this package
 

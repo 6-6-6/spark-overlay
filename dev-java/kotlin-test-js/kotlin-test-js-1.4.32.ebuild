@@ -20,6 +20,7 @@ DEPEND="!binary? (
 )"
 
 JAVA_BINJAR_FILENAME="${P}.jar"
+KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
 
 # No -module-name option for Kotlin/JS compiler
 KOTLIN_LIBS_MODULE_NAME=""
