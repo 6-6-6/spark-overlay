@@ -23,15 +23,21 @@ src_compile() {
 		die "Failed to copy sources for built-ins to temporary directory"
 	rm "${builtins_cherry_picked}"/{typeOf.kt,KClasses.kt} || \
 		die "Failed to remove extraneous sources from cherry-picked built-ins"
+	local src_dirs=(
+		"${builtins_cherry_picked}"
+		core/builtins/{src,native}
+	)
+
 	ebegin "Serializing built-ins"
 	# The built-in serializer needs to access XDG_CACHE_HOME, reassign it to
 	# avoid access violations caused by 'mkdir /var/lib/portage/home/.cache'
 	XDG_CACHE_HOME="${HOME}/.cache" \
 	java -classpath "${kotlinc_jar}" \
 		org.jetbrains.kotlin.serialization.builtins.RunKt \
-		"${target}" \
-		core/builtins/{src,native} "${builtins_cherry_picked}" || \
-		die "Failed to serialize built-ins"
+		"${target}" "${src_dirs[@]}" || die "Failed to serialize built-ins"
 
 	jar cf "${JAVA_JAR_FILENAME}" -C "${target}" . || die "jar failed"
+
+	# Generate a list of source files for the source archive
+	find "${src_dirs[@]}" -name "*.kt" > kotlin_sources.lst
 }
