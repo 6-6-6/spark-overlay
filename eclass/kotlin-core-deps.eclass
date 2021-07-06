@@ -84,6 +84,7 @@ fi
 
 if [[ -z "${KOTLIN_LIBS_KOTLINC_ARGS[@]}" ]]; then
 	KOTLIN_LIBS_KOTLINC_ARGS=(
+		-jvm-target 1.6
 		-no-stdlib
 		-Xallow-kotlin-package
 		-Xallow-no-source-files
@@ -99,7 +100,6 @@ if [[ -z "${KOTLIN_LIBS_KOTLINC_ARGS[@]}" ]]; then
 	if [[ "${_KOTLIN_CORE_DEPS_FEATURE_REL}" -ge 5 ]]; then
 		# Additional options for Kotlin 1.5
 		KOTLIN_LIBS_KOTLINC_ARGS+=(
-			-jvm-target 1.6
 			-Xsuppress-deprecated-jvm-target-warning
 		)
 	fi
