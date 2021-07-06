@@ -31,10 +31,7 @@ DEPEND="
 	)
 "
 
-JAVA_CLASSPATH_EXTRA="
-	jetbrains-annotations-13
-	kotlin-core-builtins-${SLOT}
-"
+JAVA_CLASSPATH_EXTRA="jetbrains-annotations-13"
 JAVA_TEST_GENTOO_CLASSPATH="
 	kotlin-coroutines-experimental-compat-${SLOT}
 	kotlin-test-annotations-common-${SLOT}
@@ -104,6 +101,13 @@ JAVA_TEST_EXCLUDES=(
 	# Failing tests
 	test.utils.AssertionsJVMTest
 )
+
+pkg_setup() {
+	java-pkg-2_pkg_setup
+	if ! has binary ${JAVA_PKG_IUSE} || ! use binary; then
+		JAVA_CLASSPATH_EXTRA+=" kotlin-core-builtins-${SLOT}"
+	fi
+}
 
 src_unpack() {
 	kotlin-libs_src_unpack
