@@ -596,7 +596,7 @@ kotlin-libs_src_install() {
 		if has binary ${JAVA_PKG_IUSE} && use binary; then
 			# Install pre-built source JAR for binary installation
 			insinto "${JAVA_PKG_SOURCESPATH}"
-			doins "${KOTLIN_LIBS_SRCJAR_FILENAME}"
+			doins "${DISTDIR}/${KOTLIN_LIBS_SRCJAR_FILENAME}"
 		else
 			local srcdirs=""
 			local kt_java_src_dir=(
