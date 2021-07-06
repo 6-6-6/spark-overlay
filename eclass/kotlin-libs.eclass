@@ -581,8 +581,11 @@ kotlin-libs_src_install() {
 		sources="sources.lst"
 		cat kotlin_sources.lst java_sources.lst > "${sources}" || \
 			die "Failed to create combined Kotlin and Java source list"
-	else
+	elif [[ -s "kotlin_sources.lst" ]]; then
 		sources="kotlin_sources.lst"
+	else
+		# Fall back to the source list file used by java-pkg-simple.eclass
+		sources="sources.lst"
 	fi
 
 	java-pkg_dojar "${JAVA_JAR_FILENAME}"
