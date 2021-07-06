@@ -265,6 +265,9 @@ _KOTLIN_LIBS_KOTLINC_DEPEND="
 if has binary ${JAVA_PKG_IUSE}; then
 	# Depend on the compiler only when building from source
 	DEPEND+=" !binary? ( ${_KOTLIN_LIBS_KOTLINC_DEPEND} )"
+	if has junit-4 ${JAVA_TESTING_FRAMEWORKS}; then
+		DEPEND+=" test? ( ${_KOTLIN_LIBS_KOTLINC_DEPEND} )"
+	fi
 else
 	# No option to use pre-built binary; always depend on the compiler
 	DEPEND+=" ${_KOTLIN_LIBS_KOTLINC_DEPEND}"
