@@ -39,6 +39,7 @@ JAVA_RESOURCE_DIRS=( libraries/kotlin.test/junit/src/main/resources )
 
 KOTLIN_LIBS_RUNTIME_COMPONENT="Test"
 KOTLIN_LIBS_KOTLINC_ARGS=(
+	-jvm-target 1.6
 	-no-stdlib
 	-Xallow-kotlin-package
 	-Xallow-no-source-files
@@ -54,6 +55,7 @@ KOTLIN_LIBS_SRC_DIR=(
 )
 
 KOTLIN_LIBS_TEST_KOTLINC_ARGS=(
+	-jvm-target 1.6
 	-no-stdlib
 	-Xallow-kotlin-package
 	-Xallow-no-source-files

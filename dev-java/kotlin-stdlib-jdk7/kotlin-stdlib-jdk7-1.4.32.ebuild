@@ -45,6 +45,7 @@ KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
 
 KOTLIN_LIBS_RUNTIME_COMPONENT="Main"
 KOTLIN_LIBS_KOTLINC_ARGS=(
+	-jvm-target 1.6
 	-no-stdlib
 	-Xallow-kotlin-package
 	-Xallow-no-source-files
@@ -57,6 +58,7 @@ KOTLIN_LIBS_KOTLINC_ARGS=(
 KOTLIN_LIBS_SRC_DIR=( libraries/stdlib/jdk7/src )
 
 KOTLIN_LIBS_TEST_KOTLINC_ARGS=(
+	-jvm-target 1.6
 	-no-stdlib
 	-Xallow-kotlin-package
 	-Xallow-no-source-files

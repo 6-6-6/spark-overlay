@@ -63,6 +63,7 @@ KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
 JAVA_RESOURCE_DIRS=( core/reflection.jvm/resources )
 
 KOTLIN_LIBS_KOTLINC_ARGS=(
+	-jvm-target 1.6
 	-no-stdlib
 	-Xallow-kotlin-package
 	-Xallow-no-source-files
