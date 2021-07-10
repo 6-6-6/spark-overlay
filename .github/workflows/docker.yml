@@ -1,0 +1,28 @@
+name: Test ebuilds in Docker container
+
+on:
+  push:
+    branches:
+      - '*'
+  # ebuild installation tests can take very long time, so run tests nightly
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Set up ebuild-commander
+      run: |
+        ./.github/workflow-scripts/setup-ebuild-cmder.sh
+    - name: Set up ::gentoo
+      run: |
+        ./.github/workflow-scripts/setup-gentoo-repo.sh
+    - name: Test ebuilds
+      run: |
+        ./tests/run.sh
