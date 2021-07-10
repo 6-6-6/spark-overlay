@@ -1,0 +1,27 @@
+name: "Run a test script"
+description: "Run a script in a Docker image via ebuild-commander"
+
+inputs:
+  script:
+    description: "Path to the script to run"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Download ebuild-commander"
+      run: git clone https://github.com/Leo3418/ebuild-commander.git
+      shell: bash
+    - name: "Install ebuild-commander"
+      run: ./setup.py install --user
+      shell: bash
+      working-directory: ebuild-commander
+    - name: "Create directories for ::gentoo and Portage"
+      run: sudo mkdir -p /var/db/repos/gentoo /etc/portage
+      shell: bash
+    - name: "Download ::gentoo"
+      run: wget -qO - "https://github.com/gentoo-mirror/gentoo/archive/master.tar.gz" | sudo tar xz -C /var/db/repos/gentoo --strip-components=1
+      shell: bash
+    - name: "Run the test script"
+      run: ./${{ inputs.script }}
+      shell: bash
