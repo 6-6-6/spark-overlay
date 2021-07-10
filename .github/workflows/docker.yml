@@ -8,13 +8,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  kotlin-latest:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
       with:
         python-version: 3.9
-    - uses: ./.github/actions/run-test-script
+    - uses: ./.github/actions/run-test-case
       with:
-        script: ./tests/run.sh
+        path: ./tests/test-cases/${{ github.job }}.sh

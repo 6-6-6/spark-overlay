@@ -1,9 +1,9 @@
-name: "Run a test script"
-description: "Run a script in a Docker image via ebuild-commander"
+name: "Run a test case"
+description: "Run a test case in a Docker image via ebuild-commander"
 
 inputs:
-  script:
-    description: "Path to the script to run"
+  path:
+    description: "Path to the test case definition file"
     required: true
 
 runs:
@@ -22,6 +22,6 @@ runs:
     - name: "Download ::gentoo"
       run: wget -qO - "https://github.com/gentoo-mirror/gentoo/archive/master.tar.gz" | sudo tar xz -C /var/db/repos/gentoo --strip-components=1
       shell: bash
-    - name: "Run the test script"
-      run: ./${{ inputs.script }}
+    - name: "Run the test case"
+      run: tests/run.sh ${{ inputs.path }}
       shell: bash
