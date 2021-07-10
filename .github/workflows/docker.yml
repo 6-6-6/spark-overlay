@@ -1,9 +1,6 @@
 name: Test ebuilds in Docker container
 
 on:
-  push:
-    branches:
-      - '*'
   # ebuild installation tests can take very long time, so run tests nightly
   schedule:
     - cron: '0 0 * * *'
