@@ -2,6 +2,9 @@
 
 main() {
     for script in "$@"; do
+        unset PORTAGE_CONFIG DOCKER_IMAGE PROFILE GENTOO_REPO THREADS
+        unset EMERGE_OPTS PULL STORAGE_OPTS CUSTOM_REPOS
+
         . "${script}"
 
         args=(
