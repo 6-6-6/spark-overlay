@@ -1,0 +1,2 @@
+# Install test dependencies for all kotlin-stdlib* and kotlin-test* packages
+dev-java/kotlin-stdlib-jdk8 test
