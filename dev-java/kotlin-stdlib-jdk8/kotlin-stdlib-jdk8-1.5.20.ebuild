@@ -25,7 +25,6 @@ DEPEND="
 	)
 	test? (
 		${CP_DEPEND}
-		~dev-java/kotlin-test-annotations-common-${PV}:${SLOT}
 		~dev-java/kotlin-test-${PV}:${SLOT}
 		~dev-java/kotlin-test-junit-${PV}:${SLOT}
 		dev-java/jetbrains-annotations:13
@@ -35,7 +34,6 @@ RDEPEND="${CP_DEPEND}"
 
 JAVA_CLASSPATH_EXTRA="jetbrains-annotations-13"
 JAVA_TEST_GENTOO_CLASSPATH="
-	kotlin-test-annotations-common-${SLOT}
 	kotlin-test-${SLOT}
 	kotlin-test-junit-${SLOT}
 "
