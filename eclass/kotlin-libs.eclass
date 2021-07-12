@@ -194,7 +194,7 @@ _KOTLIN_LIBS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
 # @DESCRIPTION:
 # The name of the source JAR file to be installed if the 'binary' and 'source'
 # USE flags are both enabled. Must be overriden from ebuild somewhere when
-# KOTLIN_LIBS_BINJAR_SRC_URI is set.
+# KOTLIN_LIBS_SRCJAR_SRC_URI is set.
 
 JAVA_PKG_IUSE="source"
 JAVA_TESTING_FRAMEWORKS=""
