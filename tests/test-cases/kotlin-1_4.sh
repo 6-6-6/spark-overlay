@@ -11,5 +11,6 @@ run_test() {
     emerge dev-java/kotlin-stdlib-jdk8:1.4
     FEATURES="test" emerge -1 \
         dev-java/kotlin-stdlib{,-jdk7,-jdk8}:1.4 \
-        dev-java/kotlin-test{,-junit,-annotations-common}:1.4
+        dev-java/kotlin-test{,-junit,-annotations-common}:1.4 \
+        dev-java/kotlin-coroutines-experimental-compat:1.4
 }
