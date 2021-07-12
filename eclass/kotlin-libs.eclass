@@ -260,7 +260,7 @@ DEPEND=">=virtual/jdk-1.8:*"
 RDEPEND=">=virtual/jre-1.8:*"
 
 _KOTLIN_LIBS_KOTLINC_DEPEND="
-	>=dev-lang/kotlin-bin-${KOTLIN_LIBS_KOTLINC_MIN_VER}:0
+	>=dev-lang/kotlin-bin-${KOTLIN_LIBS_KOTLINC_MIN_VER}
 "
 if has binary ${JAVA_PKG_IUSE}; then
 	# Depend on the compiler only when building from source
@@ -618,4 +618,24 @@ kotlin-libs_src_install() {
 			kotlin-libs_dosrc ${srcdirs}
 		fi
 	fi
+}
+
+# @FUNCTION: kotlin-libs_get_kotlinc_pkg
+# @DESCRIPTION:
+# Echos the package name for the highest version of Kotlin compiler version
+# that is currently installed. The package name can be passed to functions in
+# java-utils-2.eclass. If no Kotlin compiler package can be found, then a
+# package name that will always be invalid according to functions in
+# java-utils-2.eclass will be returned.
+#
+# Example:
+# @CODE
+#	java-pkg_getjars --build-only "$(kotlin-libs_get_kotlinc_pkg)"
+# @CODE
+kotlin-libs_get_kotlinc_pkg() {
+	local kotlinc_PN="kotlin-bin"
+	local kotlinc_pkg="dev-lang/${kotlinc_PN}"
+	local kotlinc_ver=$(best_version -d "${kotlinc_pkg}")
+	local kotlinc_slot=$(ver_cut 1-2 "${kotlinc_ver//${kotlinc_pkg}-}")
+	echo "${kotlinc_PN}-${kotlinc_slot}"
 }
