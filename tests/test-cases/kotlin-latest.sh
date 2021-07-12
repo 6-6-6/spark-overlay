@@ -7,5 +7,5 @@ run_test() {
     emerge dev-java/kotlin-stdlib-jdk8
     FEATURES="test" emerge -1 \
         dev-java/kotlin-stdlib{,-jdk7,-jdk8} \
-        dev-java/kotlin-test{,-junit,-annotations-common}
+        dev-java/kotlin-test{,-junit}
 }
