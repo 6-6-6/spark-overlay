@@ -13,10 +13,7 @@ inherit kotlin-libs
 DESCRIPTION="Kotlin Standard Library for JS"
 KEYWORDS="~amd64"
 
-DEPEND="!binary? (
-	>=dev-lang/kotlin-bin-1.4:0[javascript]
-	<dev-lang/kotlin-bin-1.5:0
-)"
+DEPEND="!binary? ( dev-lang/kotlin-bin:1.4[javascript] )"
 
 JAVA_BINJAR_FILENAME="${P}.jar"
 KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
@@ -123,7 +120,7 @@ src_compile() {
 	# Call the JSStdlibLinker directly with Java because it does not recognize
 	# the standard Kotlin compiler command-line options
 	local kotlinc_jar="$(java-pkg_getjar --build-only \
-		kotlin-bin kotlin-compiler.jar)"
+		"$(kotlin-libs_get_kotlinc_pkg)" kotlin-compiler.jar)"
 	local js_output_file="${target}/classes/kotlin.js"
 	java -classpath "${kotlinc_jar}" \
 		org.jetbrains.kotlin.cli.js.internal.JSStdlibLinker \
