@@ -12,22 +12,23 @@ SRC_URI="
 "
 
 LICENSE="Apache-2.0 BSD MIT NPL-1.1"
-SLOT="0"
+SLOT="$(ver_cut 1-2)"
 KEYWORDS="~amd64"
 IUSE="javascript"
 
-KOTLIN_LIB_SLOT="$(ver_cut 1-2)"
 COROUTINES_CORE_SLOT="1.3.8"
 JB_ANNOTATIONS_SLOT="13"
 
 RDEPEND="
-	~dev-java/kotlin-stdlib-${PV}:${KOTLIN_LIB_SLOT}
-	~dev-java/kotlin-reflect-${PV}:${KOTLIN_LIB_SLOT}
+	~dev-java/kotlin-stdlib-${PV}:${SLOT}
+	~dev-java/kotlin-reflect-${PV}:${SLOT}
 	dev-java/kotlinx-coroutines-core-bin:${COROUTINES_CORE_SLOT}
 	dev-java/jetbrains-annotations:${JB_ANNOTATIONS_SLOT}
 	dev-java/jetbrains-trove:0
 	>=virtual/jdk-1.8:*
-	javascript? ( ~dev-java/kotlin-stdlib-js-${PV}:${KOTLIN_LIB_SLOT} )
+	javascript? ( ~dev-java/kotlin-stdlib-js-${PV}:${SLOT} )
+	!dev-lang/kotlin-bin:0
+	!dev-lang/kotlin-bin:1.4
 "
 BDEPEND="
 	app-arch/unzip
@@ -94,11 +95,11 @@ src_prepare() {
 
 	# Create symbolic links to required Kotlin core library components
 	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
-		"kotlin-stdlib-${KOTLIN_LIB_SLOT}"
+		"kotlin-stdlib-${SLOT}"
 	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
-		"kotlin-reflect-${KOTLIN_LIB_SLOT}"
+		"kotlin-reflect-${SLOT}"
 	use javascript && java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
-		"kotlin-stdlib-js-${KOTLIN_LIB_SLOT}"
+		"kotlin-stdlib-js-${SLOT}"
 
 	# Create symbolic links to external dependencies
 	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
