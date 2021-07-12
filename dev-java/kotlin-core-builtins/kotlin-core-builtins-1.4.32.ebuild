@@ -14,7 +14,7 @@ src_compile() {
 	local target="target"
 	local builtins_cherry_picked="${T}/core/builtins/build/src"
 	local kotlinc_jar="$(java-pkg_getjar --build-only \
-		kotlin-bin kotlin-compiler.jar)"
+		"$(kotlin-libs_get_kotlinc_pkg)" kotlin-compiler.jar)"
 
 	mkdir -p "${target}" || die "Failed to create target directory"
 	mkdir -p "${builtins_cherry_picked}" || \
