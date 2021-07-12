@@ -27,7 +27,6 @@ DEPEND="
 	test? (
 		${CP_DEPEND}
 		dev-java/jetbrains-annotations:13
-		~dev-java/kotlin-test-annotations-common-${PV}:${SLOT}
 	)
 "
 RDEPEND="${CP_DEPEND}"
