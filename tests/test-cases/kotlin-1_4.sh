@@ -6,7 +6,7 @@ run_test() {
     USE="binary" emerge -1 \
         dev-java/kotlin-stdlib{,-js}:1.4 \
         dev-java/kotlin-reflect:1.4
-    USE="javascript" emerge dev-lang/kotlin-bin:1.4
+    emerge dev-lang/kotlin-bin:1.4
     emerge -1 dev-java/kotlin-stdlib{,-js}:1.4 dev-java/kotlin-reflect:1.4
     emerge dev-java/kotlin-stdlib-jdk8:1.4
     FEATURES="test" emerge -1 \
