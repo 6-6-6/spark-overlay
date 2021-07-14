@@ -54,13 +54,6 @@ EXPORT_FUNCTIONS src_unpack src_compile src_test src_install
 # arguments set by the variables of this eclass and before the list of Kotlin
 # source files. Default is unset, can be overriden from ebuild anywhere.
 
-# @ECLASS-VARIABLE: KOTLIN_LIBS_CLASSPATH_EXTRA
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# An extra comma- or space-separated list of Java packages that are needed only
-# when sources are being compiled. Default is unset, can be overriden from
-# ebuild anywhere.
-
 # @ECLASS-VARIABLE: KOTLIN_LIBS_KOTLINC_JAVA_OPTS
 # @DESCRIPTION:
 # Any options for the JVM instances started by kotlinc. The default option
