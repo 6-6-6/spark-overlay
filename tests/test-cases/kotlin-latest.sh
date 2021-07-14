@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+PORTAGE_CONFIGS=( tests/portage-config/kotlin )
+
 run_test() {
     USE="binary" emerge -1 dev-java/kotlin-stdlib{,-js} dev-java/kotlin-reflect
     USE="javascript" emerge dev-lang/kotlin-bin

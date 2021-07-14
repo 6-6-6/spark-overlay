@@ -2,15 +2,16 @@
 
 main() {
     for script in "$@"; do
-        unset PORTAGE_CONFIG DOCKER_IMAGE PROFILE GENTOO_REPO THREADS
-        unset EMERGE_OPTS PULL STORAGE_OPTS CUSTOM_REPOS
+        unset DOCKER_IMAGE PROFILE GENTOO_REPO THREADS EMERGE_OPTS PULL
+        unset STORAGE_OPTS PORTAGE_CONFIGS CUSTOM_REPOS
 
         . "${script}"
 
         args=(
             ebuild-cmder
-            --portage-config "${PORTAGE_CONFIG:-tests/portage-config/default}"
             --docker-image "${DOCKER_IMAGE:-ghcr.io/leo3418/gentoo-stage3-amd64-java}"
+            --portage-config tests/portage-config/default
+            --custom-repo .
             ${PROFILE:+--profile ${PROFILE}}
             ${GENTOO_REPO:+--gentoo-repo ${GENTOO_REPO}}
             ${THREADS:+--threads ${THREADS}}
@@ -18,7 +19,9 @@ main() {
             ${PULL:+--pull}
             ${STORAGE_OPTS:+--storage-opts ${STORAGE_OPTS}}
         )
-        args+=( --custom-repo . )
+        for config in "${PORTAGE_CONFIGS[@]}"; do
+            args+=( --portage-config "${config}" )
+        done
         for repo in "${CUSTOM_REPOS[@]}"; do
             args+=( --custom-repo "${repo}" )
         done

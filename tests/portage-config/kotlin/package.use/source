@@ -1,0 +1,2 @@
+# Test the 'source' USE flag for all Kotlin packages
+dev-java/kotlin-* source
