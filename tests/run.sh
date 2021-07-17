@@ -15,7 +15,7 @@ main() {
             ${PROFILE:+--profile ${PROFILE}}
             ${GENTOO_REPO:+--gentoo-repo ${GENTOO_REPO}}
             ${THREADS:+--threads ${THREADS}}
-            ${EMERGE_OPTS:+--emerge-opts ${EMERGE_OPTS}}
+            ${EMERGE_OPTS:+--emerge-opts "${EMERGE_OPTS}"}
             ${PULL:+--pull}
             ${STORAGE_OPTS:+--storage-opts ${STORAGE_OPTS}}
         )
