@@ -18,6 +18,7 @@ echo -e "\nLeaf ebuilds:"
 tr '[:blank:]' '\n' <<< "${LEAF_EBUILDS}"
 
 FAILED_EBUILDS=()
+mkdir -p /etc/portage/package.use
 for ebuild in ${LEAF_EBUILDS}; do
     echo -e "\nEmerging ${ebuild}"
     if ! emerge "=${ebuild}"; then
