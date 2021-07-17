@@ -19,7 +19,7 @@ def parse_args() -> argparse.Namespace:
   it is a leaf ebuild by iterating over every package dependency specification
   in all ebuilds in REPO and testing if the ebuild meets the specification.
   Has better performance on repositories where only a small portion of ebuilds
-  are leaf ones.\
+  are leaves.\
 """
     if shutil.which('equery') is not None:
         available_algorithms.append('deps-traverse')
@@ -32,7 +32,7 @@ def parse_args() -> argparse.Namespace:
 """
     if len(available_algorithms) == 0:
         print(f"""
-{sys.argv[0]}: No leaf ebuilds search algorithm is available
+{sys.argv[0]}: No search algorithm is available
 Please install at least one of the following packages:
 - sys-apps/pkgcore: Enables the 'rev-search' algorithm
 - app-portage/gentoolkit: Enables the 'deps-traverse' algorithm\
