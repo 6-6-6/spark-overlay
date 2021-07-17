@@ -19,7 +19,8 @@ def parse_args() -> argparse.Namespace:
   it is a leaf ebuild by iterating over every package dependency specification
   in all ebuilds in REPO and testing if the ebuild meets the specification.
   Has better performance on repositories where only a small portion of ebuilds
-  are leaves.\
+  are leaves.  Note: metadata cache created by egencache(1) can significantly
+  boost this algorithm's performance.\
 """
     if shutil.which('equery') is not None:
         available_algorithms.append('deps-traverse')
