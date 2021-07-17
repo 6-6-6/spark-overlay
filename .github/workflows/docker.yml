@@ -29,3 +29,16 @@ jobs:
     - uses: ./.github/actions/run-test-case
       with:
         path: ./tests/test-cases/${{ github.job }}.sh
+
+  leaf-ebuilds:
+    # Test not passing yet, only run on manual triggers
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - uses: ./.github/actions/run-test-case
+      with:
+        path: ./tests/test-cases/${{ github.job }}.sh
