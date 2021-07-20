@@ -55,3 +55,81 @@ jobs:
     - uses: ./.github/actions/run-test-case
       with:
         path: ./tests/test-cases/${{ github.job }}.sh
+
+  leaf-ebuilds-test:
+    # Test not passing yet, only run on manual triggers
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Set up Portage
+      run: |
+        ./.github/workflow-scripts/setup-portage.sh
+        sudo mkdir -p /var/db/repos/gentoo
+        wget -qO - "https://github.com/gentoo-mirror/gentoo/archive/master.tar.gz" | sudo tar xz -C /var/db/repos/gentoo --strip-components=1
+    - name: Generate metadata cache
+      run: |
+        sudo mkdir -p /var/db/repos/gentoo
+        mkdir -p /tmp/etc/portage /tmp/egencache
+        echo -e "[spark-overlay]\nlocation = ${{ github.workspace }}" > \
+                 /tmp/etc/portage/repos.conf
+        egencache --update --repo=spark-overlay --cache-dir=/tmp/egencache \
+                 --config-root=/tmp
+    - uses: ./.github/actions/run-test-case
+      with:
+        path: ./tests/test-cases/${{ github.job }}.sh
+
+  leaf-ebuilds-binary:
+    # Test not passing yet, only run on manual triggers
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Set up Portage
+      run: |
+        ./.github/workflow-scripts/setup-portage.sh
+        sudo mkdir -p /var/db/repos/gentoo
+        wget -qO - "https://github.com/gentoo-mirror/gentoo/archive/master.tar.gz" | sudo tar xz -C /var/db/repos/gentoo --strip-components=1
+    - name: Generate metadata cache
+      run: |
+        sudo mkdir -p /var/db/repos/gentoo
+        mkdir -p /tmp/etc/portage /tmp/egencache
+        echo -e "[spark-overlay]\nlocation = ${{ github.workspace }}" > \
+                 /tmp/etc/portage/repos.conf
+        egencache --update --repo=spark-overlay --cache-dir=/tmp/egencache \
+                 --config-root=/tmp
+    - uses: ./.github/actions/run-test-case
+      with:
+        path: ./tests/test-cases/${{ github.job }}.sh
+
+  leaf-ebuilds-binary-test:
+    # Test not passing yet, only run on manual triggers
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Set up Portage
+      run: |
+        ./.github/workflow-scripts/setup-portage.sh
+        sudo mkdir -p /var/db/repos/gentoo
+        wget -qO - "https://github.com/gentoo-mirror/gentoo/archive/master.tar.gz" | sudo tar xz -C /var/db/repos/gentoo --strip-components=1
+    - name: Generate metadata cache
+      run: |
+        sudo mkdir -p /var/db/repos/gentoo
+        mkdir -p /tmp/etc/portage /tmp/egencache
+        echo -e "[spark-overlay]\nlocation = ${{ github.workspace }}" > \
+                 /tmp/etc/portage/repos.conf
+        egencache --update --repo=spark-overlay --cache-dir=/tmp/egencache \
+                 --config-root=/tmp
+    - uses: ./.github/actions/run-test-case
+      with:
+        path: ./tests/test-cases/${{ github.job }}.sh

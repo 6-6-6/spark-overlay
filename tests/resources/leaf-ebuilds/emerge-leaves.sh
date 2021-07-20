@@ -21,20 +21,7 @@ FAILED_EBUILDS=()
 mkdir -p /etc/portage/package.use
 for ebuild in ${LEAF_EBUILDS}; do
     echo -e "\nEmerging ${ebuild}"
-    if ! emerge "=${ebuild}"; then
-        FAILED_EBUILDS+=( "${ebuild}" )
-        continue
-    fi
-    echo -e "\nInstalling test dependencies of ${ebuild}"
-    echo "=${ebuild} test" > /etc/portage/package.use/leaf-ebuilds
-    if ! emerge -o "=${ebuild}"; then
-        FAILED_EBUILDS+=( "${ebuild}" )
-        rm /etc/portage/package.use/leaf-ebuilds
-        continue
-    fi
-    echo -e "\nRunning tests for ${ebuild}"
-    FEATURES="test" emerge "=${ebuild}" || FAILED_EBUILDS+=( "${ebuild}" )
-    rm /etc/portage/package.use/leaf-ebuilds
+    emerge "=${ebuild}" || FAILED_EBUILDS+=( "${ebuild}" )
 done
 
 if [[ -n "${FAILED_EBUILDS[@]}" ]]; then

@@ -1,0 +1,2 @@
+# Enable tests for ebuilds in this repository
+*/*::spark-overlay features-test.conf
