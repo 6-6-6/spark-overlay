@@ -1,0 +1,23 @@
+name: Scan ebuilds with repoman
+
+on:
+  # Checks not passing yet, only run on manual triggers
+  workflow_dispatch:
+  # Once all existing issues in the ebuilds that prevent the checks from
+  # passing have been fixed, this workflow should run on every push and pull
+  # request to all branches, and on a daily schedule too
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up master ::gentoo
+        run: |
+          ./.github/workflow-scripts/setup-master-gentoo.sh
+      - name: Set up repoman
+        run: |
+          ./.github/workflow-scripts/setup-portage.sh repoman
+      - name: Run repoman
+        run: |
+          repoman -dx full
