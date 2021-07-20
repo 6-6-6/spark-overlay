@@ -19,7 +19,6 @@ sudo useradd -g portage -d /var/tmp/portage -s /bin/false -u 250 portage
 ### Sync the portage repository
 git clone https://github.com/gentoo/portage.git
 cd portage
-[[ "${PACKAGE}" == "repoman" ]] && cd repoman
 
 # Get all versions, and read into array
 mapfile -t PACKAGE_VERSIONS < <( git tag | grep portage | sort -Vu )
@@ -32,3 +31,9 @@ git checkout tags/${LATEST_VERSION} -b ${LATEST_VERSION}
 
 # Install the package
 sudo ./setup.py install
+if [[ "${PACKAGE}" == "repoman" ]]; then
+    cd repoman
+    sudo ./setup.py install
+    sudo mkdir /usr/share/repoman
+    sudo cp -r cnf/{linechecks,qa_data,repository} /usr/share/repoman
+fi
