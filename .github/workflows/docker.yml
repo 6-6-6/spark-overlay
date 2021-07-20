@@ -39,15 +39,7 @@ jobs:
     - uses: actions/setup-python@v2
       with:
         python-version: 3.9
-    - name: Set up Portage
-      run: |
-        ./.github/workflow-scripts/setup-portage.sh
-        ./.github/workflow-scripts/setup-master-gentoo.sh
-    - name: Generate metadata cache
-      run: |
-        echo -e "[spark-overlay]\nlocation = ${{ github.workspace }}" | \
-            sudo tee /etc/portage/repos.conf/spark-overlay.conf
-        sudo egencache --update --repo=spark-overlay
+    - uses: ./.github/actions/setup-leaf-ebuilds-job
     - uses: ./.github/actions/run-test-case
       with:
         path: ./tests/test-cases/${{ github.job }}.sh
@@ -61,15 +53,7 @@ jobs:
     - uses: actions/setup-python@v2
       with:
         python-version: 3.9
-    - name: Set up Portage
-      run: |
-        ./.github/workflow-scripts/setup-portage.sh
-        ./.github/workflow-scripts/setup-master-gentoo.sh
-    - name: Generate metadata cache
-      run: |
-        echo -e "[spark-overlay]\nlocation = ${{ github.workspace }}" | \
-            sudo tee /etc/portage/repos.conf/spark-overlay.conf
-        sudo egencache --update --repo=spark-overlay
+    - uses: ./.github/actions/setup-leaf-ebuilds-job
     - uses: ./.github/actions/run-test-case
       with:
         path: ./tests/test-cases/${{ github.job }}.sh
@@ -83,15 +67,7 @@ jobs:
     - uses: actions/setup-python@v2
       with:
         python-version: 3.9
-    - name: Set up Portage
-      run: |
-        ./.github/workflow-scripts/setup-portage.sh
-        ./.github/workflow-scripts/setup-master-gentoo.sh
-    - name: Generate metadata cache
-      run: |
-        echo -e "[spark-overlay]\nlocation = ${{ github.workspace }}" | \
-            sudo tee /etc/portage/repos.conf/spark-overlay.conf
-        sudo egencache --update --repo=spark-overlay
+    - uses: ./.github/actions/setup-leaf-ebuilds-job
     - uses: ./.github/actions/run-test-case
       with:
         path: ./tests/test-cases/${{ github.job }}.sh
@@ -105,15 +81,7 @@ jobs:
     - uses: actions/setup-python@v2
       with:
         python-version: 3.9
-    - name: Set up Portage
-      run: |
-        ./.github/workflow-scripts/setup-portage.sh
-        ./.github/workflow-scripts/setup-master-gentoo.sh
-    - name: Generate metadata cache
-      run: |
-        echo -e "[spark-overlay]\nlocation = ${{ github.workspace }}" | \
-            sudo tee /etc/portage/repos.conf/spark-overlay.conf
-        sudo egencache --update --repo=spark-overlay
+    - uses: ./.github/actions/setup-leaf-ebuilds-job
     - uses: ./.github/actions/run-test-case
       with:
         path: ./tests/test-cases/${{ github.job }}.sh
