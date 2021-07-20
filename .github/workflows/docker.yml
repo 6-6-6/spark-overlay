@@ -42,16 +42,12 @@ jobs:
     - name: Set up Portage
       run: |
         ./.github/workflow-scripts/setup-portage.sh
-        sudo mkdir -p /var/db/repos/gentoo
-        wget -qO - "https://github.com/gentoo-mirror/gentoo/archive/master.tar.gz" | sudo tar xz -C /var/db/repos/gentoo --strip-components=1
+        ./.github/workflow-scripts/setup-master-gentoo.sh
     - name: Generate metadata cache
       run: |
-        sudo mkdir -p /var/db/repos/gentoo
-        mkdir -p /tmp/etc/portage /tmp/egencache
-        echo -e "[spark-overlay]\nlocation = ${{ github.workspace }}" > \
-                 /tmp/etc/portage/repos.conf
-        egencache --update --repo=spark-overlay --cache-dir=/tmp/egencache \
-                 --config-root=/tmp
+        echo -e "[spark-overlay]\nlocation = ${{ github.workspace }}" | \
+            sudo tee /etc/portage/repos.conf/spark-overlay.conf
+        sudo egencache --update --repo=spark-overlay
     - uses: ./.github/actions/run-test-case
       with:
         path: ./tests/test-cases/${{ github.job }}.sh
@@ -68,16 +64,12 @@ jobs:
     - name: Set up Portage
       run: |
         ./.github/workflow-scripts/setup-portage.sh
-        sudo mkdir -p /var/db/repos/gentoo
-        wget -qO - "https://github.com/gentoo-mirror/gentoo/archive/master.tar.gz" | sudo tar xz -C /var/db/repos/gentoo --strip-components=1
+        ./.github/workflow-scripts/setup-master-gentoo.sh
     - name: Generate metadata cache
       run: |
-        sudo mkdir -p /var/db/repos/gentoo
-        mkdir -p /tmp/etc/portage /tmp/egencache
-        echo -e "[spark-overlay]\nlocation = ${{ github.workspace }}" > \
-                 /tmp/etc/portage/repos.conf
-        egencache --update --repo=spark-overlay --cache-dir=/tmp/egencache \
-                 --config-root=/tmp
+        echo -e "[spark-overlay]\nlocation = ${{ github.workspace }}" | \
+            sudo tee /etc/portage/repos.conf/spark-overlay.conf
+        sudo egencache --update --repo=spark-overlay
     - uses: ./.github/actions/run-test-case
       with:
         path: ./tests/test-cases/${{ github.job }}.sh
@@ -94,16 +86,12 @@ jobs:
     - name: Set up Portage
       run: |
         ./.github/workflow-scripts/setup-portage.sh
-        sudo mkdir -p /var/db/repos/gentoo
-        wget -qO - "https://github.com/gentoo-mirror/gentoo/archive/master.tar.gz" | sudo tar xz -C /var/db/repos/gentoo --strip-components=1
+        ./.github/workflow-scripts/setup-master-gentoo.sh
     - name: Generate metadata cache
       run: |
-        sudo mkdir -p /var/db/repos/gentoo
-        mkdir -p /tmp/etc/portage /tmp/egencache
-        echo -e "[spark-overlay]\nlocation = ${{ github.workspace }}" > \
-                 /tmp/etc/portage/repos.conf
-        egencache --update --repo=spark-overlay --cache-dir=/tmp/egencache \
-                 --config-root=/tmp
+        echo -e "[spark-overlay]\nlocation = ${{ github.workspace }}" | \
+            sudo tee /etc/portage/repos.conf/spark-overlay.conf
+        sudo egencache --update --repo=spark-overlay
     - uses: ./.github/actions/run-test-case
       with:
         path: ./tests/test-cases/${{ github.job }}.sh
@@ -120,16 +108,12 @@ jobs:
     - name: Set up Portage
       run: |
         ./.github/workflow-scripts/setup-portage.sh
-        sudo mkdir -p /var/db/repos/gentoo
-        wget -qO - "https://github.com/gentoo-mirror/gentoo/archive/master.tar.gz" | sudo tar xz -C /var/db/repos/gentoo --strip-components=1
+        ./.github/workflow-scripts/setup-master-gentoo.sh
     - name: Generate metadata cache
       run: |
-        sudo mkdir -p /var/db/repos/gentoo
-        mkdir -p /tmp/etc/portage /tmp/egencache
-        echo -e "[spark-overlay]\nlocation = ${{ github.workspace }}" > \
-                 /tmp/etc/portage/repos.conf
-        egencache --update --repo=spark-overlay --cache-dir=/tmp/egencache \
-                 --config-root=/tmp
+        echo -e "[spark-overlay]\nlocation = ${{ github.workspace }}" | \
+            sudo tee /etc/portage/repos.conf/spark-overlay.conf
+        sudo egencache --update --repo=spark-overlay
     - uses: ./.github/actions/run-test-case
       with:
         path: ./tests/test-cases/${{ github.job }}.sh
