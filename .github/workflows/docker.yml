@@ -8,80 +8,39 @@ on:
   workflow_dispatch:
 
 jobs:
-  kotlin-latest:
+  kotlin:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test-case:
+          - kotlin-latest
+          - kotlin-1.4
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
-    - uses: ./.github/actions/run-test-case
-      with:
-        path: ./tests/test-cases/${{ github.job }}.sh
-
-  kotlin-1_4:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
-    - uses: ./.github/actions/run-test-case
-      with:
-        path: ./tests/test-cases/${{ github.job }}.sh
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - uses: ./.github/actions/run-test-case
+        with:
+          path: ./tests/test-cases/${{ matrix.test-case }}.sh
 
   leaf-ebuilds:
-    # Test not passing yet, only run on manual triggers
+    # Tests not passing yet, only run on manual triggers
     if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test-case:
+          - leaf-ebuilds
+          - leaf-ebuilds-test
+          - leaf-ebuilds-binary
+          - leaf-ebuilds-binary-test
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
-    - uses: ./.github/actions/setup-leaf-ebuilds-job
-    - uses: ./.github/actions/run-test-case
-      with:
-        path: ./tests/test-cases/${{ github.job }}.sh
-
-  leaf-ebuilds-test:
-    # Test not passing yet, only run on manual triggers
-    if: ${{ github.event_name == 'workflow_dispatch' }}
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
-    - uses: ./.github/actions/setup-leaf-ebuilds-job
-    - uses: ./.github/actions/run-test-case
-      with:
-        path: ./tests/test-cases/${{ github.job }}.sh
-
-  leaf-ebuilds-binary:
-    # Test not passing yet, only run on manual triggers
-    if: ${{ github.event_name == 'workflow_dispatch' }}
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
-    - uses: ./.github/actions/setup-leaf-ebuilds-job
-    - uses: ./.github/actions/run-test-case
-      with:
-        path: ./tests/test-cases/${{ github.job }}.sh
-
-  leaf-ebuilds-binary-test:
-    # Test not passing yet, only run on manual triggers
-    if: ${{ github.event_name == 'workflow_dispatch' }}
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
-    - uses: ./.github/actions/setup-leaf-ebuilds-job
-    - uses: ./.github/actions/run-test-case
-      with:
-        path: ./tests/test-cases/${{ github.job }}.sh
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - uses: ./.github/actions/setup-leaf-ebuilds-job
+      - uses: ./.github/actions/run-test-case
+        with:
+          path: ./tests/test-cases/${{ matrix.test-case }}.sh
