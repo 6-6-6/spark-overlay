@@ -16,8 +16,8 @@ LEAF_EBUILDS=$("${ELEAVES}" --algorithm rev-search spark-overlay || exit $?)
 for excluded in "${EXCLUDED_EBUILDS[@]}"; do
     LEAF_EBUILDS=${LEAF_EBUILDS//"${excluded}"}
 done
-echo -e "\nLeaf ebuilds:"
-tr '[:blank:]' '\n' <<< "${LEAF_EBUILDS}"
+echo -e "\nLeaf ebuilds to be tested:"
+sed -r '/^\s*$/d' <<< "$LEAF_EBUILDS"
 
 FAILED_EBUILDS=()
 mkdir -p /etc/portage/package.use
