@@ -1,0 +1,13 @@
+# required by media-gfx/graphviz-2.47.1-r1::gentoo
+# required by dev-lang/scala-2.12.4::gentoo[-binary]
+# required by dev-java/sbt-0.13.13::gentoo
+media-libs/gd fontconfig truetype
+
+# required by x11-libs/pango-1.48.7::gentoo
+# required by media-gfx/graphviz-2.47.1-r1::gentoo[cairo]
+# required by dev-lang/scala-2.12.4::gentoo[-binary]
+# required by dev-java/sbt-0.13.13::gentoo
+media-libs/freetype harfbuzz
+
+# Required to break circular dependency on media-libs/freetype
+media-libs/harfbuzz -cairo

@@ -9,5 +9,8 @@ run_test() {
     echo "[gentoo]" >> /etc/portage/repos.conf/gentoo.conf
     echo "location = /var/db/repos/gentoo" >> /etc/portage/repos.conf/gentoo.conf
 
+    # Rebuild pre-installed packages with required USE flag settings
+    emerge -1 media-libs/freetype
+
     /var/db/repos/spark-overlay/tests/resources/leaf-ebuilds/emerge-leaves.sh
 }
