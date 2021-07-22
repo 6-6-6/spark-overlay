@@ -8,7 +8,7 @@ PYTHON_COMPAT=( python3_6 python3_7 python3_8 )
 inherit distutils-r1
 
 DESCRIPTION="Apache Spark Python API"
-SRC_URI="mirror://pypi/45/b0/9d6860891ab14a39d4bddf80ba26ce51c2f9dc4805e5c6978ac0472c120a/pyspark-3.1.1.tar.gz"
+SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 HOMEPAGE="https://github.com/apache/spark/tree/master/python"
 
 LICENSE="Apache-2.0"
