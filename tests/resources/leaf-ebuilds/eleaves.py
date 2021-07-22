@@ -62,13 +62,20 @@ Compute and print the list of leaf ebuilds in REPO to standard output.\
         help="select the algorithm used to search leaf ebuilds; more\n"
              "info below (default: %(default)s)"
     )
+    parser.add_argument(
+        '--no-filters',
+        action='store_true',
+        help="enable the --no-filters option of portageq; enable this\n"
+             "option to include masked packages"
+    )
 
     return parser.parse_args()
 
 
-def create_ebuild_dict(repo: str) -> dict:
+def create_ebuild_dict(repo: str, no_filters: bool) -> dict:
     result = {}
-    proc = subprocess.run(f'portageq --no-filters --repo {repo}',
+    proc = subprocess.run(f'portageq {"--no-filters" if no_filters else ""} '
+                          f'--repo {repo}',
                           capture_output=True, text=True,
                           shell=True, check=True)
     ebuilds = proc.stdout.splitlines()
@@ -117,7 +124,7 @@ def main() -> None:
     opts = parse_args()
     repo = opts.repo
     algorithm = opts.algorithm
-    has_rev_dep_dict = create_ebuild_dict(repo)
+    has_rev_dep_dict = create_ebuild_dict(repo, opts.no_filters)
     with concurrent.futures.ThreadPoolExecutor(max_workers=os.cpu_count()) \
             as executor:
         for ebuild in has_rev_dep_dict:
