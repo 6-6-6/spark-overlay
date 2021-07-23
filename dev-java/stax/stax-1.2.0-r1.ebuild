@@ -19,27 +19,20 @@ LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 
-# Common dependencies
-# POM: /var/lib/java-ebuilder/poms/${P}.pom
-# stax:stax-api:1.0.1 -> >=java-virtuals/stax-api-1:0
-
-CDEPEND="
-	java-virtuals/stax-api:0
+BDEPEND="
+	app-arch/unzip
 "
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
-	!binary? ( ${CDEPEND} )
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-	${CDEPEND}"
+"
 
 S="${WORKDIR}"
 
 JAVA_ENCODING="iso-8859-1"
-JAVA_GENTOO_CLASSPATH="stax-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
