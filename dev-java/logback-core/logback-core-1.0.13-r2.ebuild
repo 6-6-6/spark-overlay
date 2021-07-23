@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -26,13 +26,13 @@ KEYWORDS="~amd64"
 # javax.servlet:servlet-api:2.5 -> java-virtuals/servlet-api:4.0
 # org.apache.geronimo.specs:geronimo-jms_1.1_spec:1.0 -> >=dev-java/geronimo-jms-1.0:1.1_spec
 # org.codehaus.janino:janino:2.6.1 -> >=dev-java/janino-2.7.0:0
-# org.fusesource.jansi:jansi:1.9 -> >=dev-java/jansi-1.11:1.11
+# org.fusesource.jansi:jansi:1.9 -> >=dev-java/jansi-1.11-r2:0
 
 CDEPEND="
 	>=dev-java/geronimo-jms-1.0:1.1_spec
 	>=dev-java/mail-1.4:0
 	>=dev-java/janino-2.7.0:0
-	>=dev-java/jansi-1.11:1.11
+	>=dev-java/jansi-1.11-r2:0
 	java-virtuals/servlet-api:4.0
 "
 
@@ -48,6 +48,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="mail,servlet-api-4.0,geronimo-jms-1.1_spec,janino,jansi-1.11"
+JAVA_GENTOO_CLASSPATH="mail,servlet-api-4.0,geronimo-jms-1.1_spec,janino,jansi"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
