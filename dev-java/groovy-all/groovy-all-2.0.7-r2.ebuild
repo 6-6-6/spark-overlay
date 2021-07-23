@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -30,7 +30,7 @@ KEYWORDS="~amd64"
 # junit:junit:4.10 -> >=dev-java/junit-4.12:4
 # org.apache.ant:ant:1.8.4 -> >=dev-java/ant-core-1.10.7:0
 # org.apache.ivy:ivy:2.2.0 -> >=dev-java/ant-ivy-2.3.0:2
-# org.fusesource.jansi:jansi:1.6 -> >=dev-java/jansi-1.11:1.11
+# org.fusesource.jansi:jansi:1.6 -> >=dev-java/jansi-1.11-r2:0
 
 CDEPEND="
 	>=dev-java/xstream-1.4.2:0
@@ -38,7 +38,7 @@ CDEPEND="
 	>=dev-java/ant-ivy-2.3.0:2
 	>=dev-java/bsf-2.4.0:2.3
 	>=dev-java/commons-logging-1.2:0
-	>=dev-java/jansi-1.11:1.11
+	>=dev-java/jansi-1.11-r2:0
 	>=dev-java/jline-2.12.1:2
 	>=dev-java/junit-4.12:4
 	>=dev-java/qdox-1.12.1:1.12
@@ -82,7 +82,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="bsf-2.3,qdox-1.12,xstream,commons-logging,jline-2,junit-4,ant-core,ant-ivy-2,jansi-1.11,ant-antlr,ant-junit,ant-launcher,gpars,testng"
+JAVA_GENTOO_CLASSPATH="bsf-2.3,qdox-1.12,xstream,commons-logging,jline-2,junit-4,ant-core,ant-ivy-2,jansi,ant-antlr,ant-junit,ant-launcher,gpars,testng"
 JAVA_CLASSPATH_EXTRA="jsp-api-2.3,servlet-api-4.0"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
