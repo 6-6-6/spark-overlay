@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,7 +12,7 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers and clients."
+DESCRIPTION="Asynchronous event-driven network application framework"
 HOMEPAGE="https://netty.io/netty-codec/"
 SRC_URI="https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar"
@@ -25,7 +25,7 @@ KEYWORDS="~amd64"
 # com.github.jponge:lzma-java:1.3 -> >=dev-java/lzma-java-1.3:0
 # com.google.protobuf:protobuf-java:2.6.1 -> >=dev-java/protobuf-java-3.11.4:0
 # com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-5 -> >=dev-java/protobuf-javanano-3.0.0_alpha5:0
-# com.jcraft:jzlib:1.1.3 -> >=dev-java/jzlib-1.1.3:1.1.3
+# com.jcraft:jzlib:1.1.3 -> >=dev-java/jzlib-1.1.3-r2:0
 # com.ning:compress-lzf:1.0.3 -> >=dev-java/compress-lzf-1.0.3:0
 # io.netty:netty-buffer:4.1.42.Final -> >=dev-java/netty-buffer-4.1.42:0
 # io.netty:netty-common:4.1.42.Final -> >=dev-java/netty-common-4.1.42:0
@@ -37,7 +37,7 @@ CDEPEND="
 	>=dev-java/protobuf-javanano-3.0.0_alpha5:0
 	>=dev-java/compress-lzf-1.0.3:0
 	>=dev-java/jboss-marshalling-1.4.11:0
-	>=dev-java/jzlib-1.1.3:1.1.3
+	>=dev-java/jzlib-1.1.3-r2:0
 	>=dev-java/lz4-java-1.3.0:0
 	>=dev-java/lzma-java-1.3:0
 	>=dev-java/netty-buffer-4.1.42:0
@@ -58,6 +58,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="lzma-java,protobuf-java,protobuf-javanano,jzlib-1.1.3,compress-lzf,netty-buffer,netty-common,netty-transport,lz4-java,jboss-marshalling"
+JAVA_GENTOO_CLASSPATH="lzma-java,protobuf-java,protobuf-javanano,jzlib,compress-lzf,netty-buffer,netty-common,netty-transport,lz4-java,jboss-marshalling"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
