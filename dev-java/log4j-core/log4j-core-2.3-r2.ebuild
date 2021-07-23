@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -31,7 +31,7 @@ KEYWORDS="~amd64"
 # org.apache.logging.log4j:log4j-api:2.3 -> >=dev-java/log4j-api-2.3:0
 # org.codehaus.woodstox:woodstox-core-asl:4.3.0 -> >=dev-java/woodstox-core-asl-4.3.0:0
 # org.eclipse.persistence:javax.persistence:2.1.0 -> >=dev-java/javax-persistence-2.1.0:0
-# org.fusesource.jansi:jansi:1.11 -> >=dev-java/jansi-1.11:1.11
+# org.fusesource.jansi:jansi:1.11 -> >=dev-java/jansi-1.11-r2:0
 
 CDEPEND="
 	>=dev-java/jackson-databind-2.10.0:0
@@ -43,7 +43,7 @@ CDEPEND="
 	>=dev-java/woodstox-core-asl-4.3.0:0
 	>=dev-java/disruptor-3.4.2:0
 	>=dev-java/jackson-2.9.10:2
-	>=dev-java/jansi-1.11:1.11
+	>=dev-java/jansi-1.11-r2:0
 "
 
 # Compile dependencies
@@ -67,7 +67,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-2,jackson-databind,jackson-dataformat-xml,jackson-dataformat-yaml,disruptor,javax-mail,log4j-api,woodstox-core-asl,javax-persistence,jansi-1.11"
+JAVA_GENTOO_CLASSPATH="jackson-2,jackson-databind,jackson-dataformat-xml,jackson-dataformat-yaml,disruptor,javax-mail,log4j-api,woodstox-core-asl,javax-persistence,jansi"
 JAVA_CLASSPATH_EXTRA="jboss-jms-api-1.1_spec,osgi-core-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
