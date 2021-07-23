@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,7 +12,7 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="XStream is a serialization library from Java objects to XML and back."
+DESCRIPTION="XStream is a serialization library from Java objects to XML and back"
 HOMEPAGE="http://codehaus.org/xstream-parent/xstream/"
 SRC_URI="https://repo1.maven.org/maven2/com/thoughtworks/${PN}/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/thoughtworks/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
@@ -33,7 +33,6 @@ KEYWORDS="~amd64"
 # org.jdom:jdom2:2.0.5 -> >=dev-java/jdom-2.0.6:2
 # org.json:json:20080701 -> >=dev-java/json-20150729:0
 # stax:stax:1.2.0 -> >=dev-java/stax-1.2.0:0
-# stax:stax-api:1.0.1 -> java-virtuals/stax-api:0
 # xmlpull:xmlpull:1.1.3.1 -> >=dev-java/xmlpull-1.1.3.1:0
 # xom:xom:1.1 -> >=dev-java/xom-1.2.10:0
 # xpp3:xpp3_min:1.1.4c -> >=dev-java/xpp3-1.1.4c:0
@@ -52,7 +51,6 @@ CDEPEND="
 	>=dev-java/wstx-3.2.9:3.2
 	>=dev-java/xom-1.2.10:0
 	>=dev-java/xpp3-1.1.4c:0
-	java-virtuals/stax-api:0
 "
 
 DEPEND="
@@ -67,6 +65,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="cglib-3,dom4j-1,joda-time,kxml-2,kxml-2,jettison,wstx-3.2,jdom,jdom-2,json,stax,stax-api,xmlpull,xom,xpp3"
+JAVA_GENTOO_CLASSPATH="cglib-3,dom4j-1,joda-time,kxml-2,kxml-2,jettison,wstx-3.2,jdom,jdom-2,json,stax,xmlpull,xom,xpp3"
 JAVA_SRC_DIR="src/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
