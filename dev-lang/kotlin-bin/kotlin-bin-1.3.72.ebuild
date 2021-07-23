@@ -8,14 +8,16 @@ HOMEPAGE="https://kotlinlang.org/"
 SRC_URI="https://github.com/JetBrains/kotlin/releases/download/v${PV}/kotlin-compiler-${PV}.zip"
 
 LICENSE="Apache-2.0 BSD MIT NPL-1.1"
-SLOT="0"
+SLOT="$(ver_cut 1-2)"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="app-arch/unzip"
 RDEPEND="app-shells/bash
 	>=virtual/jdk-1.8
-	>=virtual/jre-1.8"
+	>=virtual/jre-1.8
+	app-eselect/eselect-kotlin
+"
 
 S="${WORKDIR}/kotlinc"
 
@@ -24,10 +26,29 @@ src_install() {
 	dodoc license/NOTICE.txt
 	rm -r license || die
 
-	insinto "/opt/${PN}"
+	insinto "/opt/${PN}-${SLOT}"
 	doins -r *
 	for i in bin/*; do
 		fperms +x "/opt/${PN}/$i"
-		dosym "${EROOT}/opt/${PN}/$i" "/usr/bin/${i//*\/}"
+		# Install versioned executables
+		dosym "${EPREFIX}/usr/libexec/eselect-kotlin/run-kotlin-tool.sh" \
+			"/usr/bin/${i//*\/}${SLOT}"
 	done
+
+	# Create and install Kotlin compiler package description file
+	local pkg_desc="${T}/${PN}-${SLOT}"
+	cat <<- _EOF_ > "${pkg_desc}" || \
+		die "Failed to create Kotlin compiler package description file"
+		GENTOO_KOTLIN_HOME="${EPREFIX}/${kotlin_home}"
+		_EOF_
+	insinto "/usr/share/eselect-kotlin/pkgs/${SLOT}"
+	doins "${pkg_desc}"
+}
+
+pkg_postinst() {
+	eselect kotlin update
+}
+
+pkg_postrm() {
+	eselect kotlin cleanup
 }

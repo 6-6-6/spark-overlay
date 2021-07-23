@@ -15,7 +15,7 @@ SRC_URI="
 "
 
 LICENSE="Apache-2.0 BSD MIT NPL-1.1"
-SLOT="0"
+SLOT="$(ver_cut 1-2)"
 KEYWORDS="~amd64"
 IUSE="test"
 RESTRICT="!test? ( test )"
@@ -28,6 +28,7 @@ RDEPEND="
 	dev-java/jetbrains-annotations:${JB_ANNOTATIONS_SLOT}
 	dev-java/jetbrains-trove:0
 	>=virtual/jdk-1.8:*
+	app-eselect/eselect-kotlin
 "
 BDEPEND="
 	app-arch/unzip
@@ -176,19 +177,34 @@ src_test() {
 }
 
 src_install() {
-	local kotlin_home="/opt/${PN}"
+	local kotlin_home="/opt/${PN}-${SLOT}"
 
 	into "${kotlin_home}"
 	for exe in "${KOTLINC_BIN_TMP}"/*; do
 		dobin "${exe}"
 		local basename=$(basename "${exe}" || die)
-		dosym "../../${kotlin_home}/bin/${basename}" "/usr/bin/${basename}"
+		# Install versioned executables
+		dosym "${EPREFIX}/usr/libexec/eselect-kotlin/run-kotlin-tool.sh" \
+			"/usr/bin/${basename}${SLOT}"
 	done
 
 	insinto "${kotlin_home}/lib"
 	doins "${KOTLINC_LIB_TMP}"/*
 
 	dodoc -r license/*
+
+	# build.txt required for 'kotlin -version'
+	insinto "${kotlin_home}"
+	doins build.txt
+
+	# Create and install Kotlin compiler package description file
+	local pkg_desc="${T}/${PN}-${SLOT}"
+	cat <<- _EOF_ > "${pkg_desc}" || \
+		die "Failed to create Kotlin compiler package description file"
+		GENTOO_KOTLIN_HOME="${EPREFIX}/${kotlin_home}"
+		_EOF_
+	insinto "/usr/share/eselect-kotlin/pkgs/${SLOT}"
+	doins "${pkg_desc}"
 }
 
 get_kotlin_lib_atom_slot() {
@@ -196,6 +212,8 @@ get_kotlin_lib_atom_slot() {
 }
 
 pkg_postinst() {
+	eselect kotlin update
+
 	local kotlin_lib_PN="kotlin-common-bin"
 	local kotlin_lib_pkg="dev-java/${kotlin_lib_PN}"
 	local kotlin_lib_ver=$(best_version "${kotlin_lib_pkg}:${KOTLIN_LIB_SLOT}")
@@ -234,4 +252,8 @@ pkg_postinst() {
 		elog "		-api-version ${older_slot} \\"
 		elog "		-no-stdlib"
 	fi
+}
+
+pkg_postrm() {
+	eselect kotlin cleanup
 }

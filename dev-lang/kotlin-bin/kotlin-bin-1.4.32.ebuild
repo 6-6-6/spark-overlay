@@ -26,9 +26,8 @@ RDEPEND="
 	dev-java/jetbrains-annotations:${JB_ANNOTATIONS_SLOT}
 	dev-java/jetbrains-trove:0
 	>=virtual/jdk-1.8:*
+	app-eselect/eselect-kotlin
 	javascript? ( ~dev-java/kotlin-stdlib-js-${PV}:${SLOT} )
-	!dev-lang/kotlin-bin:0
-	!dev-lang/kotlin-bin:1.5
 "
 BDEPEND="
 	app-arch/unzip
@@ -113,13 +112,15 @@ src_prepare() {
 }
 
 src_install() {
-	local kotlin_home="/opt/${PN}"
+	local kotlin_home="/opt/${PN}-${SLOT}"
 
 	into "${kotlin_home}"
 	for exe in "${KOTLINC_BIN_TMP}"/*; do
 		dobin "${exe}"
 		local basename=$(basename "${exe}" || die)
-		dosym "../../${kotlin_home}/bin/${basename}" "/usr/bin/${basename}"
+		# Install versioned executables
+		dosym "${EPREFIX}/usr/libexec/eselect-kotlin/run-kotlin-tool.sh" \
+			"/usr/bin/${basename}${SLOT}"
 	done
 
 	local exported_libs="${KOTLINC_EXPORTED_LIBS[@]/#/${KOTLINC_LIB_TMP}/}"
@@ -135,4 +136,25 @@ src_install() {
 	doins "${KOTLINC_LIB_TMP}"/*
 
 	dodoc -r license/*
+
+	# build.txt required for 'kotlin -version'
+	insinto "${kotlin_home}"
+	doins build.txt
+
+	# Create and install Kotlin compiler package description file
+	local pkg_desc="${T}/${PN}-${SLOT}"
+	cat <<- _EOF_ > "${pkg_desc}" || \
+		die "Failed to create Kotlin compiler package description file"
+		GENTOO_KOTLIN_HOME="${EPREFIX}/${kotlin_home}"
+		_EOF_
+	insinto "/usr/share/eselect-kotlin/pkgs/${SLOT}"
+	doins "${pkg_desc}"
+}
+
+pkg_postinst() {
+	eselect kotlin update
+}
+
+pkg_postrm() {
+	eselect kotlin cleanup
 }
