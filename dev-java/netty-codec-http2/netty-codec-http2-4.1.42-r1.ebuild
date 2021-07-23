@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,7 +12,7 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers and clients."
+DESCRIPTION="Asynchronous event-driven network application framework"
 HOMEPAGE="https://netty.io/netty-codec-http2/"
 SRC_URI="https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar"
@@ -22,7 +22,7 @@ KEYWORDS="~amd64"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Final.pom
-# com.jcraft:jzlib:1.1.3 -> >=dev-java/jzlib-1.1.3:1.1.3
+# com.jcraft:jzlib:1.1.3 -> >=dev-java/jzlib-1.1.3-r2:0
 # io.netty:netty-buffer:4.1.42.Final -> >=dev-java/netty-buffer-4.1.42:0
 # io.netty:netty-codec:4.1.42.Final -> >=dev-java/netty-codec-4.1.42:0
 # io.netty:netty-codec-http:4.1.42.Final -> >=dev-java/netty-codec-http-4.1.42:0
@@ -31,7 +31,7 @@ KEYWORDS="~amd64"
 # io.netty:netty-transport:4.1.42.Final -> >=dev-java/netty-transport-4.1.42:0
 
 CDEPEND="
-	>=dev-java/jzlib-1.1.3:1.1.3
+	>=dev-java/jzlib-1.1.3-r2:0
 	>=dev-java/netty-buffer-4.1.42:0
 	>=dev-java/netty-codec-4.1.42:0
 	>=dev-java/netty-codec-http-4.1.42:0
@@ -52,6 +52,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jzlib-1.1.3,netty-buffer,netty-codec,netty-codec-http,netty-common,netty-handler,netty-transport"
+JAVA_GENTOO_CLASSPATH="jzlib,netty-buffer,netty-codec,netty-codec-http,netty-common,netty-handler,netty-transport"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
