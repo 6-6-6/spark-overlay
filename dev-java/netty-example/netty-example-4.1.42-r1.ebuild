@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,7 +12,7 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers and clients."
+DESCRIPTION="Asynchronous event-driven network application framework"
 HOMEPAGE="https://netty.io/netty-example/"
 SRC_URI="https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar"
@@ -88,22 +88,20 @@ DEPEND="
 # Runtime dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Final.pom
 # ch.qos.logback:logback-classic:1.1.7 -> >=dev-java/logback-classic-1.2.3:0
-# com.jcraft:jzlib:1.1.3 -> >=dev-java/jzlib-1.1.3:1.1.3
+# com.jcraft:jzlib:1.1.3 -> >=dev-java/jzlib-1.1.3-r2:0
 # org.javassist:javassist:3.20.0-GA -> >=dev-java/javassist-3.21.0:3
 
 RDEPEND="
 	>=virtual/jre-1.8:*
 	${CDEPEND}
 	>=dev-java/javassist-3.21.0:3
-
-	>=dev-java/jzlib-1.1.3:1.1.3
-
+	>=dev-java/jzlib-1.1.3-r2:0
 	>=dev-java/logback-classic-1.2.3:0
 "
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="protobuf-java,javax-activation,metrics-core,netty-buffer,netty-codec,netty-codec-http,netty-codec-http2,netty-codec-memcache,netty-codec-mqtt,netty-codec-redis,netty-codec-socks,netty-codec-stomp,netty-common,netty-handler,netty-handler-proxy,netty-tcnative,netty-transport,netty-transport-rxtx,netty-transport-sctp,netty-transport-udt,bcpkix-jdk15on,bcprov-1.54,conscrypt-openjdk-uber,logback-classic,jzlib-1.1.3,javassist-3"
+JAVA_GENTOO_CLASSPATH="protobuf-java,javax-activation,metrics-core,netty-buffer,netty-codec,netty-codec-http,netty-codec-http2,netty-codec-memcache,netty-codec-mqtt,netty-codec-redis,netty-codec-socks,netty-codec-stomp,netty-common,netty-handler,netty-handler-proxy,netty-tcnative,netty-transport,netty-transport-rxtx,netty-transport-sctp,netty-transport-udt,bcpkix-jdk15on,bcprov-1.54,conscrypt-openjdk-uber,logback-classic,jzlib,javassist-3"
 JAVA_CLASSPATH_EXTRA="jetty-npn-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
