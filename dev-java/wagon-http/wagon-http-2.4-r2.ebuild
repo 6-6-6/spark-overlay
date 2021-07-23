@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -22,21 +22,24 @@ KEYWORDS="~amd64"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.apache.httpcomponents:httpclient:4.2.3 -> >=dev-java/httpcomponents-client-4.5:4.5
-# org.apache.httpcomponents:httpcore:4.2.3 -> >=dev-java/httpcomponents-core-4.4.1:4.4
+# org.apache.httpcomponents:httpclient:4.2.3 -> >=dev-java/commons-httpclient-4.5:4
+# org.apache.httpcomponents:httpcore:4.2.3 -> >=dev-java/httpcore-4.4.1:0
 # org.apache.maven.wagon:wagon-http-shared4:2.4 -> >=dev-java/wagon-http-shared4-2.4:0
 # org.apache.maven.wagon:wagon-provider-api:2.4 -> >=dev-java/wagon-provider-api-2.4:0
 
 CDEPEND="
 	>=dev-java/wagon-http-shared4-2.4:0
 	>=dev-java/wagon-provider-api-2.4:0
-	>=dev-java/httpcomponents-client-4.5:4.5
-	>=dev-java/httpcomponents-core-4.4.1:4.4
+	>=dev-java/commons-httpclient-4.5:4
+	>=dev-java/httpcore-4.4.1:0
+"
+
+BDEPEND="
+	app-arch/unzip
 "
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? ( ${CDEPEND} )
 "
 
@@ -46,6 +49,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="httpcomponents-client-4.5,httpcomponents-core-4.4,wagon-http-shared4,wagon-provider-api"
+JAVA_GENTOO_CLASSPATH="commons-httpclient-4,httpcore,wagon-http-shared4,wagon-provider-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
