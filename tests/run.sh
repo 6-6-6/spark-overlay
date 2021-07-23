@@ -3,7 +3,7 @@
 main() {
     for script in "$@"; do
         unset DOCKER_IMAGE PROFILE GENTOO_REPO THREADS EMERGE_OPTS PULL
-        unset STORAGE_OPTS PORTAGE_CONFIGS CUSTOM_REPOS
+        unset STORAGE_OPTS PORTAGE_CONFIGS CUSTOM_REPOS SKIP_CLEANUP
 
         . "${script}"
 
@@ -18,6 +18,7 @@ main() {
             ${EMERGE_OPTS:+--emerge-opts "${EMERGE_OPTS}"}
             ${PULL:+--pull}
             ${STORAGE_OPTS:+--storage-opts ${STORAGE_OPTS}}
+            ${SKIP_CLEANUP:+--skip-cleanup ${SKIP_CLEANUP}}
         )
         for config in "${PORTAGE_CONFIGS[@]}"; do
             args+=( --portage-config "${config}" )
