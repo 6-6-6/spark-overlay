@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,7 +12,7 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Shared Library for the wagon-http, and wagon-http-lightweight wagon providers based on httpclient-4.x."
+DESCRIPTION="Shared Library for the wagon-http and wagon-http-lightweight wagon providers"
 HOMEPAGE="http://maven.apache.org/wagon/wagon-providers/wagon-http-shared4"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/maven/wagon/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/maven/wagon/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
@@ -24,8 +24,8 @@ KEYWORDS="~amd64"
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # commons-io:commons-io:2.0.1 -> >=dev-java/commons-io-2.4:1
 # commons-logging:commons-logging:1.1.1 -> >=dev-java/commons-logging-1.2:0
-# org.apache.httpcomponents:httpclient:4.2.3 -> >=dev-java/httpcomponents-client-4.5:4.5
-# org.apache.httpcomponents:httpcore:4.2.3 -> >=dev-java/httpcomponents-core-4.4.1:4.4
+# org.apache.httpcomponents:httpclient:4.2.3 -> >=dev-java/commons-httpclient-4.5:4
+# org.apache.httpcomponents:httpcore:4.2.3 -> >=dev-java/httpcore-4.4.1:0
 # org.apache.maven.wagon:wagon-provider-api:2.4 -> >=dev-java/wagon-provider-api-2.4:0
 # org.jsoup:jsoup:1.7.1 -> >=dev-java/jsoup-1.8.3:0
 
@@ -33,8 +33,8 @@ CDEPEND="
 	>=dev-java/wagon-provider-api-2.4:0
 	>=dev-java/commons-io-2.4:1
 	>=dev-java/commons-logging-1.2:0
-	>=dev-java/httpcomponents-client-4.5:4.5
-	>=dev-java/httpcomponents-core-4.4.1:4.4
+	>=dev-java/commons-httpclient-4.5:4
+	>=dev-java/httpcore-4.4.1:0
 	>=dev-java/jsoup-1.8.3:0
 "
 
@@ -50,6 +50,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="commons-io-1,commons-logging,httpcomponents-client-4.5,httpcomponents-core-4.4,wagon-provider-api,jsoup"
+JAVA_GENTOO_CLASSPATH="commons-io-1,commons-logging,commons-httpclient-4,httpcore,wagon-provider-api,jsoup"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
