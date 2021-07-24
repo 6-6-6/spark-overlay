@@ -114,10 +114,9 @@ src_unpack() {
 		)
 		rm -r "${rm_dirs[@]}" || die "Failed to remove extraneous classes"
 
-		local target="${S}/target"
-		mkdir -p "${target}" || \
+		mkdir -p "${S}/${KOTLIN_UTILS_CLASSES}" || \
 			die "Failed to create target directory for compiler output"
-		mv kotlin META-INF "${target}" || \
+		mv kotlin META-INF "${S}/${KOTLIN_UTILS_CLASSES}" || \
 			die "Failed to move core components to target directory"
 	fi
 }
