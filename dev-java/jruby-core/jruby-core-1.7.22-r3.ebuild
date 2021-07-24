@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -8,14 +8,12 @@ EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.jruby:jruby-core:1.7.22"
-JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
-inherit java-pkg-2 java-pkg-simple java-pkg-maven
+inherit java-pkg-2 java-pkg-binjar
 
-DESCRIPTION="JRuby is the effort to recreate the Ruby (http://www.ruby-lang.org) interpreter in Java."
+DESCRIPTION="The effort to recreate the Ruby interpreter in Java"
 HOMEPAGE="https://github.com/jruby/jruby/jruby-core"
-SRC_URI="https://repo1.maven.org/maven2/org/jruby/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/org/jruby/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+SRC_URI="https://repo1.maven.org/maven2/org/jruby/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="LGPL-3 GPL-3 EPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -33,7 +31,7 @@ KEYWORDS="~amd64"
 # com.github.jnr:jnr-x86asm:1.0.2 -> >=dev-java/jnr-x86asm-1.0.2:1.0
 # com.headius:invokebinder:1.2 -> >=dev-java/invokebinder-1.6:0
 # com.headius:options:1.2 -> >=dev-java/headius-options-1.4:0
-# com.jcraft:jzlib:1.1.3 -> >=dev-java/jzlib-1.1.3:1.1.3
+# com.jcraft:jzlib:1.1.3 -> >=dev-java/jzlib-1.1.3-r2:0
 # com.martiansoftware:nailgun-server:0.9.1 -> >=dev-java/nailgun-server-0.9.1:0
 # joda-time:joda-time:2.5 -> >=dev-java/joda-time-2.7:0
 # org.jruby:yecht:1.0 -> >=dev-java/yecht-1.0:0
@@ -64,7 +62,7 @@ CDEPEND="
 	>=dev-java/jnr-x86asm-1.0.2:1.0
 	>=dev-java/joda-time-2.7:0
 	>=dev-java/joni-2.1.3:2.1
-	>=dev-java/jzlib-1.1.3:1.1.3
+	>=dev-java/jzlib-1.1.3-r2:0
 	>=dev-java/snakeyaml-1.16:0
 "
 
@@ -101,7 +99,7 @@ S="${WORKDIR}"
 
 JAVA_ENCODING="utf-8"
 
-JAVA_GENTOO_CLASSPATH="jffi-1.2,jffi-1.2,jnr-constants,jnr-enxio,jnr-ffi,jnr-netdb-1.0,jnr-posix,jnr-unixsocket,jnr-x86asm-1.0,invokebinder,headius-options,jzlib-1.1.3,nailgun-server,joda-time,yecht,bytelist,jcodings,joni-2.1,asm-4,snakeyaml"
+JAVA_GENTOO_CLASSPATH="jffi-1.2,jffi-1.2,jnr-constants,jnr-enxio,jnr-ffi,jnr-netdb-1.0,jnr-posix,jnr-unixsocket,jnr-x86asm-1.0,invokebinder,headius-options,jzlib,nailgun-server,joda-time,yecht,bytelist,jcodings,joni-2.1,asm-4,snakeyaml"
 JAVA_CLASSPATH_EXTRA="bsf-2.3,coro-mock,jsr292-mock,unsafe-mock,ant-core,joda-timezones,osgi-core-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
