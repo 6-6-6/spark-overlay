@@ -1,7 +1,7 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
 JAVA_PKG_IUSE="doc source test"
 MAVEN_ID="org.jruby.extras:bytelist:1.0.15"
@@ -19,10 +19,10 @@ KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-solaris"
 COMMON_DEP="dev-java/jcodings:0"
 
 RDEPEND="${COMMON_DEP}
-	>=virtual/jre-1.8"
+	>=virtual/jre-1.8:*"
 
 DEPEND="${COMMON_DEP}
-	>=virtual/jdk-1.8
+	>=virtual/jdk-1.8:*
 	test? ( dev-java/ant-junit:0 )"
 
 src_unpack() {
@@ -30,7 +30,8 @@ src_unpack() {
 	mv "${WORKDIR}"/${PN}-${PN}-* "${WORKDIR}"/${P} || die
 }
 
-java_prepare() {
+src_prepare() {
+	default
 	cp "${FILESDIR}"/maven-build.xml build.xml || die
 }
 
