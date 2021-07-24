@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PORTAGE_CONFIGS=( tests/portage-config/kotlin )
+PORTAGE_CONFIGS=( tests/portage-configs/kotlin )
 
 run_test() {
     USE="binary" emerge -1 \

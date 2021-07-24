@@ -10,7 +10,7 @@ main() {
         args=(
             ebuild-cmder
             --docker-image "${DOCKER_IMAGE:-ghcr.io/leo3418/gentoo-stage3-amd64-java}"
-            --portage-config tests/portage-config/default
+            --portage-config tests/portage-configs/default
             --custom-repo .
             ${PROFILE:+--profile ${PROFILE}}
             ${GENTOO_REPO:+--gentoo-repo ${GENTOO_REPO}}
