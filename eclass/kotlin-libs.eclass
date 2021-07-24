@@ -18,7 +18,7 @@ case "${EAPI:-0}" in
 	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
 esac
 
-EXPORT_FUNCTIONS src_unpack src_compile src_test src_install
+EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install
 
 # Allow use of EAPI 7 version manipulators in older EAPIs for both this eclass
 # and consumer ebuilds
@@ -213,7 +213,7 @@ if [[ -n "${KOTLIN_LIBS_TESTING_FRAMEWORKS}" ]]; then
 	fi
 fi
 
-inherit java-pkg-2 java-pkg-simple
+inherit kotlin-utils
 
 : ${DESCRIPTION:="Kotlin library component ${PN}"}
 : ${HOMEPAGE:="https://kotlinlang.org"}
@@ -252,21 +252,43 @@ REQUIRED_USE="
 DEPEND=">=virtual/jdk-1.8:*"
 RDEPEND=">=virtual/jre-1.8:*"
 
-_KOTLIN_LIBS_KOTLINC_DEPEND="
-	>=dev-lang/kotlin-bin-${KOTLIN_LIBS_KOTLINC_MIN_VER}
-"
+case "${_KOTLIN_LIBS_FEATURE_RELEASE_FROM_PV}" in
+	1.4) KOTLIN_VERSIONS=( 1.4 1.5 ) ;;
+	1.5) KOTLIN_VERSIONS=( 1.5 ) ;;
+esac
+
+if [[ "${KOTLIN_VERSIONS}" == ">="* ]]; then
+	_KOTLIN_LIBS_DEPEND=">=virtual/kotlin-${KOTLIN_VERSIONS/>=}:*${KOTLIN_UTILS_REQ_USE}"
+else
+	_KOTLIN_LIBS_DEPEND="|| ("
+	for slot in "${KOTLIN_VERSIONS[@]}"; do
+		_KOTLIN_LIBS_DEPEND+=" virtual/kotlin:${slot}${KOTLIN_UTILS_REQ_USE} "
+	done
+	_KOTLIN_LIBS_DEPEND+=")"
+fi
 if has binary ${JAVA_PKG_IUSE}; then
 	# Depend on the compiler only when building from source
-	DEPEND+=" !binary? ( ${_KOTLIN_LIBS_KOTLINC_DEPEND} )"
+	DEPEND+=" !binary? ( ${_KOTLIN_LIBS_DEPEND} )"
 	if has junit-4 ${JAVA_TESTING_FRAMEWORKS}; then
-		DEPEND+=" test? ( ${_KOTLIN_LIBS_KOTLINC_DEPEND} )"
+		DEPEND+=" test? ( ${_KOTLIN_LIBS_DEPEND} )"
 	fi
 else
 	# No option to use pre-built binary; always depend on the compiler
-	DEPEND+=" ${_KOTLIN_LIBS_KOTLINC_DEPEND}"
+	DEPEND+=" ${_KOTLIN_LIBS_DEPEND}"
 fi
+unset _KOTLIN_LIBS_DEPEND
 
 S="${WORKDIR}/kotlin-${PV}"
+
+# @FUNCTION: kotlin-libs_pkg_setup
+# @DESCRIPTION:
+# Selects the Kotlin compiler to be used for building this package.
+kotlin-libs_pkg_setup() {
+	java-pkg-2_pkg_setup
+	if ! has binary ${JAVA_PKG_IUSE} || ! use binary; then
+		kotlin-utils_pkg_setup
+	fi
+}
 
 # @FUNCTION: kotlin-libs_src_unpack
 # @DESCRIPTION:
@@ -286,54 +308,6 @@ kotlin-libs_src_unpack() {
 	done
 
 	mkdir -p "${S}" || die "Failed to create \${S}"
-}
-
-# @FUNCTION: kotlin-libs_kotlinc
-# @USAGE: <kotlinc_arguments>
-# @DESCRIPTION:
-# Invokes the Kotlin compiler with arguments specified by the above internal
-# variables, followed by <kotlinc_arguments>.
-kotlin-libs_kotlinc() {
-	debug-print-function ${FUNCNAME} "$@"
-
-	local compiler_executable
-	compiler_executable="kotlinc"
-
-	# Prepare arguments whose values should be separated by comma
-	local OLD_IFS="${IFS}"
-	if [[ -n "${KOTLIN_LIBS_COMMON_SOURCES_DIR}" ]]; then
-		local common_sources_files=(
-			$(find "${KOTLIN_LIBS_COMMON_SOURCES_DIR[@]}" -name "*.kt")
-		)
-		IFS=','
-		local common_sources="-Xcommon-sources=${common_sources_files[*]}"
-	fi
-	IFS=','
-	local java_source_roots="${KOTLIN_LIBS_JAVA_SOURCE_ROOTS:+-Xjava-source-roots=${KOTLIN_LIBS_JAVA_SOURCE_ROOTS[*]}}"
-	IFS="${OLD_IFS}"
-
-	local compiler_command_args=(
-		"${compiler_executable}"
-		"${KOTLIN_LIBS_WANT_TARGET:+-api-version ${KOTLIN_LIBS_WANT_TARGET}}"
-		"${KOTLIN_LIBS_WANT_TARGET:+-language-version ${KOTLIN_LIBS_WANT_TARGET}}"
-		"${KOTLIN_LIBS_MODULE_NAME:+-module-name ${KOTLIN_LIBS_MODULE_NAME}}"
-		"${common_sources}"
-		"${java_source_roots}"
-		"${KOTLIN_LIBS_KOTLINC_ARGS[@]}"
-		"$@"
-	)
-	local compiler_command="${compiler_command_args[@]}"
-
-	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
-		einfo "Verbose logging for \"${FUNCNAME}\" function"
-		einfo "JAVA_OPTS: ${KOTLIN_LIBS_KOTLINC_JAVA_OPTS}"
-		einfo "Compiler arguments:"
-		einfo "${compiler_command}"
-	fi
-
-	ebegin "Compiling"
-	JAVA_OPTS="${KOTLIN_LIBS_KOTLINC_JAVA_OPTS}" ${compiler_command} || \
-		die "${FUNCNAME} failed"
 }
 
 # @FUNCTION: kotlin-libs_create_manifest
@@ -366,11 +340,8 @@ kotlin-libs_create_manifest() {
 # enabled, nothing will be compiled and the binary JAR ${JAVA_BINJAR_FILENAME}
 # will be used directly.
 kotlin-libs_src_compile() {
-	local target="target"
-
-	java-pkg_gen-cp JAVA_GENTOO_CLASSPATH
-
 	if has binary ${JAVA_PKG_IUSE} && use binary; then
+		java-pkg_gen-cp JAVA_GENTOO_CLASSPATH
 		for dependency in ${JAVA_GENTOO_CLASSPATH//,/ }; do
 			java-pkg_record-jar_ "${dependency}"
 		done
@@ -380,49 +351,26 @@ kotlin-libs_src_compile() {
 		return 0
 	fi
 
-	# Create the target directory
-	mkdir -p "${target}" || die "Could not create target directory"
+	# Translate this eclass's variables to kotlin-util.eclass's variables;
+	# remove after all consumer ebuilds are updated for the new eclass
+	KOTLIN_SRC_DIR=( "${KOTLIN_LIBS_SRC_DIR[@]}" )
+	KOTLIN_MODULE_NAME="${KOTLIN_LIBS_MODULE_NAME}"
+	KOTLIN_COMMON_SOURCES_DIR=( "${KOTLIN_LIBS_COMMON_SOURCES_DIR[@]}" )
+	KOTLIN_KOTLINC_ARGS=( "${KOTLIN_LIBS_KOTLINC_ARGS[@]}" )
+	KOTLIN_KOTLINC_JAVA_OPTS="${KOTLIN_LIBS_KOTLINC_JAVA_OPTS}"
+	KOTLIN_JAVA_SOURCE_ROOTS=( "${KOTLIN_LIBS_JAVA_SOURCE_ROOTS[@]}" )
+	KOTLIN_JAVA_WANT_SOURCE_TARGET="${KOTLIN_LIBS_JAVA_WANT_SOURCE_TARGET}"
+	KOTLIN_JAVAC_ARGS=( "${KOTLIN_LIBS_JAVAC_ARGS[@]}" )
+	KOTLIN_WANT_TARGET="${KOTLIN_LIBS_WANT_TARGET}"
 
-	# Compute classpath
-	local classpath=""
-	java-pkg-simple_getclasspath
+	kotlin-utils_src_compile
 
-	java-pkg-simple_prepend_resources "${target}" "${JAVA_RESOURCE_DIRS[@]}"
-
-	# Compile Kotlin source files
-	local kotlin_sources="kotlin_sources.lst"
-	find "${KOTLIN_LIBS_SRC_DIR[@]}" -name "*.kt" > "${kotlin_sources}"
-	kotlin-libs_kotlinc -d "${target}" ${classpath:+-classpath ${classpath}} \
-		"@${kotlin_sources}"
-	# Compile any Java source files after the Kotlin sources because for Kotlin
-	# libraries, the Java sources require the Kotlin classes as dependencies
-	if [[ -n "${KOTLIN_LIBS_JAVA_SOURCE_ROOTS[@]}" ]]; then
-		local java_sources="java_sources.lst"
-		local java_classpath="${classpath:+${classpath}:}${target}"
-		find "${KOTLIN_LIBS_JAVA_SOURCE_ROOTS[@]}" -name "*.java" > "${java_sources}"
-		ebegin "Compiling Java sources"
-		$(java-pkg_get-javac) -d "${target}" -classpath ${java_classpath} \
-			-source "${KOTLIN_LIBS_JAVA_WANT_SOURCE_TARGET}" \
-			-target "${KOTLIN_LIBS_JAVA_WANT_SOURCE_TARGET}" \
-			-encoding "${JAVA_ENCODING}" \
-			"${KOTLIN_LIBS_JAVAC_ARGS[@]}" \
-			"@${java_sources}" || die "Failed to compile Java sources"
-	fi
 	# Create MANIFEST.MF if needed
 	if [[ "${KOTLIN_LIBS_RUNTIME_COMPONENT}" ]]; then
-		kotlin-libs_create_manifest "${target}"
+		kotlin-libs_create_manifest "${KOTLIN_UTILS_CLASSES}"
 	fi
 
-	# Package compiled class files into a JAR
-	local jar_args
-	if [[ -e "${target}/META-INF/MANIFEST.MF" ]]; then
-		jar_args="cfm ${JAVA_JAR_FILENAME} ${target}/META-INF/MANIFEST.MF"
-	elif [[ -n "${JAVA_MAIN_CLASS}" ]]; then
-		jar_args="cfe ${JAVA_JAR_FILENAME} ${JAVA_MAIN_CLASS}"
-	else
-		jar_args="cf ${JAVA_JAR_FILENAME}"
-	fi
-	jar ${jar_args} -C "${target}" . || die "jar failed"
+	kotlin-utils_jar
 }
 
 # @FUNCTION: kotlin-libs_test_with_junit4_
@@ -441,24 +389,24 @@ kotlin-libs_test_with_junit4_() {
 	find "${KOTLIN_LIBS_TEST_SRC_DIR[@]}" -name "*.kt" > "${test_sources}"
 	if [[ -s "${test_sources}" ]]; then
 		# Back up variables that control arguments to Kotlin compiler
-		local _common_sources_dir=( "${KOTLIN_LIBS_COMMON_SOURCES_DIR[@]}" )
-		local _kotlinc_args=( "${KOTLIN_LIBS_KOTLINC_ARGS[@]}" )
-		local _kotlinc_java_opts="${KOTLIN_LIBS_KOTLINC_JAVA_OPTS}"
+		local _common_sources_dir=( "${KOTLIN_COMMON_SOURCES_DIR[@]}" )
+		local _kotlinc_args=( "${KOTLIN_KOTLINC_ARGS[@]}" )
+		local _kotlinc_java_opts="${KOTLIN_KOTLINC_JAVA_OPTS}"
 
 		# Set compiler arguments for tests
-		KOTLIN_LIBS_COMMON_SOURCES_DIR=(
+		KOTLIN_COMMON_SOURCES_DIR=(
 			"${KOTLIN_LIBS_TEST_COMMON_SOURCES_DIR[@]}"
 		)
-		KOTLIN_LIBS_KOTLINC_ARGS=( "${KOTLIN_LIBS_TEST_KOTLINC_ARGS[@]}" )
-		KOTLIN_LIBS_KOTLINC_JAVA_OPTS="${KOTLIN_LIBS_TEST_KOTLINC_JAVA_OPTS}"
+		KOTLIN_KOTLINC_ARGS=( "${KOTLIN_LIBS_TEST_KOTLINC_ARGS[@]}" )
+		KOTLIN_KOTLINC_JAVA_OPTS="${KOTLIN_LIBS_TEST_KOTLINC_JAVA_OPTS}"
 
-		kotlin-libs_kotlinc -d "${target}" \
+		kotlin-utils_kotlinc -d "${target}" \
 			${classpath:+-classpath ${classpath}} "@${test_sources}"
 
 		# Restore variables
-		KOTLIN_LIBS_COMMON_SOURCES_DIR=( "${_common_sources_dir[@]}" )
-		KOTLIN_LIBS_KOTLINC_ARGS=( "${_kotlinc_args[@]}" )
-		KOTLIN_LIBS_KOTLINC_JAVA_OPTS="${_kotlinc_java_opts}"
+		KOTLIN_COMMON_SOURCES_DIR=( "${_common_sources_dir[@]}" )
+		KOTLIN_KOTLINC_ARGS=( "${_kotlinc_args[@]}" )
+		KOTLIN_KOTLINC_JAVA_OPTS="${_kotlinc_java_opts}"
 	fi
 
 	tests_to_run=$(find "${target}" -type f \
