@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -11,7 +11,7 @@ MAVEN_ID="org.jruby.joni:joni:2.1.3"
 
 inherit java-pkg-2 java-pkg-simple
 
-DESCRIPTION="Java port of Oniguruma: http://www.geocities.jp/kosako3/oniguruma that uses byte arrays directly instead of java Strings and chars"
+DESCRIPTION="Java port of Oniguruma that uses byte arrays directly"
 HOMEPAGE="http://nexus.sonatype.org/oss-repository-hosting.html/joni"
 SRC_URI="https://repo.maven.apache.org/maven2/org/jruby/${PN}/${PN}/${PV}/${P}-sources.jar"
 LICENSE="MIT"
@@ -20,10 +20,10 @@ KEYWORDS="~amd64 ~ppc64 ~x86 ~amd64-linux ~x86-linux ~x86-solaris"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.jruby.jcodings:jcodings:1.0.8 -> >=dev-java/jcodings-1.0.11:1
+# org.jruby.jcodings:jcodings:1.0.8 -> >=dev-java/jcodings-1.0.11:0
 
 CDEPEND="
-	>=dev-java/jcodings-1.0.11:1
+	>=dev-java/jcodings-1.0.11:0
 "
 
 # Compile dependencies
@@ -43,5 +43,5 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jcodings-1"
+JAVA_GENTOO_CLASSPATH="jcodings"
 JAVA_CLASSPATH_EXTRA="asm-4"
