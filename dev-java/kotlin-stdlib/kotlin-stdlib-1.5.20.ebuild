@@ -106,7 +106,7 @@ JAVA_TEST_EXCLUDES=(
 )
 
 pkg_setup() {
-	java-pkg-2_pkg_setup
+	kotlin-libs_pkg_setup
 	if ! has binary ${JAVA_PKG_IUSE} || ! use binary; then
 		JAVA_CLASSPATH_EXTRA+=" kotlin-core-builtins-${SLOT}"
 	fi
@@ -117,10 +117,9 @@ src_unpack() {
 	if ! has binary ${JAVA_PKG_IUSE} || ! use binary; then
 		unpack "$(java-pkg_getjar --build-only \
 			"kotlin-core-builtins-${SLOT}" kotlin-core-builtins.jar)"
-		local target="${S}/target"
-		mkdir -p "${target}" || \
+		mkdir -p "${S}/${KOTLIN_UTILS_CLASSES}" || \
 			die "Failed to create target directory for compiler output"
-		mv kotlin "${target}" || \
+		mv kotlin "${S}/${KOTLIN_UTILS_CLASSES}" || \
 			die "Failed to move built-ins to target directory"
 	fi
 }
