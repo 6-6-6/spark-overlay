@@ -86,8 +86,8 @@ def create_ebuild_dict(repo: str, no_filters: bool) -> dict:
 
 def rev_search(ebuild: str, has_rev_dep_dict: dict, repo: str) -> None:
     print(f"Processing {ebuild} ...", file=sys.stderr)
-    proc = subprocess.run(f'pquery --first --raw --unfiltered'
-                          f' --repo {repo} --restrict-revdep ={ebuild}',
+    proc = subprocess.run(f'pquery --first --raw --unfiltered '
+                          f'--repo {repo} --restrict-revdep ={ebuild}',
                           capture_output=True, text=True, shell=True)
     has_rev_dep_dict[ebuild] = len(proc.stdout) > 0
 
