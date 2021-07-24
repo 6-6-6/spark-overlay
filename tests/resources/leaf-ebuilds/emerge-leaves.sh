@@ -4,6 +4,7 @@ EXCLUDED_EBUILD_PATTERNS=(
     # Kotlin ebuilds, covered by other test cases
     "dev-java/kotlin-stdlib-jdk8-.*"
     "dev-java/kotlin-test-js-.*"
+    "virtual/kotlin-*"
 )
 
 : ${ELEAVES:=/var/db/repos/spark-overlay/tests/resources/leaf-ebuilds/eleaves.py}
