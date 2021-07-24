@@ -1,0 +1,113 @@
+From 1eb69d3ca096eb07ee7ba2618e41f8781a564ada Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Fri, 23 Jul 2021 20:43:52 -0700
+Subject: [PATCH 2/2] build.xml: Skip release notes
+
+These files do not exist in the JAR version of the source code archive
+for this package.  If they were not removed from build.xml, a build
+error would occur.
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ build.xml | 37 -------------------------------------
+ 1 file changed, 37 deletions(-)
+
+diff --git a/build.xml b/build.xml
+index 61de138..83feff0 100644
+--- a/build.xml
++++ b/build.xml
+@@ -17,7 +17,6 @@
+     <property name="JavaSamplesDir" location="${SrcDir}/samples" />
+     <property name="TestSrcDir" location="${SrcDir}/test" />
+     <property name="ResourcesDir" location="${SrcDir}/resources" />
+-    <property name="RelNotesDir" location="${basedir}/release-notes" />
+ 
+     <!-- Libs -->
+     <property name="LibDir" location="${basedir}/lib" />
+@@ -81,9 +80,6 @@
+           <include name="src/test/**/*.dtd" />
+           <include name="src/java/**/*.html" />
+           <include name="src/maven/*.pom" />
+-          <include name="release-notes/*" />
+-          <include name="release-notes/asl/*" />
+-          <include name="release-notes/lgpl/*" />
+           <!-- need jars too; at least the api jar, but let's copy
+                all for now... it's nice to have the unit tests in there
+                too. This way src packages are proper subsets of binary ones
+@@ -272,11 +268,6 @@
+               <patternset refid="wstx-dist-class-files" />
+               <patternset refid="stax2-dist-class-files" />
+           </fileset>
+-          <fileset dir="${RelNotesDir}/lgpl">
+-            <include name="LICENSE" />
+-            <include name="NOTICE" />
+-            <include name="LGPL2.1" />
+-          </fileset>
+         </jar>
+     </target> 
+ 
+@@ -318,11 +309,6 @@
+               <patternset refid="wstx-dist-class-files" />
+               <patternset refid="stax2-dist-class-files" />
+           </fileset>
+-          <fileset dir="${RelNotesDir}/asl">
+-            <include name="LICENSE" />
+-            <include name="NOTICE" />
+-            <include name="ASL2.0" />
+-          </fileset>
+         </jar>
+     </target> 
+ 
+@@ -354,22 +340,12 @@
+     <target name="jar.j2me_input_min" depends="compile,check_license">
+         <jar jarfile="${BuildDir}/wstx-j2me-min-input.jar" filesonly="true">
+           <fileset refid="j2meInputMinimal" />
+-          <fileset dir="${RelNotesDir}/lgpl">
+-            <include name="LICENSE" />
+-            <include name="NOTICE" />
+-            <include name="LGPL2.1" />
+-          </fileset>
+         </jar>
+     </target> 
+ 
+     <target name="jar.j2me_output_min" depends="compile,check_license">
+         <jar jarfile="${BuildDir}/wstx-j2me-min-output.jar" filesonly="true">
+           <fileset refid="j2meOutputMinimal" />
+-          <fileset dir="${RelNotesDir}/lgpl">
+-            <include name="LICENSE" />
+-            <include name="NOTICE" />
+-            <include name="LGPL2.1" />
+-          </fileset>
+         </jar>
+     </target> 
+ 
+@@ -377,11 +353,6 @@
+         <jar jarfile="${BuildDir}/wstx-j2me-min-both.jar" filesonly="true">
+           <fileset refid="j2meInputMinimal" />
+           <fileset refid="j2meOutputMinimal" />
+-          <fileset dir="${RelNotesDir}/lgpl">
+-            <include name="LICENSE" />
+-            <include name="NOTICE" />
+-            <include name="LGPL2.1" />
+-          </fileset>
+         </jar>
+     </target> 
+ 
+@@ -444,14 +415,6 @@
+        <copy todir="${DistDir}">
+          <fileset dir="${JavaDocDir}/.." includes="javadoc/**/*" />
+        </copy>
+-       <!-- Plus, let's also just copy README and compatibility files, in
+-            addition to being included in source package
+-         -->
+-       <copy todir="${DistDir}" >
+-            <fileset dir="." includes="release-notes/*" />
+-            <fileset dir="." includes="release-notes/asl/*" />
+-            <fileset dir="." includes="release-notes/lgpl/*" />
+-       </copy>
+        <!-- And also additional Maven stuff -->
+        <copy todir="${DistDir}">
+             <fileset dir="${SrcDir}/maven" includes="*.pom" />
+-- 
+2.31.1
+
