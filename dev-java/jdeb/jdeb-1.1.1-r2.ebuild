@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,7 +12,7 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="This library provides an Ant task and a Maven plugin to create Debian packages from Java builds in a truly cross platform manner. Build your Debian packages on any platform that has Java support. Windows, Linux, OS X - it doesn't require additional native tools installed."
+DESCRIPTION="Create Debian packages from Java builds in a truly cross platform manner"
 HOMEPAGE="http://github.com/tcurdt/jdeb"
 SRC_URI="https://repo1.maven.org/maven2/org/vafer/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/vafer/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
@@ -26,7 +26,7 @@ KEYWORDS="~amd64"
 # org.apache.ant:ant:1.9.3 -> >=dev-java/ant-core-1.10.7:0
 # org.apache.commons:commons-compress:1.7 -> >=dev-java/commons-compress-1.10:0
 # org.apache.maven:maven-artifact:2.2.1 -> >=dev-java/maven-artifact-2.2.1:0
-# org.apache.maven:maven-core:2.2.1 -> >=dev-java/maven-bin-3.0.5:3.0
+# org.apache.maven:maven-core:2.2.1 -> >=dev-java/maven-bin-3.8.1:3.8
 # org.apache.maven:maven-plugin-api:2.2.1 -> >=dev-java/maven-plugin-api-2.2.1:0
 # org.apache.maven:maven-project:2.2.1 -> >=dev-java/maven-project-2.2.1:0
 # org.bouncycastle:bcpg-jdk15on:1.50 -> >=dev-java/bcpg-1.52:1.52
@@ -41,7 +41,7 @@ CDEPEND="
 	>=dev-java/bcpg-1.52:1.52
 	>=dev-java/commons-compress-1.10:0
 	>=dev-java/commons-io-2.4:1
-	>=dev-java/maven-bin-3.0.5:3.0
+	>=dev-java/maven-bin-3.8.1:3.8
 "
 
 # Compile dependencies
@@ -63,7 +63,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="commons-io-1,ant-core,commons-compress,maven-artifact,maven-bin-3.0,maven-plugin-api,maven-project,bcpg-1.52,plexus-utils"
+JAVA_GENTOO_CLASSPATH="commons-io-1,ant-core,commons-compress,maven-artifact,maven-bin-3.8,maven-plugin-api,maven-project,bcpg-1.52,plexus-utils"
 JAVA_CLASSPATH_EXTRA="maven-plugin-annotations"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
