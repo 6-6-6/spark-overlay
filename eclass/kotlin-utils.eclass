@@ -50,14 +50,6 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 # to kotlinc's -Xcommon-sources option. Default is unset, can be overridden
 # from ebuild anywhere.
 
-# @ECLASS-VARIABLE: KOTLIN_WANT_TARGET
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# The argument to kotlinc's -api-version and -language-version options.
-# Default is unset, can be overridden from ebuild anywhere. It is the ebuild
-# itself's responsibility to make sure the target version is supported by any
-# Kotlin compiler version that will ever be used to build this package.
-
 # @ECLASS-VARIABLE: KOTLIN_KOTLINC_ARGS
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -96,6 +88,39 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 # arguments set by the variables of this eclass and before the list of Java
 # source files. Default is unset, can be overridden from ebuild anywhere.
 
+# Kotlin version
+
+# @ECLASS-VARIABLE: KOTLIN_VERSIONS
+# @DEFAULT_UNSET
+# @PRE_INHERIT
+# @DESCRIPTION:
+# An array of the feature release versions (e.g. 1.4, 1.5) of Kotlin compilers
+# that can be used to build this package. An open interval of versions can also
+# be specified with a string that starts with either ">=" or "<" operator.
+# Default is unset, which signifies that any feature release can be used.
+# Although kotlin-utils.eclass does not require this variable to be set before
+# it is inherited, other eclasses that inherit this eclass, like kotlin.eclass
+# and kotlin-libs.eclass, may require it to be set before they are inherited.
+#
+# If an array of versions is specified, then the version of the compiler that
+# will be used is determined with the following rules, in order:
+# 1. Any versions that have a compiler already installed on the system will
+#    take precedence over the versions that are not installed yet.
+# 2. When there is a tie, the version appeared earlier in the array will be
+#    used.
+#
+# Examples:
+# @CODE
+# # Define a single version
+# KOTLIN_VERSIONS=( 1.5 )
+# # Define a closed range, preferring newer versions
+# KOTLIN_VERSIONS=( 1.{5..3} )
+# # Define an open range with a lower bound
+# KOTLIN_VERSIONS=">=1.3"
+# # Define an open range with an upper bound
+# KOTLIN_VERSIONS="<1.6"
+# @CODE
+
 # @ECLASS-VARIABLE: KOTLIN_REQ_USE
 # @DEFAULT_UNSET
 # @PRE_INHERIT
@@ -103,6 +128,14 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 # The USE dependency specification required for any Kotlin compiler version
 # selected for building this package. Default is unset, can be overridden from
 # ebuild BEFORE inheriting this eclass.
+
+# @ECLASS-VARIABLE: KOTLIN_WANT_TARGET
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# The argument to kotlinc's -api-version and -language-version options.
+# Default is unset, can be overridden from ebuild anywhere. It is the ebuild
+# itself's responsibility to make sure the target version is supported by any
+# Kotlin compiler version that will ever be used to build this package.
 
 # Read-only variables
 
@@ -121,7 +154,95 @@ if [[ -n "${KOTLIN_REQ_USE}" ]]; then
 fi
 readonly KOTLIN_UTILS_REQ_USE
 
+# @ECLASS-VARIABLE: KOTLIN_COMPILER_HOME
+# @OUTPUT_VARIABLE
+# @DESCRIPTION:
+# The path to the Kotlin compiler installation that will be used for building
+# this package. Will be set by this eclass and be available after the
+# kotlin-utils_pkg_setup function is called.
+
 inherit java-pkg-2 java-pkg-simple
+
+# @FUNCTION: _kotlin-utils_get_compiler_ver
+# @INTERNAL
+# @USAGE: <package>
+# @DESCRIPTION:
+# Echos the feature release version of a Kotlin compiler package. This function
+# should be called only in pkg_* phases.
+_kotlin-utils_get_compiler_ver() {
+	debug-print-function ${FUNCNAME} "$@"
+	[[ $# -eq 1 ]] || die "Exactly one argument is needed for ${FUNCNAME}"
+	local pkg_desc_root="${EROOT}/usr/share/eselect-kotlin/pkgs"
+	local pkg_desc="$(find "${pkg_desc_root}" -type f -name "$1")"
+	basename "$(dirname "${pkg_desc}")"
+}
+
+# @FUNCTION: _kotlin-utils_get_compiler_home
+# @INTERNAL
+# @DESCRIPTION:
+# Echos the path to the Kotlin compiler installation that will be used for
+# building this package. This function should be called only in pkg_* phases.
+_kotlin-utils_get_compiler_home() {
+	local prefs_root="${EROOT}/etc/eselect/kotlin/homes"
+	local ver
+
+	if [[ -z "${KOTLIN_VERSIONS}" ]]; then
+		ver="system"
+	elif ! [[ "${KOTLIN_VERSIONS}" == ">="* ||
+		"${KOTLIN_VERSIONS}" == "<"* ]]; then
+		for slot in "${KOTLIN_VERSIONS[@]}"; do
+			local symlink="${prefs_root}/${slot}"
+			if [[ -L "${symlink}" && -d "${symlink}" ]]; then
+				ver="${slot}"
+				break
+			fi
+		done
+	else
+		local bound op
+		if [[ "${KOTLIN_VERSIONS}" == ">="* ]]; then
+			bound="${KOTLIN_VERSIONS/>=}"
+			op="-ge"
+		else
+			bound="${KOTLIN_VERSIONS/<}"
+			op="-lt"
+		fi
+
+		local system_symlink="${prefs_root}/system"
+		local system_pkg="$(basename "$(readlink "${system_symlink}")")"
+		local system_ver="$(_kotlin-utils_get_compiler_ver "${system_pkg}")"
+
+		if ver_test "${system_ver}" "${op}" "${bound}"; then
+			ver="system"
+		else
+			for slot in $(find "${prefs_root}" -type l -name "*.*" -exec \
+				basename {} \; | sort -rV); do
+				if ver_test "${slot}" "${op}" "${bound}"; then
+					ver="${slot}"
+					break
+				fi
+			done
+		fi
+	fi
+
+	[[ -n "${ver}" ]] || die \
+		"Could not find a Kotlin compiler whose version meets the requirement"
+
+	readlink "${prefs_root}/${ver}"
+}
+
+# @FUNCTION: kotlin-utils_pkg_setup
+# @DESCRIPTION:
+# Selects the Kotlin compiler to be used for building this package, then sets
+# KOTLIN_COMPILER_HOME to the compiler's installation path and prints the
+# package's name.
+kotlin-utils_pkg_setup() {
+	KOTLIN_COMPILER_HOME="$(_kotlin-utils_get_compiler_home)"
+	readonly KOTLIN_COMPILER_HOME
+	local compiler_pkg="$(basename "${KOTLIN_COMPILER_HOME}")"
+	einfo "Using Kotlin compiler package: ${compiler_pkg}"
+	export GENTOO_KOTLIN_VER="$(_kotlin-utils_get_compiler_ver \
+		"${compiler_pkg}")"
+}
 
 # @FUNCTION: kotlin-utils_kotlinc
 # @USAGE: <kotlinc_arguments>
