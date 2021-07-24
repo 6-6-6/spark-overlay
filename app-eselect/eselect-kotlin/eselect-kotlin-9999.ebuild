@@ -20,7 +20,7 @@ LICENSE="GPL-2"
 SLOT="0"
 
 RDEPEND="
-	>=app-admin/eselect-1.4.16
+	app-admin/eselect
 "
 
 src_prepare() {
