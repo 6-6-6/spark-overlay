@@ -1,3 +1,7 @@
 # Accept keywords for packages in ::gentoo needed by ebuilds in this overlay
 >=dev-java/jcip-annotations-1.0.1::gentoo
 dev-java/glassfish-jms-api::gentoo
+dev-java/jna::gentoo
+>=dev-java/jsr305-3.0.2::gentoo
+dev-java/jts-core::gentoo
+dev-java/android-util::gentoo
