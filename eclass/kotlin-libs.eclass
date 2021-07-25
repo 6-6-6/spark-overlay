@@ -98,6 +98,8 @@ EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install
 # USE flags are both enabled. Must be overridden from ebuild somewhere when
 # KOTLIN_LIBS_SRCJAR_SRC_URI is set.
 
+# Testing
+
 JAVA_PKG_IUSE="source"
 JAVA_TESTING_FRAMEWORKS=""
 _KOTLIN_LIBS_REQUIRED_USE=""
@@ -124,10 +126,21 @@ fi
 
 inherit kotlin-utils
 
+# ebuild metadata variables
+
 : ${DESCRIPTION:="Kotlin library component ${PN}"}
 : ${HOMEPAGE:="https://kotlinlang.org"}
 : ${LICENSE:="Apache-2.0 BSD MIT NPL-1.1"}
 : ${SLOT:="$(ver_cut 1-2)"}
+
+REQUIRED_USE="
+	${_KOTLIN_LIBS_REQUIRED_USE}
+	${REQUIRED_USE}
+"
+
+S="${WORKDIR}/kotlin-${PV}"
+
+# Source URI
 
 _KOTLIN_LIBS_DEFAULT_SRC_URI="
 	https://github.com/JetBrains/kotlin/archive/refs/tags/v${PV}.tar.gz -> kotlin-${PV}.tar.gz
@@ -153,10 +166,7 @@ else
 	: ${SRC_URI:="${_KOTLIN_LIBS_DEFAULT_SRC_URI}"}
 fi
 
-REQUIRED_USE="
-	${_KOTLIN_LIBS_REQUIRED_USE}
-	${REQUIRED_USE}
-"
+# Dependencies
 
 DEPEND=">=virtual/jdk-1.8:*"
 RDEPEND=">=virtual/jre-1.8:*"
@@ -192,13 +202,19 @@ else
 	# No option to use pre-built binary; always depend on the compiler
 	DEPEND+=" ${_KOTLIN_LIBS_DEPEND}"
 fi
-unset _KOTLIN_LIBS_DEPEND
 
-S="${WORKDIR}/kotlin-${PV}"
+# kotlin-utils.eclass variables
 
 KOTLIN_KOTLINC_JAVA_OPTS="-Xmx768M"
 KOTLIN_JAVA_WANT_SOURCE_TARGET="1.6"
 KOTLIN_WANT_TARGET="${SLOT}"
+
+# Unset temporary variables
+
+unset _KOTLIN_LIBS_REQUIRED_USE
+unset _KOTLIN_LIBS_DEFAULT_SRC_URI
+unset _KOTLIN_LIBS_TEST_SRC
+unset _KOTLIN_LIBS_DEPEND
 
 # @FUNCTION: kotlin-libs_pkg_setup
 # @DESCRIPTION:
