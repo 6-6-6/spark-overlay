@@ -8,7 +8,7 @@ MAVEN_ID="org.jetbrains.kotlin:${PN}:${PV}"
 KOTLIN_LIBS_BINJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}.jar"
 KOTLIN_LIBS_SRCJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}-sources.jar"
 
-KOTLIN_VERSIONS=( 1.4 )
+KOTLIN_VERSIONS="=1.4"
 KOTLIN_REQ_USE="javascript"
 
 inherit kotlin-libs
