@@ -69,6 +69,14 @@ EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install
 # sources files during the test. Default is unset, can be overridden from
 # ebuild anywhere.
 
+# @ECLASS-VARIABLE: KOTLIN_LIBS_TEST_KOTLINC_JAVA_OPTS
+# @DESCRIPTION:
+# Any options for the JVM instances started by kotlinc during the test. The
+# default option allots enough memory to kotlinc to compile every Kotlin
+# Standard Library component's test, and it can be overridden from ebuild
+# anywhere.
+: ${KOTLIN_LIBS_TEST_KOTLINC_JAVA_OPTS:="-Xmx768M"}
+
 # ebuild variables
 
 # @ECLASS-VARIABLE: KOTLIN_LIBS_BINJAR_SRC_URI
