@@ -33,36 +33,35 @@ EXPORT_FUNCTIONS src_prepare
 # @DEFAULT_UNSET
 # @PRE_INHERIT
 # @DESCRIPTION:
-# The value for KOTLIN_LIBS_MODULE_NAME. This variable will be used to
-# determine the path to the sources. Default is unset, must be overriden from
-# ebuild BEFORE inheriting this eclass unless the ebuild sets
-# KOTLIN_LIBS_SRC_DIR itself.
+# The value for KOTLIN_MODULE_NAME. This variable will be used to determine the
+# path to the sources. Default is unset, must be overridden from ebuild BEFORE
+# inheriting this eclass unless the ebuild sets KOTLIN_SRC_DIR itself.
 
 # @ECLASS-VARIABLE: KOTLIN_CORE_DEPS_SKIP_JAVAC
 # @DEFAULT_UNSET
 # @PRE_INHERIT
 # @DESCRIPTION:
 # If a non-empty value is set, no Java source will be compiled. Default is
-# unset, can be overriden from ebuild BEFORE inheriting this eclass.
+# unset, can be overridden from ebuild BEFORE inheriting this eclass.
 
 # @ECLASS-VARIABLE: KOTLIN_CORE_DEPS_INCLUDE_RESOURCES
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # If a non-empty value is set, automatically include the resources for the
-# package in the produced JAR. Default is unset, can be overriden from ebuild
+# package in the produced JAR. Default is unset, can be overridden from ebuild
 # BEFORE inhering this eclass.
 
 # @ECLASS-VARIABLE: KOTLIN_CORE_DEPS_SOURCE_PKG
 # @DESCRIPTION:
 # The name of the Java package whose classes need to be relocated. Defaults to
 # the root package of sources in all dev-java/kotlin-core-* packages, can be
-# overriden from ebuild anywhere.
+# overridden from ebuild anywhere.
 : ${KOTLIN_CORE_DEPS_SOURCE_PKG:="org.jetbrains.kotlin"}
 
 # @ECLASS-VARIABLE: KOTLIN_CORE_DEPS_DEST_PKG
 # @DESCRIPTION:
 # The name of the destination Java package in the relocation. Defaults to the
-# destination package expected by dev-java/kotlin-reflect, can be overriden
+# destination package expected by dev-java/kotlin-reflect, can be overridden
 # from ebuild anywhere.
 : ${KOTLIN_CORE_DEPS_DEST_PKG:="kotlin.reflect.jvm.internal.impl"}
 
@@ -71,19 +70,19 @@ EXPORT_FUNCTIONS src_prepare
 inherit kotlin-libs
 
 if [[ -n "${KOTLIN_CORE_DEPS_MODULE_NAME}" ]]; then
-	KOTLIN_LIBS_MODULE_NAME="${KOTLIN_CORE_DEPS_MODULE_NAME}"
+	KOTLIN_MODULE_NAME="${KOTLIN_CORE_DEPS_MODULE_NAME}"
 fi
-: ${KOTLIN_LIBS_SRC_DIR:="core/${KOTLIN_LIBS_MODULE_NAME}/src"}
+: ${KOTLIN_SRC_DIR:="core/${KOTLIN_MODULE_NAME}/src"}
 if [[ ! "${KOTLIN_CORE_DEPS_SKIP_JAVAC}" ]]; then
-	: ${KOTLIN_LIBS_JAVA_SOURCE_ROOTS:="${KOTLIN_LIBS_SRC_DIR[@]}"}
+	: ${KOTLIN_JAVA_SOURCE_ROOTS:="${KOTLIN_SRC_DIR[@]}"}
 fi
 
 if [[ "${KOTLIN_CORE_INCLUDE_RESOURCES}" ]]; then
-	: ${JAVA_RESOURCE_DIRS:="core/${KOTLIN_LIBS_MODULE_NAME}/resources"}
+	: ${JAVA_RESOURCE_DIRS:="core/${KOTLIN_MODULE_NAME}/resources"}
 fi
 
-if [[ -z "${KOTLIN_LIBS_KOTLINC_ARGS[@]}" ]]; then
-	KOTLIN_LIBS_KOTLINC_ARGS=(
+if [[ -z "${KOTLIN_KOTLINC_ARGS[@]}" ]]; then
+	KOTLIN_KOTLINC_ARGS=(
 		-jvm-target 1.6
 		-no-stdlib
 		-Xallow-kotlin-package
@@ -98,14 +97,14 @@ if [[ -z "${KOTLIN_LIBS_KOTLINC_ARGS[@]}" ]]; then
 	)
 	if ver_test "$(ver_cut 1-2)" -ge "1.5"; then
 		# Additional options for Kotlin >=1.5
-		KOTLIN_LIBS_KOTLINC_ARGS+=(
+		KOTLIN_KOTLINC_ARGS+=(
 			-Xsuppress-deprecated-jvm-target-warning
 		)
 	fi
 fi
 
-if [[ -z "${KOTLIN_LIBS_JAVAC_ARGS[@]}" ]]; then
-	KOTLIN_LIBS_JAVAC_ARGS=(
+if [[ -z "${KOTLIN_JAVAC_ARGS[@]}" ]]; then
+	KOTLIN_JAVAC_ARGS=(
 		-g
 		-sourcepath
 		-proc:none
@@ -127,7 +126,7 @@ kotlin-core-deps_src_prepare() {
 	local sed_script
 	sed_script="s/${KOTLIN_CORE_DEPS_SOURCE_PKG}/${KOTLIN_CORE_DEPS_DEST_PKG}/g"
 
-	for src_dir in "${KOTLIN_LIBS_SRC_DIR[@]}"; do
+	for src_dir in "${KOTLIN_SRC_DIR[@]}"; do
 		local source_pkg_path="${src_dir}/$(tr '.' '/' <<< \
 			"${KOTLIN_CORE_DEPS_SOURCE_PKG}")"
 		local dest_pkg_path="${src_dir}/$(tr '.' '/' <<< \
@@ -151,7 +150,7 @@ kotlin-core-deps_src_prepare() {
 	fi
 
 	local modify_dirs=(
-		"${KOTLIN_LIBS_SRC_DIR[@]}"
+		"${KOTLIN_SRC_DIR[@]}"
 		"${JAVA_RESOURCE_DIRS[@]}"
 	)
 	find "${modify_dirs[@]}" -type f -exec sed -i -e "${sed_script}" \
