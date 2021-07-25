@@ -53,7 +53,7 @@ src_compile() {
 		libraries/stdlib/js/runtime/primitiveCompanionObjects.kt
 		libraries/stdlib/js-v1/runtime
 	)
-	KOTLIN_LIBS_SRC_DIR+=( "${src_dirs[@]}" )
+	KOTLIN_SRC_DIR+=( "${src_dirs[@]}" )
 	kotlin-utils_kotlinc -output "${builtins_target}/kotlin.js" \
 		$(find "${src_dirs[@]}" -name "*.kt")
 
@@ -113,7 +113,7 @@ src_compile() {
 		libraries/stdlib/{,common,unsigned}/src
 		libraries/stdlib/js-v1/src/kotlin
 	)
-	KOTLIN_LIBS_SRC_DIR+=( "${src_dirs[@]}" )
+	KOTLIN_SRC_DIR+=( "${src_dirs[@]}" )
 	kotlin-utils_kotlinc -output "${main_target}/kotlin.js" \
 		$(find "${src_dirs[@]}" -name "*.kt")
 
@@ -218,7 +218,7 @@ src_compile() {
 		libraries/stdlib/js-ir
 		libraries/stdlib/{,common,unsigned}/src
 	)
-	KOTLIN_LIBS_SRC_DIR+=( "${src_dirs[@]}" )
+	KOTLIN_SRC_DIR+=( "${src_dirs[@]}" )
 	kotlin-utils_kotlinc -output "${js_ir_target}" \
 		$(find "${src_dirs[@]}" -name "*.kt")
 	cp -r "${js_ir_target}/default" "${main_target}" || \

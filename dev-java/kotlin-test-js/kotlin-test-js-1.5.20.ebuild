@@ -64,7 +64,7 @@ src_compile() {
 		libraries/kotlin.test/common/src/main
 		libraries/kotlin.test/annotations-common/src/main
 	)
-	KOTLIN_LIBS_SRC_DIR+=( "${src_dirs[@]}" )
+	KOTLIN_SRC_DIR+=( "${src_dirs[@]}" )
 	kotlin-utils_kotlinc -output "${main_target}/kotlin-test.js" \
 		$(find "${src_dirs[@]}" -name "*.kt")
 
@@ -96,7 +96,7 @@ src_compile() {
 		libraries/kotlin.test/common/src
 		libraries/kotlin.test/annotations-common/src
 	)
-	KOTLIN_LIBS_SRC_DIR+=( "${src_dirs[@]}" )
+	KOTLIN_SRC_DIR+=( "${src_dirs[@]}" )
 	kotlin-utils_kotlinc -output "${js_ir_target}" \
 		$(find "${src_dirs[@]}" -name "*.kt")
 	cp -r "${js_ir_target}/default" "${main_target}" || \

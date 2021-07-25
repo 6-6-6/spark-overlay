@@ -42,7 +42,7 @@ JAVA_BINJAR_FILENAME="${P}.jar"
 KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
 
 KOTLIN_LIBS_RUNTIME_COMPONENT="Main"
-KOTLIN_LIBS_KOTLINC_ARGS=(
+KOTLIN_KOTLINC_ARGS=(
 	-jvm-target 1.6
 	-no-stdlib
 	-Xallow-kotlin-package
@@ -53,7 +53,7 @@ KOTLIN_LIBS_KOTLINC_ARGS=(
 	-Xopt-in=kotlin.RequiresOptIn
 	-Xopt-in=kotlin.contracts.ExperimentalContracts
 )
-KOTLIN_LIBS_SRC_DIR=( libraries/stdlib/jdk7/src )
+KOTLIN_SRC_DIR=( libraries/stdlib/jdk7/src )
 
 KOTLIN_LIBS_TEST_KOTLINC_ARGS=(
 	-jvm-target 1.6

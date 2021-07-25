@@ -40,8 +40,8 @@ JAVA_BINJAR_FILENAME="${P}.jar"
 KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
 
 KOTLIN_LIBS_RUNTIME_COMPONENT="Main"
-KOTLIN_LIBS_WANT_TARGET="1.3"
-KOTLIN_LIBS_KOTLINC_ARGS=(
+KOTLIN_WANT_TARGET="1.3"
+KOTLIN_KOTLINC_ARGS=(
 	-no-stdlib
 	-Xallow-kotlin-package
 	-Xcoroutines=enable
@@ -53,7 +53,7 @@ KOTLIN_LIBS_KOTLINC_ARGS=(
 	-Xuse-old-backend
 	-XXLanguage:-ReleaseCoroutines
 )
-KOTLIN_LIBS_SRC_DIR=(
+KOTLIN_SRC_DIR=(
 	libraries/stdlib/coroutines-experimental/{,jvm}/src
 )
 

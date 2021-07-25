@@ -8,7 +8,7 @@ MAVEN_ID="org.jetbrains.kotlin:${PN}:${PV}"
 KOTLIN_LIBS_BINJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}.jar"
 KOTLIN_LIBS_SRCJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}-sources.jar"
 
-KOTLIN_LIBS_MODULE_NAME="kotlin-reflection"
+KOTLIN_MODULE_NAME="kotlin-reflection"
 KOTLIN_LIBS_RUNTIME_COMPONENT="Main"
 
 inherit kotlin-core-deps
@@ -62,7 +62,7 @@ JAVA_BINJAR_FILENAME="${P}.jar"
 KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
 JAVA_RESOURCE_DIRS=( core/reflection.jvm/resources )
 
-KOTLIN_LIBS_KOTLINC_ARGS=(
+KOTLIN_KOTLINC_ARGS=(
 	-jvm-target 1.6
 	-no-stdlib
 	-Xallow-kotlin-package
@@ -73,8 +73,8 @@ KOTLIN_LIBS_KOTLINC_ARGS=(
 	-Xnormalize-constructor-calls=enable
 	-Xopt-in=kotlin.RequiresOptIn
 )
-KOTLIN_LIBS_JAVA_SOURCE_ROOTS=( core/reflection.jvm/src )
-KOTLIN_LIBS_SRC_DIR=( core/reflection.jvm/src )
+KOTLIN_JAVA_SOURCE_ROOTS=( core/reflection.jvm/src )
+KOTLIN_SRC_DIR=( core/reflection.jvm/src )
 
 src_unpack() {
 	kotlin-libs_src_unpack

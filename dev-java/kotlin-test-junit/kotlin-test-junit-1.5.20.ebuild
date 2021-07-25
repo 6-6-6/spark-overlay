@@ -37,7 +37,7 @@ KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
 JAVA_RESOURCE_DIRS=( libraries/kotlin.test/junit/src/main/resources )
 
 KOTLIN_LIBS_RUNTIME_COMPONENT="Test"
-KOTLIN_LIBS_KOTLINC_ARGS=(
+KOTLIN_KOTLINC_ARGS=(
 	-jvm-target 1.6
 	-no-stdlib
 	-Xallow-kotlin-package
@@ -47,10 +47,10 @@ KOTLIN_LIBS_KOTLINC_ARGS=(
 	-Xsuppress-deprecated-jvm-target-warning
 	-Xuse-old-backend
 )
-KOTLIN_LIBS_COMMON_SOURCES_DIR=(
+KOTLIN_COMMON_SOURCES_DIR=(
 	libraries/kotlin.test/annotations-common/src/main/kotlin
 )
-KOTLIN_LIBS_SRC_DIR=(
+KOTLIN_SRC_DIR=(
 	libraries/kotlin.test/junit/src/main/kotlin
 	libraries/kotlin.test/annotations-common/src/main/kotlin
 )

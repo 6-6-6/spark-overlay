@@ -38,7 +38,7 @@ JAVA_BINJAR_FILENAME="${P}.jar"
 KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
 
 KOTLIN_LIBS_RUNTIME_COMPONENT="Main"
-KOTLIN_LIBS_KOTLINC_ARGS=(
+KOTLIN_KOTLINC_ARGS=(
 	-jvm-target 1.6
 	-no-stdlib
 	-Xallow-kotlin-package
@@ -56,14 +56,14 @@ KOTLIN_LIBS_KOTLINC_ARGS=(
 	-Xuse-14-inline-classes-mangling-scheme
 	-Xuse-old-backend
 )
-KOTLIN_LIBS_JAVA_SOURCE_ROOTS=( libraries/stdlib/jvm/{src,runtime} )
-KOTLIN_LIBS_COMMON_SOURCES_DIR=( libraries/stdlib/{,common,unsigned}/src )
-KOTLIN_LIBS_SRC_DIR=(
+KOTLIN_JAVA_SOURCE_ROOTS=( libraries/stdlib/jvm/{src,runtime} )
+KOTLIN_COMMON_SOURCES_DIR=( libraries/stdlib/{,common,unsigned}/src )
+KOTLIN_SRC_DIR=(
 	core/builtins/src
 	libraries/stdlib/jvm/runtime
 	libraries/stdlib/{,common,jvm,unsigned}/src
 )
-KOTLIN_LIBS_JAVAC_ARGS=(
+KOTLIN_JAVAC_ARGS=(
 	-g
 	-sourcepath
 	-proc:none
