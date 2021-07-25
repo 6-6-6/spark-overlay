@@ -232,7 +232,9 @@ _kotlin-utils_get_compiler_home() {
 
 		if [[ -n "${KOTLIN_VERSIONS_PREF_ORDER}" ]]; then
 			for slot in "${KOTLIN_VERSIONS_PREF_ORDER[@]}"; do
-				if ver_test "${slot}" "${op}" "${bound}"; then
+			local symlink="${prefs_root}/${slot}"
+				if ver_test "${slot}" "${op}" "${bound}" && \
+					[[ -L "${symlink}" && -d "${symlink}" ]]; then
 					ver="${slot}"
 					break
 				fi
