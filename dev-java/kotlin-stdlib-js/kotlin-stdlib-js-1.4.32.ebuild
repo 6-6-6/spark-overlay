@@ -121,8 +121,7 @@ src_compile() {
 
 	# Call the JSStdlibLinker directly with Java because it does not recognize
 	# the standard Kotlin compiler command-line options
-	local kotlinc_jar="$(java-pkg_getjar --build-only \
-		"$(kotlin-libs_get_kotlinc_pkg)" kotlin-compiler.jar)"
+	local kotlinc_jar="${KOTLIN_COMPILER_HOME}/lib/kotlin-compiler.jar"
 	local js_output_file="${target}/classes/kotlin.js"
 	java -classpath "${kotlinc_jar}" \
 		org.jetbrains.kotlin.cli.js.internal.JSStdlibLinker \
