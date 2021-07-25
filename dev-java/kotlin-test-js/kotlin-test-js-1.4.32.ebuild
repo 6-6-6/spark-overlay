@@ -8,14 +8,15 @@ MAVEN_ID="org.jetbrains.kotlin:${PN}:${PV}"
 KOTLIN_LIBS_BINJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}.jar"
 KOTLIN_LIBS_SRCJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}-sources.jar"
 
+KOTLIN_VERSIONS="=1.4"
+KOTLIN_REQ_USE="javascript"
+
 inherit kotlin-libs
 
 DESCRIPTION="Kotlin Test for JS"
 KEYWORDS="~amd64"
 
 DEPEND="!binary? (
-	>=dev-lang/kotlin-bin-1.4:0[javascript]
-	<dev-lang/kotlin-bin-1.5:0
 	~dev-java/kotlin-stdlib-js-${PV}:${SLOT}
 )"
 
@@ -23,7 +24,7 @@ JAVA_BINJAR_FILENAME="${P}.jar"
 KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
 
 # No -module-name option for Kotlin/JS compiler
-KOTLIN_LIBS_MODULE_NAME=""
+KOTLIN_MODULE_NAME=""
 KOTLIN_LIBS_RUNTIME_COMPONENT="Test"
 
 src_compile() {
@@ -38,7 +39,7 @@ src_compile() {
 
 	# :kotlin-test:kotlin-test-js
 	local main_target="${target}/classes/main"
-	KOTLIN_LIBS_KOTLINC_ARGS=(
+	KOTLIN_KOTLINC_ARGS=(
 		-libraries $(java-pkg_getjars --build-only "kotlin-stdlib-js-${SLOT}")
 		-main call
 		-meta-info
@@ -54,7 +55,7 @@ src_compile() {
 		-Xopt-in=kotlin.RequiresOptIn
 		-Xopt-in=kotlin.contracts.ExperimentalContracts
 	)
-	KOTLIN_LIBS_COMMON_SOURCES_DIR=(
+	KOTLIN_COMMON_SOURCES_DIR=(
 		libraries/kotlin.test/common/src/main
 		libraries/kotlin.test/annotations-common
 	)
@@ -64,12 +65,12 @@ src_compile() {
 		libraries/kotlin.test/annotations-common/src/main
 	)
 	KOTLIN_LIBS_SRC_DIR+=( "${src_dirs[@]}" )
-	kotlin-libs_kotlinc -output "${main_target}/kotlin-test.js" \
+	kotlin-utils_kotlinc -output "${main_target}/kotlin-test.js" \
 		$(find "${src_dirs[@]}" -name "*.kt")
 
 	# :kotlin-test:kotlin-test-js-ir
 	local js_ir_target="${target}/classes/js-ir"
-	KOTLIN_LIBS_KOTLINC_ARGS=(
+	KOTLIN_KOTLINC_ARGS=(
 		-libraries $(java-pkg_getjars --build-only "kotlin-stdlib-js-${SLOT}")
 		-main call
 		-meta-info
@@ -96,7 +97,7 @@ src_compile() {
 		libraries/kotlin.test/annotations-common/src
 	)
 	KOTLIN_LIBS_SRC_DIR+=( "${src_dirs[@]}" )
-	kotlin-libs_kotlinc -output "${js_ir_target}/kotlin-stdlib-js-ir.js" \
+	kotlin-utils_kotlinc -output "${js_ir_target}/kotlin-stdlib-js-ir.js" \
 		$(find "${src_dirs[@]}" -name "*.kt")
 	cp -r "${js_ir_target}/default" "${main_target}" || \
 		die "Could not copy compiled files for IR to main target directory"
