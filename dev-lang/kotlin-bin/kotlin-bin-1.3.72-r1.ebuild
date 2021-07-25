@@ -256,4 +256,5 @@ pkg_postinst() {
 
 pkg_postrm() {
 	eselect kotlin cleanup
+	eselect kotlin update
 }
