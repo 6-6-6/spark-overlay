@@ -94,32 +94,38 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 # @DEFAULT_UNSET
 # @PRE_INHERIT
 # @DESCRIPTION:
-# An array of the feature release versions (e.g. 1.4, 1.5) of Kotlin compilers
-# that can be used to build this package. An open interval of versions can also
-# be specified with a string that starts with either ">=" or "<" operator.
-# Default is unset, which signifies that any feature release can be used.
-# Although kotlin-utils.eclass does not require this variable to be set before
-# it is inherited, other eclasses that inherit this eclass, like kotlin.eclass
-# and kotlin-libs.eclass, may require it to be set before they are inherited.
-#
-# If an array of versions is specified, then the version of the compiler that
-# will be used is determined with the following rules, in order:
-# 1. Any versions that have a compiler already installed on the system will
-#    take precedence over the versions that are not installed yet.
-# 2. When there is a tie, the version appeared earlier in the array will be
-#    used.
+# The feature release versions (e.g. 1.4, 1.5) of Kotlin compilers that can be
+# used to build this package. This variable's value should be a string that
+# starts with one of the "=", ">=" and "<" operators followed by a feature
+# release number. Default is unset, which signifies that any feature release
+# can be used.  Although kotlin-utils.eclass does not require this variable to
+# be set before it is inherited, other eclasses that inherit this eclass, like
+# kotlin.eclass and kotlin-libs.eclass, may require it to be set before they
+# are inherited.
 #
 # Examples:
 # @CODE
 # # Define a single version
-# KOTLIN_VERSIONS=( 1.5 )
-# # Define a closed range, preferring newer versions
-# KOTLIN_VERSIONS=( 1.{5..3} )
+# KOTLIN_VERSIONS="=1.5"
 # # Define an open range with a lower bound
-# KOTLIN_VERSIONS=">=1.3"
+# KOTLIN_VERSIONS=">=1.4"
 # # Define an open range with an upper bound
 # KOTLIN_VERSIONS="<1.6"
 # @CODE
+
+# @ECLASS-VARIABLE: KOTLIN_VERSIONS_PREF_ORDER
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# An array of Kotlin feature release versions defining an order of preference
+# on them. Kotlin eclasses may use the first version in this array that meets
+# the feature release requirement specified by KOTLIN_VERSIONS and is installed
+# on the system to build this package. Any elements that do not satisfy the
+# requirement of KOTLIN_VERSIONS will be ignored. If all elements are ignored
+# due to this, then the system compiler set by 'eselect kotlin set system' will
+# be used first if it matches KOTLIN_VERSIONS; otherwise, the highest installed
+# version matching KOTLIN_VERSIONS will be used. Default is unset, which
+# exhibits the same behavior as if all elements are ignored, and can be
+# overridden from ebuild BEFORE the pkg_setup phase.
 
 # @ECLASS-VARIABLE: KOTLIN_REQ_USE
 # @DEFAULT_UNSET
@@ -163,6 +169,22 @@ readonly KOTLIN_UTILS_REQ_USE
 
 inherit java-pkg-2 java-pkg-simple
 
+# @FUNCTION: kotlin-utils_set_kotlin_depend
+# @DESCRIPTION:
+# Adds a dependency specification that enforces the requirement of
+# KOTLIN_VERSIONS to the DEPEND variable.
+kotlin-utils_set_kotlin_depend() {
+	if [[ "${KOTLIN_VERSIONS}" == "="* ]]; then
+		DEPEND+=" virtual/kotlin:${KOTLIN_VERSIONS/=}${KOTLIN_UTILS_REQ_USE}"
+	elif [[ "${KOTLIN_VERSIONS}" == ">="* ]]; then
+		DEPEND+=" >=virtual/kotlin-${KOTLIN_VERSIONS/>=}:*${KOTLIN_UTILS_REQ_USE}"
+	elif [[ "${KOTLIN_VERSIONS}" == "<"* ]]; then
+		DEPEND+=" <virtual/kotlin-${KOTLIN_VERSIONS/<}:*${KOTLIN_UTILS_REQ_USE}"
+	else
+		DEPEND+=" virtual/kotlin:*${KOTLIN_UTILS_REQ_USE}"
+	fi
+}
+
 # @FUNCTION: _kotlin-utils_get_compiler_ver
 # @INTERNAL
 # @USAGE: <package>
@@ -188,15 +210,12 @@ _kotlin-utils_get_compiler_home() {
 
 	if [[ -z "${KOTLIN_VERSIONS}" ]]; then
 		ver="system"
-	elif ! [[ "${KOTLIN_VERSIONS}" == ">="* ||
-		"${KOTLIN_VERSIONS}" == "<"* ]]; then
-		for slot in "${KOTLIN_VERSIONS[@]}"; do
-			local symlink="${prefs_root}/${slot}"
-			if [[ -L "${symlink}" && -d "${symlink}" ]]; then
-				ver="${slot}"
-				break
-			fi
-		done
+	elif [[ "${KOTLIN_VERSIONS}" == "="* ]]; then
+		local slot="${KOTLIN_VERSIONS/=}"
+		local symlink="${prefs_root}/${slot}"
+		if [[ -L "${symlink}" && -d "${symlink}" ]]; then
+			ver="${slot}"
+		fi
 	else
 		local bound op
 		if [[ "${KOTLIN_VERSIONS}" == ">="* ]]; then
@@ -211,16 +230,27 @@ _kotlin-utils_get_compiler_home() {
 		local system_pkg="$(basename "$(readlink "${system_symlink}")")"
 		local system_ver="$(_kotlin-utils_get_compiler_ver "${system_pkg}")"
 
-		if ver_test "${system_ver}" "${op}" "${bound}"; then
-			ver="system"
-		else
-			for slot in $(find "${prefs_root}" -type l -name "*.*" -exec \
-				basename {} \; | sort -rV); do
+		if [[ -n "${KOTLIN_VERSIONS_PREF_ORDER}" ]]; then
+			for slot in "${KOTLIN_VERSIONS_PREF_ORDER[@]}"; do
 				if ver_test "${slot}" "${op}" "${bound}"; then
 					ver="${slot}"
 					break
 				fi
 			done
+		fi
+		# All preferred versions have been tried
+		if [[ -z "${ver}" ]]; then
+			if ver_test "${system_ver}" "${op}" "${bound}"; then
+				ver="system"
+			else
+				for slot in $(find "${prefs_root}" -type l -name "*.*" -exec \
+					basename {} \; | sort -rV); do
+					if ver_test "${slot}" "${op}" "${bound}"; then
+						ver="${slot}"
+						break
+					fi
+				done
+			fi
 		fi
 	fi
 
