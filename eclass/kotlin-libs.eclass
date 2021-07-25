@@ -484,23 +484,3 @@ kotlin-libs_src_install() {
 		fi
 	fi
 }
-
-# @FUNCTION: kotlin-libs_get_kotlinc_pkg
-# @DESCRIPTION:
-# Echos the package name for the highest version of Kotlin compiler version
-# that is currently installed. The package name can be passed to functions in
-# java-utils-2.eclass. If no Kotlin compiler package can be found, then a
-# package name that will always be invalid according to functions in
-# java-utils-2.eclass will be returned.
-#
-# Example:
-# @CODE
-#	java-pkg_getjars --build-only "$(kotlin-libs_get_kotlinc_pkg)"
-# @CODE
-kotlin-libs_get_kotlinc_pkg() {
-	local kotlinc_PN="kotlin-bin"
-	local kotlinc_pkg="dev-lang/${kotlinc_PN}"
-	local kotlinc_ver=$(best_version -d "${kotlinc_pkg}")
-	local kotlinc_slot=$(ver_cut 1-2 "${kotlinc_ver//${kotlinc_pkg}-}")
-	echo "${kotlinc_PN}-${kotlinc_slot}"
-}
