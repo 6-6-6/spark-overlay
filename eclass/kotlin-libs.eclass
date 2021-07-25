@@ -24,96 +24,13 @@ EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install
 # and consumer ebuilds
 [[ "${EAPI:-0}" -eq 6 ]] && inherit eapi7-ver
 
-# Kotlin Compiler options
-
-# @ECLASS-VARIABLE: KOTLIN_LIBS_SRC_DIR
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# An array of directories relative to ${S} which contain the Kotlin sources to
-# compile for the ebuild. A string with directories separated by white space
-# works as well. Default is unset, which will cause all source files inside
-# ${S} to be compiled, and can be overriden from ebuild anywhere.
-
-# @ECLASS-VARIABLE: KOTLIN_LIBS_MODULE_NAME
-# @DESCRIPTION:
-# The argument to kotlinc's -module-name option. Defaults to ${PN}, can be
-# overriden from ebuild anywhere.
-: ${KOTLIN_LIBS_MODULE_NAME:="${PN}"}
-
-# @ECLASS-VARIABLE: KOTLIN_LIBS_COMMON_SOURCES_DIR
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# An array of directories relative to ${S} which contains the sources to pass
-# to kotlinc's -Xcommon-sources option. Default is unset, can be overriden from
-# ebuild anywhere.
-
-# @ECLASS-VARIABLE: KOTLIN_LIBS_KOTLINC_ARGS
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# An array of any extra arguments to kotlinc that will added after all other
-# arguments set by the variables of this eclass and before the list of Kotlin
-# source files. Default is unset, can be overriden from ebuild anywhere.
-
-# @ECLASS-VARIABLE: KOTLIN_LIBS_KOTLINC_JAVA_OPTS
-# @DESCRIPTION:
-# Any options for the JVM instances started by kotlinc. The default option
-# allots enough memory to kotlinc to compile every Kotlin Standard Library
-# component, and it can be overriden from ebuild anywhere.
-: ${KOTLIN_LIBS_KOTLINC_JAVA_OPTS:="-Xmx768M"}
-
-# Java compiler options for library components that have Java code
-
-# @ECLASS-VARIABLE: KOTLIN_LIBS_JAVA_SOURCE_ROOTS
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# An array of the arguments to kotlinc's -Xjava-source-roots option. This
-# eclass will concatenate each element in the array into a single string, using
-# a comma to separate each pair of adjacent elements, and pass the string as
-# the option's value to kotlinc. All Java sources in the specified directory
-# will be compiled after the Kotlin sources. Default is unset, can be overriden
-# from ebuild anywhere.
-
-# @ECLASS-VARIABLE: KOTLIN_LIBS_JAVA_WANT_SOURCE_TARGET
-# @DESCRIPTION:
-# The argument to javac's -source and -target options. Defaults to 1.6, which
-# is what the upstream uses, and can be overriden from ebuild anywhere.
-: ${KOTLIN_LIBS_JAVA_WANT_SOURCE_TARGET:="1.6"}
-
-# @ECLASS-VARIABLE: KOTLIN_LIBS_JAVAC_ARGS
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# An array of any extra arguments to javac that will added after all other
-# arguments set by the variables of this eclass and before the list of Java
-# source files. Default is unset, can be overriden from ebuild anywhere.
-
-# Helpful options when upgrading to a new feature release
-
-_KOTLIN_LIBS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
-
-# @ECLASS-VARIABLE: KOTLIN_LIBS_KOTLINC_MIN_VER
-# @PRE_INHERIT
-# @DESCRIPTION:
-# The minimum version of Kotlin compiler required to build this library.
-# Defaults to $(ver_cut 1-2), can be overriden from ebuild BEFORE inheriting
-# this eclass.
-: ${KOTLIN_LIBS_KOTLINC_MIN_VER:="${_KOTLIN_LIBS_FEATURE_RELEASE_FROM_PV}"}
-
-# @ECLASS-VARIABLE: KOTLIN_LIBS_WANT_TARGET
-# @DESCRIPTION:
-# The argument to kotlinc's -api-version and -language-version options.
-# Defaults to $(ver_cut 1-2), can be overriden from ebuild anywhere. It is the
-# ebuild itself's responsibility to make sure the target version is supported
-# by the Kotlin compiler version specified by KOTLIN_LIBS_KOTLINC_MIN_VER if
-# that variable is overriden.
-: ${KOTLIN_LIBS_WANT_TARGET:="${_KOTLIN_LIBS_FEATURE_RELEASE_FROM_PV}"}
-
 # Options that control MANIFEST.MF in resulting JAR
 
 # @ECLASS-VARIABLE: KOTLIN_LIBS_RUNTIME_COMPONENT
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # The value used in the 'Kotlin-Runtime-Component' field in the MANIFEST.MF
-# file for the package. Default is unset, can be overriden from ebuild
+# file for the package. Default is unset, can be overridden from ebuild
 # anywhere. Once a value is set, a full MANIFEST.MF with additional fields like
 # 'Implementation-Title' and 'Kotlin-Version' will be created for consistency
 # with the upstream.  The set of values that the upstream can use for this
@@ -126,8 +43,8 @@ _KOTLIN_LIBS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
 # @PRE_INHERIT
 # @DESCRIPTION:
 # Any value that should be added to the JAVA_TESTING_FRAMEWORKS variable of the
-# ebuild. Default is unset, can be overriden from ebuild BEFORE inheriting this
-# eclass.
+# ebuild. Default is unset, can be overridden from ebuild BEFORE inheriting
+# this eclass.
 
 # @ECLASS-VARIABLE: KOTLIN_LIBS_TEST_SRC_DIR
 # @DEFAULT_UNSET
@@ -135,30 +52,22 @@ _KOTLIN_LIBS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
 # An array of directories relative to ${S} which contain the sources for
 # testing. A string with directories separated by white space works as well.
 # Default is unset, which will cause all source files inside ${S} to be
-# compiled for testing, and can be overriden from ebuild anywhere.
+# compiled for testing, and can be overridden from ebuild anywhere.
 
 # @ECLASS-VARIABLE: KOTLIN_LIBS_TEST_COMMON_SOURCES_DIR
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # An array of directories relative to ${S} which contains the sources to pass
 # to kotlinc's -Xcommon-sources option during the test. Default is unset, can
-# be overriden from ebuild anywhere.
+# be overridden from ebuild anywhere.
 
 # @ECLASS-VARIABLE: KOTLIN_LIBS_TEST_KOTLINC_ARGS
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # An array of any extra arguments to kotlinc that will added after all other
 # arguments set by the variables of this eclass and before the list of test
-# sources files during the test. Default is unset, can be overriden from ebuild
-# anywhere.
-
-# @ECLASS-VARIABLE: KOTLIN_LIBS_TEST_KOTLINC_JAVA_OPTS
-# @DESCRIPTION:
-# Any options for the JVM instances started by kotlinc during the test. The
-# default option allots enough memory to kotlinc to compile every Kotlin
-# Standard Library component's test, and it can be overriden from ebuild
-# anywhere.
-: ${KOTLIN_LIBS_TEST_KOTLINC_JAVA_OPTS:="-Xmx768M"}
+# sources files during the test. Default is unset, can be overridden from
+# ebuild anywhere.
 
 # ebuild variables
 
@@ -167,7 +76,7 @@ _KOTLIN_LIBS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
 # @PRE_INHERIT
 # @DESCRIPTION:
 # The SRC_URI of the binary JAR file to be installed if the 'binary' USE flag
-# is enabled. Default is unset, can be overriden from ebuild BEFORE inheriting
+# is enabled. Default is unset, can be overridden from ebuild BEFORE inheriting
 # this eclass. Once a value is set, this eclass will add 'binary' and 'test'
 # USE flags to it and automatically set 'JAVA_TESTING_FRAMEWORKS+=" pkgdiff"'
 # to use the binary JAR for testing.
@@ -177,7 +86,7 @@ _KOTLIN_LIBS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
 # @PRE_INHERIT
 # @DESCRIPTION:
 # The SRC_URI of the source JAR file to be installed if the 'binary' and
-# 'source' USE flags are both enabled. Default is unset, can be overriden from
+# 'source' USE flags are both enabled. Default is unset, can be overridden from
 # ebuild BEFORE inheriting this eclass. If KOTLIN_LIBS_BINJAR_SRC_URI is set
 # but this variable is unset, this eclass will set
 # 'REQUIRED_USE="binary? ( !source )"' for the ebuild.
@@ -186,7 +95,7 @@ _KOTLIN_LIBS_FEATURE_RELEASE_FROM_PV="$(ver_cut 1-2)"
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # The name of the source JAR file to be installed if the 'binary' and 'source'
-# USE flags are both enabled. Must be overriden from ebuild somewhere when
+# USE flags are both enabled. Must be overridden from ebuild somewhere when
 # KOTLIN_LIBS_SRCJAR_SRC_URI is set.
 
 JAVA_PKG_IUSE="source"
@@ -252,7 +161,7 @@ REQUIRED_USE="
 DEPEND=">=virtual/jdk-1.8:*"
 RDEPEND=">=virtual/jre-1.8:*"
 
-case "${_KOTLIN_LIBS_FEATURE_RELEASE_FROM_PV}" in
+case "${SLOT}" in
 	1.4)
 		KOTLIN_VERSIONS=">=1.4"
 		KOTLIN_VERSIONS_PREF_ORDER=( 1.{4..6} )
@@ -286,6 +195,10 @@ fi
 unset _KOTLIN_LIBS_DEPEND
 
 S="${WORKDIR}/kotlin-${PV}"
+
+KOTLIN_KOTLINC_JAVA_OPTS="-Xmx768M"
+KOTLIN_JAVA_WANT_SOURCE_TARGET="1.6"
+KOTLIN_WANT_TARGET="${SLOT}"
 
 # @FUNCTION: kotlin-libs_pkg_setup
 # @DESCRIPTION:
@@ -357,18 +270,6 @@ kotlin-libs_src_compile() {
 			|| die "Could not copy the binary JAR file to ${S}"
 		return 0
 	fi
-
-	# Translate this eclass's variables to kotlin-util.eclass's variables;
-	# remove after all consumer ebuilds are updated for the new eclass
-	KOTLIN_SRC_DIR=( "${KOTLIN_LIBS_SRC_DIR[@]}" )
-	KOTLIN_MODULE_NAME="${KOTLIN_LIBS_MODULE_NAME}"
-	KOTLIN_COMMON_SOURCES_DIR=( "${KOTLIN_LIBS_COMMON_SOURCES_DIR[@]}" )
-	KOTLIN_KOTLINC_ARGS=( "${KOTLIN_LIBS_KOTLINC_ARGS[@]}" )
-	KOTLIN_KOTLINC_JAVA_OPTS="${KOTLIN_LIBS_KOTLINC_JAVA_OPTS}"
-	KOTLIN_JAVA_SOURCE_ROOTS=( "${KOTLIN_LIBS_JAVA_SOURCE_ROOTS[@]}" )
-	KOTLIN_JAVA_WANT_SOURCE_TARGET="${KOTLIN_LIBS_JAVA_WANT_SOURCE_TARGET}"
-	KOTLIN_JAVAC_ARGS=( "${KOTLIN_LIBS_JAVAC_ARGS[@]}" )
-	KOTLIN_WANT_TARGET="${KOTLIN_LIBS_WANT_TARGET}"
 
 	kotlin-utils_src_compile
 
@@ -551,8 +452,8 @@ kotlin-libs_src_install() {
 		else
 			local srcdirs=""
 			local kt_java_src_dir=(
-				"${KOTLIN_LIBS_SRC_DIR[@]}"
-				"${KOTLIN_LIBS_JAVA_SOURCE_ROOTS[@]}"
+				"${KOTLIN_SRC_DIR[@]}"
+				"${KOTLIN_JAVA_SOURCE_ROOTS[@]}"
 			)
 			if [[ -n "${kt_java_src_dir[@]}" ]]; then
 				local parent child
