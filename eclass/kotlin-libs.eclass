@@ -253,19 +253,26 @@ DEPEND=">=virtual/jdk-1.8:*"
 RDEPEND=">=virtual/jre-1.8:*"
 
 case "${_KOTLIN_LIBS_FEATURE_RELEASE_FROM_PV}" in
-	1.4) KOTLIN_VERSIONS=( 1.4 1.5 ) ;;
-	1.5) KOTLIN_VERSIONS=( 1.5 ) ;;
+	1.4)
+		KOTLIN_VERSIONS=">=1.4"
+		KOTLIN_VERSIONS_PREF_ORDER=( 1.{4..6} )
+		;;
+	1.5)
+		KOTLIN_VERSIONS=">=1.5"
+		KOTLIN_VERSIONS_PREF_ORDER=( 1.{5..6} )
+		;;
+	# Provision for the next feature release
+	1.6)
+		KOTLIN_VERSIONS=">=1.6"
+		KOTLIN_VERSIONS_PREF_ORDER=( 1.6 )
+		;;
 esac
 
-if [[ "${KOTLIN_VERSIONS}" == ">="* ]]; then
-	_KOTLIN_LIBS_DEPEND=">=virtual/kotlin-${KOTLIN_VERSIONS/>=}:*${KOTLIN_UTILS_REQ_USE}"
-else
-	_KOTLIN_LIBS_DEPEND="|| ("
-	for slot in "${KOTLIN_VERSIONS[@]}"; do
-		_KOTLIN_LIBS_DEPEND+=" virtual/kotlin:${slot}${KOTLIN_UTILS_REQ_USE} "
-	done
-	_KOTLIN_LIBS_DEPEND+=")"
-fi
+_KOTLIN_LIBS_DEPEND="$(
+	DEPEND=""
+	kotlin-utils_set_kotlin_depend
+	echo "${DEPEND}"
+)"
 if has binary ${JAVA_PKG_IUSE}; then
 	# Depend on the compiler only when building from source
 	DEPEND+=" !binary? ( ${_KOTLIN_LIBS_DEPEND} )"
