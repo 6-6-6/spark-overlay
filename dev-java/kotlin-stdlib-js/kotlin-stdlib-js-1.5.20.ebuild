@@ -21,7 +21,7 @@ KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
 
 # No -module-name option for Kotlin/JS compiler
 KOTLIN_MODULE_NAME=""
-KOTLIN_KOTLINC_JAVA_OPTS="-Xmx768M"
+KOTLIN_KOTLINC_JAVA_OPTS="-Xmx1024M"
 KOTLIN_LIBS_RUNTIME_COMPONENT="Main"
 
 src_compile() {
@@ -53,7 +53,7 @@ src_compile() {
 		libraries/stdlib/js/runtime/primitiveCompanionObjects.kt
 		libraries/stdlib/js-v1/runtime
 	)
-	KOTLIN_SRC_DIR+=( "${src_dirs[@]}" )
+	KOTLIN_LIBS_SRC_DIR+=( "${src_dirs[@]}" )
 	kotlin-utils_kotlinc -output "${builtins_target}/kotlin.js" \
 		$(find "${src_dirs[@]}" -name "*.kt")
 
@@ -113,7 +113,7 @@ src_compile() {
 		libraries/stdlib/{,common,unsigned}/src
 		libraries/stdlib/js-v1/src/kotlin
 	)
-	KOTLIN_SRC_DIR+=( "${src_dirs[@]}" )
+	KOTLIN_LIBS_SRC_DIR+=( "${src_dirs[@]}" )
 	kotlin-utils_kotlinc -output "${main_target}/kotlin.js" \
 		$(find "${src_dirs[@]}" -name "*.kt")
 
@@ -218,7 +218,7 @@ src_compile() {
 		libraries/stdlib/js-ir
 		libraries/stdlib/{,common,unsigned}/src
 	)
-	KOTLIN_SRC_DIR+=( "${src_dirs[@]}" )
+	KOTLIN_LIBS_SRC_DIR+=( "${src_dirs[@]}" )
 	kotlin-utils_kotlinc -output "${js_ir_target}" \
 		$(find "${src_dirs[@]}" -name "*.kt")
 	cp -r "${js_ir_target}/default" "${main_target}" || \
