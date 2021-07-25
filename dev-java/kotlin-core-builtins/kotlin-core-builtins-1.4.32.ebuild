@@ -11,12 +11,11 @@ KEYWORDS="~amd64"
 # serializer is invoked
 
 src_compile() {
-	local target="target"
 	local builtins_cherry_picked="${T}/core/builtins/build/src"
-	local kotlinc_jar="$(java-pkg_getjar --build-only \
-		"$(kotlin-libs_get_kotlinc_pkg)" kotlin-compiler.jar)"
+	local kotlinc_jar="${KOTLIN_COMPILER_HOME}/lib/kotlin-compiler.jar"
 
-	mkdir -p "${target}" || die "Failed to create target directory"
+	mkdir -p "${KOTLIN_UTILS_CLASSES}" || \
+		die "Failed to create target directory"
 	mkdir -p "${builtins_cherry_picked}" || \
 		die "Failed to create temporary directory for cherry-picked built-ins"
 	cp libraries/stdlib/src/kotlin/reflect/* "${builtins_cherry_picked}" || \
@@ -34,9 +33,10 @@ src_compile() {
 	XDG_CACHE_HOME="${HOME}/.cache" \
 	java -classpath "${kotlinc_jar}" \
 		org.jetbrains.kotlin.serialization.builtins.RunKt \
-		"${target}" "${src_dirs[@]}" || die "Failed to serialize built-ins"
+		"${KOTLIN_UTILS_CLASSES}" "${src_dirs[@]}" || \
+		die "Failed to serialize built-ins"
 
-	jar cf "${JAVA_JAR_FILENAME}" -C "${target}" . || die "jar failed"
+	kotlin-utils_jar
 
 	# Generate a list of source files for the source archive
 	find "${src_dirs[@]}" -name "*.kt" > kotlin_sources.lst
