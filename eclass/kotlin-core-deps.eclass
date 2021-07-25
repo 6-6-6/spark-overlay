@@ -96,9 +96,8 @@ if [[ -z "${KOTLIN_LIBS_KOTLINC_ARGS[@]}" ]]; then
 		-Xread-deserialized-contracts
 		-Xuse-ir
 	)
-	_KOTLIN_CORE_DEPS_FEATURE_REL="$(ver_cut 2)"
-	if [[ "${_KOTLIN_CORE_DEPS_FEATURE_REL}" -ge 5 ]]; then
-		# Additional options for Kotlin 1.5
+	if ver_test "$(ver_cut 1-2)" -ge "1.5"; then
+		# Additional options for Kotlin >=1.5
 		KOTLIN_LIBS_KOTLINC_ARGS+=(
 			-Xsuppress-deprecated-jvm-target-warning
 		)
