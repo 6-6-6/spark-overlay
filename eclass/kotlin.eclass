@@ -26,21 +26,7 @@ EXPORT_FUNCTIONS pkg_setup src_compile src_install
 
 inherit kotlin-utils
 
-if [[ -z "${KOTLIN_VERSIONS}" ]]; then
-	_KOTLIN_DEPEND="virtual/kotlin:*"
-elif [[ "${KOTLIN_VERSIONS}" == ">="* ]]; then
-	_KOTLIN_DEPEND=">=virtual/kotlin-${KOTLIN_VERSIONS/>=}:*"
-elif [[ "${KOTLIN_VERSIONS}" == "<"* ]]; then
-	_KOTLIN_DEPEND="<virtual/kotlin-${KOTLIN_VERSIONS/<}:*"
-else
-	_KOTLIN_DEPEND="|| ("
-	for slot in "${KOTLIN_VERSIONS[@]}"; do
-		_KOTLIN_DEPEND+=" virtual/kotlin:${slot} "
-	done
-	_KOTLIN_DEPEND+=")"
-fi
-DEPEND="${_KOTLIN_DEPEND}"
-unset _KOTLIN_DEPEND
+kotlin-utils_set_kotlin_depend
 
 # @FUNCTION: kotlin_pkg_setup
 # @DESCRIPTION:
