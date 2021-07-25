@@ -281,11 +281,11 @@ kotlin-libs_src_compile() {
 	kotlin-utils_jar
 }
 
-# @FUNCTION: kotlin-libs_test_with_junit4_
+# @FUNCTION: _kotlin-libs_test_with_junit4
 # @INTERNAL
 # @DESCRIPTION:
 # Runs the JUnit 4 tests for the package.
-kotlin-libs_test_with_junit4_() {
+_kotlin-libs_test_with_junit4() {
 	local test_sources="test_sources.lst"
 	local target="test-target"
 
@@ -353,7 +353,7 @@ kotlin-libs_src_test() {
 	for framework in ${JAVA_TESTING_FRAMEWORKS}; do
 		case ${framework} in
 			junit-4)
-				kotlin-libs_test_with_junit4_;;
+				_kotlin-libs_test_with_junit4 ;;
 			pkgdiff)
 				if has binary ${JAVA_PKG_IUSE} && use binary; then
 					elog "Skipping pkgdiff tests because they will always pass"
