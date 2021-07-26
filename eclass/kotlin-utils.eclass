@@ -25,6 +25,10 @@ case "${EAPI:-0}" in
 	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
 esac
 
+# Allow use of EAPI 7 version manipulators in older EAPIs for both this eclass
+# and consumer ebuilds
+[[ "${EAPI:-0}" -eq 6 ]] && inherit eapi7-ver
+
 if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 
 # Kotlin compiler options
