@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -16,7 +16,7 @@ HOMEPAGE="https://github.com/square/okio/"
 SRC_URI="https://repo.maven.apache.org/maven2/com/squareup/${PN}/${PN}/${PV}/${P}-sources.jar
 		https://repo.maven.apache.org/maven2/com/squareup/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
-SLOT="0"
+SLOT="2.6"
 KEYWORDS="~amd64 ~x86"
 
 # Common dependencies
