@@ -146,12 +146,14 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 # Read-only variables
 
 # @ECLASS-VARIABLE: KOTLIN_UTILS_CLASSES
+# @OUTPUT_VARIABLE
 # @DESCRIPTION:
 # The directory where compiled classes will be stored relative to ${S}.
 KOTLIN_UTILS_CLASSES="target/classes"
 readonly KOTLIN_UTILS_CLASSES
 
 # @ECLASS-VARIABLE: KOTLIN_UTILS_REQ_USE
+# @OUTPUT_VARIABLE
 # @DESCRIPTION:
 # An empty string if KOTLIN_REQ_USE is unset, or "[${KOTLIN_REQ_USE}]" if it is
 # set.
