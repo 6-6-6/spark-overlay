@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit java-pkg-2
+inherit java-pkg-2 kotlin-compiler
 
 DESCRIPTION="Statically typed programming language for modern multiplatform applications"
 HOMEPAGE="https://kotlinlang.org/"
@@ -26,7 +26,6 @@ RDEPEND="
 	dev-java/jetbrains-annotations:${JB_ANNOTATIONS_SLOT}
 	dev-java/jetbrains-trove:0
 	>=virtual/jdk-1.8:*
-	app-eselect/eselect-kotlin
 	javascript? ( ~dev-java/kotlin-stdlib-js-${PV}:${SLOT} )
 "
 BDEPEND="
@@ -35,6 +34,8 @@ BDEPEND="
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}/kotlinc"
+
+KOTLIN_COMPILER_HOME="/opt/${PN}-${SLOT}"
 
 # An array of JARs to be recorded in the package.env file
 KOTLINC_EXPORTED_LIBS=(
@@ -113,9 +114,7 @@ src_prepare() {
 }
 
 src_install() {
-	local kotlin_home="/opt/${PN}-${SLOT}"
-
-	into "${kotlin_home}"
+	into "${KOTLIN_COMPILER_HOME}"
 	for exe in "${KOTLINC_BIN_TMP}"/*; do
 		dobin "${exe}"
 		local basename=$(basename "${exe}" || die)
@@ -127,10 +126,10 @@ src_install() {
 	local exported_libs="${KOTLINC_EXPORTED_LIBS[@]/#/${KOTLINC_LIB_TMP}/}"
 	local private_libs="${KOTLINC_PRIVATE_LIBS[@]/#/${KOTLINC_LIB_TMP}/}"
 	# Install exported libraries
-	java-pkg_jarinto "${kotlin_home}/lib"
+	java-pkg_jarinto "${KOTLIN_COMPILER_HOME}/lib"
 	java-pkg_dojar ${exported_libs}
 	# Install private libraries
-	insinto "${kotlin_home}/lib"
+	insinto "${KOTLIN_COMPILER_HOME}/lib"
 	doins ${private_libs}
 	# Install symbolic links to dependency libraries
 	rm ${exported_libs} ${private_libs} || die
@@ -141,24 +140,8 @@ src_install() {
 	dodoc -r license/*
 
 	# build.txt required for 'kotlin -version'
-	insinto "${kotlin_home}"
+	insinto "${KOTLIN_COMPILER_HOME}"
 	doins build.txt
 
-	# Create and install Kotlin compiler package description file
-	local pkg_desc="${T}/${PN}-${SLOT}"
-	cat <<- _EOF_ > "${pkg_desc}" || \
-		die "Failed to create Kotlin compiler package description file"
-		GENTOO_KOTLIN_HOME="${EPREFIX}/${kotlin_home}"
-		_EOF_
-	insinto "/usr/share/eselect-kotlin/pkgs/${SLOT}"
-	doins "${pkg_desc}"
-}
-
-pkg_postinst() {
-	eselect kotlin update
-}
-
-pkg_postrm() {
-	eselect kotlin cleanup
-	eselect kotlin update
+	kotlin-compiler_install_pkg_desc
 }

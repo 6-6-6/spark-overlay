@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit java-pkg-2
+inherit java-pkg-2 kotlin-compiler
 
 DESCRIPTION="Statically typed programming language for modern multiplatform applications"
 HOMEPAGE="https://kotlinlang.org/"
@@ -28,7 +28,6 @@ RDEPEND="
 	dev-java/jetbrains-annotations:${JB_ANNOTATIONS_SLOT}
 	dev-java/jetbrains-trove:0
 	>=virtual/jdk-1.8:*
-	app-eselect/eselect-kotlin
 "
 BDEPEND="
 	app-arch/unzip
@@ -41,6 +40,8 @@ DEPEND="
 "
 
 S="${WORKDIR}/kotlinc"
+
+KOTLIN_COMPILER_HOME="/opt/${PN}-${SLOT}"
 
 KOTLINC_LIBS=(
 	allopen-compiler-plugin.jar
@@ -177,9 +178,7 @@ src_test() {
 }
 
 src_install() {
-	local kotlin_home="/opt/${PN}-${SLOT}"
-
-	into "${kotlin_home}"
+	into "${KOTLIN_COMPILER_HOME}"
 	for exe in "${KOTLINC_BIN_TMP}"/*; do
 		dobin "${exe}"
 		local basename=$(basename "${exe}" || die)
@@ -188,73 +187,14 @@ src_install() {
 			"/usr/bin/${basename}${SLOT}"
 	done
 
-	insinto "${kotlin_home}/lib"
+	insinto "${KOTLIN_COMPILER_HOME}/lib"
 	doins "${KOTLINC_LIB_TMP}"/*
 
 	dodoc -r license/*
 
 	# build.txt required for 'kotlin -version'
-	insinto "${kotlin_home}"
+	insinto "${KOTLIN_COMPILER_HOME}"
 	doins build.txt
 
-	# Create and install Kotlin compiler package description file
-	local pkg_desc="${T}/${PN}-${SLOT}"
-	cat <<- _EOF_ > "${pkg_desc}" || \
-		die "Failed to create Kotlin compiler package description file"
-		GENTOO_KOTLIN_HOME="${EPREFIX}/${kotlin_home}"
-		_EOF_
-	insinto "/usr/share/eselect-kotlin/pkgs/${SLOT}"
-	doins "${pkg_desc}"
-}
-
-get_kotlin_lib_atom_slot() {
-	echo $(ver_cut 1-2 "${1/#${kotlin_lib_pkg}-/}")
-}
-
-pkg_postinst() {
-	eselect kotlin update
-
-	local kotlin_lib_PN="kotlin-common-bin"
-	local kotlin_lib_pkg="dev-java/${kotlin_lib_PN}"
-	local kotlin_lib_ver=$(best_version "${kotlin_lib_pkg}:${KOTLIN_LIB_SLOT}")
-	local any_newer_ver=$(best_version ">${kotlin_lib_ver}")
-	local any_older_ver=$(best_version "<${kotlin_lib_ver}")
-
-	if [[ -n "${any_newer_ver}" ]]; then
-		local newer_slot=$(get_kotlin_lib_atom_slot "${any_newer_ver}")
-		local newer_pkg="${kotlin_lib_PN}-${newer_slot}"
-		elog "The following version of ${kotlin_lib_pkg} for"
-		elog "Kotlin feature release newer than ${KOTLIN_LIB_SLOT} is found:"
-		elog "	${any_newer_ver}"
-		elog
-		elog "To use this version of Kotlin libraries, please invoke kotlinc"
-		elog "using a command with options like the following:"
-		elog "	kotlinc -classpath \"\$(java-config -p ${newer_pkg})\" \\"
-		elog "		-no-stdlib"
-	fi
-
-	# Print some empty lines only if necessary
-	if [[ -n "${any_newer_ver}" && -n "${any_older_ver}" ]]; then
-		elog
-		elog
-	fi
-
-	if [[ -n "${any_older_ver}" ]]; then
-		local older_slot=$(get_kotlin_lib_atom_slot "${any_older_ver}")
-		local older_pkg="${kotlin_lib_PN}-${older_slot}"
-		elog "The following version of ${kotlin_lib_pkg} for"
-		elog "Kotlin feature release older than ${KOTLIN_LIB_SLOT} is found:"
-		elog "	${any_older_ver}"
-		elog
-		elog "To use this version of Kotlin libraries, please invoke kotlinc"
-		elog "using a command with options like the following:"
-		elog "	kotlinc -classpath \"\$(java-config -p ${older_pkg})\" \\"
-		elog "		-api-version ${older_slot} \\"
-		elog "		-no-stdlib"
-	fi
-}
-
-pkg_postrm() {
-	eselect kotlin cleanup
-	eselect kotlin update
+	kotlin-compiler_install_pkg_desc
 }

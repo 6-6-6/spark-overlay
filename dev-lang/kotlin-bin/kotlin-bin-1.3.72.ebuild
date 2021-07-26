@@ -3,6 +3,8 @@
 
 EAPI=7
 
+inherit kotlin-compiler
+
 DESCRIPTION="Statically typed programming language for modern multiplatform applications"
 HOMEPAGE="https://kotlinlang.org/"
 SRC_URI="https://github.com/JetBrains/kotlin/releases/download/v${PV}/kotlin-compiler-${PV}.zip"
@@ -16,40 +18,25 @@ DEPEND="app-arch/unzip"
 RDEPEND="app-shells/bash
 	>=virtual/jdk-1.8
 	>=virtual/jre-1.8
-	app-eselect/eselect-kotlin
 "
 
 S="${WORKDIR}/kotlinc"
+
+KOTLIN_COMPILER_HOME="/opt/${PN}-${SLOT}"
 
 src_install() {
 	rm bin/*.bat || die
 	dodoc license/NOTICE.txt
 	rm -r license || die
 
-	insinto "/opt/${PN}-${SLOT}"
+	insinto "${KOTLIN_COMPILER_HOME}"
 	doins -r *
 	for i in bin/*; do
-		fperms +x "/opt/${PN}/$i"
+		fperms +x "${KOTLIN_COMPILER_HOME}/$i"
 		# Install versioned executables
 		dosym "${EPREFIX}/usr/libexec/eselect-kotlin/run-kotlin-tool.sh" \
 			"/usr/bin/${i//*\/}${SLOT}"
 	done
 
-	# Create and install Kotlin compiler package description file
-	local pkg_desc="${T}/${PN}-${SLOT}"
-	cat <<- _EOF_ > "${pkg_desc}" || \
-		die "Failed to create Kotlin compiler package description file"
-		GENTOO_KOTLIN_HOME="${EPREFIX}/${kotlin_home}"
-		_EOF_
-	insinto "/usr/share/eselect-kotlin/pkgs/${SLOT}"
-	doins "${pkg_desc}"
-}
-
-pkg_postinst() {
-	eselect kotlin update
-}
-
-pkg_postrm() {
-	eselect kotlin cleanup
-	eselect kotlin update
+	kotlin-compiler_install_pkg_desc
 }
