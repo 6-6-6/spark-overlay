@@ -268,6 +268,13 @@ _kotlin-utils_get_compiler_home() {
 # KOTLIN_COMPILER_HOME to the compiler's installation path and prints the
 # package's name.
 kotlin-utils_pkg_setup() {
+	# The Kotlin compiler is only a build dependency: the JAR produced is
+	# compatible with JVM, and a JRE is good for using it during runtime.
+	# Therefore, it is possible that the Kotlin compiler is not installed
+	# when the merge type is binary, and in this case, compiler selection
+	# should be skipped.
+	[[ "${MERGE_TYPE}" == "binary" ]] && return
+
 	KOTLIN_COMPILER_HOME="$(_kotlin-utils_get_compiler_home)"
 	readonly KOTLIN_COMPILER_HOME
 	local compiler_pkg="$(basename "${KOTLIN_COMPILER_HOME}")"
