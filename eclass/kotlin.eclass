@@ -18,7 +18,7 @@ case "${EAPI:-0}" in
 	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
 esac
 
-EXPORT_FUNCTIONS pkg_setup src_compile src_install
+EXPORT_FUNCTIONS pkg_setup src_compile src_install src_test
 
 # Allow use of EAPI 7 version manipulators in older EAPIs for both this eclass
 # and consumer ebuilds
@@ -27,6 +27,7 @@ EXPORT_FUNCTIONS pkg_setup src_compile src_install
 inherit kotlin-utils
 
 kotlin-utils_set_kotlin_depend
+kotlin-utils_set_test_depend
 
 # @FUNCTION: kotlin_pkg_setup
 # @DESCRIPTION:
@@ -46,6 +47,13 @@ kotlin_pkg_setup() {
 kotlin_src_compile() {
 	kotlin-utils_src_compile
 	kotlin-utils_jar
+}
+
+# @FUNCTION: kotlin_src_test
+# @DESCRIPTION:
+# Perform tests with frameworks defined in KOTLIN_TESTING_FRAMEWORKS.
+kotlin_src_test() {
+	kotlin-utils_src_test
 }
 
 # @FUNCTION: kotlin_src_install
