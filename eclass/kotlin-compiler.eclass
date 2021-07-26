@@ -18,7 +18,7 @@ case "${EAPI:-0}" in
 	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
 esac
 
-EXPORT_FUNCTIONS pkg_postinst pkg_postrm
+EXPORT_FUNCTIONS pkg_preinst pkg_postinst pkg_postrm
 
 # Allow use of EAPI 7 version manipulators in older EAPIs for both this eclass
 # and consumer ebuilds
@@ -29,28 +29,24 @@ EXPORT_FUNCTIONS pkg_postinst pkg_postrm
 # @REQUIRED
 # @DESCRIPTION:
 # The installation target path for the Kotlin compiler. Default is unset, must
-# be overridden from ebuild before the kotlin-compiler_install_pkg_desc
-# function is called.
+# be overridden from ebuild BEFORE the pkg_preinst phase.
 
 # @ECLASS-VARIABLE: KOTLIN_COMPILER_VER
 # @DESCRIPTION:
 # The Kotlin feature release version (e.g. 1.4, 1.5) this Kotlin compiler is
-# for. Defaults to ${SLOT}, can be overridden from ebuild before the
-# kotlin-compiler_install_pkg_desc function is called.
+# for. Defaults to ${SLOT}, can be overridden from ebuild BEFORE the
+# pkg_preinst phase.
 : ${KOTLIN_COMPILER_VER:="${SLOT}"}
 
 RDEPEND="
 	app-eselect/eselect-kotlin
 "
 
-# @FUNCTION: kotlin-compiler_install_pkg_desc
+# @FUNCTION: kotlin-compiler_pkg_preinst
 # @DESCRIPTION:
 # Installs the Kotlin compiler package description file for this package to the
-# path for all description files defined by the Kotlin eselect module. Must be
-# called by the ebuild during the src_install phase if the Kotlin compiler
-# installed by this package is to be registered in the Kotlin eselect module.
-# Note that this function calls 'insinto'.
-kotlin-compiler_install_pkg_desc() {
+# path for all description files defined by the Kotlin eselect module.
+kotlin-compiler_pkg_preinst() {
 	# If KOTLIN_COMPILER_HOME is not set, symbolic links to ${EPREFIX}/ will
 	# be created by the Kotlin eselect module. This not only breaks normal
 	# functionalities but also introduces risks of removing the entire system
