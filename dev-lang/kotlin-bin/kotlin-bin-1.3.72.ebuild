@@ -33,9 +33,6 @@ src_install() {
 	doins -r *
 	for i in bin/*; do
 		fperms +x "${KOTLIN_COMPILER_HOME}/$i"
-		# Install versioned executables
-		dosym "${EPREFIX}/usr/libexec/eselect-kotlin/run-kotlin-tool.sh" \
-			"/usr/bin/${i//*\/}${SLOT}"
 	done
 
 	kotlin-compiler_install_pkg_desc

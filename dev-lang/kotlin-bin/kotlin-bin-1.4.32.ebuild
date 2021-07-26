@@ -114,13 +114,7 @@ src_prepare() {
 
 src_install() {
 	into "${KOTLIN_COMPILER_HOME}"
-	for exe in "${KOTLINC_BIN_TMP}"/*; do
-		dobin "${exe}"
-		local basename=$(basename "${exe}" || die)
-		# Install versioned executables
-		dosym "${EPREFIX}/usr/libexec/eselect-kotlin/run-kotlin-tool.sh" \
-			"/usr/bin/${basename}${SLOT}"
-	done
+	dobin "${KOTLINC_BIN_TMP}"/*
 
 	local exported_libs="${KOTLINC_EXPORTED_LIBS[@]/#/${KOTLINC_LIB_TMP}/}"
 	local private_libs="${KOTLINC_PRIVATE_LIBS[@]/#/${KOTLINC_LIB_TMP}/}"
