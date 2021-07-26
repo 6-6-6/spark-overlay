@@ -162,7 +162,7 @@ if [[ -n "${KOTLIN_REQ_USE}" ]]; then
 fi
 readonly KOTLIN_UTILS_REQ_USE
 
-# @ECLASS-VARIABLE: KOTLIN_COMPILER_HOME
+# @ECLASS-VARIABLE: KOTLIN_UTILS_COMPILER_HOME
 # @OUTPUT_VARIABLE
 # @DESCRIPTION:
 # The path to the Kotlin compiler installation that will be used for building
@@ -267,7 +267,7 @@ _kotlin-utils_get_compiler_home() {
 # @FUNCTION: kotlin-utils_pkg_setup
 # @DESCRIPTION:
 # Selects the Kotlin compiler to be used for building this package, then sets
-# KOTLIN_COMPILER_HOME to the compiler's installation path and prints the
+# KOTLIN_UTILS_COMPILER_HOME to the compiler's installation path and prints the
 # package's name.
 kotlin-utils_pkg_setup() {
 	# The Kotlin compiler is only a build dependency: the JAR produced is
@@ -277,9 +277,9 @@ kotlin-utils_pkg_setup() {
 	# should be skipped.
 	[[ "${MERGE_TYPE}" == "binary" ]] && return
 
-	KOTLIN_COMPILER_HOME="$(_kotlin-utils_get_compiler_home)"
-	readonly KOTLIN_COMPILER_HOME
-	local compiler_pkg="$(basename "${KOTLIN_COMPILER_HOME}")"
+	KOTLIN_UTILS_COMPILER_HOME="$(_kotlin-utils_get_compiler_home)"
+	readonly KOTLIN_UTILS_COMPILER_HOME
+	local compiler_pkg="$(basename "${KOTLIN_UTILS_COMPILER_HOME}")"
 	einfo "Using Kotlin compiler package: ${compiler_pkg}"
 	export GENTOO_KOTLIN_VER="$(_kotlin-utils_get_compiler_ver \
 		"${compiler_pkg}")"
