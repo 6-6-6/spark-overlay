@@ -25,7 +25,7 @@ KEYWORDS="~amd64"
 
 CDEPEND="
 	>=dev-java/kotlin-common-bin-1.3.72:0
-	>=dev-java/okio-2.6.0:0
+	dev-java/okio:2.6
 "
 
 DEPEND="
@@ -40,5 +40,5 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="okio,kotlin-common-bin"
+JAVA_GENTOO_CLASSPATH="okio-2.6,kotlin-common-bin"
 JAVA_SRC_DIR="src/main/java"
