@@ -12,7 +12,7 @@ KEYWORDS="~amd64"
 
 src_compile() {
 	local builtins_cherry_picked="${T}/core/builtins/build/src"
-	local kotlinc_jar="${KOTLIN_COMPILER_HOME}/lib/kotlin-compiler.jar"
+	local kotlinc_jar="${KOTLIN_UTILS_COMPILER_HOME}/lib/kotlin-compiler.jar"
 
 	mkdir -p "${KOTLIN_UTILS_CLASSES}" || \
 		die "Failed to create target directory"
