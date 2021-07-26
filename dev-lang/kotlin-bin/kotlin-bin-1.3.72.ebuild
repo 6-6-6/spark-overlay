@@ -34,6 +34,4 @@ src_install() {
 	for i in bin/*; do
 		fperms +x "${KOTLIN_COMPILER_HOME}/$i"
 	done
-
-	kotlin-compiler_install_pkg_desc
 }

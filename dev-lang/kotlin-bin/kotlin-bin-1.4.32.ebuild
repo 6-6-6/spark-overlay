@@ -133,6 +133,4 @@ src_install() {
 	# build.txt required for 'kotlin -version'
 	insinto "${KOTLIN_COMPILER_HOME}"
 	doins build.txt
-
-	kotlin-compiler_install_pkg_desc
 }
