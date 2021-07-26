@@ -32,14 +32,19 @@ EXPORT_FUNCTIONS pkg_preinst pkg_postinst pkg_postrm
 # be overridden from ebuild BEFORE the pkg_preinst phase.
 
 # @ECLASS-VARIABLE: KOTLIN_COMPILER_VER
+# @PRE_INHERIT
 # @DESCRIPTION:
 # The Kotlin feature release version (e.g. 1.4, 1.5) this Kotlin compiler is
-# for. Defaults to ${SLOT}, can be overridden from ebuild BEFORE the
-# pkg_preinst phase.
-: ${KOTLIN_COMPILER_VER:="${SLOT}"}
+# for. Defaults to $(ver_cut 1-2), can be overridden from ebuild BEFORE
+# inheriting this eclass.
+: ${KOTLIN_COMPILER_VER:="$(ver_cut 1-2)"}
 
 RDEPEND="
 	app-eselect/eselect-kotlin
+"
+
+PDEPEND="
+	virtual/kotlin:${KOTLIN_COMPILER_VER}
 "
 
 # @FUNCTION: kotlin-compiler_pkg_preinst
