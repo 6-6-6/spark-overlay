@@ -73,11 +73,50 @@ kotlin-compiler_install_pkg_desc() {
 		_EOF_
 }
 
+# @ECLASS-VARIABLE: _KOTLIN_COMPILER_TOOLS
+# @INTERNAL
+# @DESCRIPTION:
+# The array of executables provided by a standard Kotlin compiler package.
+_KOTLIN_COMPILER_TOOLS=(
+	kapt
+	kotlin
+	kotlinc
+	kotlinc-js
+	kotlinc-jvm
+	kotlin-dce-js
+)
+
+# @FUNCTION: _kotlin-compiler_update_versioned_exe
+# @INTERNAL
+# @DESCRIPTION:
+# Creates versioned Kotlin tool executables for KOTLIN_COMPILER_VER.
+_kotlin-compiler_update_versioned_exe() {
+	for tool in "${_KOTLIN_COMPILER_TOOLS[@]}"; do
+		ln -snf "${EPREFIX}/usr/libexec/eselect-kotlin/run-kotlin-tool.sh" \
+			"${EROOT}/usr/bin/${tool}${KOTLIN_COMPILER_VER}"
+	done
+}
+
+# @FUNCTION: _kotlin-compiler_cleanup_versioned_exe
+# @INTERNAL
+# @DESCRIPTION:
+# Removes versioned Kotlin tool executables for KOTLIN_COMPILER_VER if there is
+# no more package for the feature release installed on the system.
+_kotlin-compiler_cleanup_versioned_exe() {
+	local ver_symlink="${EROOT}/etc/eselect/kotlin/homes/${KOTLIN_COMPILER_VER}"
+	if ! [[ -L "${ver_symlink}" && -d "${ver_symlink}" ]]; then
+		for tool in "${_KOTLIN_COMPILER_TOOLS[@]}"; do
+			rm "${EROOT}/usr/bin/${tool}${KOTLIN_COMPILER_VER}"
+		done
+	fi
+}
+
 # @FUNCTION: kotlin-compiler_pkg_postinst
 # @DESCRIPTION:
 # Performs tasks that need to be done after a new Kotlin compiler is installed.
 kotlin-compiler_pkg_postinst() {
 	eselect kotlin update
+	_kotlin-compiler_update_versioned_exe
 }
 
 # @FUNCTION: kotlin-compiler_pkg_postrm
@@ -86,4 +125,5 @@ kotlin-compiler_pkg_postinst() {
 kotlin-compiler_pkg_postrm() {
 	eselect kotlin cleanup
 	eselect kotlin update
+	_kotlin-compiler_cleanup_versioned_exe
 }
