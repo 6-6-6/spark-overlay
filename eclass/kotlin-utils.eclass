@@ -92,6 +92,78 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 # arguments set by the variables of this eclass and before the list of Java
 # source files. Default is unset, can be overridden from ebuild anywhere.
 
+# Test options
+
+# @ECLASS-VARIABLE: KOTLIN_TESTING_FRAMEWORKS
+# @DEFAULT_UNSET
+# @PRE_INHERIT
+# @DESCRIPTION:
+# A space-separated list that defines the testing frameworks for tests that
+# should be run in the src_test phase. Default is unset. Although
+# kotlin-utils.eclass does not require this variable to be set before it is
+# inherited, other eclasses that inherit this eclass, like kotlin.eclass and
+# kotlin-libs.eclass, may require it to be set before they are inherited.
+#
+# The supported testing frameworks are:
+# - pkgdiff: Compare JAVA_JAR_FILENAME with JAVA_BINJAR_FILENAME
+# - junit-4: Run tests with JUnit 4
+
+# @ECLASS-VARIABLE: KOTLIN_TEST_SRC_DIR
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# The counterpart of KOTLIN_SRC_DIR during the src_test phase. Default is
+# unset, which will cause test sources compilation to be skipped, and can be
+# overridden from ebuild anywhere.
+
+# @ECLASS-VARIABLE: KOTLIN_TEST_COMMON_SOURCES_DIR
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# The counterpart of KOTLIN_COMMON_SOURCES_DIR during the src_test phase.
+# Default is unset, can be overridden from ebuild anywhere.
+
+# @ECLASS-VARIABLE: KOTLIN_TEST_KOTLINC_ARGS
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# The counterpart of KOTLIN_KOTLINC_ARGS during the src_test phase. Default is
+# unset, can be overridden from ebuild anywhere.
+
+# @ECLASS-VARIABLE: KOTLIN_TEST_KOTLINC_JAVA_OPTS
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# The counterpart of KOTLIN_KOTLINC_JAVA_OPTS during the src_test phase.
+# Default is unset, can be overridden from ebuild anywhere.
+
+# @ECLASS-VARIABLE: KOTLIN_TEST_JAVA_SOURCE_ROOTS
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# The counterpart of KOTLIN_JAVA_SOURCE_ROOTS during the src_test phase.
+# Default is unset, can be overridden from ebuild anywhere.
+
+# @ECLASS-VARIABLE: KOTLIN_TEST_JAVA_WANT_SOURCE_TARGET
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# The counterpart of KOTLIN_JAVA_WANT_SOURCE_TARGET during the src_test phase.
+# Default is unset, can be overridden from ebuild anywhere.
+
+# @ECLASS-VARIABLE: KOTLIN_TEST_JAVAC_ARGS
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# The counterpart of KOTLIN_JAVAC_ARGS during the src_test phase. Default is
+# unset, can be overridden from ebuild anywhere.
+
+# @ECLASS-VARIABLE: KOTLIN_TEST_EXCLUDES
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# An array of classes that should not be executed during the src_test phase.
+# Default is unset, can be overridden from ebuild anywhere.
+
+# @ECLASS-VARIABLE: KOTLIN_TEST_RUN_ONLY
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# An array of classes that should be exclusively executed during the src_test
+# phase. This variable takes precedence over KOTLIN_TEST_EXCLUDES. Default is
+# unset, can be overridden from ebuild anywhere.
+
 # Kotlin version
 
 # @ECLASS-VARIABLE: KOTLIN_VERSIONS
@@ -147,6 +219,21 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 # itself's responsibility to make sure the target version is supported by any
 # Kotlin compiler version that will ever be used to build this package.
 
+# ebuild variables
+
+# @ECLASS-VARIABLE: KOTLIN_IUSE
+# @DEFAULT_UNSET
+# @PRE_INHERIT
+# @DESCRIPTION:
+# A list of special USE flags to add to IUSE which affects this eclass's
+# behaviors. Default is unset. Although kotlin-utils.eclass does not require
+# this variable to be set before it is inherited, other eclasses that inherit
+# this eclass, like kotlin.eclass and kotlin-libs.eclass, may require it to be
+# set before they are inherited.
+#
+# The following USE flags are recognized for this variable:
+# - test: Let this eclass automatically run tests during the src_test phase
+
 # Read-only variables
 
 # @ECLASS-VARIABLE: KOTLIN_UTILS_CLASSES
@@ -173,7 +260,23 @@ readonly KOTLIN_UTILS_REQ_USE
 # this package. Will be set by this eclass and be available after the
 # kotlin-utils_pkg_setup function is called.
 
+# @ECLASS-VARIABLE: KOTLIN_UTILS_TEST_CLASSPATH
+# @OUTPUT_VARIABLE
+# @DESCRIPTION:
+# The classpath needed to run tests. Will be set by this eclass and be
+# available after the kotlin-utils_test_compile function is called.
+
+# @ECLASS-VARIABLE: KOTLIN_UTILS_TESTS_TO_RUN
+# @OUTPUT_VARIABLE
+# @DESCRIPTION:
+# A space-separated list of test classes to run for the src_test phase. Will be
+# set by this eclass and be available after the kotlin-utils_test_compile
+# function is called.
+
 inherit java-pkg-2 java-pkg-simple
+
+IUSE="${KOTLIN_IUSE}"
+has test ${KOTLIN_IUSE} && RESTRICT+=" !test? ( test )"
 
 # @FUNCTION: kotlin-utils_set_kotlin_depend
 # @DESCRIPTION:
@@ -188,6 +291,28 @@ kotlin-utils_set_kotlin_depend() {
 		DEPEND+=" <virtual/kotlin-${KOTLIN_VERSIONS/<}:*${KOTLIN_UTILS_REQ_USE}"
 	else
 		DEPEND+=" virtual/kotlin:*${KOTLIN_UTILS_REQ_USE}"
+	fi
+}
+
+# @FUNCTION: kotlin-utils_set_test_depend
+# @DESCRIPTION:
+# If the 'test' USE flag is added to KOTLIN_IUSE, then adds a dependency
+# specification for KOTLIN_TESTING_FRAMEWORKS to the DEPEND variable.
+kotlin-utils_set_test_depend() {
+	if has test ${KOTLIN_IUSE}; then
+		local test_deps
+		for framework in ${KOTLIN_TESTING_FRAMEWORKS}; do
+			case "${framework}" in
+				junit-4)
+					test_deps+=" dev-java/junit:4" ;;
+				pkgdiff)
+					test_deps+=" amd64? (
+						dev-util/pkgdiff
+						dev-util/japi-compliance-checker
+					)" ;;
+			esac
+		done
+		[[ -n ${test_deps} ]] && DEPEND+=" test? ( ${test_deps} )"
 	fi
 }
 
@@ -398,6 +523,140 @@ kotlin-utils_jar() {
 		jar_args="cf ${JAVA_JAR_FILENAME}"
 	fi
 	jar ${jar_args} -C "${KOTLIN_UTILS_CLASSES}" . || die "Failed to create JAR"
+}
+
+# @FUNCTION: kotlin-utils_test_compile
+# @DESCRIPTION:
+# Compiles the test source files in KOTLIN_TEST_SRC_DIR using compiler
+# arguments during the test specified by other variables of this eclass.
+kotlin-utils_test_compile() {
+	local classes="target/test-classes"
+	# Create the target directory
+	mkdir -p "${classes}" || \
+		die "Could not create the target directory for test classes"
+
+	# Compute classpath
+	local classpath="${classes}:${JAVA_JAR_FILENAME}"
+	java-pkg-simple_getclasspath
+	if has test ${KOTLIN_IUSE} && use test; then
+		for dependency in ${JAVA_TEST_GENTOO_CLASSPATH}; do
+			classpath="${classpath}:$(java-pkg_getjars \
+				--build-only --with-dependencies "${dependency}")"
+		done
+	fi
+
+	java-pkg-simple_prepend_resources \
+		"${classes}" "${JAVA_TEST_RESOURCE_DIRS[@]}"
+
+	# Compile Kotlin test files
+	local kotlin_sources="kotlin_test_sources.lst"
+	find "${KOTLIN_TEST_SRC_DIR[@]}" -name "*.kt" > "${kotlin_sources}"
+
+	# If there are no Kotlin test sources, skip compilation of any test sources
+	[[ -s "${kotlin_sources}" ]] || return
+
+	# Back up variables that control arguments to Kotlin compiler
+	local _common_sources_dir=( "${KOTLIN_COMMON_SOURCES_DIR[@]}" )
+	local _kotlinc_args=( "${KOTLIN_KOTLINC_ARGS[@]}" )
+	local _kotlinc_java_opts="${KOTLIN_KOTLINC_JAVA_OPTS}"
+	local _java_source_roots=( "${KOTLIN_JAVA_SOURCE_ROOTS[@]}" )
+
+	# Set compiler arguments for tests
+	KOTLIN_COMMON_SOURCES_DIR=( "${KOTLIN_TEST_COMMON_SOURCES_DIR[@]}" )
+	KOTLIN_KOTLINC_ARGS=( "${KOTLIN_TEST_KOTLINC_ARGS[@]}" )
+	KOTLIN_KOTLINC_JAVA_OPTS="${KOTLIN_TEST_KOTLINC_JAVA_OPTS}"
+	KOTLIN_JAVA_SOURCE_ROOTS=( "${KOTLIN_TEST_JAVA_SOURCE_ROOTS[@]}" )
+
+	kotlin-utils_kotlinc \
+		-d "${classes}" \
+		${classpath:+-classpath ${classpath}} \
+		"@${kotlin_sources}"
+
+	# Restore variables
+	KOTLIN_COMMON_SOURCES_DIR=( "${_common_sources_dir[@]}" )
+	KOTLIN_KOTLINC_ARGS=( "${_kotlinc_args[@]}" )
+	KOTLIN_KOTLINC_JAVA_OPTS="${_kotlinc_java_opts}"
+	KOTLIN_JAVA_SOURCE_ROOTS=( "${_java_source_roots[@]}" )
+
+	# Compile any Java test source files after the Kotlin test sources because
+	# the Java sources may require some of the Kotlin classes as dependencies
+	if [[ -n "${KOTLIN_TEST_JAVA_SOURCE_ROOTS[@]}" ]]; then
+		local java_sources="java_test_sources.lst"
+		find "${KOTLIN_TEST_JAVA_SOURCE_ROOTS[@]}" -name "*.java" \
+			> "${java_sources}"
+		ebegin "Compiling Java sources"
+		$(java-pkg_get-javac) \
+			-d "${classes}" \
+			-classpath ${classpath} \
+			-encoding "${JAVA_ENCODING}" \
+			${KOTLIN_TEST_JAVA_WANT_SOURCE_TARGET:+-source ${KOTLIN_TEST_JAVA_WANT_SOURCE_TARGET}} \
+			${KOTLIN_TEST_JAVA_WANT_SOURCE_TARGET:+-target ${KOTLIN_TEST_JAVA_WANT_SOURCE_TARGET}} \
+			"${KOTLIN_TEST_JAVAC_ARGS[@]}" \
+			"@${java_sources}" || die "Failed to compile Java test sources"
+	fi
+
+	local tests_to_run
+	if [[ -n "${KOTLIN_TEST_RUN_ONLY[@]}" ]]; then
+		tests_to_run="${KOTLIN_TEST_RUN_ONLY[@]}"
+	else
+		tests_to_run=$(find "${classes}" -type f \
+			\( -name "*Test.class" \
+			-o -name "Test*.class" \
+			-o -name "*Tests.class" \
+			-o -name "*TestCase.class" \) \
+			! -name "*Abstract*"\
+			! -name "*BaseTest*"\
+			! -name "*TestTypes*"\
+			! -name "*TestUtils*"\
+			! -name "*\$*" \
+			! -name "*Kt.class")
+		tests_to_run=${tests_to_run//"${classes}"\/}
+		tests_to_run=${tests_to_run//.class}
+		tests_to_run=${tests_to_run//\//.}
+		for class in "${KOTLIN_TEST_EXCLUDES[@]}"; do
+			tests_to_run=${tests_to_run//${class}}
+		done
+	fi
+
+	KOTLIN_UTILS_TEST_CLASSPATH="${classpath}"
+	KOTLIN_UTILS_TESTS_TO_RUN="${tests_to_run}"
+	readonly KOTLIN_UTILS_TEST_CLASSPATH KOTLIN_UTILS_TESTS_TO_RUN
+}
+
+# @FUNCTION: kotlin-utils_src_test
+# @DESCRIPTION:
+# Performs tests with frameworks defined in KOTLIN_TESTING_FRAMEWORKS.
+kotlin-utils_src_test() {
+	if ! has test ${KOTLIN_IUSE}; then
+		return
+	elif ! use test; then
+		return
+	elif [[ -z "${KOTLIN_TESTING_FRAMEWORKS}" ]]; then
+		return
+	fi
+
+	local compile_if_framework=( junit-4 )
+	local compile
+	for framework in "${compile_if_framework[@]}"; do
+		if has "${framework}" ${KOTLIN_TESTING_FRAMEWORKS}; then
+			compile=1
+		fi
+	done
+	if [[ "${compile}" ]]; then
+		kotlin-utils_test_compile
+	fi
+
+	for framework in ${KOTLIN_TESTING_FRAMEWORKS}; do
+		case "${framework}" in
+			junit-4)
+				ejunit4 -classpath "${KOTLIN_UTILS_TEST_CLASSPATH}" \
+					${KOTLIN_UTILS_TESTS_TO_RUN} ;;
+			pkgdiff)
+				java-pkg-simple_test_with_pkgdiff_ ;;
+			*)
+				elog "Testing framework ${framework} is not supported yet" ;;
+		esac
+	done
 }
 
 _KOTLIN_UTILS_INHERITED=1
