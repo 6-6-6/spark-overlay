@@ -349,13 +349,16 @@ _kotlin-utils_get_compiler_home() {
 		fi
 	else
 		local bound op
-		if [[ "${KOTLIN_VERSIONS}" == ">="* ]]; then
-			bound="${KOTLIN_VERSIONS/>=}"
-			op="-ge"
-		else
-			bound="${KOTLIN_VERSIONS/<}"
-			op="-lt"
-		fi
+		case "${KOTLIN_VERSIONS}" in
+			">="*)
+				bound="${KOTLIN_VERSIONS/>=}"
+				op="-ge"
+				;;
+			"<"*)
+				bound="${KOTLIN_VERSIONS/<}"
+				op="-lt"
+				;;
+		esac
 
 		local system_symlink="${prefs_root}/system"
 		local system_pkg="$(basename "$(readlink "${system_symlink}")")"
