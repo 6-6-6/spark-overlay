@@ -30,7 +30,7 @@ inherit kotlin-utils
 
 DEPEND="
 	$(kotlin-utils_kotlin_depend)
-	$(kotlin-utils_test_depend)
+	$(kotlin-utils_iuse_depend)
 "
 
 # @FUNCTION: kotlin_pkg_setup
@@ -70,5 +70,31 @@ kotlin_src_install() {
 	if [[ -n "${JAVA_MAIN_CLASS}" ]]; then
 		java-pkg_dolauncher "${JAVA_LAUNCHER_FILENAME}" \
 			--main "${JAVA_MAIN_CLASS}"
+	fi
+
+	if has source ${KOTLIN_IUSE} && use source; then
+		local sources
+		if [[ -s "java_sources.lst" ]]; then
+			sources="sources.lst"
+			cat kotlin_sources.lst java_sources.lst > "${sources}" || \
+				die "Failed to create combined Kotlin and Java source list"
+		elif [[ -s "kotlin_sources.lst" ]]; then
+			sources="kotlin_sources.lst"
+		else
+			# Fall back to the source list file used by java-pkg-simple.eclass
+			sources="sources.lst"
+		fi
+
+		local kt_java_src_dir=(
+			"${KOTLIN_SRC_DIR[@]}"
+			"${KOTLIN_JAVA_SOURCE_ROOTS[@]}"
+			"${JAVA_SRC_DIR[@]}"
+		)
+		if [[ -n "${kt_java_src_dir[@]}" ]]; then
+			kotlin-utils_dosrc "${kt_java_src_dir[@]}"
+		else
+			# Take all directories actually containing any sources
+			kotlin-utils_dosrc $(cut -d/ -f1 "${sources}" | sort -u)
+		fi
 	fi
 }
