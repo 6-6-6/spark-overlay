@@ -106,5 +106,5 @@ src_test() {
 		${classpath:+-classpath ${classpath}} \
 		"$(find "../okhttp-testing-support/src/main" -name "*.kt")"
 
-	kotlin-src_test
+	kotlin_src_test
 }
