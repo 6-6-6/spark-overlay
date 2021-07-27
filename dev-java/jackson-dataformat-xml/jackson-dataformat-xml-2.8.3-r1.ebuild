@@ -1,8 +1,5 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-
-# Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/jackson-dataformat-xml-2.8.3.pom --from-maven-central --download-uri https://repo1.maven.org/maven2/com/fasterxml/jackson/dataformat/jackson-dataformat-xml/2.8.3/jackson-dataformat-xml-2.8.3-sources.jar --binjar-uri https://repo1.maven.org/maven2/com/fasterxml/jackson/dataformat/jackson-dataformat-xml/2.8.3/jackson-dataformat-xml-2.8.3.jar --slot 0 --keywords "~amd64" --ebuild jackson-dataformat-xml-2.8.3.ebuild
 
 EAPI=7
 
@@ -12,9 +9,10 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Data format extension for Jackson (http://jackson.codehaus.org) to offer alternative support for serializing POJOs as XML and deserializing XML as pojos. Support implemented on top of Stax API (javax.xml.stream), by implementing core Jackson Streaming API types like JsonGenerator, JsonParser and JsonFactory. Some data-binding types overridden as well (ObjectMapper sub-classed as XmlMapper)."
+DESCRIPTION="Data format extension for Jackson for serializing and deserializing POJOs"
 HOMEPAGE="http://wiki.fasterxml.com/JacksonExtensionXmlDataBinding"
-SRC_URI="https://repo1.maven.org/maven2/com/fasterxml/jackson/dataformat/${PN}/${PV}/${P}-sources.jar
+SRC_URI="
+	https://repo1.maven.org/maven2/com/fasterxml/jackson/dataformat/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/com/fasterxml/jackson/dataformat/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="Apache-2.0"
 SLOT="0"
@@ -38,26 +36,21 @@ CDEPEND="
 	>=dev-java/stax2-api-4.0.0:0
 "
 
-# Compile dependencies
-# POM: /var/lib/java-ebuilder/poms/${P}.pom
-# javax.xml.stream:stax-api:1.0-2 -> java-virtuals/stax-api:0
-
 DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
 		${CDEPEND}
-		java-virtuals/stax-api:0
 	)
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-	${CDEPEND}"
+	${CDEPEND}
+"
 
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind,jackson-module-jaxb-annotations,woodstox-core,stax2-api"
-JAVA_CLASSPATH_EXTRA="stax-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
