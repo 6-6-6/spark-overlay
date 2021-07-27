@@ -28,8 +28,10 @@ EXPORT_FUNCTIONS pkg_setup src_compile src_install src_test
 
 inherit kotlin-utils
 
-kotlin-utils_set_kotlin_depend
-kotlin-utils_set_test_depend
+DEPEND="
+	$(kotlin-utils_kotlin_depend)
+	$(kotlin-utils_test_depend)
+"
 
 # @FUNCTION: kotlin_pkg_setup
 # @DESCRIPTION:
