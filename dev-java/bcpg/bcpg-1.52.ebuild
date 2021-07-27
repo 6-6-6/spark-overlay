@@ -16,18 +16,26 @@ LICENSE="BSD"
 SLOT="1.52"
 KEYWORDS="~amd64 ~ppc64 ~x86"
 
-# dev-java/bcprov-1.52 in ::gentoo has SLOT="0"
-CDEPEND="~dev-java/bcprov-${PV}:0"
-DEPEND="${CDEPEND}
-	>=virtual/jdk-1.8:*"
-RDEPEND="${CDEPEND}
-	>=virtual/jre-1.8:*"
+# Depend on slotted dev-java/bcprov-1.52 in this overlay
+# This package fails to compile when bcprov-1.68 is used
+CP_DEPEND="
+	dev-java/bcprov:1.52
+"
+
+DEPEND="
+	${CP_DEPEND}
+	>=virtual/jdk-1.8:*
+"
+
+RDEPEND="
+	${CP_DEPEND}
+	>=virtual/jre-1.8:*
+"
 
 HTML_DOCS=( ../{CONTRIBUTORS,index,LICENSE}.html )
 
 S="${WORKDIR}/bc-java-r${PV/./rv}/pg"
 
-JAVA_GENTOO_CLASSPATH="bcprov"
 JAVA_SRC_DIR=(
 	"src/main/java"
 )
