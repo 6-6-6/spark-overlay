@@ -12,10 +12,7 @@ inherit kotlin
 
 DESCRIPTION="Square's meticulous HTTP client for Java and Kotlin"
 HOMEPAGE="https://square.github.io/okhttp/"
-SRC_URI="
-	https://github.com/square/okhttp/archive/refs/tags/parent-4.7.2.tar.gz -> ${P}.tar.gz
-	https://repo1.maven.org/maven2/com/squareup/${PN}3/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
-"
+SRC_URI="https://github.com/square/okhttp/archive/refs/tags/parent-4.7.2.tar.gz -> ${P}.tar.gz"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -57,9 +54,6 @@ RDEPEND="
 S="${WORKDIR}/${PN}-parent-${PV}/${PN}"
 
 KOTLIN_KOTLINC_JAVA_OPTS="-Xmx512M"
-
-JAVA_SRC_DIR="src/main/java"
-JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 JAVA_CLASSPATH_EXTRA="
 	jetbrains-annotations-13
