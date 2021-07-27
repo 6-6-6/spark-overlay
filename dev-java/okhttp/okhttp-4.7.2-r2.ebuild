@@ -108,3 +108,16 @@ src_test() {
 
 	kotlin_src_test
 }
+
+src_install() {
+	kotlin_src_install
+
+	dodoc BUG-BOUNTY.md CHANGELOG.md README.md
+	# releasing.md not relevant to users
+	rm docs/release.md
+	# security.md does not necessarily contain up-to-date information, which
+	# might mislead users into thinking that the version they are using is
+	# still supported
+	rm docs/security.md
+	dodoc docs/*.md
+}
