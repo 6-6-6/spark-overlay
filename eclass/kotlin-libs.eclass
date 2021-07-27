@@ -36,47 +36,6 @@ EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install
 # with the upstream.  The set of values that the upstream can use for this
 # field includes 'Main' and 'Test'.
 
-# Testing options
-
-# @ECLASS-VARIABLE: KOTLIN_LIBS_TESTING_FRAMEWORKS
-# @DEFAULT_UNSET
-# @PRE_INHERIT
-# @DESCRIPTION:
-# Any value that should be added to the JAVA_TESTING_FRAMEWORKS variable of the
-# ebuild. Default is unset, can be overridden from ebuild BEFORE inheriting
-# this eclass.
-
-# @ECLASS-VARIABLE: KOTLIN_LIBS_TEST_SRC_DIR
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# An array of directories relative to ${S} which contain the sources for
-# testing. A string with directories separated by white space works as well.
-# Default is unset, which will cause all source files inside ${S} to be
-# compiled for testing, and can be overridden from ebuild anywhere.
-
-# @ECLASS-VARIABLE: KOTLIN_LIBS_TEST_COMMON_SOURCES_DIR
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# An array of directories relative to ${S} which contains the sources to pass
-# to kotlinc's -Xcommon-sources option during the test. Default is unset, can
-# be overridden from ebuild anywhere.
-
-# @ECLASS-VARIABLE: KOTLIN_LIBS_TEST_KOTLINC_ARGS
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# An array of any extra arguments to kotlinc that will added after all other
-# arguments set by the variables of this eclass and before the list of test
-# sources files during the test. Default is unset, can be overridden from
-# ebuild anywhere.
-
-# @ECLASS-VARIABLE: KOTLIN_LIBS_TEST_KOTLINC_JAVA_OPTS
-# @DESCRIPTION:
-# Any options for the JVM instances started by kotlinc during the test. The
-# default option allots enough memory to kotlinc to compile every Kotlin
-# Standard Library component's test, and it can be overridden from ebuild
-# anywhere.
-: ${KOTLIN_LIBS_TEST_KOTLINC_JAVA_OPTS:="-Xmx768M"}
-
 # ebuild variables
 
 # @ECLASS-VARIABLE: KOTLIN_LIBS_BINJAR_SRC_URI
@@ -86,7 +45,7 @@ EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install
 # The SRC_URI of the binary JAR file to be installed if the 'binary' USE flag
 # is enabled. Default is unset, can be overridden from ebuild BEFORE inheriting
 # this eclass. Once a value is set, this eclass will add 'binary' and 'test'
-# USE flags to it and automatically set 'JAVA_TESTING_FRAMEWORKS+=" pkgdiff"'
+# USE flags to it and automatically set 'KOTLIN_TESTING_FRAMEWORKS+=" pkgdiff"'
 # to use the binary JAR for testing.
 
 # @ECLASS-VARIABLE: KOTLIN_LIBS_SRCJAR_SRC_URI
@@ -109,26 +68,17 @@ EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install
 # Testing
 
 JAVA_PKG_IUSE="source"
-JAVA_TESTING_FRAMEWORKS=""
 _KOTLIN_LIBS_REQUIRED_USE=""
 
 if [[ -n "${KOTLIN_LIBS_BINJAR_SRC_URI}" ]]; then
 	# The binary JAR can be used for pkgdiff tests when the package is built
 	# from source
-	JAVA_PKG_IUSE+=" binary test"
-	JAVA_TESTING_FRAMEWORKS="pkgdiff"
+	JAVA_PKG_IUSE+=" binary"
+	KOTLIN_IUSE+=" test"
+	KOTLIN_TESTING_FRAMEWORKS+=" pkgdiff"
 	if [[ -z "${KOTLIN_LIBS_SRCJAR_SRC_URI}" ]]; then
 		# No source JAR is available for the binary JAR, disable the USE flag
 		_KOTLIN_LIBS_REQUIRED_USE="binary? ( !source )"
-	fi
-fi
-
-if [[ -n "${KOTLIN_LIBS_TESTING_FRAMEWORKS}" ]]; then
-	has test ${JAVA_PKG_IUSE} || JAVA_PKG_IUSE+=" test"
-	if [[ -z "${JAVA_TESTING_FRAMEWORKS}" ]]; then
-		JAVA_TESTING_FRAMEWORKS="${KOTLIN_LIBS_TESTING_FRAMEWORKS}"
-	else
-		JAVA_TESTING_FRAMEWORKS+=" ${KOTLIN_LIBS_TESTING_FRAMEWORKS}"
 	fi
 fi
 
@@ -155,7 +105,7 @@ _KOTLIN_LIBS_DEFAULT_SRC_URI="
 "
 if has binary ${JAVA_PKG_IUSE}; then
 	: ${SRC_URI:=""}
-	if has junit-4 ${JAVA_TESTING_FRAMEWORKS}; then
+	if has junit-4 ${KOTLIN_TESTING_FRAMEWORKS}; then
 		# Unpack source archive to compile and run the test suite in it
 		_KOTLIN_LIBS_TEST_SRC="test? ( ${_KOTLIN_LIBS_DEFAULT_SRC_URI} )"
 	fi
@@ -203,7 +153,7 @@ _KOTLIN_LIBS_DEPEND="$(
 if has binary ${JAVA_PKG_IUSE}; then
 	# Depend on the compiler only when building from source
 	DEPEND+=" !binary? ( ${_KOTLIN_LIBS_DEPEND} )"
-	if has junit-4 ${JAVA_TESTING_FRAMEWORKS}; then
+	if has junit-4 ${KOTLIN_TESTING_FRAMEWORKS}; then
 		DEPEND+=" test? ( ${_KOTLIN_LIBS_DEPEND} )"
 	fi
 else
@@ -211,11 +161,14 @@ else
 	DEPEND+=" ${_KOTLIN_LIBS_DEPEND}"
 fi
 
+kotlin-utils_set_test_depend
+
 # kotlin-utils.eclass variables
 
 KOTLIN_KOTLINC_JAVA_OPTS="-Xmx768M"
 KOTLIN_JAVA_WANT_SOURCE_TARGET="1.6"
 KOTLIN_WANT_TARGET="${SLOT}"
+KOTLIN_TEST_KOTLINC_JAVA_OPTS="${KOTLIN_KOTLINC_JAVA_OPTS}"
 
 # Unset temporary variables
 
@@ -305,79 +258,25 @@ kotlin-libs_src_compile() {
 	kotlin-utils_jar
 }
 
-# @FUNCTION: _kotlin-libs_test_with_junit4
-# @INTERNAL
-# @DESCRIPTION:
-# Runs the JUnit 4 tests for the package.
-_kotlin-libs_test_with_junit4() {
-	local test_sources="test_sources.lst"
-	local target="test-target"
-
-	mkdir -p ${target} || die "Could not create target directory for testing"
-
-	local classpath="${target}:${JAVA_JAR_FILENAME}"
-	java-pkg-simple_getclasspath
-
-	find "${KOTLIN_LIBS_TEST_SRC_DIR[@]}" -name "*.kt" > "${test_sources}"
-	if [[ -s "${test_sources}" ]]; then
-		# Back up variables that control arguments to Kotlin compiler
-		local _common_sources_dir=( "${KOTLIN_COMMON_SOURCES_DIR[@]}" )
-		local _kotlinc_args=( "${KOTLIN_KOTLINC_ARGS[@]}" )
-		local _kotlinc_java_opts="${KOTLIN_KOTLINC_JAVA_OPTS}"
-
-		# Set compiler arguments for tests
-		KOTLIN_COMMON_SOURCES_DIR=(
-			"${KOTLIN_LIBS_TEST_COMMON_SOURCES_DIR[@]}"
-		)
-		KOTLIN_KOTLINC_ARGS=( "${KOTLIN_LIBS_TEST_KOTLINC_ARGS[@]}" )
-		KOTLIN_KOTLINC_JAVA_OPTS="${KOTLIN_LIBS_TEST_KOTLINC_JAVA_OPTS}"
-
-		kotlin-utils_kotlinc -d "${target}" \
-			${classpath:+-classpath ${classpath}} "@${test_sources}"
-
-		# Restore variables
-		KOTLIN_COMMON_SOURCES_DIR=( "${_common_sources_dir[@]}" )
-		KOTLIN_KOTLINC_ARGS=( "${_kotlinc_args[@]}" )
-		KOTLIN_KOTLINC_JAVA_OPTS="${_kotlinc_java_opts}"
-	fi
-
-	tests_to_run=$(find "${target}" -type f \
-		\( -name "*Test.class" \
-		-o -name "Test*.class" \
-		-o -name "*Tests.class" \
-		-o -name "*TestCase.class" \) \
-		! -name "*Abstract*"\
-		! -name "*BaseTest*"\
-		! -name "*TestTypes*"\
-		! -name "*TestUtils*"\
-		! -name "*\$*" \
-		! -name "*Kt.class")
-	tests_to_run=${tests_to_run//"${target}"\/}
-	tests_to_run=${tests_to_run//.class}
-	tests_to_run=${tests_to_run//\//.}
-	for class in "${JAVA_TEST_EXCLUDES[@]}"; do
-		tests_to_run=${tests_to_run//${class}}
-	done
-	ejunit4 -classpath "${classpath}" ${tests_to_run}
-}
-
 # @FUNCTION: kotlin-libs_src_test
 # @DESCRIPTION:
 # If the package is being built from source but a binary JAR is still
 # available, compares it with the JAR just built.
 kotlin-libs_src_test() {
-	if ! has test ${JAVA_PKG_IUSE}; then
+	if ! has test ${KOTLIN_IUSE}; then
 		return
 	elif ! use test; then
 		return
-	elif [[ -z "${JAVA_TESTING_FRAMEWORKS}" ]]; then
+	elif [[ -z "${KOTLIN_TESTING_FRAMEWORKS}" ]]; then
 		return
 	fi
 
-	for framework in ${JAVA_TESTING_FRAMEWORKS}; do
-		case ${framework} in
+	for framework in ${KOTLIN_TESTING_FRAMEWORKS}; do
+		case "${framework}" in
 			junit-4)
-				_kotlin-libs_test_with_junit4 ;;
+				kotlin-utils_test_compile
+				ejunit4 -classpath "${KOTLIN_UTILS_TEST_CLASSPATH}" \
+					${KOTLIN_UTILS_TESTS_TO_RUN} ;;
 			pkgdiff)
 				if has binary ${JAVA_PKG_IUSE} && use binary; then
 					elog "Skipping pkgdiff tests because they will always pass"
@@ -387,7 +286,7 @@ kotlin-libs_src_test() {
 				fi
 				;;
 			*)
-				elog "Testing framework ${framework} is not supported yet";;
+				elog "Testing framework ${framework} is not supported yet" ;;
 		esac
 	done
 }
