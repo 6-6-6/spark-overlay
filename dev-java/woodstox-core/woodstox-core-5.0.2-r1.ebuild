@@ -1,8 +1,5 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-
-# Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/woodstox-core-5.0.2.pom --from-maven-central --download-uri https://repo1.maven.org/maven2/com/fasterxml/woodstox/woodstox-core/5.0.2/woodstox-core-5.0.2-sources.jar --binjar-uri https://repo1.maven.org/maven2/com/fasterxml/woodstox/woodstox-core/5.0.2/woodstox-core-5.0.2.jar --slot 0 --keywords "~amd64" --ebuild woodstox-core-5.0.2.ebuild
 
 EAPI=7
 
@@ -12,10 +9,12 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Woodstox is a high-performance XML processor that implements Stax (JSR-173), SAX2 and Stax2 APIs"
+DESCRIPTION="XML processor that implements Stax (JSR-173), SAX2 and Stax2 APIs"
 HOMEPAGE="https://github.com/FasterXML/woodstox"
-SRC_URI="https://repo1.maven.org/maven2/com/fasterxml/woodstox/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/com/fasterxml/woodstox/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+SRC_URI="
+	https://repo1.maven.org/maven2/com/fasterxml/woodstox/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/com/fasterxml/woodstox/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -30,7 +29,6 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# javax.xml.stream:stax-api:1.0-2 -> java-virtuals/stax-api:0
 # net.java.dev.msv:msv-core:2013.6.1 -> >=dev-java/msv-20130601:0
 # net.java.dev.msv:msv-rngconverter:2013.6.1 -> >=dev-java/msv-rngconverter-2013.6.1:0
 # net.java.dev.msv:xsdlib:2013.6.1 -> >=dev-java/xsdlib-20090415:0
@@ -45,7 +43,6 @@ DEPEND="
 		>=dev-java/msv-20130601:0
 		>=dev-java/osgi-core-1.4.0:1
 		>=dev-java/xsdlib-20090415:0
-		java-virtuals/stax-api:0
 	)
 "
 
@@ -56,6 +53,6 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="stax2-api"
-JAVA_CLASSPATH_EXTRA="stax-api,msv,msv-rngconverter,xsdlib,osgi-core-1"
+JAVA_CLASSPATH_EXTRA="msv,msv-rngconverter,xsdlib,osgi-core-1"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
