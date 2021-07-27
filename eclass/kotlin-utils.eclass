@@ -683,7 +683,7 @@ kotlin-utils_dosrc() {
 
 	java-pkg_check-phase install
 
-	[[ $# -lt 1 ]] && die "At least one argument needed for ${FUNCNAME}"
+	[[ $# -ge 1 ]] || die "At least one argument needed for ${FUNCNAME}"
 
 	if [[ "${DEPEND}" != *app-arch/zip* ]]; then
 		local msg="${FUNCNAME} called without app-arch/zip in DEPEND"

@@ -224,7 +224,7 @@ kotlin-libs_src_unpack() {
 kotlin-libs_create_manifest() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	[[ $# -ne 1 ]] && die "${FUNCNAME[0]} takes exactly one argument"
+	[[ $# -eq 1 ]] || die "Exactly one argument is needed for ${FUNCNAME}"
 	mkdir -p "$1/META-INF" || die "Failed to create the META-INF directory"
 	cat <<- _EOF_ \
 		> "$1/META-INF/MANIFEST.MF" || die "Failed to create MANIFEST.MF"
