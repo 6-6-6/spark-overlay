@@ -12,4 +12,10 @@
 	<upstream>
 		<remote-id type="github">JetBrains/kotlin</remote-id>
 	</upstream>
+	<use>
+		<flag name="javascript" restrict="&gt;=dev-lang/kotlin-bin-1.4">
+			Add dependency on <pkg>dev-java/kotlin-stdlib-js</pkg> for
+				Kotlin/JS support and the kotlinc-js command
+		</flag>
+	</use>
 </pkgmetadata>
