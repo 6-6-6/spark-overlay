@@ -278,27 +278,28 @@ inherit java-pkg-2 java-pkg-simple
 IUSE="${KOTLIN_IUSE}"
 has test ${KOTLIN_IUSE} && RESTRICT+=" !test? ( test )"
 
-# @FUNCTION: kotlin-utils_set_kotlin_depend
+# @FUNCTION: kotlin-utils_kotlin_depend
 # @DESCRIPTION:
-# Adds a dependency specification that enforces the requirement of
-# KOTLIN_VERSIONS to the DEPEND variable.
-kotlin-utils_set_kotlin_depend() {
-	if [[ "${KOTLIN_VERSIONS}" == "="* ]]; then
-		DEPEND+=" virtual/kotlin:${KOTLIN_VERSIONS/=}${KOTLIN_UTILS_REQ_USE}"
-	elif [[ "${KOTLIN_VERSIONS}" == ">="* ]]; then
-		DEPEND+=" >=virtual/kotlin-${KOTLIN_VERSIONS/>=}:*${KOTLIN_UTILS_REQ_USE}"
-	elif [[ "${KOTLIN_VERSIONS}" == "<"* ]]; then
-		DEPEND+=" <virtual/kotlin-${KOTLIN_VERSIONS/<}:*${KOTLIN_UTILS_REQ_USE}"
-	else
-		DEPEND+=" virtual/kotlin:*${KOTLIN_UTILS_REQ_USE}"
-	fi
+# Echos a dependency specification that enforces the requirement of
+# KOTLIN_VERSIONS.
+kotlin-utils_kotlin_depend() {
+	case "${KOTLIN_VERSIONS}" in
+		"="*)
+			echo "virtual/kotlin:${KOTLIN_VERSIONS/=}${KOTLIN_UTILS_REQ_USE}" ;;
+		">="*)
+			echo ">=virtual/kotlin-${KOTLIN_VERSIONS/>=}:*${KOTLIN_UTILS_REQ_USE}" ;;
+		"<"*)
+			echo "<virtual/kotlin-${KOTLIN_VERSIONS/<}:*${KOTLIN_UTILS_REQ_USE}" ;;
+		*)
+			echo "virtual/kotlin:*${KOTLIN_UTILS_REQ_USE}" ;;
+	esac
 }
 
-# @FUNCTION: kotlin-utils_set_test_depend
+# @FUNCTION: kotlin-utils_test_depend
 # @DESCRIPTION:
-# If the 'test' USE flag is added to KOTLIN_IUSE, then adds a dependency
-# specification for KOTLIN_TESTING_FRAMEWORKS to the DEPEND variable.
-kotlin-utils_set_test_depend() {
+# If the 'test' USE flag is added to KOTLIN_IUSE, then echos a dependency
+# specification according to the value of KOTLIN_TESTING_FRAMEWORKS.
+kotlin-utils_test_depend() {
 	if has test ${KOTLIN_IUSE}; then
 		local test_deps
 		for framework in ${KOTLIN_TESTING_FRAMEWORKS}; do
@@ -312,7 +313,7 @@ kotlin-utils_set_test_depend() {
 					)" ;;
 			esac
 		done
-		[[ -n ${test_deps} ]] && DEPEND+=" test? ( ${test_deps} )"
+		[[ -n ${test_deps} ]] && echo "test? ( ${test_deps} )"
 	fi
 }
 
