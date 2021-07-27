@@ -315,17 +315,14 @@ kotlin-libs_dosrc() {
 	local zip_path="${T}/${zip_name}"
 	local path
 	for path in "$@"; do
-		local dir_parent=$(dirname "${path}")
-		local dir_name=$(basename "${path}")
-		pushd "${dir_parent}" > /dev/null || \
-			die "Failed to enter directory ${dir_parent}"
-		zip -q -r "${zip_path}" "${dir_name}"
+		pushd "${path}" > /dev/null || die "Failed to enter directory ${path}"
+		zip -q -r "${zip_path}" *
 		local result=$?
 		# 12 means zip has nothing to do
 		if [[ "${result}" != 12 && "${result}" != 0 ]]; then
 			die "Failed to add ${dir_name} to Zip archive"
 		fi
-		popd > /dev/null || die "Failed to exit directory ${dir_parent}"
+		popd > /dev/null || die "Failed to exit directory ${path}"
 	done
 
 	insinto "${JAVA_PKG_SOURCESPATH}"
@@ -379,11 +376,11 @@ kotlin-libs_src_install() {
 			local kt_java_src_dir=(
 				"${KOTLIN_SRC_DIR[@]}"
 				"${KOTLIN_JAVA_SOURCE_ROOTS[@]}"
+				"${JAVA_SRC_DIR[@]}"
 			)
 			if [[ -n "${kt_java_src_dir[@]}" ]]; then
-				local parent child
 				for parent in "${kt_java_src_dir[@]}"; do
-					srcdirs="${srcdirs} ${parent}"
+					srcdirs+=" ${parent}"
 				done
 			else
 				# Take all directories actually containing any sources
