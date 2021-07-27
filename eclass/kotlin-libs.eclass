@@ -10,7 +10,7 @@
 # @BLURB: An eclass for building Kotlin library packages
 # @DESCRIPTION:
 # This eclass provides an abstraction of the Kotlin compiler to support
-# building Kotlin library packages. It is based on java-pkg-simple.eclass and
+# building Kotlin library packages. It inherits kotlin-utils.eclass and
 # recognizes variables declared by that eclass when appropriate.
 
 case "${EAPI:-0}" in

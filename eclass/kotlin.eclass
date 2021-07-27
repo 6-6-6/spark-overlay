@@ -11,7 +11,9 @@
 # @DESCRIPTION:
 # This eclass can be inherited by ebuilds for a Kotlin package to select a
 # Kotlin compiler version required by the package and compile the package's
-# sources.
+# sources. This eclass inherits kotlin-utils.eclass, and ebuilds inheriting
+# this eclass should set variables declared in kotlin-utils.eclass to control
+# how the package is built.
 
 case "${EAPI:-0}" in
 	6|7) ;;

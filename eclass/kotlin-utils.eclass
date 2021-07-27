@@ -14,11 +14,11 @@
 # well as ebuilds for a Kotlin package. It inherits java-pkg-simple.eclass and
 # recognizes variables declared by that eclass when appropriate.
 #
-# This eclass should not be inherited directly from an ebuild. Instead, please
-# use one of the eclasses that are based on this eclass. For normal Kotlin
-# packages, please use kotlin.eclass. kotlin-libs.eclass and
-# kotlin-core-deps.eclass are used by the Kotlin core library packages and
-# should not be used by ebuilds for normal Kotlin packages.
+# This eclass neither sets any metadata variables by default nor exports any
+# phase functions, so it can be inherited safely. However, ebuilds for pure
+# Kotlin packages should inherit kotlin.eclass, which exports various phase
+# functions that automatically call functions in this eclass and is thus more
+# convenient to use.
 
 case "${EAPI:-0}" in
 	6|7) ;;
