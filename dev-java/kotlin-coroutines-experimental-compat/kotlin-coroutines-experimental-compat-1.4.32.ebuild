@@ -7,7 +7,7 @@ MAVEN_ID="org.jetbrains.kotlin:${PN}:${PV}"
 
 KOTLIN_LIBS_BINJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}.jar"
 KOTLIN_LIBS_SRCJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}-sources.jar"
-KOTLIN_LIBS_TESTING_FRAMEWORKS="junit-4"
+KOTLIN_TESTING_FRAMEWORKS="junit-4"
 
 inherit kotlin-libs
 
@@ -57,7 +57,7 @@ KOTLIN_SRC_DIR=(
 	libraries/stdlib/coroutines-experimental/{,jvm}/src
 )
 
-KOTLIN_LIBS_TEST_KOTLINC_ARGS=(
+KOTLIN_TEST_KOTLINC_ARGS=(
 	-api-version 1.2
 	-language-version 1.2
 	-no-stdlib
@@ -67,4 +67,4 @@ KOTLIN_LIBS_TEST_KOTLINC_ARGS=(
 	-Xjvm-default=compatibility
 	-Xuse-old-backend
 )
-KOTLIN_LIBS_TEST_SRC_DIR=( libraries/stdlib/coroutines-experimental/jvm/test )
+KOTLIN_TEST_SRC_DIR=( libraries/stdlib/coroutines-experimental/jvm/test )

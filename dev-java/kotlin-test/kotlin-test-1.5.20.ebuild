@@ -10,7 +10,7 @@ MAVEN_PROVIDES="
 
 KOTLIN_LIBS_BINJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}.jar"
 KOTLIN_LIBS_SRCJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}-sources.jar"
-KOTLIN_LIBS_TESTING_FRAMEWORKS="junit-4"
+KOTLIN_TESTING_FRAMEWORKS="junit-4"
 
 inherit kotlin-libs
 
@@ -55,7 +55,7 @@ KOTLIN_KOTLINC_ARGS=(
 KOTLIN_COMMON_SOURCES_DIR=( libraries/kotlin.test/common/src/main/kotlin )
 KOTLIN_SRC_DIR=( libraries/kotlin.test/{common,jvm}/src/main/kotlin )
 
-KOTLIN_LIBS_TEST_KOTLINC_ARGS=(
+KOTLIN_TEST_KOTLINC_ARGS=(
 	-jvm-target 1.6
 	-no-stdlib
 	-Xallow-kotlin-package
@@ -67,9 +67,9 @@ KOTLIN_LIBS_TEST_KOTLINC_ARGS=(
 	-Xsuppress-deprecated-jvm-target-warning
 	-Xuse-old-backend
 )
-KOTLIN_LIBS_TEST_COMMON_SOURCES_DIR=(
+KOTLIN_TEST_COMMON_SOURCES_DIR=(
 	libraries/kotlin.test/common/src/test/kotlin
 )
-KOTLIN_LIBS_TEST_SRC_DIR=(
+KOTLIN_TEST_SRC_DIR=(
 	libraries/kotlin.test/{jvm,common}/src/test/kotlin
 )

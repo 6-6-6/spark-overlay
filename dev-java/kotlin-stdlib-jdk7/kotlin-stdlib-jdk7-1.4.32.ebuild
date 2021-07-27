@@ -7,7 +7,7 @@ MAVEN_ID="org.jetbrains.kotlin:${PN}:${PV}"
 
 KOTLIN_LIBS_BINJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}.jar"
 KOTLIN_LIBS_SRCJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}-sources.jar"
-KOTLIN_LIBS_TESTING_FRAMEWORKS="junit-4"
+KOTLIN_TESTING_FRAMEWORKS="junit-4"
 
 inherit kotlin-libs
 
@@ -55,7 +55,7 @@ KOTLIN_KOTLINC_ARGS=(
 )
 KOTLIN_SRC_DIR=( libraries/stdlib/jdk7/src )
 
-KOTLIN_LIBS_TEST_KOTLINC_ARGS=(
+KOTLIN_TEST_KOTLINC_ARGS=(
 	-jvm-target 1.6
 	-no-stdlib
 	-Xallow-kotlin-package
@@ -68,13 +68,13 @@ KOTLIN_LIBS_TEST_KOTLINC_ARGS=(
 	-Xopt-in=kotlin.RequiresOptIn
 	-Xopt-in=kotlin.io.path.ExperimentalPathApi
 )
-KOTLIN_LIBS_TEST_COMMON_SOURCES_DIR=( libraries/stdlib/test )
-KOTLIN_LIBS_TEST_SRC_DIR=(
+KOTLIN_TEST_COMMON_SOURCES_DIR=( libraries/stdlib/test )
+KOTLIN_TEST_SRC_DIR=(
 	libraries/stdlib/{jdk7,jvm,common}/test
 	# libraries/stdlib//test does not work
 	libraries/stdlib/test
 )
-JAVA_TEST_EXCLUDES=(
+KOTLIN_TEST_EXCLUDES=(
 	# Non-tests
 	test.coroutines.TestDispatcher
 	test.collections.IterableTests
@@ -92,7 +92,7 @@ src_test() {
 	if has network-sandbox ${FEATURES}; then
 		elog "Skipping classes with test cases that require network connection"
 		elog "due to FEATURES=network-sandbox"
-		JAVA_TEST_EXCLUDES+=( test.io.ReadWriteTest )
+		KOTLIN_TEST_EXCLUDES+=( test.io.ReadWriteTest )
 	fi
 	kotlin-libs_src_test
 }

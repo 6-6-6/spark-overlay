@@ -10,7 +10,7 @@ MAVEN_PROVIDES="
 
 KOTLIN_LIBS_BINJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}.jar"
 KOTLIN_LIBS_SRCJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}-sources.jar"
-KOTLIN_LIBS_TESTING_FRAMEWORKS="junit-4"
+KOTLIN_TESTING_FRAMEWORKS="junit-4"
 
 inherit kotlin-libs
 
@@ -70,7 +70,7 @@ KOTLIN_JAVAC_ARGS=(
 	-XDuseUnsharedTable=true
 )
 
-KOTLIN_LIBS_TEST_KOTLINC_ARGS=(
+KOTLIN_TEST_KOTLINC_ARGS=(
 	-jvm-target 1.6
 	-no-stdlib
 	-Xallow-kotlin-package
@@ -85,13 +85,13 @@ KOTLIN_LIBS_TEST_KOTLINC_ARGS=(
 	-Xsuppress-deprecated-jvm-target-warning
 	-Xuse-old-backend
 )
-KOTLIN_LIBS_TEST_COMMON_SOURCES_DIR=(
+KOTLIN_TEST_COMMON_SOURCES_DIR=(
 	libraries/stdlib/{,common}/test
 )
-KOTLIN_LIBS_TEST_SRC_DIR=(
+KOTLIN_TEST_SRC_DIR=(
 	libraries/stdlib/{,jvm,common}/test
 )
-JAVA_TEST_EXCLUDES=(
+KOTLIN_TEST_EXCLUDES=(
 	# Non-tests
 	test.coroutines.TestDispatcher
 	test.collections.IterableTests
@@ -128,7 +128,7 @@ src_test() {
 	if has network-sandbox ${FEATURES}; then
 		elog "Skipping classes with test cases that require network connection"
 		elog "due to FEATURES=network-sandbox"
-		JAVA_TEST_EXCLUDES+=( test.io.ReadWriteTest )
+		KOTLIN_TEST_EXCLUDES+=( test.io.ReadWriteTest )
 	fi
 	kotlin-libs_src_test
 }
