@@ -49,12 +49,12 @@ src_compile() {
 		-Xmulti-platform
 	)
 	src_dirs=(
-		core/builtins/native/kotlin/Comparable.kt
-		libraries/stdlib/js/runtime/primitiveCompanionObjects.kt
 		libraries/stdlib/js-v1/runtime
 	)
 	KOTLIN_SRC_DIR+=( "${src_dirs[@]}" )
 	kotlin-utils_kotlinc -output "${builtins_target}/kotlin.js" \
+		core/builtins/native/kotlin/Comparable.kt \
+		libraries/stdlib/js/runtime/primitiveCompanionObjects.kt \
 		$(find "${src_dirs[@]}" -name "*.kt")
 
 	# :kotlin-stdlib-js:prepareBuiltinsSources
