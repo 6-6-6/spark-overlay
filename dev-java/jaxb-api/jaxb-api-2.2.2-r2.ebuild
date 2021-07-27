@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -14,7 +14,8 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="JAXB (JSR 222) API"
 HOMEPAGE="https://jaxb.dev.java.net/"
-SRC_URI="https://repo1.maven.org/maven2/javax/xml/bind/${PN}/${PV}/${P}-sources.jar
+SRC_URI="
+	https://repo1.maven.org/maven2/javax/xml/bind/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/javax/xml/bind/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
 LICENSE="CDDL-1.1 GPL-2-with-classpath-exception"
 SLOT="0"
@@ -23,11 +24,9 @@ KEYWORDS="~amd64"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # javax.activation:activation:1.1 -> >=dev-java/javax-activation-1.1:0
-# javax.xml.stream:stax-api:1.0-2 -> java-virtuals/stax-api:0
 
 CDEPEND="
 	>=dev-java/javax-activation-1.1:0
-	java-virtuals/stax-api:0
 "
 
 DEPEND="
@@ -42,6 +41,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="javax-activation,stax-api"
+JAVA_GENTOO_CLASSPATH="javax-activation"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
