@@ -232,6 +232,7 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 # set before they are inherited.
 #
 # The following USE flags are recognized for this variable:
+# - source: Install a source archive containing the source files being compiled
 # - test: Let this eclass automatically run tests during the src_test phase
 
 # Read-only variables
@@ -295,11 +296,18 @@ kotlin-utils_kotlin_depend() {
 	esac
 }
 
-# @FUNCTION: kotlin-utils_test_depend
+# @FUNCTION: kotlin-utils_iuse_depend
 # @DESCRIPTION:
-# If the 'test' USE flag is added to KOTLIN_IUSE, then echos a dependency
-# specification according to the value of KOTLIN_TESTING_FRAMEWORKS.
-kotlin-utils_test_depend() {
+# Echos a dependency specification for USE flags added to KOTLIN_IUSE. In
+# particular, if the 'test' USE flag exists, then the dependency specification
+# will contain packages for KOTLIN_TESTING_FRAMEWORKS.
+kotlin-utils_iuse_depend() {
+	local deps
+
+	if has source ${KOTLIN_IUSE}; then
+		deps+=" source? ( app-arch/zip )"
+	fi
+
 	if has test ${KOTLIN_IUSE}; then
 		local test_deps
 		for framework in ${KOTLIN_TESTING_FRAMEWORKS}; do
@@ -313,8 +321,10 @@ kotlin-utils_test_depend() {
 					)" ;;
 			esac
 		done
-		[[ -n ${test_deps} ]] && echo "test? ( ${test_deps} )"
+		[[ -n ${test_deps} ]] && deps+=" test? ( ${test_deps} )"
 	fi
+
+	echo "${deps}"
 }
 
 # @FUNCTION: _kotlin-utils_get_compiler_ver
@@ -661,6 +671,55 @@ kotlin-utils_src_test() {
 				elog "Testing framework ${framework} is not supported yet" ;;
 		esac
 	done
+}
+
+# @FUNCTION: kotlin-utils_dosrc
+# @USAGE: <path/to/sources> [...]
+# @DESCRIPTION:
+# Installs a Zip archive containing the specified sources for a package.
+# To use this function, app-arch/zip needs to be present in DEPEND.
+kotlin-utils_dosrc() {
+	debug-print-function ${FUNCNAME} "$@"
+
+	java-pkg_check-phase install
+
+	[[ $# -lt 1 ]] && die "At least one argument needed for ${FUNCNAME}"
+
+	if [[ "${DEPEND}" != *app-arch/zip* ]]; then
+		local msg="${FUNCNAME} called without app-arch/zip in DEPEND"
+		java-pkg_announce-qa-violation "${msg}"
+	fi
+
+	java-pkg_init_paths_
+
+	local zip_name="${PN}-src.zip"
+	local zip_path="${T}/${zip_name}"
+	local path
+	for path in "$@"; do
+		pushd "${path}" > /dev/null || die "Failed to enter directory ${path}"
+		zip -q -r "${zip_path}" *
+		local result=$?
+		# 12 means zip has nothing to do
+		if [[ "${result}" != 12 && "${result}" != 0 ]]; then
+			die "Failed to add ${dir_name} to Zip archive"
+		fi
+		popd > /dev/null || die "Failed to exit directory ${path}"
+	done
+
+	insinto "${JAVA_PKG_SOURCESPATH}"
+	doins "${zip_path}"
+
+	if [[ -n "${JAVA_PKG_DEBUG}" ]]; then
+		einfo "Verbose logging for \"${FUNCNAME}\" function"
+		einfo "Zip filename created: ${zip_name}"
+		einfo "Zip file destination: ${JAVA_PKG_SOURCESPATH}"
+		einfo "Paths zipped: $@"
+		einfo "Complete command:"
+		einfo "${FUNCNAME} $@"
+	fi
+
+	JAVA_SOURCES="${JAVA_PKG_SOURCESPATH}/${zip_name}"
+	java-pkg_do_write_
 }
 
 _KOTLIN_UTILS_INHERITED=1
