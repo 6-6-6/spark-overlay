@@ -203,14 +203,6 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 # exhibits the same behavior as if all elements are ignored, and can be
 # overridden from ebuild BEFORE the pkg_setup phase.
 
-# @ECLASS-VARIABLE: KOTLIN_REQ_USE
-# @DEFAULT_UNSET
-# @PRE_INHERIT
-# @DESCRIPTION:
-# The USE dependency specification required for any Kotlin compiler version
-# selected for building this package. Default is unset, can be overridden from
-# ebuild BEFORE inheriting this eclass.
-
 # @ECLASS-VARIABLE: KOTLIN_WANT_TARGET
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -244,16 +236,6 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 KOTLIN_UTILS_CLASSES="target/classes"
 readonly KOTLIN_UTILS_CLASSES
 
-# @ECLASS-VARIABLE: KOTLIN_UTILS_REQ_USE
-# @OUTPUT_VARIABLE
-# @DESCRIPTION:
-# An empty string if KOTLIN_REQ_USE is unset, or "[${KOTLIN_REQ_USE}]" if it is
-# set.
-if [[ -n "${KOTLIN_REQ_USE}" ]]; then
-	KOTLIN_UTILS_REQ_USE="[${KOTLIN_REQ_USE}]"
-fi
-readonly KOTLIN_UTILS_REQ_USE
-
 # @ECLASS-VARIABLE: KOTLIN_UTILS_COMPILER_HOME
 # @OUTPUT_VARIABLE
 # @DESCRIPTION:
@@ -286,13 +268,13 @@ has test ${KOTLIN_IUSE} && RESTRICT+=" !test? ( test )"
 kotlin-utils_kotlin_depend() {
 	case "${KOTLIN_VERSIONS}" in
 		"="*)
-			echo "virtual/kotlin:${KOTLIN_VERSIONS/=}${KOTLIN_UTILS_REQ_USE}" ;;
+			echo "virtual/kotlin:${KOTLIN_VERSIONS/=}" ;;
 		">="*)
-			echo ">=virtual/kotlin-${KOTLIN_VERSIONS/>=}:*${KOTLIN_UTILS_REQ_USE}" ;;
+			echo ">=virtual/kotlin-${KOTLIN_VERSIONS/>=}:*" ;;
 		"<"*)
-			echo "<virtual/kotlin-${KOTLIN_VERSIONS/<}:*${KOTLIN_UTILS_REQ_USE}" ;;
+			echo "<virtual/kotlin-${KOTLIN_VERSIONS/<}:*" ;;
 		*)
-			echo "virtual/kotlin:*${KOTLIN_UTILS_REQ_USE}" ;;
+			echo "virtual/kotlin:*" ;;
 	esac
 }
 
