@@ -5,7 +5,7 @@ EAPI=7
 
 MAVEN_ID="com.squareup.okio:okio:2.6.0"
 
-KOTLIN_IUSE="test"
+KOTLIN_IUSE="source test"
 KOTLIN_TESTING_FRAMEWORKS="junit-4"
 
 KOTLIN_VERSIONS=">=1.4"
@@ -54,9 +54,9 @@ JAVA_TEST_GENTOO_CLASSPATH="
 "
 JAVA_RESOURCE_DIRS=( "${PN}/src/jvmMain/resources" )
 
-KOTLIN_COMMON_SOURCES_DIR=( "${PN}/src/commonMain" )
+KOTLIN_COMMON_SOURCES_DIR=( "${PN}/src/commonMain/kotlin" )
 KOTLIN_SRC_DIR=(
-	"${PN}/src/jvmMain"
+	"${PN}/src/jvmMain/kotlin"
 	"${KOTLIN_COMMON_SOURCES_DIR[@]}"
 )
 KOTLIN_KOTLINC_ARGS=(
@@ -65,9 +65,10 @@ KOTLIN_KOTLINC_ARGS=(
 	-Xmulti-platform
 )
 
-KOTLIN_TEST_JAVA_SOURCE_ROOTS=( "${PN}/src/jvmTest" )
-KOTLIN_TEST_COMMON_SOURCES_DIR=( "${PN}/src/commonTest" )
+KOTLIN_TEST_JAVA_SOURCE_ROOTS=( "${PN}/src/jvmTest/java" )
+KOTLIN_TEST_COMMON_SOURCES_DIR=( "${PN}/src/commonTest/kotlin" )
 KOTLIN_TEST_SRC_DIR=(
+	"${PN}/src/jvmTest/kotlin"
 	"${KOTLIN_TEST_JAVA_SOURCE_ROOTS[@]}"
 	"${KOTLIN_TEST_COMMON_SOURCES_DIR[@]}"
 )
