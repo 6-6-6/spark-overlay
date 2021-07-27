@@ -51,7 +51,7 @@ RDEPEND="
 	${CP_DEPEND}
 "
 
-S="${WORKDIR}/${PN}-parent-${PV}/${PN}"
+S="${WORKDIR}/${PN}-parent-${PV}"
 
 KOTLIN_KOTLINC_JAVA_OPTS="-Xmx512M"
 
@@ -64,11 +64,11 @@ JAVA_TEST_GENTOO_CLASSPATH="
 	kotlin-test-junit-1.4
 	assertj-core-2
 "
-JAVA_RESOURCE_DIRS=( src/main/resources )
+JAVA_RESOURCE_DIRS=( "${PN}/src/main/resources" )
 
 KOTLIN_SRC_DIR=(
-	src/main/java-templates
-	src/main/kotlin
+	"${PN}/src/main/java-templates"
+	"${PN}/src/main/kotlin"
 )
 KOTLIN_KOTLINC_ARGS=(
 	-jvm-target 1.8
@@ -77,7 +77,7 @@ KOTLIN_KOTLINC_ARGS=(
 	-Xmulti-platform
 )
 
-KOTLIN_TEST_JAVA_SOURCE_ROOTS=( src/test/java )
+KOTLIN_TEST_JAVA_SOURCE_ROOTS=( "${PN}/src/test/java" )
 KOTLIN_TEST_SRC_DIR=( "${KOTLIN_TEST_JAVA_SOURCE_ROOTS[@]}" )
 KOTLIN_TEST_KOTLINC_ARGS=(
 	"${KOTLIN_KOTLINC_ARGS[@]}"
@@ -88,7 +88,7 @@ src_prepare() {
 	default
 
 	sed -i -e "s/\$projectVersion/${PV}/g" \
-		src/main/java-templates/okhttp3/OkHttp.kt || \
+		"${PN}/src/main/java-templates/okhttp3/OkHttp.kt" || \
 		die "Failed to substitute project version in source files"
 }
 
@@ -104,7 +104,7 @@ src_test() {
 	kotlin-utils_kotlinc \
 		-d "${JAVA_GENTOO_CLASSPATH_EXTRA}" \
 		${classpath:+-classpath ${classpath}} \
-		"$(find "../okhttp-testing-support/src/main" -name "*.kt")"
+		"$(find "okhttp-testing-support/src/main" -name "*.kt")"
 
 	kotlin_src_test
 }
