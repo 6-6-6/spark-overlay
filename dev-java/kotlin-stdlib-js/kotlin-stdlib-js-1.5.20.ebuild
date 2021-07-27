@@ -59,7 +59,8 @@ src_compile() {
 
 	# :kotlin-stdlib-js:prepareBuiltinsSources
 	local builtin_sources_dir="${target}/builtin-sources"
-	mkdir -p "${builtin_sources_dir}" || \
+	local builtin_cp_target="${builtin_sources_dir}/kotlin"
+	mkdir -p "${builtin_cp_target}" || \
 		die "Could not create built-in sources directory"
 	cp \
 		core/builtins/native/kotlin/Annotation.kt \
@@ -73,9 +74,9 @@ src_compile() {
 		core/builtins/src/kotlin/Range.kt \
 		core/builtins/src/kotlin/Ranges.kt \
 		core/builtins/src/kotlin/Unit.kt \
-		"${builtin_sources_dir}" || die "Failed to copy built-in sources"
+		"${builtin_cp_target}" || die "Failed to copy built-in sources"
 	cp -r core/builtins/src/kotlin/{annotation,internal} \
-		"${builtin_sources_dir}" || die "Failed to copy built-in sources"
+		"${builtin_cp_target}" || die "Failed to copy built-in sources"
 
 	# :kotlin-stdlib-js:compileKotlin2Js
 	local main_target="${target}/classes/main"
@@ -83,7 +84,7 @@ src_compile() {
 		"${builtin_sources_dir}"
 		libraries/stdlib/js-v1/src
 		libraries/stdlib/js/src
-		libraries/stdlib/src/kotlin
+		libraries/stdlib/src
 		libraries/stdlib/{common,unsigned}/src
 	)
 	local OLD_IFS="${IFS}"
@@ -111,7 +112,7 @@ src_compile() {
 		"${builtin_sources_dir}"
 		libraries/stdlib/js/src
 		libraries/stdlib/{,common,unsigned}/src
-		libraries/stdlib/js-v1/src/kotlin
+		libraries/stdlib/js-v1/src
 	)
 	KOTLIN_SRC_DIR+=( "${src_dirs[@]}" )
 	kotlin-utils_kotlinc -output "${main_target}/kotlin.js" \
@@ -149,7 +150,8 @@ src_compile() {
 
 	# :kotlin-stdlib-js-ir:jsMainSources
 	local ir_js_main_dir="${target}/jsMainSources"
-	mkdir -p "${ir_js_main_dir}" || \
+	local ir_js_cp_target="${ir_js_main_dir}/kotlin"
+	mkdir -p "${ir_js_cp_target}" || \
 		die "Could not create the IR JS main sources directory"
 	local ir_js_main_unimpl_builtins=(
 		core/builtins/native/kotlin/Annotation.kt
@@ -162,17 +164,19 @@ src_compile() {
 		core/builtins/native/kotlin/Nothing.kt
 		core/builtins/native/kotlin/Number.kt
 	)
-	cp -r --parents \
-		core/builtins/src \
-		libraries/stdlib/js/{src,runtime} \
-		"${ir_js_main_unimpl_builtins[@]}" \
+	cp -r \
+		core/builtins/src/* \
+		libraries/stdlib/js/{src,runtime}/* \
 		"${ir_js_main_dir}" || \
 		die "Could not copy sources to the IR JS main sources directory"
+	cp "${ir_js_main_unimpl_builtins[@]}" "${ir_js_cp_target}" || \
+		die "Could not copy builtins to the IR JS main sources directory"
 	rm -r \
-		"${ir_js_main_dir}"/libraries/stdlib/js/src/generated \
-		"${ir_js_main_dir}"/core/builtins/src/kotlin/ArrayIntrinsics.kt || \
+		"${ir_js_main_dir}/generated" \
+		"${ir_js_main_dir}/kotlin/ArrayIntrinsics.kt" || \
 		die "Could not remove files from the IR JS main sources directory"
-	for file in "${ir_js_main_unimpl_builtins[@]/#/${ir_js_main_dir}/}"; do
+	for file in "${ir_js_main_unimpl_builtins[@]##*/}"; do
+		local file="${ir_js_cp_target}/${file}"
 		cat - "${file}" <<- _EOC_ > "${file}.new" || \
 			die "Failed to create a copy of ${file} for editing"
 		@file:Suppress(
@@ -214,7 +218,7 @@ src_compile() {
 	)
 	src_dirs=(
 		"${ir_js_main_dir}"
-		libraries/stdlib/js-ir
+		libraries/stdlib/js-ir/{builtins,runtime,src}
 		libraries/stdlib/{,common,unsigned}/src
 	)
 	KOTLIN_SRC_DIR+=( "${src_dirs[@]}" )
