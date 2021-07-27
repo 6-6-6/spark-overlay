@@ -88,3 +88,8 @@ src_prepare() {
 	fi
 	eapply_user
 }
+
+src_install() {
+	kotlin_src_install
+	dodoc BUG-BOUNTY.md CHANGELOG.md README.md docs/code_of_conduct.md
+}
