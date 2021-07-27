@@ -37,3 +37,14 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+
+src_unpack() {
+	if use binary; then
+		# The JARs for this package are huge, skip unnecessary unpacking
+		for f in ${A}; do
+			[[ "${f}" != *.jar ]] && unpack "${f}"
+		done
+	else
+		default
+	fi
+}
