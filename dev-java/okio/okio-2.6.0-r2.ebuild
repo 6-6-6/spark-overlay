@@ -41,7 +41,7 @@ RDEPEND="
 	${CP_DEPEND}
 "
 
-S="${WORKDIR}/${PN}-parent-${PV}/${PN}"
+S="${WORKDIR}/${PN}-parent-${PV}"
 
 JAVA_CLASSPATH_EXTRA="
 	animal-sniffer-annotations
@@ -52,11 +52,11 @@ JAVA_TEST_GENTOO_CLASSPATH="
 	kotlin-test-junit-1.4
 	assertj-core-2
 "
-JAVA_RESOURCE_DIRS=( src/jvmMain/resources )
+JAVA_RESOURCE_DIRS=( "${PN}/src/jvmMain/resources" )
 
-KOTLIN_COMMON_SOURCES_DIR=( src/commonMain )
+KOTLIN_COMMON_SOURCES_DIR=( "${PN}/src/commonMain" )
 KOTLIN_SRC_DIR=(
-	src/jvmMain
+	"${PN}/src/jvmMain"
 	"${KOTLIN_COMMON_SOURCES_DIR[@]}"
 )
 KOTLIN_KOTLINC_ARGS=(
@@ -65,8 +65,8 @@ KOTLIN_KOTLINC_ARGS=(
 	-Xmulti-platform
 )
 
-KOTLIN_TEST_JAVA_SOURCE_ROOTS=( src/jvmTest )
-KOTLIN_TEST_COMMON_SOURCES_DIR=( src/commonTest )
+KOTLIN_TEST_JAVA_SOURCE_ROOTS=( "${PN}/src/jvmTest" )
+KOTLIN_TEST_COMMON_SOURCES_DIR=( "${PN}/src/commonTest" )
 KOTLIN_TEST_SRC_DIR=(
 	"${KOTLIN_TEST_JAVA_SOURCE_ROOTS[@]}"
 	"${KOTLIN_TEST_COMMON_SOURCES_DIR[@]}"
