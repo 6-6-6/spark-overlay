@@ -112,7 +112,9 @@ src_install() {
 	doins "${KOTLINC_LIB_TMP}"/*
 
 	# Remove copyright header template used for source files
-	rm license/COPYRIGHT_HEADER.txt || die
+	rm license/COPYRIGHT_HEADER.txt
+	# Remove redundant copy of Apache-2.0 license
+	rm license/LICENSE.txt
 	dodoc -r license/*
 
 	# build.txt required for 'kotlin -version'

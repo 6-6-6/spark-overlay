@@ -110,6 +110,8 @@ src_install() {
 	insinto "${KOTLIN_COMPILER_HOME}/lib"
 	doins "${KOTLINC_LIB_TMP}"/*
 
+	# Remove redundant copy of Apache-2.0 license
+	rm license/LICENSE.txt
 	dodoc -r license/*
 
 	# build.txt required for 'kotlin -version'
