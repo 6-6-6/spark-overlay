@@ -12,17 +12,18 @@ KEYWORDS="~amd64"
 
 src_compile() {
 	local builtins_cherry_picked="${T}/core/builtins/build/src"
+	local cherry_pick_dest="${builtins_cherry_picked}/kotlin/reflect"
 	local kotlinc_jar="${KOTLIN_UTILS_COMPILER_HOME}/lib/kotlin-compiler.jar"
 
 	mkdir -p "${KOTLIN_UTILS_CLASSES}" || \
 		die "Failed to create target directory"
-	mkdir -p "${builtins_cherry_picked}" || \
+	mkdir -p "${cherry_pick_dest}" || \
 		die "Failed to create temporary directory for cherry-picked built-ins"
-	cp libraries/stdlib/src/kotlin/reflect/* "${builtins_cherry_picked}" || \
+	cp libraries/stdlib/src/kotlin/reflect/* "${cherry_pick_dest}" || \
 		die "Failed to copy sources for built-ins to temporary directory"
-	rm "${builtins_cherry_picked}"/{typeOf.kt,KClasses.kt} || \
+	rm "${cherry_pick_dest}"/{typeOf.kt,KClasses.kt} || \
 		die "Failed to remove extraneous sources from cherry-picked built-ins"
-	local src_dirs=(
+	KOTLIN_SRC_DIR=(
 		"${builtins_cherry_picked}"
 		core/builtins/{src,native}
 	)
@@ -33,11 +34,8 @@ src_compile() {
 	XDG_CACHE_HOME="${HOME}/.cache" \
 	java -classpath "${kotlinc_jar}" \
 		org.jetbrains.kotlin.serialization.builtins.RunKt \
-		"${KOTLIN_UTILS_CLASSES}" "${src_dirs[@]}" || \
+		"${KOTLIN_UTILS_CLASSES}" "${KOTLIN_SRC_DIR[@]}" || \
 		die "Failed to serialize built-ins"
 
 	kotlin-utils_jar
-
-	# Generate a list of source files for the source archive
-	find "${src_dirs[@]}" -name "*.kt" > kotlin_sources.lst
 }
