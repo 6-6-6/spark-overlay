@@ -79,8 +79,12 @@ KOTLIN_TEST_JAVA_WANT_SOURCE_TARGET="1.7"
 KOTLIN_TEST_EXCLUDES=(
 	# Non-tests
 	okio.TestUtil
-	# Failing tests
-	okio.ByteStringTest
-	okio.OkioTest
-	okio.Utf8Test
 )
+
+src_prepare() {
+	if use test; then
+		eapply "${FILESDIR}/${PN}-2.6.0-0001-skip-tests-not-run-by-upstream.patch"
+		eapply "${FILESDIR}/${PN}-2.6.0-0002-skip-failing-tests-on-kotlin-1.4.32.patch"
+	fi
+	eapply_user
+}
