@@ -8,6 +8,9 @@ MAVEN_ID="com.squareup.okio:okio:2.6.0"
 KOTLIN_IUSE="test"
 KOTLIN_TESTING_FRAMEWORKS="junit-4"
 
+KOTLIN_VERSIONS=">=1.4"
+KOTLIN_VERSIONS_PREF_ORDER=( 1.{4..5} )
+
 inherit kotlin
 
 DESCRIPTION="A modern I/O library for Android, Kotlin, and Java"
@@ -16,9 +19,6 @@ SRC_URI="https://github.com/square/${PN}/archive/refs/tags/parent-${PV}.tar.gz -
 LICENSE="Apache-2.0"
 SLOT="2.6"
 KEYWORDS="~amd64"
-
-KOTLIN_VERSIONS=">=1.4"
-KOTLIN_VERSIONS_PREF_ORDER=( 1.{4..5} )
 
 CP_DEPEND="
 	dev-java/kotlin-stdlib:1.4
