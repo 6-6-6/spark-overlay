@@ -145,11 +145,7 @@ case "${SLOT}" in
 		;;
 esac
 
-_KOTLIN_LIBS_DEPEND="$(
-	DEPEND=""
-	kotlin-utils_set_kotlin_depend
-	echo "${DEPEND}"
-)"
+_KOTLIN_LIBS_DEPEND="$(kotlin-utils_kotlin_depend)"
 if has binary ${JAVA_PKG_IUSE}; then
 	# Depend on the compiler only when building from source
 	DEPEND+=" !binary? ( ${_KOTLIN_LIBS_DEPEND} )"
@@ -161,7 +157,7 @@ else
 	DEPEND+=" ${_KOTLIN_LIBS_DEPEND}"
 fi
 
-kotlin-utils_set_test_depend
+DEPEND+=" $(kotlin-utils_test_depend)"
 
 # kotlin-utils.eclass variables
 
