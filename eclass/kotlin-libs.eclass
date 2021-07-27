@@ -67,7 +67,6 @@ EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install
 
 # Testing
 
-JAVA_PKG_IUSE="source"
 _KOTLIN_LIBS_REQUIRED_USE=""
 
 if [[ -n "${KOTLIN_LIBS_BINJAR_SRC_URI}" ]]; then
@@ -91,6 +90,7 @@ inherit kotlin-utils
 : ${LICENSE:="Apache-2.0 BSD MIT NPL-1.1"}
 : ${SLOT:="$(ver_cut 1-2)"}
 
+IUSE="source"
 REQUIRED_USE="
 	${_KOTLIN_LIBS_REQUIRED_USE}
 	${REQUIRED_USE}
@@ -152,16 +152,23 @@ KOTLIN_VERSIONS_PREF_ORDER=(
 _KOTLIN_LIBS_DEPEND="$(kotlin-utils_kotlin_depend)"
 if has binary ${JAVA_PKG_IUSE}; then
 	# Depend on the compiler only when building from source
-	DEPEND+=" !binary? ( ${_KOTLIN_LIBS_DEPEND} )"
+	DEPEND+=" !binary? (
+		${_KOTLIN_LIBS_DEPEND}
+		source? ( app-arch/zip )
+	)"
 	if has junit-4 ${KOTLIN_TESTING_FRAMEWORKS}; then
 		DEPEND+=" test? ( ${_KOTLIN_LIBS_DEPEND} )"
 	fi
 else
 	# No option to use pre-built binary; always depend on the compiler
-	DEPEND+=" ${_KOTLIN_LIBS_DEPEND}"
+	DEPEND+="
+		${_KOTLIN_LIBS_DEPEND}
+		source? ( app-arch/zip )
+	"
 fi
 
-DEPEND+=" $(kotlin-utils_test_depend)"
+# Add dependencies for KOTLIN_TESTING_FRAMEWORKS
+DEPEND+=" $(kotlin-utils_iuse_depend)"
 
 # kotlin-utils.eclass variables
 
@@ -293,72 +300,12 @@ kotlin-libs_src_test() {
 	done
 }
 
-# @FUNCTION: kotlin-libs_dosrc
-# @USAGE: <path/to/sources> [...]
-# @DESCRIPTION:
-# Installs a Zip archive containing the specified sources for a package.
-kotlin-libs_dosrc() {
-	debug-print-function ${FUNCNAME} "$@"
-
-	java-pkg_check-phase install
-
-	[[ "$#" -lt 1 ]] && die "At least one argument needed for ${FUNCNAME}"
-
-	if [[ "${DEPEND}" != *app-arch/zip* ]]; then
-		local msg="${FUNCNAME} called without app-arch/zip in DEPEND"
-		java-pkg_announce-qa-violation "${msg}"
-	fi
-
-	java-pkg_init_paths_
-
-	local zip_name="${PN}-src.zip"
-	local zip_path="${T}/${zip_name}"
-	local path
-	for path in "$@"; do
-		pushd "${path}" > /dev/null || die "Failed to enter directory ${path}"
-		zip -q -r "${zip_path}" *
-		local result=$?
-		# 12 means zip has nothing to do
-		if [[ "${result}" != 12 && "${result}" != 0 ]]; then
-			die "Failed to add ${dir_name} to Zip archive"
-		fi
-		popd > /dev/null || die "Failed to exit directory ${path}"
-	done
-
-	insinto "${JAVA_PKG_SOURCESPATH}"
-	doins "${zip_path}"
-
-	if [[ -n "${JAVA_PKG_DEBUG}" ]]; then
-		einfo "Verbose logging for \"${FUNCNAME}\" function"
-		einfo "Zip filename created: ${zip_name}"
-		einfo "Zip file destination: ${JAVA_PKG_SOURCESPATH}"
-		einfo "Paths zipped: $@"
-		einfo "Complete command:"
-		einfo "${FUNCNAME} $@"
-	fi
-
-	JAVA_SOURCES="${JAVA_PKG_SOURCESPATH}/${zip_name}"
-	java-pkg_do_write_
-}
-
 # @FUNCTION: kotlin-libs_src_install
 # @DESCRIPTION:
 # Installs the JAR specified by ${JAVA_JAR_FILENAME}, and a launcher as well if
 # ${JAVA_MAIN_CLASS} is set. If the 'source' USE flag is enabled, a Zip archive
 # containing the source will also be installed.
 kotlin-libs_src_install() {
-	local sources
-	if [[ -s "java_sources.lst" ]]; then
-		sources="sources.lst"
-		cat kotlin_sources.lst java_sources.lst > "${sources}" || \
-			die "Failed to create combined Kotlin and Java source list"
-	elif [[ -s "kotlin_sources.lst" ]]; then
-		sources="kotlin_sources.lst"
-	else
-		# Fall back to the source list file used by java-pkg-simple.eclass
-		sources="sources.lst"
-	fi
-
 	java-pkg_dojar "${JAVA_JAR_FILENAME}"
 
 	if [[ -n "${JAVA_MAIN_CLASS}" ]]; then
@@ -366,7 +313,7 @@ kotlin-libs_src_install() {
 			--main "${JAVA_MAIN_CLASS}"
 	fi
 
-	if has source ${JAVA_PKG_IUSE} && use source; then
+	if use source; then
 		if has binary ${JAVA_PKG_IUSE} && use binary; then
 			# Install pre-built source JAR for binary installation
 			insinto "${JAVA_PKG_SOURCESPATH}"
@@ -379,14 +326,8 @@ kotlin-libs_src_install() {
 				"${JAVA_SRC_DIR[@]}"
 			)
 			if [[ -n "${kt_java_src_dir[@]}" ]]; then
-				for parent in "${kt_java_src_dir[@]}"; do
-					srcdirs+=" ${parent}"
-				done
-			else
-				# Take all directories actually containing any sources
-				srcdirs="$(cut -d/ -f1 ${sources} | sort -u)"
+				kotlin-utils_dosrc "${kt_java_src_dir[@]}"
 			fi
-			kotlin-libs_dosrc ${srcdirs}
 		fi
 	fi
 }
