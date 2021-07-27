@@ -26,7 +26,7 @@ DEPEND="
 		~dev-java/kotlin-test-${PV}:${SLOT}
 		~dev-java/kotlin-test-junit-${PV}:${SLOT}
 		dev-java/jetbrains-annotations:13
-		<virtual/kotlin-1.5
+		virtual/kotlin:1.4
 	)
 "
 RDEPEND="${CP_DEPEND}"
