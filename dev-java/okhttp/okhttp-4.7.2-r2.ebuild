@@ -8,6 +8,9 @@ MAVEN_ID="com.squareup.okhttp3:okhttp:4.7.2"
 KOTLIN_IUSE="test"
 KOTLIN_TESTING_FRAMEWORKS="junit-4"
 
+KOTLIN_VERSIONS=">=1.4"
+KOTLIN_VERSIONS_PREF_ORDER=( 1.{4..5} )
+
 inherit kotlin
 
 DESCRIPTION="Square's meticulous HTTP client for Java and Kotlin"
@@ -21,9 +24,6 @@ KEYWORDS="~amd64"
 # software.amazon.cryptools:AmazonCorrettoCryptoProvider:1.3.1
 # Disable all tests until an ebuild for the artifact is available
 RESTRICT="test"
-
-KOTLIN_VERSIONS=">=1.4"
-KOTLIN_VERSIONS_PREF_ORDER=( 1.{4..5} )
 
 CP_DEPEND="
 	dev-java/kotlin-stdlib:1.4
