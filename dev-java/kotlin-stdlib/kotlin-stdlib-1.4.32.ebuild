@@ -110,6 +110,15 @@ pkg_setup() {
 	fi
 }
 
+src_prepare() {
+	if use test && has network-sandbox ${FEATURES}; then
+		elog "Skipping test cases that require network connection"
+		elog "due to FEATURES=network-sandbox"
+		eapply "${FILESDIR}/kotlin-1.4-skip-internet-tests.patch"
+	fi
+	eapply_user
+}
+
 src_unpack() {
 	kotlin-libs_src_unpack
 	if ! has binary ${JAVA_PKG_IUSE} || ! use binary; then
@@ -120,13 +129,4 @@ src_unpack() {
 		mv kotlin "${S}/${KOTLIN_UTILS_CLASSES}" || \
 			die "Failed to move built-ins to target directory"
 	fi
-}
-
-src_test() {
-	if has network-sandbox ${FEATURES}; then
-		elog "Skipping classes with test cases that require network connection"
-		elog "due to FEATURES=network-sandbox"
-		KOTLIN_TEST_EXCLUDES+=( test.io.ReadWriteTest )
-	fi
-	kotlin-libs_src_test
 }

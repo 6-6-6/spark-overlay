@@ -87,11 +87,11 @@ KOTLIN_TEST_EXCLUDES=(
 	test.utils.AssertionsJVMTest
 )
 
-src_test() {
-	if has network-sandbox ${FEATURES}; then
-		elog "Skipping classes with test cases that require network connection"
+src_prepare() {
+	if use test && has network-sandbox ${FEATURES}; then
+		elog "Skipping test cases that require network connection"
 		elog "due to FEATURES=network-sandbox"
-		KOTLIN_TEST_EXCLUDES+=( test.io.ReadWriteTest )
+		eapply "${FILESDIR}/kotlin-1.4-skip-internet-tests.patch"
 	fi
-	kotlin-libs_src_test
+	eapply_user
 }
