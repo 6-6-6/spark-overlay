@@ -7,9 +7,8 @@ DESCRIPTION="Virtual for Kotlin compiler"
 
 SLOT="${PV}"
 KEYWORDS="~amd64"
-IUSE="javascript"
 
 RDEPEND="|| (
-	dev-lang/kotlin:${SLOT}[javascript=]
-	dev-lang/kotlin-bin:${SLOT}[javascript=]
+	dev-lang/kotlin:${SLOT}
+	dev-lang/kotlin-bin:${SLOT}
 )"
