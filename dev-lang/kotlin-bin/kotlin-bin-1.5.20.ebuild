@@ -26,12 +26,14 @@ RDEPEND="
 	dev-java/jetbrains-annotations:${JB_ANNOTATIONS_SLOT}
 	dev-java/jetbrains-trove:0
 	>=virtual/jdk-1.8:*
-	javascript? ( ~dev-java/kotlin-stdlib-js-${PV}:${SLOT} )
 "
 BDEPEND="
 	app-arch/unzip
 "
 DEPEND="${RDEPEND}"
+PDEPEND="
+	javascript? ( ~dev-java/kotlin-stdlib-js-${PV}:${SLOT} )
+"
 
 S="${WORKDIR}/kotlinc"
 
@@ -89,8 +91,6 @@ src_prepare() {
 		"kotlin-stdlib-${SLOT}"
 	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
 		"kotlin-reflect-${SLOT}"
-	use javascript && java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
-		"kotlin-stdlib-js-${SLOT}"
 
 	# Create symbolic links to external dependencies
 	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
