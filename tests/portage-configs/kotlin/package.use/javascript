@@ -1,3 +1,2 @@
 # Enable Kotlin/JS support
-virtual/kotlin javascript
 dev-lang/kotlin-bin javascript
