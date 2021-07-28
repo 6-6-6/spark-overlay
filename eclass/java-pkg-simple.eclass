@@ -463,7 +463,7 @@ java-pkg-simple_src_test() {
 	# get classpath
 	classpath="${classes}:${JAVA_JAR_FILENAME}"
 	java-pkg-simple_getclasspath
-	java-pkg-simple_prepend_resources "${JAVA_TEST_RESOURCE_DIRS[@]}"
+	java-pkg-simple_prepend_resources "${classes}" "${JAVA_TEST_RESOURCE_DIRS[@]}"
 
 	# gathering sources for testing
 	find "${JAVA_TEST_SRC_DIR[@]}" -name \*.java > ${test_sources}
