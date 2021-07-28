@@ -13,6 +13,10 @@ run_test() {
     emerge -1 dev-java/jsr305
     emerge -1 media-libs/freetype
 
+    # Rebuild JDK with USE="-headless-awt"
+    # https://bugs.gentoo.org/776910#c13
+    USE="-headless-awt" emerge -1 dev-java/openjdk-bin:8 virtual/jdk:1.8
+
     # Install Kotlin 1.4
     USE="binary" emerge -1 dev-java/kotlin-{stdlib,reflect}:1.4
     emerge -1 dev-lang/kotlin-bin:1.4
