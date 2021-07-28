@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,10 +12,12 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="dependency-check-core is the engine and reporting tool used to identify and report if there are any known, publicly disclosed vulnerabilities in the scanned project's dependencies. The engine extracts meta-data from the dependencies and uses this to do fuzzy key-word matching against the Common Platfrom Enumeration (CPE), if any CPE identifiers are found the associated Common Vulnerability and Exposure (CVE) entries are added to the generated report."
+DESCRIPTION="Identify and report publicly disclosed vulnerabilities in project's dependencies"
 HOMEPAGE="https://github.com/jeremylong/DependencyCheck.git/dependency-check-core"
-SRC_URI="https://repo1.maven.org/maven2/org/owasp/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/org/owasp/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/owasp/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/org/owasp/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -32,7 +34,7 @@ KEYWORDS="~amd64"
 # commons-io:commons-io:2.6 -> >=dev-java/commons-io-2.6:1
 # joda-time:joda-time:1.6 -> >=dev-java/joda-time-2.7:0
 # org.apache.commons:commons-compress:1.18 -> >=dev-java/commons-compress-1.20:0
-# org.apache.commons:commons-lang3:3.4 -> >=dev-java/commons-lang-3.10
+# org.apache.commons:commons-lang3:3.4 -> >=dev-java/commons-lang-3.12.0:3.6
 # org.apache.commons:commons-text:1.3 -> >=dev-java/commons-text-1.6:0
 # org.apache.lucene:lucene-analyzers-common:7.6.0 -> >=dev-java/lucene-analyzers-common-7.6.0:0
 # org.apache.lucene:lucene-core:7.6.0 -> >=dev-java/lucene-7.6.0:0
@@ -55,7 +57,7 @@ CDEPEND="
 	>=dev-java/commons-collections-3.2.2:3
 	>=dev-java/commons-compress-1.20:0
 	>=dev-java/commons-io-2.6:1
-	>=dev-java/commons-lang-3.10
+	>=dev-java/commons-lang-3.12.0:3.6
 	>=dev-java/findbugs-annotations-3.0.12:3
 	>=dev-java/gson-2.8.6:2.7
 	>=dev-java/guava-29.0:0
@@ -83,6 +85,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="findbugs-annotations-3,gson-2.7,guava,retirejs-core,mailapi,semver4j,commons-collections-3,commons-io-1,joda-time,commons-compress,commons-lang-3.10,commons-text,lucene-analyzers-common,lucene,lucene-queryparser,velocity,javax-json,jsoup,dependency-check-utils,slf4j-api,h2"
+JAVA_GENTOO_CLASSPATH="findbugs-annotations-3,gson-2.7,guava,retirejs-core,mailapi,semver4j,commons-collections-3,commons-io-1,joda-time,commons-compress,commons-lang-3.6,commons-text,lucene-analyzers-common,lucene,lucene-queryparser,velocity,javax-json,jsoup,dependency-check-utils,slf4j-api,h2"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
