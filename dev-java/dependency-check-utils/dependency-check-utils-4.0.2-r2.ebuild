@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,10 +12,12 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="dependency-check-utils is a collection of common utility classes used within dependency-check that might be useful in other projects."
+DESCRIPTION="Utilities used within dependency-check that might be useful in other projects"
 HOMEPAGE="https://github.com/jeremylong/DependencyCheck.git/dependency-check-utils"
-SRC_URI="https://repo1.maven.org/maven2/org/owasp/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/org/owasp/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/owasp/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/org/owasp/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -24,12 +26,12 @@ KEYWORDS="~amd64"
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.google.code.gson:gson:2.8.5 -> >=dev-java/gson-2.8.6:2.7
 # commons-io:commons-io:2.6 -> >=dev-java/commons-io-2.6:1
-# org.apache.commons:commons-lang3:3.4 -> >=dev-java/commons-lang-3.10
+# org.apache.commons:commons-lang3:3.4 -> >=dev-java/commons-lang-3.12.0:3.6
 # org.slf4j:slf4j-api:1.7.25 -> >=dev-java/slf4j-api-1.7.28:0
 
 CDEPEND="
 	>=dev-java/commons-io-2.6:1
-	>=dev-java/commons-lang-3.10
+	>=dev-java/commons-lang-3.12.0:3.6
 	>=dev-java/gson-2.8.6:2.7
 	>=dev-java/slf4j-api-1.7.28:0
 "
@@ -53,7 +55,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="gson-2.7,commons-io-1,commons-lang-3.10,slf4j-api"
+JAVA_GENTOO_CLASSPATH="gson-2.7,commons-io-1,commons-lang-3.6,slf4j-api"
 JAVA_CLASSPATH_EXTRA="findbugs-annotations-3"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
