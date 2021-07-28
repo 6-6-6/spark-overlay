@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,7 +12,7 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="The Apache Software Foundation provides support for the Apache community of open-source software projects. The Apache projects are characterized by a collaborative, consensus based development process, an open and pragmatic software license, and a desire to create high quality software that leads the way in its field. We consider ourselves not simply a group of projects sharing a server, but rather a community of developers and users."
+DESCRIPTION="Spark Project Networking"
 HOMEPAGE="http://spark.apache.org/"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2.jar -> ${P}-bin.jar"
@@ -28,7 +28,7 @@ KEYWORDS="~amd64"
 # io.dropwizard.metrics:metrics-core:4.1.1 -> >=dev-java/metrics-core-4.1.1:0
 # io.netty:netty-all:4.1.42.Final -> >=dev-java/netty-all-5.0.0:0
 # org.apache.commons:commons-crypto:1.0.0 -> >=dev-java/commons-crypto-1.0.0:0
-# org.apache.commons:commons-lang3:3.9 -> >=dev-java/commons-lang-3.10
+# org.apache.commons:commons-lang3:3.9 -> >=dev-java/commons-lang-3.12.0:3.6
 # org.fusesource.leveldbjni:leveldbjni-all:1.8 -> >=dev-java/leveldbjni-1.8:0
 # org.scala-lang:scala-library:2.12.10 -> >=dev-java/scala-common-bin-2.12.4:2.12
 # org.spark-project.spark:unused:1.0.0 -> >=dev-java/unused-1.0.0:0
@@ -38,7 +38,7 @@ CDEPEND="
 	>=dev-java/metrics-core-4.1.1:0
 	>=dev-java/unused-1.0.0:0
 	>=dev-java/commons-crypto-1.0.0:0
-	>=dev-java/commons-lang-3.10
+	>=dev-java/commons-lang-3.12.0:3.6
 	>=dev-java/jackson-annotations-2.11.0:2
 	>=dev-java/jsr305-3.0.1:0
 	>=dev-java/leveldbjni-1.8:0
@@ -66,7 +66,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-databind,jsr305,metrics-core,netty-all,commons-crypto,commons-lang-3.10,leveldbjni,scala-common-bin-2.12,unused,scala-xml-2.12"
+JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-databind,jsr305,metrics-core,netty-all,commons-crypto,commons-lang-3.6,leveldbjni,scala-common-bin-2.12,unused,scala-xml-2.12"
 JAVA_CLASSPATH_EXTRA="slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
