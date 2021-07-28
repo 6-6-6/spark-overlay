@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -23,7 +23,7 @@ KEYWORDS="~amd64"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.google.code.findbugs:jsr305:3.0.0 -> >=dev-java/jsr305-3.0.1:0
-# com.google.code.gson:gson:2.2.4 -> >=dev-java/gson-2.3.1:2.2.2
+# com.google.code.gson:gson:2.2.4 -> >=dev-java/gson-2.8.7:2.6
 # com.google.guava:guava:11.0.2 -> >=dev-java/guava-29.0:0
 # com.google.protobuf:protobuf-java:2.5.0 -> >=dev-java/protobuf-java-3.11.4:0
 # com.jcraft:jsch:0.1.54 -> >=dev-java/jsch-0.1.54:0
@@ -88,7 +88,7 @@ CDEPEND="
 	>=dev-java/commons-logging-1.2:0
 	>=dev-java/commons-math-3.2:3
 	>=dev-java/commons-net-3.2:0
-	>=dev-java/gson-2.3.1:2.2.2
+	>=dev-java/gson-2.8.7:2.6
 	>=dev-java/guava-29.0:0
 	>=dev-java/jsch-0.1.54:0
 	>=dev-java/jsr305-3.0.1:0
@@ -125,7 +125,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jsr305,gson-2.2.2,guava,protobuf-java,jsch,jersey-core-1,jersey-json-1,jersey-server-1,commons-cli-1,commons-codec,commons-collections-3,commons-configuration,commons-httpclient-3,commons-io-1,commons-lang-2.1,commons-logging,commons-net,servlet-api-4.0,log4j,jets3t,avro,commons-compress,commons-math-3,curator-client,curator-recipes,hadoop-annotations,hadoop-auth,htrace-core,zookeeper,jackson-core-asl,jackson-mapper-asl,jetty-6,jetty-sslengine-6,jetty-util-6,slf4j-api,xmlenc,jsp-api-2.3,slf4j-log4j12"
+JAVA_GENTOO_CLASSPATH="jsr305,gson-2.6,guava,protobuf-java,jsch,jersey-core-1,jersey-json-1,jersey-server-1,commons-cli-1,commons-codec,commons-collections-3,commons-configuration,commons-httpclient-3,commons-io-1,commons-lang-2.1,commons-logging,commons-net,servlet-api-4.0,log4j,jets3t,avro,commons-compress,commons-math-3,curator-client,curator-recipes,hadoop-annotations,hadoop-auth,htrace-core,zookeeper,jackson-core-asl,jackson-mapper-asl,jetty-6,jetty-sslengine-6,jetty-util-6,slf4j-api,xmlenc,jsp-api-2.3,slf4j-log4j12"
 JAVA_CLASSPATH_EXTRA="ant-core"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
