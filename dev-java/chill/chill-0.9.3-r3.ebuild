@@ -11,10 +11,12 @@ MAVEN_ID="com.twitter:chill_2.12:0.9.3"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven java-pkg-simple-plugins
 
-DESCRIPTION="chill"
+DESCRIPTION="Scala extensions for the Kryo serialization library"
 HOMEPAGE="https://github.com/twitter/chill"
-SRC_URI="https://repo1.maven.org/maven2/com/twitter/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar -> ${P}-sources.jar
-	binary? ( https://repo1.maven.org/maven2/com/twitter/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar -> ${P}-bin.jar )"
+SRC_URI="
+	https://repo1.maven.org/maven2/com/twitter/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar -> ${P}-sources.jar
+	binary? ( https://repo1.maven.org/maven2/com/twitter/${PN}_2.12/${PV}/${PN}_2.12-${PV}.jar -> ${P}-bin.jar )
+"
 LICENSE="Apache-2.0"
 SLOT="2.12"
 KEYWORDS="~amd64"
