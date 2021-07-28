@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer type="person">
+	<maintainer type="person" restrict="&lt;=dev-java/reactor-core-3.1.4-r1">
 		<email>zzy2529420793@gmail.com</email>
 		<name>zongyu</name>
 	</maintainer>
-	<use>
-		<flag name="binary"> install binary jar from maven central.</flag>
-	</use>
+	<maintainer type="person">
+        <email>liaoyuan@gmail.com</email>
+        <name>Yuan Liao</name>
+    </maintainer>
 	<upstream>
-			<!-- <remote-id type="maven">pseudo:pseudo</remote-id> -->
+		<remote-id type="github">reactor/reactor-core</remote-id>
 	</upstream>
 </pkgmetadata>
