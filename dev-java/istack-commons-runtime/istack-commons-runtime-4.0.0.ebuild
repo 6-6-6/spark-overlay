@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -13,8 +13,10 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="istack common utility code"
 HOMEPAGE="https://projects.eclipse.org/projects/ee4j/istack-commons/istack-commons-runtime"
-SRC_URI="https://repo.maven.apache.org/maven2/com/sun/istack/${PN}/${PV}-M3/${P}-M3-sources.jar -> ${P}-sources.jar
-	https://repo.maven.apache.org/maven2/com/sun/istack/${PN}/${PV}-M3/${P}-M3.jar -> ${P}-bin.jar"
+SRC_URI="
+	https://repo.maven.apache.org/maven2/com/sun/istack/${PN}/${PV}-M3/${P}-M3-sources.jar -> ${P}-sources.jar
+	https://repo.maven.apache.org/maven2/com/sun/istack/${PN}/${PV}-M3/${P}-M3.jar -> ${P}-bin.jar
+"
 LICENSE="CDDL"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -24,9 +26,12 @@ KEYWORDS="~amd64"
 # POM: /var/lib/java-ebuilder/poms/${P}-M3.pom
 # jakarta.activation:jakarta.activation-api:2.0.0-RC3 -> >=dev-java/jakarta-activation-api-2.0.0:0
 
+BDEPEND="
+	app-arch/unzip
+"
+
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? (
 		>=dev-java/jakarta-activation-api-2.0.0:0
 	)
@@ -40,6 +45,7 @@ S="${WORKDIR}"
 
 JAVA_CLASSPATH_EXTRA="jakarta-activation-api"
 JAVA_SRC_DIR="src/main/java"
+JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 JAVA_RM_FILES=(
 	"${JAVA_SRC_DIR}/module-info.java"
