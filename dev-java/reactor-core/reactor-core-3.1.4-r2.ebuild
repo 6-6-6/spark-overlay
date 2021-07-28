@@ -67,6 +67,8 @@ src_prepare() {
 src_compile() {
 	java-pkg-simple_src_compile
 
+	use binary && return
+
 	local classes="target/classes"
 
 	local classpath=""
