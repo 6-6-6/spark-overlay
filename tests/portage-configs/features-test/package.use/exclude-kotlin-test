@@ -1,5 +1,0 @@
-# Disable tests for kotlin-test packages
-# These are tested separately, and enabling tests when neither of them is
-# installed causes a circular dependency
-dev-java/kotlin-test -test
-dev-java/kotlin-test-junit -test

@@ -1,0 +1,4 @@
+# Disable tests for Kotlin libraries
+# These are tested separately, and enabling tests when none of them is
+# installed causes a circular dependency
+dev-java/kotlin-* -test
