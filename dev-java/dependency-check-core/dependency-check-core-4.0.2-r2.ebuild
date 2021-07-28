@@ -30,7 +30,7 @@ KEYWORDS="~amd64"
 # com.h3xstream.retirejs:retirejs-core:3.0.1 -> >=dev-java/retirejs-core-3.0.1:0
 # com.sun.mail:mailapi:1.6.3 -> >=dev-java/mailapi-1.6.3:0
 # com.vdurmont:semver4j:2.2.0 -> >=dev-java/semver4j-2.2.0:0
-# commons-collections:commons-collections:3.2.2 -> >=dev-java/commons-collections-3.2.2:3
+# commons-collections:commons-collections:3.2.2 -> >=dev-java/commons-collections-3.2.2:0
 # commons-io:commons-io:2.6 -> >=dev-java/commons-io-2.6:1
 # joda-time:joda-time:1.6 -> >=dev-java/joda-time-2.7:0
 # org.apache.commons:commons-compress:1.18 -> >=dev-java/commons-compress-1.20:0
@@ -54,7 +54,7 @@ CDEPEND="
 	>=dev-java/mailapi-1.6.3:0
 	>=dev-java/retirejs-core-3.0.1:0
 	>=dev-java/semver4j-2.2.0:0
-	>=dev-java/commons-collections-3.2.2:3
+	>=dev-java/commons-collections-3.2.2:0
 	>=dev-java/commons-compress-1.20:0
 	>=dev-java/commons-io-2.6:1
 	>=dev-java/commons-lang-3.12.0:3.6
@@ -85,6 +85,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="findbugs-annotations-3,gson-2.7,guava,retirejs-core,mailapi,semver4j,commons-collections-3,commons-io-1,joda-time,commons-compress,commons-lang-3.6,commons-text,lucene-analyzers-common,lucene,lucene-queryparser,velocity,javax-json,jsoup,dependency-check-utils,slf4j-api,h2"
+JAVA_GENTOO_CLASSPATH="findbugs-annotations-3,gson-2.7,guava,retirejs-core,mailapi,semver4j,commons-collections,commons-io-1,joda-time,commons-compress,commons-lang-3.6,commons-text,lucene-analyzers-common,lucene,lucene-queryparser,velocity,javax-json,jsoup,dependency-check-utils,slf4j-api,h2"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
