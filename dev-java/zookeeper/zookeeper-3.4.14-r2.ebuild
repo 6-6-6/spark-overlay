@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -23,7 +23,7 @@ KEYWORDS="~amd64"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.github.spotbugs:spotbugs-annotations:3.1.9 -> >=dev-java/spotbugs-annotations-3.1.9:0
-# commons-collections:commons-collections:3.2.2 -> >=dev-java/commons-collections-3.2.2:3
+# commons-collections:commons-collections:3.2.2 -> >=dev-java/commons-collections-3.2.2:0
 # commons-lang:commons-lang:2.4 -> >=dev-java/commons-lang-2.6:2.1
 # io.netty:netty:3.10.6.Final -> >=dev-java/netty-3.10.6:0
 # jdiff:jdiff:1.0.9 -> >=dev-java/jdiff-1.0.9:0
@@ -51,7 +51,7 @@ CDEPEND="
 	>=dev-java/netty-3.10.6:0
 	>=dev-java/spotbugs-annotations-3.1.9:0
 	>=dev-java/wagon-http-2.4:0
-	>=dev-java/commons-collections-3.2.2:3
+	>=dev-java/commons-collections-3.2.2:0
 	>=dev-java/commons-lang-2.6:2.1
 	>=dev-java/jline-2.12.1:2
 	>=dev-java/log4j-1.2.17:0
@@ -73,6 +73,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="spotbugs-annotations,commons-collections-3,commons-lang-2.1,netty,jdiff,jline-2,log4j,maven-ant-tasks,wagon-http,apache-rat-tasks,audience-annotations,clover,dependency-check-ant,slf4j-api,slf4j-log4j12,jdeb,xerces-2,jline"
+JAVA_GENTOO_CLASSPATH="spotbugs-annotations,commons-collections,commons-lang-2.1,netty,jdiff,jline-2,log4j,maven-ant-tasks,wagon-http,apache-rat-tasks,audience-annotations,clover,dependency-check-ant,slf4j-api,slf4j-log4j12,jdeb,xerces-2,jline"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
