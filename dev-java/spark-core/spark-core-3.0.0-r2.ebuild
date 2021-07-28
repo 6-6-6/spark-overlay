@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,7 +12,7 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven java-pkg-simple-plugins
 
-DESCRIPTION="The Apache Software Foundation provides support for the Apache community of open-source software projects. The Apache projects are characterized by a collaborative, consensus based development process, an open and pragmatic software license, and a desire to create high quality software that leads the way in its field. We consider ourselves not simply a group of projects sharing a server, but rather a community of developers and users."
+DESCRIPTION="Unified analytics engine for large-scale data processing"
 HOMEPAGE="http://spark.apache.org/"
 SRC_URI="https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2.jar -> ${P}-bin.jar"
@@ -45,7 +45,7 @@ KEYWORDS="~amd64"
 # org.apache.avro:avro:1.8.2 -> >=dev-java/avro-1.8.2:0
 # org.apache.avro:avro-mapred:1.8.2 -> >=dev-java/avro-mapred-1.8.2:0
 # org.apache.commons:commons-crypto:1.0.0 -> >=dev-java/commons-crypto-1.0.0:0
-# org.apache.commons:commons-lang3:3.9 -> >=dev-java/commons-lang-3.10
+# org.apache.commons:commons-lang3:3.9 -> >=dev-java/commons-lang-3.12.0:3.6
 # org.apache.commons:commons-math3:3.4.1 -> >=dev-java/commons-math-3.6.1:0
 # org.apache.commons:commons-text:1.6 -> >=dev-java/commons-text-1.6:0
 # org.apache.curator:curator-recipes:2.7.1 -> >=dev-java/curator-recipes-2.8.0:0
@@ -122,7 +122,7 @@ CDEPEND="
 	>=dev-java/zstd-jni-1.4.4.7:0
 	>=dev-java/ant-ivy-2.4.0:2
 	>=dev-java/commons-crypto-1.0.0:0
-	>=dev-java/commons-lang-3.10
+	>=dev-java/commons-lang-3.12.0:3.6
 	>=dev-java/commons-math-3.4.1:3
 	>=dev-java/commons-net-3.2:0
 	>=dev-java/jakarta-oro-2.0.8:2.0
@@ -160,7 +160,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="stream,jackson-databind,jackson-module-scala-2.12,zstd-jni,jsr305,compress-lzf,chill-java,chill-2.12,commons-net,metrics-core,metrics-graphite,metrics-jmx,metrics-json,metrics-jvm,netty-all,javax-activation,servlet-api-4.0,log4j,pyrolite,py4j,avro,avro-mapred,commons-crypto,commons-lang-3.10,commons-math-3,commons-text,curator-recipes,hadoop-client,ant-ivy-2,spark-kvstore-2.12,spark-launcher-2.12,spark-network-common-2.12,spark-network-shuffle-2.12,spark-tags-2.12,spark-unsafe-2.12,xbean-asm7-shaded,zookeeper,jersey-container-servlet-2,jersey-container-servlet-core-2,jersey-client-2,jersey-common-2,jersey-server-2,jersey-hk2-2,json4s-jackson-2.12,lz4-java,RoaringBitmap,scala-common-bin-2.12,scala-common-bin-2.12,scala-common-bin-2.12,jcl-over-slf4j,jul-to-slf4j,slf4j-api,slf4j-log4j12,unused,snappy-1.1,jakarta-oro-2.0,paranamer"
+JAVA_GENTOO_CLASSPATH="stream,jackson-databind,jackson-module-scala-2.12,zstd-jni,jsr305,compress-lzf,chill-java,chill-2.12,commons-net,metrics-core,metrics-graphite,metrics-jmx,metrics-json,metrics-jvm,netty-all,javax-activation,servlet-api-4.0,log4j,pyrolite,py4j,avro,avro-mapred,commons-crypto,commons-lang-3.6,commons-math-3,commons-text,curator-recipes,hadoop-client,ant-ivy-2,spark-kvstore-2.12,spark-launcher-2.12,spark-network-common-2.12,spark-network-shuffle-2.12,spark-tags-2.12,spark-unsafe-2.12,xbean-asm7-shaded,zookeeper,jersey-container-servlet-2,jersey-container-servlet-core-2,jersey-client-2,jersey-common-2,jersey-server-2,jersey-hk2-2,json4s-jackson-2.12,lz4-java,RoaringBitmap,scala-common-bin-2.12,scala-common-bin-2.12,scala-common-bin-2.12,jcl-over-slf4j,jul-to-slf4j,slf4j-api,slf4j-log4j12,unused,snappy-1.1,jakarta-oro-2.0,paranamer"
 JAVA_CLASSPATH_EXTRA="guava"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
