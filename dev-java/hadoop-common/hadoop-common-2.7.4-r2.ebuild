@@ -32,7 +32,7 @@ KEYWORDS="~amd64"
 # com.sun.jersey:jersey-server:1.9 -> >=dev-java/jersey-server-1.9:1
 # commons-cli:commons-cli:1.2 -> >=dev-java/commons-cli-1.3.1:1
 # commons-codec:commons-codec:1.4 -> >=dev-java/commons-codec-1.7:0
-# commons-collections:commons-collections:3.2.2 -> >=dev-java/commons-collections-3.2.2:3
+# commons-collections:commons-collections:3.2.2 -> >=dev-java/commons-collections-3.2.2:0
 # commons-configuration:commons-configuration:1.6 -> >=dev-java/commons-configuration-1.6:0
 # commons-httpclient:commons-httpclient:3.1 -> >=dev-java/commons-httpclient-3.1:3
 # commons-io:commons-io:2.4 -> >=dev-java/commons-io-2.4:1
@@ -79,7 +79,7 @@ CDEPEND="
 	>=dev-java/zookeeper-3.4.6:0
 	>=dev-java/commons-cli-1.3.1:1
 	>=dev-java/commons-codec-1.7:0
-	>=dev-java/commons-collections-3.2.2:3
+	>=dev-java/commons-collections-3.2.2:0
 	>=dev-java/commons-compress-1.10:0
 	>=dev-java/commons-configuration-1.6:0
 	>=dev-java/commons-httpclient-3.1:3
@@ -125,7 +125,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jsr305,gson-2.6,guava,protobuf-java,jsch,jersey-core-1,jersey-json-1,jersey-server-1,commons-cli-1,commons-codec,commons-collections-3,commons-configuration,commons-httpclient-3,commons-io-1,commons-lang-2.1,commons-logging,commons-net,servlet-api-4.0,log4j,jets3t,avro,commons-compress,commons-math-3,curator-client,curator-recipes,hadoop-annotations,hadoop-auth,htrace-core,zookeeper,jackson-core-asl,jackson-mapper-asl,jetty-6,jetty-sslengine-6,jetty-util-6,slf4j-api,xmlenc,jsp-api-2.3,slf4j-log4j12"
+JAVA_GENTOO_CLASSPATH="jsr305,gson-2.6,guava,protobuf-java,jsch,jersey-core-1,jersey-json-1,jersey-server-1,commons-cli-1,commons-codec,commons-collections,commons-configuration,commons-httpclient-3,commons-io-1,commons-lang-2.1,commons-logging,commons-net,servlet-api-4.0,log4j,jets3t,avro,commons-compress,commons-math-3,curator-client,curator-recipes,hadoop-annotations,hadoop-auth,htrace-core,zookeeper,jackson-core-asl,jackson-mapper-asl,jetty-6,jetty-sslengine-6,jetty-util-6,slf4j-api,xmlenc,jsp-api-2.3,slf4j-log4j12"
 JAVA_CLASSPATH_EXTRA="ant-core"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
