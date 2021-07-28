@@ -1,2 +1,5 @@
 # Enable ebuilds in Spark Overlay
 */*::spark-overlay
+
+# Temporarily unmask app-eselect/eselect-kotlin until it has the first release
+=app-eselect/eselect-kotlin-9999::spark-overlay **

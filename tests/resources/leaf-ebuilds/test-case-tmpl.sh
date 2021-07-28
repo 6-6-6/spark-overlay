@@ -13,5 +13,12 @@ run_test() {
     emerge -1 dev-java/jsr305
     emerge -1 media-libs/freetype
 
+    # Install Kotlin 1.4
+    USE="binary" emerge -1 dev-java/kotlin-{stdlib,reflect}:1.4
+    emerge -1 dev-lang/kotlin-bin:1.4
+
+    # Prepare to bootstrap some packages
+    USE="binary" emerge -1 dev-java/gpars dev-java/yecht
+
     /var/db/repos/spark-overlay/tests/resources/leaf-ebuilds/emerge-leaves.sh
 }

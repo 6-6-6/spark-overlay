@@ -11,3 +11,6 @@ media-libs/freetype harfbuzz
 
 # Required to break circular dependency on media-libs/freetype
 media-libs/harfbuzz -cairo
+
+# Required before Scala is bootstrapped
+dev-lang/scala binary

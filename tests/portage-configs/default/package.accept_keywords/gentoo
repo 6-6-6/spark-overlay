@@ -4,4 +4,6 @@ dev-java/glassfish-jms-api::gentoo
 dev-java/jna::gentoo
 >=dev-java/jsr305-3.0.2::gentoo
 dev-java/jts-core::gentoo
-dev-java/android-util::gentoo
+>=dev-java/typesafe-config-1.3.0::gentoo
+dev-java/commons-vfs:2::gentoo
+dev-java/gson::gentoo
