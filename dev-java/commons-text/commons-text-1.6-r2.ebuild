@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -22,27 +22,31 @@ KEYWORDS="~amd64"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.apache.commons:commons-lang3:3.8.1 -> >=dev-java/commons-lang-3.10
+# org.apache.commons:commons-lang3:3.8.1 -> >=dev-java/commons-lang-3.12.0:3.6
 
 CDEPEND="
-	>=dev-java/commons-lang-3.10
+	>=dev-java/commons-lang-3.12.0:3.6
+"
+
+BDEPEND="
+	app-arch/unzip
 "
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? ( ${CDEPEND} )
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-	${CDEPEND}"
+	${CDEPEND}
+"
 
 S="${WORKDIR}"
 
 JAVA_ENCODING="ISO-8859-1"
 
-JAVA_GENTOO_CLASSPATH="commons-lang-3.10"
+JAVA_GENTOO_CLASSPATH="commons-lang-3.6"
 JAVA_SRC_DIR="src/main/java"
 JAVA_RESOURCE_DIRS=(
 	"src/main/resources"
