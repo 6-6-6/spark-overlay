@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -24,14 +24,18 @@ KEYWORDS="~amd64"
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # commons-codec:commons-codec:1.4 -> >=dev-java/commons-codec-1.7:0
 # org.apache.directory.server:apacheds-kerberos-codec:2.0.0-M15 -> >=dev-java/apacheds-kerberos-codec-2.0.0:0
-# org.apache.httpcomponents:httpclient:4.2.5 -> >=dev-java/httpcomponents-client-4.5:4.5
+# org.apache.httpcomponents:httpclient:4.2.5 -> >=dev-java/commons-httpclient-4.5:4
 # org.slf4j:slf4j-api:1.7.5 -> >=dev-java/slf4j-api-1.7.7:0
 
 CDEPEND="
 	>=dev-java/apacheds-kerberos-codec-2.0.0:0
 	>=dev-java/commons-codec-1.7:0
-	>=dev-java/httpcomponents-client-4.5:4.5
+	>=dev-java/commons-httpclient-4.5:4
 	>=dev-java/slf4j-api-1.7.7:0
+"
+
+BDEPEND="
+	app-arch/unzip
 "
 
 # Compile dependencies
@@ -41,7 +45,6 @@ CDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? (
 		${CDEPEND}
 		>=dev-java/hadoop-annotations-2.5.1:0
@@ -63,7 +66,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="commons-codec,apacheds-kerberos-codec,httpcomponents-client-4.5,slf4j-api,log4j,slf4j-log4j12"
+JAVA_GENTOO_CLASSPATH="commons-codec,apacheds-kerberos-codec,commons-httpclient-4,slf4j-api,log4j,slf4j-log4j12"
 JAVA_CLASSPATH_EXTRA="servlet-api-4.0,hadoop-annotations"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
