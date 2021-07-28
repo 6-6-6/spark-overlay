@@ -11,13 +11,13 @@ run_test() {
 
     # Update pre-installed packages with required USE flags and versions
     emerge -1 dev-java/jsr305
-    emerge -1 media-libs/freetype
 
     # Install Kotlin 1.4
     USE="binary" emerge -1 dev-java/kotlin-{stdlib,reflect}:1.4
     emerge -1 dev-lang/kotlin-bin:1.4
 
     # Prepare to bootstrap some packages
+    mkdir -p /etc/portage/package.use
     echo "dev-java/gpars binary" \
         >> /etc/portage/package.use/leaf-ebuilds-bootstrap
     echo "dev-java/yecht binary" \
