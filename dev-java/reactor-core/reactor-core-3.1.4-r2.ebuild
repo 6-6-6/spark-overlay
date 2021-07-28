@@ -54,7 +54,7 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 pkg_setup() {
 	java-pkg-2_pkg_setup
-	kotlin-utils_pkg_setup
+	! use binary && kotlin-utils_pkg_setup
 }
 
 src_prepare() {
