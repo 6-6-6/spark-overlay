@@ -444,7 +444,7 @@ java-pkg-simple_src_install() {
 # Besides, it will perform test with framework defined by
 # ${JAVA_TESTING_FRAMEWORKS}.
 java-pkg-simple_src_test() {
-	local test_sources=test_sources.lst classes=target/testclasses
+	local test_sources=test_sources.lst classes=target/test-classes
 	local tests_to_run classpath
 
 	# do not continue if the USE FLAG 'test' is explicitly unset
