@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -11,15 +11,21 @@ MAVEN_ID="com.barchart.udt:barchart-udt-bundle:2.3.0"
 MAVEN_PROVIDES="com.barchart.udt:barchart-udt-core:2.3.0"
 JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Barchart UDT [ BUNDLE ]"
+DESCRIPTION="Barchart UDT bundle"
 HOMEPAGE="https://github.com/barchart/barchart-udt/wiki"
-SRC_URI="https://repo.maven.apache.org/maven2/com/barchart/udt/${PN}-bundle/${PV}/${PN}-bundle-${PV}-sources.jar
-		https://repo.maven.apache.org/maven2/com/barchart/udt/${PN}-bundle/${PV}/${PN}-bundle-${PV}.jar"
+SRC_URI="
+	https://repo.maven.apache.org/maven2/com/barchart/udt/${PN}-bundle/${PV}/${PN}-bundle-${PV}-sources.jar
+	https://repo.maven.apache.org/maven2/com/barchart/udt/${PN}-bundle/${PV}/${PN}-bundle-${PV}.jar
+"
 LICENSE="BSD-2"
 SLOT="0"
 KEYWORDS="~amd64"
+
+# The upstream pre-built JAR contains shared libraries (*.so) files, which are
+# more complicated to build.  Only binary installation is supported as of now.
+IUSE="+binary"
 
 DEPEND="
 	>=virtual/jdk-1.8:*
