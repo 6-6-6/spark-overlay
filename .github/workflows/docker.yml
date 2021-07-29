@@ -8,12 +8,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  kotlin:
+  test-cases:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         test-case:
+          - spark
           - kotlin-latest
           - kotlin-1.4
     steps:
