@@ -30,6 +30,9 @@ KEYWORDS="~amd64"
 # org.apache.httpcomponents:httpclient:4.1.2 -> >=dev-java/commons-httpclient-4.5:4
 # org.apache.httpcomponents:httpcore:4.1.2 -> >=dev-java/httpcore-4.4.1:0
 
+# Additional dependencies:
+# javax.servlet -> jakarta.servlet:jakarta.servlet-api -> dev-java/jakarta-servlet-api
+
 CDEPEND="
 	>=dev-java/java-xmlbuilder-0.4:0
 	>=dev-java/commons-codec-1.7:0
@@ -40,6 +43,7 @@ CDEPEND="
 	dev-java/jackson-mapper-asl:0
 	dev-java/jug:0
 	dev-java/barebonesbrowserlaunch:0
+	dev-java/jakarta-servlet-api:0
 "
 
 BDEPEND="
@@ -57,6 +61,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="java-xmlbuilder,commons-codec,commons-logging,commons-httpclient-4,httpcore,junit-4,jackson-mapper-asl,jug,barebonesbrowserlaunch"
+JAVA_GENTOO_CLASSPATH="java-xmlbuilder,commons-codec,commons-logging,commons-httpclient-4,httpcore,junit-4,jackson-mapper-asl,jug,barebonesbrowserlaunch,jakarta-servlet-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
