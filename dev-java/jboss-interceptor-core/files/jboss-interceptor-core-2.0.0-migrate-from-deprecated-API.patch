@@ -1,0 +1,193 @@
+From 35ed3eace68920c2fd0b72489352853122e6ccfd Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Thu, 29 Jul 2021 16:22:09 -0700
+Subject: [PATCH] Migrate from Guava's removed MapMaker to CacheLoader
+
+Reference: https://issues.apache.org/jira/browse/CASSANDRA-6007
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ .../cache/DefaultMetadataCachingReader.java   | 62 +++++++++----------
+ 1 file changed, 31 insertions(+), 31 deletions(-)
+
+diff --git a/src/main/java/org/jboss/interceptor/reader/cache/DefaultMetadataCachingReader.java b/src/main/java/org/jboss/interceptor/reader/cache/DefaultMetadataCachingReader.java
+index 88bf525..0e00140 100644
+--- a/src/main/java/org/jboss/interceptor/reader/cache/DefaultMetadataCachingReader.java
++++ b/src/main/java/org/jboss/interceptor/reader/cache/DefaultMetadataCachingReader.java
+@@ -2,7 +2,7 @@ package org.jboss.interceptor.reader.cache;
+ 
+ import com.google.common.base.Function;
+ import com.google.common.collect.ComputationException;
+-import com.google.common.collect.MapMaker;
++import com.google.common.cache.CacheLoader;
+ import org.jboss.interceptor.reader.ClassMetadataInterceptorReference;
+ import org.jboss.interceptor.reader.InterceptorMetadataUtils;
+ import org.jboss.interceptor.reader.ReflectiveClassMetadata;
+@@ -17,39 +17,39 @@ import java.util.concurrent.ConcurrentMap;
+  */
+ public class DefaultMetadataCachingReader implements MetadataCachingReader
+ {
+-   private final ConcurrentMap<InterceptorReference<?>, InterceptorMetadata<?>> interceptorMetadataCache;
++   private final CacheLoader<InterceptorReference<?>, InterceptorMetadata<?>> interceptorMetadataCache;
+ 
+-   private final ConcurrentMap<ClassMetadata<?>, InterceptorMetadata<?>> classMetadataInterceptorMetadataCache;
++   private final CacheLoader<ClassMetadata<?>, InterceptorMetadata<?>> classMetadataInterceptorMetadataCache;
+ 
+-   private final ConcurrentMap<Class<?>, ClassMetadata<?>> reflectiveClassMetadataCache;
++   private final CacheLoader<Class<?>, ClassMetadata<?>> reflectiveClassMetadataCache;
+ 
+    private boolean unwrapRuntimeExceptions;
+ 
+    public DefaultMetadataCachingReader()
+    {
+-      this.interceptorMetadataCache = new MapMaker().makeComputingMap( new Function<InterceptorReference<?>, InterceptorMetadata<?>>()
++      this.interceptorMetadataCache = new CacheLoader<InterceptorReference<?>, InterceptorMetadata<?>>()
+       {
+-         public InterceptorMetadata<?> apply(InterceptorReference<?> from)
++         public InterceptorMetadata<?> load(InterceptorReference<?> from) throws Exception
+          {
+             return InterceptorMetadataUtils.readMetadataForInterceptorClass(from);
+          }
+-      });
++      };
+ 
+-      this.classMetadataInterceptorMetadataCache = new MapMaker().makeComputingMap(new Function<ClassMetadata<?>, InterceptorMetadata<?>>()
++      this.classMetadataInterceptorMetadataCache = new CacheLoader<ClassMetadata<?>, InterceptorMetadata<?>>()
+       {
+-         public InterceptorMetadata<?> apply(ClassMetadata<?> from)
++         public InterceptorMetadata<?> load(ClassMetadata<?> from) throws Exception
+          {
+             return InterceptorMetadataUtils.readMetadataForTargetClass(from);
+          }
+-      });
++      };
+ 
+-      this.reflectiveClassMetadataCache = new MapMaker().makeComputingMap(new Function<Class<?>, ClassMetadata<?>>()
++      this.reflectiveClassMetadataCache = new CacheLoader<Class<?>, ClassMetadata<?>>()
+       {
+-         public ClassMetadata<?> apply(Class<?> from)
++         public ClassMetadata<?> load(Class<?> from) throws Exception
+          {
+             return ReflectiveClassMetadata.of(from);
+          }
+-      });
++      };
+       this.unwrapRuntimeExceptions = true;
+    }
+ 
+@@ -62,15 +62,15 @@ public class DefaultMetadataCachingReader implements MetadataCachingReader
+    {
+       try
+       {
+-         return (InterceptorMetadata<T>) interceptorMetadataCache.get(interceptorReference);
++         return (InterceptorMetadata<T>) interceptorMetadataCache.load(interceptorReference);
+       }
+-      catch (ComputationException e)
++      catch (Exception e)
+       {
+           if (unwrapRuntimeExceptions && e.getCause() instanceof RuntimeException)
+           {
+              throw (RuntimeException) e.getCause();
+           }
+-         throw e;
++         throw new RuntimeException(e);
+       }
+    }
+ 
+@@ -78,15 +78,15 @@ public class DefaultMetadataCachingReader implements MetadataCachingReader
+    {
+       try
+       {
+-         return (InterceptorMetadata<T>) classMetadataInterceptorMetadataCache.get(classMetadata);
++         return (InterceptorMetadata<T>) classMetadataInterceptorMetadataCache.load(classMetadata);
+       }
+-      catch (ComputationException e)
++      catch (Exception e)
+       {
+           if (unwrapRuntimeExceptions && e.getCause() instanceof RuntimeException)
+           {
+              throw (RuntimeException) e.getCause();
+           }
+-         throw e;
++         throw new RuntimeException(e);
+       }
+    }
+ 
+@@ -94,15 +94,15 @@ public class DefaultMetadataCachingReader implements MetadataCachingReader
+    {
+       try
+       {
+-         return (InterceptorMetadata<T>) interceptorMetadataCache.get(ClassMetadataInterceptorReference.of(clazz));
++         return (InterceptorMetadata<T>) interceptorMetadataCache.load(ClassMetadataInterceptorReference.of(clazz));
+       }
+-      catch (ComputationException e)
++      catch (Exception e)
+       {
+          if (unwrapRuntimeExceptions && e.getCause() instanceof RuntimeException)
+          {
+             throw (RuntimeException) e.getCause();
+          }
+-         throw e;
++         throw new RuntimeException(e);
+       }
+    }
+ 
+@@ -110,15 +110,15 @@ public class DefaultMetadataCachingReader implements MetadataCachingReader
+    {
+       try
+       {
+-         return (InterceptorMetadata<T>) interceptorMetadataCache.get(ClassMetadataInterceptorReference.of(reflectiveClassMetadataCache.get(clazz)));
++         return (InterceptorMetadata<T>) interceptorMetadataCache.load(ClassMetadataInterceptorReference.of(reflectiveClassMetadataCache.load(clazz)));
+       }
+-      catch (ComputationException e)
++      catch (Exception e)
+       {
+          if (unwrapRuntimeExceptions && e.getCause() instanceof RuntimeException)
+          {
+             throw (RuntimeException) e.getCause();
+          }
+-         throw e;
++         throw new RuntimeException(e);
+       }
+    }
+ 
+@@ -126,15 +126,15 @@ public class DefaultMetadataCachingReader implements MetadataCachingReader
+    {
+       try
+       {
+-         return (InterceptorMetadata<T>) classMetadataInterceptorMetadataCache.get(reflectiveClassMetadataCache.get(clazz));
++         return (InterceptorMetadata<T>) classMetadataInterceptorMetadataCache.load(reflectiveClassMetadataCache.load(clazz));
+       }
+-      catch (ComputationException e)
++      catch (Exception e)
+       {
+           if (unwrapRuntimeExceptions && e.getCause() instanceof RuntimeException)
+           {
+              throw (RuntimeException) e.getCause();
+           }
+-         throw e;
++         throw new RuntimeException(e);
+       }
+    }
+ 
+@@ -142,15 +142,15 @@ public class DefaultMetadataCachingReader implements MetadataCachingReader
+    {
+       try
+       {
+-         return (ClassMetadata<T>) reflectiveClassMetadataCache.get(clazz);
++         return (ClassMetadata<T>) reflectiveClassMetadataCache.load(clazz);
+       }
+-      catch (ComputationException e)
++      catch (Exception e)
+       {
+           if (unwrapRuntimeExceptions && e.getCause() instanceof RuntimeException)
+           {
+              throw (RuntimeException) e.getCause();
+           }
+-         throw e;
++         throw new RuntimeException(e);
+       }
+    }
+ 
+-- 
+2.31.1
+

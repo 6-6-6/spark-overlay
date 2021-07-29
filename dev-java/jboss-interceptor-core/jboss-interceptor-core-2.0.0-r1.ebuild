@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -14,8 +14,10 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="JBoss EJB 3.1 Common Interceptor Library Parent"
 HOMEPAGE="http://www.jboss.org/jboss-interceptor-parent/jboss-interceptor-core"
-SRC_URI="https://repo1.maven.org/maven2/org/jboss/interceptor/${PN}/${PV}.CR1/${P}.CR1-sources.jar -> ${P}-sources.jar
-	https://repo1.maven.org/maven2/org/jboss/interceptor/${PN}/${PV}.CR1/${P}.CR1.jar -> ${P}-bin.jar"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/jboss/interceptor/${PN}/${PV}.CR1/${P}.CR1-sources.jar -> ${P}-sources.jar
+	https://repo1.maven.org/maven2/org/jboss/interceptor/${PN}/${PV}.CR1/${P}.CR1.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -57,3 +59,11 @@ JAVA_GENTOO_CLASSPATH="guava,javassist-3,jboss-interceptor-spi,slf4j-api"
 JAVA_CLASSPATH_EXTRA="jboss-interceptors-api-1.1_spec"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+
+src_prepare() {
+	if ! use binary; then
+		eapply "${FILESDIR}/${P}-migrate-from-deprecated-API.patch"
+	fi
+
+	eapply_user
+}
