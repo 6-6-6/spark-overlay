@@ -1,0 +1,6 @@
+# required by dev-java/hadoop-common-2.7.4-r2::spark-overlay
+# required by dev-java/hadoop-client-2.7.4-r1::spark-overlay
+# required by dev-java/spark-core-3.0.0-r2::spark-overlay
+# required by dev-java/spark-demo-0.1::spark-overlay
+# required by =dev-java/spark-demo-0.1 (argument)
+dev-java/commons-logging log4j
