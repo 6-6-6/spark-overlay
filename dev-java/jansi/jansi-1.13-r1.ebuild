@@ -41,7 +41,7 @@ RDEPEND="
 	${CP_DEPEND}
 "
 
-S="${WORKDIR}/jansi-jansi-project-1.13"
+S="${WORKDIR}/jansi-jansi-project-${PV}"
 
 JAVA_SRC_DIR="jansi/src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
