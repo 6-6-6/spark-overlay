@@ -1,0 +1,27 @@
+From 28b7c17aad645d6283efa4eb9bb7bdb485e3fbf0 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Thu, 29 Jul 2021 15:50:18 -0700
+Subject: [PATCH] Remove generic type parameters that prevent sources to be
+ compiled
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ .../com/github/benmanes/caffeine/cache/SerializationProxy.java  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/caffeine/src/main/java/com/github/benmanes/caffeine/cache/SerializationProxy.java b/caffeine/src/main/java/com/github/benmanes/caffeine/cache/SerializationProxy.java
+index c9400442..7a5a630a 100644
+--- a/src/main/java/com/github/benmanes/caffeine/cache/SerializationProxy.java
++++ b/src/main/java/com/github/benmanes/caffeine/cache/SerializationProxy.java
+@@ -34,7 +34,7 @@ final class SerializationProxy<K, V> implements Serializable {
+   boolean weakKeys;
+   boolean weakValues;
+   boolean softValues;
+-  Expiry<?, ?> expiry;
++  Expiry expiry;
+   Weigher<?, ?> weigher;
+   CacheWriter<?, ?> writer;
+   boolean isRecordingStats;
+-- 
+2.31.1
+

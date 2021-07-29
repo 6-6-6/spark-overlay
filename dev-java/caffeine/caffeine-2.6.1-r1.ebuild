@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -14,8 +14,10 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="A high performance caching library for Java 8+"
 HOMEPAGE="https://github.com/ben-manes/caffeine"
-SRC_URI="https://repo1.maven.org/maven2/com/github/ben-manes/${PN}/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/com/github/ben-manes/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+SRC_URI="
+	https://repo1.maven.org/maven2/com/github/ben-manes/${PN}/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/com/github/ben-manes/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -43,3 +45,11 @@ S="${WORKDIR}"
 JAVA_CLASSPATH_EXTRA="jsr305,error-prone-annotations"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+
+src_prepare() {
+	if ! use binary; then
+		eapply "${FILESDIR}/${P}-remove-problematic-generics.patch"
+	fi
+
+	eapply_user
+}
