@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,10 +12,12 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Jax-RS provider for JSON content type, based on Jackson JSON processor's data binding functionality."
+DESCRIPTION="Jax-RS provider for JSON content type"
 HOMEPAGE="http://jackson.codehaus.org"
-SRC_URI="https://repo1.maven.org/maven2/org/codehaus/jackson/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/org/codehaus/jackson/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/codehaus/jackson/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/org/codehaus/jackson/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -30,7 +32,7 @@ CDEPEND="
 	>=dev-java/jackson-mapper-asl-1.9.13:0
 
 	java-virtuals/ws-rs-api:0
-	>=dev-java/jackson-xc-${PV}
+	>=dev-java/jackson-xc-${PV}:0
 "
 
 DEPEND="
@@ -41,7 +43,8 @@ DEPEND="
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-	${CDEPEND}"
+	${CDEPEND}
+"
 
 S="${WORKDIR}"
 
