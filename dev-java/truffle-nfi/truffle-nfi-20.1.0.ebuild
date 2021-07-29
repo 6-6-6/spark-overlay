@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,9 +12,11 @@ MAVEN_ID="org.graalvm.truffle:truffle-nfi:20.1.0"
 inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Native function interface for the Truffle framework."
-HOMEPAGE="http://openjdk.java.net/projects/graal"
-SRC_URI="https://repo.maven.apache.org/maven2/org/graalvm/truffle/${PN}/${PV}/${P}-sources.jar
-		https://repo1.maven.org/maven2/org/graalvm/truffle/${PN}-native-linux-amd64/${PV}/${PN}-native-linux-amd64-${PV}.tar.gz"
+HOMEPAGE="https://openjdk.java.net/projects/graal"
+SRC_URI="
+	https://repo.maven.apache.org/maven2/org/graalvm/truffle/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/org/graalvm/truffle/${PN}-native-linux-amd64/${PV}/${PN}-native-linux-amd64-${PV}.tar.gz
+"
 LICENSE="UPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -24,18 +26,22 @@ KEYWORDS="~amd64"
 # org.graalvm.truffle:truffle-api:20.1.0 -> dev-java/truffle-api
 
 CDEPEND="
-	dev-java/truffle-api
+	dev-java/truffle-api:0
+"
+
+BDEPEND="
+	app-arch/unzip
 "
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
-	app-arch/unzip
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-	${CDEPEND}"
+	${CDEPEND}
+"
 
 S="${WORKDIR}"
 
@@ -52,7 +58,6 @@ src_install() {
 	java-pkg-simple_src_install
 	java-pkg_doso bin/*so
 
-	dodir /usr/include
 	insinto /usr/include
-	doins include/*
+	doheader -r include/*
 }
