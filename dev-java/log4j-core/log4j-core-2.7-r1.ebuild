@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -13,9 +13,11 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="The Apache Log4j Implementation"
-HOMEPAGE="http://logging.apache.org/log4j/2.x/log4j-core/"
-SRC_URI="https://repo1.maven.org/maven2/org/apache/logging/log4j/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/org/apache/logging/log4j/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+HOMEPAGE="https://logging.apache.org/log4j/2.x/log4j-core/"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/apache/logging/log4j/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/org/apache/logging/log4j/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -36,7 +38,7 @@ KEYWORDS="~amd64"
 # org.apache.kafka:kafka-clients:0.10.0.1 -> >=dev-java/kafka-clients-0.10.0.1:0
 # org.apache.logging.log4j:log4j-api:2.7 -> >=dev-java/log4j-api-2.7:0
 # org.eclipse.persistence:javax.persistence:2.1.0 -> >=dev-java/javax-persistence-2.1.0:0
-# org.fusesource.jansi:jansi:1.13 -> >=dev-java/jansi-1.13:0
+# org.fusesource.jansi:jansi:1.13 -> >=dev-java/jansi-1.13-r1:1.13
 # org.jctools:jctools-core:1.2.1 -> >=dev-java/jctools-core-1.2.1:0
 # org.zeromq:jeromq:0.3.5 -> >=dev-java/jeromq-0.3.5:0
 
@@ -53,7 +55,7 @@ CDEPEND="
 	>=dev-java/jackson-databind-2.10.0:0
 	>=dev-java/jackson-dataformat-xml-2.8.3:0
 	>=dev-java/jackson-dataformat-yaml-2.8.3:0
-	>=dev-java/jansi-1.13:0
+	>=dev-java/jansi-1.13-r1:1.13
 	>=dev-java/javax-mail-1.5.5:0
 	>=dev-java/javax-persistence-2.1.0:0
 	>=dev-java/jcommander-1.48:0
@@ -81,7 +83,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jcommander,conversantmedia-disruptor,jackson-2,jackson-databind,jackson-dataformat-xml,jackson-dataformat-yaml,woodstox-core,disruptor,javax-mail,commons-compress,commons-csv,kafka-clients,log4j-api,javax-persistence,jansi,jctools-core,jeromq"
+JAVA_GENTOO_CLASSPATH="jcommander,conversantmedia-disruptor,jackson-2,jackson-databind,jackson-dataformat-xml,jackson-dataformat-yaml,woodstox-core,disruptor,javax-mail,commons-compress,commons-csv,kafka-clients,log4j-api,javax-persistence,jansi-1.13,jctools-core,jeromq"
 JAVA_CLASSPATH_EXTRA="jboss-jms-api-1.1_spec,osgi-core-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
