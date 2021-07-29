@@ -26,8 +26,6 @@ jobs:
           path: ./tests/test-cases/${{ matrix.test-case }}.sh
 
   leaf-ebuilds:
-    # Tests not passing yet, only run on manual triggers
-    if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -44,5 +42,8 @@ jobs:
           python-version: 3.9
       - uses: ./.github/actions/setup-leaf-ebuilds-job
       - uses: ./.github/actions/run-test-case
+        # Other tests not passing yet, only run on manual triggers
+        if: ${{ github.event_name == 'workflow_dispatch' ||
+                matrix.test-case == 'leaf-ebuilds-binary' }}
         with:
           path: ./tests/test-cases/${{ matrix.test-case }}.sh
