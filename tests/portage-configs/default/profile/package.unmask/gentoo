@@ -15,3 +15,4 @@
 dev-java/bytelist::spark-overlay
 dev-java/jcodings::spark-overlay
 dev-java/joni::spark-overlay
+dev-java/werken-xpath::spark-overlay
