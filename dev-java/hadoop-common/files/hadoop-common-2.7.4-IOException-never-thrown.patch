@@ -1,0 +1,30 @@
+From d991c723199f243cca4462c84725144f20f9a13a Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Thu, 29 Jul 2021 00:18:24 -0700
+Subject: [PATCH] Do not catch IOException for FileUtils.isSymlink
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ src/main/java/org/apache/hadoop/fs/FileUtil.java | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/src/main/java/org/apache/hadoop/fs/FileUtil.java b/src/main/java/org/apache/hadoop/fs/FileUtil.java
+index 23fb946..9133010 100644
+--- a/src/main/java/org/apache/hadoop/fs/FileUtil.java
++++ b/src/main/java/org/apache/hadoop/fs/FileUtil.java
+@@ -563,11 +563,7 @@ public class FileUtil {
+       if(allFiles != null) {
+          for (int i = 0; i < allFiles.length; i++) {
+            boolean isSymLink;
+-           try {
+-             isSymLink = org.apache.commons.io.FileUtils.isSymlink(allFiles[i]);
+-           } catch(IOException ioe) {
+-             isSymLink = true;
+-           }
++           isSymLink = org.apache.commons.io.FileUtils.isSymlink(allFiles[i]);
+            if(!isSymLink) {
+              size += getDU(allFiles[i]);
+            }
+-- 
+2.31.1
+

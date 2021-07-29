@@ -1,0 +1,47 @@
+From 46135726b300a70b022debcfa1beab3f6d0dfce1 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Thu, 29 Jul 2021 00:23:40 -0700
+Subject: [PATCH] Migrate to Enums.stringConverter in Guava for method
+ deprecation
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ .../java/org/apache/hadoop/fs/shell/XAttrCommands.java    | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/main/java/org/apache/hadoop/fs/shell/XAttrCommands.java b/src/main/java/org/apache/hadoop/fs/shell/XAttrCommands.java
+index d55c80b..0f9b49b 100644
+--- a/src/main/java/org/apache/hadoop/fs/shell/XAttrCommands.java
++++ b/src/main/java/org/apache/hadoop/fs/shell/XAttrCommands.java
+@@ -25,7 +25,7 @@ import java.util.Map;
+ import java.util.Map.Entry;
+ 
+ import com.google.common.base.Enums;
+-import com.google.common.base.Function;
++import com.google.common.base.Converter;
+ import com.google.common.base.Preconditions;
+ 
+ import org.apache.hadoop.HadoopIllegalArgumentException;
+@@ -66,8 +66,8 @@ class XAttrCommands extends FsCommand {
+       " and values encoded as hexadecimal and base64 are prefixed with " +
+       "0x and 0s, respectively.\n" +
+       "<path>: The file or directory.\n";
+-    private final static Function<String, XAttrCodec> enValueOfFunc =
+-        Enums.valueOfFunction(XAttrCodec.class);
++    private final static Converter<String, XAttrCodec> enValueOfFunc =
++        Enums.stringConverter(XAttrCodec.class);
+ 
+     private String name = null;
+     private boolean dump = false;
+@@ -79,7 +79,7 @@ class XAttrCommands extends FsCommand {
+       String en = StringUtils.popOptionWithArgument("-e", args);
+       if (en != null) {
+         try {
+-          encoding = enValueOfFunc.apply(StringUtils.toUpperCase(en));
++          encoding = enValueOfFunc.convert(StringUtils.toUpperCase(en));
+         } catch (IllegalArgumentException e) {
+           throw new IllegalArgumentException(
+               "Invalid/unsupported encoding option specified: " + en);
+-- 
+2.31.1
+

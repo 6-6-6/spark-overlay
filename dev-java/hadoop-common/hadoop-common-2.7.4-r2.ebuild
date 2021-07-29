@@ -129,3 +129,13 @@ JAVA_GENTOO_CLASSPATH="jsr305,gson-2.6,guava,protobuf-java,jsch,jersey-core-1,je
 JAVA_CLASSPATH_EXTRA="ant-core"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+
+src_prepare() {
+	if ! use binary; then
+		for patch in ${FILESDIR}/${P}-*.patch; do
+			eapply "${patch}"
+		done
+	fi
+
+	eapply_user
+}

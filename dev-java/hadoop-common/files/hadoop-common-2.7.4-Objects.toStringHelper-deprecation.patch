@@ -1,0 +1,193 @@
+From 41c29c36babb5530024e7e48a40c2e3f88584f3f Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Thu, 29 Jul 2021 00:10:48 -0700
+Subject: [PATCH] Change {,More}Objects.toStringHelper in Guava for method
+ deprecation
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ src/main/java/org/apache/hadoop/metrics2/AbstractMetric.java  | 3 ++-
+ src/main/java/org/apache/hadoop/metrics2/MetricsTag.java      | 3 ++-
+ .../apache/hadoop/metrics2/impl/AbstractMetricsRecord.java    | 3 ++-
+ src/main/java/org/apache/hadoop/metrics2/impl/MsInfo.java     | 4 ++--
+ .../java/org/apache/hadoop/metrics2/lib/MetricsInfoImpl.java  | 3 ++-
+ .../java/org/apache/hadoop/metrics2/lib/MetricsRegistry.java  | 4 ++--
+ .../org/apache/hadoop/metrics2/source/JvmMetricsInfo.java     | 4 ++--
+ .../java/org/apache/hadoop/metrics2/util/MetricsCache.java    | 4 ++--
+ 8 files changed, 16 insertions(+), 12 deletions(-)
+
+diff --git a/src/main/java/org/apache/hadoop/metrics2/AbstractMetric.java b/src/main/java/org/apache/hadoop/metrics2/AbstractMetric.java
+index 6a11b87..2c62b92 100644
+--- a/src/main/java/org/apache/hadoop/metrics2/AbstractMetric.java
++++ b/src/main/java/org/apache/hadoop/metrics2/AbstractMetric.java
+@@ -19,6 +19,7 @@
+ package org.apache.hadoop.metrics2;
+ 
+ import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import static com.google.common.base.Preconditions.*;
+ 
+ import org.apache.hadoop.classification.InterfaceAudience;
+@@ -84,7 +85,7 @@ public abstract class AbstractMetric implements MetricsInfo {
+   }
+ 
+   @Override public String toString() {
+-    return Objects.toStringHelper(this)
++    return MoreObjects.toStringHelper(this)
+         .add("info", info)
+         .add("value", value())
+         .toString();
+diff --git a/src/main/java/org/apache/hadoop/metrics2/MetricsTag.java b/src/main/java/org/apache/hadoop/metrics2/MetricsTag.java
+index e9e50a4..f8c4cb5 100644
+--- a/src/main/java/org/apache/hadoop/metrics2/MetricsTag.java
++++ b/src/main/java/org/apache/hadoop/metrics2/MetricsTag.java
+@@ -19,6 +19,7 @@
+ package org.apache.hadoop.metrics2;
+ 
+ import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import static com.google.common.base.Preconditions.*;
+ 
+ import org.apache.hadoop.classification.InterfaceAudience;
+@@ -80,7 +81,7 @@ public class MetricsTag implements MetricsInfo {
+   }
+ 
+   @Override public String toString() {
+-    return Objects.toStringHelper(this)
++    return MoreObjects.toStringHelper(this)
+         .add("info", info)
+         .add("value", value())
+         .toString();
+diff --git a/src/main/java/org/apache/hadoop/metrics2/impl/AbstractMetricsRecord.java b/src/main/java/org/apache/hadoop/metrics2/impl/AbstractMetricsRecord.java
+index 3684c7e..f036fe8 100644
+--- a/src/main/java/org/apache/hadoop/metrics2/impl/AbstractMetricsRecord.java
++++ b/src/main/java/org/apache/hadoop/metrics2/impl/AbstractMetricsRecord.java
+@@ -19,6 +19,7 @@
+ package org.apache.hadoop.metrics2.impl;
+ 
+ import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import com.google.common.collect.Iterables;
+ 
+ import org.apache.hadoop.metrics2.MetricsRecord;
+@@ -43,7 +44,7 @@ abstract class AbstractMetricsRecord implements MetricsRecord {
+   }
+ 
+   @Override public String toString() {
+-    return Objects.toStringHelper(this)
++    return MoreObjects.toStringHelper(this)
+         .add("timestamp", timestamp())
+         .add("name", name())
+         .add("description", description())
+diff --git a/src/main/java/org/apache/hadoop/metrics2/impl/MsInfo.java b/src/main/java/org/apache/hadoop/metrics2/impl/MsInfo.java
+index 782f755..5de7edc 100644
+--- a/src/main/java/org/apache/hadoop/metrics2/impl/MsInfo.java
++++ b/src/main/java/org/apache/hadoop/metrics2/impl/MsInfo.java
+@@ -18,7 +18,7 @@
+ 
+ package org.apache.hadoop.metrics2.impl;
+ 
+-import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ 
+ import org.apache.hadoop.classification.InterfaceAudience;
+ import org.apache.hadoop.metrics2.MetricsInfo;
+@@ -48,7 +48,7 @@ public enum MsInfo implements MetricsInfo {
+   }
+ 
+   @Override public String toString() {
+-    return Objects.toStringHelper(this)
++    return MoreObjects.toStringHelper(this)
+         .add("name", name()).add("description", desc)
+         .toString();
+   }
+diff --git a/src/main/java/org/apache/hadoop/metrics2/lib/MetricsInfoImpl.java b/src/main/java/org/apache/hadoop/metrics2/lib/MetricsInfoImpl.java
+index dfb6c35..1dea902 100644
+--- a/src/main/java/org/apache/hadoop/metrics2/lib/MetricsInfoImpl.java
++++ b/src/main/java/org/apache/hadoop/metrics2/lib/MetricsInfoImpl.java
+@@ -19,6 +19,7 @@
+ package org.apache.hadoop.metrics2.lib;
+ 
+ import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import static com.google.common.base.Preconditions.*;
+ import org.apache.hadoop.metrics2.MetricsInfo;
+ 
+@@ -55,7 +56,7 @@ class MetricsInfoImpl implements MetricsInfo {
+   }
+ 
+   @Override public String toString() {
+-    return Objects.toStringHelper(this)
++    return MoreObjects.toStringHelper(this)
+         .add("name", name).add("description", description)
+         .toString();
+   }
+diff --git a/src/main/java/org/apache/hadoop/metrics2/lib/MetricsRegistry.java b/src/main/java/org/apache/hadoop/metrics2/lib/MetricsRegistry.java
+index 9d34161..5147cb1 100644
+--- a/src/main/java/org/apache/hadoop/metrics2/lib/MetricsRegistry.java
++++ b/src/main/java/org/apache/hadoop/metrics2/lib/MetricsRegistry.java
+@@ -22,7 +22,7 @@ import java.util.Collection;
+ import java.util.Map;
+ 
+ import com.google.common.collect.Maps;
+-import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ 
+ import org.apache.hadoop.classification.InterfaceAudience;
+ import org.apache.hadoop.classification.InterfaceStability;
+@@ -411,7 +411,7 @@ public class MetricsRegistry {
+   }
+ 
+   @Override public String toString() {
+-    return Objects.toStringHelper(this)
++    return MoreObjects.toStringHelper(this)
+         .add("info", metricsInfo).add("tags", tags()).add("metrics", metrics())
+         .toString();
+   }
+diff --git a/src/main/java/org/apache/hadoop/metrics2/source/JvmMetricsInfo.java b/src/main/java/org/apache/hadoop/metrics2/source/JvmMetricsInfo.java
+index 55bb417..4ac7845 100644
+--- a/src/main/java/org/apache/hadoop/metrics2/source/JvmMetricsInfo.java
++++ b/src/main/java/org/apache/hadoop/metrics2/source/JvmMetricsInfo.java
+@@ -18,7 +18,7 @@
+ 
+ package org.apache.hadoop.metrics2.source;
+ 
+-import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ 
+ import org.apache.hadoop.classification.InterfaceAudience;
+ import org.apache.hadoop.metrics2.MetricsInfo;
+@@ -60,7 +60,7 @@ public enum JvmMetricsInfo implements MetricsInfo {
+   @Override public String description() { return desc; }
+ 
+   @Override public String toString() {
+-  return Objects.toStringHelper(this)
++  return MoreObjects.toStringHelper(this)
+       .add("name", name()).add("description", desc)
+       .toString();
+   }
+diff --git a/src/main/java/org/apache/hadoop/metrics2/util/MetricsCache.java b/src/main/java/org/apache/hadoop/metrics2/util/MetricsCache.java
+index efcb286..753e307 100644
+--- a/src/main/java/org/apache/hadoop/metrics2/util/MetricsCache.java
++++ b/src/main/java/org/apache/hadoop/metrics2/util/MetricsCache.java
+@@ -31,7 +31,7 @@ import org.apache.hadoop.metrics2.AbstractMetric;
+ import org.apache.hadoop.metrics2.MetricsRecord;
+ import org.apache.hadoop.metrics2.MetricsTag;
+ 
+-import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import com.google.common.collect.Maps;
+ 
+ /**
+@@ -127,7 +127,7 @@ public class MetricsCache {
+     }
+ 
+     @Override public String toString() {
+-      return Objects.toStringHelper(this)
++      return MoreObjects.toStringHelper(this)
+           .add("tags", tags).add("metrics", metrics)
+           .toString();
+     }
+-- 
+2.31.1
+
