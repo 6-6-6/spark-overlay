@@ -21,7 +21,6 @@ dev-java/graalvm-compiler binary
 dev-java/groovy-all binary
 dev-java/h2 binary
 dev-java/hadoop-client binary
-dev-java/hadoop-common binary
 dev-java/hadoop-hdfs binary
 dev-java/hadoop-mapreduce-client-app binary
 dev-java/hadoop-mapreduce-client-core binary
@@ -32,7 +31,6 @@ dev-java/hazelcast binary
 dev-java/hibernate-core binary
 dev-java/hibernate-entitymanager binary
 dev-java/hibernate-validator binary
-dev-java/jansi binary
 dev-java/jackson-dataformat-xml binary
 dev-java/jackson-module-jaxb-annotations binary
 dev-java/jackson-module-scala binary
@@ -49,8 +47,6 @@ dev-java/maven-ant-tasks binary
 dev-java/maven-artifact-manager binary
 dev-java/maven-project binary
 dev-java/npn-boot binary
-dev-java/okhttp binary
-dev-java/okio binary
 dev-java/quartz binary
 dev-java/spark-core binary
 dev-java/spark-network-common binary
