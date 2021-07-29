@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,13 +12,20 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Clover is an award winning code coverage and testing tool for Java and Groovy. It integrates easily with Maven, Ant, Grails, Eclipse and IntelliJ IDEA as well as with continuous integration servers such as Bamboo, Jenkins or Hudson.  Note: before Clover 4.0 this artifact was named com.cenqua.clover:clover."
-HOMEPAGE="http://openclover.org"
-SRC_URI="https://repo1.maven.org/maven2/org/open${PN}/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/org/open${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+DESCRIPTION="Code coverage and testing tool for Java and Groovy"
+HOMEPAGE="https://openclover.org"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/open${PN}/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/org/open${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
+
+# JARs containing the following Java packages are needed:
+# - com.atlassian.clover
+# - org.openclover
+IUSE="+binary"
 
 CDEPEND="dev-java/jetbrains-annotations:0"
 
