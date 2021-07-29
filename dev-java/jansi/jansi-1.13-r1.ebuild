@@ -33,7 +33,6 @@ DEPEND="
 	!binary? (
 		${CP_DEPEND}
 	)
-	app-arch/unzip
 "
 
 RDEPEND="
