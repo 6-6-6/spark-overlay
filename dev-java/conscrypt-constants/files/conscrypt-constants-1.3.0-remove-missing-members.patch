@@ -1,0 +1,63 @@
+From 2e86caed0cab8f73a3d285080440396e1cf29bbf Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Thu, 29 Jul 2021 12:40:16 -0700
+Subject: [PATCH] Remove headers and constants not provided by dev-libs/openssl
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ constants/src/gen/cpp/generate_constants.cc | 18 +++---------------
+ 1 file changed, 3 insertions(+), 15 deletions(-)
+
+diff --git a/constants/src/gen/cpp/generate_constants.cc b/constants/src/gen/cpp/generate_constants.cc
+index 894a1fa..a27bfd3 100644
+--- a/constants/src/gen/cpp/generate_constants.cc
++++ b/constants/src/gen/cpp/generate_constants.cc
+@@ -22,7 +22,6 @@
+ #include <openssl/ssl.h>
+ #include <openssl/x509v3.h>
+ #include <openssl/evp.h>
+-#include <openssl/aead.h>
+ 
+ static const char kCopyright[] =
+     "/* Copyright (C) 2015 The Android Open Source Project\n"
+@@ -46,6 +45,9 @@ int main(int /* argc */, char ** /* argv */) {
+   printf("package org.conscrypt;\n\n");
+   printf("final class NativeConstants {\n");
+ 
++// https://boringssl.googlesource.com/boringssl/+/refs/heads/master/include/openssl/ssl.h#772
++#define SSL_MODE_CBC_RECORD_SPLITTING 0x00000100L
++
+ #define CONST(x) \
+   printf("    static final int %s = %ld;\n", #x, (long int)(x))
+ 
+@@ -62,7 +64,6 @@ int main(int /* argc */, char ** /* argv */) {
+ 
+   CONST(SSL_MODE_SEND_FALLBACK_SCSV);
+   CONST(SSL_MODE_CBC_RECORD_SPLITTING);
+-  CONST(SSL_MODE_ENABLE_FALSE_START);
+ 
+   CONST(SSL_OP_CIPHER_SERVER_PREFERENCE);
+   CONST(SSL_OP_NO_TICKET);
+@@ -83,19 +84,6 @@ int main(int /* argc */, char ** /* argv */) {
+   CONST(TLS_CT_RSA_SIGN);
+   CONST(TLS_CT_ECDSA_SIGN);
+ 
+-  CONST(SSL_SIGN_RSA_PKCS1_SHA1);
+-  CONST(SSL_SIGN_RSA_PKCS1_SHA256);
+-  CONST(SSL_SIGN_RSA_PKCS1_SHA384);
+-  CONST(SSL_SIGN_RSA_PKCS1_SHA512);
+-  CONST(SSL_SIGN_ECDSA_SHA1);
+-  CONST(SSL_SIGN_ECDSA_SECP256R1_SHA256);
+-  CONST(SSL_SIGN_ECDSA_SECP384R1_SHA384);
+-  CONST(SSL_SIGN_ECDSA_SECP521R1_SHA512);
+-  CONST(SSL_SIGN_RSA_PSS_RSAE_SHA256);
+-  CONST(SSL_SIGN_RSA_PSS_RSAE_SHA384);
+-  CONST(SSL_SIGN_RSA_PSS_RSAE_SHA512);
+-  CONST(SSL_SIGN_ED25519);
+-
+   CONST(SSL_VERIFY_NONE);
+   CONST(SSL_VERIFY_PEER);
+   CONST(SSL_VERIFY_FAIL_IF_NO_PEER_CERT);
+-- 
+2.31.1
+
