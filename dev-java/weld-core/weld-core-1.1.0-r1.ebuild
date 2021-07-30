@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -13,12 +13,39 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Weld's implementation of CDI"
-HOMEPAGE="http://www.seamframework.org/Weld"
-SRC_URI="https://repo1.maven.org/maven2/org/jboss/weld/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
-	https://repo1.maven.org/maven2/org/jboss/weld/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar"
+HOMEPAGE="https://weld.cdi-spec.org/"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/jboss/weld/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
+	https://repo1.maven.org/maven2/org/jboss/weld/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
+
+# Version 1.1.0 uses Guava's MapMaker, which had been removed and replaced by
+# CacheLoader.  Although it is possible to migrate from MapMaker to
+# CacheLoader, there are multiple uses of MapMaker in 1.1.0 so this would
+# require a lot of effort.  The migration was done by the upstream as of
+# 1.1.34, the last version in the 1.1.x series, but it is still incompatible
+# with classes in the javax.enterprise.inject.spi package in the classpath, as
+# some implementations of abstract classes would have some abstract methods
+# unimplemented.  In addition, JAPICC reports that 1.1.0 and 1.1.34 are
+# incompatible.
+#
+# The following conditions are required for a source-based build:
+# 1. The compilation can get through the CAL10N annotation processor used by
+#    this package.  The upstream's resource files do not contain translation
+#    for all localization keys, which will cause CAL10N to complain.  On the
+#    contrary, some localized strings are not used in the source files, and
+#    CAL10N is unhappy about this too.  However, this can be fixed easily by
+#    patching the resource files to add dummy translations for missing keys and
+#    remove redundant translations.
+# 2. Either all source files have been migrated from MapMaker to CacheLoader,
+#	 or a version of Guava in which MapMaker still exists is used (not
+#	 recommended, as such Guava version would be too old).
+# 3. A JAR for javax.enterprise.inject.spi that is compatible with this package
+#    is used for building.
+IUSE="+binary"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.Final.pom
