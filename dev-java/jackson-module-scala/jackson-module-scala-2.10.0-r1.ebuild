@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,10 +12,12 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven java-pkg-simple-plugins
 
-DESCRIPTION="jackson-module-scala"
-HOMEPAGE="http://wiki.fasterxml.com/JacksonModuleScala"
-SRC_URI="https://repo1.maven.org/maven2/com/fasterxml/jackson/module/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar -> ${P}-sources.jar
-	https://repo1.maven.org/maven2/com/fasterxml/jackson/module/${PN}_2.12/${PV}/${PN}_2.12-${PV}.jar -> ${P}-bin.jar"
+DESCRIPTION="Jackson Module for Scala"
+HOMEPAGE="https://wiki.fasterxml.com/JacksonModuleScala"
+SRC_URI="
+	https://repo1.maven.org/maven2/com/fasterxml/jackson/module/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar -> ${P}-sources.jar
+	https://repo1.maven.org/maven2/com/fasterxml/jackson/module/${PN}_2.12/${PV}/${PN}_2.12-${PV}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="2.12"
 KEYWORDS="~amd64"
@@ -33,7 +35,7 @@ CDEPEND="
 	>=dev-java/jackson-module-paranamer-2.10.0:0
 	>=dev-java/jackson-2.11.0:2
 	>=dev-java/jackson-annotations-2.11.0:2
-	>=dev-java/scala-common-bin-2.12.4:2.12
+	dev-lang/scala:2.12
 "
 
 DEPEND="
@@ -48,7 +50,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind,jackson-module-paranamer,scala-common-bin-2.12"
+JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind,jackson-module-paranamer,scala-2.12"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
