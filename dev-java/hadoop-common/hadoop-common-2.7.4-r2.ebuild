@@ -132,7 +132,7 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 src_prepare() {
 	if ! use binary; then
-		for patch in ${FILESDIR}/${P}-*.patch; do
+		for patch in "${FILESDIR}/${P}"-*.patch; do
 			eapply "${patch}"
 		done
 	fi
