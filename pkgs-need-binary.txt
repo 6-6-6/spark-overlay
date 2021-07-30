@@ -20,13 +20,10 @@ dev-java/hadoop-yarn-server-nodemanager binary
 dev-java/hazelcast binary
 dev-java/hibernate-core binary
 dev-java/hibernate-entitymanager binary
-dev-java/hibernate-validator binary
 dev-java/jackson-dataformat-xml binary
 dev-java/jackson-module-jaxb-annotations binary
-dev-java/jackson-module-scala binary
 dev-java/jdeb binary
 dev-java/jersey-guice binary
-=dev-java/jetty-server-9.4.8_p20171121-r1 binary
 dev-java/jruby binary
 dev-java/jruby-complete binary
 dev-java/json4s-jackson binary
@@ -38,6 +35,5 @@ dev-java/quartz binary
 dev-java/spark-core binary
 dev-java/spark-network-common binary
 dev-java/spark-network-shuffle binary
-dev-java/weld-core binary
 dev-java/weld-osgi-bundle binary
 dev-java/woodstox-core-asl binary
