@@ -6,7 +6,7 @@ EAPI=8
 DESCRIPTION="Virtual for Kotlin compiler"
 
 SLOT="${PV}"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 
 RDEPEND="|| (
 	dev-lang/kotlin:${SLOT}
