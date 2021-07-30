@@ -1,0 +1,4 @@
+# Rust takes an extremely long time to build, which may even cause GitHub
+# Actions jobs to time out if it stretches the test run time to 6 hours.
+# If Rust is ever needed, simply use the dev-lang/rust-bin package.
+dev-lang/rust
