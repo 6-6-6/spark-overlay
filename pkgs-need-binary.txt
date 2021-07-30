@@ -2,22 +2,12 @@
 
 dev-java/lz4-java binary
 dev-java/xbean-asm7-shaded binary
-dev-java/netty-common binary
-dev-java/svm binary
-dev-java/pointsto binary
-dev-java/conscrypt-openjdk-uber binary
 #dev-java/yecht binary
 #dev-java/gpars binary
 dev-java/alpn-boot binary
-dev-java/ant-launcher binary
-dev-java/apache-rat-tasks binary
-dev-java/barchart-udt binary
-dev-java/caffeine binary
-dev-java/clover binary
 dev-java/curator-framework binary
 dev-java/curator-recipes binary
 >=dev-java/ehcache-2.10.4 binary
-dev-java/graalvm-compiler binary
 dev-java/groovy-all binary
 dev-java/h2 binary
 dev-java/hadoop-client binary
@@ -34,15 +24,12 @@ dev-java/hibernate-validator binary
 dev-java/jackson-dataformat-xml binary
 dev-java/jackson-module-jaxb-annotations binary
 dev-java/jackson-module-scala binary
-dev-java/jboss-interceptor-core binary
 dev-java/jdeb binary
 dev-java/jersey-guice binary
 =dev-java/jetty-server-9.4.8_p20171121-r1 binary
 dev-java/jruby binary
 dev-java/jruby-complete binary
-dev-java/jruby-stdlib binary
 dev-java/json4s-jackson binary
-dev-java/lombok binary
 dev-java/maven-ant-tasks binary
 dev-java/maven-artifact-manager binary
 dev-java/maven-project binary
@@ -54,4 +41,3 @@ dev-java/spark-network-shuffle binary
 dev-java/weld-core binary
 dev-java/weld-osgi-bundle binary
 dev-java/woodstox-core-asl binary
-dev-java/xml-apis binary
