@@ -15,7 +15,7 @@ inherit kotlin
 
 DESCRIPTION="Square's meticulous HTTP client for Java and Kotlin"
 HOMEPAGE="https://square.github.io/okhttp/"
-SRC_URI="https://github.com/square/okhttp/archive/refs/tags/parent-4.7.2.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/square/okhttp/archive/refs/tags/parent-${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
