@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,10 +12,12 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Hibernate's Bean Validation (JSR-380) reference implementation."
+DESCRIPTION="Hibernate's Bean Validation (JSR-380) reference implementation"
 HOMEPAGE="http://hibernate.org/validator/hibernate-validator"
-SRC_URI="https://repo1.maven.org/maven2/org/hibernate/validator/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
-	https://repo1.maven.org/maven2/org/hibernate/validator/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/hibernate/validator/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
+	https://repo1.maven.org/maven2/org/hibernate/validator/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -31,6 +33,9 @@ KEYWORDS="~amd64"
 # org.jboss.logging:jboss-logging:3.3.2.Final -> >=dev-java/jboss-logging-3.4.0:0
 # org.jsoup:jsoup:1.8.3 -> >=dev-java/jsoup-1.8.3:0
 
+# Additional dependency
+# javafx.beans -> dev-java/openjfx:8
+
 CDEPEND="
 	>=dev-java/hibernate-jpa-1.0.2:2.1-api
 	>=dev-java/money-api-1.0.1:0
@@ -40,6 +45,11 @@ CDEPEND="
 	>=dev-java/joda-time-2.9.7:0
 	>=dev-java/jsoup-1.8.3:0
 	>=dev-java/validation-api-2.0.1:0
+	dev-java/openjfx:8
+"
+
+BDEPEND="
+	app-arch/unzip
 "
 
 # Compile dependencies
@@ -50,7 +60,6 @@ CDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? (
 		${CDEPEND}
 		>=dev-java/javax-el-3.0.1_beta09:0
@@ -69,3 +78,13 @@ JAVA_GENTOO_CLASSPATH="classmate,paranamer,money-api,validation-api,joda-time,hi
 JAVA_CLASSPATH_EXTRA="javax-el,jboss-logging-annotations,jboss-logging-processor"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+
+pkg_setup() {
+	java-pkg-2_pkg_setup
+	# OpenJFX 8 is installed into the home of dev-java/openjdk:8
+	local java_home="$(
+		eval "$(java-config -P openjdk-8)"
+		echo "${JAVA_HOME}"
+	)"
+	JAVA_GENTOO_CLASSPATH_EXTRA="${java_home}/jre/lib/ext/jfxrt.jar"
+}
