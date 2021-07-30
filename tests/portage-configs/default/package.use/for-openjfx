@@ -1,15 +1,8 @@
 # Minimize builds to save time
 */* -egl -introspection -vala
-app-arch/libarchive -lzma
-app-text/poppler -jpeg -jpeg2k
-dev-java/openjdk -jbootstrap
-dev-libs/glib -elf -mime -xattr
-dev-util/cmake -ncurses
 media-libs/harfbuzz -graphite
 media-libs/mesa -classic -dri3 -gallium -gbm -gles2 -llvm -zstd
 media-libs/mesa VIDEO_CARDS: -intel -nouveau -radeon -radeonsi
-net-print/cups -acl -pam -ssl -threads
-net-print/cups-filters -foomatic -postscript
 x11-libs/libdrm VIDEO_CARDS: -amdgpu -intel -nouveau -radeon -radeonsi
 
 # Required to break circular dependency among freetype, harfbuzz and cairo
