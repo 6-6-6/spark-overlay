@@ -38,7 +38,6 @@ CDEPEND="
 	>=dev-java/pointsto-19.2.1
 	>=dev-java/graal-sdk-19.2.1
 	>=dev-java/graalvm-compiler-19.2.1
-	dev-libs/libsvm
 	dev-java/truffle-nfi
 "
 
