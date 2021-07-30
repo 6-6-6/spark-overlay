@@ -14,7 +14,7 @@ SRC_URI="https://github.com/unicode-org/icu/releases/download/release-67-1/icu4j
 
 LICENSE="icu"
 SLOT="67"
-KEYWORDS="~amd64 ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64 ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND=">=virtual/jdk-1.8"
