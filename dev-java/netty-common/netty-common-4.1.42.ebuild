@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,10 +12,12 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers and clients."
+DESCRIPTION="Asynchronous event-driven network application framework"
 HOMEPAGE="https://netty.io/netty-common/"
-SRC_URI="https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
-	https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar"
+SRC_URI="
+	https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Final/${P}.Final-sources.jar -> ${P}-sources.jar
+	https://repo1.maven.org/maven2/io/netty/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -27,11 +29,15 @@ KEYWORDS="~amd64"
 # org.apache.logging.log4j:log4j-api:2.6.2 -> >=dev-java/log4j-api-2.7:0
 # org.slf4j:slf4j-api:1.7.21 -> >=dev-java/slf4j-api-1.7.28:0
 
+# Additional dependencies
+# org.jctools.queues -> dev-java/jctools-core:2.1
+
 CDEPEND="
 	>=dev-java/commons-logging-1.2:0
 	>=dev-java/log4j-1.2.17:0
 	>=dev-java/log4j-api-2.7:0
 	>=dev-java/slf4j-api-1.7.28:0
+	dev-java/jctools-core:2.1
 "
 
 # Compile dependencies
@@ -53,7 +59,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="commons-logging,log4j,log4j-api,slf4j-api"
+JAVA_GENTOO_CLASSPATH="commons-logging,log4j,log4j-api,slf4j-api,jctools-core-2.1"
 JAVA_CLASSPATH_EXTRA="svm"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
