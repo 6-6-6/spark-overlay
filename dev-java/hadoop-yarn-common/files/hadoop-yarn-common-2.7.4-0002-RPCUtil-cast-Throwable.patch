@@ -1,0 +1,40 @@
+From 3b1e17abb045ea577663ec037d686b6809eb8862 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Sat, 31 Jul 2021 16:11:43 -0700
+Subject: [PATCH 2/2] RPCUtil.java: Cast Throwable objects to match method
+ signature
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ src/main/java/org/apache/hadoop/yarn/ipc/RPCUtil.java | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/main/java/org/apache/hadoop/yarn/ipc/RPCUtil.java b/src/main/java/org/apache/hadoop/yarn/ipc/RPCUtil.java
+index ada0669..2b23aec 100644
+--- a/src/main/java/org/apache/hadoop/yarn/ipc/RPCUtil.java
++++ b/src/main/java/org/apache/hadoop/yarn/ipc/RPCUtil.java
+@@ -94,17 +94,17 @@ public class RPCUtil {
+           // Assume this to be a new exception type added to YARN. This isn't
+           // absolutely correct since the RPC layer could add an exception as
+           // well.
+-          throw instantiateException(YarnException.class, re);
++          throw (YarnException) instantiateException(YarnException.class, re);
+         }
+ 
+         if (YarnException.class.isAssignableFrom(realClass)) {
+-          throw instantiateException(
++          throw (YarnException) instantiateException(
+               realClass.asSubclass(YarnException.class), re);
+         } else if (IOException.class.isAssignableFrom(realClass)) {
+-          throw instantiateException(realClass.asSubclass(IOException.class),
++          throw (IOException) instantiateException(realClass.asSubclass(IOException.class),
+               re);
+         } else if (RuntimeException.class.isAssignableFrom(realClass)) {
+-          throw instantiateException(
++          throw (RuntimeException) instantiateException(
+               realClass.asSubclass(RuntimeException.class), re);
+         } else {
+           throw re;
+-- 
+2.31.1
+

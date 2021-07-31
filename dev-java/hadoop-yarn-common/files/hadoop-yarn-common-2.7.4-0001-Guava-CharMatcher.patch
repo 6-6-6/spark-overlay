@@ -1,0 +1,50 @@
+From ad5f916b74648cef9c75aab939465050cdd27187 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Sat, 31 Jul 2021 15:52:01 -0700
+Subject: [PATCH 1/2] Replace removed constants in Guava's CharMatcher with
+ methods
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ .../records/impl/pb/ApplicationSubmissionContextPBImpl.java   | 2 +-
+ src/main/java/org/apache/hadoop/yarn/webapp/WebApp.java       | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/main/java/org/apache/hadoop/yarn/api/records/impl/pb/ApplicationSubmissionContextPBImpl.java b/src/main/java/org/apache/hadoop/yarn/api/records/impl/pb/ApplicationSubmissionContextPBImpl.java
+index 67e3a84..e1b2530 100644
+--- a/src/main/java/org/apache/hadoop/yarn/api/records/impl/pb/ApplicationSubmissionContextPBImpl.java
++++ b/src/main/java/org/apache/hadoop/yarn/api/records/impl/pb/ApplicationSubmissionContextPBImpl.java
+@@ -273,7 +273,7 @@ extends ApplicationSubmissionContext {
+             "maximum allowed length of a tag is " +
+             YarnConfiguration.APPLICATION_MAX_TAG_LENGTH);
+       }
+-      if (!CharMatcher.ASCII.matchesAllOf(tag)) {
++      if (!CharMatcher.ascii().matchesAllOf(tag)) {
+         throw new IllegalArgumentException("A tag can only have ASCII " +
+             "characters! Invalid tag - " + tag);
+       }
+diff --git a/src/main/java/org/apache/hadoop/yarn/webapp/WebApp.java b/src/main/java/org/apache/hadoop/yarn/webapp/WebApp.java
+index 2c21d1b..9670b65 100644
+--- a/src/main/java/org/apache/hadoop/yarn/webapp/WebApp.java
++++ b/src/main/java/org/apache/hadoop/yarn/webapp/WebApp.java
+@@ -260,7 +260,7 @@ public abstract class WebApp extends ServletModule {
+ 
+   static String getPrefix(String pathSpec) {
+     int start = 0;
+-    while (CharMatcher.WHITESPACE.matches(pathSpec.charAt(start))) {
++    while (CharMatcher.whitespace().matches(pathSpec.charAt(start))) {
+       ++start;
+     }
+     if (pathSpec.charAt(start) != '/') {
+@@ -276,7 +276,7 @@ public abstract class WebApp extends ServletModule {
+     char c;
+     do {
+       c = pathSpec.charAt(--ci);
+-    } while (c == '/' || CharMatcher.WHITESPACE.matches(c));
++    } while (c == '/' || CharMatcher.whitespace().matches(c));
+     return pathSpec.substring(start, ci + 1);
+   }
+ 
+-- 
+2.31.1
+
