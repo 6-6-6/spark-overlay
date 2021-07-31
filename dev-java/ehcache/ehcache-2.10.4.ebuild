@@ -1,8 +1,5 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-
-# Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/ehcache-2.10.4.pom --download-uri https://repo1.maven.org/maven2/net/sf/ehcache/ehcache/2.10.4/ehcache-2.10.4-sources.jar --slot 0 --keywords "~amd64" --ebuild ehcache-2.10.4.ebuild
 
 EAPI=7
 
@@ -12,18 +9,20 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Ehcache is an open source, standards-based cache used to boost performance, offload the database and simplify scalability. Ehcache is robust, proven and full-featured and this has made it the most widely-used Java-based cache."
-HOMEPAGE="http://ehcache.org"
-SRC_URI="https://repo1.maven.org/maven2/net/sf/${PN}/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/net/sf/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+DESCRIPTION="Cache used to boost performance, offload database and simplify scalability"
+HOMEPAGE="https://www.ehcache.org/"
+SRC_URI="
+	https://repo1.maven.org/maven2/net/sf/${PN}/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/net/sf/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="2"
 KEYWORDS="~amd64"
-#~amd64-linux ~x86 ~x86-linux ~x86-macos"
 
-# Common dependencies
-# POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.slf4j:slf4j-api:1.7.7 -> >=dev-java/slf4j-api-1.7.7:0
+# JARs providing the following Java packages are needed:
+# org.terracotta.toolkit.{builder,collection,concurrent,...}
+# org.hibernate.{cache,config}
+IUSE="+binary"
 
 CDEPEND="
 	>=dev-java/slf4j-api-1.7.7:0
@@ -35,15 +34,19 @@ CDEPEND="
 	java-virtuals/transaction-api:0
 "
 
+BDEPEND="
+	app-arch/unzip
+"
+
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
-	app-arch/unzip
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-	${CDEPEND}"
+	${CDEPEND}
+"
 
 S="${WORKDIR}"
 
