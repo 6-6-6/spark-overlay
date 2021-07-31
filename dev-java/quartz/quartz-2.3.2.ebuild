@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -13,12 +13,18 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Enterprise Job Scheduler"
-HOMEPAGE="http://www.quartz-scheduler.org/quartz"
-SRC_URI="https://repo1.maven.org/maven2/org/${PN}-scheduler/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/org/${PN}-scheduler/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+HOMEPAGE="https://www.quartz-scheduler.org/quartz"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/${PN}-scheduler/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/org/${PN}-scheduler/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
+
+# Multiple dependencies are missing, and java-ebuilder would fail to create an
+# ebuild for some transitive dependencies
+IUSE="+binary"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
