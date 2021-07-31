@@ -7,7 +7,10 @@
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
-MAVEN_ID="org.hibernate:hibernate-core:5.2.13.Final"
+MAVEN_PROVIDES="
+	org.hibernate:hibernate-core:5.2.13.Final
+	org.hibernate:hibernate-entitymanager:5.2.13.Final
+"
 JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
