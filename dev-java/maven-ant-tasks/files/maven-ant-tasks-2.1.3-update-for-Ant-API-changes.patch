@@ -1,0 +1,50 @@
+From fe148b90dab2319aefb2c9cc8350c344a2315dd4 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Sat, 31 Jul 2021 11:23:23 -0700
+Subject: [PATCH] Update for API changes in latest versions of Ant
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ .../org/apache/maven/artifact/ant/util/AntUtil.java    | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/src/main/java/org/apache/maven/artifact/ant/util/AntUtil.java b/src/main/java/org/apache/maven/artifact/ant/util/AntUtil.java
+index bb04c02..d6bb5f4 100644
+--- a/src/main/java/org/apache/maven/artifact/ant/util/AntUtil.java
++++ b/src/main/java/org/apache/maven/artifact/ant/util/AntUtil.java
+@@ -49,9 +49,9 @@ public class AntUtil
+      * @param props properties <code>Hashtable</code> to copy to the new project.
+      * @param project the project where the properties are added
+      */
+-    public static void copyProperties( Hashtable<String,String> props, Project project )
++    public static void copyProperties( Hashtable<String,Object> props, Project project )
+     {
+-        for ( Map.Entry<String, String> entry : props.entrySet() )
++        for ( Map.Entry<String, Object> entry : props.entrySet() )
+         {
+             String key = entry.getKey();
+             if ( "basedir".equals( key ) || "ant.file".equals( key ) )
+@@ -64,7 +64,7 @@ public class AntUtil
+             if ( project.getProperty( key ) == null )
+             {
+                 // no user property
+-                project.setNewProperty( key, entry.getValue() );
++                project.setNewProperty( key, entry.getValue().toString() );
+             }
+         }
+     }
+@@ -87,9 +87,9 @@ public class AntUtil
+      * @param refs
+      * @param project
+      */
+-    public static void copyReferences( Hashtable<String,String> refs, Project project )
++    public static void copyReferences( Hashtable<String,Object> refs, Project project )
+     {
+-        for ( Map.Entry<String, String> entry : refs.entrySet() )
++        for ( Map.Entry<String, Object> entry : refs.entrySet() )
+         {
+             String key = entry.getKey();
+             // don't overwrite existing references
+-- 
+2.31.1
+

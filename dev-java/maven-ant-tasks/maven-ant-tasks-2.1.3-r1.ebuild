@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -13,9 +13,11 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Ant Tasks used for Maven integration"
-HOMEPAGE="http://maven.apache.org/ant-tasks/"
-SRC_URI="https://repo1.maven.org/maven2/org/apache/maven/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/org/apache/maven/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+HOMEPAGE="https://maven.apache.org/ant-tasks/"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/apache/maven/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/org/apache/maven/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -54,9 +56,12 @@ CDEPEND="
 	>=dev-java/ant-core-1.10.7:0
 "
 
+BDEPEND="
+	app-arch/unzip
+"
+
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? ( ${CDEPEND} )
 "
 
@@ -69,3 +74,11 @@ S="${WORKDIR}"
 JAVA_GENTOO_CLASSPATH="classworlds,ant-core,maven-artifact,maven-artifact-manager,maven-error-diagnostics,maven-model,maven-project,maven-settings,wagon-file,wagon-http-lightweight,wagon-provider-api,plexus-container-default,plexus-interpolation,plexus-utils"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+
+src_prepare() {
+	if ! use binary; then
+		eapply "${FILESDIR}/${P}-update-for-Ant-API-changes.patch"
+	fi
+
+	eapply_user
+}
