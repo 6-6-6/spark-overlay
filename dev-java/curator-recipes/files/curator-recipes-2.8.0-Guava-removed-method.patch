@@ -1,0 +1,54 @@
+From 36a803b988bc9f2fe84fe91f475929a55400cdf5 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Sat, 31 Jul 2021 13:46:52 -0700
+Subject: [PATCH] Replace calls to removed Guava method with new substitute
+ method
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ .../curator/framework/recipes/locks/InterProcessMutex.java      | 2 +-
+ .../apache/curator/framework/recipes/queue/QueueBuilder.java    | 2 +-
+ .../apache/curator/framework/recipes/shared/SharedCount.java    | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/main/java/org/apache/curator/framework/recipes/locks/InterProcessMutex.java b/src/main/java/org/apache/curator/framework/recipes/locks/InterProcessMutex.java
+index e178f73..55d82c5 100644
+--- a/src/main/java/org/apache/curator/framework/recipes/locks/InterProcessMutex.java
++++ b/src/main/java/org/apache/curator/framework/recipes/locks/InterProcessMutex.java
+@@ -173,7 +173,7 @@ public class InterProcessMutex implements InterProcessLock, Revocable<InterProce
+     @Override
+     public void makeRevocable(RevocationListener<InterProcessMutex> listener)
+     {
+-        makeRevocable(listener, MoreExecutors.sameThreadExecutor());
++        makeRevocable(listener, MoreExecutors.newDirectExecutorService());
+     }
+ 
+     @Override
+diff --git a/src/main/java/org/apache/curator/framework/recipes/queue/QueueBuilder.java b/src/main/java/org/apache/curator/framework/recipes/queue/QueueBuilder.java
+index a571578..2335e24 100644
+--- a/src/main/java/org/apache/curator/framework/recipes/queue/QueueBuilder.java
++++ b/src/main/java/org/apache/curator/framework/recipes/queue/QueueBuilder.java
+@@ -269,6 +269,6 @@ public class QueueBuilder<T>
+         this.queuePath = PathUtils.validatePath(queuePath);
+ 
+         factory = defaultThreadFactory;
+-        executor = MoreExecutors.sameThreadExecutor();
++        executor = MoreExecutors.newDirectExecutorService();
+     }
+ }
+diff --git a/src/main/java/org/apache/curator/framework/recipes/shared/SharedCount.java b/src/main/java/org/apache/curator/framework/recipes/shared/SharedCount.java
+index 87fffdd..c6ada0e 100644
+--- a/src/main/java/org/apache/curator/framework/recipes/shared/SharedCount.java
++++ b/src/main/java/org/apache/curator/framework/recipes/shared/SharedCount.java
+@@ -114,7 +114,7 @@ public class SharedCount implements Closeable, SharedCountReader, Listenable<Sha
+     @Override
+     public void     addListener(SharedCountListener listener)
+     {
+-        addListener(listener, MoreExecutors.sameThreadExecutor());
++        addListener(listener, MoreExecutors.newDirectExecutorService());
+     }
+ 
+     @Override
+-- 
+2.31.1
+
