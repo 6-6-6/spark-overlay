@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -13,9 +13,11 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="H2 Database Engine"
-HOMEPAGE="http://www.h2database.com"
-SRC_URI="https://repo1.maven.org/maven2/com/${PN}database/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/com/${PN}database/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+HOMEPAGE="https://www.h2database.com"
+SRC_URI="
+	https://repo1.maven.org/maven2/com/${PN}database/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/com/${PN}database/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="|| ( MPL-1.1 EPL-1.0 )"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -24,14 +26,17 @@ CDEPEND="
 	dev-java/lucene:3.6
 	dev-java/slf4j-api:0
 	dev-java/jts-core:0
-	dev-java/osgi-framework:1
+	dev-java/osgi-core:4
 	dev-java/osgi-service-jdbc:0
 	java-virtuals/servlet-api:4.0
 "
 
+BDEPEND="
+	app-arch/unzip
+"
+
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	${CDEPEND}
 "
 
@@ -42,6 +47,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="lucene-3.6,jts-core,slf4j-api,osgi-framework-1,osgi-service-jdbc,servlet-api-4.0"
+JAVA_GENTOO_CLASSPATH="lucene-3.6,jts-core,slf4j-api,osgi-core-4,osgi-service-jdbc,servlet-api-4.0"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
