@@ -22,6 +22,10 @@ LICENSE="Apache-2.0"
 SLOT="2.12"
 KEYWORDS="~amd64"
 
+# This package can be compiled from source, but doing so would cause a runtime
+# error when Spark is run
+IUSE="+binary"
+
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}.pom
 # com.fasterxml.jackson.core:jackson-annotations:2.10.0 -> >=dev-java/jackson-annotations-2.11.0:2
