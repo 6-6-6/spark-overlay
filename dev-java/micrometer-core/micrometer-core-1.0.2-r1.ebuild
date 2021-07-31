@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -14,8 +14,10 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Application monitoring instrumentation facade"
 HOMEPAGE="https://github.com/micrometer-metrics/micrometer"
-SRC_URI="https://repo1.maven.org/maven2/io/micrometer/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/io/micrometer/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+SRC_URI="
+	https://repo1.maven.org/maven2/io/micrometer/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/io/micrometer/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -37,7 +39,7 @@ KEYWORDS="~amd64"
 # org.aspectj:aspectjweaver:1.8.13 -> >=dev-java/aspectj-1.9.5:0
 # org.eclipse.jetty:jetty-server:9.4.8.v20171121 -> >=dev-java/jetty-server-9.4.8_p20171121:9
 # org.hdrhistogram:HdrHistogram:2.1.10 -> >=dev-java/HdrHistogram-2.1.10:0
-# org.hibernate:hibernate-entitymanager:5.2.13.Final -> >=dev-java/hibernate-entitymanager-5.2.13:0
+# org.hibernate:hibernate-entitymanager:5.2.13.Final -> >=dev-java/hibernate-core-5.2.13:0
 # org.latencyutils:LatencyUtils:2.0.3 -> >=dev-java/LatencyUtils-2.0.3:0
 
 CDEPEND="
@@ -46,7 +48,7 @@ CDEPEND="
 	>=dev-java/cache-api-1.0.0:0
 	>=dev-java/caffeine-2.6.1:0
 	>=dev-java/hazelcast-3.8.9:0
-	>=dev-java/hibernate-entitymanager-5.2.13:0
+	>=dev-java/hibernate-core-5.2.13:0
 	>=dev-java/hystrix-core-1.5.12:0
 	>=dev-java/jetty-server-9.4.8_p20171121:9
 	>=dev-java/logback-classic-1.2.3:0
@@ -60,9 +62,12 @@ CDEPEND="
 	>=dev-java/okhttp-4.7.2:0
 "
 
+BDEPEND="
+	app-arch/unzip
+"
+
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? ( ${CDEPEND} )
 "
 
@@ -72,6 +77,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="logback-classic,caffeine,jsr305,guava,hazelcast,hystrix-core,okhttp,metrics-core,reactor-core,cache-api,ehcache-2,tomcat-embed-core,aspectj,jetty-server-9,HdrHistogram,hibernate-entitymanager,LatencyUtils"
+JAVA_GENTOO_CLASSPATH="logback-classic,caffeine,jsr305,guava,hazelcast,hystrix-core,okhttp,metrics-core,reactor-core,cache-api,ehcache-2,tomcat-embed-core,aspectj,jetty-server-9,HdrHistogram,hibernate-core,LatencyUtils"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
