@@ -6,9 +6,9 @@
 		<name>zongyu</name>
 	</maintainer>
 	<maintainer type="person">
-        <email>liaoyuan@gmail.com</email>
-        <name>Yuan Liao</name>
-    </maintainer>
+		<email>liaoyuan@gmail.com</email>
+		<name>Yuan Liao</name>
+	</maintainer>
 	<upstream>
 		<remote-id type="github">reactor/reactor-core</remote-id>
 	</upstream>
