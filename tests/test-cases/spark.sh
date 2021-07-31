@@ -2,7 +2,7 @@
 
 # A test case that verifies if the instructions in README.md work
 
-EMERGE_OPTS="--color y --verbose --quiet-build"
+EMERGE_OPTS="${DEFAULT_EMERGE_OPTS} --quiet-build"
 
 run_test() {
     # Update dependencies pre-installed in the Docker image

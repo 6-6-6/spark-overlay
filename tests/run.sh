@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+DEFAULT_EMERGE_OPTS="--color y --verbose --keep-going"
+
 main() {
     for script in "$@"; do
         unset DOCKER_IMAGE PROFILE GENTOO_REPO THREADS EMERGE_OPTS PULL
@@ -12,10 +14,10 @@ main() {
             --docker-image "${DOCKER_IMAGE:-ghcr.io/leo3418/gentoo-stage3-amd64-java}"
             --portage-config tests/portage-configs/default
             --custom-repo .
+            --emerge-opts "${EMERGE_OPTS:-"${DEFAULT_EMERGE_OPTS}"}"
             ${PROFILE:+--profile ${PROFILE}}
             ${GENTOO_REPO:+--gentoo-repo ${GENTOO_REPO}}
             ${THREADS:+--threads ${THREADS}}
-            ${EMERGE_OPTS:+--emerge-opts "${EMERGE_OPTS}"}
             ${PULL:+--pull}
             ${STORAGE_OPTS:+--storage-opts ${STORAGE_OPTS}}
             ${SKIP_CLEANUP:+--skip-cleanup ${SKIP_CLEANUP}}

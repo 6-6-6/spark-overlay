@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-EMERGE_OPTS="--color y --verbose --quiet-build"
+EMERGE_OPTS="${DEFAULT_EMERGE_OPTS} --quiet-build"
 
 run_test() {
     emerge -1 sys-apps/pkgcore
