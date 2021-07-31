@@ -45,7 +45,6 @@ CDEPEND="
 	>=dev-java/joda-time-2.9.7:0
 	>=dev-java/jsoup-1.8.3:0
 	>=dev-java/validation-api-2.0.1:0
-	dev-java/openjfx:8
 "
 
 BDEPEND="
@@ -62,6 +61,7 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	!binary? (
 		${CDEPEND}
+		dev-java/openjfx:8
 		>=dev-java/javax-el-3.0.1_beta09:0
 		>=dev-java/jboss-logging-annotations-2.1.0:0
 		>=dev-java/jboss-logging-processor-2.1.0:0
