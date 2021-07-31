@@ -13,12 +13,18 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Create Debian packages from Java builds in a truly cross platform manner"
-HOMEPAGE="http://github.com/tcurdt/jdeb"
-SRC_URI="https://repo1.maven.org/maven2/org/vafer/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/org/vafer/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+HOMEPAGE="https://github.com/tcurdt/jdeb"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/vafer/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/org/vafer/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
+
+# Upstream pre-built JAR contains shaded classes under org.vafer.jdeb.shaded,
+# which require additional sources not in the source JAR to compile
+IUSE="+binary"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
@@ -29,7 +35,7 @@ KEYWORDS="~amd64"
 # org.apache.maven:maven-core:2.2.1 -> >=dev-java/maven-bin-3.8.1:3.8
 # org.apache.maven:maven-plugin-api:2.2.1 -> >=dev-java/maven-plugin-api-2.2.1:0
 # org.apache.maven:maven-project:2.2.1 -> >=dev-java/maven-project-2.2.1:0
-# org.bouncycastle:bcpg-jdk15on:1.50 -> >=dev-java/bcpg-1.52:1.52
+# org.bouncycastle:bcpg-jdk15on:1.50 -> >=dev-java/bcpg-1.50:1.50
 # org.codehaus.plexus:plexus-utils:1.5.15 -> >=dev-java/plexus-utils-1.5.15:0
 
 CDEPEND="
@@ -38,10 +44,14 @@ CDEPEND="
 	>=dev-java/maven-project-2.2.1:0
 	>=dev-java/plexus-utils-1.5.15:0
 	>=dev-java/ant-core-1.10.7:0
-	>=dev-java/bcpg-1.52:1.52
+	>=dev-java/bcpg-1.50:1.50
 	>=dev-java/commons-compress-1.10:0
 	>=dev-java/commons-io-2.4:1
 	>=dev-java/maven-bin-3.8.1:3.8
+"
+
+BDEPEND="
+	app-arch/unzip
 "
 
 # Compile dependencies
@@ -50,7 +60,6 @@ CDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? (
 		${CDEPEND}
 		>=dev-java/maven-plugin-annotations-3.2:0
@@ -59,11 +68,12 @@ DEPEND="
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-	${CDEPEND}"
+	${CDEPEND}
+"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="commons-io-1,ant-core,commons-compress,maven-artifact,maven-bin-3.8,maven-plugin-api,maven-project,bcpg-1.52,plexus-utils"
+JAVA_GENTOO_CLASSPATH="commons-io-1,ant-core,commons-compress,maven-artifact,maven-bin-3.8,maven-plugin-api,maven-project,bcpg-1.50,plexus-utils"
 JAVA_CLASSPATH_EXTRA="maven-plugin-annotations"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
