@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,13 +12,18 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven java-pkg-simple-plugins
 
-DESCRIPTION="json4s-jackson"
+DESCRIPTION="Json4s Jackson module"
 HOMEPAGE="https://github.com/json4s/json4s"
-SRC_URI="https://repo1.maven.org/maven2/org/json4s/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar -> ${P}-sources.jar
-	https://repo1.maven.org/maven2/org/json4s/${PN}_2.12/${PV}/${PN}_2.12-${PV}.jar -> ${P}-bin.jar"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/json4s/${PN}_2.12/${PV}/${PN}_2.12-${PV}-sources.jar -> ${P}-sources.jar
+	https://repo1.maven.org/maven2/org/json4s/${PN}_2.12/${PV}/${PN}_2.12-${PV}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="2.12"
 KEYWORDS="~amd64"
+
+# This package needs a value called BuildInfo, which seems to come from nowhere
+IUSE="+binary"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}.pom
@@ -32,9 +37,12 @@ CDEPEND="
 	>=dev-java/scala-common-bin-2.12.4:2.12
 "
 
+BDEPEND="
+	app-arch/unzip
+"
+
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? ( ${CDEPEND} )
 "
 
