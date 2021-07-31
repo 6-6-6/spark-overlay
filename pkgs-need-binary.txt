@@ -1,7 +1,5 @@
 # from /etc/portage/package.use/9-spark-overlay
 
-dev-java/lz4-java binary
-dev-java/xbean-asm7-shaded binary
 #dev-java/yecht binary
 #dev-java/gpars binary
 dev-java/alpn-boot binary
@@ -20,8 +18,6 @@ dev-java/hadoop-yarn-server-nodemanager binary
 dev-java/hazelcast binary
 dev-java/hibernate-core binary
 dev-java/hibernate-entitymanager binary
-dev-java/jackson-dataformat-xml binary
-dev-java/jackson-module-jaxb-annotations binary
 dev-java/jdeb binary
 dev-java/jersey-guice binary
 dev-java/jruby binary
@@ -35,5 +31,4 @@ dev-java/quartz binary
 dev-java/spark-core binary
 dev-java/spark-network-common binary
 dev-java/spark-network-shuffle binary
-dev-java/weld-osgi-bundle binary
 dev-java/woodstox-core-asl binary
