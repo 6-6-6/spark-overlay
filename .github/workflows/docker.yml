@@ -38,14 +38,18 @@ jobs:
 
   leaf-ebuilds:
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.may-fail }}
     strategy:
       fail-fast: false
       matrix:
+        may-fail: [true]
         test-case:
           - leaf-ebuilds
           - leaf-ebuilds-test
-          - leaf-ebuilds-binary
           - leaf-ebuilds-binary-test
+        include:
+          - may-fail: false
+            test-case: leaf-ebuilds-binary
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
@@ -53,9 +57,6 @@ jobs:
           python-version: 3.9
       - uses: ./.github/actions/setup-leaf-ebuilds-job
       - uses: ./.github/actions/run-test-case
-        # Other tests not passing yet, only run on manual triggers
-        if: ${{ github.event_name == 'workflow_dispatch' ||
-                matrix.test-case == 'leaf-ebuilds-binary' }}
         with:
           path: ./tests/test-cases/${{ matrix.test-case }}.sh
       - name: Export ebuild logs if test case failed
