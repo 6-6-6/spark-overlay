@@ -14,8 +14,10 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Apache Hadoop Project POM"
 HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
-SRC_URI="https://repo1.maven.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -42,6 +44,10 @@ CDEPEND="
 	>=dev-java/slf4j-log4j12-1.7.28:0
 "
 
+BDEPEND="
+	app-arch/unzip
+"
+
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.google.guava:guava:11.0.2 -> >=dev-java/guava-29.0:0
@@ -54,7 +60,6 @@ CDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? (
 		${CDEPEND}
 		>=dev-java/hadoop-common-2.7.4:0
@@ -77,3 +82,11 @@ JAVA_GENTOO_CLASSPATH="guice-4,protobuf-java,netty,avro,hadoop-annotations,hadoo
 JAVA_CLASSPATH_EXTRA="guava,commons-cli-1,commons-codec,commons-collections,commons-lang-2.1,commons-logging,hadoop-common"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+
+src_prepare() {
+	if ! use binary; then
+		eapply "${FILESDIR}/${P}-switch-Futures.addCallback-overload.patch"
+	fi
+
+	eapply_user
+}

@@ -1,0 +1,52 @@
+From 4f032a906f01e8d00962617bc989e38d53c9ef1e Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Sat, 31 Jul 2021 16:23:32 -0700
+Subject: [PATCH] Change usage of removed 2-param overload of Guava's
+ Futures.addCallback
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ .../apache/hadoop/mapred/LocatedFileStatusFetcher.java    | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/main/java/org/apache/hadoop/mapred/LocatedFileStatusFetcher.java b/src/main/java/org/apache/hadoop/mapred/LocatedFileStatusFetcher.java
+index 87114ad..78a7300 100644
+--- a/src/main/java/org/apache/hadoop/mapred/LocatedFileStatusFetcher.java
++++ b/src/main/java/org/apache/hadoop/mapred/LocatedFileStatusFetcher.java
+@@ -120,7 +120,7 @@ public class LocatedFileStatusFetcher {
+       runningTasks.incrementAndGet();
+       ListenableFuture<ProcessInitialInputPathCallable.Result> future = exec
+           .submit(new ProcessInitialInputPathCallable(p, conf, inputFilter));
+-      Futures.addCallback(future, processInitialInputPathCallback);
++      Futures.addCallback(future, processInitialInputPathCallback, MoreExecutors.directExecutor());
+     }
+ 
+     runningTasks.decrementAndGet();
+@@ -267,7 +267,7 @@ public class LocatedFileStatusFetcher {
+             ListenableFuture<ProcessInputDirCallable.Result> future = exec
+                 .submit(new ProcessInputDirCallable(result.fs, fileStatus,
+                     recursive, inputFilter));
+-            Futures.addCallback(future, processInputDirCallback);
++            Futures.addCallback(future, processInputDirCallback, MoreExecutors.directExecutor());
+           }
+         }
+         decrementRunningAndCheckCompletion();
+@@ -353,7 +353,7 @@ public class LocatedFileStatusFetcher {
+             ListenableFuture<ProcessInputDirCallable.Result> future = exec
+                 .submit(new ProcessInputDirCallable(result.fs, matched,
+                     recursive, inputFilter));
+-            Futures.addCallback(future, processInputDirCallback);
++            Futures.addCallback(future, processInputDirCallback, MoreExecutors.directExecutor());
+           }
+         }
+         decrementRunningAndCheckCompletion();
+@@ -368,4 +368,4 @@ public class LocatedFileStatusFetcher {
+       registerError(t);
+     }
+   }
+-}
+\ No newline at end of file
++}
+-- 
+2.31.1
+
