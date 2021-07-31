@@ -21,17 +21,17 @@ KEYWORDS="~amd64"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.fasterxml.jackson.core:jackson-annotations:2.8.0 -> >=dev-java/jackson-annotations-2.9.10:2
-# com.fasterxml.jackson.core:jackson-core:2.8.3 -> >=dev-java/jackson-2.9.10:2
-# com.fasterxml.jackson.core:jackson-databind:2.8.3 -> >=dev-java/jackson-databind-2.10.0:0
+# com.fasterxml.jackson.core:jackson-core:2.8.3 -> dev-java/jackson:2.8.3
+# com.fasterxml.jackson.core:jackson-databind:2.8.3 -> >=dev-java/jackson-databind:2.8.3
 # com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.8.3 -> >=dev-java/jackson-module-jaxb-annotations-2.8.3:0
 # com.fasterxml.woodstox:woodstox-core:5.0.2 -> >=dev-java/woodstox-core-5.0.2:0
 # org.codehaus.woodstox:stax2-api:3.1.4 -> >=dev-java/stax2-api-4.0.0:0
 
 CDEPEND="
 	>=dev-java/woodstox-core-5.0.2:0
-	>=dev-java/jackson-2.9.10:2
+	dev-java/jackson:2.8.3
 	>=dev-java/jackson-annotations-2.9.10:2
-	>=dev-java/jackson-databind-2.10.0:0
+	dev-java/jackson-databind:2.8.3
 	>=dev-java/jackson-module-jaxb-annotations-2.8.3:0
 	>=dev-java/stax2-api-4.0.0:0
 "
@@ -51,6 +51,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2,jackson-databind,jackson-module-jaxb-annotations,woodstox-core,stax2-api"
+JAVA_GENTOO_CLASSPATH="jackson-annotations-2,jackson-2.8.3,jackson-databind-2.8.3,jackson-module-jaxb-annotations,woodstox-core,stax2-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
