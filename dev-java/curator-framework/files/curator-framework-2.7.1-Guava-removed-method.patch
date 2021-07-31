@@ -1,0 +1,27 @@
+From 6f980fb815df3258365977e3cb194573620b0b0a Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Sat, 31 Jul 2021 13:38:48 -0700
+Subject: [PATCH] Replace call to removed Guava method with new substitute
+ method
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ .../org/apache/curator/framework/listen/ListenerContainer.java  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/main/java/org/apache/curator/framework/listen/ListenerContainer.java b/src/main/java/org/apache/curator/framework/listen/ListenerContainer.java
+index ed477e5..3e068b2 100644
+--- a/src/main/java/org/apache/curator/framework/listen/ListenerContainer.java
++++ b/src/main/java/org/apache/curator/framework/listen/ListenerContainer.java
+@@ -37,7 +37,7 @@ public class ListenerContainer<T> implements Listenable<T>
+     @Override
+     public void addListener(T listener)
+     {
+-        addListener(listener, MoreExecutors.sameThreadExecutor());
++        addListener(listener, MoreExecutors.newDirectExecutorService());
+     }
+ 
+     @Override
+-- 
+2.31.1
+

@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -13,9 +13,11 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="High-level API that greatly simplifies using ZooKeeper."
-HOMEPAGE="http://curator.apache.org/curator-framework"
-SRC_URI="https://repo1.maven.org/maven2/org/apache/curator/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/org/apache/curator/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+HOMEPAGE="https://curator.apache.org/curator-framework"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/apache/curator/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/org/apache/curator/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -32,18 +34,30 @@ CDEPEND="
 	>=dev-java/guava-29.0:0
 "
 
+BDEPEND="
+	app-arch/unzip
+"
+
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? ( ${CDEPEND} )
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-	${CDEPEND}"
+	${CDEPEND}
+"
 
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="guava,curator-client,zookeeper"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+
+src_prepare() {
+	if ! use binary; then
+		eapply "${FILESDIR}/${P}-Guava-removed-method.patch"
+	fi
+
+	eapply_user
+}
