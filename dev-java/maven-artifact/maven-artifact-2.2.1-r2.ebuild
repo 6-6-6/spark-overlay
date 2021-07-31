@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,12 +12,14 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="Maven is a project development management and comprehension tool. Based on the concept of a project object model: builds, dependency management, documentation creation, site publication, and distribution publication are all controlled from the declarative file. Maven can be extended by plugins to utilise a number of other development tools for reporting or the build process."
-HOMEPAGE="http://maven.apache.org/maven-artifact"
-SRC_URI="https://repo1.maven.org/maven2/org/apache/maven/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/org/apache/maven/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+DESCRIPTION="Maven Artifact"
+HOMEPAGE="https://maven.apache.org/ref/2.2.1/maven-artifact/"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/apache/maven/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/org/apache/maven/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
-SLOT="0"
+SLOT="2.2"
 KEYWORDS="~amd64"
 
 # Common dependencies
@@ -28,9 +30,12 @@ CDEPEND="
 	>=dev-java/plexus-utils-1.5.15:0
 "
 
+BDEPEND="
+	app-arch/unzip
+"
+
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? ( ${CDEPEND} )
 "
 
