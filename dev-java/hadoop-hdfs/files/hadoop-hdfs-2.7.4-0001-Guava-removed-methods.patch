@@ -1,0 +1,73 @@
+From 0c2c954cf6db540c5a30d05985539eb953ac89cb Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Sat, 31 Jul 2021 17:56:44 -0700
+Subject: [PATCH 1/2] Replace call to removed Guava methods with suggested
+ substitutions
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ .../org/apache/hadoop/hdfs/DFSInotifyEventInputStream.java    | 4 ++--
+ .../org/apache/hadoop/hdfs/server/datanode/DataStorage.java   | 2 +-
+ .../apache/hadoop/hdfs/server/namenode/AclTransformation.java | 4 ++--
+ 3 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/src/main/java/org/apache/hadoop/hdfs/DFSInotifyEventInputStream.java b/src/main/java/org/apache/hadoop/hdfs/DFSInotifyEventInputStream.java
+index 1f9e3e9..0040f97 100644
+--- a/src/main/java/org/apache/hadoop/hdfs/DFSInotifyEventInputStream.java
++++ b/src/main/java/org/apache/hadoop/hdfs/DFSInotifyEventInputStream.java
+@@ -18,7 +18,7 @@
+ 
+ package org.apache.hadoop.hdfs;
+ 
+-import com.google.common.collect.Iterators;
++import java.util.Collections;
+ import org.apache.hadoop.classification.InterfaceAudience;
+ import org.apache.hadoop.classification.InterfaceStability;
+ import org.apache.hadoop.hdfs.inotify.EventBatch;
+@@ -77,7 +77,7 @@ public class DFSInotifyEventInputStream {
+         long lastReadTxid) throws IOException {
+     this.traceSampler = traceSampler;
+     this.namenode = namenode;
+-    this.it = Iterators.emptyIterator();
++    this.it = Collections.emptyIterator();
+     this.lastReadTxid = lastReadTxid;
+   }
+ 
+diff --git a/src/main/java/org/apache/hadoop/hdfs/server/datanode/DataStorage.java b/src/main/java/org/apache/hadoop/hdfs/server/datanode/DataStorage.java
+index 8656ae9..f78f6be 100644
+--- a/src/main/java/org/apache/hadoop/hdfs/server/datanode/DataStorage.java
++++ b/src/main/java/org/apache/hadoop/hdfs/server/datanode/DataStorage.java
+@@ -1160,7 +1160,7 @@ public class DataStorage extends Storage {
+     }
+     linkWorkers.shutdown();
+     for (Future<Void> f : futures) {
+-      Futures.get(f, IOException.class);
++      Futures.getChecked(f, IOException.class);
+     }
+   }
+ 
+diff --git a/src/main/java/org/apache/hadoop/hdfs/server/namenode/AclTransformation.java b/src/main/java/org/apache/hadoop/hdfs/server/namenode/AclTransformation.java
+index 1474e03..5f50f91 100644
+--- a/src/main/java/org/apache/hadoop/hdfs/server/namenode/AclTransformation.java
++++ b/src/main/java/org/apache/hadoop/hdfs/server/namenode/AclTransformation.java
+@@ -28,7 +28,7 @@ import java.util.EnumSet;
+ import java.util.Iterator;
+ import java.util.List;
+ 
+-import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import com.google.common.collect.ComparisonChain;
+ import com.google.common.collect.Lists;
+ import com.google.common.collect.Maps;
+@@ -351,7 +351,7 @@ final class AclTransformation {
+     for (AclEntry entry: aclBuilder) {
+       scopeFound.add(entry.getScope());
+       if (entry.getType() == GROUP || entry.getName() != null) {
+-        FsAction scopeUnionPerms = Objects.firstNonNull(
++        FsAction scopeUnionPerms = MoreObjects.firstNonNull(
+           unionPerms.get(entry.getScope()), FsAction.NONE);
+         unionPerms.put(entry.getScope(),
+           scopeUnionPerms.or(entry.getPermission()));
+-- 
+2.31.1
+
