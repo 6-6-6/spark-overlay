@@ -13,14 +13,23 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="OpenJSSE delivers a TLS 1.3 JSSE provider for Java SE 8"
-HOMEPAGE="http://openjsse.github.io/openjsse/"
-SRC_URI="https://repo1.maven.org/maven2/org/${PN}/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/org/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+HOMEPAGE="https://github.com/openjsse/openjsse"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/${PN}/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/org/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="GPL-2-with-classpath-exception BSD-2"
 KEYWORDS="~amd64"
-IUSE="+binary"
 # Version 1.1.7 is not compatible with 1.1.0 according to JAPICC
 SLOT="1.1.0"
+
+# Building the package requires some sun.* Java packages, like
+# sun.security.util, which could not be found anywhere
+IUSE="+binary"
+
+BDEPEND="
+	app-arch/unzip
+"
 
 DEPEND="
 	>=virtual/jdk-1.8:*
@@ -29,8 +38,6 @@ DEPEND="
 RDEPEND="
 	>=virtual/jre-1.8:*
 "
-
-BDEPEND="app-arch/unzip"
 
 S="${WORKDIR}"
 
