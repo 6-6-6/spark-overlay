@@ -13,12 +13,18 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 inherit java-pkg-2 java-pkg-simple java-pkg-maven java-pkg-simple-plugins
 
 DESCRIPTION="Unified analytics engine for large-scale data processing"
-HOMEPAGE="http://spark.apache.org/"
-SRC_URI="https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2-sources.jar -> ${P}-sources.jar
-	https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2.jar -> ${P}-bin.jar"
+HOMEPAGE="https://spark.apache.org/"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2-sources.jar -> ${P}-sources.jar
+	https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="2.12"
 KEYWORDS="~amd64"
+
+# Some Spark components in various org.apache.spark.* packages are yet to be
+# added to this overlay
+IUSE="+binary"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-preview2.pom
@@ -136,13 +142,16 @@ CDEPEND="
 	java-virtuals/servlet-api:4.0
 "
 
+BDEPEND="
+	app-arch/unzip
+"
+
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-preview2.pom
 # com.google.guava:guava:14.0.1 -> >=dev-java/guava-29.0:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? (
 		${CDEPEND}
 		>=dev-java/guava-29.0:0
