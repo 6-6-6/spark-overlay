@@ -10,10 +10,10 @@ JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.robolectric:android-all:10-robolectric-5803371"
 JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
-inherit java-pkg-2 java-pkg-simple java-pkg-maven
+inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="APIs for Applications written for the Google Android Platform"
-HOMEPAGE="http://source.android.com/"
+HOMEPAGE="https://source.android.com/"
 SRC_URI="
 	https://repo1.maven.org/maven2/org/robolectric/${PN}/10-robolectric-5803371/${PN}-10-robolectric-5803371-sources.jar -> ${P}-sources.jar
 	https://repo1.maven.org/maven2/org/robolectric/${PN}/10-robolectric-5803371/${PN}-10-robolectric-5803371.jar -> ${P}-bin.jar
@@ -21,7 +21,13 @@ SRC_URI="
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
+
+# Lots of compiler errors when being built from source
 IUSE="+binary"
+
+BDEPEND="
+	app-arch/unzip
+"
 
 DEPEND="
 	>=virtual/jdk-1.8:*
@@ -31,11 +37,8 @@ RDEPEND="
 	>=virtual/jre-1.8:*
 "
 
-BDEPEND="app-arch/unzip"
-
 S="${WORKDIR}"
 
-JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 src_unpack() {
@@ -47,4 +50,10 @@ src_unpack() {
 	else
 		default
 	fi
+}
+
+src_prepare() {
+	default
+	find . -name "*.annotated.java" -delete || \
+		die "Failed to delete *.annotated.java"
 }
