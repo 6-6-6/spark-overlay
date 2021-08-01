@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -13,12 +13,22 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Core Hazelcast Module"
-HOMEPAGE="http://www.hazelcast.com/hazelcast/"
-SRC_URI="https://repo1.maven.org/maven2/com/${PN}/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/com/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+HOMEPAGE="https://www.hazelcast.com/"
+SRC_URI="
+	https://repo1.maven.org/maven2/com/${PN}/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/com/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
+
+# Compilation requires a class called AtomicLongGetAndAlterCodec, but no source
+# file could be found for the class
+IUSE="+binary"
+
+BDEPEND="
+	app-arch/unzip
+"
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
@@ -32,9 +42,11 @@ KEYWORDS="~amd64"
 # org.osgi:org.osgi.core:4.2.0 -> >=dev-java/osgi-core-api-5.0.0:0
 # org.slf4j:slf4j-api:1.6.6 -> >=dev-java/slf4j-api-1.7.7:0
 
+# Additional dependency
+# com.hazelcast.annotation -> dev-java/hazelcast-code-generator
+
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? (
 		>=dev-java/cache-api-1.0.0:0
 		>=dev-java/groovy-all-2.4.0:0
@@ -45,6 +57,7 @@ DEPEND="
 		>=dev-java/log4j-1.2.17:0
 		>=dev-java/osgi-core-api-5.0.0:0
 		>=dev-java/slf4j-api-1.7.7:0
+		dev-java/hazelcast-code-generator
 	)
 "
 
@@ -54,6 +67,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_CLASSPATH_EXTRA="findbugs-annotations-3,cache-api,log4j,log4j-api,log4j-core,groovy-all,jruby-complete,osgi-core-api,slf4j-api"
+JAVA_CLASSPATH_EXTRA="findbugs-annotations-3,cache-api,log4j,log4j-api,log4j-core,groovy-all,jruby-complete,osgi-core-api,slf4j-api,hazelcast-code-generator"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
