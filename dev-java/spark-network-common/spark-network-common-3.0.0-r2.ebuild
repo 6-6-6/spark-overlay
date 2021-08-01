@@ -13,12 +13,18 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Spark Project Networking"
-HOMEPAGE="http://spark.apache.org/"
-SRC_URI="https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2-sources.jar -> ${P}-sources.jar
-	https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2.jar -> ${P}-bin.jar"
+HOMEPAGE="https://spark.apache.org/"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2-sources.jar -> ${P}-sources.jar
+	https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="2.12"
 KEYWORDS="~amd64"
+
+# This package can be compiled from source, but doing so would cause a runtime
+# error when Spark is run
+IUSE="+binary"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-preview2.pom
@@ -47,13 +53,16 @@ CDEPEND="
 	dev-java/scala-xml:2.12
 "
 
+BDEPEND="
+	app-arch/unzip
+"
+
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-preview2.pom
 # org.slf4j:slf4j-api:1.7.16 -> >=dev-java/slf4j-api-1.7.28:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? (
 		${CDEPEND}
 		>=dev-java/slf4j-api-1.7.28:0
