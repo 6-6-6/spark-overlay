@@ -1,0 +1,69 @@
+Title: Spark Overlay Revival
+Author: Yuan Liao <liaoyuan@gmail.com>
+Posted: 2021-08-01
+Revision: 1
+News-Item-Format: 2.0
+
+Most of the ebuilds in ::spark-overlay have now been restored to a
+working state after a batch of Java package clean-ups in ::gentoo
+throughout the past months that had removed various dependencies of
+packages in this overlay.  In particular, the Apache Spark core package,
+dev-java/spark-core, can be installed on systems with a recent copy of
+::gentoo again.
+
+In addition, ::spark-overlay now houses a new experimental
+infrastructure supporting the Kotlin programming language on Gentoo.  It
+offers:
+
+- Kotlin core library packages that can be built from source
+  (dev-java/kotlin-stdlib, dev-java/kotlin-stdlib-jdk8,
+  dev-java/kotlin-test-junit, dev-java/kotlin-reflect, etc.)
+
+- Newer versions of the Kotlin compiler that can be installed in
+  parallel with each other (dev-lang/kotlin-bin:1.4,
+  dev-lang/kotlin-bin:1.5)
+
+- An eselect module for choosing the Kotlin compiler version to use
+  (app-eselect/eselect-kotlin)
+
+- A set of eclasses useful for creating Kotlin packages (kotlin.eclass,
+  kotlin-utils.eclass)
+
+Users who have already installed dev-java/spark-core on their system
+from an old copy of ::spark-overlay should be able to upgrade packages
+in this overlay without uninstalling them.  However, due to the new
+Kotlin support infrastructure, packages in this overlay that use Kotlin
+(dev-java/okhttp, dev-java/okio and dev-java/reactor-core) require
+installation of the new Kotlin packages for Kotlin 1.4 before they can
+be upgraded.
+
+The following commands can be used to install Kotlin 1.4, and they are
+applicable to both old and new users of ::spark-overlay:
+
+    env USE="binary" emerge -a1 dev-java/kotlin-{stdlib,reflect}:1.4
+    emerge -a dev-lang/kotlin-bin:1.4
+
+These are sufficient for a Kotlin 1.4 installation based on the binary
+JARs built and provided by the upstream for kotlin-stdlib and
+kotlin-reflect.  Users who wish to build these libraries from source
+should run an additional command after those ones above:
+
+    emerge -a1 dev-java/kotlin-{stdlib,reflect}:1.4
+
+Before this batch of updates to ebuilds in ::spark-overlay, some
+packages in this overlay required their 'binary' USE flag to be
+explicitly enabled.  This is no longer the case: many of those packages
+can now be built from source, and the remaining packages that still
+cannot be compiled from source are having their 'binary' USE flag
+enabled by default.  This means that users of this overlay do not need
+to add the USE flag settings in pkgs-need-binary.txt under the root of
+this overlay's tree to /etc/portage/package.use anymore.
+
+For more information about the new Kotlin packages, please consult a
+relevant page on Gentoo Wiki:
+
+    https://wiki.gentoo.org/wiki/User:Leo3418/Kotlin
+
+Should any issue that prevents the packages from being upgraded arise,
+please uninstall all packages from ::spark-overlay and then reinstall
+them.

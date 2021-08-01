@@ -1,0 +1,57 @@
+Title: Spark Overlay 涅磐重生
+Author: 廖远 <liaoyuan@gmail.com>
+Posted: 2021-08-01
+Revision: 1
+News-Item-Format: 2.0
+
+在经历了 ::gentoo 官方仓库中对过时 Java 软件包的大清洗后，
+::spark-overlay 的依赖树被破坏得千疮百孔，百废待兴。时至今日，
+::spark-overlay 中的绝大多数软件包都已被修复，并且 Apache
+Spark 核心包 dev-java/spark-core 又一次可以在使用最新版的
+::gentoo 仓库的系统上安装了。
+
+与此同时，::spark-overlay 中还迎来了在 Gentoo 上对 Kotlin
+编程语言的实验性支持。这其中包括了：
+
+- 可基于源码编译的 Kotlin 核心库软件包（dev-java/kotlin-stdlib、
+  dev-java/kotlin-stdlib-jdk8、dev-java/kotlin-test-junit、
+  dev-java/kotlin-reflect 等等）
+
+- 支持多版本共存的新版 Kotlin 编译器软件包
+  （dev-lang/kotlin-bin:1.4、dev-lang/kotlin-bin:1.5）
+
+- 提供选择默认 Kotlin 编译器版本的功能的 eselect 模块
+  （app-eselect/eselect-kotlin）
+
+- 一系列可用于制作 Kotlin 软件包的 eclass （kotlin.eclass、
+  kotlin-utils.eclass）
+
+之前已经从 ::spark-overlay 中安装过软件的用户应该可以在不手动
+卸载原有软件包的前提下进行更新。不过，由于新的 Kotlin 支持的加入，
+所有使用 Kotlin 的软件包（包括 dev-java/okhttp、dev-java/okio
+和 dev-java/reactor-core）都需要用户在升级前先安装 Kotlin 1.4。
+
+::spark-overlay 的新老用户都可以使用下列命令安装 Kotlin 1.4：
+
+    env USE="binary" emerge -a1 dev-java/kotlin-{stdlib,reflect}:1.4
+    emerge -a dev-lang/kotlin-bin:1.4
+
+愿意使用上游预编译的 kotlin-stdlib 和 kotlin-reflect 的用户可
+就此收手。想从源码编译 Kotlin 库的用户应额外执行下列命令：
+
+    emerge -a1 dev-java/kotlin-{stdlib,reflect}:1.4
+
+在本轮更新之前，::spark-overlay 中的部分软件包需要用户启用
+“binary” USE 标志才能安装。但现在这项操作已不再是必需：多数
+以前需要 USE="binary" 才能安装的软件包现在都已支持从源码编译，
+而余下的仍不支持源码编译的软件包的 “binary” USE 标志现在默认
+就处于启用状态，因此用户已不再需要在 /etc/portage/package.use
+中设定此仓库根目录下的 pkgs-need-binary.txt 中所指定的设置。
+
+如欲了解有关新 Kotlin 软件包的更多详情，请参阅 Gentoo Wiki
+上的相关页面（英文内容）：
+
+    https://wiki.gentoo.org/wiki/User:Leo3418/Kotlin
+
+如果在升级软件包的过程中遇到了问题，烦请先将所有从 ::spark-overlay
+安装的软件包卸载，然后再重新安装。
