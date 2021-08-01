@@ -27,11 +27,16 @@ KEYWORDS="~amd64"
 # - org.openclover
 IUSE="+binary"
 
-CDEPEND="dev-java/jetbrains-annotations:0"
+CDEPEND="
+	dev-java/jetbrains-annotations:13
+"
+
+BDEPEND="
+	app-arch/unzip
+"
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	${CDEPEND}
 "
 
@@ -42,6 +47,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jetbrains-annotations"
+JAVA_GENTOO_CLASSPATH="jetbrains-annotations-13"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
