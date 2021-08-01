@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,17 +12,29 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="FreeMarker is a \"template engine\"; a generic tool to generate text output based on templates."
-HOMEPAGE="http://freemarker.org/"
-SRC_URI="https://repo1.maven.org/maven2/org/${PN}/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/org/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+DESCRIPTION="A generic tool to generate text output based on templates"
+HOMEPAGE="https://freemarker.apache.org/"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/${PN}/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/org/${PN}/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 
+# The source JAR from Maven Central does not contain class
+# freemarker.core.FMParser, which is both included in the binary JAR and needed
+# by other classes.  The upstream project source tree contains this class, but
+# it uses Ivy and nearly two dozens of dependencies, making it hard to build
+# this package from source within Portage.
+IUSE="+binary"
+
+BDEPEND="
+	app-arch/unzip
+"
+
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 "
 
 RDEPEND="
