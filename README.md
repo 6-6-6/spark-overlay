@@ -5,9 +5,8 @@
 3. to emerge and run spark-core
 
 # Quick Start
-1. `ln -s ${path_to_this_overlay}/pkgs-need-binary.txt ${EPREFIX}/etc/portage/package.use/`
-2. `emerge -1av spark-demo::maven`
-3. `spark-demo-2.12 $(nproc)`
+1. `emerge -1av spark-demo::maven`
+2. `spark-demo-2.12 $(nproc)`
 
 # TODO list
 ## java-ebuilder related
