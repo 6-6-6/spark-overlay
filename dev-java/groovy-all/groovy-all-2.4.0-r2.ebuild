@@ -13,12 +13,17 @@ JAVA_TESTING_FRAMEWORKS="junit-4 pkgdiff"
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Groovy: A powerful, dynamic language for the JVM"
-HOMEPAGE="http://groovy.codehaus.org/"
-SRC_URI="https://repo1.maven.org/maven2/org/codehaus/groovy/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/org/codehaus/groovy/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+HOMEPAGE="https://groovy-lang.org/"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/codehaus/groovy/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/org/codehaus/groovy/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
+
+# Lots of compiler errors related to type checking
+IUSE="+binary"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
@@ -47,6 +52,10 @@ CDEPEND="
 	dev-java/commons-cli:1
 "
 
+BDEPEND="
+	app-arch/unzip
+"
+
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # javax.servlet:jsp-api:2.0 -> java-virtuals/jsp-api:2.3
@@ -54,7 +63,6 @@ CDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? (
 		${CDEPEND}
 		java-virtuals/jsp-api:2.3
