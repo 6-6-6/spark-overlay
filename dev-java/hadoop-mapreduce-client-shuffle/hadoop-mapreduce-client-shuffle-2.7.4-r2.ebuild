@@ -14,11 +14,19 @@ inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="Apache Hadoop Project POM"
 HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
-SRC_URI="https://repo1.maven.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}-sources.jar
-	https://repo1.maven.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}.jar -> ${P}-bin.jar"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}-sources.jar
+	https://repo1.maven.org/maven2/org/apache/hadoop/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
+
+# Compiler would give errors complaining about Netty's
+# HttpRequest.{get,set}Header methods.  Both Netty 3.6 and 3.7 were tried for
+# building this package but neither could make it successful even though the
+# methods exist in both versions.
+IUSE="+binary"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
@@ -48,6 +56,10 @@ CDEPEND="
 	>=dev-java/slf4j-log4j12-1.7.28:0
 "
 
+BDEPEND="
+	app-arch/unzip
+"
+
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.google.guava:guava:11.0.2 -> >=dev-java/guava-29.0:0
@@ -60,7 +72,6 @@ CDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? (
 		${CDEPEND}
 		>=dev-java/hadoop-common-2.7.4:0
