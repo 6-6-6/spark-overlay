@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -12,10 +12,12 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
-DESCRIPTION="The Apache Software Foundation provides support for the Apache community of open-source software projects. The Apache projects are characterized by a collaborative, consensus based development process, an open and pragmatic software license, and a desire to create high quality software that leads the way in its field. We consider ourselves not simply a group of projects sharing a server, but rather a community of developers and users."
-HOMEPAGE="http://spark.apache.org/"
-SRC_URI="https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2-sources.jar -> ${P}-sources.jar
-	https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2.jar -> ${P}-bin.jar"
+DESCRIPTION="Spark Project Shuffle Streaming Service"
+HOMEPAGE="https://spark.apache.org/"
+SRC_URI="
+	https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2-sources.jar -> ${P}-sources.jar
+	https://repo1.maven.org/maven2/org/apache/spark/${PN}_2.12/${PV}-preview2/${PN}_2.12-${PV}-preview2.jar -> ${P}-bin.jar
+"
 LICENSE="Apache-2.0"
 SLOT="2.12"
 KEYWORDS="~amd64"
@@ -32,6 +34,10 @@ CDEPEND="
 	>=dev-java/unused-1.0.0:0
 "
 
+BDEPEND="
+	app-arch/unzip
+"
+
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}_2.12-${PV}-preview2.pom
 # com.google.guava:guava:14.0.1 -> >=dev-java/guava-29.0:0
@@ -39,7 +45,6 @@ CDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 	!binary? (
 		${CDEPEND}
 		>=dev-java/guava-29.0:0
@@ -57,3 +62,11 @@ JAVA_GENTOO_CLASSPATH="metrics-core,spark-network-common-2.12,unused"
 JAVA_CLASSPATH_EXTRA="guava,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+
+src_prepare() {
+	if ! use binary; then
+		eapply "${FILESDIR}/${P}-Objects.toStringHelper-removal.patch"
+	fi
+
+	eapply_user
+}

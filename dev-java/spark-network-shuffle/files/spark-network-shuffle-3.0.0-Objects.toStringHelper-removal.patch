@@ -1,0 +1,280 @@
+From fadca804cb14b9463564922874ebbb6086123b22 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Sat, 31 Jul 2021 19:08:55 -0700
+Subject: [PATCH] Change {,More}Objects.toStringHelper in Guava for method
+ removal
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ .../spark/network/shuffle/ExternalShuffleBlockResolver.java   | 3 ++-
+ .../apache/spark/network/shuffle/protocol/BlocksRemoved.java  | 4 ++--
+ .../spark/network/shuffle/protocol/ExecutorShuffleInfo.java   | 3 ++-
+ .../spark/network/shuffle/protocol/FetchShuffleBlocks.java    | 4 ++--
+ .../network/shuffle/protocol/GetLocalDirsForExecutors.java    | 3 ++-
+ .../spark/network/shuffle/protocol/LocalDirsForExecutors.java | 4 ++--
+ .../org/apache/spark/network/shuffle/protocol/OpenBlocks.java | 3 ++-
+ .../spark/network/shuffle/protocol/RegisterExecutor.java      | 3 ++-
+ .../apache/spark/network/shuffle/protocol/RemoveBlocks.java   | 3 ++-
+ .../apache/spark/network/shuffle/protocol/StreamHandle.java   | 3 ++-
+ .../apache/spark/network/shuffle/protocol/UploadBlock.java    | 3 ++-
+ .../spark/network/shuffle/protocol/UploadBlockStream.java     | 3 ++-
+ 12 files changed, 24 insertions(+), 15 deletions(-)
+
+diff --git a/src/main/java/org/apache/spark/network/shuffle/ExternalShuffleBlockResolver.java b/src/main/java/org/apache/spark/network/shuffle/ExternalShuffleBlockResolver.java
+index 657774c..89d6b88 100644
+--- a/src/main/java/org/apache/spark/network/shuffle/ExternalShuffleBlockResolver.java
++++ b/src/main/java/org/apache/spark/network/shuffle/ExternalShuffleBlockResolver.java
+@@ -33,6 +33,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
+ import com.fasterxml.jackson.databind.ObjectMapper;
+ import com.google.common.annotations.VisibleForTesting;
+ import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import com.google.common.cache.CacheBuilder;
+ import com.google.common.cache.CacheLoader;
+ import com.google.common.cache.LoadingCache;
+@@ -411,7 +412,7 @@ public class ExternalShuffleBlockResolver {
+ 
+     @Override
+     public String toString() {
+-      return Objects.toStringHelper(this)
++      return MoreObjects.toStringHelper(this)
+         .add("appId", appId)
+         .add("execId", execId)
+         .toString();
+diff --git a/src/main/java/org/apache/spark/network/shuffle/protocol/BlocksRemoved.java b/src/main/java/org/apache/spark/network/shuffle/protocol/BlocksRemoved.java
+index 723b2f7..dc972f2 100644
+--- a/src/main/java/org/apache/spark/network/shuffle/protocol/BlocksRemoved.java
++++ b/src/main/java/org/apache/spark/network/shuffle/protocol/BlocksRemoved.java
+@@ -17,7 +17,8 @@
+ 
+ package org.apache.spark.network.shuffle.protocol;
+ 
+ import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import io.netty.buffer.ByteBuf;
+ 
+ // Needed by ScalaDoc. See SPARK-7726
+@@ -41,7 +42,7 @@ public class BlocksRemoved extends BlockTransferMessage {
+ 
+   @Override
+   public String toString() {
+-    return Objects.toStringHelper(this)
++    return MoreObjects.toStringHelper(this)
+       .add("numRemovedBlocks", numRemovedBlocks)
+       .toString();
+   }
+diff --git a/src/main/java/org/apache/spark/network/shuffle/protocol/ExecutorShuffleInfo.java b/src/main/java/org/apache/spark/network/shuffle/protocol/ExecutorShuffleInfo.java
+index 540ecd0..d6369e3 100644
+--- a/src/main/java/org/apache/spark/network/shuffle/protocol/ExecutorShuffleInfo.java
++++ b/src/main/java/org/apache/spark/network/shuffle/protocol/ExecutorShuffleInfo.java
+@@ -22,6 +22,7 @@ import java.util.Arrays;
+ import com.fasterxml.jackson.annotation.JsonCreator;
+ import com.fasterxml.jackson.annotation.JsonProperty;
+ import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import io.netty.buffer.ByteBuf;
+ 
+ import org.apache.spark.network.protocol.Encodable;
+@@ -53,7 +54,7 @@ public class ExecutorShuffleInfo implements Encodable {
+ 
+   @Override
+   public String toString() {
+-    return Objects.toStringHelper(this)
++    return MoreObjects.toStringHelper(this)
+       .add("localDirs", Arrays.toString(localDirs))
+       .add("subDirsPerLocalDir", subDirsPerLocalDir)
+       .add("shuffleManager", shuffleManager)
+diff --git a/src/main/java/org/apache/spark/network/shuffle/protocol/FetchShuffleBlocks.java b/src/main/java/org/apache/spark/network/shuffle/protocol/FetchShuffleBlocks.java
+index c0f307a..27c3f18 100644
+--- a/src/main/java/org/apache/spark/network/shuffle/protocol/FetchShuffleBlocks.java
++++ b/src/main/java/org/apache/spark/network/shuffle/protocol/FetchShuffleBlocks.java
+@@ -19,7 +19,7 @@ package org.apache.spark.network.shuffle.protocol;
+ 
+ import java.util.Arrays;
+ 
+-import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import io.netty.buffer.ByteBuf;
+ 
+ import org.apache.spark.network.protocol.Encoders;
+@@ -68,7 +68,7 @@ public class FetchShuffleBlocks extends BlockTransferMessage {
+ 
+   @Override
+   public String toString() {
+-    return Objects.toStringHelper(this)
++    return MoreObjects.toStringHelper(this)
+       .add("appId", appId)
+       .add("execId", execId)
+       .add("shuffleId", shuffleId)
+diff --git a/src/main/java/org/apache/spark/network/shuffle/protocol/GetLocalDirsForExecutors.java b/src/main/java/org/apache/spark/network/shuffle/protocol/GetLocalDirsForExecutors.java
+index 90c416a..e557a79 100644
+--- a/src/main/java/org/apache/spark/network/shuffle/protocol/GetLocalDirsForExecutors.java
++++ b/src/main/java/org/apache/spark/network/shuffle/protocol/GetLocalDirsForExecutors.java
+@@ -20,6 +20,7 @@ package org.apache.spark.network.shuffle.protocol;
+ import java.util.Arrays;
+ 
+ import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import io.netty.buffer.ByteBuf;
+ 
+ import org.apache.spark.network.protocol.Encoders;
+@@ -47,7 +48,7 @@ public class GetLocalDirsForExecutors extends BlockTransferMessage {
+ 
+   @Override
+   public String toString() {
+-    return Objects.toStringHelper(this)
++    return MoreObjects.toStringHelper(this)
+       .add("appId", appId)
+       .add("execIds", Arrays.toString(execIds))
+       .toString();
+diff --git a/src/main/java/org/apache/spark/network/shuffle/protocol/LocalDirsForExecutors.java b/src/main/java/org/apache/spark/network/shuffle/protocol/LocalDirsForExecutors.java
+index 0c3aa6a..ea336fb 100644
+--- a/src/main/java/org/apache/spark/network/shuffle/protocol/LocalDirsForExecutors.java
++++ b/src/main/java/org/apache/spark/network/shuffle/protocol/LocalDirsForExecutors.java
+@@ -19,7 +19,7 @@ package org.apache.spark.network.shuffle.protocol;
+ 
+ import java.util.*;
+ 
+-import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import io.netty.buffer.ByteBuf;
+ 
+ import org.apache.spark.network.protocol.Encoders;
+@@ -63,7 +63,7 @@ public class LocalDirsForExecutors extends BlockTransferMessage {
+ 
+   @Override
+   public String toString() {
+-    return Objects.toStringHelper(this)
++    return MoreObjects.toStringHelper(this)
+       .add("execIds", Arrays.toString(execIds))
+       .add("numLocalDirsByExec", Arrays.toString(numLocalDirsByExec))
+       .add("allLocalDirs", Arrays.toString(allLocalDirs))
+diff --git a/src/main/java/org/apache/spark/network/shuffle/protocol/OpenBlocks.java b/src/main/java/org/apache/spark/network/shuffle/protocol/OpenBlocks.java
+index ce954b8..22a8baf 100644
+--- a/src/main/java/org/apache/spark/network/shuffle/protocol/OpenBlocks.java
++++ b/src/main/java/org/apache/spark/network/shuffle/protocol/OpenBlocks.java
+@@ -20,6 +20,7 @@ package org.apache.spark.network.shuffle.protocol;
+ import java.util.Arrays;
+ 
+ import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import io.netty.buffer.ByteBuf;
+ 
+ import org.apache.spark.network.protocol.Encoders;
+@@ -49,7 +50,7 @@ public class OpenBlocks extends BlockTransferMessage {
+ 
+   @Override
+   public String toString() {
+-    return Objects.toStringHelper(this)
++    return MoreObjects.toStringHelper(this)
+       .add("appId", appId)
+       .add("execId", execId)
+       .add("blockIds", Arrays.toString(blockIds))
+diff --git a/src/main/java/org/apache/spark/network/shuffle/protocol/RegisterExecutor.java b/src/main/java/org/apache/spark/network/shuffle/protocol/RegisterExecutor.java
+index 167ef33..facfbdf 100644
+--- a/src/main/java/org/apache/spark/network/shuffle/protocol/RegisterExecutor.java
++++ b/src/main/java/org/apache/spark/network/shuffle/protocol/RegisterExecutor.java
+@@ -18,6 +18,7 @@
+ package org.apache.spark.network.shuffle.protocol;
+ 
+ import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import io.netty.buffer.ByteBuf;
+ 
+ import org.apache.spark.network.protocol.Encoders;
+@@ -53,7 +54,7 @@ public class RegisterExecutor extends BlockTransferMessage {
+ 
+   @Override
+   public String toString() {
+-    return Objects.toStringHelper(this)
++    return MoreObjects.toStringHelper(this)
+       .add("appId", appId)
+       .add("execId", execId)
+       .add("executorInfo", executorInfo)
+diff --git a/src/main/java/org/apache/spark/network/shuffle/protocol/RemoveBlocks.java b/src/main/java/org/apache/spark/network/shuffle/protocol/RemoveBlocks.java
+index 1c718d3..da638da 100644
+--- a/src/main/java/org/apache/spark/network/shuffle/protocol/RemoveBlocks.java
++++ b/src/main/java/org/apache/spark/network/shuffle/protocol/RemoveBlocks.java
+@@ -18,6 +18,7 @@
+ package org.apache.spark.network.shuffle.protocol;
+ 
+ import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import io.netty.buffer.ByteBuf;
+ import org.apache.spark.network.protocol.Encoders;
+ 
+@@ -48,7 +49,7 @@ public class RemoveBlocks extends BlockTransferMessage {
+ 
+   @Override
+   public String toString() {
+-    return Objects.toStringHelper(this)
++    return MoreObjects.toStringHelper(this)
+       .add("appId", appId)
+       .add("execId", execId)
+       .add("blockIds", Arrays.toString(blockIds))
+diff --git a/src/main/java/org/apache/spark/network/shuffle/protocol/StreamHandle.java b/src/main/java/org/apache/spark/network/shuffle/protocol/StreamHandle.java
+index 1915295..32ae41e 100644
+--- a/src/main/java/org/apache/spark/network/shuffle/protocol/StreamHandle.java
++++ b/src/main/java/org/apache/spark/network/shuffle/protocol/StreamHandle.java
+@@ -18,6 +18,7 @@
+ package org.apache.spark.network.shuffle.protocol;
+ 
+ import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import io.netty.buffer.ByteBuf;
+ 
+ // Needed by ScalaDoc. See SPARK-7726
+@@ -46,7 +47,7 @@ public class StreamHandle extends BlockTransferMessage {
+ 
+   @Override
+   public String toString() {
+-    return Objects.toStringHelper(this)
++    return MoreObjects.toStringHelper(this)
+       .add("streamId", streamId)
+       .add("numChunks", numChunks)
+       .toString();
+diff --git a/src/main/java/org/apache/spark/network/shuffle/protocol/UploadBlock.java b/src/main/java/org/apache/spark/network/shuffle/protocol/UploadBlock.java
+index 3caed59..a7d14b5 100644
+--- a/src/main/java/org/apache/spark/network/shuffle/protocol/UploadBlock.java
++++ b/src/main/java/org/apache/spark/network/shuffle/protocol/UploadBlock.java
+@@ -20,6 +20,7 @@ package org.apache.spark.network.shuffle.protocol;
+ import java.util.Arrays;
+ 
+ import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import io.netty.buffer.ByteBuf;
+ 
+ import org.apache.spark.network.protocol.Encoders;
+@@ -66,7 +67,7 @@ public class UploadBlock extends BlockTransferMessage {
+ 
+   @Override
+   public String toString() {
+-    return Objects.toStringHelper(this)
++    return MoreObjects.toStringHelper(this)
+       .add("appId", appId)
+       .add("execId", execId)
+       .add("blockId", blockId)
+diff --git a/src/main/java/org/apache/spark/network/shuffle/protocol/UploadBlockStream.java b/src/main/java/org/apache/spark/network/shuffle/protocol/UploadBlockStream.java
+index 9df3096..c7ffdfe 100644
+--- a/src/main/java/org/apache/spark/network/shuffle/protocol/UploadBlockStream.java
++++ b/src/main/java/org/apache/spark/network/shuffle/protocol/UploadBlockStream.java
+@@ -20,6 +20,7 @@ package org.apache.spark.network.shuffle.protocol;
+ import java.util.Arrays;
+ 
+ import com.google.common.base.Objects;
++import com.google.common.base.MoreObjects;
+ import io.netty.buffer.ByteBuf;
+ 
+ import org.apache.spark.network.protocol.Encoders;
+@@ -53,7 +54,7 @@ public class UploadBlockStream extends BlockTransferMessage {
+ 
+   @Override
+   public String toString() {
+-    return Objects.toStringHelper(this)
++    return MoreObjects.toStringHelper(this)
+       .add("blockId", blockId)
+       .add("metadata size", metadata.length)
+       .toString();
+-- 
+2.31.1
+
