@@ -1,0 +1,27 @@
+From c1c8f8021ceb83a55e113ed17859b4e3583dcb94 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Mon, 2 Aug 2021 10:44:26 -0700
+Subject: [PATCH 1/2] build.xml: Halt and exit with non-zero status upon error
+ or failure
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ build.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/build.xml b/build.xml
+index 45510e6..d9e6515 100644
+--- a/build.xml
++++ b/build.xml
+@@ -128,7 +128,7 @@ limitations under the License.
+ 		
+ 		<mkdir dir="${reports.dir}/junit/xml"/>
+ 		
+-		<junit printsummary="yes" haltonerror="no" haltonfailure="no" fork="true">
++		<junit printsummary="yes" haltonerror="yes" haltonfailure="yes" fork="true">
+ 			
+ 			<classpath>
+ 				<fileset dir="${lib.dir}">
+-- 
+2.31.1
+
