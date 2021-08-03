@@ -1,0 +1,33 @@
+From 4c4e3432380799f519c0e613cbcc6219944a6f1f Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Tue, 3 Aug 2021 12:23:19 -0700
+Subject: [PATCH] InMemoryLinkDatabase: Fix type error caused by raw type
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ src/main/java/no/priv/garshol/duke/InMemoryLinkDatabase.java | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/main/java/no/priv/garshol/duke/InMemoryLinkDatabase.java b/src/main/java/no/priv/garshol/duke/InMemoryLinkDatabase.java
+index df9e8f9..f049cc9 100644
+--- a/src/main/java/no/priv/garshol/duke/InMemoryLinkDatabase.java
++++ b/src/main/java/no/priv/garshol/duke/InMemoryLinkDatabase.java
+@@ -219,7 +219,7 @@ public class InMemoryLinkDatabase implements LinkDatabase {
+           diff.add(link.getOtherId(id));
+ 
+       // then, find all IDs which we, implicity or explicitly, are equal to
+-      for (String eqid : traverseAll(id, new HashSet()))
++      for (String eqid : traverseAll(id, new HashSet<>()))
+         if (diff.contains(eqid))
+           System.out.println("Inconsistency: " + id + " <-> " + eqid);
+     }
+@@ -256,4 +256,4 @@ public class InMemoryLinkDatabase implements LinkDatabase {
+     return "[InMemoryLinkDatabase size: " + getAllLinks().size() + " infer: " +
+       infer + " " + hashCode() + "]";
+   }
+-}
+\ No newline at end of file
++}
+-- 
+2.31.1
+
