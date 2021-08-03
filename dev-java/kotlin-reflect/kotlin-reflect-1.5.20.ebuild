@@ -16,6 +16,9 @@ inherit kotlin-core-deps
 DESCRIPTION="Kotlin Full Reflection Library"
 KEYWORDS="~amd64"
 
+BDEPEND="
+	app-arch/unzip
+"
 CP_DEPEND="
 	~dev-java/kotlin-stdlib-${PV}:${SLOT}
 "
