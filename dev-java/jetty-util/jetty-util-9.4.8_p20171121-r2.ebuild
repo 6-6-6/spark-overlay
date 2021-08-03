@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -22,7 +22,7 @@ KEYWORDS="~amd64"
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${PN}-9.4.8.v20171121.pom
-# javax.servlet:javax.servlet-api:3.1.0 -> java-virtuals/servlet-api:4.0
+# javax.servlet:javax.servlet-api:3.1.0 -> java-virtuals/servlet-api:3.1
 # org.slf4j:slf4j-api:1.6.6 -> >=dev-java/slf4j-api-1.7.7:0
 
 DEPEND="
@@ -30,7 +30,7 @@ DEPEND="
 	app-arch/unzip
 	!binary? (
 		>=dev-java/slf4j-api-1.7.7:0
-		java-virtuals/servlet-api:4.0
+		java-virtuals/servlet-api:3.1
 	)
 "
 
@@ -40,6 +40,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_CLASSPATH_EXTRA="servlet-api-4.0,slf4j-api"
+JAVA_CLASSPATH_EXTRA="servlet-api-3.1,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
