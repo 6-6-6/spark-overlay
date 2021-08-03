@@ -17,6 +17,10 @@ inherit kotlin-libs
 DESCRIPTION="Kotlin Standard Library for JVM"
 KEYWORDS="~amd64"
 
+BDEPEND="
+	app-arch/unzip
+"
+
 DEPEND="
 	!binary? (
 		dev-java/jetbrains-annotations:13
