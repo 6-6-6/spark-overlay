@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liaoyuan@gmail.com</email>
+		<name>Yuan Liao</name>
+	</maintainer>
+	<use>
+		<flag name="flow">
+			Enable H2O Flow, a web-based interactive computational environment
+			for H2O
+		</flag>
+		<flag name="target-encoder">
+			Enable the H2O Target Encoder plugin
+		</flag>
+	</use>
+</pkgmetadata>
