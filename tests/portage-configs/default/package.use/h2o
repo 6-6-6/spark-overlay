@@ -1,0 +1,2 @@
+# Install all components of H2O for testing
+dev-java/h2o flow target-encoder
