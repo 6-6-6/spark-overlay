@@ -43,7 +43,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: ${{ failure() }}
         with:
-          name: ${{ matrix.test-case }}-ebuild-logs
+          name: ${{ matrix.test-case }}${{ matrix.unstable }}-ebuild-logs
           path: emerge.tar.xz
 
   leaf-ebuilds:
