@@ -41,6 +41,8 @@ S="${WORKDIR}/${P}/cpp"
 
 src_prepare() {
 	sed -e '/SetupCxxFlags/d' -i CMakeLists.txt || die
+	sed -e '/xsimd.*BUNDLED/d' \
+		-i cmake_modules/ThirdpartyToolchain.cmake || die
 	cmake_src_prepare
 }
 
