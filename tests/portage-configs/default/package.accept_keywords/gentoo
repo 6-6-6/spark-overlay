@@ -9,3 +9,4 @@ dev-java/commons-vfs:2::gentoo
 dev-java/gson::gentoo
 >=dev-java/jansi-1.13::gentoo
 dev-java/openjfx:8::gentoo
+net-libs/grpc::gentoo
