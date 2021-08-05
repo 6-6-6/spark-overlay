@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
@@ -19,7 +19,7 @@ MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Ivy is a free java based dependency manager"
 HOMEPAGE="https://ant.apache.org/ivy/"
-SRC_URI="mirror://apache/ant/ivy/${PV}/${MY_P}-src.tar.gz"
+SRC_URI="https://archive.apache.org/dist/ant/ivy/${PV}/${MY_P}-src.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="2"
