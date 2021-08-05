@@ -17,12 +17,22 @@ jobs:
           - spark
           - kotlin-latest
           - kotlin-1.4
+        unstable: ["", "~amd64"]
+        # The Kotlin ebuilds do not depend on too many ebuilds in ::gentoo,
+        # accepting the unstable keyword globally is trivial
+        exclude:
+          - test-case: kotlin-latest
+            unstable: "~amd64"
+          - test-case: kotlin-1.4
+            unstable: "~amd64"
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - uses: ./.github/actions/run-test-case
+        env:
+          UNSTABLE: ${{ matrix.unstable }}
         with:
           path: ./tests/test-cases/${{ matrix.test-case }}.sh
       - name: Export ebuild logs if test case failed
