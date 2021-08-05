@@ -28,6 +28,7 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}"
 BDEPEND="
+	app-arch/lz4
 	dev-cpp/xsimd
 	dev-java/brotli-dec
 	dev-libs/libutf8proc
