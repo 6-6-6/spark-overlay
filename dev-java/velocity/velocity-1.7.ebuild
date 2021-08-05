@@ -40,6 +40,7 @@ DEPEND="
 		>=dev-java/log4j-1.2.17:0
 		>=dev-java/werken-xpath-0.9.4:0
 		java-virtuals/servlet-api:4.0
+		java-virtuals/jms
 	)
 "
 
