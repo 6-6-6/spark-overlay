@@ -17,11 +17,22 @@ LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 
+BDEPEND="dev-util/cmake"
 RDEPEND="
 	>=dev-python/numpy-1.16.6[${PYTHON_USEDEP}]
 	=dev-libs/apache-arrow-${PV}*[parquet?]
 "
+DEPEND="${RDEPEND}"
+
 distutils_enable_tests pytest
+
+src_prepare() {
+	default
+
+	# arrow is in the standard location, making ARROW_LIB_DIR useless.
+	sed -e "/ARROW_LIB_DIR/d" \
+		-i cmake_modules/FindArrow.cmake || die
+}
 
 src_compile() {
 	export PYARROW_WITH_PARQUET=$(usex parquet "ON" "")
