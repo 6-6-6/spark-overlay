@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+# ebuild Installation Test Launcher Script
+#
+# When running the script, please make sure the working directory is the root
+# directory of this repository.
+#
+# Recognized environment variables:
+# - UNSTABLE: When non-empty, accept the '~amd64' keyword for all test cases
+
 DEFAULT_EMERGE_OPTS="--color y --verbose --keep-going"
 
 main() {
@@ -15,6 +23,7 @@ main() {
             --portage-config tests/portage-configs/default
             --custom-repo .
             --emerge-opts "${EMERGE_OPTS:-"${DEFAULT_EMERGE_OPTS}"}"
+            ${UNSTABLE:+--portage-config tests/portage-configs/unstable}
             ${PROFILE:+--profile ${PROFILE}}
             ${GENTOO_REPO:+--gentoo-repo ${GENTOO_REPO}}
             ${THREADS:+--threads ${THREADS}}

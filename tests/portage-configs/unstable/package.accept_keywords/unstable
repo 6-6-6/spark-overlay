@@ -1,0 +1,2 @@
+# Accept unstable keyword for most common computers and CI environments
+*/* ~amd64
