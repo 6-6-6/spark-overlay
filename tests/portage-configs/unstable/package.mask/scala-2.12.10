@@ -1,0 +1,4 @@
+# Not installable yet: with USE="binary", fetch would fail; when built from
+# source, VM dependency could not be determined.
+# Related Gentoo bugs: #733086, #754393
+=dev-lang/scala-2.12.10
