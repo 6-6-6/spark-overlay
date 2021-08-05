@@ -20,5 +20,3 @@ DEPEND=">=dev-python/numpy-1.7
 	>=dev-python/pyarrow-1.0.0
 	=dev-python/py4j-0.10.9*
 	>=dev-java/spark-core-3.0.0"
-
-distutils_enable_tests pytest
