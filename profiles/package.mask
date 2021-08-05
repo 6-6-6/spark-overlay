@@ -34,7 +34,6 @@
 # Yuan Liao <liaoyuan@gmail.com> (2021-07-22)
 # These packages are not installable yet, mainly due to unsatisfied
 # dependencies. Masked until the issues have been fixed.
-dev-libs/apache-arrow
 dev-python/pyarrow
 dev-python/pyspark
 
