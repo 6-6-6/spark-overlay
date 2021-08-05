@@ -20,7 +20,7 @@ KEYWORDS="~amd64"
 BDEPEND="dev-util/cmake"
 RDEPEND="
 	>=dev-python/numpy-1.16.6[${PYTHON_USEDEP}]
-	=dev-libs/apache-arrow-${PV}*[parquet?]
+	~dev-libs/apache-arrow-${PV}[parquet?]
 "
 DEPEND="${RDEPEND}"
 
