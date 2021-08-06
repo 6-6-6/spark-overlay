@@ -22,10 +22,10 @@ KEYWORDS="~amd64"
 
 # Common dependencies
 # POM: /tmp/java-ebuilder/poms/${P}.pom
-# org.bouncycastle:bcprov-jdk15on:1.65 -> >=dev-java/bcprov-1.68:0
+# org.bouncycastle:bcprov-jdk15on:1.65 -> >=dev-java/bcprov-1.68:1.68
 
 CDEPEND="
-	>=dev-java/bcprov-1.68:0
+	>=dev-java/bcprov-1.68:1.68
 "
 
 DEPEND="
@@ -41,6 +41,6 @@ BDEPEND="app-arch/unzip"
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="bcprov"
+JAVA_GENTOO_CLASSPATH="bcprov-1.68"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
