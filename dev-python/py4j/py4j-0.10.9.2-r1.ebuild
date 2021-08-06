@@ -15,4 +15,5 @@ LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64"
 
-distutils_enable_tests pytest
+# Test suite hangs indefinitely after completion
+RESTRICT="test"
