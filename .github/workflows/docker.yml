@@ -15,6 +15,7 @@ jobs:
       matrix:
         test-case:
           - spark
+          - h2o
         unstable: ["", "~amd64"]
         # The Kotlin ebuilds do not depend on too many ebuilds in ::gentoo,
         # accepting the unstable keyword globally is trivial
