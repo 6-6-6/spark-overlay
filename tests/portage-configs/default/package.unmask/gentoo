@@ -11,8 +11,7 @@
 # Only packages that are actually in this overlay should be unmasked.  To
 # achieve this, please always specify the repository name in the atoms in this
 # file.
-
-dev-java/bytelist::spark-overlay
-dev-java/jcodings::spark-overlay
-dev-java/joni::spark-overlay
-dev-java/werken-xpath::spark-overlay
+#
+# Examples:
+# dev-java/bytelist::spark-overlay
+# dev-java/jcodings::spark-overlay
