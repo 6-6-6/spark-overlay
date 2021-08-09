@@ -18,7 +18,9 @@ DESCRIPTION="Kotlin Standard Library for JVM"
 KEYWORDS="~amd64"
 
 BDEPEND="
-	app-arch/unzip
+	!binary? (
+		app-arch/unzip
+	)
 "
 
 DEPEND="
