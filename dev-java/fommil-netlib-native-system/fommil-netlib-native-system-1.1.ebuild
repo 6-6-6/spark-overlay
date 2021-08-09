@@ -31,6 +31,7 @@ SRC_URI="
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="-* ~amd64 ~amd64-linux"
+RESTRICT+=" strip"
 
 CP_DEPEND="
 	dev-java/arpack-combined-all-bin:0
