@@ -1,5 +1,6 @@
 # Accept keywords for packages in ::gentoo needed by ebuilds in this overlay
 ~dev-java/commons-vfs-2.0::gentoo
+dev-java/constantine::gentoo
 dev-java/glassfish-jms-api::gentoo
 dev-java/gson::gentoo
 ~dev-java/jansi-1.13::gentoo
