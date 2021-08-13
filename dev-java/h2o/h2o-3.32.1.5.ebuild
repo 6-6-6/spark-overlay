@@ -8,7 +8,7 @@ inherit java-pkg-2
 DESCRIPTION="Meta package for H2O, a distributed, fast & scalable machine learning platform"
 HOMEPAGE="https://www.h2o.ai/"
 SRC_URI=""
-LICENSE="Apache-2.0"
+LICENSE="metapackage"
 SLOT="$(ver_cut 1-2)"
 KEYWORDS="~amd64"
 IUSE="flow +target-encoder"
