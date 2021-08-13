@@ -10,7 +10,7 @@ inherit java-pkg-2
 DESCRIPTION="Meta Package for installing all netlib-java components"
 HOMEPAGE="https://github.com/fommil/netlib-java"
 SRC_URI=""
-LICENSE="BSD"
+LICENSE="metapackage"
 SLOT="0"
 KEYWORDS="~amd64"
 
