@@ -12,6 +12,10 @@ runs:
     - name: "Download ebuild-commander"
       run: git clone https://github.com/Leo3418/ebuild-commander.git
       shell: bash
+    - name: "Check out the latest version of ebuild-commander"
+      run: git checkout "$(git tag | sort -Vu | tail -1)"
+      shell: bash
+      working-directory: ebuild-commander
     - name: "Install ebuild-commander"
       run: ./setup.py install --user
       shell: bash
