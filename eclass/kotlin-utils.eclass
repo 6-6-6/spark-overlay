@@ -303,7 +303,7 @@ kotlin-utils_iuse_depend() {
 					)" ;;
 			esac
 		done
-		[[ -n ${test_deps} ]] && deps+=" test? ( ${test_deps} )"
+		[[ -n "${test_deps}" ]] && deps+=" test? ( ${test_deps} )"
 	fi
 
 	echo "${deps}"
