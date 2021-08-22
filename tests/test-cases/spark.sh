@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# A test case that verifies if the instructions in README.md work
+# A test case that runs the Spark demo from dev-java/spark-demo
 
 EMERGE_OPTS="${DEFAULT_EMERGE_OPTS} --quiet-build"
 

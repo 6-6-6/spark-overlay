@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# A test case for packages for Kotlin 1.4
+
 PORTAGE_CONFIGS=( tests/portage-configs/kotlin )
 
 run_test() {
