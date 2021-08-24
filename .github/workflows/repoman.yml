@@ -1,11 +1,16 @@
 name: Scan ebuilds with repoman
 
 on:
-  # Checks not passing yet, only run on manual triggers
-  workflow_dispatch:
-  # Once all existing issues in the ebuilds that prevent the checks from
-  # passing have been fixed, this workflow should run on every push and pull
-  # request to all branches, and on a daily schedule too
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+  schedule:
+    # Run tests every day to capture changes in ::gentoo that affects ebuilds
+    # in this overlay as soon as possible
+    - cron: '0 0 * * *'
 
 jobs:
   check:
