@@ -22,7 +22,7 @@ DEPEND=">=virtual/jre-1.8:*"
 
 RDEPEND="
 	${DEPEND}
-	>=dev-java/kotlin-stdlib-1.3.71:*
+	dev-java/kotlin-stdlib:1.4
 "
 
 src_unpack() {
