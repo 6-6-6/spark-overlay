@@ -1,0 +1,15 @@
+# Compilation in Docker container strangely fails while none of the factors
+# that may affect the build (dependency versions/USE flags, distfiles, etc.)
+# had been changed:
+#
+# src/main/java/scala/xml/pull/XMLEventReader.scala:87: error: not found: value $scope
+#      if (level == 1 && !ignoreWritten) { ignoreWritten = true; <ignore/> } else NodeSeq.Empty
+#                                                                 ^
+# src/main/java/scala/xml/persistent/CachedFileStorage.scala:99: error: not found: value $scope
+#    val storageNode = <nodes>{ nodes.toList }</nodes>
+#                       ^
+#
+# The compiler error cannot be reproduced on a normal physical system.  The
+# only way to fix CI run failures is to use the pre-built binary JAR of this
+# package during the tests in Docker container.
+dev-java/scala-xml binary
