@@ -25,7 +25,7 @@ KEYWORDS="~amd64"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.google.code.findbugs:annotations:3.0.1u2 -> >=dev-java/findbugs-annotations-3.0.12:3
-# com.google.code.gson:gson:2.8.5 -> >=dev-java/gson-2.8.6:2.7
+# com.google.code.gson:gson:2.8.5 -> >=dev-java/gson-2.8.7:2.6
 # com.google.guava:guava:27.0.1-jre -> >=dev-java/guava-29.0:0
 # com.h3xstream.retirejs:retirejs-core:3.0.1 -> >=dev-java/retirejs-core-3.0.1:0
 # com.sun.mail:mailapi:1.6.3 -> >=dev-java/mailapi-1.6.3:0
@@ -60,7 +60,7 @@ CDEPEND="
 	>=dev-java/commons-compress-1.20:0
 	>=dev-java/commons-io-2.6:1
 	>=dev-java/findbugs-annotations-3.0.12:3
-	>=dev-java/gson-2.8.6:2.7
+	>=dev-java/gson-2.8.7:2.6
 	>=dev-java/guava-29.0:0
 	>=dev-java/joda-time-2.7:0
 	>=dev-java/jsoup-1.11.3:0
@@ -87,6 +87,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="findbugs-annotations-3,gson-2.7,guava,retirejs-core,mailapi,semver4j,commons-collections,commons-io-1,joda-time,commons-compress,commons-text,lucene-analyzers-common,lucene,lucene-queryparser,velocity-1.7,javax-json,jsoup,dependency-check-utils,slf4j-api,h2,commons-lang-2.1"
+JAVA_GENTOO_CLASSPATH="findbugs-annotations-3,gson-2.6,guava,retirejs-core,mailapi,semver4j,commons-collections,commons-io-1,joda-time,commons-compress,commons-text,lucene-analyzers-common,lucene,lucene-queryparser,velocity-1.7,javax-json,jsoup,dependency-check-utils,slf4j-api,h2,commons-lang-2.1"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
