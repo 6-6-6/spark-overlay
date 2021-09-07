@@ -28,8 +28,8 @@ for pkg_dir in $(find -type d -name "kotlin-*" -printf "%P\n"); do
         [[ "${PN}" == "${excluded}" ]] && continue 2
     done
 
-    echo -n "Entering directory "
-    pushd "${pkg_dir}"
+    echo "Entering directory ${pkg_dir}"
+    pushd "${pkg_dir}" > /dev/null
     ebuilds_rev_sorted=( $(ls -rv "${PN}"-*.ebuild) )
     new_ebuild="${PN}-${PVR}.ebuild"
     cp -v "${ebuilds_rev_sorted[0]}" "${new_ebuild}"
