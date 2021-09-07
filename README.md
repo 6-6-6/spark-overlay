@@ -208,3 +208,4 @@ help resolve the following issues are welcome!
   extension
 - [ ] `dev-java/fommil-netlib-native-{ref,system}`: Build the shared object
   (`.so` file) from source
+- [ ] `dev-libs/thrift`: Add more USE flags and optimize `./configure` options
