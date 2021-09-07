@@ -24,7 +24,7 @@ KEYWORDS="~amd64"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# com.google.code.gson:gson:2.8.5 -> >=dev-java/gson-2.8.6:2.7
+# com.google.code.gson:gson:2.8.5 -> >=dev-java/gson-2.8.7:2.6
 # commons-io:commons-io:2.6 -> >=dev-java/commons-io-2.6:1
 # org.apache.commons:commons-lang3:3.4 -> >=dev-java/commons-lang-3.12.0:3.6
 # org.slf4j:slf4j-api:1.7.25 -> >=dev-java/slf4j-api-1.7.28:0
@@ -32,7 +32,7 @@ KEYWORDS="~amd64"
 CDEPEND="
 	>=dev-java/commons-io-2.6:1
 	>=dev-java/commons-lang-3.12.0:3.6
-	>=dev-java/gson-2.8.6:2.7
+	>=dev-java/gson-2.8.7:2.6
 	>=dev-java/slf4j-api-1.7.28:0
 "
 
@@ -55,7 +55,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="gson-2.7,commons-io-1,commons-lang-3.6,slf4j-api"
+JAVA_GENTOO_CLASSPATH="gson-2.6,commons-io-1,commons-lang-3.6,slf4j-api"
 JAVA_CLASSPATH_EXTRA="findbugs-annotations-3"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
