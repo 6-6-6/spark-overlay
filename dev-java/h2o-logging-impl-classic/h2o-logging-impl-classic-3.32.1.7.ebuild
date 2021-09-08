@@ -33,9 +33,6 @@ DEPEND="
 	!binary? (
 		${CP_DEPEND}
 	)
-	test? (
-		${CP_DEPEND}
-	)
 "
 
 RDEPEND="
