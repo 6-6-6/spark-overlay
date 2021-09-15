@@ -22,7 +22,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 
-CDEPEND="
+CP_DEPEND="
 	>=dev-java/reactive-streams-1.0.2:0
 	>=dev-java/jsr305-3.0.2:0
 	dev-java/kotlin-stdlib:1.4
@@ -34,7 +34,7 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	app-arch/unzip
 	!binary? (
-		${CDEPEND}
+		${CP_DEPEND}
 		$(kotlin-utils_kotlin_depend)
 		dev-java/jetbrains-annotations:13
 	)
@@ -42,12 +42,11 @@ DEPEND="
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-	${CDEPEND}
+	${CP_DEPEND}
 "
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="jsr305,kotlin-stdlib-1.4,reactive-streams,slf4j-api,java9-concurrent-backport"
 JAVA_CLASSPATH_EXTRA="jetbrains-annotations-13"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
@@ -71,8 +70,10 @@ src_compile() {
 
 	local classes="target/classes"
 
-	local classpath=""
-	java-pkg-simple_getclasspath
+	# JAVA_GENTOO_CLASSPATH will be set by java-pkg_gen-cp,
+	# which will be called by java-pkg-simple_src_compile
+	local classpath="$(java-pkg_getjars --build-only --with-dependencies \
+		"${JAVA_GENTOO_CLASSPATH},${JAVA_CLASSPATH_EXTRA}")"
 	classpath+=":${classes}"
 
 	local kotlin_sources="kotlin_sources.lst"
