@@ -18,8 +18,6 @@ case "${EAPI:-0}" in
 	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
 esac
 
-EXPORT_FUNCTIONS pkg_preinst pkg_postinst pkg_postrm
-
 # Allow use of EAPI 7 version manipulators in older EAPIs for both this eclass
 # and consumer ebuilds
 [[ "${EAPI:-0}" -eq 6 ]] && inherit eapi7-ver
@@ -46,6 +44,8 @@ RDEPEND="
 PDEPEND="
 	virtual/kotlin:${KOTLIN_COMPILER_VER}
 "
+
+EXPORT_FUNCTIONS pkg_preinst pkg_postinst pkg_postrm
 
 # @FUNCTION: kotlin-compiler_pkg_preinst
 # @DESCRIPTION:
