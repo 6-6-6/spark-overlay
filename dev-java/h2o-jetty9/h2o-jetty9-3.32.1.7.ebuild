@@ -24,7 +24,7 @@ SLOT="$(ver_cut 1-2)"
 KEYWORDS="~amd64"
 
 CP_DEPEND="
-	~dev-java/h2o-webserver-iface-${PV}:3.32
+	~dev-java/h2o-webserver-iface-${PV}:${SLOT}
 	dev-java/jetty-jaas:9
 	dev-java/jetty-proxy:9
 	dev-java/jetty-server:9
