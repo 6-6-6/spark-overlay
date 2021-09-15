@@ -7,6 +7,7 @@
 # @AUTHOR:
 # Yuan Liao <liaoyuan@gmail.com>
 # @SUPPORTED_EAPIS: 6 7
+# @PROVIDES: kotlin-utils
 # @BLURB: An eclass for building Kotlin library packages
 # @DESCRIPTION:
 # This eclass provides an abstraction of the Kotlin compiler to support

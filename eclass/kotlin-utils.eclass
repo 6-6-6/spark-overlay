@@ -7,6 +7,7 @@
 # @AUTHOR:
 # Yuan Liao <liaoyuan@gmail.com>
 # @SUPPORTED_EAPIS: 6 7
+# @PROVIDES: java-pkg-2 java-pkg-simple
 # @BLURB: An utility eclass for building Kotlin packages
 # @DESCRIPTION:
 # This eclass provides functionalities for compiling Kotlin sources, which is

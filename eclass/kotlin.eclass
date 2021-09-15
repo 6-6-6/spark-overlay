@@ -7,6 +7,7 @@
 # @AUTHOR:
 # Yuan Liao <liaoyuan@gmail.com>
 # @SUPPORTED_EAPIS: 6 7
+# @PROVIDES: kotlin-utils
 # @BLURB: The eclass for Kotlin packages
 # @DESCRIPTION:
 # This eclass can be inherited by ebuilds for a Kotlin package to select a

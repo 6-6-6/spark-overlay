@@ -7,6 +7,7 @@
 # @AUTHOR:
 # Yuan Liao <liaoyuan@gmail.com>
 # @SUPPORTED_EAPIS: 6 7
+# @PROVIDES: kotlin-libs
 # @BLURB: An eclass for building dev-java/kotlin-core-* packages
 # @DESCRIPTION:
 # This eclass provides functionality to relocate the sources for a
