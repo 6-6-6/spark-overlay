@@ -95,11 +95,14 @@ src_prepare() {
 src_test() {
 	# Build the testing support library before testing
 	local classpath=""
-	java-pkg-simple_getclasspath
-	classpath+=":${KOTLIN_UTILS_CLASSES}"
-	for package in ${JAVA_TEST_GENTOO_CLASSPATH}; do
+	# JAVA_GENTOO_CLASSPATH will be set by java-pkg_gen-cp,
+	# which will be called during the src_compile phase
+	classpath+="$(java-pkg_getjars --with-dependencies \
+		"${JAVA_GENTOO_CLASSPATH}")"
+	for package in ${JAVA_CLASSPATH_EXTRA} ${JAVA_TEST_GENTOO_CLASSPATH}; do
 		classpath+=":$(java-pkg_getjars --with-dependencies "${package}")"
 	done
+	classpath+=":${KOTLIN_UTILS_CLASSES}"
 	JAVA_GENTOO_CLASSPATH_EXTRA="${T}/okhttp-testing-support"
 	kotlin-utils_kotlinc \
 		-d "${JAVA_GENTOO_CLASSPATH_EXTRA}" \
