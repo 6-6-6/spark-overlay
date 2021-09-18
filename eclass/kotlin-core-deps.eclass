@@ -94,7 +94,7 @@ if [[ -z "${KOTLIN_KOTLINC_ARGS[@]}" ]]; then
 		-Xread-deserialized-contracts
 		-Xuse-ir
 	)
-	if ver_test "$(ver_cut 1-2)" -ge "1.5"; then
+	if ver_test -ge "1.5"; then
 		# Additional options for Kotlin >=1.5
 		KOTLIN_KOTLINC_ARGS+=(
 			-Xsuppress-deprecated-jvm-target-warning
