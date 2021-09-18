@@ -7,10 +7,15 @@ if [[ "$#" -ne 1 ]]; then
     exit 1
 fi
 
-# The 'repoman' command
-# Can be overridden to invoke with superuser privilege, e.g.:
-#   REPOMAN="sudo repoman"
-REPOMAN="${REPOMAN:-repoman}"
+# The program used to create manifests, will be invoked as
+#   "${MANIFEST_CREATOR} manifest"
+#
+# Usage:
+# - Invoke the manifest creator with superuser privilege, e.g.:
+#   MANIFEST_CREATOR="sudo pkgdev"
+# - Use an alternative program to create manifests, e.g.:
+#   MANIFEST_CREATOR="repoman"
+MANIFEST_CREATOR="${MANIFEST_CREATOR:-pkgdev}"
 
 # PNs that should not be bumped by this script
 PN_EXCLUDES=(
@@ -32,7 +37,7 @@ for pkg_dir in $(find -type d -name "h2o*" -printf "%P\n"); do
     ebuilds_rev_sorted=( $(ls -rv "${PN}"-*.ebuild) )
     new_ebuild="${PN}-${PVR}.ebuild"
     cp -v "${ebuilds_rev_sorted[0]}" "${new_ebuild}"
-    echo "${REPOMAN} manifest"
-    ${REPOMAN} manifest
+    echo "${MANIFEST_CREATOR} manifest"
+    ${MANIFEST_CREATOR} manifest
     popd > /dev/null
 done
