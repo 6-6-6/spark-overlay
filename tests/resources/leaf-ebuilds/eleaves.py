@@ -73,6 +73,7 @@ Compute and print the list of leaf ebuilds in REPO to standard output.\
 
 
 def create_ebuild_dict(repo: str, no_filters: bool) -> dict:
+    print(f"Enumerating ebuilds in ::{repo} ...", file=sys.stderr)
     result = {}
     proc = subprocess.run(f'portageq {"--no-filters" if no_filters else ""} '
                           f'--repo {repo}',
