@@ -197,7 +197,7 @@ sub-directories for files supporting test cases:
 The Spark overlay could still use some improvements.  Any contributions that
 help resolve the following issues are welcome!
 
-- [ ] Fix ebuilds that cannot be installed *without* `USE="binary"` by either
+- [x] Fix ebuilds that cannot be installed *without* `USE="binary"` by either
   resolving compilation issues or setting `IUSE="+binary"` in the ebuild as a
   last resort
 - [ ] Ensure every ebuild's `src_test` can complete without errors, regardless
