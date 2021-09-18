@@ -51,16 +51,20 @@ jobs:
       matrix:
         test-case:
           - leaf-ebuilds
-          - leaf-ebuilds-test
-          - leaf-ebuilds-binary-test
+          - leaf-ebuilds-binary
         unstable: ["", "~amd64"]
-        may-fail: [true]
+        may-fail: [false]
         include:
-          - test-case: leaf-ebuilds-binary
-            may-fail: false
-          - test-case: leaf-ebuilds-binary
+          - test-case: leaf-ebuilds-test
+            may-fail: true
+          - test-case: leaf-ebuilds-test
             unstable: "~amd64"
-            may-fail: false
+            may-fail: true
+          - test-case: leaf-ebuilds-binary-test
+            may-fail: true
+          - test-case: leaf-ebuilds-binary-test
+            unstable: "~amd64"
+            may-fail: true
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
