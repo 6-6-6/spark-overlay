@@ -2,8 +2,9 @@ name: Test ebuilds in Docker container
 
 on:
   # ebuild installation tests can take very long time, so run tests nightly
+  # Run after daily build time of ghcr.io/leo3418/gentoo-stage3-amd64-java
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '30 4 * * *'
   # Allow tests to be triggered manually
   workflow_dispatch:
 
