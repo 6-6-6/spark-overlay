@@ -1,0 +1,55 @@
+# Copyright 1999-2021 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+####################################################################
+#
+# Unmask any packages masked in the Gentoo repository's profile but are present
+# in this overlay here.
+#
+# Dependencies of packages in this overlay provided by ::gentoo may be
+# last-rited (masked) before they are completely removed.  The atoms in
+# /var/db/repos/gentoo/profiles/package.mask usually are unversioned and do not
+# bear the repository name, so even if this overlay has an ebuild for the same
+# ${CATEGORY}/${PN}, it will be masked by ::gentoo's profile.
+#
+# For this reason, the affected package atoms should be unmasked here so that
+# users of this overlay can continue to install a version of those packages
+# provided by this overlay.
+#
+# Please do not unmask packages which have been last-rited in ::gentoo but do
+# not exist in this overlay here.  These packages will eventually be deleted
+# from ::gentoo, and to keep the ebuilds in this overlay functional, they need
+# to be added to this overlay sooner or later.
+#
+# Please add new entries to the top of this file.  When adding an entry, please
+# include the following info:
+# a) your name
+# b) the date in the UTC timezone
+# c) reason for unmasking (usually "Last-rited package which is present in this
+#    overlay")
+#
+# Please try to avoid unmasking packages in ::gentoo by making atoms in this
+# file as specific as possible.  For example, if this overlay contains
+# app-misc/some-package-2.3.7 but ::gentoo does not have such version, then
+# an atom with version specifier should be used so no packages from ::gentoo
+# will be unmasked.
+#
+## Example:
+##
+## # Dev E. Loper <developer@gentoo.org> (2019-07-01)
+## # Last-rited package which is present in this overlay.  This overlay has
+## # version 2.3.7, which is not provided by ::gentoo.
+## ~app-misc/some-package-2.3.7
+#
+# Any atoms for packages that are no longer masked in
+# /var/db/repos/gentoo/profiles/package.mask should be cleaned up from this
+# file.
+
+#--- END OF EXAMPLES ---
+
+# Yuan Liao <liaoyuan@gmail.com> (2021-10-18)
+# Last-rited package which is present in this overlay.  This overlay has
+# version 2.0.26, which is not provided by ::gentoo.
+# The ebuild in this overlay already exists at the time of last-rite; it was
+# created with java-ebuilder and uses EAPI 7.
+~dev-java/netty-tcnative-2.0.26
