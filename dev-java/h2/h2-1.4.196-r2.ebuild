@@ -1,9 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-# Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/h2-1.4.196.pom --download-uri https://repo1.maven.org/maven2/com/h2database/h2/1.4.196/h2-1.4.196-sources.jar --slot 0 --keywords "~amd64" --ebuild h2-1.4.196-r1.ebuild
-
 EAPI=7
 
 JAVA_PKG_IUSE="doc source test binary"
@@ -22,7 +19,7 @@ LICENSE="|| ( MPL-1.1 EPL-1.0 )"
 SLOT="0"
 KEYWORDS="~amd64"
 
-CDEPEND="
+CP_DEPEND="
 	dev-java/lucene:3.6
 	dev-java/slf4j-api:0
 	dev-java/jts-core:0
@@ -37,16 +34,17 @@ BDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	${CDEPEND}
+	!binary? (
+		${CP_DEPEND}
+	)
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-	${CDEPEND}
+	${CP_DEPEND}
 "
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="lucene-3.6,jts-core,slf4j-api,osgi-core-4,osgi-service-jdbc,servlet-api-4.0"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
