@@ -33,7 +33,9 @@ BDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	${CP_DEPEND}
+	!binary? (
+		${CP_DEPEND}
+	)
 "
 
 RDEPEND="
