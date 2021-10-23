@@ -264,7 +264,7 @@ has test ${KOTLIN_IUSE} && RESTRICT+=" !test? ( test )"
 
 # @FUNCTION: kotlin-utils_kotlin_depend
 # @DESCRIPTION:
-# Echos a dependency specification that enforces the requirement of
+# Echoes a dependency specification that enforces the requirement of
 # KOTLIN_VERSIONS.
 kotlin-utils_kotlin_depend() {
 	case "${KOTLIN_VERSIONS}" in
@@ -281,7 +281,7 @@ kotlin-utils_kotlin_depend() {
 
 # @FUNCTION: kotlin-utils_iuse_depend
 # @DESCRIPTION:
-# Echos a dependency specification for USE flags added to KOTLIN_IUSE. In
+# Echoes a dependency specification for USE flags added to KOTLIN_IUSE. In
 # particular, if the 'test' USE flag exists, then the dependency specification
 # will contain packages for KOTLIN_TESTING_FRAMEWORKS.
 kotlin-utils_iuse_depend() {
@@ -314,8 +314,8 @@ kotlin-utils_iuse_depend() {
 # @INTERNAL
 # @USAGE: <package>
 # @DESCRIPTION:
-# Echos the feature release version of a Kotlin compiler package. This function
-# should be called only in pkg_* phases.
+# Echoes the feature release version of a Kotlin compiler package. This
+# function should be called only in pkg_* phases.
 _kotlin-utils_get_compiler_ver() {
 	debug-print-function ${FUNCNAME} "$@"
 	[[ $# -eq 1 ]] || die "Exactly one argument is needed for ${FUNCNAME}"
@@ -327,7 +327,7 @@ _kotlin-utils_get_compiler_ver() {
 # @FUNCTION: _kotlin-utils_get_compiler_home
 # @INTERNAL
 # @DESCRIPTION:
-# Echos the path to the Kotlin compiler installation that will be used for
+# Echoes the path to the Kotlin compiler installation that will be used for
 # building this package. This function should be called only in pkg_* phases.
 _kotlin-utils_get_compiler_home() {
 	local prefs_root="${EROOT}/etc/eselect/kotlin/homes"
