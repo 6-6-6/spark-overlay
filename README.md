@@ -209,3 +209,6 @@ help resolve the following issues are welcome!
 - [ ] `dev-java/fommil-netlib-native-{ref,system}`: Build the shared object
   (`.so` file) from source
 - [ ] `dev-libs/thrift`: Add more USE flags and optimize `./configure` options
+- [ ] Fix other documented issues in the [issue tracker][gh-issues]
+
+[gh-issues]: https://github.com/6-6-6/spark-overlay/issues
