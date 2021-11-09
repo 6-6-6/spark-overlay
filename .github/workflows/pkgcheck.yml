@@ -17,5 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    # Switch back to pkgcore/pkgcheck-action@v1 after this issue is resolved:
+    # https://github.com/pkgcore/pkgcheck-action/issues/4
     - name: Run pkgcheck
-      uses: pkgcore/pkgcheck-action@v1
+      uses: nabbi/pkgcheck-action@v1
