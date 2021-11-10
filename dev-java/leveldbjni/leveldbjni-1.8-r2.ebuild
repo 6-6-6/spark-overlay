@@ -56,13 +56,13 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
-JNI_SRC_DIR="leveldbjni-1.8-native-src"
+JNI_SRC_DIR="${P}-native-src"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 src_unpack() {
 	mkdir -p "${JAVA_SRC_DIR}" "${JNI_SRC_DIR}"
 	unzip -q "${DISTDIR}/${P}-sources.jar" -d "${JAVA_SRC_DIR}"
-	unzip -q "${DISTDIR}/leveldbjni-1.8-native-src.zip" -d "${S}"
+	unzip -q "${DISTDIR}/${P}-native-src.zip" -d "${S}"
 }
 
 src_prepare() {
