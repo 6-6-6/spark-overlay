@@ -33,7 +33,6 @@ CP_DEPEND="
 "
 
 CDEPEND="
-	${CP_DEPEND}
 	dev-libs/leveldb[snappy]
 "
 
@@ -43,14 +42,16 @@ BDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
+	${CDEPEND}
 	!binary? (
-		${CDEPEND}
+		${CP_DEPEND}
 	)
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
 	${CDEPEND}
+	${CP_DEPEND}
 "
 
 S="${WORKDIR}"
