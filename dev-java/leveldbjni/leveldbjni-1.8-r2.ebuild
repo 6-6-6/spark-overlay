@@ -9,7 +9,7 @@ MAVEN_PROVIDES="org.fusesource.leveldbjni:${PN}-all:${PV}"
 JAVA_PKG_IUSE="doc source binary test"
 JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
-inherit java-pkg-2 java-pkg-simple
+inherit autotools java-pkg-2 java-pkg-simple
 
 DESCRIPTION="A JNI library for acessing leveldb"
 HOMEPAGE="https://github.com/fusesource/leveldbjni"
@@ -68,18 +68,22 @@ src_unpack() {
 src_prepare() {
 	default
 	eapply -p0 "${FILESDIR}/${P}-free-unavailable-method.patch"
-	chmod +x "${JNI_SRC_DIR}/configure"
 	sed -i -e "s/\${project.version}/${PV}/g" \
 		"${JAVA_SRC_DIR}/org/fusesource/leveldbjni/version.txt" || \
 		die "Failed to write project version to source files"
 
-	# Create a temporary patched copy of slice.h
 	pushd "${JNI_SRC_DIR}" > /dev/null || \
 		die "Failed to enter JNI sources directory"
+
+	# Create a temporary patched copy of slice.h
 	mkdir leveldb || die "Failed to create leveldb headers directory"
 	cp "${ESYSROOT}/usr/include/leveldb/slice.h" leveldb || \
 		die "Failed to copy leveldb headers"
 	eapply -p2 "${FILESDIR}/leveldb-1.20-support-leveldbjni.patch"
+
+	# Regenerate configure script to fill in proper package version
+	eautoreconf
+
 	popd > /dev/null || die "Failed to leave JNI sources directory"
 }
 
