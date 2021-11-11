@@ -47,6 +47,16 @@
 
 #--- END OF EXAMPLES ---
 
+# Yuan Liao <liaoyuan@gmail.com> (2021-11-11)
+# Last-rited packages which are present in this overlay.  dev-java/mina-core is
+# being removed for vulnerability (CVE-2021-41973, bug #821250) and lack of
+# consumers, but the version added to this overlay has the vulnerability fixed.
+# Also, the dev-java/mina-core ebuild in this overlay uses EAPI 7.  The other
+# two ebuilds already exist at the time of last-rite.
+~dev-java/jnr-enxio-0.9
+~dev-java/jnr-unixsocket-0.8
+~dev-java/mina-core-2.0.22
+
 # Yuan Liao <liaoyuan@gmail.com> (2021-10-22)
 # Packages that will be cleaned up for using EAPI 5 as in bug #819507 which are
 # present in this overlay.
