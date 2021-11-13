@@ -47,6 +47,11 @@
 
 #--- END OF EXAMPLES ---
 
+# Yuan Liao <liaoyuan@gmail.com> (2021-11-13)
+# Last-rited package which is present in this overlay.  This overlay has
+# version 2.6.0, which uses Kotlin.
+~dev-java/okio-2.6.0
+
 # Yuan Liao <liaoyuan@gmail.com> (2021-11-11)
 # Last-rited packages which are present in this overlay.  dev-java/mina-core is
 # being removed for vulnerability (CVE-2021-41973, bug #821250) and lack of
