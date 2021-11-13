@@ -2,11 +2,7 @@ name: Scan ebuilds with pkgcheck
 
 on:
   push:
-    branches:
-      - '*'
   pull_request:
-    branches:
-      - '*'
   schedule:
     # Run tests every day to capture changes in ::gentoo that affects ebuilds
     # in this overlay as soon as possible
