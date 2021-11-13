@@ -2,7 +2,6 @@
 dev-java/glassfish-jms-api::gentoo
 dev-java/jcip-annotations::gentoo
 dev-java/jmh-core::gentoo
-~dev-java/jsr305-3.0.2::gentoo
 dev-java/openjfx:8::gentoo
 ~dev-java/typesafe-config-1.3.0::gentoo
 net-libs/grpc::gentoo
