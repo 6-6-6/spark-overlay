@@ -6,7 +6,7 @@ EAPI=7
 JAVA_PKG_IUSE="source"
 MAVEN_ID="org.conscrypt:conscrypt-constants:1.0.0.RC1"
 
-inherit java-pkg-2 java-pkg-simple
+inherit java-pkg-2 java-pkg-simple toolchain-funcs
 
 DESCRIPTION="Conscrypt: Constants"
 HOMEPAGE="https://conscrypt.org/"
@@ -34,9 +34,10 @@ src_prepare() {
 }
 
 src_compile() {
-	mkdir -p "${JAVA_SRC_DIR}/org/conscrypt" || \
+	mkdir -p "${JAVA_SRC_DIR}/org/conscrypt" ||
 		die "Failed to create output directory for generated code"
-	c++ -o generate_constants constants/src/gen/cpp/generate_constants.cc || \
+	"$(tc-getBUILD_CXX)" -o generate_constants \
+		constants/src/gen/cpp/generate_constants.cc ||
 		die "Failed to compile NativeConstants.java generator"
 	./generate_constants > \
 		"${JAVA_SRC_DIR}/org/conscrypt/NativeConstants.java" ||
