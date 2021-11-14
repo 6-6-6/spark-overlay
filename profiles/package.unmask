@@ -47,6 +47,11 @@
 
 #--- END OF EXAMPLES ---
 
+# Yuan Liao <liaoyuan@gmail.com> (2021-11-14)
+# Updated to a version without the vulnerability that led to the last-rite
+# (CVE-2021-37714, bug #808948).
+~dev-java/jsoup-1.14.3
+
 # Yuan Liao <liaoyuan@gmail.com> (2021-11-13)
 # Last-rited package which is present in this overlay.  This overlay has
 # version 2.6.0, which uses Kotlin.
