@@ -5,9 +5,6 @@
 EMERGE_OPTS="${DEFAULT_EMERGE_OPTS} --quiet-build"
 
 run_test() {
-    # Update dependencies pre-installed in the Docker image
-    emerge -1 dev-java/jsr305
-
     # Dependency bootstrap stage 1
     mkdir -p /etc/portage/package.use
     echo "dev-java/kotlin-stdlib binary" \
