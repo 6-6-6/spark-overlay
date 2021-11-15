@@ -80,10 +80,3 @@
 >dev-java/reflectasm-1.11.1
 >dev-java/rngom-20100718-r1
 >dev-java/xsom-20140925
-
-# Yuan Liao <liaoyuan@gmail.com> (2021-10-18)
-# Last-rited package which is present in this overlay.  This overlay has
-# version 2.0.26, which is not provided by ::gentoo.
-# The ebuild in this overlay already exists at the time of last-rite; it was
-# created with java-ebuilder and uses EAPI 7.
-~dev-java/netty-tcnative-2.0.26
