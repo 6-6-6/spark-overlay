@@ -47,6 +47,12 @@
 
 #--- END OF EXAMPLES ---
 
+# Yuan Liao <liaoyuan@gmail.com> (2021-11-16)
+# All vulnerable (bug #771693) versions of Jackson 2.x packages have been
+# removed from this overlay.  These packages have also been updated to the
+# latest available version (2.13.0).
+>=dev-java/jackson-2.9.10.8
+
 # Yuan Liao <liaoyuan@gmail.com> (2021-11-14)
 # Updated to a version without the vulnerability that led to the last-rite
 # (CVE-2021-37714, bug #808948).
