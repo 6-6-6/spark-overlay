@@ -47,6 +47,13 @@
 
 #--- END OF EXAMPLES ---
 
+# Yuan Liao <liaoyuan@gmail.com> (2021-11-28)
+# Last-rited packages which are either already present in this overlay or added
+# to this overlay now with EAPI updated to 7 and pkgdiff tests.
+>dev-java/jama-1.0.3-r1
+~dev-java/janino-3.0.6
+>dev-java/jsr311-api-1.1.1
+
 # Yuan Liao <liaoyuan@gmail.com> (2021-11-16)
 # All vulnerable (bug #771693) versions of Jackson 2.x packages have been
 # removed from this overlay.  These packages have also been updated to the
