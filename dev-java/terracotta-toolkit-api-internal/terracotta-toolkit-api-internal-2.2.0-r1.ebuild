@@ -8,16 +8,15 @@ MAVEN_ID="org.terracotta.toolkit:terracotta-toolkit-api-internal:2.2.0"
 
 inherit java-pkg-2 java-pkg-binjar
 
-DESCRIPTION="${MAVEN_ID}"
+DESCRIPTION="Terracotta Toolkit API Internal"
 HOMEPAGE="https://repo.spring.io/plugins-release/org/terracotta/toolkit/terracotta-toolkit-api"
-SRC_URI="https://public.nexus.pentaho.org/content/groups/omni/org/terracotta/toolkit/${PN}/${PV}/${P}.jar"
+SRC_URI="https://repo.terracotta.org/maven2/org/terracotta/toolkit/${PN}/${PV}/${P}.jar"
 LICENSE="Apache-2.0 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	app-arch/unzip
 "
 
 RDEPEND="
