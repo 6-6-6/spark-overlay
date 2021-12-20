@@ -1,0 +1,33 @@
+# Gentoo custom Makefile for Bitshuffle C library
+# Adapted from GNU Guix:
+# https://git.savannah.gnu.org/cgit/guix.git/tree/gnu/packages/python-compression.scm?h=v1.3.0#n346
+# Distributed under the terms of the GNU General Public License v3
+
+# To avoid bundled dependency, the copy of lz4 included
+# in Bitshuffle's source tree is not used
+
+INSTALL = install
+CFLAGS := -O3 -ffast-math -std=c99 -fPIC $(CFLAGS)
+
+OBJS = \
+	src/bitshuffle.o \
+	src/bitshuffle_core.o \
+	src/iochain.o
+
+libbitshuffle.so: $(OBJS)
+	$(CC) $(CFLAGS) -o $@ -shared $(LDFLAGS) -Wl,-soname,$@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) -Isrc -c $< -o $@
+
+PREFIX = /usr/local
+LIBDIR = $(PREFIX)/lib
+INCLUDEDIR = $(PREFIX)/include
+
+install: libbitshuffle.so
+	$(INSTALL) -dm755 $(DESTDIR)$(LIBDIR)
+	$(INSTALL) -dm755 $(DESTDIR)$(INCLUDEDIR)
+	$(INSTALL) -m755 libbitshuffle.so $(DESTDIR)$(LIBDIR)
+	$(INSTALL) -m644 src/bitshuffle.h $(DESTDIR)$(INCLUDEDIR)
+	$(INSTALL) -m644 src/bitshuffle_core.h $(DESTDIR)$(INCLUDEDIR)
+	$(INSTALL) -m644 src/iochain.h $(DESTDIR)$(INCLUDEDIR)
