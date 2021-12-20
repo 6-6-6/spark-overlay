@@ -1,0 +1,17 @@
+diff --git a/Makefile b/Makefile
+index 04f0435..0249d09 100644
+--- a/Makefile
++++ b/Makefile
+@@ -124,11 +124,7 @@
+ 	$(CXX) $(CXXFLAGS) -c $< -o $@
+ 
+ $(SNAPPY_OUT)/$(LIBNAME): $(SNAPPY_OBJ)
+-	$(CXX) $(CXXFLAGS) -o $@ $+ $(LINKFLAGS) -lsnappy -lbitshuffle
+-    # Workaround for strip Protocol error when using VirtualBox on Mac
+-	cp $@ /tmp/$(@F)
+-	$(STRIP) /tmp/$(@F)
+-	cp /tmp/$(@F) $@
++	$(CXX) $(CXXFLAGS) -o $@ $+ $(LINKFLAGS) -lsnappy -lbitshuffle $(LDFLAGS)
+ 
+ clean-native:
+ 	rm -rf $(SNAPPY_OUT)
