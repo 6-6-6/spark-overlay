@@ -47,6 +47,10 @@
 
 #--- END OF EXAMPLES ---
 
+# Yuan Liao <liaoyuan@gmail.com> (2021-12-21)
+# Last-rited packages which have been added to this overlay.
+>dev-java/slf4j-log4j12-1.7.30
+
 # Yuan Liao <liaoyuan@gmail.com> (2021-11-28)
 # Last-rited packages which are either already present in this overlay or added
 # to this overlay now with EAPI updated to 7 and pkgdiff tests.
