@@ -63,23 +63,3 @@
 # removed from this overlay.  These packages have also been updated to the
 # latest available version (2.13.0).
 >=dev-java/jackson-2.9.10.8
-
-# Yuan Liao <liaoyuan@gmail.com> (2021-11-14)
-# Updated to a version without the vulnerability that led to the last-rite
-# (CVE-2021-37714, bug #808948).
-~dev-java/jsoup-1.14.3
-
-# Yuan Liao <liaoyuan@gmail.com> (2021-11-13)
-# Last-rited package which is present in this overlay.  This overlay has
-# version 2.6.0, which uses Kotlin.
-~dev-java/okio-2.6.0
-
-# Yuan Liao <liaoyuan@gmail.com> (2021-11-11)
-# Last-rited packages which are present in this overlay.  dev-java/mina-core is
-# being removed for vulnerability (CVE-2021-41973, bug #821250) and lack of
-# consumers, but the version added to this overlay has the vulnerability fixed.
-# Also, the dev-java/mina-core ebuild in this overlay uses EAPI 7.  The other
-# two ebuilds already exist at the time of last-rite.
-~dev-java/jnr-enxio-0.9
-~dev-java/jnr-unixsocket-0.8
-~dev-java/mina-core-2.0.22
