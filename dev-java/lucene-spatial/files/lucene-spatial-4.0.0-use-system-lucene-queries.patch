@@ -1,0 +1,29 @@
+From 224a8ce3ac6924694d4092ba6e6ff83d774f56f9 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Wed, 22 Dec 2021 14:26:37 -0800
+Subject: [PATCH] spatial/build.xml: Use system lucene-queries
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ spatial/build.xml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/spatial/build.xml b/spatial/build.xml
+index 4fe62f7..661a4bf 100644
+--- a/spatial/build.xml
++++ b/spatial/build.xml
+@@ -22,9 +22,9 @@
+     <pathelement path="src/test-files" />
+   </path>
+ 
+-  <target name="compile-core" depends="jar-queries,common.compile-core" />
++  <target name="compile-core" depends="common.compile-core" />
+ 
+-  <target name="javadocs" depends="javadocs-queries,compile-core">
++  <target name="javadocs" depends="compile-core">
+     <invoke-module-javadoc>
+       <links>
+         <link href="../queries"/>
+-- 
+2.32.0
+

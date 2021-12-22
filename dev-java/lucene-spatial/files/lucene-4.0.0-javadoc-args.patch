@@ -1,0 +1,25 @@
+From caa4c1577f48bb0b7171c9c0576db086960ec82d Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Wed, 22 Dec 2021 10:32:44 -0800
+Subject: [PATCH] Allow use of JavaScript to eliminate javadoc errors
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ common-build.xml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/common-build.xml b/common-build.xml
+index ec66377..4db4b5e 100644
+--- a/common-build.xml
++++ b/common-build.xml
+@@ -1529,6 +1529,7 @@ ${tests-output}/junit4-*.suites     - per-JVM executed suites
+             })();
+           </script>
+         ]]></bottom>
++        <arg value="--allow-script-in-comments"/>
+       	
+       	<sources />
+       	      	
+-- 
+2.32.0
+

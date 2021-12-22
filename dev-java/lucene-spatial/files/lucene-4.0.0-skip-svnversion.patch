@@ -1,0 +1,40 @@
+From 59440be510dadd8e59f431f4f0ed510f117425c3 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Wed, 22 Dec 2021 11:15:46 -0800
+Subject: [PATCH] Skip invocations of 'svnversion'
+
+This package is being compiled from a source tarball rather than an SVN
+tree snapshot, so even if the 'svnversion' command were available, it
+would not be useful.
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ common-build.xml | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+diff --git a/common-build.xml b/common-build.xml
+index 4db4b5e..49477cb 100644
+--- a/common-build.xml
++++ b/common-build.xml
+@@ -506,9 +506,6 @@
+     <attribute name="spec.version"/>
+     <attribute name="manifest.file" default="${manifest.file}"/>
+     <sequential>
+-      <!-- If possible, include the svnversion -->
+-      <exec dir="." executable="${svnversion.exe}" outputproperty="svnversion" failifexecutionfails="false"/>
+-
+       <manifest file="@{manifest.file}">
+         <!--
+         http://java.sun.com/j2se/1.5.0/docs/guide/jar/jar.html#JAR%20Manifest
+@@ -539,7 +536,7 @@
+         <attribute name="Implementation-Title" value="@{implementation.title}"/>
+         <!-- impl version can be any string -->
+         <attribute name="Implementation-Version"
+-                   value="${version} ${svnversion} - ${user.name} - ${DSTAMP} ${TSTAMP}"/>
++                   value="${version} - ${user.name} - ${DSTAMP} ${TSTAMP}"/>
+         <attribute name="Implementation-Vendor"
+                    value="The Apache Software Foundation"/>
+         <attribute name="X-Compile-Source-JDK" value="${javac.source}"/>
+-- 
+2.32.0
+
