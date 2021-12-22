@@ -1,0 +1,99 @@
+From cc97f9dfd4b3a1113a4a3e4e2ee4e0764df07597 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Wed, 22 Dec 2021 10:18:57 -0800
+Subject: [PATCH] Replace usage of RandomInts with RandomNumbers
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ .../test/org/apache/lucene/codecs/block/TestForUtil.java  | 8 ++++----
+ .../apache/lucene/util/automaton/TestBasicOperations.java | 4 ++--
+ .../src/java/org/apache/lucene/util/_TestUtil.java        | 6 +++---
+ 3 files changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/codecs/src/test/org/apache/lucene/codecs/block/TestForUtil.java b/codecs/src/test/org/apache/lucene/codecs/block/TestForUtil.java
+index 025a634..4307de7 100644
+--- a/codecs/src/test/org/apache/lucene/codecs/block/TestForUtil.java
++++ b/codecs/src/test/org/apache/lucene/codecs/block/TestForUtil.java
+@@ -32,24 +32,24 @@ import org.apache.lucene.store.RAMDirectory;
+ import org.apache.lucene.util.LuceneTestCase;
+ import org.apache.lucene.util.packed.PackedInts;
+ 
+-import com.carrotsearch.randomizedtesting.generators.RandomInts;
++import com.carrotsearch.randomizedtesting.generators.RandomNumbers;
+ 
+ public class TestForUtil extends LuceneTestCase {
+ 
+   public void testEncodeDecode() throws IOException {
+-    final int iterations = RandomInts.randomIntBetween(random(), 1, 1000);
++    final int iterations = RandomNumbers.randomIntBetween(random(), 1, 1000);
+     final float acceptableOverheadRatio = random().nextFloat();
+     final int[] values = new int[(iterations - 1) * BLOCK_SIZE + ForUtil.MAX_DATA_SIZE];
+     for (int i = 0; i < iterations; ++i) {
+       final int bpv = random().nextInt(32);
+       if (bpv == 0) {
+-        final int value = RandomInts.randomIntBetween(random(), 0, Integer.MAX_VALUE);
++        final int value = RandomNumbers.randomIntBetween(random(), 0, Integer.MAX_VALUE);
+         for (int j = 0; j < BLOCK_SIZE; ++j) {
+           values[i * BLOCK_SIZE + j] = value;
+         }
+       } else {
+         for (int j = 0; j < BLOCK_SIZE; ++j) {
+-          values[i * BLOCK_SIZE + j] = RandomInts.randomIntBetween(random(),
++          values[i * BLOCK_SIZE + j] = RandomNumbers.randomIntBetween(random(),
+               0, (int) PackedInts.maxValue(bpv));
+         }
+       }
+diff --git a/core/src/test/org/apache/lucene/util/automaton/TestBasicOperations.java b/core/src/test/org/apache/lucene/util/automaton/TestBasicOperations.java
+index b209201..b00c5dd 100644
+--- a/core/src/test/org/apache/lucene/util/automaton/TestBasicOperations.java
++++ b/core/src/test/org/apache/lucene/util/automaton/TestBasicOperations.java
+@@ -21,13 +21,13 @@ import java.util.*;
+ 
+ import org.apache.lucene.util.*;
+ 
+-import com.carrotsearch.randomizedtesting.generators.RandomInts;
++import com.carrotsearch.randomizedtesting.generators.RandomNumbers;
+ 
+ public class TestBasicOperations extends LuceneTestCase {
+   /** Test string union. */
+   public void testStringUnion() {
+     List<BytesRef> strings = new ArrayList<BytesRef>();
+-    for (int i = RandomInts.randomIntBetween(random(), 0, 1000); --i >= 0;) {
++    for (int i = RandomNumbers.randomIntBetween(random(), 0, 1000); --i >= 0;) {
+       strings.add(new BytesRef(_TestUtil.randomUnicodeString(random())));
+     }
+ 
+diff --git a/test-framework/src/java/org/apache/lucene/util/_TestUtil.java b/test-framework/src/java/org/apache/lucene/util/_TestUtil.java
+index 9bf9158..bb06b2f 100644
+--- a/test-framework/src/java/org/apache/lucene/util/_TestUtil.java
++++ b/test-framework/src/java/org/apache/lucene/util/_TestUtil.java
+@@ -80,7 +80,7 @@ import org.apache.lucene.store.IOContext;
+ import org.junit.Assert;
+ 
+ import com.carrotsearch.randomizedtesting.RandomizedContext;
+-import com.carrotsearch.randomizedtesting.generators.RandomInts;
++import com.carrotsearch.randomizedtesting.generators.RandomNumbers;
+ import com.carrotsearch.randomizedtesting.generators.RandomPicks;
+ 
+ /**
+@@ -213,7 +213,7 @@ public class _TestUtil {
+ 
+   /** start and end are BOTH inclusive */
+   public static int nextInt(Random r, int start, int end) {
+-    return RandomInts.randomIntBetween(r, start, end);
++    return RandomNumbers.randomIntBetween(r, start, end);
+   }
+ 
+   /** start and end are BOTH inclusive */
+@@ -350,7 +350,7 @@ public class _TestUtil {
+     final StringBuilder regexp = new StringBuilder(maxLength);
+     for (int i = nextInt(r, 0, maxLength); i > 0; i--) {
+       if (r.nextBoolean()) {
+-        regexp.append((char) RandomInts.randomIntBetween(r, 'a', 'z'));
++        regexp.append((char) RandomNumbers.randomIntBetween(r, 'a', 'z'));
+       } else {
+         regexp.append(RandomPicks.randomFrom(r, ops));
+       }
+-- 
+2.32.0
+

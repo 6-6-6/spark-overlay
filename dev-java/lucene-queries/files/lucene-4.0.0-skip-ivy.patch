@@ -1,0 +1,80 @@
+From fcc11bd9f5700ee122be3845c65ccfaa03fed0e0 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Wed, 22 Dec 2021 09:26:45 -0800
+Subject: [PATCH] Skip Ivy logic and tasks
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ common-build.xml         | 14 +++++---------
+ test-framework/build.xml |  2 +-
+ 2 files changed, 6 insertions(+), 10 deletions(-)
+
+diff --git a/common-build.xml b/common-build.xml
+index 3fb70d7..5ac312f 100644
+--- a/common-build.xml
++++ b/common-build.xml
+@@ -272,7 +272,7 @@
+     <delete file="velocity.log"/>
+   </target>
+ 
+-  <target name="init" depends="resolve">
++  <target name="init">
+     <!-- currently empty -->
+   </target>
+ 
+@@ -410,7 +410,7 @@
+     </fail>
+   </target>
+ 
+-  <target name="compile-core" depends="init, clover"
++  <target name="compile-core" depends="init"
+           description="Compiles core classes">
+     <compile
+       srcdir="${src.dir}"
+@@ -815,7 +815,6 @@
+         >
+             <!-- Classpaths. -->
+             <classpath refid="@{junit.classpath}"/>
+-            <classpath refid="clover.classpath" />
+ 
+             <!-- Assertions. -->
+             <assertions>
+@@ -1125,19 +1124,16 @@ ${tests-output}/junit4-*.suites     - per-JVM executed suites
+       </echo>
+   </target>
+ 
+-  <target name="install-junit4-taskdef" depends="ivy-configure">
++  <target name="install-junit4-taskdef">
+     <!-- JUnit4 taskdef. -->
+-    <ivy:resolve   file="${common.dir}/test-framework/ivy.xml" type="jar" log="quiet" />
+-    <ivy:cachepath file="${common.dir}/test-framework/ivy.xml" conf="junit4-stdalone" type="jar" transitive="false" pathid="path.junit4" />
+-
+     <taskdef uri="antlib:com.carrotsearch.junit4">
+-      <classpath refid="path.junit4" />
++      <classpath refid="classpath" />
+     </taskdef>
+   </target>
+ 
+   <!-- note: order here is important, the taskdef depends on test-framework
+        jars so we just order it after compile-test to ensure that -->
+-  <target name="test" depends="compile-test,install-junit4-taskdef,clover,validate" description="Runs unit tests">
++  <target name="test" depends="compile-test,install-junit4-taskdef,validate" description="Runs unit tests">
+     <mkdir dir="${junit.output.dir}"/>
+     <test-macro threadNum="${tests.jvms}" />
+   </target>
+diff --git a/test-framework/build.xml b/test-framework/build.xml
+index e240a86..dcf3367 100644
+--- a/test-framework/build.xml
++++ b/test-framework/build.xml
+@@ -36,7 +36,7 @@
+       and *not* to depend on clover; clover already includes the
+       test-framework sources in each module's test instrumentation.
+    -->
+-  <target name="compile-core" depends="init,compile-lucene-core,compile-codecs"
++  <target name="compile-core" depends="compile-lucene-core,compile-codecs"
+           description="Compiles test-framework classes">
+     <compile srcdir="${src.dir}" destdir="${build.dir}/classes/java">
+       <classpath refid="classpath"/>
+-- 
+2.32.0
+
