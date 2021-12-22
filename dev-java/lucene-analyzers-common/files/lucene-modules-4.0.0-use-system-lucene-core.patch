@@ -1,0 +1,61 @@
+From 9335d9c779ccd5e96af75d4e2ebe4396355b61cb Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Wed, 22 Dec 2021 13:02:10 -0800
+Subject: [PATCH] Do not compile lucene-core for modules and the test framework
+
+The copy of lucene-core installed on the system will be added to the
+classpath during build time.
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ module-build.xml         | 4 ++--
+ test-framework/build.xml | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/module-build.xml b/module-build.xml
+index fd16a92..d8f1b6e 100644
+--- a/module-build.xml
++++ b/module-build.xml
+@@ -55,7 +55,7 @@
+     <pathelement path="${java.class.path}"/>
+   </path>
+ 
+-  <target name="init" depends="common.init,compile-lucene-core"/>
++  <target name="init"/>
+   <target name="compile-test" depends="init" if="module.has.tests">
+     <antcall target="common.compile-test" inheritRefs="true" />
+   </target>
+@@ -65,7 +65,7 @@
+   <target name="build-artifacts-and-tests" depends="jar, compile-test" />
+ 	
+   <!-- TODO: why does this previous depend on compile-core? -->
+-  <target name="javadocs" depends="compile-core,javadocs-lucene-core">
++  <target name="javadocs">
+     <invoke-module-javadoc/>
+   </target>	
+ 
+diff --git a/test-framework/build.xml b/test-framework/build.xml
+index e240a86..b7c9a6e 100644
+--- a/test-framework/build.xml
++++ b/test-framework/build.xml
+@@ -36,7 +36,7 @@
+       and *not* to depend on clover; clover already includes the
+       test-framework sources in each module's test instrumentation.
+    -->
+-  <target name="compile-core" depends="compile-lucene-core,compile-codecs"
++  <target name="compile-core" depends="compile-codecs"
+           description="Compiles test-framework classes">
+     <compile srcdir="${src.dir}" destdir="${build.dir}/classes/java">
+       <classpath refid="classpath"/>
+@@ -47,7 +47,7 @@
+   </target>
+ 
+   <target name="javadocs-core" depends="javadocs"/>
+-  <target name="javadocs" depends="init,javadocs-lucene-core,javadocs-lucene-codecs">
++  <target name="javadocs" depends="init,javadocs-lucene-codecs">
+     <sequential>
+       <mkdir dir="${javadoc.dir}/test-framework"/>
+       <invoke-javadoc overview="${src.dir}/overview.html"
+-- 
+2.32.0
+
