@@ -31,6 +31,13 @@
 
 #--- END OF EXAMPLES ---
 
+# Yuan Liao <liaoyuan@gmail.com> (2021-12-22)
+# dev-java/constantine upstream is gone, and its only reverse dependency is
+# dev-java/jruby-jnr-posix, which is not used by any other package. Removal in
+# 30 days.
+dev-java/constantine
+dev-java/jruby-jnr-posix
+
 # Yuan Liao <liaoyuan@gmail.com> (2021-07-21)
 # The only package in either ::gentoo or ::spark-overlay that provides this
 # virtual is dev-java/antlr:4, which depends on dev-java/antlr:3.5, which
