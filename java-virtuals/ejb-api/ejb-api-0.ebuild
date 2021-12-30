@@ -10,7 +10,7 @@ HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 
 LICENSE="public-domain"
 SLOT="0"
-KEYWORDS="amd64"
+KEYWORDS="~amd64"
 
 DEPEND=""
 RDEPEND="dev-java/glassfish-ejb-api:0"
