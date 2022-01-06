@@ -1,13 +1,10 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-# Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /var/lib/java-ebuilder/poms/jdeb-1.1.1.pom --download-uri https://repo1.maven.org/maven2/org/vafer/jdeb/1.1.1/jdeb-1.1.1-sources.jar --slot 0 --keywords "~amd64" --ebuild jdeb-1.1.1-r1.ebuild
-
-EAPI=7
+EAPI=8
 
 JAVA_PKG_IUSE="doc source test binary"
-MAVEN_ID="org.vafer:jdeb:1.1.1"
+MAVEN_ID="org.vafer:${PN}:${PV}"
 JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
@@ -35,16 +32,16 @@ IUSE="+binary"
 # org.apache.maven:maven-core:2.2.1 -> >=dev-java/maven-bin-3.8.1:3.8
 # org.apache.maven:maven-plugin-api:2.2.1 -> >=dev-java/maven-plugin-api-2.2.1:0
 # org.apache.maven:maven-project:2.2.1 -> >=dev-java/maven-project-2.2.1:0
-# org.bouncycastle:bcpg-jdk15on:1.50 -> >=dev-java/bcpg-1.50:1.50
+# org.bouncycastle:bcpg-jdk15on:1.50 -> >=dev-java/bcpg-1.50:0
 # org.codehaus.plexus:plexus-utils:1.5.15 -> >=dev-java/plexus-utils-1.5.15:0
 
-CDEPEND="
+CP_DEPEND="
 	>=dev-java/maven-artifact-2.2.1:0
 	>=dev-java/maven-plugin-api-2.2.1:0
 	>=dev-java/maven-project-2.2.1:0
 	>=dev-java/plexus-utils-1.5.15:0
 	>=dev-java/ant-core-1.10.7:0
-	>=dev-java/bcpg-1.50:1.50
+	>=dev-java/bcpg-1.50:0
 	>=dev-java/commons-compress-1.10:0
 	>=dev-java/commons-io-2.4:1
 	>=dev-java/maven-bin-3.8.1:3.8
@@ -61,19 +58,18 @@ BDEPEND="
 DEPEND="
 	>=virtual/jdk-1.8:*
 	!binary? (
-		${CDEPEND}
+		${CP_DEPEND}
 		>=dev-java/maven-plugin-annotations-3.2:0
 	)
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-	${CDEPEND}
+	${CP_DEPEND}
 "
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="commons-io-1,ant-core,commons-compress,maven-artifact,maven-bin-3.8,maven-plugin-api,maven-project,bcpg-1.50,plexus-utils"
 JAVA_CLASSPATH_EXTRA="maven-plugin-annotations"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
