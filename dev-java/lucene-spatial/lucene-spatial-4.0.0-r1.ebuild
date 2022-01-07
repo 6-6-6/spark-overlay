@@ -43,6 +43,7 @@ RDEPEND="
 # Do not descend into 'spatial' because build artifacts will be placed
 # in the top-level directory
 S="${WORKDIR}/lucene-${PV}"
+EANT_BUILD_XML="spatial/build.xml"
 
 JAVA_ANT_REWRITE_CLASSPATH="true"
 JAVA_PKG_BSFIX_NAME="common-build.xml"
@@ -64,13 +65,7 @@ src_prepare() {
 	fi
 }
 
-src_compile() {
-	cd spatial || die "Failed to enter directory for additional analyzers"
-	java-pkg-2_src_compile
-}
-
 src_test() {
-	cd spatial || die "Failed to enter directory for additional analyzers"
 	java-pkg-2_src_test
 }
 
