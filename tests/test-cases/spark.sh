@@ -5,6 +5,10 @@
 EMERGE_OPTS="${DEFAULT_EMERGE_OPTS} --quiet-build"
 
 run_test() {
+    # If keywords are accepted, update libffi and rebuild reverse dependencies
+    emerge -1 ">=dev-libs/libffi-3.4" || true
+    emerge @preserved-rebuild
+
     # Dependency bootstrap stage 1
     mkdir -p /etc/portage/package.use
     echo "dev-java/kotlin-stdlib binary" \
