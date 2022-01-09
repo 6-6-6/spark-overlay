@@ -2,13 +2,17 @@ name: "Run a test case"
 description: "Run a test case in a Docker image via ebuild-commander"
 
 inputs:
-  path:
-    description: "Path to the test case definition file"
+  test-case:
+    description: "Name of the test case"
     required: true
 
 runs:
   using: "composite"
   steps:
+    - name: "Set up Python"
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
     - name: "Download ebuild-commander"
       run: git clone https://github.com/Leo3418/ebuild-commander.git
       shell: bash
@@ -27,5 +31,17 @@ runs:
       run: wget -qO - "https://github.com/gentoo-mirror/gentoo/archive/master.tar.gz" | sudo tar xz -C /var/db/repos/gentoo --strip-components=1
       shell: bash
     - name: "Run the test case"
-      run: tests/run.sh ${{ inputs.path }}
+      run: tests/run.sh tests/test-cases/${{ inputs.test-case }}.sh
       shell: bash
+    - name: "Export ebuild logs if test case failed"
+      if: ${{ failure() }}
+      run: |
+        (docker exec $(docker ps -lq) tar -cJvf - /var/log/emerge || true) \
+        > emerge.tar.xz; [[ -s emerge.tar.xz ]] || rm emerge.tar.xz
+      shell: bash
+    - name: "Upload ebuild logs as an artifact if test case failed"
+      uses: actions/upload-artifact@v2
+      if: ${{ failure() }}
+      with:
+        name: ${{ inputs.test-case }}${{ env.UNSTABLE }}-ebuild-logs
+        path: emerge.tar.xz
