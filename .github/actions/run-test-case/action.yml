@@ -17,7 +17,7 @@ runs:
       shell: bash
       working-directory: ebuild-commander
     - name: "Install ebuild-commander"
-      run: ./setup.py install --user
+      run: pip install --user .
       shell: bash
       working-directory: ebuild-commander
     - name: "Create directories for ::gentoo and Portage"
