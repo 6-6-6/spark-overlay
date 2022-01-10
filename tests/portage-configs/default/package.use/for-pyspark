@@ -1,10 +1,3 @@
-# Requires dev-libs/openssl[bindist=]
-# Required by net-libs/grpc (dev-libs/openssl[-bindist])
-# Required by dev-libs/apache-arrow
-# Required by dev-python/pyarrow
-# Required by dev-python/pyspark
-net-misc/openssh -bindist
-
 # required by dev-python/scipy-1.6.3::gentoo[-test]
 # required by dev-python/bottleneck-1.3.2::gentoo[-test]
 # required by dev-python/pandas-1.2.4::gentoo[-minimal]
