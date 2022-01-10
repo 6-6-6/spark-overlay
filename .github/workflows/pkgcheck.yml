@@ -1,4 +1,4 @@
-name: Scan ebuilds with pkgcheck
+name: "Scan ebuilds with pkgcheck"
 
 on:
   push:
@@ -12,6 +12,6 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Run pkgcheck
-      uses: pkgcore/pkgcheck-action@v1
+      - uses: actions/checkout@v2
+      - name: "Run pkgcheck"
+        uses: pkgcore/pkgcheck-action@v1

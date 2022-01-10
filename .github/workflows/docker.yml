@@ -17,7 +17,7 @@ jobs:
         test-case:
           - spark
           - h2o
-        unstable: ["", "~amd64"]
+        unstable: ['', '~amd64']
         # The Kotlin ebuilds do not depend on too many ebuilds in ::gentoo,
         # accepting the unstable keyword globally is trivial
         include:
@@ -40,18 +40,18 @@ jobs:
         test-case:
           - leaf-ebuilds
           - leaf-ebuilds-binary
-        unstable: ["", "~amd64"]
+        unstable: ['', '~amd64']
         may-fail: [false]
         include:
           - test-case: leaf-ebuilds-test
             may-fail: true
           - test-case: leaf-ebuilds-test
-            unstable: "~amd64"
+            unstable: '~amd64'
             may-fail: true
           - test-case: leaf-ebuilds-binary-test
             may-fail: true
           - test-case: leaf-ebuilds-binary-test
-            unstable: "~amd64"
+            unstable: '~amd64'
             may-fail: true
     steps:
       - uses: actions/checkout@v2

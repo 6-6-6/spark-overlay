@@ -1,4 +1,4 @@
-name: Scan ebuilds with repoman
+name: "Scan ebuilds with repoman"
 
 on:
   push:
@@ -13,12 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up master ::gentoo
-        run: |
-          ./.github/workflow-scripts/setup-master-gentoo.sh
-      - name: Set up repoman
-        run: |
-          ./.github/workflow-scripts/setup-portage.sh repoman
-      - name: Run repoman
-        run: |
-          repoman -dx full
+      - name: "Set up master ::gentoo"
+        run: .github/workflow-scripts/setup-master-gentoo.sh
+      - name: "Set up repoman"
+        run: .github/workflow-scripts/setup-portage.sh repoman
+      - name: "Run repoman"
+        run: repoman -dx full

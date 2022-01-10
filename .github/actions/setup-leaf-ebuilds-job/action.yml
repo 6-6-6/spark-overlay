@@ -2,12 +2,12 @@ name: "Set up a job for leaf ebuild installation test"
 description: "Prepare the CI environment to run a leaf ebuild test case"
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: "Set up Portage"
       run: |
-        ./.github/workflow-scripts/setup-portage.sh
-        ./.github/workflow-scripts/setup-master-gentoo.sh
+        .github/workflow-scripts/setup-portage.sh
+        .github/workflow-scripts/setup-master-gentoo.sh
       shell: bash
     - name: "Generate metadata cache"
       run: |
