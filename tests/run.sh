@@ -38,8 +38,17 @@ main() {
             args+=( --custom-repo "${repo}" )
         done
 
+        local script_content="$(type run_test | \
+            sed '1,3d;$d' | sed 's/^[[:space:]]*//')"
+        echo "Starting ebuild-commander with:"
+        printf "'%s' " "${args[@]}"
+        echo -e "\n"
+        echo "Test script:"
+        echo "${script_content}"
+        echo
+
         # Pipe the run_test function's body into ebuild-commander
-        type run_test | sed '1,3d;$d' | "${args[@]}"
+        "${args[@]}" <<< "${script_content}"
     done
 }
 
