@@ -19,7 +19,6 @@ RESTRICT="test"
 
 RDEPEND="
 	${PYTHON_DEPS}
-	dev-python/colorama[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	dev-python/requests[${PYTHON_USEDEP}]
 	dev-python/tabulate[${PYTHON_USEDEP}]
