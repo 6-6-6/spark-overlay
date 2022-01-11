@@ -1,4 +1,4 @@
-# Copyright 2021 Gentoo Authors
+# Copyright 2021-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -19,10 +19,10 @@ RESTRICT="test"
 
 RDEPEND="
 	${PYTHON_DEPS}
-	dev-python/colorama
-	dev-python/future
-	dev-python/requests
-	dev-python/tabulate
+	dev-python/colorama[${PYTHON_USEDEP}]
+	dev-python/future[${PYTHON_USEDEP}]
+	dev-python/requests[${PYTHON_USEDEP}]
+	dev-python/tabulate[${PYTHON_USEDEP}]
 "
 
 DEPEND="
