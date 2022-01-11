@@ -49,4 +49,21 @@ JAVA_RESOURCE_DIRS="src/main/resources"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
+# Needs org.mockito:mockito-core:2.18.3; dev-java/mockito-1.9.5 is incompatible
 JAVA_TEST_SRC_DIR="skip-junit-tests-due-to-unpackaged-test-deps"
+
+src_prepare() {
+	java-pkg-2_src_prepare
+	cat > "${JAVA_SRC_DIR}/water/genmodel/BuildVersion.java" <<- _EOF_ || \
+		die "Failed to create the class for build version"
+	package water.genmodel;
+	public class BuildVersion extends AbstractBuildVersion {
+		public String branchName()     { return "jenkins-${PV}"; }
+		public String lastCommitHash() { return "(not available)"; }
+		public String describe()       { return "${PVR}-gentoo"; }
+		public String projectVersion() { return "${PV}"; }
+		public String compiledOn()     { return "$(date '+%F %T')"; }
+		public String compiledBy()     { return "$(id -un)"; }
+	}
+	_EOF_
+}
