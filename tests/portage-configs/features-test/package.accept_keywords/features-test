@@ -1,0 +1,3 @@
+# Accept keywords for test dependency packages in ::gentoo
+dev-java/plexus-classworlds::gentoo
+dev-java/randomized-runner::gentoo
