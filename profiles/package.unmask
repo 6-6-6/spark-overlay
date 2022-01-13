@@ -47,6 +47,11 @@
 
 #--- END OF EXAMPLES ---
 
+# Yuan Liao <liaoyuan@gmail.com> (2022-01-13)
+# Last-rited packages which have been added to this overlay, using Java 1.8 and
+# EAPI 8.
+>dev-java/cdi-api-1.2-r1
+
 # Yuan Liao <liaoyuan@gmail.com> (2021-12-30)
 # Last-rited packages which are either already present in this overlay or added
 # to it.
