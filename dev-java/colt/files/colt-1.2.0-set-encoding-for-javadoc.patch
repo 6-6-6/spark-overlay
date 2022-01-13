@@ -1,0 +1,10 @@
+--- build.xml	2022-01-13 11:57:52.253405945 -0800
++++ build.xml	2022-01-13 11:58:02.016860951 -0800
+@@ -182,6 +182,7 @@
+ 	<mkdir dir="${javadoc.dest}" />
+ 	
+ 	<javadoc sourcepath="${javac.src}" destdir="${javadoc.dest}"
++		encoding="ISO-8859-1"
+ 		public="true"
+ 		author="false"
+ 		use="true"
