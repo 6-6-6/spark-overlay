@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -24,8 +24,10 @@ KEYWORDS="~amd64"
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # jdiff:jdiff:1.0.9 -> >=dev-java/jdiff-1.0.9:0
 
+# Depends on com.sun.tools.doclets.standard.Standard.validOptions(),
+# which is no longer available on Java 11
 DEPEND="
-	>=virtual/jdk-1.8:*
+	virtual/jdk:1.8
 	app-arch/unzip
 	!binary? (
 		>=dev-java/jdiff-1.0.9:0
@@ -33,7 +35,7 @@ DEPEND="
 "
 
 RDEPEND="
-	>=virtual/jre-1.8:*
+	virtual/jre:1.8
 "
 
 S="${WORKDIR}"
