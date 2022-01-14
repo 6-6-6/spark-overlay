@@ -1,0 +1,30 @@
+From ae8b7bce332b8f9c93d4a647e6988e1e9b26552c Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Fri, 14 Jan 2022 10:33:14 -0800
+Subject: [PATCH] YechtService.java: Explicitly declare package of class Module
+
+Since Java 9, a new Module class has been added to java.lang, which
+causes ambiguity as in which class to use when there is another class
+called Module in any imported package.
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ src/main/java/YechtService.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/main/java/YechtService.java b/src/main/java/YechtService.java
+index d1119ea..336ca44 100644
+--- a/src/main/java/YechtService.java
++++ b/src/main/java/YechtService.java
+@@ -18,7 +18,7 @@ public class YechtService implements BasicLibraryService {
+         RubyModule rb_yaml = runtime.getOrCreateModule("YAML");
+         RubyModule rb_yecht = rb_yaml.defineModuleUnder("Yecht");
+         rb_yecht.defineConstant("VERSION", runtime.newString(YAML.YECHT_VERSION));
+-        rb_yecht.defineAnnotatedMethods(Module.class);
++        rb_yecht.defineAnnotatedMethods(org.yecht.ruby.Module.class);
+ 
+         RubyClass cResolver = rb_yecht.defineClassUnder("Resolver", runtime.getObject(), runtime.getObject().getAllocator());
+         cResolver.defineAnnotatedMethods(Resolver.class);
+-- 
+2.34.1
+
