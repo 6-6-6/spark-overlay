@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -68,7 +68,7 @@ CDEPEND="
 # org.osgi:org.osgi.core:4.3.1 -> >=dev-java/osgi-core-api-5.0.0:0
 
 DEPEND="
-	>=virtual/jdk-1.8:*
+	virtual/jdk:1.8
 	app-arch/unzip
 	!binary? (
 		${CDEPEND}
@@ -78,7 +78,7 @@ DEPEND="
 "
 
 RDEPEND="
-	>=virtual/jre-1.8:*
+	virtual/jre:1.8
 	${CDEPEND}"
 
 S="${WORKDIR}"
