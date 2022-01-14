@@ -1,0 +1,28 @@
+From bd0e29899ba4cc78012810d726e7f645fee07066 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Fri, 14 Jan 2022 09:34:49 -0800
+Subject: [PATCH] Use xml-commons-resolver to substitute JDK internal classes
+
+This change is mandatory for building this package using JDK 11.
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ src/main/java/com/sun/msv/driver/textui/Driver.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/main/java/com/sun/msv/driver/textui/Driver.java b/src/main/java/com/sun/msv/driver/textui/Driver.java
+index f659b5f..63a5794 100644
+--- a/src/main/java/com/sun/msv/driver/textui/Driver.java
++++ b/src/main/java/com/sun/msv/driver/textui/Driver.java
+@@ -39,7 +39,7 @@ import java.util.Locale;
+ 
+ import javax.xml.parsers.SAXParserFactory;
+ 
+-import com.sun.org.apache.xml.internal.resolver.tools.CatalogResolver;
++import org.apache.xml.resolver.tools.CatalogResolver;
+ import org.iso_relax.dispatcher.Dispatcher;
+ import org.iso_relax.dispatcher.SchemaProvider;
+ import org.iso_relax.dispatcher.impl.DispatcherImpl;
+-- 
+2.34.1
+
