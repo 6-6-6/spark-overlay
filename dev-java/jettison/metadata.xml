@@ -12,6 +12,6 @@
 		like XStream.
 	</longdescription>
 	<upstream>
-		<remote-id type="github">codehaus/jettison</remote-id>
+		<remote-id type="github">jettison-json/jettison</remote-id>
 	</upstream>
 </pkgmetadata>
