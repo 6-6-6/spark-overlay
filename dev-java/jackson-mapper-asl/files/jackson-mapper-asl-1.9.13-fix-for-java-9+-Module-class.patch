@@ -1,0 +1,30 @@
+From c761ef5cef5e1413906fdb63ff4368d6588d7d64 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Fri, 14 Jan 2022 12:55:05 -0800
+Subject: [PATCH] SimpleModule.java: Explicitly declare package of class Module
+
+Since Java 9, a new Module class has been added to java.lang, which
+causes ambiguity as in which class to use when there is another class
+called Module in any imported package.
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ src/main/java/org/codehaus/jackson/map/module/SimpleModule.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/main/java/org/codehaus/jackson/map/module/SimpleModule.java b/src/main/java/org/codehaus/jackson/map/module/SimpleModule.java
+index c36d0a8..125acee 100644
+--- a/src/main/java/org/codehaus/jackson/map/module/SimpleModule.java
++++ b/src/main/java/org/codehaus/jackson/map/module/SimpleModule.java
+@@ -14,7 +14,7 @@ import org.codehaus.jackson.map.deser.ValueInstantiator;
+  * 
+  * @since 1.7
+  */
+-public class SimpleModule extends Module
++public class SimpleModule extends org.codehaus.jackson.map.Module
+ {
+     protected final String _name;
+     protected final Version _version;
+-- 
+2.34.1
+
