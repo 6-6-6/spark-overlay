@@ -1,0 +1,14 @@
+This package cannot be compatible with both Java 8 and Java >=9 at the
+same time because the vanilla upstream source of this package does not
+support Java >=9, and upstream's patch that adds Java 9 support is not
+backward >compatible with Java 8.
+
+As a result, if Java 8 was used to build this package, then using its
+JAR with Java >=9 may lead to runtime errors, and vice versa.
+Therefore, it is important to ensure that the JDK used to build this
+package and the JRE used to run any application that depends on this
+package are either both for Java 8 or both for Java >=9.
+
+If the JRE version changes either from or to Java 8, then this package
+needs to be rebuilt for the new Java version to prevent any runtime
+errors.

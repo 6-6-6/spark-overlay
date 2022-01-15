@@ -1,0 +1,329 @@
+From 132f8b1fd9b2ede4e52e5a0e90b0d4be2a8a3ac9 Mon Sep 17 00:00:00 2001
+From: "piotrw@icm.edu.pl" <>
+Date: Thu, 7 Dec 2017 09:59:42 +0100
+Subject: [PATCH] Necessary changes for Java 9.
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ pom.xml                                                  | 4 ++--
+ .../java/pl/edu/icm/jlargearrays/ByteLargeArray.java     | 3 +--
+ .../pl/edu/icm/jlargearrays/ComplexFloatLargeArray.java  | 1 -
+ .../java/pl/edu/icm/jlargearrays/DoubleLargeArray.java   | 3 +--
+ .../java/pl/edu/icm/jlargearrays/FloatLargeArray.java    | 3 +--
+ src/main/java/pl/edu/icm/jlargearrays/IntLargeArray.java | 3 +--
+ .../java/pl/edu/icm/jlargearrays/LargeArrayUtils.java    | 3 +++
+ .../java/pl/edu/icm/jlargearrays/LogicLargeArray.java    | 5 ++---
+ .../java/pl/edu/icm/jlargearrays/LongLargeArray.java     | 3 +--
+ .../java/pl/edu/icm/jlargearrays/ObjectLargeArray.java   | 9 ++++-----
+ .../java/pl/edu/icm/jlargearrays/ShortLargeArray.java    | 3 +--
+ .../java/pl/edu/icm/jlargearrays/StringLargeArray.java   | 3 +--
+ .../pl/edu/icm/jlargearrays/UnsignedByteLargeArray.java  | 3 +--
+ src/main/java/pl/edu/icm/jlargearrays/module-info.java   | 3 +++
+ 14 files changed, 22 insertions(+), 27 deletions(-)
+ create mode 100644 src/main/java/pl/edu/icm/jlargearrays/module-info.java
+
+diff --git a/pom.xml b/pom.xml
+index 2fc2fb6..0e1e708 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -90,8 +90,8 @@
+                 <artifactId>maven-compiler-plugin</artifactId>
+                 <version>2.3.2</version>
+                 <configuration>
+-                    <source>1.7</source>
+-                    <target>1.7</target>
++                    <source>9</source>
++                    <target>9</target>
+                     <compilerArgument>-XDignore.symbol.file</compilerArgument>
+                     <debug>true</debug>
+                 </configuration>
+diff --git a/src/main/java/pl/edu/icm/jlargearrays/ByteLargeArray.java b/src/main/java/pl/edu/icm/jlargearrays/ByteLargeArray.java
+index a80a719..684ce9b 100644
+--- a/src/main/java/pl/edu/icm/jlargearrays/ByteLargeArray.java
++++ b/src/main/java/pl/edu/icm/jlargearrays/ByteLargeArray.java
+@@ -26,7 +26,6 @@
+  * ***** END LICENSE BLOCK ***** */
+ package pl.edu.icm.jlargearrays;
+ 
+-import sun.misc.Cleaner;
+ import org.apache.commons.math3.util.FastMath;
+ 
+ /**
+@@ -70,7 +69,7 @@ public class ByteLargeArray extends LargeArray
+             if (zeroNativeMemory) {
+                 zeroNativeMemory(length);
+             }
+-            Cleaner.create(this, new Deallocator(this.ptr, this.length, this.sizeof));
++            LargeArrayUtils.CLEANER.register(this, new Deallocator(this.ptr, this.length, this.sizeof));
+             MemoryCounter.increaseCounter(this.length * this.sizeof);
+         } else {
+             data = new byte[(int) length];
+diff --git a/src/main/java/pl/edu/icm/jlargearrays/ComplexFloatLargeArray.java b/src/main/java/pl/edu/icm/jlargearrays/ComplexFloatLargeArray.java
+index 996d78f..745eeaf 100644
+--- a/src/main/java/pl/edu/icm/jlargearrays/ComplexFloatLargeArray.java
++++ b/src/main/java/pl/edu/icm/jlargearrays/ComplexFloatLargeArray.java
+@@ -26,7 +26,6 @@
+  * ***** END LICENSE BLOCK ***** */
+ package pl.edu.icm.jlargearrays;
+ 
+-import sun.misc.Cleaner;
+ import org.apache.commons.math3.util.FastMath;
+ 
+ /**
+diff --git a/src/main/java/pl/edu/icm/jlargearrays/DoubleLargeArray.java b/src/main/java/pl/edu/icm/jlargearrays/DoubleLargeArray.java
+index 1368fd0..0b2332d 100644
+--- a/src/main/java/pl/edu/icm/jlargearrays/DoubleLargeArray.java
++++ b/src/main/java/pl/edu/icm/jlargearrays/DoubleLargeArray.java
+@@ -26,7 +26,6 @@
+  * ***** END LICENSE BLOCK ***** */
+ package pl.edu.icm.jlargearrays;
+ 
+-import sun.misc.Cleaner;
+ import org.apache.commons.math3.util.FastMath;
+ 
+ /**
+@@ -70,7 +69,7 @@ public class DoubleLargeArray extends LargeArray
+             if (zeroNativeMemory) {
+                 zeroNativeMemory(length);
+             }
+-            Cleaner.create(this, new Deallocator(this.ptr, this.length, this.sizeof));
++            LargeArrayUtils.CLEANER.register(this, new Deallocator(this.ptr, this.length, this.sizeof));
+             MemoryCounter.increaseCounter(this.length * this.sizeof);
+         } else {
+             data = new double[(int) length];
+diff --git a/src/main/java/pl/edu/icm/jlargearrays/FloatLargeArray.java b/src/main/java/pl/edu/icm/jlargearrays/FloatLargeArray.java
+index 1279396..2f9ff27 100644
+--- a/src/main/java/pl/edu/icm/jlargearrays/FloatLargeArray.java
++++ b/src/main/java/pl/edu/icm/jlargearrays/FloatLargeArray.java
+@@ -26,7 +26,6 @@
+  * ***** END LICENSE BLOCK ***** */
+ package pl.edu.icm.jlargearrays;
+ 
+-import sun.misc.Cleaner;
+ import org.apache.commons.math3.util.FastMath;
+ 
+ /**
+@@ -70,7 +69,7 @@ public class FloatLargeArray extends LargeArray
+             if (zeroNativeMemory) {
+                 zeroNativeMemory(length);
+             }
+-            Cleaner.create(this, new Deallocator(this.ptr, this.length, this.sizeof));
++            LargeArrayUtils.CLEANER.register(this, new Deallocator(this.ptr, this.length, this.sizeof));
+             MemoryCounter.increaseCounter(this.length * this.sizeof);
+         } else {
+             data = new float[(int) length];
+diff --git a/src/main/java/pl/edu/icm/jlargearrays/IntLargeArray.java b/src/main/java/pl/edu/icm/jlargearrays/IntLargeArray.java
+index 0130821..9f78021 100644
+--- a/src/main/java/pl/edu/icm/jlargearrays/IntLargeArray.java
++++ b/src/main/java/pl/edu/icm/jlargearrays/IntLargeArray.java
+@@ -26,7 +26,6 @@
+  * ***** END LICENSE BLOCK ***** */
+ package pl.edu.icm.jlargearrays;
+ 
+-import sun.misc.Cleaner;
+ import org.apache.commons.math3.util.FastMath;
+ 
+ /**
+@@ -70,7 +69,7 @@ public class IntLargeArray extends LargeArray
+             if (zeroNativeMemory) {
+                 zeroNativeMemory(length);
+             }
+-            Cleaner.create(this, new Deallocator(this.ptr, this.length, this.sizeof));
++            LargeArrayUtils.CLEANER.register(this, new Deallocator(this.ptr, this.length, this.sizeof));
+             MemoryCounter.increaseCounter(this.length * this.sizeof);
+         } else {
+             data = new int[(int) length];
+diff --git a/src/main/java/pl/edu/icm/jlargearrays/LargeArrayUtils.java b/src/main/java/pl/edu/icm/jlargearrays/LargeArrayUtils.java
+index 4f5716d..15938e1 100644
+--- a/src/main/java/pl/edu/icm/jlargearrays/LargeArrayUtils.java
++++ b/src/main/java/pl/edu/icm/jlargearrays/LargeArrayUtils.java
+@@ -34,6 +34,7 @@ import java.util.concurrent.ExecutorService;
+ import java.util.concurrent.Executors;
+ import java.util.concurrent.Future;
+ import org.apache.commons.math3.util.FastMath;
++import java.lang.ref.Cleaner;
+ 
+ /**
+  *
+@@ -73,6 +74,8 @@ public class LargeArrayUtils
+             throw new Error("Could not obtain access to sun.misc.Unsafe", exception);
+         }
+     }
++    
++    public static final Cleaner CLEANER = Cleaner.create();
+ 
+     private LargeArrayUtils()
+     {
+diff --git a/src/main/java/pl/edu/icm/jlargearrays/LogicLargeArray.java b/src/main/java/pl/edu/icm/jlargearrays/LogicLargeArray.java
+index e1c55ef..5af6d47 100644
+--- a/src/main/java/pl/edu/icm/jlargearrays/LogicLargeArray.java
++++ b/src/main/java/pl/edu/icm/jlargearrays/LogicLargeArray.java
+@@ -28,7 +28,6 @@ package pl.edu.icm.jlargearrays;
+ 
+ import java.util.concurrent.ExecutionException;
+ import java.util.concurrent.Future;
+-import sun.misc.Cleaner;
+ import org.apache.commons.math3.util.FastMath;
+ 
+ /**
+@@ -72,7 +71,7 @@ public class LogicLargeArray extends LargeArray
+             if (zeroNativeMemory) {
+                 zeroNativeMemory(length);
+             }
+-            Cleaner.create(this, new LargeArray.Deallocator(this.ptr, this.length, this.sizeof));
++            LargeArrayUtils.CLEANER.register(this, new LargeArray.Deallocator(this.ptr, this.length, this.sizeof));
+             MemoryCounter.increaseCounter(this.length * this.sizeof);
+         } else {
+             data = new byte[(int) length];
+@@ -907,7 +906,7 @@ public class LogicLargeArray extends LargeArray
+         if (array == null || array.length() != length) {
+             throw new IllegalArgumentException("array == null || array.length() != length");
+         }
+-        
++
+          final LogicLargeArray out = new LogicLargeArray(array.length(), false);
+         final int nthreads = (int) FastMath.min(length, ConcurrencyUtils.getNumberOfThreads());
+         if (nthreads <= 2 || length < ConcurrencyUtils.getConcurrentThreshold()) {
+diff --git a/src/main/java/pl/edu/icm/jlargearrays/LongLargeArray.java b/src/main/java/pl/edu/icm/jlargearrays/LongLargeArray.java
+index 130b693..35be9d1 100644
+--- a/src/main/java/pl/edu/icm/jlargearrays/LongLargeArray.java
++++ b/src/main/java/pl/edu/icm/jlargearrays/LongLargeArray.java
+@@ -26,7 +26,6 @@
+  * ***** END LICENSE BLOCK ***** */
+ package pl.edu.icm.jlargearrays;
+ 
+-import sun.misc.Cleaner;
+ import org.apache.commons.math3.util.FastMath;
+ 
+ /**
+@@ -71,7 +70,7 @@ public class LongLargeArray extends LargeArray
+             if (zeroNativeMemory) {
+                 zeroNativeMemory(length);
+             }
+-            Cleaner.create(this, new Deallocator(this.ptr, this.length, this.sizeof));
++            LargeArrayUtils.CLEANER.register(this, new Deallocator(this.ptr, this.length, this.sizeof));
+             MemoryCounter.increaseCounter(this.length * this.sizeof);
+         } else {
+             data = new long[(int) length];
+diff --git a/src/main/java/pl/edu/icm/jlargearrays/ObjectLargeArray.java b/src/main/java/pl/edu/icm/jlargearrays/ObjectLargeArray.java
+index 05d30c9..7e97b2b 100644
+--- a/src/main/java/pl/edu/icm/jlargearrays/ObjectLargeArray.java
++++ b/src/main/java/pl/edu/icm/jlargearrays/ObjectLargeArray.java
+@@ -26,13 +26,12 @@
+  * ***** END LICENSE BLOCK ***** */
+ package pl.edu.icm.jlargearrays;
+ 
+-import com.sun.xml.internal.ws.encoding.soap.SerializationException;
+ import java.io.ByteArrayInputStream;
+ import java.io.ByteArrayOutputStream;
++import java.io.IOError;
+ import java.io.IOException;
+ import java.io.ObjectInputStream;
+ import java.io.ObjectOutputStream;
+-import sun.misc.Cleaner;
+ import org.apache.commons.math3.util.FastMath;
+ 
+ /**
+@@ -99,7 +98,7 @@ public class ObjectLargeArray extends LargeArray
+             if (zeroNativeMemory) {
+                 zeroNativeMemory(this.size);
+             }
+-            Cleaner.create(this, new Deallocator(this.ptr, this.size, this.sizeof));
++            LargeArrayUtils.CLEANER.register(this, new Deallocator(this.ptr, this.size, this.sizeof));
+             MemoryCounter.increaseCounter(this.size * this.sizeof);
+             objectLengths = new ShortLargeArray(length);
+             byteArray = new byte[maxObjectLength];
+@@ -472,7 +471,7 @@ public class ObjectLargeArray extends LargeArray
+             oos.writeObject(obj);
+ 
+         } catch (Exception ex) {
+-            throw new SerializationException(ex);
++            throw new IOError(ex);
+         } finally {
+             try {
+                 if (oos != null) {
+@@ -495,7 +494,7 @@ public class ObjectLargeArray extends LargeArray
+             return obj;
+ 
+         } catch (Exception ex) {
+-            throw new SerializationException(ex);
++            throw new IOError(ex);
+         } finally {
+             try {
+                 if (ois != null) {
+diff --git a/src/main/java/pl/edu/icm/jlargearrays/ShortLargeArray.java b/src/main/java/pl/edu/icm/jlargearrays/ShortLargeArray.java
+index 2109212..c67ccdd 100644
+--- a/src/main/java/pl/edu/icm/jlargearrays/ShortLargeArray.java
++++ b/src/main/java/pl/edu/icm/jlargearrays/ShortLargeArray.java
+@@ -26,7 +26,6 @@
+  * ***** END LICENSE BLOCK ***** */
+ package pl.edu.icm.jlargearrays;
+ 
+-import sun.misc.Cleaner;
+ import org.apache.commons.math3.util.FastMath;
+ 
+ /**
+@@ -70,7 +69,7 @@ public class ShortLargeArray extends LargeArray
+             if (zeroNativeMemory) {
+                 zeroNativeMemory(length);
+             }
+-            Cleaner.create(this, new Deallocator(this.ptr, this.length, this.sizeof));
++            LargeArrayUtils.CLEANER.register(this, new Deallocator(this.ptr, this.length, this.sizeof));
+             MemoryCounter.increaseCounter(this.length * this.sizeof);
+         } else {
+             data = new short[(int) length];
+diff --git a/src/main/java/pl/edu/icm/jlargearrays/StringLargeArray.java b/src/main/java/pl/edu/icm/jlargearrays/StringLargeArray.java
+index 9df9b6c..9c68a97 100644
+--- a/src/main/java/pl/edu/icm/jlargearrays/StringLargeArray.java
++++ b/src/main/java/pl/edu/icm/jlargearrays/StringLargeArray.java
+@@ -27,7 +27,6 @@
+ package pl.edu.icm.jlargearrays;
+ 
+ import java.io.UnsupportedEncodingException;
+-import sun.misc.Cleaner;
+ import org.apache.commons.math3.util.FastMath;
+ 
+ /**
+@@ -94,7 +93,7 @@ public class StringLargeArray extends LargeArray
+             if (zeroNativeMemory) {
+                 zeroNativeMemory(this.size);
+             }
+-            Cleaner.create(this, new Deallocator(this.ptr, this.size, this.sizeof));
++            LargeArrayUtils.CLEANER.register(this, new Deallocator(this.ptr, this.size, this.sizeof));
+             MemoryCounter.increaseCounter(this.size * this.sizeof);
+             stringLengths = new ShortLargeArray(length);
+             byteArray = new byte[maxStringLength * CHARSET_SIZE];
+diff --git a/src/main/java/pl/edu/icm/jlargearrays/UnsignedByteLargeArray.java b/src/main/java/pl/edu/icm/jlargearrays/UnsignedByteLargeArray.java
+index 51423e0..fa5fe4c 100644
+--- a/src/main/java/pl/edu/icm/jlargearrays/UnsignedByteLargeArray.java
++++ b/src/main/java/pl/edu/icm/jlargearrays/UnsignedByteLargeArray.java
+@@ -26,7 +26,6 @@
+  * ***** END LICENSE BLOCK ***** */
+ package pl.edu.icm.jlargearrays;
+ 
+-import sun.misc.Cleaner;
+ import org.apache.commons.math3.util.FastMath;
+ 
+ /**
+@@ -70,7 +69,7 @@ public class UnsignedByteLargeArray extends LargeArray
+             if (zeroNativeMemory) {
+                 zeroNativeMemory(length);
+             }
+-            Cleaner.create(this, new Deallocator(this.ptr, this.length, this.sizeof));
++            LargeArrayUtils.CLEANER.register(this, new Deallocator(this.ptr, this.length, this.sizeof));
+             MemoryCounter.increaseCounter(this.length * this.sizeof);
+         } else {
+             data = new byte[(int) length];
+diff --git a/src/main/java/pl/edu/icm/jlargearrays/module-info.java b/src/main/java/pl/edu/icm/jlargearrays/module-info.java
+new file mode 100644
+index 0000000..bf15862
+--- /dev/null
++++ b/src/main/java/pl/edu/icm/jlargearrays/module-info.java
+@@ -0,0 +1,3 @@
++module pl.edu.icm.jlargearrays {
++    requires jdk.unsupported;
++}
+\ No newline at end of file
+-- 
+2.34.1
+
