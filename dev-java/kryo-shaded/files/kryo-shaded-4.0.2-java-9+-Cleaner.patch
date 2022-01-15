@@ -1,0 +1,27 @@
+From 2daa977c1d8f2e072be4dc660bf617655d3fae5f Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Sat, 15 Jan 2022 13:15:41 -0800
+Subject: [PATCH] Migrate from sun.misc.Cleaner to java.lang.ref.Cleaner for
+ Java 9+
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ src/com/esotericsoftware/kryo/util/UnsafeUtil.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/com/esotericsoftware/kryo/util/UnsafeUtil.java b/src/com/esotericsoftware/kryo/util/UnsafeUtil.java
+index a05efc5..1204256 100644
+--- a/src/com/esotericsoftware/kryo/util/UnsafeUtil.java
++++ b/src/com/esotericsoftware/kryo/util/UnsafeUtil.java
+@@ -28,7 +28,7 @@ import java.util.Arrays;
+ import java.util.Comparator;
+ import java.util.List;
+ 
+-import sun.misc.Cleaner;
++import jdk.internal.ref.Cleaner;
+ import sun.misc.Unsafe;
+ import sun.nio.ch.DirectBuffer;
+ 
+-- 
+2.34.1
+
