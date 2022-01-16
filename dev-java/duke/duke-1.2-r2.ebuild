@@ -1,4 +1,4 @@
-# Copyright 2021 Gentoo Authors
+# Copyright 2021-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -22,13 +22,13 @@ CP_DEPEND="
 	dev-java/lucene-analyzers-common:4.0
 	dev-java/lucene-spatial:4.0
 	dev-java/mapdb:0.9.9
-	>=dev-java/commonj-1.1.1:0
-	java-virtuals/servlet-api:2.4
 "
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CP_DEPEND}
+	>=dev-java/commonj-1.1.1:0
+	java-virtuals/servlet-api:2.4
 	test? (
 		dev-java/h2:0
 	)
@@ -41,6 +41,10 @@ RDEPEND="
 
 S="${WORKDIR}/Duke-${P}"
 
+JAVA_CLASSPATH_EXTRA="
+	commonj
+	servlet-api-2.4
+"
 JAVA_SRC_DIR="src/main/java"
 JAVA_RESOURCE_DIRS=( "src/main/resources" )
 
