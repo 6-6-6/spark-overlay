@@ -1,4 +1,4 @@
-name: Test ebuilds in Docker container
+name: "Test ebuilds in Docker container"
 
 on:
   # ebuild installation tests can take very long time, so run tests nightly
