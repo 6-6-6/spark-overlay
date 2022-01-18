@@ -1,0 +1,59 @@
+From bf3b37461a4a307cdc40df10e7393ac6b269c07e Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Tue, 18 Jan 2022 14:14:23 -0800
+Subject: [PATCH] jersey-common: Remove test code that uses method not in
+ Mockito 1.9.5
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ .../logging/LoggingInterceptorTest.java       | 34 -------------------
+ 1 file changed, 34 deletions(-)
+
+diff --git a/core-common/src/test/java/org/glassfish/jersey/logging/LoggingInterceptorTest.java b/core-common/src/test/java/org/glassfish/jersey/logging/LoggingInterceptorTest.java
+index 9034406c1..93d0415ca 100644
+--- a/core-common/src/test/java/org/glassfish/jersey/logging/LoggingInterceptorTest.java
++++ b/core-common/src/test/java/org/glassfish/jersey/logging/LoggingInterceptorTest.java
+@@ -123,40 +123,6 @@ public class LoggingInterceptorTest {
+     // logInboundEntity
+     //
+ 
+-    @Test
+-    public void testLogInboundEntityMockedStream() throws Exception {
+-        int maxEntitySize = 20;
+-        LoggingInterceptor loggingInterceptor = new LoggingInterceptor(LoggingFeature.builder().maxEntitySize(maxEntitySize)) {};
+-
+-        StringBuilder buffer = new StringBuilder();
+-        InputStream stream = mock(InputStream.class);
+-        when(stream.markSupported()).thenReturn(true);
+-
+-        when(stream.read(any(), eq(0), eq(maxEntitySize + 1)))
+-                .thenAnswer(chunk(4, 'a'));
+-        when(stream.read(any(), eq(4), eq(maxEntitySize + 1 - 4)))
+-                .thenAnswer(chunk(3, 'b'));
+-        when(stream.read(any(), eq(7), eq(maxEntitySize + 1 - 7)))
+-                .thenAnswer(chunk(5, 'c'));
+-        when(stream.read(any(), eq(12), eq(maxEntitySize + 1 - 12)))
+-                .thenReturn(-1);
+-
+-        loggingInterceptor.logInboundEntity(buffer, stream, StandardCharsets.UTF_8);
+-
+-        assertEquals("aaaabbbccccc\n", buffer.toString());
+-        verify(stream).mark(maxEntitySize + 1);
+-        verify(stream).reset();
+-    }
+-
+-    private Answer<?> chunk(int size, char filler) {
+-        return invocation -> {
+-            byte[] buf = invocation.getArgument(0, byte[].class);
+-            int offset = invocation.getArgument(1, Integer.class);
+-            Arrays.fill(buf, offset, offset + size, (byte) filler);
+-            return size;
+-        };
+-    }
+-
+     @Test
+     public void testLogInboundEntityRealStream() throws Exception {
+         int maxEntitySize = 2000;
+-- 
+2.34.1
+
