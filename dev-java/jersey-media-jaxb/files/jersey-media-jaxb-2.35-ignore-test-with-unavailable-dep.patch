@@ -1,0 +1,29 @@
+From a4f607fa55571e8ccc177f64987e3c60944139b2 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Tue, 18 Jan 2022 17:44:28 -0800
+Subject: [PATCH] jersey-media-jaxb: Ignore test that needs a JAXB-API
+ implementation
+
+As of the commit time, there is not a JAXB-API available in either
+::gentoo or ::spark-overlay yet.
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ .../jersey/jaxb/internal/JaxbStringReaderProviderTest.java       | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/media/jaxb/src/test/java/org/glassfish/jersey/jaxb/internal/JaxbStringReaderProviderTest.java b/media/jaxb/src/test/java/org/glassfish/jersey/jaxb/internal/JaxbStringReaderProviderTest.java
+index d90623204..0dbf5a726 100644
+--- a/media/jaxb/src/test/java/org/glassfish/jersey/jaxb/internal/JaxbStringReaderProviderTest.java
++++ b/media/jaxb/src/test/java/org/glassfish/jersey/jaxb/internal/JaxbStringReaderProviderTest.java
+@@ -45,6 +45,7 @@ import org.junit.Test;
+ public class JaxbStringReaderProviderTest {
+ 
+     @Test
++    @org.junit.Ignore
+     public void stringReaderDoesNotReadExternalDtds() {
+ 
+         Provider<SAXParserFactory> saxParserFactoryProvider = new Provider<SAXParserFactory>() {
+-- 
+2.34.1
+
