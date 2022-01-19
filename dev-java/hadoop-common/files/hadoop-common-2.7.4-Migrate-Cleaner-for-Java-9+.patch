@@ -1,0 +1,41 @@
+From 0ad96bbab7ef8453b1aa04479947ad05aa5290b5 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Tue, 18 Jan 2022 22:58:42 -0800
+Subject: [PATCH] Migrate from sun.misc.Cleaner to java.lang.ref.Cleaner for
+ Java 9+
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ src/main/java/org/apache/hadoop/crypto/CryptoStreamUtils.java | 2 +-
+ src/main/java/org/apache/hadoop/io/nativeio/NativeIO.java     | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/main/java/org/apache/hadoop/crypto/CryptoStreamUtils.java b/src/main/java/org/apache/hadoop/crypto/CryptoStreamUtils.java
+index be85497..d3ef2d0 100644
+--- a/src/main/java/org/apache/hadoop/crypto/CryptoStreamUtils.java
++++ b/src/main/java/org/apache/hadoop/crypto/CryptoStreamUtils.java
+@@ -37,7 +37,7 @@ public class CryptoStreamUtils {
+   /** Forcibly free the direct buffer. */
+   public static void freeDB(ByteBuffer buffer) {
+     if (buffer instanceof sun.nio.ch.DirectBuffer) {
+-      final sun.misc.Cleaner bufferCleaner =
++      final jdk.internal.ref.Cleaner bufferCleaner =
+           ((sun.nio.ch.DirectBuffer) buffer).cleaner();
+       bufferCleaner.clean();
+     }
+diff --git a/src/main/java/org/apache/hadoop/io/nativeio/NativeIO.java b/src/main/java/org/apache/hadoop/io/nativeio/NativeIO.java
+index bc6e62a..c270437 100644
+--- a/src/main/java/org/apache/hadoop/io/nativeio/NativeIO.java
++++ b/src/main/java/org/apache/hadoop/io/nativeio/NativeIO.java
+@@ -329,7 +329,7 @@ public class NativeIO {
+      */
+     public static void munmap(MappedByteBuffer buffer) {
+       if (buffer instanceof sun.nio.ch.DirectBuffer) {
+-        sun.misc.Cleaner cleaner =
++        jdk.internal.ref.Cleaner cleaner =
+             ((sun.nio.ch.DirectBuffer)buffer).cleaner();
+         cleaner.clean();
+       }
+-- 
+2.34.1
+
