@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -38,6 +38,7 @@ RDEPEND=">=virtual/jre-1.8:*
 S="${WORKDIR}/${MY_P}"
 
 JAVA_ANT_REWRITE_CLASSPATH="true"
+JAVA_ANT_CLASSPATH_TAGS="javac javadoc"
 EANT_GENTOO_CLASSPATH="osgi-core-api"
 EANT_TEST_GENTOO_CLASSPATH="
 	${EANT_GENTOO_CLASSPATH}
@@ -47,13 +48,13 @@ EANT_TEST_GENTOO_CLASSPATH="
 "
 
 src_prepare() {
-	java-pkg-2_src_prepare
 	cp "${FILESDIR}/1.x-build.xml" build.xml || die
 	rm -r src/main/resources/org/xerial/snappy/native || die
 	eapply "${FILESDIR}/${PV}-remove-perl-usage.patch"
 	eapply "${FILESDIR}/${PV}-unbundle-snappy.patch"
 	eapply "${FILESDIR}/${PV}-unbundle-bitshuffle.patch"
 	eapply "${FILESDIR}/${PV}-gentoo.patch"
+	java-pkg-2_src_prepare
 }
 
 src_compile() {
