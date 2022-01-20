@@ -1,0 +1,25 @@
+From 106ea8a103537ba274316807a1714088ec089df5 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Thu, 20 Jan 2022 07:46:09 -0800
+Subject: [PATCH] build.xml: Remove use of bundled JARs
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ build.xml | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/build.xml b/build.xml
+index 780e516..f80fb90 100644
+--- a/build.xml
++++ b/build.xml
+@@ -41,7 +41,6 @@
+     	<delete dir="tmpclasses"/>
+     	<mkdir dir="tmpclasses"/>
+ 
+-    	<unzip src="lib/xmlpull_1_1_3_1.jar" dest="tmpclasses" overwrite="true"/>
+     
+     <!-- 	       debug="off" -->
+     	
+-- 
+2.34.1
+

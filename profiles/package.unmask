@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 ####################################################################
@@ -46,6 +46,11 @@
 # file.
 
 #--- END OF EXAMPLES ---
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-01-20)
+# Last-rited package which has been added to this overlay, using Java 1.8 as
+# minimum and EAPI 8.
+>dev-java/kxml-2.3.0
 
 # Yuan Liao <liaoyuan@gmail.com> (2022-01-19)
 # Last-rited package which has been added to this overlay, using Java 1.8 as
