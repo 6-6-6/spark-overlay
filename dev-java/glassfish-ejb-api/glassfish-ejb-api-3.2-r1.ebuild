@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -31,7 +31,7 @@ RDEPEND="
 "
 
 JAVA_ANT_REWRITE_CLASSPATH="true"
-#EANT_GENTOO_CLASSPATH="xmlrpc-api,transaction-api"
+JAVA_ANT_CLASSPATH_TAGS="javac javadoc"
 JAVA_PKG_BSFIX_NAME="maven-build.xml"
 
 src_install() {
