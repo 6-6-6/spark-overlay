@@ -1,10 +1,10 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 JAVA_PKG_IUSE="doc source test binary"
-MAVEN_ID="xml-apis:xml-apis:1.0.b2"
+MAVEN_ID="xml-apis:${PN}:1.0.b2"
 JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
@@ -36,9 +36,10 @@ S="${WORKDIR}"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
-src_prepare() {
-	default
+JAVADOC_ARGS="-source 8"
 
+src_prepare() {
+	java-pkg-2_src_prepare
 	find "${S}" -name "*.java" -exec \
 		sed -i -e 's/\benum\b/enumeration/g' {} \; || \
 		die "Failed to rename identifiers that are called 'enum'"
