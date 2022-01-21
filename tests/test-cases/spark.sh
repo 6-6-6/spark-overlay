@@ -15,16 +15,13 @@ run_test() {
         >> /etc/portage/package.use/spark-deps-binary
     echo "dev-java/kotlin-reflect binary" \
         >> /etc/portage/package.use/spark-deps-binary
-    echo "dev-java/gpars binary" \
-        >> /etc/portage/package.use/spark-deps-binary
     echo "dev-java/yecht binary" \
         >> /etc/portage/package.use/spark-deps-binary
-    emerge -1 dev-lang/kotlin-bin:1.4 dev-java/gpars dev-java/yecht
+    emerge -1 dev-lang/kotlin-bin:1.4 dev-java/yecht
 
     # Dependency bootstrap stage 2
     rm /etc/portage/package.use/spark-deps-binary
-    emerge -N1 dev-java/kotlin-{stdlib,reflect}:1.4 \
-        dev-java/gpars dev-java/yecht
+    emerge -N1 dev-java/kotlin-{stdlib,reflect}:1.4 dev-java/yecht
 
     emerge dev-java/spark-demo
     spark-demo-2.12 "$(nproc)"
