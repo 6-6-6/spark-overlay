@@ -1,7 +1,7 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 JAVA_PKG_IUSE="doc source"
 
@@ -24,7 +24,7 @@ S="${WORKDIR}/asm-${MY_P}"
 # Needs deps we don't have yet
 RESTRICT="test"
 
-EANT_DOC_TARGET="jdoc"
+EANT_DOC_TARGET="jdoc -Dant.build.javac.source=8"
 
 # Fails if this property is not set
 EANT_EXTRA_ARGS="-Dobjectweb.ant.tasks.path=foobar"
