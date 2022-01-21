@@ -72,3 +72,5 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+
+JAVADOC_ARGS="-source 8"
