@@ -1,13 +1,10 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-# Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /tmp/java-ebuilder/poms/codemodel-2.6.pom --from-maven-central --download-uri https://repo1.maven.org/maven2/com/sun/codemodel/codemodel/2.6/codemodel-2.6-sources.jar --binjar-uri https://repo1.maven.org/maven2/com/sun/codemodel/codemodel/2.6/codemodel-2.6.jar --slot 2 --keywords "~amd64" --ebuild codemodel-2.6.ebuild
-
-EAPI=7
+EAPI=8
 
 JAVA_PKG_IUSE="doc source test binary"
-MAVEN_ID="com.sun.codemodel:codemodel:2.6"
+MAVEN_ID="com.sun.codemodel:${PN}:${PV}"
 JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
@@ -38,3 +35,5 @@ S="${WORKDIR}"
 
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
+
+JAVADOC_ARGS="-source 8"
