@@ -36,7 +36,6 @@
 # dev-java/jruby-jnr-posix, which is not used by any other package. Removal in
 # 30 days.
 dev-java/constantine
-dev-java/jruby-jnr-posix
 
 # Yuan Liao <liaoyuan@gmail.com> (2021-07-21)
 # The only package in either ::gentoo or ::spark-overlay that provides this
