@@ -1,0 +1,54 @@
+Title: Java 11 Support for Spark Overlay
+Author: Yuan Liao <liaoyuan@gmail.com>
+Posted: 2022-01-22
+Revision: 1
+News-Item-Format: 2.0
+
+As Gentoo will soon start to support selecting JDK 11 as the system VM
+on stable keywords, all Java packages in ::spark-overlay have been
+updated so they can now be built using JDK 11.  Users can now elect to
+use packages in this overlay with Java 11.
+
+New users of this overlay should note that as of 2022-01-22, a few Java
+packages in ::gentoo that are depended by packages in this overlay have
+JDK 11 build failure bugs, so they must be built with JDK 8:
+
+- dev-java/eclipse-ecj:4.5 [1]
+- dev-java/rxtx [2]
+
+All other Java packages provided or needed by this overlay can be built
+with JDK 11.
+
+Packages already installed on the system that were built by JDK 8 should
+continue to work on JRE 11.  If any runtime error occurs after switching
+from JRE 8 to JRE 11, please first perform a @world update to make sure
+packages from both ::gentoo and ::spark-overlay are all up-to-date, as
+some package updates include fixes for Java 11 issues.  If the problem
+persists, please try to rebuild packages from this overlay with JDK 11,
+using the following procedure:
+
+1. Use 'eselect java-vm' to ensure that JDK 11 is selected as the system
+   VM.  Instructions are available on Gentoo Wiki [3].
+
+2. Install package app-portage/spark-overlay-rebuild, and run command
+   'spark-overlay-rebuild' to start rebuilding packages in this overlay.
+
+Before building any Java packages in this overlay with JDK 11, please be
+aware that some of the packages are known to have backward compatibility
+issues with Java 8 if they were built using JDK 11.  If those packages
+have already been built with JDK 11 and need to be used on Java 8, they
+must be rebuilt using JDK 8.  This overlay provides another package
+app-portage/java-11to8-rebuild that can be used to rebuild them without
+rebuilding the entire set of Java packages from this overlay.  For more
+information, please see the related discussion thread [4].
+
+Please feel free to use the discussion board [5] for any questions,
+suggestions and comments.  Bugs related to packages in this overlay may
+be reported to the issue tracker [6].
+
+[1]: https://bugs.gentoo.org/831084
+[2]: https://bugs.gentoo.org/831394
+[3]: https://wiki.gentoo.org/wiki/Java#Configuring_the_Java_Virtual_Machine
+[4]: https://github.com/Leo3418/spark-overlay/discussions/1
+[5]: https://github.com/Leo3418/spark-overlay/discussions
+[6]: https://github.com/6-6-6/spark-overlay/issues

@@ -1,0 +1,49 @@
+Title: Spark Overlay 对 Java 11 的支持
+Author: 廖远 <liaoyuan@gmail.com>
+Posted: 2022-01-22
+Revision: 1
+News-Item-Format: 2.0
+
+在 Gentoo 即将开始在稳定分支上支持使用 JDK 11 作为系统 VM 之际，
+::spark-overlay 中的所有 Java 软件包现已可以使用 JDK 11 构建。
+::spark-overlay 的用户现已可以选择使用 Java 11。
+
+新用户请额外注意：截至 2022-01-22，下列位于 ::gentoo 官方仓库中的
+依赖目前在 JDK 11 上仍然存在无法构建的已知问题，因此必须使用 JDK 8
+来构建：
+
+- dev-java/eclipse-ecj:4.5 [1]（英文内容）
+- dev-java/rxtx [2]（英文内容）
+
+所有其它 ::spark-overlay 所需或提供的软件包都可以使用 JDK 11 构建。
+
+一般情况下，已在系统上安装的使用 JDK 8 构建的软件包在 JRE 11 上应该
+仍然可以正常工作。如果在从 JRE 8 切换到 JRE 11 后，有程序在运行时出现
+错误，请先尝试运行 @world 更新，确保 ::gentoo 和 ::spark-overlay
+提供的软件包都已更新。有些软件包的更新会修复与 Java 11 相关的问题。
+如果在更新后问题仍然存在，请尝试按照下列步骤，使用 JDK 11 重新安装来自
+::spark-overlay 的 Java 软件包：
+
+1. 使用 'eselect java-vm'，确保已将 JDK 11 设为系统 VM。Gentoo
+   Wiki 提供了详细的操作步骤 [3]（英文内容）。
+
+2. 安装 app-portage/spark-overlay-rebuild 软件包，然后运行
+   'spark-overlay-rebuild' 命令，开始重新构建。
+
+在开始使用 JDK 11 构建 ::spark-overlay 中的软件包前，请注意：目前已知
+有些软件包在使用 JDK 11 构建后无法向后兼容 Java 8。如果已经使用 JDK 11
+构建了此类软件包，但是需要在 Java 8 上使用它们，那么必须使用 JDK 8 重新
+构建它们。为此，::spark-overlay 还提供了另外一个软件包
+app-portage/java-11to8-rebuild，可以只重新构建无法向后兼容 Java 8
+的软件包，跳过其它不受影响的软件包。欲了解更多信息，请参阅相关的讨论帖 [4]
+（英文内容）。
+
+如有任何问题、建议或评论，欢迎在讨论板中提出 [5]。同时，欢迎提交 [6]
+::spark-overlay 中的软件包的 bug。
+
+[1]: https://bugs.gentoo.org/831084
+[2]: https://bugs.gentoo.org/831394
+[3]: https://wiki.gentoo.org/wiki/Java#Configuring_the_Java_Virtual_Machine
+[4]: https://github.com/Leo3418/spark-overlay/discussions/1
+[5]: https://github.com/Leo3418/spark-overlay/discussions
+[6]: https://github.com/6-6-6/spark-overlay/issues
