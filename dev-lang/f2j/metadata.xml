@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liaoyuan@gmail.com</email>
+		<name>Yuan Liao</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="sourceforge">f2j</remote-id>
+		<remote-id type="github">Leo3418/f2j</remote-id>
+	</upstream>
+	<longdescription>
+		This package uses sources from the package maintainer's fork instead of
+		vanilla upstream sources because the full vanilla sources of this
+		package can only be downloaded from the CVS repository on SourceForge.
+		The fork contains fixes that allow this package to be built with a
+		recent version of the GNU toolchain.
+	</longdescription>
+</pkgmetadata>
