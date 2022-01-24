@@ -1,0 +1,27 @@
+From 921a547cb07e2273844de67697d60974bc19bd67 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Sun, 23 Jan 2022 21:12:43 -0800
+Subject: [PATCH] UnAbbrStep.java: Remove extra semicolon that would cause
+ compiler error
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ src/com/werken/xpath/impl/UnAbbrStep.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/com/werken/xpath/impl/UnAbbrStep.java b/src/com/werken/xpath/impl/UnAbbrStep.java
+index 9e1ecd0..c59e256 100644
+--- a/src/com/werken/xpath/impl/UnAbbrStep.java
++++ b/src/com/werken/xpath/impl/UnAbbrStep.java
+@@ -175,7 +175,7 @@ public abstract class UnAbbrStep extends Step
+       }
+     }
+ 
+-    return aggregateResults;;
++    return aggregateResults;
+   }
+ 
+   private List applyPredicates(List nodeSet,
+-- 
+2.34.1
+

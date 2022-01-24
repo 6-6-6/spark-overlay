@@ -1,0 +1,190 @@
+From 2ac80a49291127c898cc2ddd66a41818f4f832f4 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Sun, 23 Jan 2022 21:03:06 -0800
+Subject: [PATCH] Fix uses of JDOM API that would cause compiler errors
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ src/com/werken/xpath/ElementNamespaceContext.java | 4 ++--
+ src/com/werken/xpath/Test.java                    | 2 +-
+ src/com/werken/xpath/function/StringFunction.java | 2 +-
+ src/com/werken/xpath/impl/NodeTypeStep.java       | 6 +++---
+ src/com/werken/xpath/impl/ParentStep.java         | 4 ++--
+ src/com/werken/xpath/impl/UnAbbrStep.java         | 8 ++++----
+ src/com/werken/xpath/util/Partition.java          | 8 ++++----
+ 7 files changed, 17 insertions(+), 17 deletions(-)
+
+diff --git a/src/com/werken/xpath/ElementNamespaceContext.java b/src/com/werken/xpath/ElementNamespaceContext.java
+index 36bd7bd..37f238c 100644
+--- a/src/com/werken/xpath/ElementNamespaceContext.java
++++ b/src/com/werken/xpath/ElementNamespaceContext.java
+@@ -62,12 +62,12 @@ public class ElementNamespaceContext implements NamespaceContext
+ 
+       lineage.push(_element);
+ 
+-      Element elem = _element.getParent();
++      Element elem = _element.getParentElement();
+ 
+       while (elem != null)
+       {
+         lineage.push(elem);
+-        elem = elem.getParent();
++        elem = elem.getParentElement();
+       }
+ 
+       List      nsList = null;
+diff --git a/src/com/werken/xpath/Test.java b/src/com/werken/xpath/Test.java
+index a885d73..338d903 100644
+--- a/src/com/werken/xpath/Test.java
++++ b/src/com/werken/xpath/Test.java
+@@ -57,7 +57,7 @@ public class Test
+       System.err.println("Results :: " + results);
+ 
+     }
+-    catch (JDOMException jde)
++    catch (JDOMException | IOException jde)
+     {
+       jde.printStackTrace(System.err);
+     }
+diff --git a/src/com/werken/xpath/function/StringFunction.java b/src/com/werken/xpath/function/StringFunction.java
+index 0e2db46..291950d 100644
+--- a/src/com/werken/xpath/function/StringFunction.java
++++ b/src/com/werken/xpath/function/StringFunction.java
+@@ -71,7 +71,7 @@ public class StringFunction implements Function
+ 
+   public static String evaluate(Element elem)
+   {
+-    List content = elem.getMixedContent();
++    List content = elem.getContent();
+ 
+     Iterator contentIter = content.iterator();
+     Object each = null;
+diff --git a/src/com/werken/xpath/impl/NodeTypeStep.java b/src/com/werken/xpath/impl/NodeTypeStep.java
+index 452b7b5..2f16f57 100644
+--- a/src/com/werken/xpath/impl/NodeTypeStep.java
++++ b/src/com/werken/xpath/impl/NodeTypeStep.java
+@@ -84,16 +84,16 @@ public class NodeTypeStep extends UnAbbrStep
+     {
+       if ( isAbsolute() )
+       {
+-        results.addAll(  applyToNodes( ((Element)node).getDocument().getMixedContent() ) );
++        results.addAll(  applyToNodes( ((Element)node).getDocument().getContent() ) );
+       }
+       else
+       {
+-        results.addAll( applyToNodes( ((Element)node).getMixedContent() ) );
++        results.addAll( applyToNodes( ((Element)node).getContent() ) );
+       }
+     }
+     else if ( node instanceof Document )
+     {
+-      results.addAll( applyToNodes( ((Document)node).getMixedContent() ) );
++      results.addAll( applyToNodes( ((Document)node).getContent() ) );
+     }
+ 
+     return results;
+diff --git a/src/com/werken/xpath/impl/ParentStep.java b/src/com/werken/xpath/impl/ParentStep.java
+index f9f0fa4..ecf7ad5 100644
+--- a/src/com/werken/xpath/impl/ParentStep.java
++++ b/src/com/werken/xpath/impl/ParentStep.java
+@@ -28,7 +28,7 @@ public class ParentStep extends AbbrStep
+   {
+     if ( node instanceof Element )
+     {
+-      return ((Element)node).getParent();
++      return ((Element)node).getParentElement();
+     }
+ 
+     return null;
+@@ -50,7 +50,7 @@ public class ParentStep extends AbbrStep
+ 
+       if ( each instanceof Element )
+       {
+-        parent = ((Element)each).getParent();
++        parent = ((Element)each).getParentElement();
+ 
+         if (parent != null)
+         {
+diff --git a/src/com/werken/xpath/impl/UnAbbrStep.java b/src/com/werken/xpath/impl/UnAbbrStep.java
+index 1c54890..9e1ecd0 100644
+--- a/src/com/werken/xpath/impl/UnAbbrStep.java
++++ b/src/com/werken/xpath/impl/UnAbbrStep.java
+@@ -227,7 +227,7 @@ public abstract class UnAbbrStep extends Step
+ 
+     if ( node instanceof Element )
+     {
+-      List children = ((Element)node).getMixedContent();
++      List children = ((Element)node).getContent();
+       
+       results.addAll( applyTo( children,
+                                support,
+@@ -235,7 +235,7 @@ public abstract class UnAbbrStep extends Step
+     }
+     else if ( node instanceof Document )
+     {
+-      List children = ((Document)node).getMixedContent();
++      List children = ((Document)node).getContent();
+       
+       results.addAll( applyTo( children,
+                                support,
+@@ -256,7 +256,7 @@ public abstract class UnAbbrStep extends Step
+ 
+     if ( node instanceof Element )
+     {
+-      List children = ((Element)node).getMixedContent();
++      List children = ((Element)node).getContent();
+       
+       results.addAll( applyTo( children,
+                                support,
+@@ -264,7 +264,7 @@ public abstract class UnAbbrStep extends Step
+     }
+     else if ( node instanceof Document )
+     {
+-      List children = ((Document)node).getMixedContent();
++      List children = ((Document)node).getContent();
+ 
+       results.addAll( applyTo( children,
+                                support,
+diff --git a/src/com/werken/xpath/util/Partition.java b/src/com/werken/xpath/util/Partition.java
+index d61fa91..8d189ea 100644
+--- a/src/com/werken/xpath/util/Partition.java
++++ b/src/com/werken/xpath/util/Partition.java
+@@ -67,7 +67,7 @@ public class Partition
+ 
+   public static List followingSiblings(Element node)
+   {
+-    Element parent = node.getParent();
++    Element parent = node.getParentElement();
+ 
+     if (parent == null)
+     {
+@@ -95,7 +95,7 @@ public class Partition
+ 
+   public static List preceedingSiblings(Element node)
+   {
+-    Element parent = node.getParent();
++    Element parent = node.getParentElement();
+ 
+     if (parent == null)
+     {
+@@ -137,7 +137,7 @@ public class Partition
+       results.addAll( Partition.descendants( each ) );
+     }
+ 
+-    Element parent = node.getParent();
++    Element parent = node.getParentElement();
+ 
+     if (parent != null)
+     {
+@@ -170,7 +170,7 @@ public class Partition
+       results.addAll( Partition.descendants( each ) );
+     }
+ 
+-    Element parent = node.getParent();
++    Element parent = node.getParentElement();
+ 
+     if (parent != null)
+     {
+-- 
+2.34.1
+
