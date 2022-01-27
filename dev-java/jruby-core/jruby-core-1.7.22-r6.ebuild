@@ -14,6 +14,10 @@ LICENSE="LGPL-3 GPL-3 EPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64"
 
+DEPEND="
+	>=virtual/jdk-1.8:*
+"
+
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # com.github.jnr:jffi:1.2.9 -> >=dev-java/jffi-1.2.9:1.2
@@ -40,7 +44,8 @@ KEYWORDS="~amd64"
 # org.ow2.asm:asm-util:5.0.3 -> >=dev-java/asm-8.0.1:4
 # org.yaml:snakeyaml:1.13 -> >=dev-java/snakeyaml-1.16:0
 
-CDEPEND="
+RDEPEND="
+	>=virtual/jre-1.8:*
 	>=dev-java/asm-5.0.3:4
 	>=dev-java/bytelist-1.0.15:0
 	>=dev-java/headius-options-1.4:0
@@ -61,35 +66,6 @@ CDEPEND="
 	>=dev-java/snakeyaml-1.16:0
 	>=dev-java/yecht-1.0:0
 "
-
-# Compile dependencies
-# POM: /var/lib/java-ebuilder/poms/${P}.pom
-# bsf:bsf:2.4.0 -> >=dev-java/bsf-2.4.0:2.3
-# com.headius:coro-mock:1.0 -> >=dev-java/coro-mock-1.0:0
-# com.headius:jsr292-mock:1.1 -> >=dev-java/jsr292-mock-1.1:0
-# com.headius:unsafe-mock:8.0 -> >=dev-java/unsafe-mock-8.0:0
-# org.apache.ant:ant:1.9.2 -> >=dev-java/ant-core-1.10.7:0
-# org.jruby:joda-timezones:2013d -> >=dev-java/joda-timezones-2013:0
-# org.osgi:org.osgi.core:5.0.0 -> >=dev-java/osgi-core-api-5.0.0:0
-
-DEPEND="
-	>=virtual/jdk-1.8:*
-	${CDEPEND}
-	>=dev-java/ant-core-1.10.7:0
-	>=dev-java/bsf-2.4.0:2.3
-	>=dev-java/coro-mock-1.0:0
-	>=dev-java/joda-timezones-2013:0
-	>=dev-java/jsr292-mock-1.1:0
-	>=dev-java/osgi-core-api-5.0.0:0
-	>=dev-java/unsafe-mock-8.0:0
-"
-
-RDEPEND="
-	>=virtual/jre-1.8:*
-	${CDEPEND}
-"
-
-S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="
 	asm-4
@@ -113,12 +89,4 @@ JAVA_GENTOO_CLASSPATH="
 	yecht
 "
 
-JAVA_CLASSPATH_EXTRA="
-	ant-core
-	bsf-2.3
-	coro-mock
-	joda-timezones
-	jsr292-mock
-	osgi-core-api
-	unsafe-mock
-"
+S="${WORKDIR}"
