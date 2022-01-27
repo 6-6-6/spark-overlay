@@ -107,5 +107,5 @@ src_compile() {
 
 src_install() {
 	java-pkg-simple_src_install
-	java-pkg_doso "${JNI_SRC_DIR}"/.libs/*so "${JNI_SRC_DIR}"/*la
+	java-pkg_doso "${JNI_SRC_DIR}"/.libs/*so
 }
