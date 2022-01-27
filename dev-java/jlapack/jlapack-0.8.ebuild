@@ -3,7 +3,7 @@
 
 EAPI=8
 
-JAVA_PKG_IUSE="source"
+JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -23,6 +23,9 @@ BDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
+	doc? (
+		dev-java/f2jutil:0
+	)
 "
 
 RDEPEND="
@@ -42,7 +45,7 @@ src_compile() {
 	# https://icl.utk.edu/f2j/faq/index.html#316
 	# The webpage mentions 'javab', whose source code is available but is
 	# buggy, and it has a custom, restrictive license
-	cd src > /dev/null || die "Failed to change to source directory"
+	pushd src > /dev/null || die "Failed to enter to source directory"
 	f2java -p org.netlib.err \
 		error_reporting/err.f || die "Failed to compile err.f"
 	f2java -d -c Error_reporting -p org.netlib.blas \
@@ -51,6 +54,17 @@ src_compile() {
 		lapack/lapack.f || die "Failed to compile lapack.f"
 	jar cf "${S}/${JAVA_JAR_FILENAME}" $(find org -name "*.class") ||
 		die "jar failed"
+	popd > /dev/null || die "Failed to leave to source directory"
+
+	if use doc; then
+		local apidoc="target/api"
+		local classpath="$(java-pkg_getjars --build-only f2jutil)"
+		mkdir -p "${apidoc}" || die "Failed to create Javadoc output directory"
+		ejavadoc -d "${apidoc}" \
+			-encoding "${JAVA_ENCODING}" -docencoding UTF-8 -charset UTF-8 \
+			-classpath "${classpath}" ${JAVADOC_ARGS:- -quiet} \
+			$(find "${JAVA_SRC_DIR}" -name "*.java")
+	fi
 }
 
 src_install() {
