@@ -3,7 +3,7 @@
 
 EAPI=8
 
-JAVA_PKG_IUSE="source"
+JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -23,7 +23,9 @@ BDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	${CP_DEPEND}
+	doc? (
+		dev-java/f2jutil:0
+	)
 "
 
 RDEPEND="
@@ -41,12 +43,23 @@ JAVA_SRC_DIR="SRC/org"
 
 src_compile() {
 	f2java -p org.netlib.arpack UTIL/util.f || die "Failed to compile util.f"
-	cd SRC > /dev/null || die "Failed to change to source directory"
+	pushd SRC > /dev/null || die "Failed to enter to source directory"
 	f2java -d -c "../UTIL:${ESYSROOT}/usr/share/jlapack/f2j" \
 		-p org.netlib.arpack arpack.f || die "Failed to compile arpack.f"
 	cp -r ../org . || die "Failed to copy f2java output files"
 	jar cf "${S}/${JAVA_JAR_FILENAME}" $(find org -name "*.class") ||
 		die "jar failed"
+	popd > /dev/null || die "Failed to leave to source directory"
+
+	if use doc; then
+		local apidoc="target/api"
+		local classpath="$(java-pkg_getjars --build-only f2jutil)"
+		mkdir -p "${apidoc}" || die "Failed to create Javadoc output directory"
+		ejavadoc -d "${apidoc}" \
+			-encoding "${JAVA_ENCODING}" -docencoding UTF-8 -charset UTF-8 \
+			-classpath "${classpath}" ${JAVADOC_ARGS:- -quiet} \
+			$(find "${JAVA_SRC_DIR}" -name "*.java")
+	fi
 }
 
 src_install() {
