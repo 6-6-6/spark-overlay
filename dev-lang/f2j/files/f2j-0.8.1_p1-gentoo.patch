@@ -1,0 +1,40 @@
+From c36da0a25e1eff9fa7932515080648d9b3e1acb4 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Wed, 26 Jan 2022 23:10:06 -0800
+Subject: [PATCH] src/Makefile: Use system libbytecode and respect LDFLAGS
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ src/Makefile | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/Makefile b/src/Makefile
+index 52801f9..38289ef 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -10,18 +10,18 @@ include make.def
+ OBJS=y.tab.o f2jlex.o f2jmain.o  symtab.o  \
+      codegen.o vcg_emitter.o dlist.o typecheck.o \
+      optimize.o globals.o f2jmem.o
+-F2J_LIBS= -L$(BYTE_DIR) -lbytecode $(LIBS)
++F2J_LIBS= -lbytecode
+ 
+ .c.o:
+ 	$(CC) $(CFLAGS) $(INCLUDES) -c $<
+ 
+ #  The main executable.
+-f2java: f2j.h f2jparse.y $(OBJS) $(BYTE_DIR)/libbytecode.a
+-	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $(OBJS) $(F2J_LIBS)
++f2java: f2j.h f2jparse.y $(OBJS)
++	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $(OBJS) $(F2J_LIBS) $(LDFLAGS)
+ 
+ #  The purify version...
+ puref2j:	f2j.h f2jparse.y $(OBJS) $(JAVAB)
+-	$(PURIFY) $(PFLAGS) $(CC) $(CFLAGS) $(INCLUDES) -o $@ $(OBJS) $(F2J_LIBS)
++	$(PURIFY) $(PFLAGS) $(CC) $(CFLAGS) $(INCLUDES) -o $@ $(OBJS) $(F2J_LIBS) $(LDFLAGS)
+ 
+ install: f2java
+ 	install -d -m 755 $(F2J_BINDIR)
+-- 
+2.34.1
+

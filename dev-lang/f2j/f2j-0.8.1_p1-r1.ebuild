@@ -27,7 +27,15 @@ DEPEND="
 	dev-libs/libbytecode
 "
 
+RDEPEND="
+	${DEPEND}
+"
+
 S="${WORKDIR}/${PN}-${P}"
+
+PATCHES=(
+	"${FILESDIR}/${P}-gentoo.patch"
+)
 
 src_prepare() {
 	default
@@ -36,7 +44,7 @@ src_prepare() {
 
 src_compile() {
 	cd src || die "Failed to change to source directory"
-	emake BYTE_DIR="${ESYSROOT}/usr/$(get_libdir)" LIBS="${LDFLAGS}"
+	emake
 }
 
 src_install() {
