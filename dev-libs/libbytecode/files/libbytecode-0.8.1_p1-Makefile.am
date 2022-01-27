@@ -1,0 +1,2 @@
+lib_LTLIBRARIES = libbytecode.la
+libbytecode_la_SOURCES = api.c class.c constant_pool.c dlist.c globals.c

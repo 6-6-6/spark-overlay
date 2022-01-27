@@ -1,0 +1,29 @@
+From 6ce728acca660cbb2eaaa480ffed406032524ff3 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Wed, 26 Jan 2022 22:13:34 -0800
+Subject: [PATCH] libbytecode/configure.in: Use libtool to build shared library
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ libbytecode/configure.in | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/libbytecode/configure.in b/libbytecode/configure.in
+index 978c8ac..a84f010 100644
+--- a/libbytecode/configure.in
++++ b/libbytecode/configure.in
+@@ -45,6 +45,9 @@ AC_SUBST(CFLAGS)
+ 
+ AC_SUBST(DOXYGEN)
+ 
+-AC_CONFIG_HEADER(bytecode.h)
++LT_INIT
++AC_SUBST([LIBTOOL_DEPS])
++AM_INIT_AUTOMAKE([foreign])
+ 
+-AC_OUTPUT(Makefile make.def)
++AC_CONFIG_FILES([Makefile bytecode.h make.def])
++AC_OUTPUT
+-- 
+2.34.1
+
