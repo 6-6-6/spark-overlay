@@ -2,6 +2,7 @@
 dev-java/glassfish-jms-api::gentoo
 >=dev-java/glassfish-xmlrpc-api-1.1.1-r1::gentoo
 ~dev-java/jackson-annotations-2.13.0::gentoo
+~dev-java/jakarta-activation-2.0.1::gentoo
 dev-java/jakarta-xml-soap-api::gentoo
 dev-java/jcip-annotations::gentoo
 dev-java/mvel::gentoo
