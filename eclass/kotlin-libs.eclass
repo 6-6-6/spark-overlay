@@ -1,4 +1,4 @@
-# Copyright 2021 Gentoo Authors
+# Copyright 2021-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: kotlin-libs.eclass
@@ -6,7 +6,7 @@
 # Yuan Liao <liaoyuan@gmail.com>
 # @AUTHOR:
 # Yuan Liao <liaoyuan@gmail.com>
-# @SUPPORTED_EAPIS: 6 7
+# @SUPPORTED_EAPIS: 6 7 8
 # @PROVIDES: kotlin-utils
 # @BLURB: An eclass for building Kotlin library packages
 # @DESCRIPTION:
@@ -15,7 +15,7 @@
 # recognizes variables declared by that eclass when appropriate.
 
 case "${EAPI:-0}" in
-	6|7) ;;
+	6|7|8) ;;
 	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
 esac
 

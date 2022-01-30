@@ -1,4 +1,4 @@
-# Copyright 2021 Gentoo Authors
+# Copyright 2021-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: kotlin-core-deps.eclass
@@ -6,7 +6,7 @@
 # Yuan Liao <liaoyuan@gmail.com>
 # @AUTHOR:
 # Yuan Liao <liaoyuan@gmail.com>
-# @SUPPORTED_EAPIS: 6 7
+# @SUPPORTED_EAPIS: 6 7 8
 # @PROVIDES: kotlin-libs
 # @BLURB: An eclass for building dev-java/kotlin-core-* packages
 # @DESCRIPTION:
@@ -24,7 +24,7 @@
 # another Java package.
 
 case "${EAPI:-0}" in
-	6|7) ;;
+	6|7|8) ;;
 	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
 esac
 
