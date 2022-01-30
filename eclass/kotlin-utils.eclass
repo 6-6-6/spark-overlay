@@ -249,6 +249,29 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 
 # Read-only variables
 
+# @ECLASS-VARIABLE: KOTLIN_UTILS_DEPS
+# @OUTPUT_VARIABLE
+# @DESCRIPTION:
+# A dependency specification for Kotlin compiler for feature release versions
+# listed in KOTLIN_COMPAT. Note that other eclasses that inherit this eclass,
+# like kotlin.eclass and kotlin-libs.eclass, may already put the value of this
+# variable in DEPEND, so ebuilds using those eclasses might not need to use
+# this variable.
+#
+# Example:
+# @CODE
+# DEPEND="
+# 	${KOTLIN_UTILS_DEPS}
+# 	dev-java/foo-bar:0
+# "
+# @CODE
+#
+# Example value:
+# @CODE
+# kotlin_single_target_kotlin1-4? ( virtual/kotlin:1.4 )
+# kotlin_single_target_kotlin1-5? ( virtual/kotlin:1.5 )
+# @CODE
+
 # @ECLASS-VARIABLE: KOTLIN_UTILS_CLASSES
 # @OUTPUT_VARIABLE
 # @DESCRIPTION:
@@ -375,7 +398,15 @@ _kotlin-utils_process_kotlin_compat() {
 	fi
 	REQUIRED_USE="^^ ( ${iuse[*]} )"
 
+	local iuse_flag
+	for iuse_flag in "${iuse[@]}"; do
+		local slot="${iuse_flag#kotlin_single_target_kotlin}"
+		slot="${slot//-/.}"
+		KOTLIN_UTILS_DEPS+=" ${iuse_flag}? ( virtual/kotlin:${slot} )"
+	done
+
 	readonly _KOTLIN_UTILS_SUPPORTED_VERSIONS
+	readonly KOTLIN_UTILS_DEPS
 }
 
 _kotlin-utils_process_kotlin_compat

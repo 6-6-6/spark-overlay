@@ -129,40 +129,19 @@ fi
 DEPEND=">=virtual/jdk-1.8:*"
 RDEPEND=">=virtual/jre-1.8:*"
 
-case "${SLOT}" in
-	1.4)
-		_KOTLIN_LIBS_KOTLIN_VERSIONS=">=1.4"
-		_KOTLIN_LIBS_PREF_ORDER=( 1.{4..6} )
-		;;
-	1.5)
-		_KOTLIN_LIBS_KOTLIN_VERSIONS=">=1.5"
-		_KOTLIN_LIBS_PREF_ORDER=( 1.{5..6} )
-		;;
-	# Provision for the next feature release
-	1.6)
-		_KOTLIN_LIBS_KOTLIN_VERSIONS=">=1.6"
-		_KOTLIN_LIBS_PREF_ORDER=( 1.6 )
-		;;
-esac
-KOTLIN_VERSIONS="${KOTLIN_VERSIONS:-"${_KOTLIN_LIBS_KOTLIN_VERSIONS}"}"
-KOTLIN_VERSIONS_PREF_ORDER=(
-	"${KOTLIN_VERSIONS_PREF_ORDER[@]:-"${_KOTLIN_LIBS_PREF_ORDER[@]}"}"
-)
-
-_KOTLIN_LIBS_DEPEND="$(kotlin-utils_kotlin_depend)"
 if has binary ${JAVA_PKG_IUSE}; then
 	# Depend on the compiler only when building from source
 	DEPEND+=" !binary? (
-		${_KOTLIN_LIBS_DEPEND}
+		${KOTLIN_UTILS_DEPS}
 		source? ( app-arch/zip )
 	)"
 	if has junit-4 ${KOTLIN_TESTING_FRAMEWORKS}; then
-		DEPEND+=" test? ( ${_KOTLIN_LIBS_DEPEND} )"
+		DEPEND+=" test? ( ${KOTLIN_UTILS_DEPS} )"
 	fi
 else
 	# No option to use pre-built binary; always depend on the compiler
 	DEPEND+="
-		${_KOTLIN_LIBS_DEPEND}
+		${KOTLIN_UTILS_DEPS}
 		source? ( app-arch/zip )
 	"
 fi
@@ -182,9 +161,6 @@ KOTLIN_TEST_KOTLINC_JAVA_OPTS="${KOTLIN_KOTLINC_JAVA_OPTS}"
 unset _KOTLIN_LIBS_REQUIRED_USE
 unset _KOTLIN_LIBS_DEFAULT_SRC_URI
 unset _KOTLIN_LIBS_TEST_SRC
-unset _KOTLIN_LIBS_KOTLIN_VERSIONS
-unset _KOTLIN_LIBS_PREF_ORDER
-unset _KOTLIN_LIBS_DEPEND
 
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install
 

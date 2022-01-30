@@ -28,7 +28,7 @@ esac
 inherit kotlin-utils
 
 DEPEND="
-	$(kotlin-utils_kotlin_depend)
+	${KOTLIN_UTILS_DEPS}
 	$(kotlin-utils_iuse_depend)
 "
 
