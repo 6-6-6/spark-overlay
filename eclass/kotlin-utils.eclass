@@ -15,11 +15,13 @@
 # well as ebuilds for a Kotlin package. It inherits java-pkg-simple.eclass and
 # recognizes variables declared by that eclass when appropriate.
 #
-# This eclass neither sets any metadata variables by default nor exports any
-# phase functions, so it can be inherited safely. However, ebuilds for pure
-# Kotlin packages should inherit kotlin.eclass, which exports various phase
-# functions that automatically call functions in this eclass and is thus more
-# convenient to use.
+# This eclass does not export any phase functions, and its only changes to
+# ebuild metadata variables are to append USE_EXPAND flags for choosing the
+# Kotlin compiler version to IUSE and to set a restriction on those USE_EXPAND
+# flags in REQUIRED_USE, so it can be inherited safely. However, ebuilds for
+# pure Kotlin packages should inherit kotlin.eclass, which exports various
+# phase functions that automatically call functions in this eclass and is thus
+# more convenient to use.
 
 case "${EAPI:-0}" in
 	6|7|8) ;;
@@ -167,6 +169,23 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 
 # Kotlin version
 
+# @ECLASS-VARIABLE: KOTLIN_COMPAT
+# @DEFAULT_UNSET
+# @PRE_INHERIT
+# @REQUIRED
+# @DESCRIPTION:
+# An array of feature release versions (e.g. 1.4, 1.5) of Kotlin compilers that
+# can be used to build this package. The identifier for version 1.x is
+# "kotlin1-x". Default is unset, must be overridden from ebuild or eclass
+# BEFORE inheriting this eclass.
+#
+# Example:
+# @CODE
+# KOTLIN_COMPAT=( kotlin1-4 kotlin1-5 )
+# # Bash brace expansion may be used
+# KOTLIN_COMPAT=( kotlin1-{4..5} )
+# @CODE
+
 # @ECLASS-VARIABLE: KOTLIN_VERSIONS
 # @DEFAULT_UNSET
 # @PRE_INHERIT
@@ -257,6 +276,21 @@ readonly KOTLIN_UTILS_CLASSES
 # set by this eclass and be available after the kotlin-utils_test_compile
 # function is called.
 
+# Internal variables
+
+# @ECLASS-VARIABLE: _KOTLIN_UTILS_ALL_VERSIONS
+# @INTERNAL
+# @DESCRIPTION:
+# An array of all Kotlin compiler feature release versions available on Gentoo.
+_KOTLIN_UTILS_ALL_VERSIONS=( kotlin1-{4..5} )
+readonly _KOTLIN_UTILS_ALL_VERSIONS
+
+# @ECLASS-VARIABLE: _KOTLIN_UTILS_SUPPORTED_VERSIONS
+# @INTERNAL
+# @DESCRIPTION:
+# An array of all Kotlin compiler feature release versions supported by the
+# ebuild according to the value of KOTLIN_COMPAT.
+
 inherit java-pkg-2 java-pkg-simple
 
 IUSE="${KOTLIN_IUSE}"
@@ -310,6 +344,43 @@ kotlin-utils_iuse_depend() {
 	echo "${deps}"
 }
 
+# @FUNCTION: _kotlin-utils_process_kotlin_compat
+# @INTERNAL
+# @DESCRIPTION:
+# Sets ebuild variables according to elements in KOTLIN_COMPAT. Should be
+# called exactly once.
+_kotlin-utils_process_kotlin_compat() {
+	if ! declare -p KOTLIN_COMPAT &> /dev/null; then
+		die "KOTLIN_COMPAT is not declared in ebuild"
+	fi
+	if [[ "$(declare -p KOTLIN_COMPAT)" != "declare -a KOTLIN_COMPAT"* ]]; then
+		die "KOTLIN_COMPAT is not declared as an array in ebuild"
+	fi
+
+	local ver
+	for ver in "${_KOTLIN_UTILS_ALL_VERSIONS[@]}"; do
+		if has "${ver}" "${KOTLIN_COMPAT[@]}"; then
+			_KOTLIN_UTILS_SUPPORTED_VERSIONS+=( "${ver}" )
+		fi
+	done
+
+	local iuse=(
+		"${_KOTLIN_UTILS_SUPPORTED_VERSIONS[@]/#/kotlin_single_target_}"
+	)
+	if [[ "${#iuse[@]}" -eq 1 ]]; then
+		# Enable the USE flag for the only supported Kotlin version by default
+		IUSE+=" +${iuse[0]}"
+	else
+		IUSE+=" ${iuse[*]}"
+	fi
+	REQUIRED_USE="^^ ( ${iuse[*]} )"
+
+	readonly _KOTLIN_UTILS_SUPPORTED_VERSIONS
+}
+
+_kotlin-utils_process_kotlin_compat
+unset -f _kotlin-utils_process_kotlin_compat
+
 # @FUNCTION: _kotlin-utils_get_compiler_ver
 # @INTERNAL
 # @USAGE: <package>
@@ -333,61 +404,20 @@ _kotlin-utils_get_compiler_home() {
 	local prefs_root="${EROOT}/etc/eselect/kotlin/homes"
 	local ver
 
-	if [[ -z "${KOTLIN_VERSIONS}" ]]; then
-		ver="system"
-	elif [[ "${KOTLIN_VERSIONS}" == "="* ]]; then
-		local slot="${KOTLIN_VERSIONS/=}"
-		local symlink="${prefs_root}/${slot}"
-		if [[ -L "${symlink}" && -d "${symlink}" ]]; then
-			ver="${slot}"
-		fi
-	else
-		local bound op
-		case "${KOTLIN_VERSIONS}" in
-			">="*)
-				bound="${KOTLIN_VERSIONS/>=}"
-				op="-ge"
-				;;
-			"<"*)
-				bound="${KOTLIN_VERSIONS/<}"
-				op="-lt"
-				;;
-		esac
-
-		local system_symlink="${prefs_root}/system"
-		local system_pkg="$(basename "$(readlink "${system_symlink}")")"
-		local system_ver="$(_kotlin-utils_get_compiler_ver "${system_pkg}")"
-
-		if [[ -n "${KOTLIN_VERSIONS_PREF_ORDER}" ]]; then
-			for slot in "${KOTLIN_VERSIONS_PREF_ORDER[@]}"; do
-			local symlink="${prefs_root}/${slot}"
-				if ver_test "${slot}" "${op}" "${bound}" && \
-					[[ -L "${symlink}" && -d "${symlink}" ]]; then
-					ver="${slot}"
-					break
-				fi
-			done
-		fi
-		# All preferred versions have been tried
-		if [[ -z "${ver}" ]]; then
-			if ver_test "${system_ver}" "${op}" "${bound}"; then
-				ver="system"
-			else
-				for slot in $(find "${prefs_root}" -type l -name "*.*" -exec \
-					basename {} \; | sort -rV); do
-					if ver_test "${slot}" "${op}" "${bound}"; then
-						ver="${slot}"
-						break
-					fi
-				done
+	for compat_ver in "${KOTLIN_COMPAT[@]}"; do
+		if use "kotlin_single_target_${compat_ver}"; then
+			if [[ -n "${ver}" ]]; then
+				die "Multiple versions selected in KOTLIN_SINGLE_TARGET"
 			fi
+			ver="${compat_ver#kotlin}"
+			ver="${ver//-/.}"
 		fi
-	fi
+	done
 
-	[[ -n "${ver}" ]] || die \
-		"Could not find a Kotlin compiler whose version meets the requirement"
+	[[ -n "${ver}" ]] || die "No version selected in KOTLIN_SINGLE_TARGET"
 
-	readlink "${prefs_root}/${ver}"
+	readlink "${prefs_root}/${ver}" ||
+		die "Failed to get installation path of Kotlin compiler ${ver}"
 }
 
 # @FUNCTION: kotlin-utils_pkg_setup

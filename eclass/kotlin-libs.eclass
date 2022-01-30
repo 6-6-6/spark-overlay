@@ -80,6 +80,7 @@ if [[ -n "${KOTLIN_LIBS_BINJAR_SRC_URI}" ]]; then
 	fi
 fi
 
+KOTLIN_COMPAT=( "kotlin$(ver_cut 1)-$(ver_cut 2)" )
 inherit kotlin-utils
 
 # ebuild metadata variables
