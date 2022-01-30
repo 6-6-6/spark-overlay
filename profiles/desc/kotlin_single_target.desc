@@ -1,0 +1,12 @@
+# Copyright 1999-2022 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+# This file contains descriptions of KOTLIN_SINGLE_TARGET USE_EXPAND flags.
+#
+# When a new feature release version of the Kotlin compiler is ready to be used
+# to build Kotlin packages, please add a new entry for it here.  Likewise, when
+# a feature release version is no longer available for Kotlin packages to use,
+# please remove its entry.
+
+kotlin1-4 - Use Kotlin 1.4 to build the package
+kotlin1-5 - Use Kotlin 1.5 to build the package
