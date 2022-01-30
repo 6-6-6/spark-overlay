@@ -249,6 +249,23 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 
 # Read-only variables
 
+# @ECLASS-VARIABLE: KOTLIN_SLOT_DEP
+# @OUTPUT_VARIABLE
+# @DESCRIPTION:
+# A placeholder variable supported by kotlin-utils_gen_slot_dep, whose value
+# will be the slot of Kotlin library packages for the feature release. This
+# allows depending on Kotlin library packages for the same Kotlin feature
+# release version selected via KOTLIN_SINGLE_TARGET.
+#
+# Example:
+# @CODE
+# DEPEND="
+#	$(kotlin-utils_gen_slot_dep '
+#		dev-java/kotlin-stdlib:${KOTLIN_SLOT_DEP}
+#	')
+# "
+# @CODE
+
 # @ECLASS-VARIABLE: KOTLIN_UTILS_DEPS
 # @OUTPUT_VARIABLE
 # @DESCRIPTION:
@@ -318,6 +335,125 @@ inherit java-pkg-2 java-pkg-simple
 
 IUSE="${KOTLIN_IUSE}"
 has test ${KOTLIN_IUSE} && RESTRICT+=" !test? ( test )"
+
+# @FUNCTION: kotlin-utils_gen_slot_dep
+# @USAGE: <dependencies>
+# @DESCRIPTION:
+# Transforms specified dependency specifications to new ones made conditional
+# to USE_EXPAND flags in KOTLIN_SINGLE_TARGET, whose slots are set for the
+# corresponding Kotlin feature release version. Verbatim '${KOTLIN_SLOT_DEP}'
+# (quoted) may be placed in the dependency specifications passed in. It will be
+# replaced by the correct slot.
+#
+# Note that this function should not be called in CP_DEPEND, as
+# java-utils-2.eclass does not support USE-conditional dependencies in it. To
+# deal with this issue, this eclass provides another kotlin-utils_gen_slot_cp
+# function for conveniently generating a list of packages that can be used in
+# the value of JAVA_GENTOO_CLASSPATH.
+#
+# Example:
+# @CODE
+# KOTLIN_COMPAT=( kotlin1-{4..5} )
+#
+# KOTLIN_DEPEND="$(kotlin-utils_gen_slot_dep '
+#	dev-java/kotlin-stdlib:${KOTLIN_SLOT_DEP}
+# ')"
+# CP_DEPEND="
+#	dev-java/foo-bar:0
+# "
+# DEPEND="
+#	${KOTLIN_DEPEND}
+#	${CP_DEPEND}
+# "
+# RDEPEND="
+#	${KOTLIN_DEPEND}
+#	${CP_DEPEND}
+# "
+# @CODE
+#
+# Example output:
+# @CODE
+# kotlin_single_target_kotlin1-4? ( dev-java/kotlin-stdlib:1.4 )
+# kotlin_single_target_kotlin1-5? ( dev-java/kotlin-stdlib:1.5 )
+# @CODE
+kotlin-utils_gen_slot_dep() {
+	local deps
+
+	for ver in "${_KOTLIN_UTILS_SUPPORTED_VERSIONS[@]}"; do
+		local slot="${ver#kotlin}"
+		slot="${slot//-/.}"
+		deps+=" kotlin_single_target_${ver}? ( "
+		deps+="${1//\$\{KOTLIN_SLOT_DEP\}/${slot}}"
+		deps+=" )"
+	done
+
+	echo "${deps}"
+}
+
+# @FUNCTION: kotlin-utils_gen_slot_cp
+# @USAGE: <dependencies>
+# @DESCRIPTION:
+# Transforms specified dependencies to a string that can be used in values for
+# lists of Java packages in Java eclasses, whose slots are set for the
+# corresponding Kotlin feature release version specified by
+# KOTLIN_SINGLE_TARGET. Verbatim '${KOTLIN_SLOT_DEP}' (quoted) may be placed in
+# the argument passed in. It will be replaced by the correct slot.
+#
+# The output of this function may be used in the values of
+# JAVA_GENTOO_CLASSPATH, JAVA_CLASSPATH_EXTRA and JAVA_TEST_GENTOO_CLASSPATH
+# variables.
+#
+# The following argument formats are supported:
+# - ${CATEGORY}/${PN}:${KOTLIN_SLOT_DEP}
+# - ${PN}:${KOTLIN_SLOT_DEP}
+# - ${PN}-${KOTLIN_SLOT_DEP}
+# - ${CATEGORY}/${PN} (The slot will not be added in this case)
+# - ${PN} (The slot will not be added in this case)
+# Dependencies should be separated by white space.
+#
+# This function must be called in a phase function, not at the top level.
+#
+# Example:
+# @CODE
+# KOTLIN_COMPAT=( kotlin1-5 )
+#
+# KOTLIN_LIBS='
+#	dev-java/kotlin-reflect:${KOTLIN_SLOT_DEP}
+#	dev-java/kotlin-stdlib:${KOTLIN_SLOT_DEP}
+# '
+# KOTLIN_DEPEND="$(kotlin-utils_gen_slot_dep "${KOTLIN_LIBS}")"
+# DEPEND="
+#	${KOTLIN_DEPEND}
+#	dev-java/foo-bar:0
+# "
+# JAVA_GENTOO_CLASSPATH="foo-bar"
+#
+# pkg_setup() {
+#	JAVA_GENTOO_CLASSPATH+=",$(kotlin-utils_gen_slot_cp "${KOTLIN_LIBS}")"
+#	java-pkg-2_pkg_setup
+#	kotlin-utils_pkg_setup
+# }
+# @CODE
+#
+# Example output:
+# @CODE
+# kotlin-reflect-1.5,kotlin-stdlib-1.5
+# @CODE
+kotlin-utils_gen_slot_cp() {
+	local ver="$(_kotlin-utils_get_compiler_ver)"
+	local cp_extra_pkgs pkg
+	for pkg in ${@}; do
+		pkg="${pkg#*/}"
+		pkg="${pkg//\$\{KOTLIN_SLOT_DEP\}/${ver}}"
+		pkg="${pkg//:/-}"
+		cp_extra_pkgs+=( "${pkg}" )
+	done
+	local OLD_IFS="${IFS}"
+	IFS=','
+	local cp_extra="${cp_extra_pkgs[*]}"
+	IFS="${OLD_IFS}"
+	echo "${cp_extra}"
+}
 
 # @FUNCTION: kotlin-utils_kotlin_depend
 # @DESCRIPTION:
@@ -414,16 +550,21 @@ unset -f _kotlin-utils_process_kotlin_compat
 
 # @FUNCTION: _kotlin-utils_get_compiler_ver
 # @INTERNAL
-# @USAGE: <package>
 # @DESCRIPTION:
-# Echoes the feature release version of a Kotlin compiler package. This
-# function should be called only in pkg_* phases.
+# Echoes the feature release version of Kotlin compiler selected to build this
+# package via KOTLIN_SINGLE_TARGET.
 _kotlin-utils_get_compiler_ver() {
-	debug-print-function ${FUNCNAME} "$@"
-	[[ $# -eq 1 ]] || die "Exactly one argument is needed for ${FUNCNAME}"
-	local pkg_desc_root="${EROOT}/usr/share/eselect-kotlin/pkgs"
-	local pkg_desc="$(find "${pkg_desc_root}" -type f -name "$1")"
-	basename "$(dirname "${pkg_desc}")"
+	for compat_ver in "${_KOTLIN_UTILS_SUPPORTED_VERSIONS[@]}"; do
+		if use "kotlin_single_target_${compat_ver}"; then
+			if [[ -n "${ver}" ]]; then
+				die "Multiple versions selected in KOTLIN_SINGLE_TARGET"
+			fi
+			ver="${compat_ver#kotlin}"
+			ver="${ver//-/.}"
+		fi
+	done
+	[[ -n "${ver}" ]] || die "No version selected in KOTLIN_SINGLE_TARGET"
+	echo "${ver}"
 }
 
 # @FUNCTION: _kotlin-utils_get_compiler_home
@@ -433,20 +574,7 @@ _kotlin-utils_get_compiler_ver() {
 # building this package. This function should be called only in pkg_* phases.
 _kotlin-utils_get_compiler_home() {
 	local prefs_root="${EROOT}/etc/eselect/kotlin/homes"
-	local ver
-
-	for compat_ver in "${KOTLIN_COMPAT[@]}"; do
-		if use "kotlin_single_target_${compat_ver}"; then
-			if [[ -n "${ver}" ]]; then
-				die "Multiple versions selected in KOTLIN_SINGLE_TARGET"
-			fi
-			ver="${compat_ver#kotlin}"
-			ver="${ver//-/.}"
-		fi
-	done
-
-	[[ -n "${ver}" ]] || die "No version selected in KOTLIN_SINGLE_TARGET"
-
+	local ver="$(_kotlin-utils_get_compiler_ver)"
 	readlink "${prefs_root}/${ver}" ||
 		die "Failed to get installation path of Kotlin compiler ${ver}"
 }
@@ -468,8 +596,7 @@ kotlin-utils_pkg_setup() {
 	readonly KOTLIN_UTILS_COMPILER_HOME
 	local compiler_pkg="$(basename "${KOTLIN_UTILS_COMPILER_HOME}")"
 	einfo "Using Kotlin compiler package: ${compiler_pkg}"
-	export GENTOO_KOTLIN_VER="$(_kotlin-utils_get_compiler_ver \
-		"${compiler_pkg}")"
+	export GENTOO_KOTLIN_VER="$(_kotlin-utils_get_compiler_ver)"
 }
 
 # @FUNCTION: kotlin-utils_kotlinc
