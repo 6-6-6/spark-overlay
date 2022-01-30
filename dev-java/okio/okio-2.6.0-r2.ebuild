@@ -19,25 +19,29 @@ LICENSE="Apache-2.0"
 SLOT="2.6"
 KEYWORDS="~amd64"
 
-CP_DEPEND="
-	dev-java/kotlin-stdlib:1.4
-"
+KOTLIN_LIBS='
+	dev-java/kotlin-stdlib:${KOTLIN_SLOT_DEP}
+'
+
+KOTLIN_DEPEND="$(kotlin-utils_gen_slot_dep "${KOTLIN_LIBS}")"
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	${CP_DEPEND}
+	${KOTLIN_DEPEND}
 	dev-java/animal-sniffer-annotations:0
 	dev-java/jetbrains-annotations:13
 	test? (
-		dev-java/kotlin-test:1.4
-		dev-java/kotlin-test-junit:1.4
+		$(kotlin-utils_gen_slot_dep '
+			dev-java/kotlin-test:${KOTLIN_SLOT_DEP}
+			dev-java/kotlin-test-junit:${KOTLIN_SLOT_DEP}
+		')
 		dev-java/assertj-core:2
 	)
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-	${CP_DEPEND}
+	${KOTLIN_DEPEND}
 "
 
 S="${WORKDIR}/${PN}-parent-${PV}"
@@ -47,8 +51,6 @@ JAVA_CLASSPATH_EXTRA="
 	jetbrains-annotations-13
 "
 JAVA_TEST_GENTOO_CLASSPATH="
-	kotlin-test-1.4
-	kotlin-test-junit-1.4
 	assertj-core-2
 "
 JAVA_RESOURCE_DIRS=( "${PN}/src/jvmMain/resources" )
@@ -80,6 +82,15 @@ KOTLIN_TEST_EXCLUDES=(
 	# Non-tests
 	okio.TestUtil
 )
+
+pkg_setup() {
+	JAVA_GENTOO_CLASSPATH="$(kotlin-utils_gen_slot_cp "${KOTLIN_LIBS}")"
+	JAVA_TEST_GENTOO_CLASSPATH+=" $(kotlin-utils_gen_slot_cp '
+		kotlin-test-${KOTLIN_SLOT_DEP}
+		kotlin-test-junit-${KOTLIN_SLOT_DEP}
+	')"
+	kotlin_pkg_setup
+}
 
 src_prepare() {
 	if use test; then
