@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -7,8 +7,7 @@ JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="io.projectreactor:reactor-core:3.1.4.RELEASE"
 JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
-KOTLIN_VERSIONS=">=1.4"
-KOTLIN_VERSIONS_PREF_ORDER=( 1.4 )
+KOTLIN_COMPAT=( kotlin1-{4..5} )
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven kotlin-utils
 
@@ -35,7 +34,7 @@ DEPEND="
 	app-arch/unzip
 	!binary? (
 		${CP_DEPEND}
-		$(kotlin-utils_kotlin_depend)
+		${KOTLIN_UTILS_DEPS}
 		dev-java/jetbrains-annotations:13
 	)
 "

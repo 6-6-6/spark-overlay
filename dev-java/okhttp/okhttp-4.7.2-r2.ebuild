@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -8,8 +8,7 @@ MAVEN_ID="com.squareup.okhttp3:okhttp:4.7.2"
 KOTLIN_IUSE="source test"
 KOTLIN_TESTING_FRAMEWORKS="junit-4"
 
-KOTLIN_VERSIONS=">=1.4"
-KOTLIN_VERSIONS_PREF_ORDER=( 1.{4..5} )
+KOTLIN_COMPAT=( kotlin1-{4..5} )
 
 inherit kotlin
 
