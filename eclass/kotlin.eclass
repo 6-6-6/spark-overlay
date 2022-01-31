@@ -67,6 +67,7 @@ kotlin_src_test() {
 # JAVA_MAIN_CLASS is set.
 kotlin_src_install() {
 	java-pkg_dojar "${JAVA_JAR_FILENAME}"
+	einstalldocs
 
 	if [[ -n "${JAVA_MAIN_CLASS}" ]]; then
 		java-pkg_dolauncher "${JAVA_LAUNCHER_FILENAME}" \
