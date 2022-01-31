@@ -2,3 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 USE_EXPAND="KOTLIN_SINGLE_TARGET"
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-01-31)
+# Default Kotlin compiler for all packages supporting it
+KOTLIN_SINGLE_TARGET="kotlin1-4"
