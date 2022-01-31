@@ -83,6 +83,8 @@ KOTLIN_TEST_EXCLUDES=(
 	okio.TestUtil
 )
 
+DOCS=( BUG-BOUNTY.md CHANGELOG.md README.md docs/code_of_conduct.md )
+
 pkg_setup() {
 	JAVA_GENTOO_CLASSPATH="$(kotlin-utils_gen_slot_cp "${KOTLIN_LIBS}")"
 	JAVA_TEST_GENTOO_CLASSPATH+=" $(kotlin-utils_gen_slot_cp '
@@ -98,9 +100,4 @@ src_prepare() {
 		eapply "${FILESDIR}/${PN}-2.6.0-0002-skip-failing-tests-on-kotlin-1.4.32.patch"
 	fi
 	eapply_user
-}
-
-src_install() {
-	kotlin_src_install
-	dodoc BUG-BOUNTY.md CHANGELOG.md README.md docs/code_of_conduct.md
 }
