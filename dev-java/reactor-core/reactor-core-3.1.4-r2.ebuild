@@ -71,24 +71,7 @@ src_prepare() {
 
 src_compile() {
 	java-pkg-simple_src_compile
-
 	use binary && return
-
-	local classes="target/classes"
-
-	# JAVA_GENTOO_CLASSPATH will be set by java-pkg_gen-cp,
-	# which will be called by java-pkg-simple_src_compile
-	local classpath="$(java-pkg_getjars --build-only --with-dependencies \
-		"${JAVA_GENTOO_CLASSPATH},${JAVA_CLASSPATH_EXTRA}")"
-	classpath+=":${classes}"
-
-	local kotlin_sources="kotlin_sources.lst"
-	find "${JAVA_SRC_DIR}" -name "*.kt" > "${kotlin_sources}"
-	kotlin-utils_kotlinc -d "${classes}" ${classpath:+-classpath ${classpath}} \
-		"@${kotlin_sources}"
-	cat "${kotlin_sources}" >> sources.lst || \
-		die "Failed to add Kotlin source file names to sources.lst"
-
-	jar uf "${JAVA_JAR_FILENAME}" $(find "${classes}" -name "*Kt*.class") || \
-		die "Failed to add Kotlin classes to the JAR"
+	kotlin-utils_src_compile
+	kotlin-utils_jar
 }
