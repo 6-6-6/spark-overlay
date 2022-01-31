@@ -53,14 +53,14 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 # @ECLASS-VARIABLE: KOTLIN_COMMON_SOURCES_DIR
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# An array of directories relative to ${S} which contains the sources to pass
-# to kotlinc's -Xcommon-sources option. Default is unset, can be overridden
-# from ebuild anywhere.
+# An array of directories relative to ${S} which contain the sources to pass to
+# kotlinc's -Xcommon-sources option. Default is unset, can be overridden from
+# ebuild anywhere.
 
 # @ECLASS-VARIABLE: KOTLIN_KOTLINC_ARGS
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# An array of any extra arguments to kotlinc that will added after all other
+# An array of any extra arguments to kotlinc that will be added after all other
 # arguments set by the variables of this eclass and before the list of Kotlin
 # source files. Default is unset, can be overridden from ebuild anywhere.
 
@@ -377,6 +377,8 @@ has test ${KOTLIN_IUSE} && RESTRICT+=" !test? ( test )"
 # kotlin_single_target_kotlin1-5? ( dev-java/kotlin-stdlib:1.5 )
 # @CODE
 kotlin-utils_gen_slot_dep() {
+	debug-print-function ${FUNCNAME} "${@}"
+
 	local deps
 
 	for ver in "${_KOTLIN_UTILS_SUPPORTED_VERSIONS[@]}"; do
@@ -440,6 +442,8 @@ kotlin-utils_gen_slot_dep() {
 # kotlin-reflect-1.5,kotlin-stdlib-1.5
 # @CODE
 kotlin-utils_gen_slot_cp() {
+	debug-print-function ${FUNCNAME} "${@}"
+
 	local ver="$(_kotlin-utils_get_compiler_ver)"
 	local cp_extra_pkgs pkg
 	for pkg in ${@}; do
@@ -478,6 +482,8 @@ kotlin-utils_kotlin_depend() {
 # particular, if the 'test' USE flag exists, then the dependency specification
 # will contain packages for KOTLIN_TESTING_FRAMEWORKS.
 kotlin-utils_iuse_depend() {
+	debug-print-function ${FUNCNAME} "${@}"
+
 	local deps
 
 	if has source ${KOTLIN_IUSE}; then
@@ -509,6 +515,8 @@ kotlin-utils_iuse_depend() {
 # Sets ebuild variables according to elements in KOTLIN_COMPAT. Should be
 # called exactly once.
 _kotlin-utils_process_kotlin_compat() {
+	debug-print-function ${FUNCNAME} "${@}"
+
 	if ! declare -p KOTLIN_COMPAT &> /dev/null; then
 		die "KOTLIN_COMPAT is not declared in ebuild"
 	fi
@@ -554,11 +562,12 @@ unset -f _kotlin-utils_process_kotlin_compat
 # Echoes the feature release version of Kotlin compiler selected to build this
 # package via KOTLIN_SINGLE_TARGET.
 _kotlin-utils_get_compiler_ver() {
+	debug-print-function ${FUNCNAME} "${@}"
+
 	for compat_ver in "${_KOTLIN_UTILS_SUPPORTED_VERSIONS[@]}"; do
 		if use "kotlin_single_target_${compat_ver}"; then
-			if [[ -n "${ver}" ]]; then
+			[[ -z "${ver}" ]] ||
 				die "Multiple versions selected in KOTLIN_SINGLE_TARGET"
-			fi
 			ver="${compat_ver#kotlin}"
 			ver="${ver//-/.}"
 		fi
@@ -573,6 +582,8 @@ _kotlin-utils_get_compiler_ver() {
 # Echoes the path to the Kotlin compiler installation that will be used for
 # building this package. This function should be called only in pkg_* phases.
 _kotlin-utils_get_compiler_home() {
+	debug-print-function ${FUNCNAME} "${@}"
+
 	local prefs_root="${EROOT}/etc/eselect/kotlin/homes"
 	local ver="$(_kotlin-utils_get_compiler_ver)"
 	readlink "${prefs_root}/${ver}" ||
@@ -585,6 +596,8 @@ _kotlin-utils_get_compiler_home() {
 # KOTLIN_UTILS_COMPILER_HOME to the compiler's installation path and prints the
 # package's name.
 kotlin-utils_pkg_setup() {
+	debug-print-function ${FUNCNAME} "${@}"
+
 	# The Kotlin compiler is only a build dependency: the JAR produced is
 	# compatible with JVM, and a JRE is good for using it during runtime.
 	# Therefore, it is possible that the Kotlin compiler is not installed
@@ -605,7 +618,7 @@ kotlin-utils_pkg_setup() {
 # Invokes the Kotlin compiler with arguments specified by the eclass variables,
 # followed by <kotlinc_arguments>.
 kotlin-utils_kotlinc() {
-	debug-print-function ${FUNCNAME} "$@"
+	debug-print-function ${FUNCNAME} "${@}"
 
 	local compiler_executable
 	compiler_executable="kotlinc"
@@ -631,11 +644,11 @@ kotlin-utils_kotlinc() {
 		"${common_sources}"
 		"${java_source_roots}"
 		"${KOTLIN_KOTLINC_ARGS[@]}"
-		"$@"
+		"${@}"
 	)
 	local compiler_command="${compiler_command_args[@]}"
 
-	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
+	if [[ -n "${JAVA_PKG_DEBUG}" ]]; then
 		einfo "Verbose logging for \"${FUNCNAME}\" function"
 		einfo "JAVA_OPTS: ${KOTLIN_KOTLINC_JAVA_OPTS}"
 		einfo "Compiler arguments:"
@@ -643,7 +656,7 @@ kotlin-utils_kotlinc() {
 	fi
 
 	ebegin "Compiling"
-	JAVA_OPTS="${KOTLIN_KOTLINC_JAVA_OPTS}" ${compiler_command} || \
+	JAVA_OPTS="${KOTLIN_KOTLINC_JAVA_OPTS}" ${compiler_command} ||
 		die "${FUNCNAME} failed"
 }
 
@@ -651,12 +664,14 @@ kotlin-utils_kotlinc() {
 # @DESCRIPTION:
 # Compiles the source files in KOTLIN_SRC_DIR using compiler arguments
 # specified by other variables of this eclass, with classpath calculated from
-# JAVA_GENTOO_CLASSPATH.  Note that this function does not generate the JAR.
+# JAVA_GENTOO_CLASSPATH. Note that this function does not generate the JAR.
 kotlin-utils_src_compile() {
+	debug-print-function ${FUNCNAME} "${@}"
+
 	java-pkg_gen-cp JAVA_GENTOO_CLASSPATH
 
 	# Create the target directory
-	mkdir -p "${KOTLIN_UTILS_CLASSES}" || \
+	mkdir -p "${KOTLIN_UTILS_CLASSES}" ||
 		die "Could not create the target directory for compiled classes"
 
 	# Compute classpath
@@ -673,7 +688,7 @@ kotlin-utils_src_compile() {
 	find "${KOTLIN_SRC_DIR[@]}" -name "*.kt" > "${kotlin_sources}"
 	kotlin-utils_kotlinc \
 		-d "${KOTLIN_UTILS_CLASSES}" \
-		${classpath:+-classpath ${classpath}} \
+		${classpath:+-classpath "${classpath}"} \
 		"@${kotlin_sources}"
 	# Compile any Java source files after the Kotlin sources because
 	# the Java sources require the Kotlin classes as dependencies
@@ -684,10 +699,10 @@ kotlin-utils_src_compile() {
 		ebegin "Compiling Java sources"
 		$(java-pkg_get-javac) \
 			-d "${KOTLIN_UTILS_CLASSES}" \
-			-classpath ${java_classpath} \
+			-classpath "${java_classpath}" \
 			-encoding "${JAVA_ENCODING}" \
-			${KOTLIN_JAVA_WANT_SOURCE_TARGET:+-source ${KOTLIN_JAVA_WANT_SOURCE_TARGET}} \
-			${KOTLIN_JAVA_WANT_SOURCE_TARGET:+-target ${KOTLIN_JAVA_WANT_SOURCE_TARGET}} \
+			${KOTLIN_JAVA_WANT_SOURCE_TARGET:+-source "${KOTLIN_JAVA_WANT_SOURCE_TARGET}"} \
+			${KOTLIN_JAVA_WANT_SOURCE_TARGET:+-target "${KOTLIN_JAVA_WANT_SOURCE_TARGET}"} \
 			"${KOTLIN_JAVAC_ARGS[@]}" \
 			"@${java_sources}" || die "Failed to compile Java sources"
 	fi
@@ -702,7 +717,7 @@ kotlin-utils_src_compile() {
 kotlin-utils_jar() {
 	debug-print-function ${FUNCNAME} "${@}"
 
-	[[ -d "${KOTLIN_UTILS_CLASSES}" ]] || \
+	[[ -d "${KOTLIN_UTILS_CLASSES}" ]] ||
 		die "Cannot create JAR before any sources are compiled"
 	local jar_args
 	if [[ -f "${JAVA_JAR_FILENAME}" ]]; then
@@ -725,9 +740,11 @@ kotlin-utils_jar() {
 # Compiles the test source files in KOTLIN_TEST_SRC_DIR using compiler
 # arguments during the test specified by other variables of this eclass.
 kotlin-utils_test_compile() {
+	debug-print-function ${FUNCNAME} "${@}"
+
 	local classes="target/test-classes"
 	# Create the target directory
-	mkdir -p "${classes}" || \
+	mkdir -p "${classes}" ||
 		die "Could not create the target directory for test classes"
 
 	# Compute classpath
@@ -764,7 +781,7 @@ kotlin-utils_test_compile() {
 
 	kotlin-utils_kotlinc \
 		-d "${classes}" \
-		${classpath:+-classpath ${classpath}} \
+		${classpath:+-classpath "${classpath}"} \
 		"@${kotlin_sources}"
 
 	# Restore variables
@@ -782,10 +799,10 @@ kotlin-utils_test_compile() {
 		ebegin "Compiling Java sources"
 		$(java-pkg_get-javac) \
 			-d "${classes}" \
-			-classpath ${classpath} \
+			-classpath "${classpath}" \
 			-encoding "${JAVA_ENCODING}" \
-			${KOTLIN_TEST_JAVA_WANT_SOURCE_TARGET:+-source ${KOTLIN_TEST_JAVA_WANT_SOURCE_TARGET}} \
-			${KOTLIN_TEST_JAVA_WANT_SOURCE_TARGET:+-target ${KOTLIN_TEST_JAVA_WANT_SOURCE_TARGET}} \
+			${KOTLIN_TEST_JAVA_WANT_SOURCE_TARGET:+-source "${KOTLIN_TEST_JAVA_WANT_SOURCE_TARGET}"} \
+			${KOTLIN_TEST_JAVA_WANT_SOURCE_TARGET:+-target "${KOTLIN_TEST_JAVA_WANT_SOURCE_TARGET}"} \
 			"${KOTLIN_TEST_JAVAC_ARGS[@]}" \
 			"@${java_sources}" || die "Failed to compile Java test sources"
 	fi
@@ -822,6 +839,8 @@ kotlin-utils_test_compile() {
 # @DESCRIPTION:
 # Performs tests with frameworks defined in KOTLIN_TESTING_FRAMEWORKS.
 kotlin-utils_src_test() {
+	debug-print-function ${FUNCNAME} "${@}"
+
 	if ! has test ${KOTLIN_IUSE}; then
 		return
 	elif ! use test; then
@@ -860,11 +879,11 @@ kotlin-utils_src_test() {
 # Installs a Zip archive containing the specified sources for a package.
 # To use this function, app-arch/zip needs to be present in DEPEND.
 kotlin-utils_dosrc() {
-	debug-print-function ${FUNCNAME} "$@"
+	debug-print-function ${FUNCNAME} "${@}"
 
 	java-pkg_check-phase install
 
-	[[ $# -ge 1 ]] || die "At least one argument needed for ${FUNCNAME}"
+	[[ "${#}" -ge 1 ]] || die "At least one argument needed for ${FUNCNAME}"
 
 	if [[ "${DEPEND}" != *app-arch/zip* ]]; then
 		local msg="${FUNCNAME} called without app-arch/zip in DEPEND"
@@ -876,12 +895,12 @@ kotlin-utils_dosrc() {
 	local zip_name="${PN}-src.zip"
 	local zip_path="${T}/${zip_name}"
 	local path
-	for path in "$@"; do
+	for path in "${@}"; do
 		pushd "${path}" > /dev/null || die "Failed to enter directory ${path}"
 		zip -q -r "${zip_path}" *
-		local result=$?
+		local result="${?}"
 		# 12 means zip has nothing to do
-		if [[ "${result}" != 12 && "${result}" != 0 ]]; then
+		if [[ "${result}" -ne 12 && "${result}" -ne 0 ]]; then
 			die "Failed to add ${dir_name} to Zip archive"
 		fi
 		popd > /dev/null || die "Failed to exit directory ${path}"
@@ -894,9 +913,9 @@ kotlin-utils_dosrc() {
 		einfo "Verbose logging for \"${FUNCNAME}\" function"
 		einfo "Zip filename created: ${zip_name}"
 		einfo "Zip file destination: ${JAVA_PKG_SOURCESPATH}"
-		einfo "Paths zipped: $@"
+		einfo "Paths zipped: ${@}"
 		einfo "Complete command:"
-		einfo "${FUNCNAME} $@"
+		einfo "${FUNCNAME} ${@}"
 	fi
 
 	JAVA_SOURCES="${JAVA_PKG_SOURCESPATH}/${zip_name}"
