@@ -660,7 +660,9 @@ kotlin-utils_src_compile() {
 		die "Could not create the target directory for compiled classes"
 
 	# Compute classpath
-	local classpath=""
+	# Include the target directory because it may already contain classes
+	# compiled from Java sources that Kotlin sources depend on
+	local classpath="${KOTLIN_UTILS_CLASSES}"
 	java-pkg-simple_getclasspath
 
 	java-pkg-simple_prepend_resources \
@@ -693,19 +695,27 @@ kotlin-utils_src_compile() {
 
 # @FUNCTION: kotlin-utils_jar
 # @DESCRIPTION:
-# Creates a JAR from the files generated during compilation at
-# JAVA_JAR_FILENAME. If the file ${KOTLIN_UTILS_CLASSES}/META-INF/MANIFEST.MF
-# exists, it will be used as the manifest of the created JAR.
+# Creates a JAR at JAVA_JAR_FILENAME from the files generated during
+# compilation at JAVA_JAR_FILENAME, or updates the JAR if it already exists. If
+# the file ${KOTLIN_UTILS_CLASSES}/META-INF/MANIFEST.MF exists, it will be used
+# as the manifest of the created JAR.
 kotlin-utils_jar() {
+	debug-print-function ${FUNCNAME} "${@}"
+
 	[[ -d "${KOTLIN_UTILS_CLASSES}" ]] || \
 		die "Cannot create JAR before any sources are compiled"
 	local jar_args
-	if [[ -e "${KOTLIN_UTILS_CLASSES}/META-INF/MANIFEST.MF" ]]; then
-		jar_args="cfm ${JAVA_JAR_FILENAME} ${KOTLIN_UTILS_CLASSES}/META-INF/MANIFEST.MF"
-	elif [[ -n "${JAVA_MAIN_CLASS}" ]]; then
-		jar_args="cfe ${JAVA_JAR_FILENAME} ${JAVA_MAIN_CLASS}"
+	if [[ -f "${JAVA_JAR_FILENAME}" ]]; then
+		jar_args="-u"
 	else
-		jar_args="cf ${JAVA_JAR_FILENAME}"
+		jar_args="-c"
+	fi
+	if [[ -e "${KOTLIN_UTILS_CLASSES}/META-INF/MANIFEST.MF" ]]; then
+		jar_args+="fm ${JAVA_JAR_FILENAME} ${KOTLIN_UTILS_CLASSES}/META-INF/MANIFEST.MF"
+	elif [[ -n "${JAVA_MAIN_CLASS}" ]]; then
+		jar_args+="fe ${JAVA_JAR_FILENAME} ${JAVA_MAIN_CLASS}"
+	else
+		jar_args+="f ${JAVA_JAR_FILENAME}"
 	fi
 	jar ${jar_args} -C "${KOTLIN_UTILS_CLASSES}" . || die "Failed to create JAR"
 }
