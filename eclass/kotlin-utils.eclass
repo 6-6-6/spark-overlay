@@ -186,43 +186,6 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 # KOTLIN_COMPAT=( kotlin1-{4..5} )
 # @CODE
 
-# @ECLASS-VARIABLE: KOTLIN_VERSIONS
-# @DEFAULT_UNSET
-# @PRE_INHERIT
-# @DESCRIPTION:
-# The feature release versions (e.g. 1.4, 1.5) of Kotlin compilers that can be
-# used to build this package. This variable's value should be a string that
-# starts with one of the "=", ">=" and "<" operators followed by a feature
-# release number. Default is unset, which signifies that any feature release
-# can be used.  Although kotlin-utils.eclass does not require this variable to
-# be set before it is inherited, other eclasses that inherit this eclass, like
-# kotlin.eclass and kotlin-libs.eclass, may require it to be set before they
-# are inherited.
-#
-# Examples:
-# @CODE
-# # Define a single version
-# KOTLIN_VERSIONS="=1.5"
-# # Define an open range with a lower bound
-# KOTLIN_VERSIONS=">=1.4"
-# # Define an open range with an upper bound
-# KOTLIN_VERSIONS="<1.6"
-# @CODE
-
-# @ECLASS-VARIABLE: KOTLIN_VERSIONS_PREF_ORDER
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# An array of Kotlin feature release versions defining an order of preference
-# on them. Kotlin eclasses may use the first version in this array that meets
-# the feature release requirement specified by KOTLIN_VERSIONS and is installed
-# on the system to build this package. Any elements that do not satisfy the
-# requirement of KOTLIN_VERSIONS will be ignored. If all elements are ignored
-# due to this, then the system compiler set by 'eselect kotlin set system' will
-# be used first if it matches KOTLIN_VERSIONS; otherwise, the highest installed
-# version matching KOTLIN_VERSIONS will be used. Default is unset, which
-# exhibits the same behavior as if all elements are ignored, and can be
-# overridden from ebuild BEFORE the pkg_setup phase.
-
 # @ECLASS-VARIABLE: KOTLIN_WANT_TARGET
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -457,23 +420,6 @@ kotlin-utils_gen_slot_cp() {
 	local cp_extra="${cp_extra_pkgs[*]}"
 	IFS="${OLD_IFS}"
 	echo "${cp_extra}"
-}
-
-# @FUNCTION: kotlin-utils_kotlin_depend
-# @DESCRIPTION:
-# Echoes a dependency specification that enforces the requirement of
-# KOTLIN_VERSIONS.
-kotlin-utils_kotlin_depend() {
-	case "${KOTLIN_VERSIONS}" in
-		"="*)
-			echo "virtual/kotlin:${KOTLIN_VERSIONS/=}" ;;
-		">="*)
-			echo ">=virtual/kotlin-${KOTLIN_VERSIONS/>=}:*" ;;
-		"<"*)
-			echo "<virtual/kotlin-${KOTLIN_VERSIONS/<}:*" ;;
-		*)
-			echo "virtual/kotlin:*" ;;
-	esac
 }
 
 # @FUNCTION: kotlin-utils_iuse_depend
