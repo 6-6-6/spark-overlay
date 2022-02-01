@@ -57,9 +57,10 @@ JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 pkg_setup() {
-	JAVA_GENTOO_CLASSPATH="$(kotlin-utils_gen_slot_cp "${KOTLIN_LIBS}")"
 	java-pkg-2_pkg_setup
-	! use binary && kotlin-utils_pkg_setup
+	use binary && KOTLIN_SKIP_COMPILER_SETUP="true"
+	kotlin-utils_pkg_setup
+	JAVA_GENTOO_CLASSPATH="$(kotlin-utils_gen_slot_cp "${KOTLIN_LIBS}")"
 }
 
 src_prepare() {

@@ -86,12 +86,12 @@ KOTLIN_TEST_EXCLUDES=(
 DOCS=( BUG-BOUNTY.md CHANGELOG.md README.md docs/code_of_conduct.md )
 
 pkg_setup() {
+	kotlin_pkg_setup
 	JAVA_GENTOO_CLASSPATH="$(kotlin-utils_gen_slot_cp "${KOTLIN_LIBS}")"
 	JAVA_TEST_GENTOO_CLASSPATH+=" $(kotlin-utils_gen_slot_cp '
 		kotlin-test-${KOTLIN_SLOT_DEP}
 		kotlin-test-junit-${KOTLIN_SLOT_DEP}
 	')"
-	kotlin_pkg_setup
 }
 
 src_prepare() {
