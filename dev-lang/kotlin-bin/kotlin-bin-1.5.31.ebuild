@@ -1,38 +1,46 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-inherit java-pkg-2 kotlin-compiler
+inherit java-pkg-2 kotlin-compiler optfeature
 
 DESCRIPTION="Statically typed programming language for modern multiplatform applications"
 HOMEPAGE="https://kotlinlang.org/"
-SRC_URI="
-	https://github.com/JetBrains/kotlin/releases/download/v${PV}/kotlin-compiler-${PV}.zip
-"
+SRC_URI="https://github.com/JetBrains/kotlin/releases/download/v${PV}/kotlin-compiler-${PV}.zip"
 
 LICENSE="Apache-2.0 BSD MIT NPL-1.1"
 SLOT="$(ver_cut 1-2)"
 KEYWORDS="~amd64"
-IUSE="javascript"
 
 COROUTINES_CORE_SLOT="1.5.0"
 JB_ANNOTATIONS_SLOT="13"
 
-RDEPEND="
-	~dev-java/kotlin-stdlib-${PV}:${SLOT}
-	~dev-java/kotlin-reflect-${PV}:${SLOT}
-	dev-java/kotlinx-coroutines-core-bin:${COROUTINES_CORE_SLOT}
-	dev-java/jetbrains-annotations:${JB_ANNOTATIONS_SLOT}
-	dev-java/jetbrains-trove:0
-	>=virtual/jdk-1.8:*
-"
 BDEPEND="
 	app-arch/unzip
 "
-DEPEND="${RDEPEND}"
-PDEPEND="
-	javascript? ( ~dev-java/kotlin-stdlib-js-${PV}:${SLOT} )
+
+# The atom for each bootstrap package should be put before the atom for the
+# normal package, so it will be selected if neither package has been installed
+# (this holds at least on Portage 3.0.30), thus users need not manually install
+# those normal packages with USE="binary" and can directly install this package
+DEPEND="
+	>=virtual/jdk-1.8:*
+	|| (
+		~dev-java/kotlin-stdlib-bootstrap-${PV}:${SLOT}
+		~dev-java/kotlin-stdlib-${PV}:${SLOT}
+	)
+	|| (
+		~dev-java/kotlin-reflect-bootstrap-${PV}:${SLOT}
+		~dev-java/kotlin-reflect-${PV}:${SLOT}
+	)
+	dev-java/kotlinx-coroutines-core-bin:${COROUTINES_CORE_SLOT}
+	dev-java/jetbrains-annotations:${JB_ANNOTATIONS_SLOT}
+	dev-java/jetbrains-trove:0
+"
+
+RDEPEND="
+	${DEPEND}
 "
 
 S="${WORKDIR}/kotlinc"
@@ -71,26 +79,26 @@ KOTLINC_LIBS=(
 	sam-with-receiver-compiler-plugin.jar
 )
 
-src_prepare() {
-	java-pkg-2_src_prepare
-
+src_compile() {
 	KOTLINC_BIN_TMP="${T}/bin"
-	mkdir "${KOTLINC_BIN_TMP}" || die
-	rm bin/*.bat || die
-	if ! use javascript; then
-		rm bin/kotlin*js || die
-	fi
-	cp bin/* "${KOTLINC_BIN_TMP}" || die
+	mkdir "${KOTLINC_BIN_TMP}" ||
+		die "Failed to create directory for executables"
+	rm bin/*.bat || die "Failed to remove extraneous executables"
+	cp bin/* "${KOTLINC_BIN_TMP}" || die "Failed to copy executables"
 
 	KOTLINC_LIB_TMP="${T}/lib"
-	mkdir "${KOTLINC_LIB_TMP}" || die
-	cp "${KOTLINC_LIBS[@]/#/lib/}" "${KOTLINC_LIB_TMP}" || die
+	mkdir "${KOTLINC_LIB_TMP}" ||
+		die "Failed to create directory for libraries"
+	cp "${KOTLINC_LIBS[@]/#/lib/}" "${KOTLINC_LIB_TMP}" ||
+		die "Failed to copy libraries"
 
 	# Create symbolic links to required Kotlin core library components
-	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
-		"kotlin-stdlib-${SLOT}"
-	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
-		"kotlin-reflect-${SLOT}"
+	ln -s "${EPREFIX}/usr/share/kotlin-stdlib-${SLOT}/lib/kotlin-stdlib.jar" \
+		"${KOTLINC_LIB_TMP}/kotlin-stdlib.jar" ||
+		die "Failed to create symbolic link to kotlin-stdlib.jar"
+	ln -s "${EPREFIX}/usr/share/kotlin-reflect-${SLOT}/lib/kotlin-reflect.jar" \
+		"${KOTLINC_LIB_TMP}/kotlin-reflect.jar" ||
+		die "Failed to create symbolic link to kotlin-reflect.jar"
 
 	# Create symbolic links to external dependencies
 	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
@@ -105,19 +113,27 @@ src_prepare() {
 }
 
 src_install() {
-	into "${KOTLIN_COMPILER_HOME}"
-	dobin "${KOTLINC_BIN_TMP}"/*
+	exeinto "${KOTLIN_COMPILER_HOME}/bin"
+	doexe "${KOTLINC_BIN_TMP}"/*
 
 	insinto "${KOTLIN_COMPILER_HOME}/lib"
 	doins "${KOTLINC_LIB_TMP}"/*
 
 	# Remove copyright header template used for source files
-	rm license/COPYRIGHT_HEADER.txt
+	rm license/COPYRIGHT_HEADER.txt ||
+		die "Failed to remove extraneous documentation file"
 	# Remove redundant copy of Apache-2.0 license
-	rm license/LICENSE.txt
+	rm license/LICENSE.txt ||
+		die "Failed to remove extraneous documentation file"
 	dodoc -r license/*
 
 	# build.txt required for 'kotlin -version'
 	insinto "${KOTLIN_COMPILER_HOME}"
 	doins build.txt
+}
+
+pkg_postinst() {
+	kotlin-compiler_pkg_postinst
+	optfeature "compiling for the Kotlin/JS platform" \
+		"dev-java/kotlin-stdlib-js:${SLOT}"
 }
