@@ -1,4 +1,4 @@
-# Copyright 2021 Gentoo Authors
+# Copyright 2021-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: kotlin-compiler.eclass
@@ -39,10 +39,6 @@ esac
 
 RDEPEND="
 	app-eselect/eselect-kotlin
-"
-
-PDEPEND="
-	virtual/kotlin:${KOTLIN_COMPILER_VER}
 "
 
 EXPORT_FUNCTIONS pkg_preinst pkg_postinst pkg_postrm
