@@ -95,6 +95,18 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 # arguments set by the variables of this eclass and before the list of Java
 # source files. Default is unset, can be overridden from ebuild anywhere.
 
+# @ECLASS-VARIABLE: KOTLIN_SKIP_COMPILER_SETUP
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# If a non-empty value is set, a Kotlin compiler will not be set up in
+# kotlin-utils_pkg_setup. Setting a non-empty value allows
+# kotlin-utils_pkg_setup to be called when there are no Kotlin compilers
+# installed on the system, but the behaviors of any functions that may invoke
+# the Kotlin compiler and the values of any variables storing information about
+# the Kotlin compiler used to build the package are unspecified. Useful for
+# packages that do not need the Kotlin compiler to build. Default is unset, can
+# be overridden from ebuild BEFORE calling kotlin-utils_pkg_setup.
+
 # Test options
 
 # @ECLASS-VARIABLE: KOTLIN_TESTING_FRAMEWORKS
@@ -184,6 +196,26 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 # KOTLIN_COMPAT=( kotlin1-4 kotlin1-5 )
 # # Bash brace expansion may be used
 # KOTLIN_COMPAT=( kotlin1-{4..5} )
+# @CODE
+
+# @ECLASS-VARIABLE: KOTLIN_COMPAT_OVERRIDE
+# @DEFAULT_UNSET
+# @USER_VARIABLE
+# @DESCRIPTION:
+# An identifier for a Kotlin feature release version ("kotlin1-x" for Kotlin
+# 1.x) that can be used during ebuild development to force use of a particular
+# Kotlin feature release. Default is unset, can be overridden via make.conf(5),
+# environment variable with the same name, or any other equivalent mechanism.
+# Should only be used by ebuild developers. Should not be set from ebuild.
+#
+# This variable does not alter IUSE, KOTLIN_COMPAT, KOTLIN_SINGLE_TARGET, or
+# dependencies. The KOTLIN_SINGLE_TARGET setting is ignored.  Dependencies for
+# the Kotlin feature release (including compiler and libraries) will not be
+# enforced by this eclass and thus must be installed manually.
+#
+# Example:
+# @CODE
+# env KOTLIN_COMPAT_OVERRIDE="kotlin1-5" emerge -a1 dev-java/foo-bar
 # @CODE
 
 # @ECLASS-VARIABLE: KOTLIN_WANT_TARGET
@@ -284,15 +316,23 @@ readonly KOTLIN_UTILS_CLASSES
 # @ECLASS-VARIABLE: _KOTLIN_UTILS_ALL_VERSIONS
 # @INTERNAL
 # @DESCRIPTION:
-# An array of all Kotlin compiler feature release versions available on Gentoo.
+# An array of identifiers for all Kotlin compiler feature release versions
+# available on Gentoo.
 _KOTLIN_UTILS_ALL_VERSIONS=( kotlin1-{4..5} )
 readonly _KOTLIN_UTILS_ALL_VERSIONS
 
 # @ECLASS-VARIABLE: _KOTLIN_UTILS_SUPPORTED_VERSIONS
 # @INTERNAL
 # @DESCRIPTION:
-# An array of all Kotlin compiler feature release versions supported by the
-# ebuild according to the value of KOTLIN_COMPAT.
+# An array of identifiers for all Kotlin compiler feature release versions
+# supported by the ebuild according to the value of KOTLIN_COMPAT.
+
+# @ECLASS-VARIABLE: _KOTLIN_UTILS_SELECTED_VERSION
+# @INTERNAL
+# @DESCRIPTION:
+# The Kotlin compiler feature release version selected to build this package,
+# which is determined by KOTLIN_COMPAT_OVERRIDE and the enabled USE_EXPAND flag
+# in KOTLIN_SINGLE_TARGET.
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -376,7 +416,7 @@ kotlin-utils_gen_slot_dep() {
 # - ${PN} (The slot will not be added in this case)
 # Dependencies should be separated by white space.
 #
-# This function must be called in a phase function, not at the top level.
+# This function must be called after kotlin-utils_pkg_setup has been called.
 #
 # Example:
 # @CODE
@@ -394,9 +434,9 @@ kotlin-utils_gen_slot_dep() {
 # JAVA_GENTOO_CLASSPATH="foo-bar"
 #
 # pkg_setup() {
-#	JAVA_GENTOO_CLASSPATH+=",$(kotlin-utils_gen_slot_cp "${KOTLIN_LIBS}")"
 #	java-pkg-2_pkg_setup
 #	kotlin-utils_pkg_setup
+#	JAVA_GENTOO_CLASSPATH+=",$(kotlin-utils_gen_slot_cp "${KOTLIN_LIBS}")"
 # }
 # @CODE
 #
@@ -407,7 +447,7 @@ kotlin-utils_gen_slot_dep() {
 kotlin-utils_gen_slot_cp() {
 	debug-print-function ${FUNCNAME} "${@}"
 
-	local ver="$(_kotlin-utils_get_compiler_ver)"
+	local ver="${_KOTLIN_UTILS_SELECTED_VERSION}"
 	local cp_extra_pkgs pkg
 	for pkg in ${@}; do
 		pkg="${pkg#*/}"
@@ -502,45 +542,67 @@ _kotlin-utils_process_kotlin_compat() {
 _kotlin-utils_process_kotlin_compat
 unset -f _kotlin-utils_process_kotlin_compat
 
-# @FUNCTION: _kotlin-utils_get_compiler_ver
+# @FUNCTION: _kotlin-utils_set_kotlin_ver
 # @INTERNAL
 # @DESCRIPTION:
-# Echoes the feature release version of Kotlin compiler selected to build this
-# package via KOTLIN_SINGLE_TARGET.
-_kotlin-utils_get_compiler_ver() {
+# Sets _KOTLIN_UTILS_SELECTED_VERSION to the feature release version of Kotlin
+# compiler selected to build this package.
+_kotlin-utils_set_kotlin_ver() {
 	debug-print-function ${FUNCNAME} "${@}"
 
-	for compat_ver in "${_KOTLIN_UTILS_SUPPORTED_VERSIONS[@]}"; do
-		if use "kotlin_single_target_${compat_ver}"; then
-			[[ -z "${ver}" ]] ||
-				die "Multiple versions selected in KOTLIN_SINGLE_TARGET"
-			ver="${compat_ver#kotlin}"
-			ver="${ver//-/.}"
-		fi
-	done
-	[[ -n "${ver}" ]] || die "No version selected in KOTLIN_SINGLE_TARGET"
-	echo "${ver}"
+	local ver_id
+	if [[ -n "${KOTLIN_COMPAT_OVERRIDE}" ]]; then
+		local override_vers=( ${KOTLIN_COMPAT_OVERRIDE} )
+		[[ "${#override_vers[@]}" -eq 1 ]] ||
+			die "Not exactly one version selected in KOTLIN_COMPAT_OVERRIDE"
+		ver_id="${override_vers[0]}"
+		ewarn "KOTLIN_COMPAT_OVERRIDE is in effect. This build will behave"
+		ewarn "like if ${ver_id} were in KOTLIN_COMPAT and were enabled"
+		ewarn "in KOTLIN_SINGLE_TARGET alone. However, dependencies for"
+		ewarn "${ver_id} will not be enforced."
+	else
+		local compat_ver
+		for compat_ver in "${_KOTLIN_UTILS_SUPPORTED_VERSIONS[@]}"; do
+			if use "kotlin_single_target_${compat_ver}"; then
+				[[ -z "${ver_id}" ]] ||
+					die "Multiple versions selected in KOTLIN_SINGLE_TARGET"
+				ver_id="${compat_ver}"
+			fi
+		done
+	fi
+	[[ -n "${ver_id}" ]] || die "No version selected in KOTLIN_SINGLE_TARGET"
+
+	local ver="${ver_id#kotlin}"
+	ver="${ver//-/.}"
+	debug-print "${FUNCNAME}: Selected Kotlin ${ver}"
+	_KOTLIN_UTILS_SELECTED_VERSION="${ver}"
+	readonly _KOTLIN_UTILS_SELECTED_VERSION
 }
 
-# @FUNCTION: _kotlin-utils_get_compiler_home
+# @FUNCTION: _kotlin-utils_set_compiler_home
 # @INTERNAL
 # @DESCRIPTION:
-# Echoes the path to the Kotlin compiler installation that will be used for
-# building this package. This function should be called only in pkg_* phases.
-_kotlin-utils_get_compiler_home() {
+# Sets KOTLIN_UTILS_COMPILER_HOME to the Kotlin compiler installation that will
+# be used for building this package. This function should be called only in
+# pkg_* phases.
+_kotlin-utils_set_compiler_home() {
 	debug-print-function ${FUNCNAME} "${@}"
 
 	local prefs_root="${EROOT}/etc/eselect/kotlin/homes"
-	local ver="$(_kotlin-utils_get_compiler_ver)"
-	readlink "${prefs_root}/${ver}" ||
+	local ver="${_KOTLIN_UTILS_SELECTED_VERSION}"
+	local home="$(readlink "${prefs_root}/${ver}")"
+	if [[ "${?}" -ne 0 ]] || [[ -z "${home}" ]]; then
 		die "Failed to get installation path of Kotlin compiler ${ver}"
+	fi
+	KOTLIN_UTILS_COMPILER_HOME="${home}"
+	readonly KOTLIN_UTILS_COMPILER_HOME
 }
 
 # @FUNCTION: kotlin-utils_pkg_setup
 # @DESCRIPTION:
-# Selects the Kotlin compiler to be used for building this package, then sets
-# KOTLIN_UTILS_COMPILER_HOME to the compiler's installation path and prints the
-# package's name.
+# Selects the Kotlin feature release target based on KOTLIN_COMPAT_OVERRIDE and
+# KOTLIN_SINGLE_TARGET, then selects a compiler to be used for building this
+# package and outputs its information if a Kotlin compiler is needed.
 kotlin-utils_pkg_setup() {
 	debug-print-function ${FUNCNAME} "${@}"
 
@@ -551,11 +613,11 @@ kotlin-utils_pkg_setup() {
 	# should be skipped.
 	[[ "${MERGE_TYPE}" == "binary" ]] && return
 
-	KOTLIN_UTILS_COMPILER_HOME="$(_kotlin-utils_get_compiler_home)"
-	readonly KOTLIN_UTILS_COMPILER_HOME
+	_kotlin-utils_set_kotlin_ver
+	[[ "${KOTLIN_SKIP_COMPILER_SETUP}" ]] && return
+	_kotlin-utils_set_compiler_home
 	local compiler_pkg="$(basename "${KOTLIN_UTILS_COMPILER_HOME}")"
 	einfo "Using Kotlin compiler package: ${compiler_pkg}"
-	export GENTOO_KOTLIN_VER="$(_kotlin-utils_get_compiler_ver)"
 }
 
 # @FUNCTION: kotlin-utils_kotlinc
@@ -602,8 +664,9 @@ kotlin-utils_kotlinc() {
 	fi
 
 	ebegin "Compiling"
-	JAVA_OPTS="${KOTLIN_KOTLINC_JAVA_OPTS}" ${compiler_command} ||
-		die "${FUNCNAME} failed"
+	GENTOO_KOTLIN_VER="${_KOTLIN_UTILS_SELECTED_VERSION}" \
+		JAVA_OPTS="${KOTLIN_KOTLINC_JAVA_OPTS}" \
+		${compiler_command} || die "${FUNCNAME} failed"
 }
 
 # @FUNCTION: kotlin-utils_src_compile

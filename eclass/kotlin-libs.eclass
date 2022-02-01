@@ -169,9 +169,10 @@ EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install
 # Selects the Kotlin compiler to be used for building this package.
 kotlin-libs_pkg_setup() {
 	java-pkg-2_pkg_setup
-	if ! has binary ${JAVA_PKG_IUSE} || ! use binary; then
-		kotlin-utils_pkg_setup
+	if has binary ${JAVA_PKG_IUSE} && use binary; then
+		KOTLIN_SKIP_COMPILER_SETUP="true"
 	fi
+	kotlin-utils_pkg_setup
 }
 
 # @FUNCTION: kotlin-libs_src_unpack
