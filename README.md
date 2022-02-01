@@ -21,14 +21,13 @@ to include packages for [H2O][h2o] and [Kotlin][kotlin] core libraries that can
 - `dev-java/spark-demo`: A demo program for the Spark packages in this overlay,
   which can be run with command `spark-demo-2.12`
 
-Note: Some dependencies of Spark require Kotlin 1.4, which might not be
-fully-automatically installable by `emerge` and thus need user intervention for
-the installation process.  When `emerge` comes up with any error pertaining to
-Kotlin packages, please run the following commands before retrying:
+Note: Some dependencies of Spark require Kotlin compiler 1.4.  When being
+pulled as a dependency, Kotlin compiler 1.4 might not be fully-automatically
+installable by `emerge`.  If `emerge` comes up with any error pertaining to
+Kotlin packages, please install Kotlin compiler 1.4 separately before retrying:
 
 ```console
-# env USE="binary" emerge -a1 dev-java/kotlin-{stdlib,reflect}:1.4
-# emerge -a1 dev-lang/kotlin-bin:1.4
+# emerge --ask --oneshot dev-lang/kotlin-bin:1.4
 ```
 
 ### H2O
