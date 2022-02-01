@@ -1,9 +1,9 @@
 # Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-MAVEN_ID="com.squareup.okio:okio:2.6.0"
+MAVEN_ID="com.squareup.okio:${PN}:${PV}"
 
 KOTLIN_IUSE="source test"
 KOTLIN_TESTING_FRAMEWORKS="junit-4"

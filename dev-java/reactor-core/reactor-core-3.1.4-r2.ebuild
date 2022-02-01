@@ -1,25 +1,33 @@
 # Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 JAVA_PKG_IUSE="doc source test binary"
-MAVEN_ID="io.projectreactor:reactor-core:3.1.4.RELEASE"
+MAVEN_ID="io.projectreactor:${PN}:${PV}.RELEASE"
 JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 KOTLIN_COMPAT=( kotlin1-{4..5} )
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven kotlin-utils
 
+MY_PV="${PV}.RELEASE"
+MY_P="${PN}-${MY_PV}"
+
 DESCRIPTION="Non-Blocking Reactive Foundation for the JVM"
 HOMEPAGE="https://github.com/reactor/reactor-core"
 SRC_URI="
-	https://repo1.maven.org/maven2/io/projectreactor/${PN}/${PV}.RELEASE/${P}.RELEASE-sources.jar -> ${P}-sources.jar
-	https://repo1.maven.org/maven2/io/projectreactor/${PN}/${PV}.RELEASE/${P}.RELEASE.jar -> ${P}-bin.jar
+	https://repo1.maven.org/maven2/io/projectreactor/${PN}/${MY_PV}/${MY_P}-sources.jar -> ${P}-sources.jar
+	https://repo1.maven.org/maven2/io/projectreactor/${PN}/${MY_PV}/${MY_P}.jar -> ${P}-bin.jar
 "
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
+
+# java9-concurrent-backport is used to support this package on Java 8,
+# which will fail japi-compliance-checker check due to the switch from
+# java.util.concurrent to java9.util.concurrent
+RESTRICT="test"
 
 KOTLIN_LIBS='
 	dev-java/kotlin-stdlib:${KOTLIN_SLOT_DEP}

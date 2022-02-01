@@ -1,9 +1,9 @@
 # Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-MAVEN_ID="com.squareup.okhttp3:okhttp:4.7.2"
+MAVEN_ID="com.squareup.okhttp3:${PN}:${PV}"
 
 KOTLIN_IUSE="source test"
 KOTLIN_TESTING_FRAMEWORKS="junit-4"
@@ -123,8 +123,8 @@ src_test() {
 	JAVA_GENTOO_CLASSPATH_EXTRA="${T}/okhttp-testing-support"
 	kotlin-utils_kotlinc \
 		-d "${JAVA_GENTOO_CLASSPATH_EXTRA}" \
-		${classpath:+-classpath ${classpath}} \
-		"$(find "okhttp-testing-support/src/main" -name "*.kt")"
+		${classpath:+-classpath "${classpath}"} \
+		$(find "okhttp-testing-support/src/main" -name "*.kt")
 
 	kotlin_src_test
 }
