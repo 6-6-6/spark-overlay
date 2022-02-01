@@ -5,8 +5,7 @@
 PORTAGE_CONFIGS=( tests/portage-configs/kotlin )
 
 run_test() {
-    # Library bootstrap stage 1
-    USE="binary" emerge -1 dev-java/kotlin-stdlib dev-java/kotlin-reflect
+    # Bootstrap libraries for stage 1 will be installed
     emerge dev-lang/kotlin-bin
     # Library bootstrap stage 2
     emerge -1 dev-java/kotlin-stdlib dev-java/kotlin-reflect

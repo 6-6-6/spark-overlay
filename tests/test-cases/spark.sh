@@ -11,10 +11,6 @@ run_test() {
 
     # Dependency bootstrap stage 1
     mkdir -p /etc/portage/package.use
-    echo "dev-java/kotlin-stdlib binary" \
-        >> /etc/portage/package.use/spark-deps-binary
-    echo "dev-java/kotlin-reflect binary" \
-        >> /etc/portage/package.use/spark-deps-binary
     echo "dev-java/yecht binary" \
         >> /etc/portage/package.use/spark-deps-binary
     emerge -1 dev-lang/kotlin-bin:1.4 dev-java/yecht
