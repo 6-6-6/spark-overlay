@@ -90,6 +90,8 @@ KOTLIN_TEST_KOTLINC_ARGS=(
 	-Xfriend-paths="${JAVA_JAR_FILENAME}"
 )
 
+DOCS=( BUG-BOUNTY.md CHANGELOG.md README.md docs )
+
 pkg_setup() {
 	kotlin_pkg_setup
 	JAVA_GENTOO_CLASSPATH="$(kotlin-utils_gen_slot_cp "${KOTLIN_LIBS}")"
@@ -128,14 +130,14 @@ src_test() {
 }
 
 src_install() {
-	kotlin_src_install
-
-	dodoc BUG-BOUNTY.md CHANGELOG.md README.md
 	# releasing.md not relevant to users
-	rm docs/release.md
+	rm docs/releasing.md || die "Failed to remove extraneous DOCS files"
 	# security.md does not necessarily contain up-to-date information, which
 	# might mislead users into thinking that the version they are using is
 	# still supported
-	rm docs/security.md
-	dodoc docs/*.md
+	rm docs/security.md || die "Failed to remove extraneous DOCS files"
+	# CSS not needed
+	rm -r docs/css || die "Failed to remove extraneous DOCS files"
+
+	kotlin_src_install
 }
