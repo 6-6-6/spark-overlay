@@ -1,7 +1,7 @@
 Title: Spark Overlay Revival
 Author: Yuan Liao <liaoyuan@gmail.com>
 Posted: 2021-08-01
-Revision: 1
+Revision: 2
 News-Item-Format: 2.0
 
 Most of the ebuilds in ::spark-overlay have now been restored to a
@@ -37,13 +37,12 @@ Kotlin support infrastructure, packages in this overlay that use Kotlin
 installation of the new Kotlin packages for Kotlin 1.4 before they can
 be upgraded.
 
-The following commands can be used to install Kotlin 1.4, and they are
+The following command can be used to install Kotlin 1.4, and it is
 applicable to both old and new users of ::spark-overlay:
 
-    env USE="binary" emerge -a1 dev-java/kotlin-{stdlib,reflect}:1.4
     emerge -a dev-lang/kotlin-bin:1.4
 
-These are sufficient for a Kotlin 1.4 installation based on the binary
+This is sufficient for a Kotlin 1.4 installation based on the binary
 JARs built and provided by the upstream for kotlin-stdlib and
 kotlin-reflect.  Users who wish to build these libraries from source
 should run an additional command after those ones above:

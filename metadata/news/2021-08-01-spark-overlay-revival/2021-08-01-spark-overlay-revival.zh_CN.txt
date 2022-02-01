@@ -1,7 +1,7 @@
 Title: Spark Overlay 涅磐重生
 Author: 廖远 <liaoyuan@gmail.com>
 Posted: 2021-08-01
-Revision: 1
+Revision: 2
 News-Item-Format: 2.0
 
 在经历了 ::gentoo 官方仓库中对过时 Java 软件包的大清洗后，
@@ -33,7 +33,6 @@ Spark 核心包 dev-java/spark-core 又一次可以在使用最新版的
 
 ::spark-overlay 的新老用户都可以使用下列命令安装 Kotlin 1.4：
 
-    env USE="binary" emerge -a1 dev-java/kotlin-{stdlib,reflect}:1.4
     emerge -a dev-lang/kotlin-bin:1.4
 
 愿意使用上游预编译的 kotlin-stdlib 和 kotlin-reflect 的用户可
