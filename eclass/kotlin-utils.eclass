@@ -284,6 +284,18 @@ if [[ ! "${_KOTLIN_UTILS_INHERITED}" ]]; then
 # kotlin_single_target_kotlin1-5? ( virtual/kotlin:1.5 )
 # @CODE
 
+# @ECLASS-VARIABLE: KOTLIN_UTILS_SELECTED_VERSION
+# @OUTPUT_VARIABLE
+# @DESCRIPTION:
+# The Kotlin feature release version selected for this package based on
+# KOTLIN_COMPAT_OVERRIDE and KOTLIN_SINGLE_TARGET. Will be set by this eclass
+# and be available after the kotlin-utils_pkg_setup function is called.
+#
+# Example value:
+# @CODE
+# 1.5
+# @CODE
+
 # @ECLASS-VARIABLE: KOTLIN_UTILS_CLASSES
 # @OUTPUT_VARIABLE
 # @DESCRIPTION:
@@ -326,13 +338,6 @@ readonly _KOTLIN_UTILS_ALL_VERSIONS
 # @DESCRIPTION:
 # An array of identifiers for all Kotlin compiler feature release versions
 # supported by the ebuild according to the value of KOTLIN_COMPAT.
-
-# @ECLASS-VARIABLE: _KOTLIN_UTILS_SELECTED_VERSION
-# @INTERNAL
-# @DESCRIPTION:
-# The Kotlin compiler feature release version selected to build this package,
-# which is determined by KOTLIN_COMPAT_OVERRIDE and the enabled USE_EXPAND flag
-# in KOTLIN_SINGLE_TARGET.
 
 inherit java-pkg-2 java-pkg-simple
 
@@ -447,7 +452,7 @@ kotlin-utils_gen_slot_dep() {
 kotlin-utils_gen_slot_cp() {
 	debug-print-function ${FUNCNAME} "${@}"
 
-	local ver="${_KOTLIN_UTILS_SELECTED_VERSION}"
+	local ver="${KOTLIN_UTILS_SELECTED_VERSION}"
 	local cp_extra_pkgs pkg
 	for pkg in ${@}; do
 		pkg="${pkg#*/}"
@@ -545,7 +550,7 @@ unset -f _kotlin-utils_process_kotlin_compat
 # @FUNCTION: _kotlin-utils_set_kotlin_ver
 # @INTERNAL
 # @DESCRIPTION:
-# Sets _KOTLIN_UTILS_SELECTED_VERSION to the feature release version of Kotlin
+# Sets KOTLIN_UTILS_SELECTED_VERSION to the feature release version of Kotlin
 # compiler selected to build this package.
 _kotlin-utils_set_kotlin_ver() {
 	debug-print-function ${FUNCNAME} "${@}"
@@ -575,8 +580,8 @@ _kotlin-utils_set_kotlin_ver() {
 	local ver="${ver_id#kotlin}"
 	ver="${ver//-/.}"
 	debug-print "${FUNCNAME}: Selected Kotlin ${ver}"
-	_KOTLIN_UTILS_SELECTED_VERSION="${ver}"
-	readonly _KOTLIN_UTILS_SELECTED_VERSION
+	KOTLIN_UTILS_SELECTED_VERSION="${ver}"
+	readonly KOTLIN_UTILS_SELECTED_VERSION
 }
 
 # @FUNCTION: _kotlin-utils_set_compiler_home
@@ -589,7 +594,7 @@ _kotlin-utils_set_compiler_home() {
 	debug-print-function ${FUNCNAME} "${@}"
 
 	local prefs_root="${EROOT}/etc/eselect/kotlin/homes"
-	local ver="${_KOTLIN_UTILS_SELECTED_VERSION}"
+	local ver="${KOTLIN_UTILS_SELECTED_VERSION}"
 	local home="$(readlink "${prefs_root}/${ver}")"
 	if [[ "${?}" -ne 0 ]] || [[ -z "${home}" ]]; then
 		die "Failed to get installation path of Kotlin compiler ${ver}"
@@ -664,7 +669,7 @@ kotlin-utils_kotlinc() {
 	fi
 
 	ebegin "Compiling"
-	GENTOO_KOTLIN_VER="${_KOTLIN_UTILS_SELECTED_VERSION}" \
+	GENTOO_KOTLIN_VER="${KOTLIN_UTILS_SELECTED_VERSION}" \
 		JAVA_OPTS="${KOTLIN_KOTLINC_JAVA_OPTS}" \
 		${compiler_command} || die "${FUNCNAME} failed"
 }
