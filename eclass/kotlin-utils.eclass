@@ -353,6 +353,10 @@ has test ${KOTLIN_IUSE} && RESTRICT+=" !test? ( test )"
 # (quoted) may be placed in the dependency specifications passed in. It will be
 # replaced by the correct slot.
 #
+# This function only accepts a single argument. If multiple dependency
+# specifications need to be transformed, a convenient way to process them all
+# at once is to wrap them all in a pair of single quotes (').
+#
 # Note that this function should not be called in CP_DEPEND, as
 # java-utils-2.eclass does not support USE-conditional dependencies in it. To
 # deal with this issue, this eclass provides another kotlin-utils_gen_slot_cp
@@ -386,6 +390,7 @@ has test ${KOTLIN_IUSE} && RESTRICT+=" !test? ( test )"
 # @CODE
 kotlin-utils_gen_slot_dep() {
 	debug-print-function ${FUNCNAME} "${@}"
+	[[ "${#}" -eq 1 ]] || die "Exactly one argument needed for ${FUNCNAME}"
 
 	local deps
 
@@ -401,7 +406,7 @@ kotlin-utils_gen_slot_dep() {
 }
 
 # @FUNCTION: kotlin-utils_gen_slot_cp
-# @USAGE: <dependencies>
+# @USAGE: <dependencies>...
 # @DESCRIPTION:
 # Transforms specified dependencies to a string that can be used in values for
 # lists of Java packages in Java eclasses, whose slots are set for the
