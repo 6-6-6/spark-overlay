@@ -10,6 +10,6 @@
 		<name>Yuan Liao</name>
 	</maintainer>
 	<upstream>
-		<remote-id type="github">eclipse-ee4j/jaxrs-api</remote-id>
+		<remote-id type="github">jakartaee/rest</remote-id>
 	</upstream>
 </pkgmetadata>

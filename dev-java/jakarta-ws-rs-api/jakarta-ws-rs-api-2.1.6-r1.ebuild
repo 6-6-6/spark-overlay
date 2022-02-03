@@ -9,12 +9,14 @@ JAVA_TESTING_FRAMEWORKS="junit-4"
 
 inherit java-pkg-2 java-pkg-simple
 
-MY_PN="jaxrs-api"
-MY_P="${MY_PN}-${PV}"
-
 DESCRIPTION="Jakarta RESTful Web Services API"
-HOMEPAGE="https://github.com/eclipse-ee4j/jaxrs-api"
-SRC_URI="https://github.com/eclipse-ee4j/jaxrs-api/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
+HOMEPAGE="https://projects.eclipse.org/projects/ee4j.jaxrs"
+# GitHub repository was migrated to a different name, resulting in a
+# rename of the top-level directory in the tarball and thus causing
+# changes in checksums.  To avoid manifest check failure, a suffix
+# is added after P in tarball's name.  Please remember to remove the
+# suffix when updating to a new upstream release.
+SRC_URI="https://github.com/jakartaee/rest/archive/refs/tags/${PV}.tar.gz -> ${P}-r1.tar.gz"
 LICENSE="|| ( EPL-2.0 GPL-2-with-classpath-exception )"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -33,14 +35,14 @@ RDEPEND="
 	${CP_DEPEND}
 "
 
-S="${WORKDIR}/${MY_P}"
+S="${WORKDIR}/rest-${PV}"
 
 DOCS=( CONTRIBUTING.md NOTICE.md README.md )
 
-JAVA_SRC_DIR="${MY_PN}/src/main/java"
+JAVA_SRC_DIR="jaxrs-api/src/main/java"
 
 JAVA_TEST_GENTOO_CLASSPATH="junit-4"
-JAVA_TEST_SRC_DIR="${MY_PN}/src/test/java"
+JAVA_TEST_SRC_DIR="jaxrs-api/src/test/java"
 
 src_prepare() {
 	use test && ver_test "$(java-config -g PROVIDES_VERSION)" -ge 9 && \
