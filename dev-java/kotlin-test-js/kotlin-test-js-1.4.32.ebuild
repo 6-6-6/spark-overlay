@@ -13,6 +13,9 @@ inherit kotlin-libs
 DESCRIPTION="Kotlin Test for JS"
 KEYWORDS="~amd64"
 
+# kotlin-test.js.map and default/manifest do not match
+RESTRICT="test"
+
 DEPEND="!binary? (
 	~dev-java/kotlin-stdlib-js-${PV}:${SLOT}
 )"
