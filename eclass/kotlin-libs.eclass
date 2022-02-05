@@ -66,8 +66,6 @@ esac
 
 # Testing
 
-_KOTLIN_LIBS_REQUIRED_USE=""
-
 if [[ -n "${KOTLIN_LIBS_BINJAR_SRC_URI}" ]]; then
 	# The binary JAR can be used for pkgdiff tests when the package is built
 	# from source
@@ -76,7 +74,7 @@ if [[ -n "${KOTLIN_LIBS_BINJAR_SRC_URI}" ]]; then
 	KOTLIN_TESTING_FRAMEWORKS+=" pkgdiff"
 	if [[ -z "${KOTLIN_LIBS_SRCJAR_SRC_URI}" ]]; then
 		# No source JAR is available for the binary JAR, disable the USE flag
-		_KOTLIN_LIBS_REQUIRED_USE="binary? ( !source )"
+		REQUIRED_USE="binary? ( !source )"
 	fi
 fi
 
@@ -91,10 +89,6 @@ inherit kotlin-utils
 : ${SLOT:="$(ver_cut 1-2)"}
 
 IUSE="source"
-REQUIRED_USE="
-	${_KOTLIN_LIBS_REQUIRED_USE}
-	${REQUIRED_USE}
-"
 
 S="${WORKDIR}/kotlin-${PV}"
 
@@ -158,7 +152,6 @@ KOTLIN_TEST_KOTLINC_JAVA_OPTS="${KOTLIN_KOTLINC_JAVA_OPTS}"
 
 # Unset temporary variables
 
-unset _KOTLIN_LIBS_REQUIRED_USE
 unset _KOTLIN_LIBS_DEFAULT_SRC_URI
 unset _KOTLIN_LIBS_TEST_SRC
 
