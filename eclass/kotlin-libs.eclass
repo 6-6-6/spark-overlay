@@ -101,7 +101,7 @@ S="${WORKDIR}/kotlin-${PV}"
 # Source URI
 
 _KOTLIN_LIBS_DEFAULT_SRC_URI="
-	https://github.com/JetBrains/kotlin/archive/refs/tags/v${PV}.tar.gz -> kotlin-${PV}.tar.gz
+	https://github.com/JetBrains/kotlin/archive/v${PV}.tar.gz -> kotlin-${PV}.tar.gz
 "
 if has binary ${JAVA_PKG_IUSE}; then
 	: ${SRC_URI:=""}
