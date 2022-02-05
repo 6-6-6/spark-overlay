@@ -29,12 +29,16 @@ case "${EAPI:-0}" in
 esac
 
 # @ECLASS-VARIABLE: KOTLIN_CORE_DEPS_MODULE_NAME
-# @DEFAULT_UNSET
 # @PRE_INHERIT
 # @DESCRIPTION:
 # The value for KOTLIN_MODULE_NAME. This variable will be used to determine the
-# path to the sources. Default is unset, must be overridden from ebuild BEFORE
-# inheriting this eclass unless the ebuild sets KOTLIN_SRC_DIR itself.
+# path to the sources. Defaults to PN with any "kotlin-core-" prefix removed
+# and then dashes ("-") replaced by dots ("."), can be overridden from ebuild
+# BEFORE inheriting this eclass.
+if ! declare -p KOTLIN_CORE_DEPS_MODULE_NAME &> /dev/null; then
+	KOTLIN_CORE_DEPS_MODULE_NAME="${PN#kotlin-core-}"
+	KOTLIN_CORE_DEPS_MODULE_NAME="${KOTLIN_CORE_DEPS_MODULE_NAME//-/.}"
+fi
 
 # @ECLASS-VARIABLE: KOTLIN_CORE_DEPS_SKIP_JAVAC
 # @DEFAULT_UNSET
