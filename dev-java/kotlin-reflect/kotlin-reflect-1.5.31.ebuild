@@ -1,4 +1,4 @@
-# Copyright 2021 Gentoo Authors
+# Copyright 2021-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -8,7 +8,7 @@ MAVEN_ID="org.jetbrains.kotlin:${PN}:${PV}"
 KOTLIN_LIBS_BINJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}.jar"
 KOTLIN_LIBS_SRCJAR_SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlin/${PN}/${PV}/${P}-sources.jar"
 
-KOTLIN_MODULE_NAME="kotlin-reflection"
+KOTLIN_CORE_DEPS_MODULE_NAME="kotlin-reflection"
 KOTLIN_LIBS_RUNTIME_COMPONENT="Main"
 
 inherit kotlin-core-deps
