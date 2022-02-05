@@ -392,7 +392,7 @@ kotlin-utils_gen_slot_dep() {
 	debug-print-function ${FUNCNAME} "${@}"
 	[[ "${#}" -eq 1 ]] || die "Exactly one argument needed for ${FUNCNAME}"
 
-	local deps
+	local deps ver
 
 	for ver in "${_KOTLIN_UTILS_SUPPORTED_VERSIONS[@]}"; do
 		local slot="${ver#kotlin}"
@@ -488,7 +488,7 @@ kotlin-utils_iuse_depend() {
 	fi
 
 	if has test ${KOTLIN_IUSE}; then
-		local test_deps
+		local framework test_deps
 		for framework in ${KOTLIN_TESTING_FRAMEWORKS}; do
 			case "${framework}" in
 				junit-4)
@@ -773,6 +773,7 @@ kotlin-utils_test_compile() {
 	local classpath="${classes}:${JAVA_JAR_FILENAME}"
 	java-pkg-simple_getclasspath
 	if has test ${KOTLIN_IUSE} && use test; then
+		local dependency
 		for dependency in ${JAVA_TEST_GENTOO_CLASSPATH}; do
 			classpath="${classpath}:$(java-pkg_getjars \
 				--build-only --with-dependencies "${dependency}")"
@@ -847,6 +848,7 @@ kotlin-utils_test_compile() {
 		tests_to_run=${tests_to_run//"${classes}"\/}
 		tests_to_run=${tests_to_run//.class}
 		tests_to_run=${tests_to_run//\//.}
+		local class
 		for class in "${KOTLIN_TEST_EXCLUDES[@]}"; do
 			tests_to_run=${tests_to_run//${class}}
 		done
@@ -872,7 +874,7 @@ kotlin-utils_src_test() {
 	fi
 
 	local compile_if_framework=( junit-4 )
-	local compile
+	local compile framework
 	for framework in "${compile_if_framework[@]}"; do
 		if has "${framework}" ${KOTLIN_TESTING_FRAMEWORKS}; then
 			compile=1
