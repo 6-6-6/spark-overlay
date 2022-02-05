@@ -458,6 +458,7 @@ kotlin-utils_gen_slot_cp() {
 	debug-print-function ${FUNCNAME} "${@}"
 
 	local ver="${KOTLIN_UTILS_SELECTED_VERSION}"
+	[[ -n "${ver}" ]] || die "${FUNCNAME} called before kotlin-utils_pkg_setup"
 	local cp_extra_pkgs pkg
 	for pkg in ${@}; do
 		pkg="${pkg#*/}"
@@ -616,6 +617,9 @@ _kotlin-utils_set_compiler_home() {
 kotlin-utils_pkg_setup() {
 	debug-print-function ${FUNCNAME} "${@}"
 
+	# Kotlin version is computed solely from eclass variables and USE flags
+	_kotlin-utils_set_kotlin_ver
+
 	# The Kotlin compiler is only a build dependency: the JAR produced is
 	# compatible with JVM, and a JRE is good for using it during runtime.
 	# Therefore, it is possible that the Kotlin compiler is not installed
@@ -623,7 +627,6 @@ kotlin-utils_pkg_setup() {
 	# should be skipped.
 	[[ "${MERGE_TYPE}" == "binary" ]] && return
 
-	_kotlin-utils_set_kotlin_ver
 	[[ "${KOTLIN_SKIP_COMPILER_SETUP}" ]] && return
 	_kotlin-utils_set_compiler_home
 	local compiler_pkg="$(basename "${KOTLIN_UTILS_COMPILER_HOME}")"
