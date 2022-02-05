@@ -16,6 +16,11 @@ inherit kotlin-core-deps
 DESCRIPTION="Kotlin Full Reflection Library"
 KEYWORDS="~amd64"
 
+# JAR built by this ebuild contains extra directories:
+# - kotlin/reflect/jvm/internal/impl/container
+# - kotlin/reflect/jvm/internal/impl/resolve/checkers
+RESTRICT="test"
+
 BDEPEND="
 	!binary? (
 		app-arch/unzip
