@@ -13,6 +13,9 @@ inherit kotlin-libs
 DESCRIPTION="Kotlin Standard Library for JS"
 KEYWORDS="~amd64"
 
+# kotlin.js and default/manifest do not match
+RESTRICT="test"
+
 JAVA_BINJAR_FILENAME="${P}.jar"
 KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
 
