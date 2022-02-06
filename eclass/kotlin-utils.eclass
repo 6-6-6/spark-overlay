@@ -330,7 +330,7 @@ readonly KOTLIN_UTILS_CLASSES
 # @DESCRIPTION:
 # An array of identifiers for all Kotlin compiler feature release versions
 # available on Gentoo.
-_KOTLIN_UTILS_ALL_VERSIONS=( kotlin1-{4..5} )
+_KOTLIN_UTILS_ALL_VERSIONS=( kotlin1-{4..6} )
 readonly _KOTLIN_UTILS_ALL_VERSIONS
 
 # @ECLASS-VARIABLE: _KOTLIN_UTILS_SUPPORTED_VERSIONS
