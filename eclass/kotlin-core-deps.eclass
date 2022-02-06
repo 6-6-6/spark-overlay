@@ -93,15 +93,28 @@ if [[ -z "${KOTLIN_KOTLINC_ARGS[@]}" ]]; then
 		-Xjvm-default=compatibility
 		-Xno-kotlin-nothing-value-exception
 		-Xno-optimized-callable-references
-		-Xnormalize-constructor-calls=enable
 		-Xopt-in=kotlin.RequiresOptIn
-		-Xread-deserialized-contracts
-		-Xuse-ir
 	)
+
 	if ver_test -ge "1.5"; then
 		# Additional options for Kotlin >=1.5
 		KOTLIN_KOTLINC_ARGS+=(
 			-Xsuppress-deprecated-jvm-target-warning
+		)
+	fi
+
+	if ver_test -ge "1.6"; then
+		# Additional options for Kotlin >=1.6
+		KOTLIN_KOTLINC_ARGS+=(
+			-Xskip-runtime-version-check
+			-Werror
+		)
+	else
+		# Additional options for Kotlin <1.6
+		KOTLIN_KOTLINC_ARGS+=(
+			-Xnormalize-constructor-calls=enable
+			-Xread-deserialized-contracts
+			-Xuse-ir
 		)
 	fi
 fi
@@ -113,6 +126,13 @@ if [[ -z "${KOTLIN_JAVAC_ARGS[@]}" ]]; then
 		-proc:none
 		-XDuseUnsharedTable=true
 	)
+	if ver_test -ge "1.6"; then
+		# Additional options for Kotlin >=1.6
+		KOTLIN_JAVAC_ARGS+=(
+			-Xlint:deprecation
+			-Xlint:unchecked
+		)
+	fi
 fi
 
 EXPORT_FUNCTIONS src_prepare
