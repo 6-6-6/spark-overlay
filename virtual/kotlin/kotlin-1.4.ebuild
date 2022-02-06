@@ -9,6 +9,6 @@ SLOT="${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="|| (
-	dev-lang/kotlin:${SLOT}
 	dev-lang/kotlin-bin:${SLOT}
+	dev-lang/kotlin:${SLOT}
 )"
