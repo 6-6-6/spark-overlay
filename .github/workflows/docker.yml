@@ -22,6 +22,7 @@ jobs:
         # accepting the unstable keyword globally is trivial
         include:
           - test-case: kotlin-latest
+          - test-case: kotlin-1.5
           - test-case: kotlin-1.4
     steps:
       - uses: actions/checkout@v2
