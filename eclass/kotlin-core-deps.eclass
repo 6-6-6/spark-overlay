@@ -32,9 +32,9 @@ esac
 # @PRE_INHERIT
 # @DESCRIPTION:
 # The value for KOTLIN_MODULE_NAME. This variable will be used to determine the
-# path to the sources. Defaults to PN with any "kotlin-core-" prefix removed
-# and then dashes ("-") replaced by dots ("."), can be overridden from ebuild
-# BEFORE inheriting this eclass.
+# path to the sources if KOTLIN_SRC_DIR is not set from ebuild. Defaults to PN
+# with any "kotlin-core-" prefix removed and then dashes ("-") replaced by dots
+# ("."), can be overridden from ebuild BEFORE inheriting this eclass.
 if ! declare -p KOTLIN_CORE_DEPS_MODULE_NAME &> /dev/null; then
 	KOTLIN_CORE_DEPS_MODULE_NAME="${PN#kotlin-core-}"
 	KOTLIN_CORE_DEPS_MODULE_NAME="${KOTLIN_CORE_DEPS_MODULE_NAME//-/.}"
