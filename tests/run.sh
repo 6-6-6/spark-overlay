@@ -24,12 +24,12 @@ main() {
             --custom-repo .
             --emerge-opts "${EMERGE_OPTS:-"${DEFAULT_EMERGE_OPTS}"}"
             ${UNSTABLE:+--portage-config tests/portage-configs/unstable}
-            ${PROFILE:+--profile ${PROFILE}}
-            ${GENTOO_REPO:+--gentoo-repo ${GENTOO_REPO}}
-            ${THREADS:+--threads ${THREADS}}
+            ${PROFILE:+--profile "${PROFILE}"}
+            ${GENTOO_REPO:+--gentoo-repo "${GENTOO_REPO}"}
+            ${THREADS:+--threads "${THREADS}"}
             ${PULL:+--pull}
-            ${STORAGE_OPTS:+--storage-opts ${STORAGE_OPTS}}
-            ${SKIP_CLEANUP:+--skip-cleanup ${SKIP_CLEANUP}}
+            ${STORAGE_OPTS:+--storage-opts "${STORAGE_OPTS}"}
+            ${SKIP_CLEANUP:+--skip-cleanup "${SKIP_CLEANUP}"}
         )
         for config in "${PORTAGE_CONFIGS[@]}"; do
             args+=( --portage-config "${config}" )
