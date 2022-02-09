@@ -68,21 +68,3 @@
 dev-java/args4j:1
 >dev-java/args4j-2.33
 >dev-java/cdi-api-1.2-r1
-
-# Yuan Liao <liaoyuan@gmail.com> (2021-12-30)
-# Last-rited packages which are either already present in this overlay or added
-# to it.
->dev-java/glassfish-ejb-api-3.2
-java-virtuals/ejb-api
-java-virtuals/transaction-api
-java-virtuals/xmlrpc-api
-
-# Yuan Liao <liaoyuan@gmail.com> (2021-12-21)
-# Last-rited packages which have been added to this overlay.
->dev-java/slf4j-log4j12-1.7.30
-
-# Yuan Liao <liaoyuan@gmail.com> (2021-11-16)
-# All vulnerable (bug #771693) versions of Jackson 2.x packages have been
-# removed from this overlay.  These packages have also been updated to the
-# latest available version (2.13.0).
->=dev-java/jackson-2.9.10.8
