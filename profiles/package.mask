@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 ####################################################################
@@ -31,9 +31,91 @@
 
 #--- END OF EXAMPLES ---
 
-# Yuan Liao <liaoyuan@gmail.com> (2021-07-21)
-# The only package in either ::gentoo or ::spark-overlay that provides this
-# virtual is dev-java/antlr:4, which depends on dev-java/antlr:3.5, which
-# cannot be installed due to Gentoo bug #742554. Masked until the bug is
-# resolved.
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
+# Packages which do not build from source and
+# have no consumers. Removal on 2022-03-15.
+dev-java/geronimo-jms
+dev-java/jaffl
+dev-java/jasper-compiler
+dev-java/joda-timezones
+dev-java/multiverse-beta
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
+# Package which does not build from source. Please use dev-java/jarpack
+# and dev-java/jlapack instead. Removal on 2022-03-15.
+dev-java/arpack-combined-all-bin
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
+# Packages which contain pre-built shared libraries with unresolved
+# soname dependencies, and unused dependencies of the packages. Please
+# use dev-java/fommil-netlib-core instead. Removal on 2022-03-15.
+dev-java/fommil-netlib-native-ref
+dev-java/fommil-netlib-native-system
+dev-java/fommil-jniloader
+dev-java/fommil-netlib-all
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
+# Package which has been added to ::gentoo under a different name.
+# Please use dev-java/jackson-core instead. Removal on 2022-03-15.
+dev-java/jackson
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
+# Package which has been added to ::gentoo under a different name.
+# Please use dev-java/jaxb-api:3 instead. Removal on 2022-03-15.
+dev-java/jakarta-xml-bind-api
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
+# Packages which have a maintained substitute in ::gentoo. Please use
+# dev-java/glassfish-xmlrpc-api instead. Removal on 2022-03-15.
+dev-java/javax-xml-rpc-api
+java-virtuals/xmlrpc-api
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
+# Package which has been added to ::gentoo under a different slot.
+# Please use slot 2 instead. Removal on 2022-03-15.
+dev-java/jaxb-api:0
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
+# Package which does not build from source and has been added to ::gentoo
+# under a different slot. Please use slot 1.2 instead. Removal on 2022-03-15.
+dev-java/jffi:0
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
+# Package which has been added to ::gentoo under a different slot.
+# Please use slot 3.0 instead. Removal on 2022-03-15.
+dev-java/jnr-posix:0
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
+# Package which does not build from source and has been added to ::gentoo
+# under a different slot. Please use slot 1.0 instead. Removal on 2022-03-15.
+dev-java/jnr-x86asm:0
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
+# Package which does not support Java 11. Please use dev-java/lombok-bin
+# instead, which has been updated and supports Java 11. Removal on 2022-03-15.
+dev-java/lombok
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
+# Package which has been added to ::gentoo under a different name.
+# Please use dev-java/javax-mail instead. Removal on 2022-03-15.
+dev-java/mailapi
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
+# Package which does not support Java 11. Removal on 2022-03-15.
+dev-java/unsafe-mock
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
+# Package which has been added to ::gentoo under a different name.
+# Please use dev-java/sax instead. Removal on 2022-03-15.
+dev-java/xml-apis
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
+# Package which has been added to ::gentoo under a different name.
+# Please use dev-java/xml-commons-resolver instead. Removal on 2022-03-15.
+dev-java/xml-resolver
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
+# Virtual with only one provider; no extra providers are expected
+# to be added in the future. Please use dev-java/antlr:4 directly
+# instead. Removal on 2022-03-15.
 java-virtuals/antlr:4
