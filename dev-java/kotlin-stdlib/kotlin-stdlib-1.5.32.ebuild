@@ -76,6 +76,7 @@ KOTLIN_JAVAC_ARGS=(
 	-XDuseUnsharedTable=true
 )
 
+JAVA_TEST_EXTRA_ARGS=( -ea )
 KOTLIN_TEST_KOTLINC_ARGS=(
 	"${KOTLIN_COMMON_KOTLINC_ARGS[@]}"
 	-Xfriend-paths="${JAVA_JAR_FILENAME}"
@@ -99,8 +100,6 @@ KOTLIN_TEST_EXCLUDES=(
 	# JavaScript tests, having trouble with passing on JVM
 	test.collections.js.SetJsTest
 	test.collections.js.MapJsTest
-	# Failing tests
-	test.utils.AssertionsJVMTest
 )
 
 pkg_setup() {
