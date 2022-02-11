@@ -122,7 +122,6 @@ fi
 if [[ -z "${KOTLIN_JAVAC_ARGS[@]}" ]]; then
 	KOTLIN_JAVAC_ARGS=(
 		-g
-		-sourcepath
 		-proc:none
 		-XDuseUnsharedTable=true
 	)
