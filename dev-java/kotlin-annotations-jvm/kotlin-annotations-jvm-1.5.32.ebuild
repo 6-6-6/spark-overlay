@@ -18,7 +18,7 @@ KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
 
 # Kotlin compiler needs not be called for this package
 
-JAVAC_ARGS="-g -sourcepath -proc:none -XDuseUnsharedTable=true"
+JAVAC_ARGS="-g -proc:none -XDuseUnsharedTable=true"
 JAVA_SRC_DIR=( libraries/tools/kotlin-annotations-jvm/src )
 
 src_compile() {

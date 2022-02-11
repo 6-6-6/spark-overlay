@@ -1,4 +1,4 @@
-# Copyright 2021 Gentoo Authors
+# Copyright 2021-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -18,7 +18,7 @@ KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
 
 # Kotlin compiler needs not be called for this package
 
-JAVAC_ARGS="-g -sourcepath -proc:none -XDuseUnsharedTable=true"
+JAVAC_ARGS="-g -proc:none -XDuseUnsharedTable=true"
 JAVA_SRC_DIR=( libraries/tools/kotlin-annotations-jvm/src )
 
 src_compile() {
