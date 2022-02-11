@@ -1,4 +1,4 @@
-# Copyright 2021 Gentoo Authors
+# Copyright 2021-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -54,6 +54,7 @@ KOTLIN_KOTLINC_ARGS=(
 )
 KOTLIN_SRC_DIR=( libraries/stdlib/jdk8/src )
 
+JAVA_TEST_EXTRA_ARGS=( -ea )
 KOTLIN_TEST_KOTLINC_ARGS=(
 	-jvm-target 1.8
 	-no-stdlib
@@ -83,8 +84,6 @@ KOTLIN_TEST_EXCLUDES=(
 	# JavaScript tests, having trouble with passing on JVM
 	test.collections.js.SetJsTest
 	test.collections.js.MapJsTest
-	# Failing tests
-	test.utils.AssertionsJVMTest
 )
 
 src_prepare() {
