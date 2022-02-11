@@ -61,10 +61,3 @@
 # Last-rited package which has been added to this overlay, using Java 1.8 as
 # minimum and EAPI 8.
 >dev-java/commons-jexl-2.1.1
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-01-13)
-# Last-rited packages which have been added to this overlay, using Java 1.8 and
-# EAPI 8; dev-java/args4j:1 is provided by this overlay only.
-dev-java/args4j:1
->dev-java/args4j-2.33
->dev-java/cdi-api-1.2-r1
