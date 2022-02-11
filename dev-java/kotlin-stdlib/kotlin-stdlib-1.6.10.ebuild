@@ -67,7 +67,6 @@ KOTLIN_SRC_DIR=(
 )
 KOTLIN_JAVAC_ARGS=(
 	-g
-	-sourcepath
 	-proc:none
 	-XDuseUnsharedTable=true
 	-Xlint:deprecation
