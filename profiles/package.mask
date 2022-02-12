@@ -31,6 +31,23 @@
 
 #--- END OF EXAMPLES ---
 
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-12)
+# Fetch failure because the distfiles in SRC_URI have been removed.
+# Please use dev-java/jakarta-ejb-api instead. Removal on 2022-03-15.
+dev-java/glassfish-ejb-api
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-12)
+# Virtual with only one provider; no extra providers are expected
+# to be added in the future. Please use dev-java/jakarta-ejb-api
+# directly instead. Removal on 2022-03-15.
+java-virtuals/ejb-api
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-12)
+# Virtual with only one unmasked provider; no extra providers are
+# expected to be added in the future. Please use dev-java/jta
+# directly instead. Removal on 2022-03-15.
+java-virtuals/transaction-api
+
 # Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
 # Packages which do not build from source and
 # have no consumers. Removal on 2022-03-15.
