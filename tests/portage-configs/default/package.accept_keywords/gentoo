@@ -9,8 +9,12 @@ dev-java/glassfish-jms-api::gentoo
 dev-java/jakarta-xml-soap-api::gentoo
 dev-java/javax-mail::gentoo
 dev-java/jcip-annotations::gentoo
+dev-java/jctools-core::gentoo
 dev-java/kafka-clients::gentoo
+dev-java/log4j-api:2::gentoo
+dev-java/log4j-core:2::gentoo
 dev-java/lz4-java::gentoo
+dev-java/mchange-commons::gentoo
 dev-java/mvel::gentoo
 dev-java/msv::gentoo
 dev-java/openjfx:8::gentoo
