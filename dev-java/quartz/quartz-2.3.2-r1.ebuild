@@ -29,7 +29,7 @@ CP_DEPEND="
 	>=dev-java/HikariCP-java7-2.4.13:0
 	>=dev-java/c3p0-0.9.5.4:0
 	dev-java/jta:0
-	>=dev-java/mchange-commons-0.2.15:0
+	dev-java/mchange-commons:0
 	>=dev-java/slf4j-api-1.7.7:0
 	java-virtuals/servlet-api:4.0
 "
