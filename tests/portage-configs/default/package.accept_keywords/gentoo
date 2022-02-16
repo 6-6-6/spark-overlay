@@ -1,4 +1,5 @@
 # Accept keywords for packages in ::gentoo needed by ebuilds in this overlay
+dev-java/conversant-disruptor::gentoo
 dev-java/glassfish-jms-api::gentoo
 >=dev-java/glassfish-xmlrpc-api-1.1.1-r1::gentoo
 ~dev-java/jackson-annotations-2.13.0::gentoo
@@ -8,9 +9,12 @@ dev-java/glassfish-jms-api::gentoo
 ~dev-java/jakarta-activation-2.0.1::gentoo
 dev-java/jakarta-xml-soap-api::gentoo
 dev-java/javax-mail::gentoo
+dev-java/jboss-jms-api:1.1::gentoo
 dev-java/jcip-annotations::gentoo
 dev-java/jctools-core::gentoo
 dev-java/kafka-clients::gentoo
+dev-java/lmax-disruptor::gentoo
+dev-java/log4j-12-api:2::gentoo
 dev-java/log4j-api:2::gentoo
 dev-java/log4j-core:2::gentoo
 dev-java/lz4-java::gentoo
