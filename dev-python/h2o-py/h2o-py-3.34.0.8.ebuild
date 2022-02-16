@@ -15,6 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
+# Tests require a monolithic h2o.jar containing all H2O modules and plugins
 RESTRICT="test"
 
 RDEPEND="
