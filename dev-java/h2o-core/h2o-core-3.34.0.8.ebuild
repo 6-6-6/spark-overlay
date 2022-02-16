@@ -8,7 +8,7 @@ MAVEN_ID="ai.h2o:${PN}:${PV}"
 JAVA_PKG_IUSE="doc source test binary"
 JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
-inherit java-pkg-2 java-pkg-simple readme.gentoo-r1
+inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="The core module of H2O, a distributed, fast & scalable machine learning platform"
 HOMEPAGE="https://www.h2o.ai/"
@@ -24,7 +24,7 @@ CP_DEPEND="
 	~dev-java/h2o-genmodel-${PV}:${SLOT}
 	~dev-java/h2o-jaas-pam-${PV}:${SLOT}
 	~dev-java/h2o-logger-${PV}:${SLOT}
-	~dev-java/h2o-logging-impl-classic-${PV}:${SLOT}
+	~dev-java/h2o-logging-impl-log4j2-${PV}:${SLOT}
 	~dev-java/h2o-webserver-iface-${PV}:${SLOT}
 	>=dev-java/commons-io-2.4:1
 	>=dev-java/commons-lang-2.6:2.1
@@ -57,6 +57,7 @@ RDEPEND="
 
 S="${WORKDIR}/h2o-3-jenkins-${PV}/${PN}"
 
+JAVA_MAIN_CLASS="water.H2O"
 JAVA_RESOURCE_DIRS="src/main/resources"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
@@ -79,31 +80,7 @@ src_prepare() {
 	_EOF_
 }
 
-DOC_CONTENTS="
-Since H2O 3.36, this package no longer registers an H2O Jetty module
-as an optional dependency.  This may cause a \"No implementation of
-HttpServerFacade found on classpath\" error when any H2O modules are
-used by libraries and programs other than the 'h2o-${SLOT}' command
-provided by dev-java/h2o:${SLOT}.  To fix this error, please install
-one of the following packages and add it to the classpath:\n
-- dev-java/h2o-jetty9-minimal:${SLOT}\n
-- dev-java/h2o-jetty9:${SLOT}\n
-\n
-In addition, since H2O 3.36, this package no longer registers
-'water.H2O' as the main class.  As a side effect, the '${PN}-${SLOT}'
-command is no longer available.  Users are encouraged to install
-dev-java/h2o:${SLOT} and use the 'h2o-${SLOT}' command to launch
-H2O ${SLOT}.
-"
-
 src_install() {
 	java-pkg-simple_src_install
-	readme.gentoo_create_doc
-}
-
-pkg_postinst() {
-	FORCE_PRINT_ELOG=1
-	# Print log upon first installation in this slot
-	has_version "<${CATEGORY}/${PN}-${SLOT}" && \
-		[[ -z "${REPLACING_VERSIONS}" ]] && readme.gentoo_print_elog
+	java-pkg_register-optional-dependency "h2o-jetty9-${SLOT}"
 }
