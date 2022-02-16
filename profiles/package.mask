@@ -31,6 +31,21 @@
 
 #--- END OF EXAMPLES ---
 
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-17)
+# Package which has been added to ::gentoo under a different name.
+# Please use dev-java/conversant-disruptor instead. Removal on 2022-03-15.
+dev-java/conversantmedia-disruptor
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-17)
+# Package which has been added to ::gentoo under a different name.
+# Please use dev-java/lmax-disruptor instead. Removal on 2022-03-15.
+dev-java/disruptor
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-17)
+# Package which has been added to ::gentoo under a different slot.
+# Please use slot 1.1 instead. Removal on 2022-03-15.
+dev-java/jboss-jms-api:1.1_spec
+
 # Yuan Liao <liaoyuan@gmail.com> (2022-02-15)
 # Vulnerable Log4j 2 versions affected by CVE-2021-45105, CVE-2021-45046,
 # CVE-2021-44832, CVE-2021-44228, CVE-2020-9488, and CVE-2017-5645.
