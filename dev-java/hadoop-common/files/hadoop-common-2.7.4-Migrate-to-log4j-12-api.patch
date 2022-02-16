@@ -1,0 +1,25 @@
+From 4675b3b041acb36997c2645d32c71d4dfcead159 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Wed, 16 Feb 2022 11:47:30 -0800
+Subject: [PATCH] Migrate from Log4j 1.2 to log4j-1.2-api bridge from Log4j 2
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ src/main/java/org/apache/hadoop/log/Log4Json.java | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/src/main/java/org/apache/hadoop/log/Log4Json.java b/src/main/java/org/apache/hadoop/log/Log4Json.java
+index d998fbc..9ac3c3c 100644
+--- a/src/main/java/org/apache/hadoop/log/Log4Json.java
++++ b/src/main/java/org/apache/hadoop/log/Log4Json.java
+@@ -240,7 +240,6 @@ public class Log4Json extends Layout {
+   /**
+    * Do nothing
+    */
+-  @Override
+   public void activateOptions() {
+   }
+ 
+-- 
+2.34.1
+
