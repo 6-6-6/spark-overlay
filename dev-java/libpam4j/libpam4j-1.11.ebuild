@@ -1,7 +1,7 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 MAVEN_ID="org.kohsuke:${PN}:${PV}"
 
@@ -48,6 +48,12 @@ S="${WORKDIR}/${PN}-${P}"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
-JAVA_TEST_EXTRA_ARGS="-Djna.boot.library.path=${EROOT}/usr/lib64/jna-4"
 JAVA_TEST_GENTOO_CLASSPATH="junit-4"
 JAVA_TEST_SRC_DIR="src/test/java"
+
+pkg_setup() {
+	java-pkg-2_pkg_setup
+	JAVA_TEST_EXTRA_ARGS=(
+		"-Djna.boot.library.path=$(java-config -i jna-4)"
+	)
+}
