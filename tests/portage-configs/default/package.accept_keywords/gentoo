@@ -5,6 +5,7 @@ dev-java/glassfish-jms-api::gentoo
 ~dev-java/jackson-annotations-2.13.0::gentoo
 ~dev-java/jackson-core-2.13.0::gentoo
 ~dev-java/jackson-databind-2.13.0::gentoo
+~dev-java/jackson-dataformat-xml-2.13.0::gentoo
 ~dev-java/jackson-dataformat-yaml-2.13.0::gentoo
 ~dev-java/jakarta-activation-2.0.1::gentoo
 dev-java/jakarta-xml-soap-api::gentoo
@@ -12,6 +13,8 @@ dev-java/javax-mail::gentoo
 dev-java/jboss-jms-api:1.1::gentoo
 dev-java/jcip-annotations::gentoo
 dev-java/jctools-core::gentoo
+dev-java/jeromq::gentoo
+dev-java/jnacl::gentoo
 dev-java/kafka-clients::gentoo
 dev-java/lmax-disruptor::gentoo
 dev-java/log4j-12-api:2::gentoo
