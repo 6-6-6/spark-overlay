@@ -46,18 +46,3 @@
 # file.
 
 #--- END OF EXAMPLES ---
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-01-20)
-# Last-rited package which has been added to this overlay, using Java 1.8 as
-# minimum and EAPI 8.
->dev-java/kxml-2.3.0
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-01-19)
-# Last-rited package which has been added to this overlay, using Java 1.8 as
-# minimum and EAPI 8.
->dev-java/colt-1.2.0-r3
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-01-16)
-# Last-rited package which has been added to this overlay, using Java 1.8 as
-# minimum and EAPI 8.
->dev-java/commons-jexl-2.1.1
