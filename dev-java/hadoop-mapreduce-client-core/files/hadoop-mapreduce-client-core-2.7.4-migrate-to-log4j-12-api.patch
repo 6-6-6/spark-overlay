@@ -1,0 +1,26 @@
+From 0c8e70e85690656e4cc9eed82f19b422e6cf18b1 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Wed, 16 Feb 2022 16:44:30 -0800
+Subject: [PATCH] Migrate from Log4j 1.2 to log4j-1.2-api bridge from Log4j 2
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ src/main/java/org/apache/hadoop/mapred/TaskLog.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/main/java/org/apache/hadoop/mapred/TaskLog.java b/src/main/java/org/apache/hadoop/mapred/TaskLog.java
+index e07b5be..d6e4635 100644
+--- a/src/main/java/org/apache/hadoop/mapred/TaskLog.java
++++ b/src/main/java/org/apache/hadoop/mapred/TaskLog.java
+@@ -301,7 +301,7 @@ public class TaskLog {
+     //
+     final Logger rootLogger = Logger.getRootLogger();
+     flushAppenders(rootLogger);
+-    final Enumeration<Logger> allLoggers = rootLogger.getLoggerRepository().
++    final Enumeration<Logger> allLoggers = LogManager.getLoggerRepository().
+       getCurrentLoggers();
+     while (allLoggers.hasMoreElements()) {
+       final Logger l = allLoggers.nextElement();
+-- 
+2.34.1
+
