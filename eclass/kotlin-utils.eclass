@@ -551,6 +551,9 @@ _kotlin-utils_process_kotlin_compat() {
 		done
 	fi
 
+	[[ -n "${_KOTLIN_UTILS_SUPPORTED_VERSIONS[@]}" ]] ||
+		die "No supported version in KOTLIN_COMPAT"
+
 	local iuse=(
 		"${_KOTLIN_UTILS_SUPPORTED_VERSIONS[@]/#/kotlin_single_target_}"
 	)
