@@ -80,10 +80,18 @@ KOTLIN_KOTLINC_ARGS=(
 	-Xno-optimized-callable-references
 	-Xopt-in=kotlin.RequiresOptIn
 	-Xsuppress-deprecated-jvm-target-warning
-	-Werror
 )
 KOTLIN_JAVA_SOURCE_ROOTS=( core/reflection.jvm/src )
 KOTLIN_SRC_DIR=( core/reflection.jvm/src )
+
+pkg_setup() {
+	kotlin-libs_pkg_setup
+	# Some Java SE API members used by this package are deprecated
+	# on Java 11+, so deprecation warnings are expected
+	if [[ "$(java-config -g PROVIDES_VERSION)" == 1.8 ]]; then
+		KOTLIN_KOTLINC_ARGS+=( -Werror )
+	fi
+}
 
 src_unpack() {
 	kotlin-libs_src_unpack
