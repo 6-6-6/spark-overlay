@@ -7,7 +7,7 @@ JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="io.projectreactor:${PN}:${PV}.RELEASE"
 JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
-KOTLIN_COMPAT=( kotlin1-{4..5} )
+KOTLIN_COMPAT=( kotlin1-{4..6} )
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven kotlin-utils
 
