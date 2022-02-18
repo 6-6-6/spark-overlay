@@ -1,0 +1,114 @@
+From bd3c20bf5cc35e8f83ddd8a9f7d024ccbea0e5c9 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Fri, 18 Feb 2022 13:56:42 -0800
+Subject: [PATCH] Migrate from Log4j 1.2 to log4j-1.2-api bridge from Log4j 2
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ .../velocity/runtime/log/Log4JLogChute.java   | 26 +++++++------------
+ .../runtime/log/SimpleLog4JLogSystem.java     | 17 +++++++-----
+ 2 files changed, 20 insertions(+), 23 deletions(-)
+
+diff --git a/src/java/org/apache/velocity/runtime/log/Log4JLogChute.java b/src/java/org/apache/velocity/runtime/log/Log4JLogChute.java
+index 0bfe6a3..19a3bb7 100644
+--- a/src/java/org/apache/velocity/runtime/log/Log4JLogChute.java
++++ b/src/java/org/apache/velocity/runtime/log/Log4JLogChute.java
+@@ -24,7 +24,10 @@ import java.lang.reflect.Field;
+ import org.apache.log4j.Level;
+ import org.apache.log4j.Logger;
+ import org.apache.log4j.PatternLayout;
+-import org.apache.log4j.RollingFileAppender;
++import org.apache.log4j.Appender;
++import org.apache.log4j.bridge.AppenderWrapper;
++import org.apache.log4j.bridge.LayoutAdapter;
++import org.apache.logging.log4j.core.appender.RollingFileAppender;
+ import org.apache.velocity.runtime.RuntimeConstants;
+ import org.apache.velocity.runtime.RuntimeServices;
+ import org.apache.velocity.util.ExceptionUtils;
+@@ -49,7 +52,7 @@ public class Log4JLogChute implements LogChute
+ 
+     private RuntimeServices rsvc = null;
+     private boolean hasTrace = false;
+-    private RollingFileAppender appender = null;
++    private Appender appender = null;
+ 
+     /**
+      * <a href="http://jakarta.apache.org/log4j/">Log4J</a> logging API.
+@@ -111,27 +114,18 @@ public class Log4JLogChute implements LogChute
+     // This tries to create a file appender for the specified file name.
+     private void initAppender(String file) throws Exception
+     {
+-        try
+-        {
+             // to add the appender
+             PatternLayout layout = new PatternLayout("%d - %m%n");
+-            this.appender = new RollingFileAppender(layout, file, true);
+-
+-            // if we successfully created the file appender,
+-            // configure it and set the logger to use only it
+-            appender.setMaxBackupIndex(1);
+-            appender.setMaximumFileSize(100000);
++            this.appender = new AppenderWrapper(RollingFileAppender.newBuilder()
++                    .setLayout(new LayoutAdapter(layout))
++                    .withFileName(file)
++                    .withAppend(true)
++                    .build());
+ 
+             // don't inherit appenders from higher in the logger heirarchy
+             logger.setAdditivity(false);
+             logger.addAppender(appender);
+             log(DEBUG_ID, "Log4JLogChute initialized using file '"+file+'\'');
+-        }
+-        catch (IOException ioe)
+-        {
+-            rsvc.getLog().error("Could not create file appender '"+file+'\'', ioe);
+-            throw ExceptionUtils.createRuntimeException("Error configuring Log4JLogChute : ", ioe);
+-        }
+     }
+ 
+     /**
+diff --git a/src/java/org/apache/velocity/runtime/log/SimpleLog4JLogSystem.java b/src/java/org/apache/velocity/runtime/log/SimpleLog4JLogSystem.java
+index 36b2cea..0a461de 100644
+--- a/src/java/org/apache/velocity/runtime/log/SimpleLog4JLogSystem.java
++++ b/src/java/org/apache/velocity/runtime/log/SimpleLog4JLogSystem.java
+@@ -22,7 +22,10 @@ package org.apache.velocity.runtime.log;
+ import org.apache.log4j.Category;
+ import org.apache.log4j.Level;
+ import org.apache.log4j.PatternLayout;
+-import org.apache.log4j.RollingFileAppender;
++import org.apache.log4j.Appender;
++import org.apache.log4j.bridge.AppenderWrapper;
++import org.apache.log4j.bridge.LayoutAdapter;
++import org.apache.logging.log4j.core.appender.RollingFileAppender;
+ import org.apache.velocity.runtime.RuntimeConstants;
+ import org.apache.velocity.runtime.RuntimeServices;
+ 
+@@ -43,7 +46,7 @@ import org.apache.velocity.runtime.RuntimeServices;
+ public class SimpleLog4JLogSystem implements LogSystem
+ {
+     private RuntimeServices rsvc = null;
+-    private RollingFileAppender appender = null;
++    private Appender appender = null;
+ 
+     /** log4java logging interface */
+     protected Category logger = null;
+@@ -122,11 +125,11 @@ public class SimpleLog4JLogSystem implements LogSystem
+          */
+         logger.setLevel(Level.DEBUG);
+ 
+-        appender = new RollingFileAppender( new PatternLayout( "%d - %m%n"), logfile, true);
+-
+-        appender.setMaxBackupIndex( 1 );
+-
+-        appender.setMaximumFileSize( 100000 );
++        appender = new AppenderWrapper(RollingFileAppender.newBuilder()
++                .setLayout(new LayoutAdapter(new PatternLayout( "%d - %m%n")))
++                .withFileName(logfile)
++                .withAppend(true)
++                .build());
+ 
+         logger.addAppender(appender);
+     }
+-- 
+2.34.1
+

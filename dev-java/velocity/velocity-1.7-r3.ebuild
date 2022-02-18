@@ -48,7 +48,7 @@ EANT_EXTRA_ARGS="-Dskip-download=true"
 
 src_prepare() {
 	java-pkg_clean
-	eapply "${FILESDIR}/${P}-migrate-to-log4j-12-api.patch"
+	eapply "${FILESDIR}/${P}-r3-migrate-to-log4j-12-api.patch"
 	java-pkg-2_src_prepare
 }
 
