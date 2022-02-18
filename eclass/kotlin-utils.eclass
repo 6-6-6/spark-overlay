@@ -672,7 +672,7 @@ kotlin-utils_kotlinc() {
 
 	# Prepare arguments whose values should be separated by comma
 	local OLD_IFS="${IFS}"
-	if [[ -n "${KOTLIN_COMMON_SOURCES_DIR}" ]]; then
+	if [[ -n "${KOTLIN_COMMON_SOURCES_DIR[@]}" ]]; then
 		local common_sources_files=(
 			$(find "${KOTLIN_COMMON_SOURCES_DIR[@]}" -name "*.kt")
 		)
