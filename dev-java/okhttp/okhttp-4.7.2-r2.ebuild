@@ -8,7 +8,7 @@ MAVEN_ID="com.squareup.okhttp3:${PN}:${PV}"
 KOTLIN_IUSE="source test"
 KOTLIN_TESTING_FRAMEWORKS="junit-4"
 
-KOTLIN_COMPAT=( kotlin1-{4..5} )
+KOTLIN_COMPAT=( kotlin1-{4..6} )
 
 inherit kotlin
 
@@ -46,7 +46,6 @@ DEPEND="
 	dev-java/animal-sniffer-annotations:0
 	test? (
 		$(kotlin-utils_gen_slot_dep '
-			dev-java/kotlin-test:${KOTLIN_SLOT_DEP}
 			dev-java/kotlin-test-junit:${KOTLIN_SLOT_DEP}
 		')
 		dev-java/assertj-core:2
@@ -96,7 +95,6 @@ pkg_setup() {
 	kotlin_pkg_setup
 	JAVA_GENTOO_CLASSPATH="$(kotlin-utils_gen_slot_cp "${KOTLIN_LIBS}")"
 	JAVA_TEST_GENTOO_CLASSPATH+=" $(kotlin-utils_gen_slot_cp '
-		kotlin-test-${KOTLIN_SLOT_DEP}
 		kotlin-test-junit-${KOTLIN_SLOT_DEP}
 	')"
 }
