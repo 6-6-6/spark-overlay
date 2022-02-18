@@ -22,6 +22,10 @@
 # pure Kotlin packages should inherit kotlin.eclass, which exports various
 # phase functions that automatically call functions in this eclass and is thus
 # more convenient to use.
+#
+# For more information about creating a Kotlin package using this eclass,
+# please consult the Kotlin Package Maintainer Guide:
+# https://wiki.gentoo.org/wiki/User:Leo3418/Kotlin/Package_Maintainer_Guide
 
 case "${EAPI:-0}" in
 	6|7|8) ;;

@@ -13,6 +13,10 @@
 # This eclass provides an abstraction of the Kotlin compiler to support
 # building Kotlin library packages. It inherits kotlin-utils.eclass and
 # recognizes variables declared by that eclass when appropriate.
+#
+# For more information about maintaining Kotlin library packages, please
+# consult the Kotlin Library Package Maintainer Guide:
+# https://wiki.gentoo.org/wiki/User:Leo3418/Kotlin/Library_Package_Maintainer_Guide
 
 case "${EAPI:-0}" in
 	6|7|8) ;;
