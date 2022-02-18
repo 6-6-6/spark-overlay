@@ -46,7 +46,6 @@ KOTLIN_COMMON_KOTLINC_ARGS=(
 	-Xmulti-platform
 	-Xopt-in=kotlin.RequiresOptIn
 	-Xsuppress-deprecated-jvm-target-warning
-	-Werror
 )
 
 KOTLIN_LIBS_RUNTIME_COMPONENT="Main"
@@ -103,6 +102,11 @@ KOTLIN_TEST_EXCLUDES=(
 
 pkg_setup() {
 	kotlin-libs_pkg_setup
+	# Some Java SE API members used by this package are deprecated
+	# on Java 11+, so deprecation warnings are expected
+	if [[ "$(java-config -g PROVIDES_VERSION)" == 1.8 ]]; then
+		KOTLIN_KOTLINC_ARGS+=( -Werror )
+	fi
 	if ! in_iuse binary || ! use binary; then
 		JAVA_CLASSPATH_EXTRA+=" kotlin-core-builtins-${SLOT}"
 	fi
