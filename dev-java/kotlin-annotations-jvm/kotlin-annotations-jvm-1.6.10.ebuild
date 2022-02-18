@@ -19,9 +19,14 @@ KOTLIN_LIBS_SRCJAR_FILENAME="${P}-sources.jar"
 # Kotlin compiler needs not be called for this package
 
 JAVAC_ARGS="-g -proc:none -XDuseUnsharedTable=true"
-JAVAC_ARGS+=" -Xlint:deprecation -Xlint:unchecked -Werror"
+JAVAC_ARGS+=" -Xlint:deprecation -Xlint:unchecked"
 JAVA_SRC_DIR=( libraries/tools/kotlin-annotations-jvm/src )
 
 src_compile() {
+	# On JDK 11 or above, there will be a "bootstrap class path not set in
+	# conjunction with -source 8" warning, which is expected within Portage
+	if [[ "$(java-config -g PROVIDES_VERSION)" == 1.8 ]]; then
+		JAVAC_ARGS+=" -Werror"
+	fi
 	java-pkg-simple_src_compile
 }
