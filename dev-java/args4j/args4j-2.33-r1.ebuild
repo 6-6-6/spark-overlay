@@ -3,10 +3,9 @@
 
 EAPI=8
 
-# Binary JAR contains Java sources, which we should
-# never add, so pkgdiff would always fail
-JAVA_PKG_IUSE="doc source binary"
+JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="args4j:${PN}:${PV}"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -20,6 +19,10 @@ SRC_URI="
 LICENSE="MIT"
 SLOT="2"
 KEYWORDS="~amd64 ~x86"
+
+# Binary JAR contains Java sources, which we should
+# never add, so pkgdiff would always fail
+RESTRICT="test"
 
 BDEPEND="
 	app-arch/unzip
