@@ -22,10 +22,7 @@ LICENSE="GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS="~amd64"
 
-# This package requires many classes within the jdk.vm.ci package, which seems
-# to be available only in Java 9 or higher.  Because the required Java
-# dependencies set by the Gentoo Java team as of July 2021 is 1.8, only binary
-# installation is supported at this point.
+# This package import classes that do not exist from jdk.vm.ci Java package
 IUSE="+binary"
 
 # Common dependencies
