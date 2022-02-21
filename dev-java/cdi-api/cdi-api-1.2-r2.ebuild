@@ -3,9 +3,9 @@
 
 EAPI=8
 
-# pkgdiff tests would not pass because the binary JAR was built with JDK 1.6
-JAVA_PKG_IUSE="doc source binary"
+JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="javax.enterprise:${PN}:${PV}"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -19,6 +19,10 @@ SRC_URI="
 LICENSE="Apache-2.0"
 SLOT="1.2"
 KEYWORDS="~amd64 ~x86"
+
+# japi-compliance-checker would fail due to
+# return value type change of some methods
+RESTRICT="test"
 
 CP_DEPEND="
 	dev-java/javax-inject:0
