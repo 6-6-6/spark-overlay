@@ -3,9 +3,9 @@
 
 EAPI=8
 
-# pkgdiff tests would not pass because the binary JAR was built with JDK 1.6
-JAVA_PKG_IUSE="doc source binary"
+JAVA_PKG_IUSE="doc source test binary"
 MAVEN_ID="org.terracotta.toolkit:terracotta-toolkit-1.3-api:${PV}"
+JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
@@ -21,6 +21,10 @@ SRC_URI="
 LICENSE="TPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64"
+
+# japi-compliance-checker would fail due to
+# return value type change of some methods
+RESTRICT="test"
 
 BDEPEND="
 	app-arch/unzip
