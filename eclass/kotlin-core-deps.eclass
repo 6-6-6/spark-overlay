@@ -150,6 +150,7 @@ kotlin-core-deps_src_prepare() {
 	local sed_script
 	sed_script="s/${KOTLIN_CORE_DEPS_SOURCE_PKG}/${KOTLIN_CORE_DEPS_DEST_PKG}/g"
 
+	local src_dir
 	for src_dir in "${KOTLIN_SRC_DIR[@]}"; do
 		local source_pkg_path="${src_dir}/$(tr '.' '/' <<< \
 			"${KOTLIN_CORE_DEPS_SOURCE_PKG}")"
