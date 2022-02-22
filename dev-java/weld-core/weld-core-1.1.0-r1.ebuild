@@ -41,8 +41,8 @@ KEYWORDS="~amd64"
 #    patching the resource files to add dummy translations for missing keys and
 #    remove redundant translations.
 # 2. Either all source files have been migrated from MapMaker to CacheLoader,
-#	 or a version of Guava in which MapMaker still exists is used (not
-#	 recommended, as such Guava version would be too old).
+#    or a version of Guava in which MapMaker still exists is used (not
+#    recommended, as such Guava version would be too old).
 # 3. A JAR for javax.enterprise.inject.spi that is compatible with this package
 #    is used for building.
 IUSE="+binary"
