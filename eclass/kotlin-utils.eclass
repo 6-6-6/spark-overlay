@@ -820,28 +820,17 @@ kotlin-utils_test_compile() {
 	# If there are no Kotlin test sources, skip compilation of any test sources
 	[[ -s "${kotlin_sources}" ]] || return
 
-	# Back up variables that control arguments to Kotlin compiler
-	local _common_sources_dir=( "${KOTLIN_COMMON_SOURCES_DIR[@]}" )
-	local _kotlinc_args=( "${KOTLIN_KOTLINC_ARGS[@]}" )
-	local _kotlinc_java_opts="${KOTLIN_KOTLINC_JAVA_OPTS}"
-	local _java_source_roots=( "${KOTLIN_JAVA_SOURCE_ROOTS[@]}" )
-
-	# Set compiler arguments for tests
-	KOTLIN_COMMON_SOURCES_DIR=( "${KOTLIN_TEST_COMMON_SOURCES_DIR[@]}" )
-	KOTLIN_KOTLINC_ARGS=( "${KOTLIN_TEST_KOTLINC_ARGS[@]}" )
-	KOTLIN_KOTLINC_JAVA_OPTS="${KOTLIN_TEST_KOTLINC_JAVA_OPTS}"
-	KOTLIN_JAVA_SOURCE_ROOTS=( "${KOTLIN_TEST_JAVA_SOURCE_ROOTS[@]}" )
+	# Set compiler arguments for tests; use 'local' to restore the
+	# variables to their original values after this function returns
+	local KOTLIN_COMMON_SOURCES_DIR=( "${KOTLIN_TEST_COMMON_SOURCES_DIR[@]}" )
+	local KOTLIN_KOTLINC_ARGS=( "${KOTLIN_TEST_KOTLINC_ARGS[@]}" )
+	local KOTLIN_KOTLINC_JAVA_OPTS="${KOTLIN_TEST_KOTLINC_JAVA_OPTS}"
+	local KOTLIN_JAVA_SOURCE_ROOTS=( "${KOTLIN_TEST_JAVA_SOURCE_ROOTS[@]}" )
 
 	kotlin-utils_kotlinc \
 		-d "${classes}" \
 		${classpath:+-classpath "${classpath}"} \
 		"@${kotlin_sources}"
-
-	# Restore variables
-	KOTLIN_COMMON_SOURCES_DIR=( "${_common_sources_dir[@]}" )
-	KOTLIN_KOTLINC_ARGS=( "${_kotlinc_args[@]}" )
-	KOTLIN_KOTLINC_JAVA_OPTS="${_kotlinc_java_opts}"
-	KOTLIN_JAVA_SOURCE_ROOTS=( "${_java_source_roots[@]}" )
 
 	# Compile any Java test source files after the Kotlin test sources because
 	# the Java sources may require some of the Kotlin classes as dependencies
