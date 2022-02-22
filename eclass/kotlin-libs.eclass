@@ -180,6 +180,7 @@ kotlin-libs_pkg_setup() {
 # repository archive is unpacked; the archive might not be unpacked if the
 # 'binary' USE flag is enabled, thus ${S} might be absent in this case.
 kotlin-libs_src_unpack() {
+	local f
 	for f in ${A}; do
 		case "${f}" in
 			${JAVA_BINJAR_FILENAME}|${KOTLIN_LIBS_SRCJAR_FILENAME})
@@ -225,6 +226,7 @@ kotlin-libs_create_manifest() {
 kotlin-libs_src_compile() {
 	if has binary ${JAVA_PKG_IUSE} && use binary; then
 		java-pkg_gen-cp JAVA_GENTOO_CLASSPATH
+		local dependency
 		for dependency in ${JAVA_GENTOO_CLASSPATH//,/ }; do
 			java-pkg_record-jar_ "${dependency}"
 		done
@@ -257,6 +259,7 @@ kotlin-libs_src_test() {
 		return
 	fi
 
+	local framework
 	for framework in ${KOTLIN_TESTING_FRAMEWORKS}; do
 		case "${framework}" in
 			junit-4)
