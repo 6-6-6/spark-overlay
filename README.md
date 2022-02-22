@@ -1,5 +1,9 @@
 # Spark Overlay
 
+[![Scan ebuilds with pkgcheck](https://github.com/6-6-6/spark-overlay/actions/workflows/pkgcheck.yml/badge.svg)](https://github.com/6-6-6/spark-overlay/actions/workflows/pkgcheck.yml)
+[![Scan ebuilds with repoman](https://github.com/6-6-6/spark-overlay/actions/workflows/repoman.yml/badge.svg)](https://github.com/6-6-6/spark-overlay/actions/workflows/repoman.yml)
+[![Test ebuilds in Docker container](https://github.com/6-6-6/spark-overlay/actions/workflows/docker.yml/badge.svg)](https://github.com/6-6-6/spark-overlay/actions/workflows/docker.yml)
+
 The Spark overlay is a Gentoo [ebuild repository][gentoo-wiki-ebuild-repo] that
 offers Gentoo packages supporting big data infrastructures based on the Java
 platform.  It was originally created for distributing [Apache Spark][spark] to
@@ -196,18 +200,13 @@ sub-directories for files supporting test cases:
 The Spark overlay could still use some improvements.  Any contributions that
 help resolve the following issues are welcome!
 
-- [x] Fix ebuilds that cannot be installed *without* `USE="binary"` by either
-  resolving compilation issues or setting `IUSE="+binary"` in the ebuild as a
-  last resort
-- [ ] Ensure every ebuild's `src_test` can complete without errors, regardless
-  of whether `USE="binary"` is enabled or not
-- [ ] Make ebuilds with `IUSE="+binary"` buildable from source and then remove
-  this default USE flag setting
+- [ ] Update Apache Spark packages to the latest upstream releases
+- [ ] Update `dev-java/hadoop-*` and `dev-java/netty-*` packages to the latest
+  upstream releases that do not have known security vulnerabilities
 - [ ] Expand the family of H2O packages by adding packages for the H2O XGBoost
-  extension
-- [ ] `dev-java/fommil-netlib-native-{ref,system}`: Build the shared object
-  (`.so` file) from source
-- [ ] `dev-libs/thrift`: Add more USE flags and optimize `./configure` options
+  and AutoML extension
+- [ ] [Improve][gentoo-wiki-kotlin-improvements] Kotlin packages and eclasses
 - [ ] Fix other documented issues in the [issue tracker][gh-issues]
 
+[gentoo-wiki-kotlin-improvements]: https://wiki.gentoo.org/wiki/User:Leo3418/Kotlin/Open_Challenges_and_Room_for_Improvement
 [gh-issues]: https://github.com/6-6-6/spark-overlay/issues
