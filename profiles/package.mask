@@ -31,6 +31,11 @@
 
 #--- END OF EXAMPLES ---
 
+# Yuan Liao <liaoyuan@gmail.com> (2022-02-23)
+# Package which has been added to ::gentoo under a different slot.
+# Please use slot 2 instead. Removal on 2022-03-15.
+dev-java/jakarta-activation:0
+
 # Yuan Liao <liaoyuan@gmail.com> (2022-02-17)
 # Package which has been added to ::gentoo under a different name.
 # Please use dev-java/conversant-disruptor instead. Removal on 2022-03-15.
