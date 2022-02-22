@@ -90,6 +90,7 @@ _KOTLIN_COMPILER_TOOLS=(
 # @DESCRIPTION:
 # Creates versioned Kotlin tool executables for KOTLIN_COMPILER_VER.
 _kotlin-compiler_update_versioned_exe() {
+	local tool
 	for tool in "${_KOTLIN_COMPILER_TOOLS[@]}"; do
 		ln -snf "${EPREFIX}/usr/libexec/eselect-kotlin/run-kotlin-tool.sh" \
 			"${EROOT}/usr/bin/${tool}${KOTLIN_COMPILER_VER}"
@@ -104,6 +105,7 @@ _kotlin-compiler_update_versioned_exe() {
 _kotlin-compiler_cleanup_versioned_exe() {
 	local ver_symlink="${EROOT}/etc/eselect/kotlin/homes/${KOTLIN_COMPILER_VER}"
 	if ! [[ -L "${ver_symlink}" && -d "${ver_symlink}" ]]; then
+		local tool
 		for tool in "${_KOTLIN_COMPILER_TOOLS[@]}"; do
 			rm "${EROOT}/usr/bin/${tool}${KOTLIN_COMPILER_VER}"
 		done
