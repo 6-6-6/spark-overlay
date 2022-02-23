@@ -1,7 +1,7 @@
 Title: Spark Overlay 涅磐重生
 Author: 廖远 <liaoyuan@gmail.com>
 Posted: 2021-08-01
-Revision: 2
+Revision: 3
 News-Item-Format: 2.0
 
 在经历了 ::gentoo 官方仓库中对过时 Java 软件包的大清洗后，
@@ -50,7 +50,7 @@ Spark 核心包 dev-java/spark-core 又一次可以在使用最新版的
 如欲了解有关新 Kotlin 软件包的更多详情，请参阅 Gentoo Wiki
 上的相关页面（英文内容）：
 
-    https://wiki.gentoo.org/wiki/User:Leo3418/Kotlin
+    https://wiki.gentoo.org/wiki/Kotlin
 
 如果在升级软件包的过程中遇到了问题，烦请先将所有从 ::spark-overlay
 安装的软件包卸载，然后再重新安装。

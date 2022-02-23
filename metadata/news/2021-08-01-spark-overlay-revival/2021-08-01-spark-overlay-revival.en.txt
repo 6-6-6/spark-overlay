@@ -1,7 +1,7 @@
 Title: Spark Overlay Revival
 Author: Yuan Liao <liaoyuan@gmail.com>
 Posted: 2021-08-01
-Revision: 2
+Revision: 3
 News-Item-Format: 2.0
 
 Most of the ebuilds in ::spark-overlay have now been restored to a
@@ -61,7 +61,7 @@ this overlay's tree to /etc/portage/package.use anymore.
 For more information about the new Kotlin packages, please consult a
 relevant page on Gentoo Wiki:
 
-    https://wiki.gentoo.org/wiki/User:Leo3418/Kotlin
+    https://wiki.gentoo.org/wiki/Kotlin
 
 Should any issue that prevents the packages from being upgraded arise,
 please uninstall all packages from ::spark-overlay and then reinstall
