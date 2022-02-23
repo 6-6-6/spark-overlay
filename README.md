@@ -56,7 +56,7 @@ Kotlin packages, please install Kotlin compiler 1.4 separately before retrying:
 For information regarding the Kotlin packages, please consult [the relevant
 page on Gentoo Wiki][gentoo-wiki-kotlin].
 
-[gentoo-wiki-kotlin]: https://wiki.gentoo.org/wiki/User:Leo3418/Kotlin
+[gentoo-wiki-kotlin]: https://wiki.gentoo.org/wiki/Kotlin
 
 ## Initial Configuration
 
@@ -208,5 +208,5 @@ help resolve the following issues are welcome!
 - [ ] [Improve][gentoo-wiki-kotlin-improvements] Kotlin packages and eclasses
 - [ ] Fix other documented issues in the [issue tracker][gh-issues]
 
-[gentoo-wiki-kotlin-improvements]: https://wiki.gentoo.org/wiki/User:Leo3418/Kotlin/Open_Challenges_and_Room_for_Improvement
+[gentoo-wiki-kotlin-improvements]: https://wiki.gentoo.org/wiki/Kotlin/Open_Challenges_and_Room_for_Improvement
 [gh-issues]: https://github.com/6-6-6/spark-overlay/issues
