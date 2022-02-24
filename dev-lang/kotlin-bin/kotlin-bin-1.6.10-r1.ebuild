@@ -103,7 +103,7 @@ src_compile() {
 	# Create symbolic links to external dependencies
 	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
 		"kotlinx-coroutines-core-bin-${COROUTINES_CORE_SLOT}" \
-		kotlinx-coroutines-core-bin.jar kotlinx-coroutines-core.jar
+		kotlinx-coroutines-core-bin.jar kotlinx-coroutines-core-jvm.jar
 	java-pkg_jar-from --into "${KOTLINC_LIB_TMP}" \
 		"jetbrains-annotations-${JB_ANNOTATIONS_SLOT}" \
 		jetbrains-annotations.jar annotations-13.0.jar
