@@ -1,0 +1,77 @@
+From 2bcd0d0d66d9ddb47dc41f46c68a7cc284e8703c Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Fri, 25 Feb 2022 05:49:05 -0800
+Subject: [PATCH] Remove uses of Log4j 1.2 classes not provided by the
+ log4j-12-api bridge
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ .../org/apache/zookeeper/jmx/ManagedUtil.java | 43 ++-----------------
+ 1 file changed, 3 insertions(+), 40 deletions(-)
+
+diff --git a/zookeeper-server/src/main/java/org/apache/zookeeper/jmx/ManagedUtil.java b/zookeeper-server/src/main/java/org/apache/zookeeper/jmx/ManagedUtil.java
+index 2f04281..6b94f33 100644
+--- a/zookeeper-server/src/main/java/org/apache/zookeeper/jmx/ManagedUtil.java
++++ b/zookeeper-server/src/main/java/org/apache/zookeeper/jmx/ManagedUtil.java
+@@ -18,55 +18,18 @@
+ 
+ package org.apache.zookeeper.jmx;
+ 
+-import java.util.Enumeration;
+-
+ import javax.management.JMException;
+-import javax.management.MBeanServer;
+-import javax.management.ObjectName;
+-
+-import org.apache.log4j.LogManager;
+-import org.apache.log4j.Logger;
+-import org.apache.log4j.jmx.HierarchyDynamicMBean;
+-import org.apache.log4j.spi.LoggerRepository;
+ 
+ /**
+  * Shared utilities
+  */
+ public class ManagedUtil {
+     /**
+-     * Register the log4j JMX mbeans. Set environment variable
+-     * "zookeeper.jmx.log4j.disable" to true to disable registration.
+-     * @see http://logging.apache.org/log4j/1.2/apidocs/index.html?org/apache/log4j/jmx/package-summary.html
+-     * @throws JMException if registration fails
++     * No-op; will always behave as if system property
++     * "zookeeper.jmx.log4j.disable" is set to true.
++     * @throws JMException never
+      */
+-    @SuppressWarnings("rawtypes")
+     public static void registerLog4jMBeans() throws JMException {
+-        if (Boolean.getBoolean("zookeeper.jmx.log4j.disable") == true) {
+-            return;
+-        }
+-        
+-        MBeanServer mbs = MBeanRegistry.getInstance().getPlatformMBeanServer();
+-
+-        // Create and Register the top level Log4J MBean
+-        HierarchyDynamicMBean hdm = new HierarchyDynamicMBean();
+-
+-        ObjectName mbo = new ObjectName("log4j:hiearchy=default");
+-        mbs.registerMBean(hdm, mbo);
+-
+-        // Add the root logger to the Hierarchy MBean
+-        Logger rootLogger = Logger.getRootLogger();
+-        hdm.addLoggerMBean(rootLogger.getName());
+-
+-        // Get each logger from the Log4J Repository and add it to
+-        // the Hierarchy MBean created above.
+-        LoggerRepository r = LogManager.getLoggerRepository();
+-        Enumeration enumer = r.getCurrentLoggers();
+-        Logger logger = null;
+-
+-        while (enumer.hasMoreElements()) {
+-           logger = (Logger) enumer.nextElement();
+-           hdm.addLoggerMBean(logger.getName());
+-        }
+     }
+ 
+ }
+-- 
+2.34.1
+

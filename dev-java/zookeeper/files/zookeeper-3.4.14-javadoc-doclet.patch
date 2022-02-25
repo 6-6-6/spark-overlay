@@ -1,0 +1,29 @@
+From 166b16ca879c0d922afdd30fddb4a1c0b3dad6ae Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Fri, 25 Feb 2022 06:05:16 -0800
+Subject: [PATCH] build.xml: Do not use custom doclet class
+
+If a doclet class is specified in build.xml, then the 'javadoc' program
+will exit with "invalid flag: -d" error on Java 11.
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ build.xml | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/build.xml b/build.xml
+index 5c814a5..a04ae86 100644
+--- a/build.xml
++++ b/build.xml
+@@ -553,8 +553,6 @@ xmlns:cs="antlib:com.puppycrawl.tools.checkstyle">
+          windowtitle="${Name} ${version} API"
+          doctitle="${Name} ${version} API"
+          bottom="Copyright &amp;copy; ${year} The Apache Software Foundation"
+-         doclet="org.apache.yetus.audience.tools.IncludePublicAnnotationsStandardDoclet"
+-         docletpath="${ivy.lib}/audience-annotations-${audience-annotations.version}.jar"
+          >
+ 
+         <fileset dir="${java.server.src.dir}">
+-- 
+2.34.1
+

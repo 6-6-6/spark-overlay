@@ -1,0 +1,44 @@
+From 72f0bc51232521c2cfe3e6bdc3aa6d8f63c3b608 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Fri, 25 Feb 2022 05:56:10 -0800
+Subject: [PATCH] build.xml: Skip Ivy tasks
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ build.xml | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/build.xml b/build.xml
+index 10439b4..5c814a5 100644
+--- a/build.xml
++++ b/build.xml
+@@ -387,7 +387,7 @@ xmlns:cs="antlib:com.puppycrawl.tools.checkstyle">
+         </java>
+     </target>
+     
+-    <target name="build-generated" depends="compile_jute,version-info,ivy-retrieve" >
++    <target name="build-generated" depends="compile_jute,version-info" >
+         <javac srcdir="${src_generated.dir}" destdir="${build.classes}" includeantruntime="false"
+             target="${javac.target}" source="${javac.source}" debug="on" classpath="${ivy.lib}/audience-annotations-${audience-annotations.version}.jar" />
+     </target>
+@@ -460,7 +460,7 @@ xmlns:cs="antlib:com.puppycrawl.tools.checkstyle">
+         <ivy:report conf="*" todir="${build.dir}/dependency-report"/>
+     </target>
+ 
+-    <target name="compile" depends="ivy-retrieve,clover,build-generated">
++    <target name="compile" depends="build-generated">
+         <javac destdir="${build.classes}" includeantruntime="false"
+                target="${javac.target}" source="${javac.source}" debug="on">
+             <src path="${java.server.src.dir}"/>
+@@ -471,7 +471,7 @@ xmlns:cs="antlib:com.puppycrawl.tools.checkstyle">
+         </javac>
+     </target>
+ 
+-    <target name="compile-test" depends="ivy-retrieve-test,compile">
++    <target name="compile-test" depends="compile">
+       <mkdir dir="${test.java.classes}"/>
+       <javac destdir="${test.java.classes}" includeantruntime="false"
+              target="${javac.target}" source="${javac.source}" debug="on">
+-- 
+2.34.1
+
