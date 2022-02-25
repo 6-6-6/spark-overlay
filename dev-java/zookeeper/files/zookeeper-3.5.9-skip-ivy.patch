@@ -1,0 +1,59 @@
+From 406d8946908742c1141a469f1be94953c3581b2a Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Fri, 25 Feb 2022 07:09:22 -0800
+Subject: [PATCH] build.xml: Skip Ivy tasks
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ build.xml | 11 ++++-------
+ 1 file changed, 4 insertions(+), 7 deletions(-)
+
+diff --git a/build.xml b/build.xml
+index 48a171b..aa7a609 100644
+--- a/build.xml
++++ b/build.xml
+@@ -308,13 +308,10 @@ xmlns:cs="antlib:com.puppycrawl.tools.checkstyle.ant">
+     </target>
+     
+ 	
+-    <target name="generate_jute_parser" depends="init,ivy-retrieve,ivy-retrieve-javacc">
++    <target name="generate_jute_parser" depends="init">
+       <property name="jute_javacc.dir" value="${build.dir}/jute_compiler" />
+       <property name="jute_javacc.packagedir" value="/org/apache/jute/compiler/generated" />
+       <mkdir dir="${jute_javacc.dir}${jute_javacc.packagedir}"/>
+-      <!-- the javacc task expects a "javacc.jar" file... -->
+-      <ivy:artifactproperty name="[artifact].revision" value="[revision]" />
+-      <move file="${ivy.javacc.lib}/javacc-${javacc.revision}.jar" tofile="${ivy.javacc.lib}/javacc.jar" failonerror="false"/>
+       <javacc
+           target="${basedir}/zookeeper-jute/src/main/java${jute_javacc.packagedir}/rcc.jj"
+           outputdirectory="${jute_javacc.dir}${jute_javacc.packagedir}/"
+@@ -398,7 +395,7 @@ xmlns:cs="antlib:com.puppycrawl.tools.checkstyle.ant">
+         </java>
+     </target>
+     
+-    <target name="build-generated" depends="compile_jute,version-info,process-template,ivy-retrieve" >
++    <target name="build-generated" depends="compile_jute,version-info,process-template" >
+         <javac srcdir="${src_generated.dir}" destdir="${build.classes}" includeantruntime="false"
+             target="${javac.target}" source="${javac.source}" debug="on" encoding="${build.encoding}" classpath="${ivy.lib}/audience-annotations-${audience-annotations.version}.jar" />
+     </target>
+@@ -495,7 +492,7 @@ xmlns:cs="antlib:com.puppycrawl.tools.checkstyle.ant">
+       <ivy:cachepath pathid="mvn-ant-task-classpath" conf="mvn-ant-task"/>
+     </target>
+ 
+-    <target name="compile" depends="ivy-retrieve,clover,build-generated">
++    <target name="compile" depends="build-generated">
+         <javac destdir="${build.classes}" includeantruntime="false"
+                target="${javac.target}" source="${javac.source}" debug="on" encoding="${build.encoding}">
+             <src path="${java.server.src.dir}"/>
+@@ -506,7 +503,7 @@ xmlns:cs="antlib:com.puppycrawl.tools.checkstyle.ant">
+         </javac>
+     </target>
+ 
+-    <target name="compile-test" depends="ivy-retrieve-test,compile">
++    <target name="compile-test" depends="compile">
+       <mkdir dir="${test.java.classes}"/>
+       <javac destdir="${test.java.classes}" includeantruntime="false"
+              target="${javac.target}" source="${javac.source}" debug="on" encoding="${build.encoding}">
+-- 
+2.34.1
+
