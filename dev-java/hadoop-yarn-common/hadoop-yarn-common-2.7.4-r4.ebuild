@@ -79,6 +79,7 @@ JAVADOC_ARGS="-source 8"
 src_prepare() {
 	eapply "${FILESDIR}/${P}-Guava-CharMatcher.patch"
 	eapply "${FILESDIR}/${P}-RPCUtil-cast-Throwable.patch"
+	eapply "${FILESDIR}/${P}-migrate-to-log4j-12-api.patch"
 
 	java-pkg-2_src_prepare
 }

@@ -1,0 +1,159 @@
+From e9dc98cd90100c4ef3d01b7dbc3ce32a7a019641 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Sat, 26 Feb 2022 08:36:36 -0800
+Subject: [PATCH] Migrate from Log4j 1.2 to log4j-1.2-api bridge from Log4j 2
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ .../hadoop/yarn/ContainerLogAppender.java     | 49 ++++++++++++++++++-
+ .../yarn/ContainerRollingLogAppender.java     | 49 ++++++++++++++++++-
+ 2 files changed, 94 insertions(+), 4 deletions(-)
+
+diff --git a/src/main/java/org/apache/hadoop/yarn/ContainerLogAppender.java b/src/main/java/org/apache/hadoop/yarn/ContainerLogAppender.java
+index c49a1ab..f7cfadd 100644
+--- a/src/main/java/org/apache/hadoop/yarn/ContainerLogAppender.java
++++ b/src/main/java/org/apache/hadoop/yarn/ContainerLogAppender.java
+@@ -25,7 +25,7 @@ import java.util.Queue;
+ 
+ import org.apache.hadoop.classification.InterfaceAudience.Public;
+ import org.apache.hadoop.classification.InterfaceStability.Unstable;
+-import org.apache.log4j.FileAppender;
++import org.apache.log4j.WriterAppender;
+ import org.apache.log4j.spi.LoggingEvent;
+ 
+ /**
+@@ -34,7 +34,7 @@ import org.apache.log4j.spi.LoggingEvent;
+  */
+ @Public
+ @Unstable
+-public class ContainerLogAppender extends FileAppender
++public class ContainerLogAppender extends WriterAppender
+   implements Flushable
+ {
+   private String containerLogDir;
+@@ -44,6 +44,51 @@ public class ContainerLogAppender extends FileAppender
+   private Queue<LoggingEvent> tail = null;
+   private boolean closing = false;
+ 
++  /** Controls file truncatation. The default value for this variable
++   * is <code>true</code>, meaning that by default a
++   * <code>FileAppender</code> will append to an existing file and not
++   * truncate it.
++   *
++   * <p>This option is meaningful only if the FileAppender opens the
++   * file.
++   */
++  protected boolean fileAppend = true;
++
++  /**
++   The name of the log file. */
++  protected String fileName = null;
++
++  /**
++   The <b>Append</b> option takes a boolean value. It is set to
++   <code>true</code> by default. If true, then <code>File</code>
++   will be opened in append mode by {@link #setFile setFile} (see
++   above). Otherwise, {@link #setFile setFile} will open
++   <code>File</code> in truncate mode.
++
++   <p>Note: Actual opening of the file is made when {@link
++  #activateOptions} is called, not when the options are set.
++   */
++  public
++  void setAppend(boolean flag) {
++    fileAppend = flag;
++  }
++
++  /**
++   The <b>File</b> property takes a string value which should be the
++   name of the file to append to.
++
++   <p><font color="#DD0044"><b>Note that the special values
++   "System.out" or "System.err" are no longer honored.</b></font>
++
++   <p>Note: Actual opening of the file is made when {@link
++  #activateOptions} is called, not when the options are set.  */
++  public void setFile(String file) {
++    // Trim spaces from both ends. The users probably does not want
++    // trailing spaces in file names.
++    String val = file.trim();
++    fileName = val;
++  }
++
+   @Override
+   public void activateOptions() {
+     synchronized (this) {
+diff --git a/src/main/java/org/apache/hadoop/yarn/ContainerRollingLogAppender.java b/src/main/java/org/apache/hadoop/yarn/ContainerRollingLogAppender.java
+index 7dd712e..12ee595 100644
+--- a/src/main/java/org/apache/hadoop/yarn/ContainerRollingLogAppender.java
++++ b/src/main/java/org/apache/hadoop/yarn/ContainerRollingLogAppender.java
+@@ -20,7 +20,7 @@ package org.apache.hadoop.yarn;
+ 
+ import org.apache.hadoop.classification.InterfaceAudience.Public;
+ import org.apache.hadoop.classification.InterfaceStability.Unstable;
+-import org.apache.log4j.RollingFileAppender;
++import org.apache.log4j.WriterAppender;
+ 
+ import java.io.File;
+ import java.io.Flushable;
+@@ -31,11 +31,56 @@ import java.io.Flushable;
+  */
+ @Public
+ @Unstable
+-public class ContainerRollingLogAppender extends RollingFileAppender
++public class ContainerRollingLogAppender extends WriterAppender
+   implements Flushable {
+   private String containerLogDir;
+   private String containerLogFile;
+ 
++  /** Controls file truncatation. The default value for this variable
++   * is <code>true</code>, meaning that by default a
++   * <code>FileAppender</code> will append to an existing file and not
++   * truncate it.
++   *
++   * <p>This option is meaningful only if the FileAppender opens the
++   * file.
++   */
++  protected boolean fileAppend = true;
++
++  /**
++   The name of the log file. */
++  protected String fileName = null;
++
++  /**
++   The <b>Append</b> option takes a boolean value. It is set to
++   <code>true</code> by default. If true, then <code>File</code>
++   will be opened in append mode by {@link #setFile setFile} (see
++   above). Otherwise, {@link #setFile setFile} will open
++   <code>File</code> in truncate mode.
++
++   <p>Note: Actual opening of the file is made when {@link
++  #activateOptions} is called, not when the options are set.
++   */
++  public
++  void setAppend(boolean flag) {
++    fileAppend = flag;
++  }
++
++  /**
++   The <b>File</b> property takes a string value which should be the
++   name of the file to append to.
++
++   <p><font color="#DD0044"><b>Note that the special values
++   "System.out" or "System.err" are no longer honored.</b></font>
++
++   <p>Note: Actual opening of the file is made when {@link
++  #activateOptions} is called, not when the options are set.  */
++  public void setFile(String file) {
++    // Trim spaces from both ends. The users probably does not want
++    // trailing spaces in file names.
++    String val = file.trim();
++    fileName = val;
++  }
++
+   @Override
+   public void activateOptions() {
+     synchronized (this) {
+-- 
+2.34.1
+
