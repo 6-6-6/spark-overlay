@@ -1,12 +1,13 @@
-From 0c8e70e85690656e4cc9eed82f19b422e6cf18b1 Mon Sep 17 00:00:00 2001
+From edbe40b266480b226c4fde0a0b2c3c46ff18d171 Mon Sep 17 00:00:00 2001
 From: Yuan Liao <liaoyuan@gmail.com>
 Date: Wed, 16 Feb 2022 16:44:30 -0800
 Subject: [PATCH] Migrate from Log4j 1.2 to log4j-1.2-api bridge from Log4j 2
 
 Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
 ---
- src/main/java/org/apache/hadoop/mapred/TaskLog.java | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../org/apache/hadoop/mapred/TaskLog.java     |  2 +-
+ .../apache/hadoop/mapred/TaskLogAppender.java | 48 ++++++++++++++++++-
+ 2 files changed, 47 insertions(+), 3 deletions(-)
 
 diff --git a/src/main/java/org/apache/hadoop/mapred/TaskLog.java b/src/main/java/org/apache/hadoop/mapred/TaskLog.java
 index e07b5be..d6e4635 100644
@@ -21,6 +22,79 @@ index e07b5be..d6e4635 100644
        getCurrentLoggers();
      while (allLoggers.hasMoreElements()) {
        final Logger l = allLoggers.nextElement();
+diff --git a/src/main/java/org/apache/hadoop/mapred/TaskLogAppender.java b/src/main/java/org/apache/hadoop/mapred/TaskLogAppender.java
+index d10b764..edfd9d2 100644
+--- a/src/main/java/org/apache/hadoop/mapred/TaskLogAppender.java
++++ b/src/main/java/org/apache/hadoop/mapred/TaskLogAppender.java
+@@ -23,7 +23,7 @@ import java.util.LinkedList;
+ import java.util.Queue;
+ 
+ import org.apache.hadoop.classification.InterfaceStability;
+-import org.apache.log4j.FileAppender;
++import org.apache.log4j.WriterAppender;
+ import org.apache.log4j.spi.LoggingEvent;
+ 
+ /**
+@@ -32,7 +32,7 @@ import org.apache.log4j.spi.LoggingEvent;
+  * 
+  */
+ @InterfaceStability.Unstable
+-public class TaskLogAppender extends FileAppender implements Flushable {
++public class TaskLogAppender extends WriterAppender implements Flushable {
+   private String taskId; //taskId should be managed as String rather than TaskID object
+   //so that log4j can configure it from the configuration(log4j.properties). 
+   private Integer maxEvents;
+@@ -44,6 +44,50 @@ public class TaskLogAppender extends FileAppender implements Flushable {
+   static final String LOGSIZE_PROPERTY = "hadoop.tasklog.totalLogFileSize";
+   static final String TASKID_PROPERTY = "hadoop.tasklog.taskid";
+ 
++  /** Controls file truncatation. The default value for this variable
++   * is <code>true</code>, meaning that by default a
++   * <code>FileAppender</code> will append to an existing file and not
++   * truncate it.
++   *
++   * <p>This option is meaningful only if the FileAppender opens the
++   * file.
++   */
++  protected boolean fileAppend = true;
++
++  /**
++   The name of the log file. */
++  protected String fileName = null;
++
++  /**
++   The <b>Append</b> option takes a boolean value. It is set to
++   <code>true</code> by default. If true, then <code>File</code>
++   will be opened in append mode by {@link #setFile setFile} (see
++   above). Otherwise, {@link #setFile setFile} will open
++   <code>File</code> in truncate mode.
++
++   <p>Note: Actual opening of the file is made when {@link
++  #activateOptions} is called, not when the options are set.
++   */
++  public
++  void setAppend(boolean flag) {
++    fileAppend = flag;
++  }
++
++  /**
++   The <b>File</b> property takes a string value which should be the
++   name of the file to append to.
++
++   <p><font color="#DD0044"><b>Note that the special values
++   "System.out" or "System.err" are no longer honored.</b></font>
++
++   <p>Note: Actual opening of the file is made when {@link
++  #activateOptions} is called, not when the options are set.  */
++  public void setFile(String file) {
++    // Trim spaces from both ends. The users probably does not want
++    // trailing spaces in file names.
++    fileName = file.trim();
++  }
++
+   @Override
+   public void activateOptions() {
+     synchronized (this) {
 -- 
 2.34.1
 
