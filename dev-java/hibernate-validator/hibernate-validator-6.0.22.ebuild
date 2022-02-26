@@ -22,10 +22,6 @@ LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 
-# Pre-built JAR includes two *.i18n.properties files not in the source JAR,
-# failing pkgdiff JAR content comparison
-RESTRICT="test"
-
 CP_DEPEND="
 	>=dev-java/hibernate-jpa-1.0.2:2.1-api
 	>=dev-java/money-api-1.0.1:0
@@ -76,4 +72,30 @@ pkg_setup() {
 		echo "${JAVA_HOME}"
 	)"
 	JAVA_GENTOO_CLASSPATH_EXTRA="${java_home}/jre/lib/ext/jfxrt.jar"
+}
+
+src_unpack() {
+	java-pkg-maven_src_unpack
+	use binary && return
+	# Extract files from the upstream's pre-built JAR for pkgdiff test
+	mkdir binjar ||
+		die "Failed to create directory for files unpacked from binary JAR"
+	pushd binjar > /dev/null ||
+		die "Failed to enter directory for files unpacked from binary JAR"
+	unpack "${JAVA_BINJAR_FILENAME}"
+	popd > /dev/null ||
+		die "Failed to leave directory for files unpacked from binary JAR"
+}
+
+src_compile() {
+	java-pkg-simple_src_compile
+	use binary && return
+	# Add files included in the upstream's pre-built JAR
+	pushd binjar > /dev/null ||
+		die "Failed to enter directory for files unpacked from binary JAR"
+	jar -uf "${S}/${JAVA_JAR_FILENAME}" \
+		org/hibernate/validator/internal/util/logging/{Log,Messages}.i18n.properties ||
+		die "Failed to add additional files to the JAR"
+	popd > /dev/null ||
+		die "Failed to leave directory for files unpacked from binary JAR"
 }
