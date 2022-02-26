@@ -1,7 +1,7 @@
 From c0175819890ffc0e5c386263502021550e32e9fb Mon Sep 17 00:00:00 2001
 From: Yuan Liao <liaoyuan@gmail.com>
 Date: Sat, 31 Jul 2021 18:04:46 -0700
-Subject: [PATCH 2/2] Change usage of removed 2-param overload of Guava's
+Subject: [PATCH] Change usage of removed 2-param overload of Guava's
  Futures.addCallback
 
 Signed-off-by: Yuan Liao <liaoyuan@gmail.com>

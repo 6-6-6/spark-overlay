@@ -1,7 +1,7 @@
 From 0c2c954cf6db540c5a30d05985539eb953ac89cb Mon Sep 17 00:00:00 2001
 From: Yuan Liao <liaoyuan@gmail.com>
 Date: Sat, 31 Jul 2021 17:56:44 -0700
-Subject: [PATCH 1/2] Replace call to removed Guava methods with suggested
+Subject: [PATCH] Replace call to removed Guava methods with suggested
  substitutions
 
 Signed-off-by: Yuan Liao <liaoyuan@gmail.com>

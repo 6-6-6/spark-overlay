@@ -71,11 +71,8 @@ JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
 src_prepare() {
-	if ! use binary; then
-		for patch in "${FILESDIR}/${P}"-*.patch; do
-			eapply "${patch}"
-		done
-	fi
+	eapply "${FILESDIR}/${P}-Guava-removed-methods.patch"
+	eapply "${FILESDIR}/${P}-switch-Futures.addCallback-overload.patch"
 
 	java-pkg-2_src_prepare
 }
