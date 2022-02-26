@@ -1,18 +1,35 @@
-From 4675b3b041acb36997c2645d32c71d4dfcead159 Mon Sep 17 00:00:00 2001
+From f14b2de28bfdc6c3314eb76536949c071f671060 Mon Sep 17 00:00:00 2001
 From: Yuan Liao <liaoyuan@gmail.com>
-Date: Wed, 16 Feb 2022 11:47:30 -0800
+Date: Fri, 25 Feb 2022 21:23:57 -0800
 Subject: [PATCH] Migrate from Log4j 1.2 to log4j-1.2-api bridge from Log4j 2
 
 Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
 ---
- src/main/java/org/apache/hadoop/log/Log4Json.java | 1 -
- 1 file changed, 1 deletion(-)
+ src/main/java/org/apache/hadoop/log/Log4Json.java | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
 diff --git a/src/main/java/org/apache/hadoop/log/Log4Json.java b/src/main/java/org/apache/hadoop/log/Log4Json.java
-index d998fbc..9ac3c3c 100644
+index d998fbc..33a554b 100644
 --- a/src/main/java/org/apache/hadoop/log/Log4Json.java
 +++ b/src/main/java/org/apache/hadoop/log/Log4Json.java
-@@ -240,7 +240,6 @@ public class Log4Json extends Layout {
+@@ -20,7 +20,6 @@
+ package org.apache.hadoop.log;
+ 
+ import org.apache.log4j.Layout;
+-import org.apache.log4j.helpers.ISO8601DateFormat;
+ import org.apache.log4j.spi.LoggingEvent;
+ import org.apache.log4j.spi.ThrowableInformation;
+ import org.codehaus.jackson.JsonFactory;
+@@ -118,7 +117,7 @@ public class Log4Json extends Layout {
+   private final DateFormat dateFormat;
+ 
+   public Log4Json() {
+-    dateFormat = new ISO8601DateFormat();
++    dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss,SSS");
+   }
+ 
+ 
+@@ -240,7 +239,6 @@ public class Log4Json extends Layout {
    /**
     * Do nothing
     */
