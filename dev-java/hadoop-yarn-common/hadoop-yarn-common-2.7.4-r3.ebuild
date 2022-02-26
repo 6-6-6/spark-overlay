@@ -77,11 +77,8 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 JAVADOC_ARGS="-source 8"
 
 src_prepare() {
-	if ! use binary; then
-		for patch in "${FILESDIR}/${P}"-*.patch; do
-			eapply "${patch}"
-		done
-	fi
+	eapply "${FILESDIR}/${P}-Guava-CharMatcher.patch"
+	eapply "${FILESDIR}/${P}-RPCUtil-cast-Throwable.patch"
 
 	java-pkg-2_src_prepare
 }

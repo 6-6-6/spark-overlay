@@ -1,8 +1,7 @@
 From 3b1e17abb045ea577663ec037d686b6809eb8862 Mon Sep 17 00:00:00 2001
 From: Yuan Liao <liaoyuan@gmail.com>
 Date: Sat, 31 Jul 2021 16:11:43 -0700
-Subject: [PATCH 2/2] RPCUtil.java: Cast Throwable objects to match method
- signature
+Subject: [PATCH] RPCUtil.java: Cast Throwable objects to match method signature
 
 Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
 ---
