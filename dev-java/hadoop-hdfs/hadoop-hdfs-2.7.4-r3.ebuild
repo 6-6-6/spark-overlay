@@ -73,6 +73,7 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 src_prepare() {
 	eapply "${FILESDIR}/${P}-Guava-removed-methods.patch"
 	eapply "${FILESDIR}/${P}-switch-Futures.addCallback-overload.patch"
+	eapply "${FILESDIR}/${P}-migrate-to-log4j-12-api.patch"
 
 	java-pkg-2_src_prepare
 }
