@@ -10,14 +10,9 @@ run_test() {
     emerge @preserved-rebuild
 
     # Dependency bootstrap stage 1
-    mkdir -p /etc/portage/package.use
-    echo "dev-java/yecht binary" \
-        >> /etc/portage/package.use/spark-deps-binary
-    emerge -1 dev-lang/kotlin-bin:1.4 dev-java/yecht
-
+    emerge -1 dev-lang/kotlin-bin:1.4
     # Dependency bootstrap stage 2
-    rm /etc/portage/package.use/spark-deps-binary
-    emerge -N1 dev-java/kotlin-{stdlib,reflect}:1.4 dev-java/yecht
+    emerge -1 dev-java/kotlin-{stdlib,reflect}:1.4
 
     emerge dev-java/spark-demo
     spark-demo-2.12 "$(nproc)"
