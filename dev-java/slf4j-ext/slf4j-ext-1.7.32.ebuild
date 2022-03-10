@@ -39,7 +39,6 @@ RDEPEND="
 
 S="${WORKDIR}/slf4j-v_${PV}/${PN}"
 
-JAVA_GENTOO_CLASSPATH="cal10n,commons-lang-2.1,javassist-3,slf4j-api"
 JAVA_SRC_DIR="src/main/java"
 JAVA_RESOURCE_DIRS=( "src/main/resources" )
 
