@@ -61,10 +61,10 @@ src_prepare() {
 
 	eapply -p2 "${FILESDIR}/${P}-migrate-to-log4j-12-api.patch"
 	java-pkg-2_src_prepare
-	# The tests in this file adds and uses an Appender to verify whether
+	# The tests in this file add and use an Appender to verify whether
 	# messages have been successfully logged, which no longer works with
 	# the log4j-12-api bridge because the methods for adding an Appender
-	# in the bridge "are largely no-ops"
+	# in the bridge "are largely no-ops":
 	# https://logging.apache.org/log4j/log4j-2.2/log4j-1.2-api/index.html
 	rm "${JAVA_TEST_SRC_DIR}/org/slf4j/InvocationTest.java" ||
 		die "Failed to remove tests that are incompatible with log4j-12-api"
