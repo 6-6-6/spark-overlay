@@ -69,9 +69,3 @@ dev-java/glassfish-ejb-api
 # to be added in the future. Please use dev-java/jakarta-ejb-api
 # directly instead. Removal on 2022-03-15.
 java-virtuals/ejb-api
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-02-12)
-# Virtual with only one unmasked provider; no extra providers are
-# expected to be added in the future. Please use dev-java/jta
-# directly instead. Removal on 2022-03-15.
-java-virtuals/transaction-api
