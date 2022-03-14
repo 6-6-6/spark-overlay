@@ -114,8 +114,3 @@ dev-java/jakarta-xml-bind-api
 # dev-java/glassfish-xmlrpc-api instead. Removal on 2022-03-15.
 dev-java/javax-xml-rpc-api
 java-virtuals/xmlrpc-api
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
-# Package which has been added to ::gentoo under a different slot.
-# Please use slot 2 instead. Removal on 2022-03-15.
-dev-java/jaxb-api:0
