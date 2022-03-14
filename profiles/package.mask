@@ -148,8 +148,3 @@ dev-java/mailapi
 # Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
 # Package which does not support Java 11. Removal on 2022-03-15.
 dev-java/unsafe-mock
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
-# Package which has been added to ::gentoo under a different name.
-# Please use dev-java/sax instead. Removal on 2022-03-15.
-dev-java/xml-apis
