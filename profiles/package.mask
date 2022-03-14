@@ -84,8 +84,3 @@ dev-java/jaffl
 dev-java/jasper-compiler
 dev-java/joda-timezones
 dev-java/multiverse-beta
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
-# Package which does not build from source. Please use dev-java/jarpack
-# and dev-java/jlapack instead. Removal on 2022-03-15.
-dev-java/arpack-combined-all-bin
