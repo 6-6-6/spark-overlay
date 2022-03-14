@@ -98,8 +98,3 @@ dev-java/fommil-netlib-native-ref
 dev-java/fommil-netlib-native-system
 dev-java/fommil-jniloader
 dev-java/fommil-netlib-all
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
-# Package which has been added to ::gentoo under a different name.
-# Please use dev-java/jackson-core instead. Removal on 2022-03-15.
-dev-java/jackson
