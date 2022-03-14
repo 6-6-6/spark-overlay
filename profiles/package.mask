@@ -31,3 +31,8 @@
 
 #--- END OF EXAMPLES ---
 
+# Yuan Liao <liaoyuan@gmail.com> (2022-03-15)
+# No consumers; depends on Log4j 1.2, which is no longer supported
+# by the upstream and has known security vulnerabilities. Please use
+# dev-java/h2o-logging-impl-log4j2 instead. Removal on 2022-04-15.
+dev-java/h2o-logging-impl-classic
