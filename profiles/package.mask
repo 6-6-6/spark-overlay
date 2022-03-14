@@ -97,4 +97,3 @@ dev-java/arpack-combined-all-bin
 dev-java/fommil-netlib-native-ref
 dev-java/fommil-netlib-native-system
 dev-java/fommil-jniloader
-dev-java/fommil-netlib-all
