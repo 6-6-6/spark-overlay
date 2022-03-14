@@ -158,9 +158,3 @@ dev-java/xml-apis
 # Package which has been added to ::gentoo under a different name.
 # Please use dev-java/xml-commons-resolver instead. Removal on 2022-03-15.
 dev-java/xml-resolver
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
-# Virtual with only one provider; no extra providers are expected
-# to be added in the future. Please use dev-java/antlr:4 directly
-# instead. Removal on 2022-03-15.
-java-virtuals/antlr:4
