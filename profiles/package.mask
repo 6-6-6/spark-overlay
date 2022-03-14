@@ -81,4 +81,3 @@ java-virtuals/transaction-api
 # have no consumers. Removal on 2022-03-15.
 dev-java/geronimo-jms
 dev-java/jaffl
-dev-java/jasper-compiler
