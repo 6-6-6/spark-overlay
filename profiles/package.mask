@@ -82,4 +82,3 @@ java-virtuals/transaction-api
 dev-java/geronimo-jms
 dev-java/jaffl
 dev-java/jasper-compiler
-dev-java/joda-timezones
