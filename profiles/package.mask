@@ -58,8 +58,3 @@ dev-java/jboss-jms-api:1.1_spec
 # Please use slot 2 instead. Removal on 2022-03-15.
 dev-java/log4j-api:0
 dev-java/log4j-core:0
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-02-12)
-# Fetch failure because the distfiles in SRC_URI have been removed.
-# Please use dev-java/jakarta-ejb-api instead. Removal on 2022-03-15.
-dev-java/glassfish-ejb-api
