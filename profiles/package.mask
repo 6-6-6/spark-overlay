@@ -89,9 +89,3 @@ dev-java/multiverse-beta
 # Package which does not build from source. Please use dev-java/jarpack
 # and dev-java/jlapack instead. Removal on 2022-03-15.
 dev-java/arpack-combined-all-bin
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
-# Packages which contain pre-built shared libraries with unresolved
-# soname dependencies, and unused dependencies of the packages. Please
-# use dev-java/fommil-netlib-core instead. Removal on 2022-03-15.
-dev-java/fommil-jniloader
