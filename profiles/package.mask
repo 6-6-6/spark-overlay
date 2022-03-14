@@ -94,6 +94,5 @@ dev-java/arpack-combined-all-bin
 # Packages which contain pre-built shared libraries with unresolved
 # soname dependencies, and unused dependencies of the packages. Please
 # use dev-java/fommil-netlib-core instead. Removal on 2022-03-15.
-dev-java/fommil-netlib-native-ref
 dev-java/fommil-netlib-native-system
 dev-java/fommil-jniloader
