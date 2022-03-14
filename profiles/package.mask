@@ -75,8 +75,3 @@ java-virtuals/ejb-api
 # expected to be added in the future. Please use dev-java/jta
 # directly instead. Removal on 2022-03-15.
 java-virtuals/transaction-api
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
-# Packages which do not build from source and
-# have no consumers. Removal on 2022-03-15.
-dev-java/geronimo-jms
