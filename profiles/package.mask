@@ -57,4 +57,3 @@ dev-java/jboss-jms-api:1.1_spec
 # Patched version has been added to ::gentoo under a different slot.
 # Please use slot 2 instead. Removal on 2022-03-15.
 dev-java/log4j-api:0
-dev-java/log4j-core:0
