@@ -113,4 +113,3 @@ dev-java/jakarta-xml-bind-api
 # Packages which have a maintained substitute in ::gentoo. Please use
 # dev-java/glassfish-xmlrpc-api instead. Removal on 2022-03-15.
 dev-java/javax-xml-rpc-api
-java-virtuals/xmlrpc-api
