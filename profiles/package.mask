@@ -103,8 +103,3 @@ dev-java/fommil-netlib-all
 # Package which has been added to ::gentoo under a different name.
 # Please use dev-java/jackson-core instead. Removal on 2022-03-15.
 dev-java/jackson
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-02-10)
-# Package which has been added to ::gentoo under a different name.
-# Please use dev-java/jaxb-api:3 instead. Removal on 2022-03-15.
-dev-java/jakarta-xml-bind-api
