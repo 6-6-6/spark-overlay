@@ -80,4 +80,3 @@ java-virtuals/transaction-api
 # Packages which do not build from source and
 # have no consumers. Removal on 2022-03-15.
 dev-java/geronimo-jms
-dev-java/jaffl
