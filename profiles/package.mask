@@ -83,4 +83,3 @@ dev-java/geronimo-jms
 dev-java/jaffl
 dev-java/jasper-compiler
 dev-java/joda-timezones
-dev-java/multiverse-beta
