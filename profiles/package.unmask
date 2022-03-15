@@ -46,3 +46,8 @@
 # file.
 
 #--- END OF EXAMPLES ---
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-03-15)
+# Last-rited package which is present in this overlay. This overlay
+# has version 1.4, whereas ::gentoo has only up to version 1.1.
+>=dev-java/headius-options-1.4
