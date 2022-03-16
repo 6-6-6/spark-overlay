@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -18,7 +18,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 CP_DEPEND="
-	dev-java/jts:1.12
+	dev-java/jts-core:0
 "
 
 DEPEND="
@@ -46,6 +46,15 @@ JAVA_TEST_SRC_DIR="src/test/java"
 JAVA_TEST_RESOURCE_DIRS=( "src/test/resources" )
 
 src_prepare() {
-	java-pkg-2_src_prepare
+	eapply "${FILESDIR}/${P}-update-JtsShapeReadWriter-for-newer-JTS.patch"
 	use test && eapply "${FILESDIR}/${P}-add-missing-junit-imports.patch"
+	java-pkg-2_src_prepare
+	sed -i -e "s/com.vividsolutions/org.locationtech/g" \
+		$(find "${JAVA_SRC_DIR}" "${JAVA_TEST_SRC_DIR}" -name "*.java") ||
+		die "Failed to update source files for newer JTS versions"
+}
+
+src_install() {
+	java-pkg-simple_src_install
+	einstalldocs # https://bugs.gentoo.org/789582
 }

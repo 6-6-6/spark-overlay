@@ -1,0 +1,39 @@
+From 64304fc3808f5eeb6c3470aaa4ea83f1e060f603 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Tue, 15 Mar 2022 22:13:42 -0700
+Subject: [PATCH] JtsShapeReadWriter.java: Update for InStream inteface's
+ change in JTS
+
+Note: This patch alone is not sufficient for migrating to a newer JTS
+version.  For a full migration, the following sed script must be
+executed against every Java source file in this project:
+
+    s/com.vividsolutions/org.locationtech/g
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ src/main/java/com/spatial4j/core/io/JtsShapeReadWriter.java | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/src/main/java/com/spatial4j/core/io/JtsShapeReadWriter.java b/src/main/java/com/spatial4j/core/io/JtsShapeReadWriter.java
+index 045558c..0fe1dcf 100644
+--- a/src/main/java/com/spatial4j/core/io/JtsShapeReadWriter.java
++++ b/src/main/java/com/spatial4j/core/io/JtsShapeReadWriter.java
+@@ -127,12 +127,13 @@ public class JtsShapeReadWriter extends ShapeReadWriter<JtsSpatialContext> {
+           int off = offset + 1; // skip the type marker
+ 
+           @Override
+-          public void read(byte[] buf) throws IOException {
++          public int read(byte[] buf) throws IOException {
+             if (off + buf.length > length) {
+               throw new InvalidShapeException("Asking for too many bytes");
+             }
+             System.arraycopy(array, off, buf, 0, buf.length);
+             off += buf.length;
++            return buf.length;
+           }
+         });
+         checkCoordinates(geom);
+-- 
+2.34.1
+
