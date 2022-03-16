@@ -73,10 +73,11 @@ src_prepare() {
 }
 
 src_test() {
-	# dev-java/h2 depends on dev-java/lucene:3.6, but this package depends on
+	# dev-java/h2 depends on dev-java/lucene:0, but this package depends on
 	# dev-java/lucene:4.0, so including 'h2' in JAVA_TEST_GENTOO_CLASSPATH will
-	# cause two versions of lucene to be added to the classpath, causing compiler
-	# errors.  Therefore, we add h2's classpath without its dependencies here.
+	# cause two versions of lucene to be added to the classpath, resulting in
+	# compiler errors.  Therefore, we add h2's classpath without its
+	# dependencies here.
 	JAVA_GENTOO_CLASSPATH_EXTRA="$(java-pkg_getjars h2)"
 	java-pkg-simple_src_test
 }
