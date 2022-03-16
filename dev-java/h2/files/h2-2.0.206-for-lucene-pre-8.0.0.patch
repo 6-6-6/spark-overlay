@@ -1,0 +1,26 @@
+From a30677b0bc04e1a274296859408e25231876ed25 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Tue, 15 Mar 2022 22:48:53 -0700
+Subject: [PATCH] FullTextLucene.java: Change TopDocs usage for Lucene <8.0.0
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ src/main/java/org/h2/fulltext/FullTextLucene.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/main/java/org/h2/fulltext/FullTextLucene.java b/src/main/java/org/h2/fulltext/FullTextLucene.java
+index 00d9bd3..f228612 100644
+--- a/src/main/java/org/h2/fulltext/FullTextLucene.java
++++ b/src/main/java/org/h2/fulltext/FullTextLucene.java
+@@ -437,7 +437,7 @@ public class FullTextLucene extends FullText {
+                 // will trigger writing results to disk.
+                 int maxResults = (limit == 0 ? 100 : limit) + offset;
+                 TopDocs docs = searcher.search(query, maxResults);
+-                long totalHits = docs.totalHits.value;
++                long totalHits = docs.totalHits;
+                 if (limit == 0) {
+                     // in this context it's safe to cast
+                     limit = (int) totalHits;
+-- 
+2.34.1
+

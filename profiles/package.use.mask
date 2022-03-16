@@ -1,0 +1,15 @@
+# Copyright 1999-2022 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+# New entries go on top.
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-03-16)
+# Versions affected by CVE-2022-23221; the ebuilds do apply a patch to fix
+# the security vulnerability, but that is only when the package is built
+# from source.  The pre-built binary was presumably built without the patch
+# and thus might still be vulnerable; use it at your own risk.
+<dev-java/h2-2.1.210 binary
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-03-16)
+# The patch that fixes CVE-2022-23221 causes japi-compliance-checker to fail.
+<dev-java/h2-2.1.210 test
