@@ -81,10 +81,7 @@ pkg_setup() {
 	elif has_version -d "dev-java/openjfx:8"; then
 		einfo "Using: openjfx-8"
 		# OpenJFX 8 is installed into the home of dev-java/openjdk:8
-		local java_home="$(
-			eval "$(java-config -P openjdk-8)"
-			echo "${JAVA_HOME}"
-		)"
+		local java_home="$(java-config --select-vm=openjdk-8 -O)"
 		JAVA_GENTOO_CLASSPATH_EXTRA="${java_home}/jre/lib/ext/jfxrt.jar"
 	else
 		eerror
