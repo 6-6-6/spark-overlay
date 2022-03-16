@@ -31,6 +31,12 @@
 
 #--- END OF EXAMPLES ---
 
+# Yuan Liao <liaoyuan@gmail.com> (2022-03-16)
+# Depends on dev-java/lucene:3.6, which has been removed from ::gentoo.
+# Please consider migrating to >=dev-java/lucene-queryparser-7.6.0 if
+# you still need this package. Removal on 2022-04-15.
+dev-java/lucene-queryparser:3.6
+
 # Yuan Liao <liaoyuan@gmail.com> (2022-03-15)
 # No consumers; depends on Log4j 1.2, which is no longer supported
 # by the upstream and has known security vulnerabilities. Please use
