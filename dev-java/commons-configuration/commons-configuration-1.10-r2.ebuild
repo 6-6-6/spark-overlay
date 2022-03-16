@@ -25,7 +25,7 @@ CP_DEPEND="
 	>=dev-java/commons-beanutils-1.9.2:1.7
 	>=dev-java/commons-codec-1.7:0
 	>=dev-java/commons-collections-3.2.1:0
-	>=dev-java/commons-digester-1.8.1:0
+	dev-java/commons-digester:2.1
 	>=dev-java/commons-jexl-2.1.1:2
 	>=dev-java/commons-jxpath-1.3:0
 	>=dev-java/commons-lang-2.6:2.1
