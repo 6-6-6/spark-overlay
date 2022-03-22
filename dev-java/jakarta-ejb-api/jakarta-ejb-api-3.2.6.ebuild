@@ -17,7 +17,7 @@ SRC_URI="https://github.com/jakartaee/enterprise-beans/archive/${PV}-RELEASE.tar
 LICENSE="|| ( EPL-2.0 GPL-2-with-classpath-exception )"
 # Since version 4.0.0, the namespace has changed to jakarta.ejb
 SLOT="3"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 
 CP_DEPEND="
 	>=dev-java/glassfish-xmlrpc-api-1.1.1-r1:0
