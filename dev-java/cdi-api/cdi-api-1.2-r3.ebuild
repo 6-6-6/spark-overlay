@@ -26,7 +26,7 @@ RESTRICT="test"
 
 CP_DEPEND="
 	dev-java/javax-inject:0
-	dev-java/glassfish-interceptor-api:0
+	dev-java/jakarta-interceptor-api:1
 	java-virtuals/servlet-api:3.0
 "
 
