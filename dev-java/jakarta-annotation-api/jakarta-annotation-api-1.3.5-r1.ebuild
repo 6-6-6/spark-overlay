@@ -18,7 +18,7 @@ SRC_URI="https://repo1.maven.org/maven2/jakarta/annotation/jakarta.annotation-ap
 	https://repo1.maven.org/maven2/jakarta/annotation/jakarta.annotation-api/${PV}/jakarta.annotation-api-${PV}.jar -> ${P}-bin.jar"
 LICENSE="GPL-2-with-classpath-exception EPL-2.0"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 
 DEPEND="
 	>=virtual/jdk-1.8:*
