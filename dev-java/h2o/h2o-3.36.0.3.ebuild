@@ -5,21 +5,16 @@ EAPI=8
 
 inherit java-pkg-2
 
-DESCRIPTION="Meta package for H2O, a distributed, fast & scalable machine learning platform"
+DESCRIPTION="Metapackage for H2O, a distributed, fast & scalable machine learning platform"
 HOMEPAGE="https://www.h2o.ai/"
-SRC_URI=""
+
 LICENSE="metapackage"
 SLOT="$(ver_cut 1-2)"
 KEYWORDS="~amd64"
 IUSE="flow jetty9-full +target-encoder"
 
-# Meta package, no Java source is compiled, need not depend on JDK
-DEPEND="
-	>=virtual/jre-1.8:*
-"
-
 RDEPEND="
-	${DEPEND}
+	>=virtual/jre-1.8:*
 	~dev-java/h2o-app-${PV}:${SLOT}
 	flow? ( dev-java/h2o-flow:0 )
 	target-encoder? ( ~dev-java/h2o-ext-target-encoder-${PV}:${SLOT} )
