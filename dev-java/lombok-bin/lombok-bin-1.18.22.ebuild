@@ -13,17 +13,13 @@ MY_P="${MY_PN}-${PV}"
 DESCRIPTION="Binary package for Project Lombok"
 HOMEPAGE="https://projectlombok.org/"
 SRC_URI="https://repo1.maven.org/maven2/org/projectlombok/${MY_PN}/${PV}/${MY_P}.jar -> ${MY_P}-bin.jar"
+
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
 
-# Binary package, permitted to use JRE in DEPEND
-DEPEND="
-	>=virtual/jre-1.8:*
-"
-
 RDEPEND="
-	${DEPEND}
+	>=virtual/jre-1.8:*
 "
 
 src_unpack() {
@@ -31,7 +27,7 @@ src_unpack() {
 }
 
 src_compile() {
-	cp "${DISTDIR}/${MY_P}-bin.jar" "${JAVA_JAR_FILENAME}" || \
+	cp "${DISTDIR}/${MY_P}-bin.jar" "${JAVA_JAR_FILENAME}" ||
 		die "Failed to copy JAR to JAVA_JAR_FILENAME"
 }
 
