@@ -13,13 +13,10 @@ MY_P="${MY_PN}-${PV}"
 DESCRIPTION="Coroutines support libraries for Kotlin"
 HOMEPAGE="https://github.com/Kotlin/kotlinx.coroutines"
 SRC_URI="https://repo1.maven.org/maven2/org/jetbrains/kotlinx/${MY_PN}/${PV}/${MY_P}.jar"
+
 LICENSE="Apache-2.0"
 SLOT="1.3.8"
 KEYWORDS="~amd64"
-
-DEPEND="
-	>=virtual/jdk-1.8:*
-"
 
 RDEPEND="
 	>=virtual/jre-1.8:*
