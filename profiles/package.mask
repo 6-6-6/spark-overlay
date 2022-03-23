@@ -31,6 +31,24 @@
 
 #--- END OF EXAMPLES ---
 
+# Yuan Liao <liaoyuan@gmail.com> (2022-03-23)
+# Either directly or indirectly depends on dev-java/invokebinder, which has
+# been last-rited in ::gentoo (Gentoo bug #786093). Removal on 2022-04-20.
+dev-java/jruby-core
+dev-java/jruby-complete
+dev-java/jruby
+dev-java/yecht
+dev-java/compiler
+dev-java/retirejs-core
+dev-java/dependency-check-core
+dev-java/dependency-check-ant
+
+# Yuan Liao <liaoyuan@gmail.com> (2022-03-23)
+# Indirectly depends on dev-java/invokebinder, which has been last-rited in
+# ::gentoo (Gentoo bug #786093). Too complicated to be built from source.
+# Please use dev-java/hazelcast-bin instead. Removal on 2022-04-20.
+dev-java/hazelcast
+
 # Yuan Liao <liaoyuan@gmail.com> (2022-03-16)
 # Subsequent updates of JTS will be shipped under a different name and/or slot.
 # Please use dev-java/jts-core:0 instead. Removal on 2022-04-15.
