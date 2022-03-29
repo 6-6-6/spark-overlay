@@ -12,7 +12,13 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="A means of interposing on business method invocations and specific events"
 HOMEPAGE="https://projects.eclipse.org/projects/ee4j.interceptors"
-SRC_URI="https://github.com/eclipse-ee4j/interceptor-api/archive/${PV}-RELEASE.tar.gz -> ${P}.tar.gz"
+# GitHub repository was migrated to a different name, resulting in a
+# rename of the top-level directory in the tarball and hence checksum
+# changes.  To avoid manifest check failures that may happen to users
+# who have stored a copy of the tarball downloaded before the repository
+# migration, a suffix is added after P in the tarball's name.  Please
+# remember to remove the suffix when updating to a new upstream release.
+SRC_URI="https://github.com/jakartaee/interceptors/archive/${PV}-RELEASE.tar.gz -> ${P}-r1.tar.gz"
 
 LICENSE="|| ( EPL-2.0 GPL-2-with-classpath-exception )"
 # Since version 2.0.0, the namespace has changed to jakarta.interceptor
@@ -34,7 +40,7 @@ RDEPEND="
 	${CP_DEPEND}
 "
 
-S="${WORKDIR}/interceptor-api-${PV}-RELEASE"
+S="${WORKDIR}/interceptors-${PV}-RELEASE"
 
 JAVA_SRC_DIR="api/src/main/java"
 
