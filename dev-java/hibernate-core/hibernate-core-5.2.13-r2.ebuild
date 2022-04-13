@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -52,7 +52,7 @@ CDEPEND="
 	>=dev-java/dom4j-1.6.1:1
 	>=dev-java/javassist-3.21.0:3
 	>=dev-java/jboss-logging-3.4.0:0
-	dev-java/byte-buddy:0
+	dev-java/byte-buddy:1.6
 	dev-java/validation-api:0
 	dev-java/cdi-api:1.2
 	dev-java/javax-security-jacc-api:0
@@ -71,7 +71,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="antlr,classmate,dom4j-1,hibernate-commons-annotations,hibernate-jpa-2.1-api,javassist-3,jandex,jboss-logging,jboss-transaction-api-1.2_spec,byte-buddy,validation-api,cdi-api-1.2,javax-security-jacc-api,ant-core"
+JAVA_GENTOO_CLASSPATH="antlr,classmate,dom4j-1,hibernate-commons-annotations,hibernate-jpa-2.1-api,javassist-3,jandex,jboss-logging,jboss-transaction-api-1.2_spec,byte-buddy-1.6,validation-api,cdi-api-1.2,javax-security-jacc-api,ant-core"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
