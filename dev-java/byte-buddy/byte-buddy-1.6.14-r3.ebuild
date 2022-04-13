@@ -16,7 +16,7 @@ SRC_URI="
 	https://repo1.maven.org/maven2/net/bytebuddy/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
 "
 LICENSE="Apache-2.0"
-SLOT="0"
+SLOT="1.6"
 KEYWORDS="~amd64"
 
 # Lots of inconsistencies between generated JAR and pre-built JAR
