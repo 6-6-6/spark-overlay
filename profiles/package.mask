@@ -53,8 +53,3 @@ dev-java/dependency-check-ant
 # ::gentoo (Gentoo bug #786093). Too complicated to be built from source.
 # Please use dev-java/hazelcast-bin instead. Removal on 2022-04-20.
 dev-java/hazelcast
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-03-16)
-# Subsequent updates of JTS will be shipped under a different name and/or slot.
-# Please use dev-java/jts-core:0 instead. Removal on 2022-04-15.
-dev-java/jts
