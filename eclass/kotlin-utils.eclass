@@ -706,7 +706,7 @@ kotlin-utils_kotlinc() {
 		einfo "${compiler_command}"
 	fi
 
-	ebegin "Compiling"
+	einfo "Compiling ..."
 	GENTOO_KOTLIN_VER="${KOTLIN_UTILS_SELECTED_VERSION}" \
 		JAVA_OPTS="${KOTLIN_KOTLINC_JAVA_OPTS}" \
 		${compiler_command} || die "${FUNCNAME} failed"
@@ -748,7 +748,7 @@ kotlin-utils_src_compile() {
 		local java_sources="java_sources.lst"
 		local java_classpath="${classpath:+${classpath}:}${KOTLIN_UTILS_CLASSES}"
 		find "${KOTLIN_JAVA_SOURCE_ROOTS[@]}" -name "*.java" > "${java_sources}"
-		ebegin "Compiling Java sources"
+		einfo "Compiling Java sources ..."
 		$(java-pkg_get-javac) \
 			-d "${KOTLIN_UTILS_CLASSES}" \
 			-classpath "${java_classpath}" \
@@ -838,7 +838,7 @@ kotlin-utils_test_compile() {
 		local java_sources="java_test_sources.lst"
 		find "${KOTLIN_TEST_JAVA_SOURCE_ROOTS[@]}" -name "*.java" \
 			> "${java_sources}"
-		ebegin "Compiling Java sources"
+		einfo "Compiling Java sources ..."
 		$(java-pkg_get-javac) \
 			-d "${classes}" \
 			-classpath "${classpath}" \
