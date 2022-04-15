@@ -28,7 +28,7 @@ src_compile() {
 		core/builtins/{src,native}
 	)
 
-	ebegin "Serializing built-ins"
+	einfo "Serializing built-ins ..."
 	# The built-in serializer needs to access XDG_CACHE_HOME, reassign it to
 	# avoid access violations caused by 'mkdir /var/lib/portage/home/.cache'
 	XDG_CACHE_HOME="${HOME}/.cache" \
