@@ -689,27 +689,26 @@ kotlin-utils_kotlinc() {
 
 	local compiler_command_args=(
 		"${compiler_executable}"
-		"${KOTLIN_WANT_TARGET:+-api-version ${KOTLIN_WANT_TARGET}}"
-		"${KOTLIN_WANT_TARGET:+-language-version ${KOTLIN_WANT_TARGET}}"
-		"${KOTLIN_MODULE_NAME:+-module-name ${KOTLIN_MODULE_NAME}}"
-		"${common_sources}"
-		"${java_source_roots}"
+		${KOTLIN_WANT_TARGET:+-api-version "${KOTLIN_WANT_TARGET}"}
+		${KOTLIN_WANT_TARGET:+-language-version "${KOTLIN_WANT_TARGET}"}
+		${KOTLIN_MODULE_NAME:+-module-name "${KOTLIN_MODULE_NAME}"}
+		${common_sources:+"${common_sources}"}
+		${java_source_roots:+"${java_source_roots}"}
 		"${KOTLIN_KOTLINC_ARGS[@]}"
 		"${@}"
 	)
-	local compiler_command="${compiler_command_args[@]}"
 
 	if [[ -n "${JAVA_PKG_DEBUG}" ]]; then
 		einfo "Verbose logging for \"${FUNCNAME}\" function"
 		einfo "JAVA_OPTS: ${KOTLIN_KOTLINC_JAVA_OPTS}"
 		einfo "Compiler arguments:"
-		einfo "${compiler_command}"
+		einfo "${compiler_command_args[@]}"
 	fi
 
 	einfo "Compiling ..."
 	GENTOO_KOTLIN_VER="${KOTLIN_UTILS_SELECTED_VERSION}" \
 		JAVA_OPTS="${KOTLIN_KOTLINC_JAVA_OPTS}" \
-		${compiler_command} || die "${FUNCNAME} failed"
+		"${compiler_command_args[@]}" || die "${FUNCNAME} failed"
 }
 
 # @FUNCTION: kotlin-utils_src_compile
