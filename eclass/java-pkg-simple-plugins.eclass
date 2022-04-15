@@ -29,7 +29,7 @@ escalac() {
 		einfo "${compiler_executable} ${scalac_args} ${@}"
 	fi
 
-	ebegin "Compiling"
+	einfo "Compiling ..."
 	${compiler_executable} ${scalac_args} "${@}" || die "escala failed"
 }
 
@@ -50,7 +50,7 @@ ekotlinc() {
 		einfo "${compiler_executable} ${kotlinc_args} ${@}"
 	fi
 
-	ebegin "Compiling"
+	einfo "Compiling ..."
 	${compiler_executable} ${kotlinc_args} "${@}" || die "ekotlinc failed"
 }
 
