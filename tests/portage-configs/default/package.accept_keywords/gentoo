@@ -1,4 +1,5 @@
 # Accept keywords for packages in ::gentoo needed by ebuilds in this overlay
 dev-java/glassfish-jms-api::gentoo
 dev-java/jcip-annotations::gentoo
+dev-java/netty:0::gentoo
 dev-java/openjfx:8::gentoo
