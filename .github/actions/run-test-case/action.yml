@@ -36,8 +36,10 @@ runs:
     - name: "Export ebuild logs if test case failed"
       if: ${{ failure() }}
       run: |
-        (docker exec $(docker ps -lq) tar -cJvf - /var/log/emerge || true) \
-        > emerge.tar.xz; [[ -s emerge.tar.xz ]] || rm emerge.tar.xz
+        (docker exec $(docker ps -lq) \
+          tar --transform='s|var/log/||' -cJvf - /var/log/emerge ||
+          true) > emerge.tar.xz
+        [[ -s emerge.tar.xz ]] || rm emerge.tar.xz
       shell: bash
     - name: "Upload ebuild logs as an artifact if test case failed"
       uses: actions/upload-artifact@v2
