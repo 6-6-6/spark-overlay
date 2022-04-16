@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Skeleton command:
@@ -22,7 +22,7 @@ KEYWORDS="~amd64"
 
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# io.netty:netty:3.5.13.Final -> >=dev-java/netty-3.5.13:0
+# io.netty:netty:3.5.13.Final -> dev-java/netty:3.10
 # org.apache.avro:avro:1.8.2 -> >=dev-java/avro-1.8.2:0
 # org.apache.velocity:velocity:1.7 -> >=dev-java/velocity-1.7:0
 # org.codehaus.jackson:jackson-core-asl:1.9.13 -> >=dev-java/jackson-core-asl-1.9.13:0
@@ -38,7 +38,7 @@ CDEPEND="
 	>=dev-java/jackson-mapper-asl-1.9.13:0
 	>=dev-java/jetty-6.1.26:6
 	>=dev-java/jetty-util-6.1.26:6
-	>=dev-java/netty-3.5.13:0
+	dev-java/netty:3.10
 	>=dev-java/servlet-api-2.5.20081211:0
 	>=dev-java/slf4j-api-1.7.7:0
 	>=dev-java/velocity-1.7:0
@@ -61,6 +61,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="netty,avro,velocity,jackson-core-asl,jackson-mapper-asl,jetty-6,jetty-util-6,servlet-api,slf4j-api,slf4j-simple"
+JAVA_GENTOO_CLASSPATH="netty-3.10,avro,velocity,jackson-core-asl,jackson-mapper-asl,jetty-6,jetty-util-6,servlet-api,slf4j-api,slf4j-simple"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
