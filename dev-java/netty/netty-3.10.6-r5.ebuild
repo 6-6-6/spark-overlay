@@ -16,7 +16,7 @@ SRC_URI="
 	https://repo1.maven.org/maven2/io/${PN}/${PN}/${PV}.Final/${P}.Final.jar -> ${P}-bin.jar
 "
 LICENSE="Apache-2.0"
-SLOT="0"
+SLOT="3.10"
 KEYWORDS="~amd64"
 
 # japi-compliance-checker fails
