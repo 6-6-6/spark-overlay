@@ -45,4 +45,3 @@ dev-java/jruby
 dev-java/yecht
 dev-java/compiler
 dev-java/retirejs-core
-dev-java/dependency-check-core
