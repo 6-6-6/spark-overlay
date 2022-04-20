@@ -31,7 +31,3 @@
 
 #--- END OF EXAMPLES ---
 
-# Yuan Liao <liaoyuan@gmail.com> (2022-03-23)
-# Virtual without any unmasked provider. Please use
-# dev-java/jakarta-interceptor-api:1 instead. Removal on 2022-04-20.
-java-virtuals/interceptor-api
