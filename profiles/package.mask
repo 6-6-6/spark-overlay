@@ -44,4 +44,3 @@ dev-java/jruby-complete
 dev-java/jruby
 dev-java/yecht
 dev-java/compiler
-dev-java/retirejs-core
