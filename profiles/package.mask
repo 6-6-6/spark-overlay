@@ -47,9 +47,3 @@ dev-java/compiler
 dev-java/retirejs-core
 dev-java/dependency-check-core
 dev-java/dependency-check-ant
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-03-23)
-# Indirectly depends on dev-java/invokebinder, which has been last-rited in
-# ::gentoo (Gentoo bug #786093). Too complicated to be built from source.
-# Please use dev-java/hazelcast-bin instead. Removal on 2022-04-20.
-dev-java/hazelcast
