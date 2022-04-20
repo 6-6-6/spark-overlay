@@ -40,4 +40,3 @@ java-virtuals/interceptor-api
 # Either directly or indirectly depends on dev-java/invokebinder, which has
 # been last-rited in ::gentoo (Gentoo bug #786093). Removal on 2022-04-20.
 dev-java/jruby-core
-dev-java/jruby-complete
