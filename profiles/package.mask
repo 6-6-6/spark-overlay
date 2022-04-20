@@ -35,8 +35,3 @@
 # Virtual without any unmasked provider. Please use
 # dev-java/jakarta-interceptor-api:1 instead. Removal on 2022-04-20.
 java-virtuals/interceptor-api
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-03-23)
-# Either directly or indirectly depends on dev-java/invokebinder, which has
-# been last-rited in ::gentoo (Gentoo bug #786093). Removal on 2022-04-20.
-dev-java/jruby-core
