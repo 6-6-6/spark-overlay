@@ -41,4 +41,3 @@ java-virtuals/interceptor-api
 # been last-rited in ::gentoo (Gentoo bug #786093). Removal on 2022-04-20.
 dev-java/jruby-core
 dev-java/jruby-complete
-dev-java/jruby
