@@ -5,8 +5,6 @@ EXCLUDED_EBUILD_PATTERNS=(
     "dev-java/kotlin-stdlib-jdk8-.*"
     "dev-java/kotlin-test-js-.*"
     "virtual/kotlin-.*"
-    # Has dependencies that are unstable in ::gentoo
-    "dev-java/jackson-module-jaxb-annotations-2\.13\.2"
 )
 
 : ${ELEAVES:=/var/db/repos/spark-overlay/tests/resources/leaf-ebuilds/eleaves.py}
