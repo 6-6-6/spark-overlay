@@ -24,7 +24,7 @@ CP_DEPEND="
 	>=dev-java/curator-framework-2.7.1:0
 	>=dev-java/zookeeper-3.4.6:0
 	>=dev-java/commons-codec-1.7:0
-	>=dev-java/commons-httpclient-4.5:4
+	>=dev-java/httpcomponents-client-4.5:4
 	>=dev-java/slf4j-api-1.7.28:0
 "
 
