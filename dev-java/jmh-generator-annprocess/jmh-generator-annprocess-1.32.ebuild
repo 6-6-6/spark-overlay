@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -11,7 +11,7 @@ JAVA_TESTING_FRAMEWORKS="pkgdiff"
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
 
 DESCRIPTION="JMH benchmark generator, based on annotation processors"
-HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
+HOMEPAGE="https://openjdk.java.net/projects/code-tools/jmh/"
 SRC_URI="
 	https://repo1.maven.org/maven2/org/openjdk/jmh/${PN}/${PV}/${P}-sources.jar
 	https://repo1.maven.org/maven2/org/openjdk/jmh/${PN}/${PV}/${P}.jar -> ${P}-bin.jar
@@ -20,8 +20,10 @@ LICENSE="GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS="~amd64"
 
+# Incompatible with 1.34+ due to
+# https://github.com/openjdk/jmh/commit/f13a2d08c9c49c07ad4461391ff02af8fd27f8bf
 CP_DEPEND="
-	dev-java/jmh-core:0
+	<dev-java/jmh-core-1.34:0
 "
 
 BDEPEND="
