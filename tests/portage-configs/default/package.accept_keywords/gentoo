@@ -2,4 +2,4 @@
 dev-java/glassfish-jms-api::gentoo
 dev-java/jcip-annotations::gentoo
 dev-java/netty:0::gentoo
-dev-java/openjfx:8::gentoo
+dev-java/openjfx::gentoo

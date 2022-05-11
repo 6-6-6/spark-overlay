@@ -1,5 +1,7 @@
 # Minimize builds to save time
+dev-java/openjfx -media
 */* -egl -introspection -vala
+media-video/ffmpeg -*
 media-libs/harfbuzz -graphite
 x11-libs/libdrm VIDEO_CARDS: -amdgpu -intel -nouveau -radeon -radeonsi
 media-libs/mesa -classic -dri3 -gbm -gles2 -llvm -zstd

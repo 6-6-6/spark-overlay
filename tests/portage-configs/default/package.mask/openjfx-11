@@ -1,3 +1,0 @@
-# Use OpenJFX 8 to build packages in tests
-# until JDK 11 becomes the test target JDK
-dev-java/openjfx:11
