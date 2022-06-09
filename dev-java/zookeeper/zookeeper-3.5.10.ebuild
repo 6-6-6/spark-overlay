@@ -34,6 +34,7 @@ CP_DEPEND="
 	dev-java/jetty-util:9
 	dev-java/jetty-util-ajax:9
 	dev-java/jline:2
+	dev-java/json-simple:0
 	dev-java/netty-buffer:0
 	dev-java/netty-codec:0
 	dev-java/netty-common:0
@@ -85,7 +86,7 @@ pkg_setup() {
 
 src_prepare() {
 	java-pkg_clean
-	eapply "${FILESDIR}/${P}-skip-ivy.patch"
+	eapply "${FILESDIR}/${PN}-3.5.9-skip-ivy.patch"
 	eapply "${FILESDIR}/${PN}-3.4.14-javadoc-doclet.patch"
 	java-pkg-2_src_prepare
 }
@@ -95,7 +96,7 @@ src_test() {
 }
 
 src_install() {
-	java-pkg_newjar "build/${P}-SNAPSHOT.jar" "${PN}.jar"
+	java-pkg_newjar "build/${P}.jar" "${PN}.jar"
 
 	use doc && java-pkg_dojavadoc build/docs/api
 	use source && java-pkg_dosrc zookeeper-server/src/main/java/*
