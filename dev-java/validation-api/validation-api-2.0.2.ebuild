@@ -11,7 +11,13 @@ inherit java-pkg-2 java-pkg-simple
 
 DESCRIPTION="Jakarta Bean Validation API"
 HOMEPAGE="https://beanvalidation.org/2.0/"
-SRC_URI="https://github.com/eclipse-ee4j/beanvalidation-api/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
+# GitHub repository was migrated to a different name, resulting in a
+# rename of the top-level directory in the tarball and hence checksum
+# changes.  To avoid manifest check failures that may happen to users
+# who have stored a copy of the tarball downloaded before the repository
+# migration, a suffix is added after P in the tarball's name.  Please
+# remember to remove the suffix when updating to a new upstream release.
+SRC_URI="https://github.com/jakartaee/validation/archive/refs/tags/${PV}.tar.gz -> ${P}-r1.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="2.0"
@@ -25,7 +31,7 @@ RDEPEND="
 	>=virtual/jre-1.8:*
 "
 
-S="${WORKDIR}/beanvalidation-api-${PV}"
+S="${WORKDIR}/validation-${PV}"
 
 DOCS=( NOTICE.md copyright.txt )
 
