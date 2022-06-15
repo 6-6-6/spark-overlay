@@ -6,6 +6,6 @@
 		<name>Yuan Liao</name>
 	</maintainer>
 	<upstream>
-		<remote-id type="github">eclipse-ee4j/interceptor-api</remote-id>
+		<remote-id type="github">jakartaee/interceptors</remote-id>
 	</upstream>
 </pkgmetadata>
