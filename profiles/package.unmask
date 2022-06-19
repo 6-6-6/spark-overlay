@@ -47,20 +47,9 @@
 
 #--- END OF EXAMPLES ---
 
-# Yuan Liao <liaoyuan@gmail.com> (2022-05-11)
-# Last-rited package without any issues; it was marked for removal from
-# ::gentoo merely because it was not used by any other ::gentoo packages.
-# However, this overlay has reverse dependencies of it.  A revision bump is
-# actually not strictly needed because the original 1.3-r5 ebuild from ::gentoo
-# does not have EAPI or Java version issues to fix; but, it installs a license
-# file that duplicates one of the files under the license directory of
-# ::gentoo, which is redundant.  The ebuild added to this overlay skips
-# installation of this file.
->=dev-java/commons-jxpath-1.3-r6
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-04-20)
-# Last-rited package which is present in this overlay.  This overlay
-# already has ebuilds using EAPI 7 at the time of the last rite in
-# ::gentoo.  The oldest version of this package in this overlay is
-# 1.3.18, whereas ::gentoo has only up to 1.3.0.
->=dev-java/jboss-marshalling-1.3.18
+# Yuan Liao <liaoyuan@gmail.com> (2022-06-19)
+# Last-rited packages for which this overlay has a higher version than the one
+# in ::gentoo.
+>=dev-java/netty-buffer-4.1
+>=dev-java/netty-common-4.1
+>=dev-java/netty-transport-4.1
