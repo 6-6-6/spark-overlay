@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -14,14 +14,13 @@ SRC_URI="https://github.com/google/guive/archive/${PV}.tar.gz -> guice-${PV}.tar
 LICENSE="Apache-2.0"
 SLOT="4"
 KEYWORDS="~amd64 ~ppc64 ~x86"
-RESTRICT="test"
 
 CP_DEPEND="
 	dev-java/guice:4
 	dev-java/aopalliance:1
 	>=dev-java/asm-5:4
 	>=dev-java/cglib-3.1:3
-	dev-java/guava:20
+	dev-java/guava:0
 	dev-java/javax-inject:0
 "
 
