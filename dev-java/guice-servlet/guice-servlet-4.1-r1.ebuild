@@ -9,7 +9,7 @@ inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="Guice servlet extension"
 HOMEPAGE="https://github.com/google/guice/"
-SRC_URI="https://github.com/google/guive/archive/${PV}.tar.gz -> guice-${PV}.tar.gz"
+SRC_URI="https://github.com/google/guice/archive/${PV}.tar.gz -> guice-${PV}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="4"
