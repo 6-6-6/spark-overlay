@@ -1,0 +1,4 @@
+# Avoid pulling in Perl 5.36, which is yet to be stabilized.  Otherwise,
+# a slot conflict on dev-lang/perl would come up in dependency resolution.
+# Perl version does not directly impact packages in this overlay.
+=dev-lang/perl-5.36*
