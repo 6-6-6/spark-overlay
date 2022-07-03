@@ -3,9 +3,8 @@
 # A test case that runs H2O Python demos
 
 run_test() {
-    # If keywords are accepted, update libffi and rebuild reverse dependencies
-    emerge -1 ">=dev-libs/libffi-3.4" || true
-    emerge @preserved-rebuild
+    # Rebuild Python dependencies installed in stage3 using Python 3.10
+    emerge -DU @world
 
     emerge dev-python/h2o-py dev-java/h2o
     # Start an H2O server
