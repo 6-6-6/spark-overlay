@@ -36,4 +36,3 @@
 # a different name and/or slot. Please use dev-java/validation-api:2.0
 # instead. Removal on 2022-07-15.
 dev-java/jakarta-validation-api
-dev-java/validation-api:0
