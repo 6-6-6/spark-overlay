@@ -1,7 +1,6 @@
 # Spark Overlay
 
 [![Scan ebuilds with pkgcheck](https://github.com/6-6-6/spark-overlay/actions/workflows/pkgcheck.yml/badge.svg)](https://github.com/6-6-6/spark-overlay/actions/workflows/pkgcheck.yml)
-[![Scan ebuilds with repoman](https://github.com/6-6-6/spark-overlay/actions/workflows/repoman.yml/badge.svg)](https://github.com/6-6-6/spark-overlay/actions/workflows/repoman.yml)
 [![Test ebuilds in Docker container](https://github.com/6-6-6/spark-overlay/actions/workflows/docker.yml/badge.svg)](https://github.com/6-6-6/spark-overlay/actions/workflows/docker.yml)
 
 The Spark overlay is a Gentoo [ebuild repository][gentoo-wiki-ebuild-repo] that
