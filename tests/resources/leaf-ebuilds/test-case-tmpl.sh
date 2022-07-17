@@ -9,9 +9,6 @@ run_test() {
     echo "[gentoo]" >> /etc/portage/repos.conf/gentoo.conf
     echo "location = /var/db/repos/gentoo" >> /etc/portage/repos.conf/gentoo.conf
 
-    # Rebuild Python dependencies installed in stage3 using Python 3.10
-    emerge -DU @world
-
     # Install Kotlin 1.4
     emerge -1 dev-lang/kotlin-bin:1.4
 

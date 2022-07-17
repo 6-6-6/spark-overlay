@@ -3,9 +3,6 @@
 # A test case that runs H2O Python demos
 
 run_test() {
-    # Rebuild Python dependencies installed in stage3 using Python 3.10
-    emerge -DU @world
-
     emerge dev-python/h2o-py dev-java/h2o
     # Start an H2O server
     nohup "$(find /usr/bin -regex '/usr/bin/h2o-[0-9]+\.[0-9]+')" > /dev/null 2>&1 &
