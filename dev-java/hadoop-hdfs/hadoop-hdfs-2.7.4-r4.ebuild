@@ -37,7 +37,7 @@ CP_DEPEND="
 	>=dev-java/commons-logging-1.2:0
 	>=dev-java/guava-29.0:0
 	>=dev-java/leveldbjni-1.8:0
-	<dev-java/log4j-12-api-2.18.0:2
+	>=dev-java/log4j-12-api-2.18.0:2
 	>=dev-java/netty-all-4.0.24:0
 	>=dev-java/protobuf-java-3.11.4:0
 	>=dev-java/xerces-2.12.0:2
@@ -73,7 +73,7 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 src_prepare() {
 	eapply "${FILESDIR}/${P}-Guava-removed-methods.patch"
 	eapply "${FILESDIR}/${P}-switch-Futures.addCallback-overload.patch"
-	eapply "${FILESDIR}/${P}-migrate-to-log4j-12-api.patch"
+	eapply "${FILESDIR}/${P}-migrate-to-log4j-12-api-2.18+.patch"
 
 	java-pkg-2_src_prepare
 }
