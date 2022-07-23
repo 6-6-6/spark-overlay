@@ -36,4 +36,3 @@
 # Removal on 2022-07-23.  (For bug #859097)
 java-virtuals/jmx
 java-virtuals/saaj-api
-java-virtuals/stax-api
