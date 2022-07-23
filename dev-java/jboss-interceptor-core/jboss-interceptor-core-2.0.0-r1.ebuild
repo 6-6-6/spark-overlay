@@ -63,6 +63,7 @@ JAVA_BINJAR_FILENAME="${P}-bin.jar"
 src_prepare() {
 	if ! use binary; then
 		eapply "${FILESDIR}/${P}-migrate-from-deprecated-API.patch"
+		eapply "${FILESDIR}/${P}-update-for-javassist-3.23+.patch"
 	fi
 
 	eapply_user

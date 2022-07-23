@@ -1,0 +1,35 @@
+From 1da6c6c3f007128eab92afd2336fb74f7b1ffa8e Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Sat, 23 Jul 2022 13:36:00 -0700
+Subject: [PATCH] Update for incompatible API changes in javassist 3.23.0
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ .../java/org/jboss/interceptor/util/InterceptionUtils.java    | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/main/java/org/jboss/interceptor/util/InterceptionUtils.java b/src/main/java/org/jboss/interceptor/util/InterceptionUtils.java
+index e81438c..fd29738 100644
+--- a/src/main/java/org/jboss/interceptor/util/InterceptionUtils.java
++++ b/src/main/java/org/jboss/interceptor/util/InterceptionUtils.java
+@@ -159,7 +159,7 @@ public class InterceptionUtils
+          proxyFactory.setInterfaces(new Class<?>[]{LifecycleMixin.class, TargetInstanceProxy.class});
+       else
+          proxyFactory.setInterfaces(new Class<?>[]{LifecycleMixin.class, TargetInstanceProxy.class});
+-      Class<T> clazz = proxyFactory.createClass();
++      Class<T> clazz = (Class<T>) proxyFactory.createClass();
+       return clazz;
+    }
+ 
+@@ -173,7 +173,7 @@ public class InterceptionUtils
+       }
+       proxyFactory.setInterfaces(new Class<?>[]{LifecycleMixin.class, TargetInstanceProxy.class});
+       proxyFactory.setHandler(methodHandler);
+-      Class<T> clazz = proxyFactory.createClass();
++      Class<T> clazz = (Class<T>) proxyFactory.createClass();
+       return clazz;
+    }
+ 
+-- 
+2.35.1
+
