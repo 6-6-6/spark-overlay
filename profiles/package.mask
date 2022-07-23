@@ -31,7 +31,3 @@
 
 #--- END OF EXAMPLES ---
 
-# Yuan Liao <liaoyuan@gmail.com> (2022-07-19)
-# ebuilds which use the now-defunct EAPI 5 and have no consumers.
-# Removal on 2022-07-23.  (For bug #859097)
-java-virtuals/jmx
