@@ -27,7 +27,7 @@ CP_DEPEND="
 	dev-java/log4j-12-api:2
 	>=dev-java/log4j-api-2.7:2
 	>=dev-java/slf4j-api-1.7.28:0
-	>=dev-java/jctools-core-2.0.2:0
+	dev-java/jctools-core:3
 "
 
 BDEPEND="
