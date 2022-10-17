@@ -38,6 +38,10 @@ BDEPEND="
 	net-libs/grpc
 "
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-9.0.0-thrift-limit.patch
+)
+
 S="${WORKDIR}/${P}/cpp"
 
 src_prepare() {
