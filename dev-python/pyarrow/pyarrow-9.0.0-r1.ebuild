@@ -11,7 +11,8 @@ DESCRIPTION="Python library for Apache Arrow"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 HOMEPAGE="https://arrow.apache.org/"
 
-IUSE="+parquet"
+IUSE="+parquet +dataset"
+REQUIRED_USE="dataset? ( parquet )"
 
 LICENSE="Apache-2.0"
 SLOT="0"
@@ -36,6 +37,7 @@ src_prepare() {
 
 src_compile() {
 	export PYARROW_WITH_PARQUET=$(usex parquet "ON" "")
+	export PYARROW_WITH_DATASET=$(usex dataset "ON" "")
 	local jobs=$(makeopts_jobs "${MAKEOPTS}" INF)
 	export PYARROW_PARALLEL="${jobs}"
 	export PYARROW_BUILD_VERBOSE="1"

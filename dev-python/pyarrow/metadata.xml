@@ -10,5 +10,6 @@
 	</maintainer>
 	<use>
 		<flag name="parquet">Build with Parquet data format support</flag>
+		<flag name="dataset">Build with Parquet dataset support</flag>
 	</use>
 </pkgmetadata>
