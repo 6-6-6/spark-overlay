@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liaoyuan@gmail.com</email>
+		<name>Yuan Liao</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://jira.qos.ch/projects/SLF4J/issues</bugs-to>
+		<changelog>https://www.slf4j.org/news.html</changelog>
+		<doc>https://www.slf4j.org/docs.html</doc>
+		<remote-id type="github">qos-ch/slf4j</remote-id>
+	</upstream>
+</pkgmetadata>
