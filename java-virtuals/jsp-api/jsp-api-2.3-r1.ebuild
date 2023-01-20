@@ -11,12 +11,12 @@ SRC_URI=""
 
 LICENSE="public-domain"
 SLOT="${PV}"
-KEYWORDS="amd64 ~arm64 ppc64 x86"
+KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86"
 
 RDEPEND="|| (
-		dev-java/tomcat-servlet-api:4.0
-	)"
+	dev-java/tomcat-jsp-api:2.3
+)"
 
-JAVA_VIRTUAL_PROVIDES="tomcat-servlet-api-4.0"
+JAVA_VIRTUAL_PROVIDES="tomcat-jsp-api-2.3"
 
 MAVEN_PROVIDES="javax.servlet.jsp:jsp-api:2.3 javax.servlet.jsp:jsp-api:2.3 javax.servlet:jsp-api:2.3 org.apache.tomcat:tomcat-jsp-api:9.0.36"
