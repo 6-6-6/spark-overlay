@@ -47,9 +47,3 @@
 
 #--- END OF EXAMPLES ---
 
-# Yuan Liao <liaoyuan@gmail.com> (2022-06-19)
-# Last-rited packages for which this overlay has a higher version than the one
-# in ::gentoo.
->=dev-java/netty-buffer-4.1
->=dev-java/netty-common-4.1
->=dev-java/netty-transport-4.1
