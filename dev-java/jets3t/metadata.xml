@@ -5,10 +5,11 @@
 		<email>zzy2529420793@gmail.com</email>
 		<name>zongyu</name>
 	</maintainer>
-	<use>
-		<flag name="binary"> install binary jar from maven central.</flag>
-	</use>
+	<maintainer type="person">
+		<email>liaoyuan@gmail.com</email>
+		<name>Yuan Liao</name>
+	</maintainer>
 	<upstream>
-			<!-- <remote-id type="maven">pseudo:pseudo</remote-id> -->
+		<remote-id type="github">mondain/jets3t</remote-id>
 	</upstream>
 </pkgmetadata>
