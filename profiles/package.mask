@@ -31,3 +31,15 @@
 
 #--- END OF EXAMPLES ---
 
+# Yuan Liao <liaoyuan@gmail.com> (2023-01-21)
+# This package's sources are released at an HTTP URL that does not
+# contain the package's version number, meaning that there is not a
+# permalink to a specific version of the package's sources.  As a
+# result, this package is prone to upstream's changes to the sources.
+#
+# No reverse dependencies left.  Only few other distributions provide
+# this package, with the biggest name being Fedora; however, the source
+# URI used by the Fedora package returns 404.
+#
+# Removal on 2023-02-20.
+dev-java/barebonesbrowserlaunch
