@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -26,7 +26,7 @@ CP_DEPEND="
 	~dev-java/jetty-http-${PV}:9
 	~dev-java/jetty-io-${PV}:9
 	~dev-java/jetty-jmx-${PV}:9
-	java-virtuals/servlet-api:3.1
+	dev-java/tomcat-servlet-api:3.1
 "
 
 DEPEND="
