@@ -52,3 +52,4 @@
 # marked for removal from ::gentoo merely because it was not used by any other
 # ::gentoo packages.  However, this overlay has reverse dependencies of it.
 >=dev-java/commons-text-1.10.0-r1
+>=dev-java/jcip-annotations-1.0.1-r2
