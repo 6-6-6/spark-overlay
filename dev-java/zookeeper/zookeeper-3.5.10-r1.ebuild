@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -45,7 +45,7 @@ CP_DEPEND="
 	dev-java/netty-transport-native-unix-common:0
 	dev-java/slf4j-api:0
 	dev-java/spotbugs-annotations:0
-	java-virtuals/servlet-api:3.1
+	dev-java/tomcat-servlet-api:3.1
 "
 
 DEPEND="
