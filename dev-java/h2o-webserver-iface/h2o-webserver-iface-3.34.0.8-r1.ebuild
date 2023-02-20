@@ -1,7 +1,7 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 MAVEN_ID="ai.h2o:${PN}:${PV}"
 
@@ -22,7 +22,7 @@ KEYWORDS="~amd64"
 
 CP_DEPEND="
 	dev-java/commons-codec:0
-	java-virtuals/servlet-api:3.1
+	dev-java/tomcat-servlet-api:3.1
 "
 
 BDEPEND="
