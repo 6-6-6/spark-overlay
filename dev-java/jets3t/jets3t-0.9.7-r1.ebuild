@@ -26,7 +26,7 @@ CP_DEPEND="
 	dev-java/jackson-databind:0
 	dev-java/java-xmlbuilder:0
 	dev-java/slf4j-api:1
-	java-virtuals/servlet-api:3.1
+	dev-java/tomcat-servlet-api:3.1
 "
 
 DEPEND="
