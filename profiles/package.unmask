@@ -47,3 +47,8 @@
 
 #--- END OF EXAMPLES ---
 
+# Yuan Liao <liaoyuan@gmail.com> (2023-02-20)
+# Package without any issues that has been last-rited in ::gentoo; it was
+# marked for removal from ::gentoo merely because it was not used by any other
+# ::gentoo packages.  However, this overlay has reverse dependencies of it.
+>=dev-java/commons-text-1.10.0-r1
