@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -42,7 +42,7 @@ DEPEND="
 	!binary? (
 		${CP_DEPEND}
 		dev-java/sax:0
-		java-virtuals/servlet-api:2.4
+		dev-java/tomcat-servlet-api:2.4
 	)
 "
 
@@ -53,7 +53,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_CLASSPATH_EXTRA="sax,servlet-api-2.4"
+JAVA_CLASSPATH_EXTRA="sax,tomcat-servlet-api-2.4"
 JAVA_SRC_DIR="src/main/java"
 JAVA_RESOURCE_DIRS=( "src/main/resources" )
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
