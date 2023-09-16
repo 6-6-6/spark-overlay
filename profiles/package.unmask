@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 ####################################################################
@@ -46,19 +46,3 @@
 # file.
 
 #--- END OF EXAMPLES ---
-
-# Yuan Liao <liaoyuan@gmail.com> (2023-03-11)
-# Last-rited package which is added to this overlay at version 1.3.3-r2.
->=dev-java/jboss-modules-1.3.3-r2
-
-# Yuan Liao <liaoyuan@gmail.com> (2023-02-20)
-# Package last-rited in ::gentoo but already exists in this overlay with
-# version 1.1-r2.
->=dev-java/jta-1.1-r2
-
-# Yuan Liao <liaoyuan@gmail.com> (2023-02-20)
-# Package without any issues that has been last-rited in ::gentoo; it was
-# marked for removal from ::gentoo merely because it was not used by any other
-# ::gentoo packages.  However, this overlay has reverse dependencies of it.
->=dev-java/commons-text-1.10.0-r1
->=dev-java/jcip-annotations-1.0.1-r2
