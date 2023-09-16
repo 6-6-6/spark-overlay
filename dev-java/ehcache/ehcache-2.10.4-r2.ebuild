@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -27,7 +27,7 @@ IUSE="+binary"
 CP_DEPEND="
 	>=dev-java/slf4j-api-1.7.7:0
 
-	java-virtuals/ws-rs-api:0
+	dev-java/jakarta-ws-rs-api:0
 	dev-java/jta:0
 	dev-java/quartz:0
 	dev-java/jersey-server:2
