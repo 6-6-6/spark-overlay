@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -23,6 +23,7 @@ KEYWORDS="~amd64"
 RESTRICT="test"
 
 CP_DEPEND="
+	dev-java/jakarta-servlet-api:4
 	>=dev-java/jboss-ejb-api-1.0.0:3.1_spec
 	>=dev-java/jboss-interceptors-api-1.0.0:1.1_spec
 	>=dev-java/jsf-api-2.0:0
@@ -32,7 +33,6 @@ CP_DEPEND="
 	>=dev-java/cdi-api-1.2:1.2
 	dev-java/jakarta-annotation-api:0
 	>=dev-java/validation-api-1.1.0:1.0
-	java-virtuals/servlet-api:4.0
 "
 
 BDEPEND="
