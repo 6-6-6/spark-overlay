@@ -1,13 +1,10 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-# Skeleton command:
-# java-ebuilder --generate-ebuild --workdir . --pom /tmp/java-ebuilder/poms/javax.security.jacc-api-1.6.pom --from-maven-central --download-uri https://repo1.maven.org/maven2/javax/security/jacc/javax.security.jacc-api/1.6/javax.security.jacc-api-1.6-sources.jar --binjar-uri https://repo1.maven.org/maven2/javax/security/jacc/javax.security.jacc-api/1.6/javax.security.jacc-api-1.6.jar --slot 0 --keywords "~amd64" --ebuild javax-security-jacc-api-1.6.ebuild
-
-EAPI=7
+EAPI=8
 
 JAVA_PKG_IUSE="doc source test binary"
-MAVEN_ID="javax.security.jacc:javax.security.jacc-api:1.6"
+MAVEN_ID="javax.security.jacc:javax.security.jacc-api:${PV}"
 JAVA_TESTING_FRAMEWORKS="pkgdiff"
 
 inherit java-pkg-2 java-pkg-simple java-pkg-maven
@@ -22,12 +19,8 @@ LICENSE="CDDL GPL-2-with-classpath-exception"
 SLOT="0"
 KEYWORDS="~amd64"
 
-# Common dependencies
-# POM: /tmp/java-ebuilder/poms/javax.security.jacc-api-${PV}.pom
-# javax.servlet:javax.servlet-api:3.0.1 -> java-virtuals/servlet-api:4.0
-
-CDEPEND="
-	java-virtuals/servlet-api:4.0
+CP_DEPEND="
+	dev-java/jakarta-servlet-api:4
 "
 
 BDEPEND="
@@ -36,17 +29,18 @@ BDEPEND="
 
 DEPEND="
 	>=virtual/jdk-1.8:*
-	!binary? ( ${CDEPEND} )
+	!binary? (
+		${CP_DEPEND}
+	)
 "
 
 RDEPEND="
 	>=virtual/jre-1.8:*
-	${CDEPEND}
+	${CP_DEPEND}
 "
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="servlet-api-4.0"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 
