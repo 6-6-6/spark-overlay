@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -26,9 +26,9 @@ CP_DEPEND="
 	~dev-java/tomcat-annotations-api-${PV}:0
 	dev-java/javax-mail:0
 	dev-java/jakarta-ejb-api:3
+	dev-java/jakarta-servlet-api:4
 	dev-java/jakarta-xml-ws-api:2
 	dev-java/javax-persistence:0
-	java-virtuals/servlet-api:4.0
 "
 
 BDEPEND="
