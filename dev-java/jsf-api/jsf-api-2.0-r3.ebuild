@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -26,10 +26,9 @@ BDEPEND="
 DEPEND="
 	>=virtual/jdk-1.8:*
 	!binary? (
+		dev-java/jakarta-servlet-api:4
+		dev-java/javax-jsp-api:2.2
 		>=dev-java/jstl-1.2:0
-		java-virtuals/el-api:3.0
-		java-virtuals/jsp-api:2.3
-		java-virtuals/servlet-api:4.0
 		dev-java/validation-api:2.0
 	)
 "
@@ -41,9 +40,8 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_CLASSPATH_EXTRA="
-	el-api-3.0
-	servlet-api-4.0
-	jsp-api-2.3
+	jakarta-servlet-api-4
+	javax-jsp-api-2.2
 	jstl
 	validation-api-2.0
 "
