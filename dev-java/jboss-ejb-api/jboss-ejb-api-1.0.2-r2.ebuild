@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -24,8 +24,8 @@ SLOT="3.1_spec"
 KEYWORDS="~amd64"
 
 CP_DEPEND="
+	dev-java/javax-xml-rpc-api:0
 	>=dev-java/jboss-transaction-api-1.0.0:1.1_spec
-	>=dev-java/glassfish-xmlrpc-api-1.1.1-r1:0
 "
 
 BDEPEND="
