@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -24,14 +24,14 @@ KEYWORDS="~amd64"
 IUSE="+binary"
 
 CP_DEPEND="
-	dev-java/terracotta-toolkit-api:0
-	dev-java/terracotta-toolkit-api-internal:0
-	>=dev-java/HikariCP-java7-2.4.13:0
 	>=dev-java/c3p0-0.9.5.4:0
+	>=dev-java/HikariCP-java7-2.4.13:0
+	dev-java/jakarta-servlet-api:4
 	dev-java/jta:0
 	dev-java/mchange-commons:0
 	>=dev-java/slf4j-api-1.7.7:0
-	java-virtuals/servlet-api:4.0
+	dev-java/terracotta-toolkit-api:0
+	dev-java/terracotta-toolkit-api-internal:0
 "
 
 BDEPEND="
