@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -27,8 +27,8 @@ KEYWORDS="~amd64"
 CP_DEPEND="
 	dev-java/jakarta-annotation-api:0
 	dev-java/jakarta-inject:0
+	dev-java/jakarta-ws-rs-api:0
 	dev-java/osgi-resource-locator:0
-	java-virtuals/ws-rs-api:0
 "
 
 BDEPEND="
