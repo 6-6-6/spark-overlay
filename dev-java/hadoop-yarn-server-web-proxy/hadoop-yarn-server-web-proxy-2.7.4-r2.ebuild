@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -23,10 +23,10 @@ CP_DEPEND="
 	>=dev-java/hadoop-yarn-api-2.7.4:0
 	>=dev-java/hadoop-yarn-common-2.7.4:0
 	>=dev-java/hadoop-yarn-server-common-2.7.4:0
+	dev-java/jakarta-servlet-api:4
 	>=dev-java/jetty-6.1.26:6
 	>=dev-java/commons-logging-1.2:0
 	>=dev-java/guava-29.0:0
-	java-virtuals/servlet-api:4.0
 "
 
 BDEPEND="
