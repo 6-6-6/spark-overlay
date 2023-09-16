@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -32,6 +32,7 @@ CP_DEPEND="
 	>=dev-java/htrace-core-3.1.0:0
 	>=dev-java/jackson-core-asl-1.9.13:0
 	>=dev-java/jackson-mapper-asl-1.9.13:0
+	dev-java/jakarta-servlet-api:4
 	>=dev-java/jersey-core-1.9:1
 	>=dev-java/jersey-json-1.9:1
 	>=dev-java/jersey-server-1.9:1
@@ -59,7 +60,6 @@ CP_DEPEND="
 	dev-java/log4j-12-api:2
 	>=dev-java/protobuf-java-3.11.4:0
 	>=dev-java/slf4j-api-1.7.28:0
-	java-virtuals/servlet-api:4.0
 "
 
 BDEPEND="
@@ -78,7 +78,7 @@ RDEPEND="
 	>=virtual/jre-1.8:*
 	${CP_DEPEND}
 	>=dev-java/slf4j-log4j12-1.7.28:0
-	java-virtuals/jsp-api:2.3
+	dev-java/javax-jsp-api:2.2
 "
 
 S="${WORKDIR}"
@@ -101,5 +101,5 @@ src_prepare() {
 
 src_install() {
 	java-pkg-simple_src_install
-	java-pkg_register-dependency slf4j-log4j12,jsp-api-2.3
+	java-pkg_register-dependency slf4j-log4j12,javax-jsp-api-2.2
 }
