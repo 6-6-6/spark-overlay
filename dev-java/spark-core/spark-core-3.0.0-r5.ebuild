@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -36,6 +36,7 @@ CP_DEPEND="
 	>=dev-java/hadoop-client-2.7.4:0
 	>=dev-java/jackson-databind-2.10.0:0
 	>=dev-java/jackson-module-scala-2.10.0:2.12
+	dev-java/jakarta-servlet-api:4
 	>=dev-java/jcl-over-slf4j-1.7.16:0
 	>=dev-java/jersey-client-2.29.1:2
 	>=dev-java/jersey-common-2.29.1:2
@@ -77,7 +78,6 @@ CP_DEPEND="
 	>=dev-java/slf4j-api-1.7.28:0
 	>=dev-java/slf4j-log4j12-1.7.28:0
 	>=dev-java/snappy-1.1.7.5:1.1
-	java-virtuals/servlet-api:4.0
 "
 
 BDEPEND="
