@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -20,7 +20,7 @@ KEYWORDS="~amd64"
 CP_DEPEND="
 	dev-java/commons-beanutils:1.7
 	dev-java/jdom:0
-	java-virtuals/servlet-api:3.0
+	dev-java/javax-jsp-api:2.0
 "
 
 DEPEND="
@@ -40,8 +40,3 @@ S="${WORKDIR}/${P}-src"
 
 JAVA_CLASSPATH_EXTRA="xerces-2"
 JAVA_SRC_DIR="src/java"
-
-src_install() {
-	java-pkg-simple_src_install
-	einstalldocs # https://bugs.gentoo.org/789582
-}
