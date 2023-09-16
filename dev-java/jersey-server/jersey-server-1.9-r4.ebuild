@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -38,13 +38,13 @@ DEPEND="
 		${CP_DEPEND}
 		>=dev-java/jaxb-api-2.2:2
 		dev-java/jakarta-ejb-api:3
+		dev-java/jakarta-servlet-api:4
+		dev-java/javax-jsp-api:2.2
 		>=dev-java/mail-1.4:0
 		>=dev-java/persistence-api-1.0:0
 		>=dev-java/weld-osgi-bundle-1.1.0:0
 		>=dev-java/ant-core-1.10.7:0
 		>=dev-java/osgi-core-4.0:4
-		java-virtuals/jsp-api:2.3
-		java-virtuals/servlet-api:4.0
 	)
 "
 
@@ -59,8 +59,8 @@ JAVA_CLASSPATH_EXTRA="
 	ant-core
 	mail
 	persistence-api
-	servlet-api-4.0
-	jsp-api-2.3
+	jakarta-servlet-api-4
+	javax-jsp-api-2.2
 	jaxb-api-2
 	jakarta-ejb-api-3
 	weld-osgi-bundle

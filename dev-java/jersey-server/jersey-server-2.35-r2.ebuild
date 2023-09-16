@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -32,8 +32,8 @@ CP_DEPEND="
 	~dev-java/jersey-common-${PV}:2
 	~dev-java/jersey-media-jaxb-${PV}:2
 	dev-java/jakarta-annotation-api:0
+	dev-java/jakarta-ws-rs-api:0
 	dev-java/validation-api:2.0
-	java-virtuals/ws-rs-api:0
 "
 
 BDEPEND="
@@ -81,9 +81,4 @@ src_prepare() {
 	cp "${WORKDIR}/org/glassfish/jersey/server/internal/LocalizationMessages.java" \
 		"${JAVA_SRC_DIR}" || die "Failed to copy extra Java source file"
 	java-pkg-2_src_prepare
-}
-
-src_install() {
-	java-pkg-simple_src_install
-	einstalldocs # https://bugs.gentoo.org/789582
 }
