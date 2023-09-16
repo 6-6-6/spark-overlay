@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -25,12 +25,12 @@ RESTRICT="test"
 CP_DEPEND="
 	>=dev-java/jboss-logging-spi-2.1.2:0
 	>=dev-java/commons-logging-1.2:0
+	dev-java/jakarta-servlet-api:4
 	dev-java/log4j-12-api:2
 	>=dev-java/osgi-compendium-4.3.1:0
 	>=dev-java/osgi-core-1.4.0:1
 	>=dev-java/protobuf-java-3.11.4:0
 	>=dev-java/slf4j-api-1.7.7:0
-	java-virtuals/servlet-api:4.0
 "
 
 BDEPEND="

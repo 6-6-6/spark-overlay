@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -26,6 +26,7 @@ CP_DEPEND="
 	dev-java/jakarta-activation-api:1
 	>=dev-java/bcpkix-1.50:0
 	>=dev-java/commons-logging-1.2:0
+	dev-java/jakarta-servlet-api:4
 	>=dev-java/jboss-logging-3.4.0:0
 	>=dev-java/jboss-marshalling-1.3.18:0
 	>=dev-java/jetty-npn-api-1.1.1:0
@@ -35,7 +36,6 @@ CP_DEPEND="
 	>=dev-java/osgi-core-1.4.0:1
 	>=dev-java/protobuf-java-3.11.4:0
 	>=dev-java/slf4j-api-1.7.7:0
-	java-virtuals/servlet-api:4.0
 	dev-java/tomcat-jni:0
 "
 
