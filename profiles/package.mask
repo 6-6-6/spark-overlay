@@ -34,5 +34,4 @@
 # Yuan Liao <liaoyuan@gmail.com> (2023-09-16)
 # Packages under the removed 'java-virtuals' category.
 # Removal on 2023-10-16.
-java-virtuals/servlet-api
 java-virtuals/ws-rs-api
