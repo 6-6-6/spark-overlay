@@ -1,0 +1,124 @@
+--- ./src/main/java/org/hibernate/bytecode/enhance/internal/bytebuddy/BiDirectionalAssociationHandler.java.old	2024-09-17 12:59:36.000000000 +0200
++++ ./src/main/java/org/hibernate/bytecode/enhance/internal/bytebuddy/BiDirectionalAssociationHandler.java	2024-10-04 18:19:57.786816143 +0200
+@@ -36,9 +36,9 @@
+ import net.bytebuddy.implementation.Implementation;
+ import net.bytebuddy.implementation.bytecode.ByteCodeAppender;
+ import net.bytebuddy.implementation.bytecode.assign.Assigner;
+-import net.bytebuddy.jar.asm.MethodVisitor;
+-import net.bytebuddy.jar.asm.Opcodes;
+-import net.bytebuddy.jar.asm.Type;
++import org.objectweb.asm.MethodVisitor;
++import org.objectweb.asm.Opcodes;
++import org.objectweb.asm.Type;
+ 
+ final class BiDirectionalAssociationHandler implements Implementation {
+ 
+--- ./src/main/java/org/hibernate/bytecode/enhance/internal/bytebuddy/CodeTemplates.java.old	2024-09-17 12:59:36.000000000 +0200
++++ ./src/main/java/org/hibernate/bytecode/enhance/internal/bytebuddy/CodeTemplates.java	2024-10-04 18:19:57.788816143 +0200
+@@ -35,7 +35,7 @@
+ import net.bytebuddy.implementation.bytecode.assign.Assigner;
+ import net.bytebuddy.implementation.bytecode.member.MethodInvocation;
+ import net.bytebuddy.implementation.bytecode.member.MethodVariableAccess;
+-import net.bytebuddy.jar.asm.Opcodes;
++import org.objectweb.asm.Opcodes;
+ 
+ import static org.hibernate.engine.internal.ManagedTypeHelper.asCompositeTracker;
+ 
+--- ./src/main/java/org/hibernate/bytecode/enhance/internal/bytebuddy/FieldAccessEnhancer.java.old	2024-09-17 12:59:36.000000000 +0200
++++ ./src/main/java/org/hibernate/bytecode/enhance/internal/bytebuddy/FieldAccessEnhancer.java	2024-10-04 18:19:57.789816143 +0200
+@@ -26,9 +26,9 @@
+ import net.bytebuddy.description.method.MethodDescription;
+ import net.bytebuddy.description.type.TypeDescription;
+ import net.bytebuddy.implementation.Implementation;
+-import net.bytebuddy.jar.asm.MethodVisitor;
+-import net.bytebuddy.jar.asm.Opcodes;
+-import net.bytebuddy.jar.asm.Type;
++import org.objectweb.asm.MethodVisitor;
++import org.objectweb.asm.Opcodes;
++import org.objectweb.asm.Type;
+ import net.bytebuddy.pool.TypePool;
+ 
+ import java.util.Objects;
+--- ./src/main/java/org/hibernate/bytecode/enhance/internal/bytebuddy/FieldReaderAppender.java.old	2024-09-17 12:59:36.000000000 +0200
++++ ./src/main/java/org/hibernate/bytecode/enhance/internal/bytebuddy/FieldReaderAppender.java	2024-10-04 18:19:57.791816143 +0200
+@@ -18,10 +18,10 @@
+ import net.bytebuddy.description.type.TypeDescription;
+ import net.bytebuddy.implementation.Implementation;
+ import net.bytebuddy.implementation.bytecode.ByteCodeAppender;
+-import net.bytebuddy.jar.asm.Label;
+-import net.bytebuddy.jar.asm.MethodVisitor;
+-import net.bytebuddy.jar.asm.Opcodes;
+-import net.bytebuddy.jar.asm.Type;
++import org.objectweb.asm.Label;
++import org.objectweb.asm.MethodVisitor;
++import org.objectweb.asm.Opcodes;
++import org.objectweb.asm.Type;
+ 
+ abstract class FieldReaderAppender implements ByteCodeAppender {
+ 
+--- ./src/main/java/org/hibernate/bytecode/enhance/internal/bytebuddy/FieldWriterAppender.java.old	2024-09-17 12:59:36.000000000 +0200
++++ ./src/main/java/org/hibernate/bytecode/enhance/internal/bytebuddy/FieldWriterAppender.java	2024-10-04 18:19:57.792816143 +0200
+@@ -16,10 +16,10 @@
+ import net.bytebuddy.description.type.TypeDescription;
+ import net.bytebuddy.implementation.Implementation;
+ import net.bytebuddy.implementation.bytecode.ByteCodeAppender;
+-import net.bytebuddy.jar.asm.Label;
+-import net.bytebuddy.jar.asm.MethodVisitor;
+-import net.bytebuddy.jar.asm.Opcodes;
+-import net.bytebuddy.jar.asm.Type;
++import org.objectweb.asm.Label;
++import org.objectweb.asm.MethodVisitor;
++import org.objectweb.asm.Opcodes;
++import org.objectweb.asm.Type;
+ 
+ abstract class FieldWriterAppender implements ByteCodeAppender {
+ 
+--- ./src/main/java/org/hibernate/bytecode/enhance/internal/bytebuddy/InlineDirtyCheckingHandler.java.old	2024-09-17 12:59:36.000000000 +0200
++++ ./src/main/java/org/hibernate/bytecode/enhance/internal/bytebuddy/InlineDirtyCheckingHandler.java	2024-10-04 18:19:57.793816143 +0200
+@@ -25,10 +25,10 @@
+ import net.bytebuddy.dynamic.scaffold.InstrumentedType;
+ import net.bytebuddy.implementation.Implementation;
+ import net.bytebuddy.implementation.bytecode.ByteCodeAppender;
+-import net.bytebuddy.jar.asm.Label;
+-import net.bytebuddy.jar.asm.MethodVisitor;
+-import net.bytebuddy.jar.asm.Opcodes;
+-import net.bytebuddy.jar.asm.Type;
++import org.objectweb.asm.Label;
++import org.objectweb.asm.MethodVisitor;
++import org.objectweb.asm.Opcodes;
++import org.objectweb.asm.Type;
+ 
+ final class InlineDirtyCheckingHandler implements Implementation, ByteCodeAppender {
+ 
+--- ./src/main/java/org/hibernate/bytecode/enhance/internal/bytebuddy/PersistentAttributeTransformer.java.old	2024-09-17 12:59:36.000000000 +0200
++++ ./src/main/java/org/hibernate/bytecode/enhance/internal/bytebuddy/PersistentAttributeTransformer.java	2024-10-04 18:19:57.795816142 +0200
+@@ -38,9 +38,9 @@
+ import net.bytebuddy.implementation.Implementation;
+ import net.bytebuddy.implementation.StubMethod;
+ import net.bytebuddy.implementation.bytecode.ByteCodeAppender;
+-import net.bytebuddy.jar.asm.MethodVisitor;
+-import net.bytebuddy.jar.asm.Opcodes;
+-import net.bytebuddy.jar.asm.Type;
++import org.objectweb.asm.MethodVisitor;
++import org.objectweb.asm.Opcodes;
++import org.objectweb.asm.Type;
+ import net.bytebuddy.matcher.ElementMatcher.Junction;
+ import net.bytebuddy.matcher.ElementMatchers;
+ import net.bytebuddy.pool.TypePool;
+--- ./src/main/java/org/hibernate/bytecode/internal/bytebuddy/BytecodeProviderImpl.java.old	2024-09-17 12:59:36.000000000 +0200
++++ ./src/main/java/org/hibernate/bytecode/internal/bytebuddy/BytecodeProviderImpl.java	2024-10-04 18:19:57.796816142 +0200
+@@ -62,10 +62,10 @@
+ import net.bytebuddy.implementation.bytecode.assign.primitive.PrimitiveBoxingDelegate;
+ import net.bytebuddy.implementation.bytecode.assign.primitive.PrimitiveUnboxingDelegate;
+ import net.bytebuddy.implementation.bytecode.assign.reference.ReferenceTypeAwareAssigner;
+-import net.bytebuddy.jar.asm.Label;
+-import net.bytebuddy.jar.asm.MethodVisitor;
+-import net.bytebuddy.jar.asm.Opcodes;
+-import net.bytebuddy.jar.asm.Type;
++import org.objectweb.asm.Label;
++import org.objectweb.asm.MethodVisitor;
++import org.objectweb.asm.Opcodes;
++import org.objectweb.asm.Type;
+ import net.bytebuddy.matcher.ElementMatcher;
+ import net.bytebuddy.matcher.ElementMatchers;
+ import net.bytebuddy.pool.TypePool;
