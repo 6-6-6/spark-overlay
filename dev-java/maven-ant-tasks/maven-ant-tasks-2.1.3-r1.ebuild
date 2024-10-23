@@ -25,7 +25,7 @@ KEYWORDS="~amd64"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # classworlds:classworlds:1.1-alpha-2 -> >=dev-java/classworlds-1.1_alpha2:0
-# org.apache.ant:ant:1.8.0 -> >=dev-java/ant-core-1.10.7:0
+# org.apache.ant:ant:1.8.0 -> >=dev-java/ant-1.10.14:0
 # org.apache.maven:maven-artifact:2.2.1 -> >=dev-java/maven-artifact-2.2.1:0
 # org.apache.maven:maven-artifact-manager:2.2.1 -> >=dev-java/maven-artifact-manager-2.2.1:0
 # org.apache.maven:maven-error-diagnostics:2.2.1 -> >=dev-java/maven-error-diagnostics-2.2.1:0
@@ -53,7 +53,7 @@ CDEPEND="
 	>=dev-java/wagon-file-1.0_beta6:0
 	>=dev-java/wagon-http-lightweight-1.0_beta6:0
 	>=dev-java/wagon-provider-api-1.0_beta6:0
-	>=dev-java/ant-core-1.10.7:0
+	>=dev-java/ant-1.10.14:0
 "
 
 BDEPEND="
@@ -71,7 +71,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_GENTOO_CLASSPATH="classworlds,ant-core,maven-artifact,maven-artifact-manager,maven-error-diagnostics,maven-model,maven-project,maven-settings,wagon-file,wagon-http-lightweight,wagon-provider-api,plexus-container-default,plexus-interpolation,plexus-utils"
+JAVA_GENTOO_CLASSPATH="classworlds,ant,maven-artifact,maven-artifact-manager,maven-error-diagnostics,maven-model,maven-project,maven-settings,wagon-file,wagon-http-lightweight,wagon-provider-api,plexus-container-default,plexus-interpolation,plexus-utils"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

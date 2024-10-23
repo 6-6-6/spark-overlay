@@ -24,7 +24,7 @@ IUSE="+binary"
 
 CP_DEPEND="
 	>=dev-java/xstream-1.4.7:0
-	>=dev-java/ant-core-1.10.7:0
+	>=dev-java/ant-1.10.14:0[antlr,junit]
 	>=dev-java/ant-ivy-2.4.0:2
 	>=dev-java/bsf-2.4.0:2.3
 	>=dev-java/commons-logging-1.2:0
@@ -54,8 +54,6 @@ RDEPEND="
 	${CP_DEPEND}
 	>=dev-java/ant-launcher-1.9.4:0
 	>=dev-java/gpars-1.2.1:0
-	>=dev-java/ant-antlr-1.10.7:0
-	>=dev-java/ant-junit-1.10.7:0
 	>=dev-java/testng-6.9.10:0
 "
 

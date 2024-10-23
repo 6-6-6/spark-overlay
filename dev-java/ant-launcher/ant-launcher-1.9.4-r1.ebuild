@@ -29,7 +29,7 @@ BDEPEND="
 DEPEND="
 	>=virtual/jdk-1.8:*
 	!binary? (
-		dev-java/ant-core:0
+		dev-java/ant:0
 	)
 "
 
@@ -39,6 +39,6 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_CLASSPATH_EXTRA="ant-core"
+JAVA_CLASSPATH_EXTRA="ant"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
