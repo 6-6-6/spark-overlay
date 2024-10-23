@@ -1,0 +1,149 @@
+--- ./src/main/java/org/jboss/weld/context/bound/BoundLiteral.java.old	2011-01-12 15:36:50.000000000 +0100
++++ ./src/main/java/org/jboss/weld/context/bound/BoundLiteral.java	2024-10-04 19:06:13.311554940 +0200
+@@ -16,7 +16,7 @@
+  */
+ package org.jboss.weld.context.bound;
+ 
+-import javax.enterprise.util.AnnotationLiteral;
++import jakarta.enterprise.util.AnnotationLiteral;
+ 
+ 
+ /**
+--- ./src/main/java/org/jboss/weld/context/ejb/EjbLiteral.java.old	2011-01-12 15:36:50.000000000 +0100
++++ ./src/main/java/org/jboss/weld/context/ejb/EjbLiteral.java	2024-10-04 19:06:13.313554940 +0200
+@@ -16,7 +16,7 @@
+  */
+ package org.jboss.weld.context.ejb;
+ 
+-import javax.enterprise.util.AnnotationLiteral;
++import jakarta.enterprise.util.AnnotationLiteral;
+ 
+ 
+ /**
+--- ./src/main/java/org/jboss/weld/context/http/HttpLiteral.java.old	2011-01-12 15:36:50.000000000 +0100
++++ ./src/main/java/org/jboss/weld/context/http/HttpLiteral.java	2024-10-04 19:06:13.314554940 +0200
+@@ -16,7 +16,7 @@
+  */
+ package org.jboss.weld.context.http;
+ 
+-import javax.enterprise.util.AnnotationLiteral;
++import jakarta.enterprise.util.AnnotationLiteral;
+ 
+ 
+ /**
+--- ./src/main/java/org/jboss/weld/context/unbound/UnboundLiteral.java.old	2011-01-12 15:36:50.000000000 +0100
++++ ./src/main/java/org/jboss/weld/context/unbound/UnboundLiteral.java	2024-10-04 19:06:13.315554940 +0200
+@@ -16,7 +16,7 @@
+  */
+ package org.jboss.weld.context.unbound;
+ 
+-import javax.enterprise.util.AnnotationLiteral;
++import jakarta.enterprise.util.AnnotationLiteral;
+ 
+ 
+ /**
+--- ./src/main/java/org/jboss/weld/context/ApplicationContext.java.old	2011-01-12 15:36:50.000000000 +0100
++++ ./src/main/java/org/jboss/weld/context/ApplicationContext.java	2024-10-04 19:06:13.316554940 +0200
+@@ -1,7 +1,7 @@
+ package org.jboss.weld.context;
+ 
+-import javax.enterprise.context.ApplicationScoped;
+-import javax.enterprise.context.spi.Context;
++import jakarta.enterprise.context.ApplicationScoped;
++import jakarta.enterprise.context.spi.Context;
+ 
+ /**
+  * <p>
+--- ./src/main/java/org/jboss/weld/context/BoundContext.java.old	2011-01-12 15:36:50.000000000 +0100
++++ ./src/main/java/org/jboss/weld/context/BoundContext.java	2024-10-04 19:06:13.317554940 +0200
+@@ -1,6 +1,6 @@
+ package org.jboss.weld.context;
+ 
+-import javax.enterprise.context.spi.Context;
++import jakarta.enterprise.context.spi.Context;
+ 
+ /**
+  * <p>
+--- ./src/main/java/org/jboss/weld/context/ConversationContext.java.old	2011-01-12 15:36:50.000000000 +0100
++++ ./src/main/java/org/jboss/weld/context/ConversationContext.java	2024-10-04 19:06:13.318554940 +0200
+@@ -2,8 +2,8 @@
+ 
+ import java.util.Collection;
+ 
+-import javax.enterprise.context.Conversation;
+-import javax.enterprise.context.ConversationScoped;
++import jakarta.enterprise.context.Conversation;
++import jakarta.enterprise.context.ConversationScoped;
+ import javax.servlet.http.HttpSession;
+ 
+ import org.jboss.weld.context.bound.BoundConversationContext;
+--- ./src/main/java/org/jboss/weld/context/DependentContext.java.old	2011-01-12 15:36:50.000000000 +0100
++++ ./src/main/java/org/jboss/weld/context/DependentContext.java	2024-10-04 19:06:13.319554940 +0200
+@@ -1,7 +1,7 @@
+ package org.jboss.weld.context;
+ 
+-import javax.enterprise.context.Dependent;
+-import javax.enterprise.context.spi.Context;
++import jakarta.enterprise.context.Dependent;
++import jakarta.enterprise.context.spi.Context;
+ 
+ /**
+  * <p>
+--- ./src/main/java/org/jboss/weld/context/ManagedContext.java.old	2011-01-12 15:36:50.000000000 +0100
++++ ./src/main/java/org/jboss/weld/context/ManagedContext.java	2024-10-04 19:06:13.320554939 +0200
+@@ -1,6 +1,6 @@
+ package org.jboss.weld.context;
+ 
+-import javax.enterprise.context.spi.Context;
++import jakarta.enterprise.context.spi.Context;
+ 
+ /**
+  * <p>
+--- ./src/main/java/org/jboss/weld/context/ManagedConversation.java.old	2011-01-12 15:36:50.000000000 +0100
++++ ./src/main/java/org/jboss/weld/context/ManagedConversation.java	2024-10-04 19:06:13.322554939 +0200
+@@ -1,7 +1,7 @@
+ package org.jboss.weld.context;
+ 
+-import javax.enterprise.context.ContextNotActiveException;
+-import javax.enterprise.context.Conversation;
++import jakarta.enterprise.context.ContextNotActiveException;
++import jakarta.enterprise.context.Conversation;
+ 
+ /**
+  * <p>
+--- ./src/main/java/org/jboss/weld/context/RequestContext.java.old	2011-01-12 15:36:50.000000000 +0100
++++ ./src/main/java/org/jboss/weld/context/RequestContext.java	2024-10-04 19:06:13.323554939 +0200
+@@ -2,8 +2,8 @@
+ 
+ import java.util.Map;
+ 
+-import javax.enterprise.context.ConversationScoped;
+-import javax.enterprise.context.RequestScoped;
++import jakarta.enterprise.context.ConversationScoped;
++import jakarta.enterprise.context.RequestScoped;
+ import javax.interceptor.InvocationContext;
+ import javax.servlet.ServletRequest;
+ 
+--- ./src/main/java/org/jboss/weld/context/SessionContext.java.old	2011-01-12 15:36:50.000000000 +0100
++++ ./src/main/java/org/jboss/weld/context/SessionContext.java	2024-10-04 19:06:13.324554939 +0200
+@@ -2,7 +2,7 @@
+ 
+ import java.util.Map;
+ 
+-import javax.enterprise.context.SessionScoped;
++import jakarta.enterprise.context.SessionScoped;
+ import javax.servlet.http.HttpSession;
+ 
+ import org.jboss.weld.context.bound.BoundSessionContext;
+--- ./src/main/java/org/jboss/weld/context/SingletonContext.java.old	2011-01-12 15:36:50.000000000 +0100
++++ ./src/main/java/org/jboss/weld/context/SingletonContext.java	2024-10-04 19:06:13.325554939 +0200
+@@ -1,7 +1,7 @@
+ package org.jboss.weld.context;
+ 
+-import javax.enterprise.context.ApplicationScoped;
+-import javax.enterprise.context.spi.Context;
++import jakarta.enterprise.context.ApplicationScoped;
++import jakarta.enterprise.context.spi.Context;
+ 
+ /**
+  * <p>
