@@ -29,13 +29,13 @@ CDEPEND="
 
 # Compile dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
-# org.apache.ant:ant:1.7.1 -> >=dev-java/ant-core-1.10.7:0
+# org.apache.ant:ant:1.7.1 -> >=dev-java/ant-1.10.14:0
 
 DEPEND="
 	>=virtual/jdk-1.8:*
 	${CDEPEND}
 	app-arch/unzip
-	>=dev-java/ant-core-1.10.7:0
+	>=dev-java/ant-1.10.7:0
 "
 
 RDEPEND="
@@ -45,5 +45,5 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_GENTOO_CLASSPATH="commons-compiler"
-JAVA_CLASSPATH_EXTRA="ant-core"
+JAVA_CLASSPATH_EXTRA="ant"
 JAVA_SRC_DIR="src/main/java"

@@ -36,7 +36,7 @@ CP_DEPEND="
 	dev-java/validation-api:2.0
 	dev-java/cdi-api:1.2
 	dev-java/javax-security-jacc-api:0
-	dev-java/ant-core:0
+	dev-java/ant:0[antlr]
 "
 
 BDEPEND="

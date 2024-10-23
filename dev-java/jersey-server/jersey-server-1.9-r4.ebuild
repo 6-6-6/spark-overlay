@@ -43,7 +43,7 @@ DEPEND="
 		>=dev-java/mail-1.4:0
 		>=dev-java/persistence-api-1.0:0
 		>=dev-java/weld-osgi-bundle-1.1.0:0
-		>=dev-java/ant-core-1.10.7:0
+		>=dev-java/ant-1.10.14:0
 		>=dev-java/osgi-core-4.0:4
 	)
 "
@@ -56,7 +56,7 @@ RDEPEND="
 S="${WORKDIR}"
 
 JAVA_CLASSPATH_EXTRA="
-	ant-core
+	ant
 	mail
 	persistence-api
 	jakarta-servlet-api-4

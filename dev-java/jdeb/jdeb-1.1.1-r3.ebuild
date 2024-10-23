@@ -26,7 +26,7 @@ IUSE="+binary"
 # Common dependencies
 # POM: /var/lib/java-ebuilder/poms/${P}.pom
 # commons-io:commons-io:2.4 -> >=dev-java/commons-io-2.4:1
-# org.apache.ant:ant:1.9.3 -> >=dev-java/ant-core-1.10.7:0
+# org.apache.ant:ant:1.9.3 -> >=dev-java/ant-1.10.7:0
 # org.apache.commons:commons-compress:1.7 -> >=dev-java/commons-compress-1.10:0
 # org.apache.maven:maven-artifact:2.2.1 -> >=dev-java/maven-artifact-2.2.1:0
 # org.apache.maven:maven-core:2.2.1 -> >=dev-java/maven-bin-3.8.1:3.8
@@ -40,7 +40,7 @@ CP_DEPEND="
 	>=dev-java/maven-plugin-api-2.2.1:0
 	>=dev-java/maven-project-2.2.1:0
 	>=dev-java/plexus-utils-1.5.15:0
-	>=dev-java/ant-core-1.10.7:0
+	>=dev-java/ant-1.10.14:0
 	>=dev-java/bcpg-1.50:0
 	>=dev-java/commons-compress-1.10:0
 	>=dev-java/commons-io-2.4:1

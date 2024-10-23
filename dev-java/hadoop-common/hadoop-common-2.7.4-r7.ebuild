@@ -70,7 +70,7 @@ DEPEND="
 	>=virtual/jdk-1.8:*
 	!binary? (
 		${CP_DEPEND}
-		>=dev-java/ant-core-1.10.7:0
+		>=dev-java/ant-1.10.14:0
 	)
 "
 
@@ -83,7 +83,7 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-JAVA_CLASSPATH_EXTRA="ant-core"
+JAVA_CLASSPATH_EXTRA="ant"
 JAVA_SRC_DIR="src/main/java"
 JAVA_BINJAR_FILENAME="${P}-bin.jar"
 

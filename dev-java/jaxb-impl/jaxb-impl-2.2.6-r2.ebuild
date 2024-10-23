@@ -20,7 +20,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 CP_DEPEND="
-	dev-java/ant-core:0
+	dev-java/ant:0[junit,junit4]
 	dev-java/args4j:2
 	dev-java/codemodel:2
 	dev-java/fastinfoset:0
