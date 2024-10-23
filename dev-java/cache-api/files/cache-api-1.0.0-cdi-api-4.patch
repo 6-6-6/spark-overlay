@@ -1,0 +1,55 @@
+--- ./src/main/java/javax/cache/annotation/CacheResult.java.old	2016-10-16 10:40:18.000000000 +0200
++++ ./src/main/java/javax/cache/annotation/CacheResult.java	2024-10-04 18:44:49.753675735 +0200
+@@ -18,7 +18,7 @@
+ 
+ import javax.cache.Cache;
+ import javax.cache.CacheManager;
+-import javax.enterprise.util.Nonbinding;
++import jakarta.enterprise.util.Nonbinding;
+ import java.lang.annotation.ElementType;
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
+--- ./src/main/java/javax/cache/annotation/CacheRemoveAll.java.old	2016-10-16 10:40:18.000000000 +0200
++++ ./src/main/java/javax/cache/annotation/CacheRemoveAll.java	2024-10-04 18:44:49.753675735 +0200
+@@ -18,7 +18,7 @@
+ 
+ import javax.cache.Cache;
+ import javax.cache.CacheManager;
+-import javax.enterprise.util.Nonbinding;
++import jakarta.enterprise.util.Nonbinding;
+ import java.lang.annotation.ElementType;
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
+--- ./src/main/java/javax/cache/annotation/CachePut.java.old	2016-10-16 10:40:18.000000000 +0200
++++ ./src/main/java/javax/cache/annotation/CachePut.java	2024-10-04 18:44:49.754675735 +0200
+@@ -18,7 +18,7 @@
+ 
+ import javax.cache.Cache;
+ import javax.cache.CacheManager;
+-import javax.enterprise.util.Nonbinding;
++import jakarta.enterprise.util.Nonbinding;
+ import java.lang.annotation.ElementType;
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
+--- ./src/main/java/javax/cache/annotation/CacheDefaults.java.old	2016-10-16 10:40:18.000000000 +0200
++++ ./src/main/java/javax/cache/annotation/CacheDefaults.java	2024-10-04 18:44:49.756675735 +0200
+@@ -17,7 +17,7 @@
+ package javax.cache.annotation;
+ 
+ import javax.cache.CacheManager;
+-import javax.enterprise.util.Nonbinding;
++import jakarta.enterprise.util.Nonbinding;
+ import java.lang.annotation.ElementType;
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
+--- ./src/main/java/javax/cache/annotation/CacheRemove.java.old	2016-10-16 10:40:18.000000000 +0200
++++ ./src/main/java/javax/cache/annotation/CacheRemove.java	2024-10-04 18:44:49.758675735 +0200
+@@ -18,7 +18,7 @@
+ 
+ import javax.cache.Cache;
+ import javax.cache.CacheManager;
+-import javax.enterprise.util.Nonbinding;
++import jakarta.enterprise.util.Nonbinding;
+ import java.lang.annotation.ElementType;
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;

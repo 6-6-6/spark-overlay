@@ -1,0 +1,22 @@
+--- ./src/main/java/javax/transaction/TransactionScoped.java	2016-04-25 14:55:28.000000000 +0200
++++ ./src/main/java/javax/transaction/TransactionScoped.java.new	2024-10-04 11:02:06.692288499 +0200
+@@ -4,7 +4,7 @@
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.Target;
+ 
+-import javax.enterprise.context.NormalScope;
++import jakarta.enterprise.context.NormalScope;
+ 
+   /**
+    * Annotation used to indicate a bean is to be scoped to the current active
+--- ./src/main/java/javax/transaction/Transactional.java	2016-04-25 14:55:28.000000000 +0200
++++ ./src/main/java/javax/transaction/Transactional.java.new	2024-10-04 11:01:50.498290023 +0200
+@@ -8,7 +8,7 @@
+ import java.lang.annotation.Target;
+ 
+ import javax.interceptor.InterceptorBinding;
+-import javax.enterprise.util.Nonbinding;
++import jakarta.enterprise.util.Nonbinding;
+ 
+ 
+   /**
